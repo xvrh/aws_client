@@ -225,7 +225,7 @@ class Ivsrealtime {
       'stageArn': stageArn,
       if (attributes != null) 'attributes': attributes,
       if (capabilities != null)
-        'capabilities': capabilities.map((e) => e.toValue()).toList(),
+        'capabilities': capabilities.map((e) => e.value).toList(),
       if (duration != null) 'duration': duration,
       if (userId != null) 'userId': userId,
     };
@@ -531,7 +531,7 @@ class Ivsrealtime {
       'sessionId': sessionId,
       'stageArn': stageArn,
       if (filterByPublished != null) 'filterByPublished': filterByPublished,
-      if (filterByState != null) 'filterByState': filterByState.toValue(),
+      if (filterByState != null) 'filterByState': filterByState.value,
       if (filterByUserId != null) 'filterByUserId': filterByUserId,
       if (maxResults != null) 'maxResults': maxResults,
       if (nextToken != null) 'nextToken': nextToken,
@@ -853,9 +853,9 @@ class Event {
 
   factory Event.fromJson(Map<String, dynamic> json) {
     return Event(
-      errorCode: (json['errorCode'] as String?)?.toEventErrorCode(),
+      errorCode: (json['errorCode'] as String?)?.let(EventErrorCode.fromString),
       eventTime: timeStampFromJson(json['eventTime']),
-      name: (json['name'] as String?)?.toEventName(),
+      name: (json['name'] as String?)?.let(EventName.fromString),
       participantId: json['participantId'] as String?,
       remoteParticipantId: json['remoteParticipantId'] as String?,
     );
@@ -868,9 +868,9 @@ class Event {
     final participantId = this.participantId;
     final remoteParticipantId = this.remoteParticipantId;
     return {
-      if (errorCode != null) 'errorCode': errorCode.toValue(),
+      if (errorCode != null) 'errorCode': errorCode.value,
       if (eventTime != null) 'eventTime': iso8601ToJson(eventTime),
-      if (name != null) 'name': name.toValue(),
+      if (name != null) 'name': name.value,
       if (participantId != null) 'participantId': participantId,
       if (remoteParticipantId != null)
         'remoteParticipantId': remoteParticipantId,
@@ -879,89 +879,38 @@ class Event {
 }
 
 enum EventErrorCode {
-  insufficientCapabilities,
-}
+  insufficientCapabilities('INSUFFICIENT_CAPABILITIES'),
+  ;
 
-extension EventErrorCodeValueExtension on EventErrorCode {
-  String toValue() {
-    switch (this) {
-      case EventErrorCode.insufficientCapabilities:
-        return 'INSUFFICIENT_CAPABILITIES';
-    }
-  }
-}
+  final String value;
 
-extension EventErrorCodeFromString on String {
-  EventErrorCode toEventErrorCode() {
-    switch (this) {
-      case 'INSUFFICIENT_CAPABILITIES':
-        return EventErrorCode.insufficientCapabilities;
-    }
-    throw Exception('$this is not known in enum EventErrorCode');
-  }
+  const EventErrorCode(this.value);
+
+  static EventErrorCode fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum EventErrorCode'));
 }
 
 enum EventName {
-  joined,
-  left,
-  publishStarted,
-  publishStopped,
-  subscribeStarted,
-  subscribeStopped,
-  publishError,
-  subscribeError,
-  joinError,
-}
+  joined('JOINED'),
+  left('LEFT'),
+  publishStarted('PUBLISH_STARTED'),
+  publishStopped('PUBLISH_STOPPED'),
+  subscribeStarted('SUBSCRIBE_STARTED'),
+  subscribeStopped('SUBSCRIBE_STOPPED'),
+  publishError('PUBLISH_ERROR'),
+  subscribeError('SUBSCRIBE_ERROR'),
+  joinError('JOIN_ERROR'),
+  ;
 
-extension EventNameValueExtension on EventName {
-  String toValue() {
-    switch (this) {
-      case EventName.joined:
-        return 'JOINED';
-      case EventName.left:
-        return 'LEFT';
-      case EventName.publishStarted:
-        return 'PUBLISH_STARTED';
-      case EventName.publishStopped:
-        return 'PUBLISH_STOPPED';
-      case EventName.subscribeStarted:
-        return 'SUBSCRIBE_STARTED';
-      case EventName.subscribeStopped:
-        return 'SUBSCRIBE_STOPPED';
-      case EventName.publishError:
-        return 'PUBLISH_ERROR';
-      case EventName.subscribeError:
-        return 'SUBSCRIBE_ERROR';
-      case EventName.joinError:
-        return 'JOIN_ERROR';
-    }
-  }
-}
+  final String value;
 
-extension EventNameFromString on String {
-  EventName toEventName() {
-    switch (this) {
-      case 'JOINED':
-        return EventName.joined;
-      case 'LEFT':
-        return EventName.left;
-      case 'PUBLISH_STARTED':
-        return EventName.publishStarted;
-      case 'PUBLISH_STOPPED':
-        return EventName.publishStopped;
-      case 'SUBSCRIBE_STARTED':
-        return EventName.subscribeStarted;
-      case 'SUBSCRIBE_STOPPED':
-        return EventName.subscribeStopped;
-      case 'PUBLISH_ERROR':
-        return EventName.publishError;
-      case 'SUBSCRIBE_ERROR':
-        return EventName.subscribeError;
-      case 'JOIN_ERROR':
-        return EventName.joinError;
-    }
-    throw Exception('$this is not known in enum EventName');
-  }
+  const EventName(this.value);
+
+  static EventName fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum EventName'));
 }
 
 class GetParticipantResponse {
@@ -1237,7 +1186,7 @@ class Participant {
       firstJoinTime: timeStampFromJson(json['firstJoinTime']),
       participantId: json['participantId'] as String?,
       published: json['published'] as bool?,
-      state: (json['state'] as String?)?.toParticipantState(),
+      state: (json['state'] as String?)?.let(ParticipantState.fromString),
       userId: json['userId'] as String?,
     );
   }
@@ -1254,38 +1203,25 @@ class Participant {
       if (firstJoinTime != null) 'firstJoinTime': iso8601ToJson(firstJoinTime),
       if (participantId != null) 'participantId': participantId,
       if (published != null) 'published': published,
-      if (state != null) 'state': state.toValue(),
+      if (state != null) 'state': state.value,
       if (userId != null) 'userId': userId,
     };
   }
 }
 
 enum ParticipantState {
-  connected,
-  disconnected,
-}
+  connected('CONNECTED'),
+  disconnected('DISCONNECTED'),
+  ;
 
-extension ParticipantStateValueExtension on ParticipantState {
-  String toValue() {
-    switch (this) {
-      case ParticipantState.connected:
-        return 'CONNECTED';
-      case ParticipantState.disconnected:
-        return 'DISCONNECTED';
-    }
-  }
-}
+  final String value;
 
-extension ParticipantStateFromString on String {
-  ParticipantState toParticipantState() {
-    switch (this) {
-      case 'CONNECTED':
-        return ParticipantState.connected;
-      case 'DISCONNECTED':
-        return ParticipantState.disconnected;
-    }
-    throw Exception('$this is not known in enum ParticipantState');
-  }
+  const ParticipantState(this.value);
+
+  static ParticipantState fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum ParticipantState'));
 }
 
 /// Summary object describing a participant that has joined a stage.
@@ -1323,7 +1259,7 @@ class ParticipantSummary {
       firstJoinTime: timeStampFromJson(json['firstJoinTime']),
       participantId: json['participantId'] as String?,
       published: json['published'] as bool?,
-      state: (json['state'] as String?)?.toParticipantState(),
+      state: (json['state'] as String?)?.let(ParticipantState.fromString),
       userId: json['userId'] as String?,
     );
   }
@@ -1338,7 +1274,7 @@ class ParticipantSummary {
       if (firstJoinTime != null) 'firstJoinTime': iso8601ToJson(firstJoinTime),
       if (participantId != null) 'participantId': participantId,
       if (published != null) 'published': published,
-      if (state != null) 'state': state.toValue(),
+      if (state != null) 'state': state.value,
       if (userId != null) 'userId': userId,
     };
   }
@@ -1390,7 +1326,7 @@ class ParticipantToken {
           ?.map((k, e) => MapEntry(k, e as String)),
       capabilities: (json['capabilities'] as List?)
           ?.whereNotNull()
-          .map((e) => (e as String).toParticipantTokenCapability())
+          .map((e) => ParticipantTokenCapability.fromString((e as String)))
           .toList(),
       duration: json['duration'] as int?,
       expirationTime: timeStampFromJson(json['expirationTime']),
@@ -1411,7 +1347,7 @@ class ParticipantToken {
     return {
       if (attributes != null) 'attributes': attributes,
       if (capabilities != null)
-        'capabilities': capabilities.map((e) => e.toValue()).toList(),
+        'capabilities': capabilities.map((e) => e.value).toList(),
       if (duration != null) 'duration': duration,
       if (expirationTime != null)
         'expirationTime': iso8601ToJson(expirationTime),
@@ -1423,32 +1359,18 @@ class ParticipantToken {
 }
 
 enum ParticipantTokenCapability {
-  publish,
-  subscribe,
-}
+  publish('PUBLISH'),
+  subscribe('SUBSCRIBE'),
+  ;
 
-extension ParticipantTokenCapabilityValueExtension
-    on ParticipantTokenCapability {
-  String toValue() {
-    switch (this) {
-      case ParticipantTokenCapability.publish:
-        return 'PUBLISH';
-      case ParticipantTokenCapability.subscribe:
-        return 'SUBSCRIBE';
-    }
-  }
-}
+  final String value;
 
-extension ParticipantTokenCapabilityFromString on String {
-  ParticipantTokenCapability toParticipantTokenCapability() {
-    switch (this) {
-      case 'PUBLISH':
-        return ParticipantTokenCapability.publish;
-      case 'SUBSCRIBE':
-        return ParticipantTokenCapability.subscribe;
-    }
-    throw Exception('$this is not known in enum ParticipantTokenCapability');
-  }
+  const ParticipantTokenCapability(this.value);
+
+  static ParticipantTokenCapability fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum ParticipantTokenCapability'));
 }
 
 /// Object specifying a participant token configuration in a stage.
@@ -1489,7 +1411,7 @@ class ParticipantTokenConfiguration {
     return {
       if (attributes != null) 'attributes': attributes,
       if (capabilities != null)
-        'capabilities': capabilities.map((e) => e.toValue()).toList(),
+        'capabilities': capabilities.map((e) => e.value).toList(),
       if (duration != null) 'duration': duration,
       if (userId != null) 'userId': userId,
     };

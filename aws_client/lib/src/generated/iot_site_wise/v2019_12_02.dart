@@ -474,7 +474,7 @@ class IoTSiteWise {
   }) async {
     final $payload = <String, dynamic>{
       'accessPolicyIdentity': accessPolicyIdentity,
-      'accessPolicyPermission': accessPolicyPermission.toValue(),
+      'accessPolicyPermission': accessPolicyPermission.value,
       'accessPolicyResource': accessPolicyResource,
       'clientToken': clientToken ?? _s.generateIdempotencyToken(),
       if (tags != null) 'tags': tags,
@@ -908,7 +908,7 @@ class IoTSiteWise {
       'clientToken': clientToken ?? _s.generateIdempotencyToken(),
       if (notificationSenderEmail != null)
         'notificationSenderEmail': notificationSenderEmail,
-      if (portalAuthMode != null) 'portalAuthMode': portalAuthMode.toValue(),
+      if (portalAuthMode != null) 'portalAuthMode': portalAuthMode.value,
       if (portalDescription != null) 'portalDescription': portalDescription,
       if (portalLogoImageFile != null)
         'portalLogoImageFile': portalLogoImageFile,
@@ -1831,7 +1831,7 @@ class IoTSiteWise {
       1152921504606846976,
     );
     final $query = <String, List<String>>{
-      'aggregateTypes': aggregateTypes.map((e) => e.toValue()).toList(),
+      'aggregateTypes': aggregateTypes.map((e) => e.value).toList(),
       'endDate': [_s.iso8601ToJson(endDate).toString()],
       'resolution': [resolution],
       'startDate': [_s.iso8601ToJson(startDate).toString()],
@@ -1841,8 +1841,8 @@ class IoTSiteWise {
       if (propertyAlias != null) 'propertyAlias': [propertyAlias],
       if (propertyId != null) 'propertyId': [propertyId],
       if (qualities != null)
-        'qualities': qualities.map((e) => e.toValue()).toList(),
-      if (timeOrdering != null) 'timeOrdering': [timeOrdering.toValue()],
+        'qualities': qualities.map((e) => e.value).toList(),
+      if (timeOrdering != null) 'timeOrdering': [timeOrdering.value],
     };
     final response = await _protocol.send(
       payload: null,
@@ -2010,10 +2010,10 @@ class IoTSiteWise {
       if (propertyAlias != null) 'propertyAlias': [propertyAlias],
       if (propertyId != null) 'propertyId': [propertyId],
       if (qualities != null)
-        'qualities': qualities.map((e) => e.toValue()).toList(),
+        'qualities': qualities.map((e) => e.value).toList(),
       if (startDate != null)
         'startDate': [_s.iso8601ToJson(startDate).toString()],
-      if (timeOrdering != null) 'timeOrdering': [timeOrdering.toValue()],
+      if (timeOrdering != null) 'timeOrdering': [timeOrdering.value],
     };
     final response = await _protocol.send(
       payload: null,
@@ -2224,7 +2224,7 @@ class IoTSiteWise {
     final $query = <String, List<String>>{
       'endTimeInSeconds': [endTimeInSeconds.toString()],
       'intervalInSeconds': [intervalInSeconds.toString()],
-      'quality': [quality.toValue()],
+      'quality': [quality.value],
       'startTimeInSeconds': [startTimeInSeconds.toString()],
       'type': [type],
       if (assetId != null) 'assetId': [assetId],
@@ -2305,11 +2305,11 @@ class IoTSiteWise {
     final $query = <String, List<String>>{
       if (iamArn != null) 'iamArn': [iamArn],
       if (identityId != null) 'identityId': [identityId],
-      if (identityType != null) 'identityType': [identityType.toValue()],
+      if (identityType != null) 'identityType': [identityType.value],
       if (maxResults != null) 'maxResults': [maxResults.toString()],
       if (nextToken != null) 'nextToken': [nextToken],
       if (resourceId != null) 'resourceId': [resourceId],
-      if (resourceType != null) 'resourceType': [resourceType.toValue()],
+      if (resourceType != null) 'resourceType': [resourceType.value],
     };
     final response = await _protocol.send(
       payload: null,
@@ -2368,7 +2368,7 @@ class IoTSiteWise {
       250,
     );
     final $query = <String, List<String>>{
-      if (filter != null) 'filter': [filter.toValue()],
+      if (filter != null) 'filter': [filter.value],
       if (maxResults != null) 'maxResults': [maxResults.toString()],
       if (nextToken != null) 'nextToken': [nextToken],
     };
@@ -2467,7 +2467,7 @@ class IoTSiteWise {
       250,
     );
     final $query = <String, List<String>>{
-      if (filter != null) 'filter': [filter.toValue()],
+      if (filter != null) 'filter': [filter.value],
       if (maxResults != null) 'maxResults': [maxResults.toString()],
       if (nextToken != null) 'nextToken': [nextToken],
     };
@@ -2524,7 +2524,7 @@ class IoTSiteWise {
       250,
     );
     final $query = <String, List<String>>{
-      'traversalType': [traversalType.toValue()],
+      'traversalType': [traversalType.value],
       if (maxResults != null) 'maxResults': [maxResults.toString()],
       if (nextToken != null) 'nextToken': [nextToken],
     };
@@ -2604,7 +2604,7 @@ class IoTSiteWise {
     );
     final $query = <String, List<String>>{
       if (assetModelId != null) 'assetModelId': [assetModelId],
-      if (filter != null) 'filter': [filter.toValue()],
+      if (filter != null) 'filter': [filter.value],
       if (maxResults != null) 'maxResults': [maxResults.toString()],
       if (nextToken != null) 'nextToken': [nextToken],
     };
@@ -2694,7 +2694,7 @@ class IoTSiteWise {
       if (maxResults != null) 'maxResults': [maxResults.toString()],
       if (nextToken != null) 'nextToken': [nextToken],
       if (traversalDirection != null)
-        'traversalDirection': [traversalDirection.toValue()],
+        'traversalDirection': [traversalDirection.value],
     };
     final response = await _protocol.send(
       payload: null,
@@ -2737,7 +2737,7 @@ class IoTSiteWise {
       250,
     );
     final $query = <String, List<String>>{
-      if (filter != null) 'filter': [filter.toValue()],
+      if (filter != null) 'filter': [filter.value],
       if (maxResults != null) 'maxResults': [maxResults.toString()],
       if (nextToken != null) 'nextToken': [nextToken],
     };
@@ -3033,7 +3033,7 @@ class IoTSiteWise {
       if (assetId != null) 'assetId': [assetId],
       if (maxResults != null) 'maxResults': [maxResults.toString()],
       if (nextToken != null) 'nextToken': [nextToken],
-      if (timeSeriesType != null) 'timeSeriesType': [timeSeriesType.toValue()],
+      if (timeSeriesType != null) 'timeSeriesType': [timeSeriesType.value],
     };
     final response = await _protocol.send(
       payload: null,
@@ -3068,7 +3068,7 @@ class IoTSiteWise {
     String? kmsKeyId,
   }) async {
     final $payload = <String, dynamic>{
-      'encryptionType': encryptionType.toValue(),
+      'encryptionType': encryptionType.value,
       if (kmsKeyId != null) 'kmsKeyId': kmsKeyId,
     };
     final response = await _protocol.send(
@@ -3163,9 +3163,9 @@ class IoTSiteWise {
     RetentionPeriod? retentionPeriod,
   }) async {
     final $payload = <String, dynamic>{
-      'storageType': storageType.toValue(),
+      'storageType': storageType.value,
       if (disassociatedDataStorage != null)
-        'disassociatedDataStorage': disassociatedDataStorage.toValue(),
+        'disassociatedDataStorage': disassociatedDataStorage.value,
       if (multiLayerStorage != null) 'multiLayerStorage': multiLayerStorage,
       if (retentionPeriod != null) 'retentionPeriod': retentionPeriod,
     };
@@ -3289,7 +3289,7 @@ class IoTSiteWise {
   }) async {
     final $payload = <String, dynamic>{
       'accessPolicyIdentity': accessPolicyIdentity,
-      'accessPolicyPermission': accessPolicyPermission.toValue(),
+      'accessPolicyPermission': accessPolicyPermission.value,
       'accessPolicyResource': accessPolicyResource,
       'clientToken': clientToken ?? _s.generateIdempotencyToken(),
     };
@@ -3508,7 +3508,7 @@ class IoTSiteWise {
       'clientToken': clientToken ?? _s.generateIdempotencyToken(),
       if (propertyAlias != null) 'propertyAlias': propertyAlias,
       if (propertyNotificationState != null)
-        'propertyNotificationState': propertyNotificationState.toValue(),
+        'propertyNotificationState': propertyNotificationState.value,
       if (propertyUnit != null) 'propertyUnit': propertyUnit,
     };
     await _protocol.send(
@@ -3797,7 +3797,7 @@ class AccessPolicySummary {
     return AccessPolicySummary(
       id: json['id'] as String,
       identity: Identity.fromJson(json['identity'] as Map<String, dynamic>),
-      permission: (json['permission'] as String).toPermission(),
+      permission: Permission.fromString((json['permission'] as String)),
       resource: Resource.fromJson(json['resource'] as Map<String, dynamic>),
       creationDate: timeStampFromJson(json['creationDate']),
       lastUpdateDate: timeStampFromJson(json['lastUpdateDate']),
@@ -3814,7 +3814,7 @@ class AccessPolicySummary {
     return {
       'id': id,
       'identity': identity,
-      'permission': permission.toValue(),
+      'permission': permission.value,
       'resource': resource,
       if (creationDate != null)
         'creationDate': unixTimestampToJson(creationDate),
@@ -3825,51 +3825,22 @@ class AccessPolicySummary {
 }
 
 enum AggregateType {
-  average,
-  count,
-  maximum,
-  minimum,
-  sum,
-  standardDeviation,
-}
+  average('AVERAGE'),
+  count('COUNT'),
+  maximum('MAXIMUM'),
+  minimum('MINIMUM'),
+  sum('SUM'),
+  standardDeviation('STANDARD_DEVIATION'),
+  ;
 
-extension AggregateTypeValueExtension on AggregateType {
-  String toValue() {
-    switch (this) {
-      case AggregateType.average:
-        return 'AVERAGE';
-      case AggregateType.count:
-        return 'COUNT';
-      case AggregateType.maximum:
-        return 'MAXIMUM';
-      case AggregateType.minimum:
-        return 'MINIMUM';
-      case AggregateType.sum:
-        return 'SUM';
-      case AggregateType.standardDeviation:
-        return 'STANDARD_DEVIATION';
-    }
-  }
-}
+  final String value;
 
-extension AggregateTypeFromString on String {
-  AggregateType toAggregateType() {
-    switch (this) {
-      case 'AVERAGE':
-        return AggregateType.average;
-      case 'COUNT':
-        return AggregateType.count;
-      case 'MAXIMUM':
-        return AggregateType.maximum;
-      case 'MINIMUM':
-        return AggregateType.minimum;
-      case 'SUM':
-        return AggregateType.sum;
-      case 'STANDARD_DEVIATION':
-        return AggregateType.standardDeviation;
-    }
-    throw Exception('$this is not known in enum AggregateType');
-  }
+  const AggregateType(this.value);
+
+  static AggregateType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum AggregateType'));
 }
 
 /// Contains aggregated asset property values (for example, average, minimum,
@@ -3894,7 +3865,7 @@ class AggregatedValue {
     return AggregatedValue(
       timestamp: nonNullableTimeStampFromJson(json['timestamp'] as Object),
       value: Aggregates.fromJson(json['value'] as Map<String, dynamic>),
-      quality: (json['quality'] as String?)?.toQuality(),
+      quality: (json['quality'] as String?)?.let(Quality.fromString),
     );
   }
 
@@ -3905,7 +3876,7 @@ class AggregatedValue {
     return {
       'timestamp': unixTimestampToJson(timestamp),
       'value': value,
-      if (quality != null) 'quality': quality.toValue(),
+      if (quality != null) 'quality': quality.value,
     };
   }
 }
@@ -4069,26 +4040,17 @@ class AssetCompositeModel {
 }
 
 enum AssetErrorCode {
-  internalFailure,
-}
+  internalFailure('INTERNAL_FAILURE'),
+  ;
 
-extension AssetErrorCodeValueExtension on AssetErrorCode {
-  String toValue() {
-    switch (this) {
-      case AssetErrorCode.internalFailure:
-        return 'INTERNAL_FAILURE';
-    }
-  }
-}
+  final String value;
 
-extension AssetErrorCodeFromString on String {
-  AssetErrorCode toAssetErrorCode() {
-    switch (this) {
-      case 'INTERNAL_FAILURE':
-        return AssetErrorCode.internalFailure;
-    }
-    throw Exception('$this is not known in enum AssetErrorCode');
-  }
+  const AssetErrorCode(this.value);
+
+  static AssetErrorCode fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum AssetErrorCode'));
 }
 
 /// Contains error details for the requested associate project asset action.
@@ -4111,7 +4073,7 @@ class AssetErrorDetails {
   factory AssetErrorDetails.fromJson(Map<String, dynamic> json) {
     return AssetErrorDetails(
       assetId: json['assetId'] as String,
-      code: (json['code'] as String).toAssetErrorCode(),
+      code: AssetErrorCode.fromString((json['code'] as String)),
       message: json['message'] as String,
     );
   }
@@ -4122,7 +4084,7 @@ class AssetErrorDetails {
     final message = this.message;
     return {
       'assetId': assetId,
-      'code': code.toValue(),
+      'code': code.value,
       'message': message,
     };
   }
@@ -4393,7 +4355,7 @@ class AssetModelProperty {
 
   factory AssetModelProperty.fromJson(Map<String, dynamic> json) {
     return AssetModelProperty(
-      dataType: (json['dataType'] as String).toPropertyDataType(),
+      dataType: PropertyDataType.fromString((json['dataType'] as String)),
       name: json['name'] as String,
       type: PropertyType.fromJson(json['type'] as Map<String, dynamic>),
       dataTypeSpec: json['dataTypeSpec'] as String?,
@@ -4410,7 +4372,7 @@ class AssetModelProperty {
     final id = this.id;
     final unit = this.unit;
     return {
-      'dataType': dataType.toValue(),
+      'dataType': dataType.value,
       'name': name,
       'type': type,
       if (dataTypeSpec != null) 'dataTypeSpec': dataTypeSpec,
@@ -4464,7 +4426,7 @@ class AssetModelPropertyDefinition {
     final dataTypeSpec = this.dataTypeSpec;
     final unit = this.unit;
     return {
-      'dataType': dataType.toValue(),
+      'dataType': dataType.value,
       'name': name,
       'type': type,
       if (dataTypeSpec != null) 'dataTypeSpec': dataTypeSpec,
@@ -4507,7 +4469,7 @@ class AssetModelPropertySummary {
 
   factory AssetModelPropertySummary.fromJson(Map<String, dynamic> json) {
     return AssetModelPropertySummary(
-      dataType: (json['dataType'] as String).toPropertyDataType(),
+      dataType: PropertyDataType.fromString((json['dataType'] as String)),
       name: json['name'] as String,
       type: PropertyType.fromJson(json['type'] as Map<String, dynamic>),
       assetModelCompositeModelId: json['assetModelCompositeModelId'] as String?,
@@ -4526,7 +4488,7 @@ class AssetModelPropertySummary {
     final id = this.id;
     final unit = this.unit;
     return {
-      'dataType': dataType.toValue(),
+      'dataType': dataType.value,
       'name': name,
       'type': type,
       if (assetModelCompositeModelId != null)
@@ -4539,51 +4501,22 @@ class AssetModelPropertySummary {
 }
 
 enum AssetModelState {
-  creating,
-  active,
-  updating,
-  propagating,
-  deleting,
-  failed,
-}
+  creating('CREATING'),
+  active('ACTIVE'),
+  updating('UPDATING'),
+  propagating('PROPAGATING'),
+  deleting('DELETING'),
+  failed('FAILED'),
+  ;
 
-extension AssetModelStateValueExtension on AssetModelState {
-  String toValue() {
-    switch (this) {
-      case AssetModelState.creating:
-        return 'CREATING';
-      case AssetModelState.active:
-        return 'ACTIVE';
-      case AssetModelState.updating:
-        return 'UPDATING';
-      case AssetModelState.propagating:
-        return 'PROPAGATING';
-      case AssetModelState.deleting:
-        return 'DELETING';
-      case AssetModelState.failed:
-        return 'FAILED';
-    }
-  }
-}
+  final String value;
 
-extension AssetModelStateFromString on String {
-  AssetModelState toAssetModelState() {
-    switch (this) {
-      case 'CREATING':
-        return AssetModelState.creating;
-      case 'ACTIVE':
-        return AssetModelState.active;
-      case 'UPDATING':
-        return AssetModelState.updating;
-      case 'PROPAGATING':
-        return AssetModelState.propagating;
-      case 'DELETING':
-        return AssetModelState.deleting;
-      case 'FAILED':
-        return AssetModelState.failed;
-    }
-    throw Exception('$this is not known in enum AssetModelState');
-  }
+  const AssetModelState(this.value);
+
+  static AssetModelState fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum AssetModelState'));
 }
 
 /// Contains current status information for an asset model. For more
@@ -4604,7 +4537,7 @@ class AssetModelStatus {
 
   factory AssetModelStatus.fromJson(Map<String, dynamic> json) {
     return AssetModelStatus(
-      state: (json['state'] as String).toAssetModelState(),
+      state: AssetModelState.fromString((json['state'] as String)),
       error: json['error'] != null
           ? ErrorDetails.fromJson(json['error'] as Map<String, dynamic>)
           : null,
@@ -4615,7 +4548,7 @@ class AssetModelStatus {
     final state = this.state;
     final error = this.error;
     return {
-      'state': state.toValue(),
+      'state': state.value,
       if (error != null) 'error': error,
     };
   }
@@ -4736,7 +4669,7 @@ class AssetProperty {
 
   factory AssetProperty.fromJson(Map<String, dynamic> json) {
     return AssetProperty(
-      dataType: (json['dataType'] as String).toPropertyDataType(),
+      dataType: PropertyDataType.fromString((json['dataType'] as String)),
       id: json['id'] as String,
       name: json['name'] as String,
       alias: json['alias'] as String?,
@@ -4758,7 +4691,7 @@ class AssetProperty {
     final notification = this.notification;
     final unit = this.unit;
     return {
-      'dataType': dataType.toValue(),
+      'dataType': dataType.value,
       'id': id,
       'name': name,
       if (alias != null) 'alias': alias,
@@ -4849,7 +4782,7 @@ class AssetPropertyValue {
       timestamp:
           TimeInNanos.fromJson(json['timestamp'] as Map<String, dynamic>),
       value: Variant.fromJson(json['value'] as Map<String, dynamic>),
-      quality: (json['quality'] as String?)?.toQuality(),
+      quality: (json['quality'] as String?)?.let(Quality.fromString),
     );
   }
 
@@ -4860,7 +4793,7 @@ class AssetPropertyValue {
     return {
       'timestamp': timestamp,
       'value': value,
-      if (quality != null) 'quality': quality.toValue(),
+      if (quality != null) 'quality': quality.value,
     };
   }
 }
@@ -4892,8 +4825,8 @@ class AssetRelationshipSummary {
 
   factory AssetRelationshipSummary.fromJson(Map<String, dynamic> json) {
     return AssetRelationshipSummary(
-      relationshipType:
-          (json['relationshipType'] as String).toAssetRelationshipType(),
+      relationshipType: AssetRelationshipType.fromString(
+          (json['relationshipType'] as String)),
       hierarchyInfo: json['hierarchyInfo'] != null
           ? AssetHierarchyInfo.fromJson(
               json['hierarchyInfo'] as Map<String, dynamic>)
@@ -4905,76 +4838,41 @@ class AssetRelationshipSummary {
     final relationshipType = this.relationshipType;
     final hierarchyInfo = this.hierarchyInfo;
     return {
-      'relationshipType': relationshipType.toValue(),
+      'relationshipType': relationshipType.value,
       if (hierarchyInfo != null) 'hierarchyInfo': hierarchyInfo,
     };
   }
 }
 
 enum AssetRelationshipType {
-  hierarchy,
-}
+  hierarchy('HIERARCHY'),
+  ;
 
-extension AssetRelationshipTypeValueExtension on AssetRelationshipType {
-  String toValue() {
-    switch (this) {
-      case AssetRelationshipType.hierarchy:
-        return 'HIERARCHY';
-    }
-  }
-}
+  final String value;
 
-extension AssetRelationshipTypeFromString on String {
-  AssetRelationshipType toAssetRelationshipType() {
-    switch (this) {
-      case 'HIERARCHY':
-        return AssetRelationshipType.hierarchy;
-    }
-    throw Exception('$this is not known in enum AssetRelationshipType');
-  }
+  const AssetRelationshipType(this.value);
+
+  static AssetRelationshipType fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum AssetRelationshipType'));
 }
 
 enum AssetState {
-  creating,
-  active,
-  updating,
-  deleting,
-  failed,
-}
+  creating('CREATING'),
+  active('ACTIVE'),
+  updating('UPDATING'),
+  deleting('DELETING'),
+  failed('FAILED'),
+  ;
 
-extension AssetStateValueExtension on AssetState {
-  String toValue() {
-    switch (this) {
-      case AssetState.creating:
-        return 'CREATING';
-      case AssetState.active:
-        return 'ACTIVE';
-      case AssetState.updating:
-        return 'UPDATING';
-      case AssetState.deleting:
-        return 'DELETING';
-      case AssetState.failed:
-        return 'FAILED';
-    }
-  }
-}
+  final String value;
 
-extension AssetStateFromString on String {
-  AssetState toAssetState() {
-    switch (this) {
-      case 'CREATING':
-        return AssetState.creating;
-      case 'ACTIVE':
-        return AssetState.active;
-      case 'UPDATING':
-        return AssetState.updating;
-      case 'DELETING':
-        return AssetState.deleting;
-      case 'FAILED':
-        return AssetState.failed;
-    }
-    throw Exception('$this is not known in enum AssetState');
-  }
+  const AssetState(this.value);
+
+  static AssetState fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum AssetState'));
 }
 
 /// Contains information about the current status of an asset. For more
@@ -4995,7 +4893,7 @@ class AssetStatus {
 
   factory AssetStatus.fromJson(Map<String, dynamic> json) {
     return AssetStatus(
-      state: (json['state'] as String).toAssetState(),
+      state: AssetState.fromString((json['state'] as String)),
       error: json['error'] != null
           ? ErrorDetails.fromJson(json['error'] as Map<String, dynamic>)
           : null,
@@ -5006,7 +4904,7 @@ class AssetStatus {
     final state = this.state;
     final error = this.error;
     return {
-      'state': state.toValue(),
+      'state': state.value,
       if (error != null) 'error': error,
     };
   }
@@ -5220,31 +5118,17 @@ class Attribute {
 }
 
 enum AuthMode {
-  iam,
-  sso,
-}
+  iam('IAM'),
+  sso('SSO'),
+  ;
 
-extension AuthModeValueExtension on AuthMode {
-  String toValue() {
-    switch (this) {
-      case AuthMode.iam:
-        return 'IAM';
-      case AuthMode.sso:
-        return 'SSO';
-    }
-  }
-}
+  final String value;
 
-extension AuthModeFromString on String {
-  AuthMode toAuthMode() {
-    switch (this) {
-      case 'IAM':
-        return AuthMode.iam;
-      case 'SSO':
-        return AuthMode.sso;
-    }
-    throw Exception('$this is not known in enum AuthMode');
-  }
+  const AuthMode(this.value);
+
+  static AuthMode fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum AuthMode'));
 }
 
 class BatchAssociateProjectAssetsResponse {
@@ -5300,32 +5184,18 @@ class BatchDisassociateProjectAssetsResponse {
 }
 
 enum BatchEntryCompletionStatus {
-  success,
-  error,
-}
+  success('SUCCESS'),
+  error('ERROR'),
+  ;
 
-extension BatchEntryCompletionStatusValueExtension
-    on BatchEntryCompletionStatus {
-  String toValue() {
-    switch (this) {
-      case BatchEntryCompletionStatus.success:
-        return 'SUCCESS';
-      case BatchEntryCompletionStatus.error:
-        return 'ERROR';
-    }
-  }
-}
+  final String value;
 
-extension BatchEntryCompletionStatusFromString on String {
-  BatchEntryCompletionStatus toBatchEntryCompletionStatus() {
-    switch (this) {
-      case 'SUCCESS':
-        return BatchEntryCompletionStatus.success;
-      case 'ERROR':
-        return BatchEntryCompletionStatus.error;
-    }
-    throw Exception('$this is not known in enum BatchEntryCompletionStatus');
-  }
+  const BatchEntryCompletionStatus(this.value);
+
+  static BatchEntryCompletionStatus fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum BatchEntryCompletionStatus'));
 }
 
 /// Contains information for an asset property aggregate entry that is
@@ -5411,7 +5281,7 @@ class BatchGetAssetPropertyAggregatesEntry {
     final qualities = this.qualities;
     final timeOrdering = this.timeOrdering;
     return {
-      'aggregateTypes': aggregateTypes.map((e) => e.toValue()).toList(),
+      'aggregateTypes': aggregateTypes.map((e) => e.value).toList(),
       'endDate': unixTimestampToJson(endDate),
       'entryId': entryId,
       'resolution': resolution,
@@ -5420,47 +5290,26 @@ class BatchGetAssetPropertyAggregatesEntry {
       if (propertyAlias != null) 'propertyAlias': propertyAlias,
       if (propertyId != null) 'propertyId': propertyId,
       if (qualities != null)
-        'qualities': qualities.map((e) => e.toValue()).toList(),
-      if (timeOrdering != null) 'timeOrdering': timeOrdering.toValue(),
+        'qualities': qualities.map((e) => e.value).toList(),
+      if (timeOrdering != null) 'timeOrdering': timeOrdering.value,
     };
   }
 }
 
 enum BatchGetAssetPropertyAggregatesErrorCode {
-  resourceNotFoundException,
-  invalidRequestException,
-  accessDeniedException,
-}
+  resourceNotFoundException('ResourceNotFoundException'),
+  invalidRequestException('InvalidRequestException'),
+  accessDeniedException('AccessDeniedException'),
+  ;
 
-extension BatchGetAssetPropertyAggregatesErrorCodeValueExtension
-    on BatchGetAssetPropertyAggregatesErrorCode {
-  String toValue() {
-    switch (this) {
-      case BatchGetAssetPropertyAggregatesErrorCode.resourceNotFoundException:
-        return 'ResourceNotFoundException';
-      case BatchGetAssetPropertyAggregatesErrorCode.invalidRequestException:
-        return 'InvalidRequestException';
-      case BatchGetAssetPropertyAggregatesErrorCode.accessDeniedException:
-        return 'AccessDeniedException';
-    }
-  }
-}
+  final String value;
 
-extension BatchGetAssetPropertyAggregatesErrorCodeFromString on String {
-  BatchGetAssetPropertyAggregatesErrorCode
-      toBatchGetAssetPropertyAggregatesErrorCode() {
-    switch (this) {
-      case 'ResourceNotFoundException':
-        return BatchGetAssetPropertyAggregatesErrorCode
-            .resourceNotFoundException;
-      case 'InvalidRequestException':
-        return BatchGetAssetPropertyAggregatesErrorCode.invalidRequestException;
-      case 'AccessDeniedException':
-        return BatchGetAssetPropertyAggregatesErrorCode.accessDeniedException;
-    }
-    throw Exception(
-        '$this is not known in enum BatchGetAssetPropertyAggregatesErrorCode');
-  }
+  const BatchGetAssetPropertyAggregatesErrorCode(this.value);
+
+  static BatchGetAssetPropertyAggregatesErrorCode fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum BatchGetAssetPropertyAggregatesErrorCode'));
 }
 
 /// Contains error information for an asset property aggregate entry that is
@@ -5487,8 +5336,8 @@ class BatchGetAssetPropertyAggregatesErrorEntry {
       Map<String, dynamic> json) {
     return BatchGetAssetPropertyAggregatesErrorEntry(
       entryId: json['entryId'] as String,
-      errorCode: (json['errorCode'] as String)
-          .toBatchGetAssetPropertyAggregatesErrorCode(),
+      errorCode: BatchGetAssetPropertyAggregatesErrorCode.fromString(
+          (json['errorCode'] as String)),
       errorMessage: json['errorMessage'] as String,
     );
   }
@@ -5499,7 +5348,7 @@ class BatchGetAssetPropertyAggregatesErrorEntry {
     final errorMessage = this.errorMessage;
     return {
       'entryId': entryId,
-      'errorCode': errorCode.toValue(),
+      'errorCode': errorCode.value,
       'errorMessage': errorMessage,
     };
   }
@@ -5524,8 +5373,8 @@ class BatchGetAssetPropertyAggregatesErrorInfo {
   factory BatchGetAssetPropertyAggregatesErrorInfo.fromJson(
       Map<String, dynamic> json) {
     return BatchGetAssetPropertyAggregatesErrorInfo(
-      errorCode: (json['errorCode'] as String)
-          .toBatchGetAssetPropertyAggregatesErrorCode(),
+      errorCode: BatchGetAssetPropertyAggregatesErrorCode.fromString(
+          (json['errorCode'] as String)),
       errorTimestamp:
           nonNullableTimeStampFromJson(json['errorTimestamp'] as Object),
     );
@@ -5535,7 +5384,7 @@ class BatchGetAssetPropertyAggregatesErrorInfo {
     final errorCode = this.errorCode;
     final errorTimestamp = this.errorTimestamp;
     return {
-      'errorCode': errorCode.toValue(),
+      'errorCode': errorCode.value,
       'errorTimestamp': unixTimestampToJson(errorTimestamp),
     };
   }
@@ -5628,8 +5477,8 @@ class BatchGetAssetPropertyAggregatesSkippedEntry {
   factory BatchGetAssetPropertyAggregatesSkippedEntry.fromJson(
       Map<String, dynamic> json) {
     return BatchGetAssetPropertyAggregatesSkippedEntry(
-      completionStatus:
-          (json['completionStatus'] as String).toBatchEntryCompletionStatus(),
+      completionStatus: BatchEntryCompletionStatus.fromString(
+          (json['completionStatus'] as String)),
       entryId: json['entryId'] as String,
       errorInfo: json['errorInfo'] != null
           ? BatchGetAssetPropertyAggregatesErrorInfo.fromJson(
@@ -5643,7 +5492,7 @@ class BatchGetAssetPropertyAggregatesSkippedEntry {
     final entryId = this.entryId;
     final errorInfo = this.errorInfo;
     return {
-      'completionStatus': completionStatus.toValue(),
+      'completionStatus': completionStatus.value,
       'entryId': entryId,
       if (errorInfo != null) 'errorInfo': errorInfo,
     };
@@ -5745,38 +5594,19 @@ class BatchGetAssetPropertyValueEntry {
 }
 
 enum BatchGetAssetPropertyValueErrorCode {
-  resourceNotFoundException,
-  invalidRequestException,
-  accessDeniedException,
-}
+  resourceNotFoundException('ResourceNotFoundException'),
+  invalidRequestException('InvalidRequestException'),
+  accessDeniedException('AccessDeniedException'),
+  ;
 
-extension BatchGetAssetPropertyValueErrorCodeValueExtension
-    on BatchGetAssetPropertyValueErrorCode {
-  String toValue() {
-    switch (this) {
-      case BatchGetAssetPropertyValueErrorCode.resourceNotFoundException:
-        return 'ResourceNotFoundException';
-      case BatchGetAssetPropertyValueErrorCode.invalidRequestException:
-        return 'InvalidRequestException';
-      case BatchGetAssetPropertyValueErrorCode.accessDeniedException:
-        return 'AccessDeniedException';
-    }
-  }
-}
+  final String value;
 
-extension BatchGetAssetPropertyValueErrorCodeFromString on String {
-  BatchGetAssetPropertyValueErrorCode toBatchGetAssetPropertyValueErrorCode() {
-    switch (this) {
-      case 'ResourceNotFoundException':
-        return BatchGetAssetPropertyValueErrorCode.resourceNotFoundException;
-      case 'InvalidRequestException':
-        return BatchGetAssetPropertyValueErrorCode.invalidRequestException;
-      case 'AccessDeniedException':
-        return BatchGetAssetPropertyValueErrorCode.accessDeniedException;
-    }
-    throw Exception(
-        '$this is not known in enum BatchGetAssetPropertyValueErrorCode');
-  }
+  const BatchGetAssetPropertyValueErrorCode(this.value);
+
+  static BatchGetAssetPropertyValueErrorCode fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum BatchGetAssetPropertyValueErrorCode'));
 }
 
 /// Contains error information for an asset property value entry that is
@@ -5803,8 +5633,8 @@ class BatchGetAssetPropertyValueErrorEntry {
       Map<String, dynamic> json) {
     return BatchGetAssetPropertyValueErrorEntry(
       entryId: json['entryId'] as String,
-      errorCode:
-          (json['errorCode'] as String).toBatchGetAssetPropertyValueErrorCode(),
+      errorCode: BatchGetAssetPropertyValueErrorCode.fromString(
+          (json['errorCode'] as String)),
       errorMessage: json['errorMessage'] as String,
     );
   }
@@ -5815,7 +5645,7 @@ class BatchGetAssetPropertyValueErrorEntry {
     final errorMessage = this.errorMessage;
     return {
       'entryId': entryId,
-      'errorCode': errorCode.toValue(),
+      'errorCode': errorCode.value,
       'errorMessage': errorMessage,
     };
   }
@@ -5837,8 +5667,8 @@ class BatchGetAssetPropertyValueErrorInfo {
   factory BatchGetAssetPropertyValueErrorInfo.fromJson(
       Map<String, dynamic> json) {
     return BatchGetAssetPropertyValueErrorInfo(
-      errorCode:
-          (json['errorCode'] as String).toBatchGetAssetPropertyValueErrorCode(),
+      errorCode: BatchGetAssetPropertyValueErrorCode.fromString(
+          (json['errorCode'] as String)),
       errorTimestamp:
           nonNullableTimeStampFromJson(json['errorTimestamp'] as Object),
     );
@@ -5848,7 +5678,7 @@ class BatchGetAssetPropertyValueErrorInfo {
     final errorCode = this.errorCode;
     final errorTimestamp = this.errorTimestamp;
     return {
-      'errorCode': errorCode.toValue(),
+      'errorCode': errorCode.value,
       'errorTimestamp': unixTimestampToJson(errorTimestamp),
     };
   }
@@ -5933,49 +5763,27 @@ class BatchGetAssetPropertyValueHistoryEntry {
       if (propertyAlias != null) 'propertyAlias': propertyAlias,
       if (propertyId != null) 'propertyId': propertyId,
       if (qualities != null)
-        'qualities': qualities.map((e) => e.toValue()).toList(),
+        'qualities': qualities.map((e) => e.value).toList(),
       if (startDate != null) 'startDate': unixTimestampToJson(startDate),
-      if (timeOrdering != null) 'timeOrdering': timeOrdering.toValue(),
+      if (timeOrdering != null) 'timeOrdering': timeOrdering.value,
     };
   }
 }
 
 enum BatchGetAssetPropertyValueHistoryErrorCode {
-  resourceNotFoundException,
-  invalidRequestException,
-  accessDeniedException,
-}
+  resourceNotFoundException('ResourceNotFoundException'),
+  invalidRequestException('InvalidRequestException'),
+  accessDeniedException('AccessDeniedException'),
+  ;
 
-extension BatchGetAssetPropertyValueHistoryErrorCodeValueExtension
-    on BatchGetAssetPropertyValueHistoryErrorCode {
-  String toValue() {
-    switch (this) {
-      case BatchGetAssetPropertyValueHistoryErrorCode.resourceNotFoundException:
-        return 'ResourceNotFoundException';
-      case BatchGetAssetPropertyValueHistoryErrorCode.invalidRequestException:
-        return 'InvalidRequestException';
-      case BatchGetAssetPropertyValueHistoryErrorCode.accessDeniedException:
-        return 'AccessDeniedException';
-    }
-  }
-}
+  final String value;
 
-extension BatchGetAssetPropertyValueHistoryErrorCodeFromString on String {
-  BatchGetAssetPropertyValueHistoryErrorCode
-      toBatchGetAssetPropertyValueHistoryErrorCode() {
-    switch (this) {
-      case 'ResourceNotFoundException':
-        return BatchGetAssetPropertyValueHistoryErrorCode
-            .resourceNotFoundException;
-      case 'InvalidRequestException':
-        return BatchGetAssetPropertyValueHistoryErrorCode
-            .invalidRequestException;
-      case 'AccessDeniedException':
-        return BatchGetAssetPropertyValueHistoryErrorCode.accessDeniedException;
-    }
-    throw Exception(
-        '$this is not known in enum BatchGetAssetPropertyValueHistoryErrorCode');
-  }
+  const BatchGetAssetPropertyValueHistoryErrorCode(this.value);
+
+  static BatchGetAssetPropertyValueHistoryErrorCode fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum BatchGetAssetPropertyValueHistoryErrorCode'));
 }
 
 /// A list of the errors (if any) associated with the batch request. Each error
@@ -6000,8 +5808,8 @@ class BatchGetAssetPropertyValueHistoryErrorEntry {
       Map<String, dynamic> json) {
     return BatchGetAssetPropertyValueHistoryErrorEntry(
       entryId: json['entryId'] as String,
-      errorCode: (json['errorCode'] as String)
-          .toBatchGetAssetPropertyValueHistoryErrorCode(),
+      errorCode: BatchGetAssetPropertyValueHistoryErrorCode.fromString(
+          (json['errorCode'] as String)),
       errorMessage: json['errorMessage'] as String,
     );
   }
@@ -6012,7 +5820,7 @@ class BatchGetAssetPropertyValueHistoryErrorEntry {
     final errorMessage = this.errorMessage;
     return {
       'entryId': entryId,
-      'errorCode': errorCode.toValue(),
+      'errorCode': errorCode.value,
       'errorMessage': errorMessage,
     };
   }
@@ -6034,8 +5842,8 @@ class BatchGetAssetPropertyValueHistoryErrorInfo {
   factory BatchGetAssetPropertyValueHistoryErrorInfo.fromJson(
       Map<String, dynamic> json) {
     return BatchGetAssetPropertyValueHistoryErrorInfo(
-      errorCode: (json['errorCode'] as String)
-          .toBatchGetAssetPropertyValueHistoryErrorCode(),
+      errorCode: BatchGetAssetPropertyValueHistoryErrorCode.fromString(
+          (json['errorCode'] as String)),
       errorTimestamp:
           nonNullableTimeStampFromJson(json['errorTimestamp'] as Object),
     );
@@ -6045,7 +5853,7 @@ class BatchGetAssetPropertyValueHistoryErrorInfo {
     final errorCode = this.errorCode;
     final errorTimestamp = this.errorTimestamp;
     return {
-      'errorCode': errorCode.toValue(),
+      'errorCode': errorCode.value,
       'errorTimestamp': unixTimestampToJson(errorTimestamp),
     };
   }
@@ -6138,8 +5946,8 @@ class BatchGetAssetPropertyValueHistorySkippedEntry {
   factory BatchGetAssetPropertyValueHistorySkippedEntry.fromJson(
       Map<String, dynamic> json) {
     return BatchGetAssetPropertyValueHistorySkippedEntry(
-      completionStatus:
-          (json['completionStatus'] as String).toBatchEntryCompletionStatus(),
+      completionStatus: BatchEntryCompletionStatus.fromString(
+          (json['completionStatus'] as String)),
       entryId: json['entryId'] as String,
       errorInfo: json['errorInfo'] != null
           ? BatchGetAssetPropertyValueHistoryErrorInfo.fromJson(
@@ -6153,7 +5961,7 @@ class BatchGetAssetPropertyValueHistorySkippedEntry {
     final entryId = this.entryId;
     final errorInfo = this.errorInfo;
     return {
-      'completionStatus': completionStatus.toValue(),
+      'completionStatus': completionStatus.value,
       'entryId': entryId,
       if (errorInfo != null) 'errorInfo': errorInfo,
     };
@@ -6283,8 +6091,8 @@ class BatchGetAssetPropertyValueSkippedEntry {
   factory BatchGetAssetPropertyValueSkippedEntry.fromJson(
       Map<String, dynamic> json) {
     return BatchGetAssetPropertyValueSkippedEntry(
-      completionStatus:
-          (json['completionStatus'] as String).toBatchEntryCompletionStatus(),
+      completionStatus: BatchEntryCompletionStatus.fromString(
+          (json['completionStatus'] as String)),
       entryId: json['entryId'] as String,
       errorInfo: json['errorInfo'] != null
           ? BatchGetAssetPropertyValueErrorInfo.fromJson(
@@ -6298,7 +6106,7 @@ class BatchGetAssetPropertyValueSkippedEntry {
     final entryId = this.entryId;
     final errorInfo = this.errorInfo;
     return {
-      'completionStatus': completionStatus.toValue(),
+      'completionStatus': completionStatus.value,
       'entryId': entryId,
       if (errorInfo != null) 'errorInfo': errorInfo,
     };
@@ -6358,8 +6166,8 @@ class BatchPutAssetPropertyError {
 
   factory BatchPutAssetPropertyError.fromJson(Map<String, dynamic> json) {
     return BatchPutAssetPropertyError(
-      errorCode:
-          (json['errorCode'] as String).toBatchPutAssetPropertyValueErrorCode(),
+      errorCode: BatchPutAssetPropertyValueErrorCode.fromString(
+          (json['errorCode'] as String)),
       errorMessage: json['errorMessage'] as String,
       timestamps: (json['timestamps'] as List)
           .whereNotNull()
@@ -6373,7 +6181,7 @@ class BatchPutAssetPropertyError {
     final errorMessage = this.errorMessage;
     final timestamps = this.timestamps;
     return {
-      'errorCode': errorCode.toValue(),
+      'errorCode': errorCode.value,
       'errorMessage': errorMessage,
       'timestamps': timestamps,
     };
@@ -6418,69 +6226,25 @@ class BatchPutAssetPropertyErrorEntry {
 }
 
 enum BatchPutAssetPropertyValueErrorCode {
-  resourceNotFoundException,
-  invalidRequestException,
-  internalFailureException,
-  serviceUnavailableException,
-  throttlingException,
-  limitExceededException,
-  conflictingOperationException,
-  timestampOutOfRangeException,
-  accessDeniedException,
-}
+  resourceNotFoundException('ResourceNotFoundException'),
+  invalidRequestException('InvalidRequestException'),
+  internalFailureException('InternalFailureException'),
+  serviceUnavailableException('ServiceUnavailableException'),
+  throttlingException('ThrottlingException'),
+  limitExceededException('LimitExceededException'),
+  conflictingOperationException('ConflictingOperationException'),
+  timestampOutOfRangeException('TimestampOutOfRangeException'),
+  accessDeniedException('AccessDeniedException'),
+  ;
 
-extension BatchPutAssetPropertyValueErrorCodeValueExtension
-    on BatchPutAssetPropertyValueErrorCode {
-  String toValue() {
-    switch (this) {
-      case BatchPutAssetPropertyValueErrorCode.resourceNotFoundException:
-        return 'ResourceNotFoundException';
-      case BatchPutAssetPropertyValueErrorCode.invalidRequestException:
-        return 'InvalidRequestException';
-      case BatchPutAssetPropertyValueErrorCode.internalFailureException:
-        return 'InternalFailureException';
-      case BatchPutAssetPropertyValueErrorCode.serviceUnavailableException:
-        return 'ServiceUnavailableException';
-      case BatchPutAssetPropertyValueErrorCode.throttlingException:
-        return 'ThrottlingException';
-      case BatchPutAssetPropertyValueErrorCode.limitExceededException:
-        return 'LimitExceededException';
-      case BatchPutAssetPropertyValueErrorCode.conflictingOperationException:
-        return 'ConflictingOperationException';
-      case BatchPutAssetPropertyValueErrorCode.timestampOutOfRangeException:
-        return 'TimestampOutOfRangeException';
-      case BatchPutAssetPropertyValueErrorCode.accessDeniedException:
-        return 'AccessDeniedException';
-    }
-  }
-}
+  final String value;
 
-extension BatchPutAssetPropertyValueErrorCodeFromString on String {
-  BatchPutAssetPropertyValueErrorCode toBatchPutAssetPropertyValueErrorCode() {
-    switch (this) {
-      case 'ResourceNotFoundException':
-        return BatchPutAssetPropertyValueErrorCode.resourceNotFoundException;
-      case 'InvalidRequestException':
-        return BatchPutAssetPropertyValueErrorCode.invalidRequestException;
-      case 'InternalFailureException':
-        return BatchPutAssetPropertyValueErrorCode.internalFailureException;
-      case 'ServiceUnavailableException':
-        return BatchPutAssetPropertyValueErrorCode.serviceUnavailableException;
-      case 'ThrottlingException':
-        return BatchPutAssetPropertyValueErrorCode.throttlingException;
-      case 'LimitExceededException':
-        return BatchPutAssetPropertyValueErrorCode.limitExceededException;
-      case 'ConflictingOperationException':
-        return BatchPutAssetPropertyValueErrorCode
-            .conflictingOperationException;
-      case 'TimestampOutOfRangeException':
-        return BatchPutAssetPropertyValueErrorCode.timestampOutOfRangeException;
-      case 'AccessDeniedException':
-        return BatchPutAssetPropertyValueErrorCode.accessDeniedException;
-    }
-    throw Exception(
-        '$this is not known in enum BatchPutAssetPropertyValueErrorCode');
-  }
+  const BatchPutAssetPropertyValueErrorCode(this.value);
+
+  static BatchPutAssetPropertyValueErrorCode fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum BatchPutAssetPropertyValueErrorCode'));
 }
 
 class BatchPutAssetPropertyValueResponse {
@@ -6512,99 +6276,40 @@ class BatchPutAssetPropertyValueResponse {
 }
 
 enum CapabilitySyncStatus {
-  inSync,
-  outOfSync,
-  syncFailed,
-  unknown,
-}
+  inSync('IN_SYNC'),
+  outOfSync('OUT_OF_SYNC'),
+  syncFailed('SYNC_FAILED'),
+  unknown('UNKNOWN'),
+  ;
 
-extension CapabilitySyncStatusValueExtension on CapabilitySyncStatus {
-  String toValue() {
-    switch (this) {
-      case CapabilitySyncStatus.inSync:
-        return 'IN_SYNC';
-      case CapabilitySyncStatus.outOfSync:
-        return 'OUT_OF_SYNC';
-      case CapabilitySyncStatus.syncFailed:
-        return 'SYNC_FAILED';
-      case CapabilitySyncStatus.unknown:
-        return 'UNKNOWN';
-    }
-  }
-}
+  final String value;
 
-extension CapabilitySyncStatusFromString on String {
-  CapabilitySyncStatus toCapabilitySyncStatus() {
-    switch (this) {
-      case 'IN_SYNC':
-        return CapabilitySyncStatus.inSync;
-      case 'OUT_OF_SYNC':
-        return CapabilitySyncStatus.outOfSync;
-      case 'SYNC_FAILED':
-        return CapabilitySyncStatus.syncFailed;
-      case 'UNKNOWN':
-        return CapabilitySyncStatus.unknown;
-    }
-    throw Exception('$this is not known in enum CapabilitySyncStatus');
-  }
+  const CapabilitySyncStatus(this.value);
+
+  static CapabilitySyncStatus fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum CapabilitySyncStatus'));
 }
 
 enum ColumnName {
-  alias,
-  assetId,
-  propertyId,
-  dataType,
-  timestampSeconds,
-  timestampNanoOffset,
-  quality,
-  value,
-}
+  alias('ALIAS'),
+  assetId('ASSET_ID'),
+  propertyId('PROPERTY_ID'),
+  dataType('DATA_TYPE'),
+  timestampSeconds('TIMESTAMP_SECONDS'),
+  timestampNanoOffset('TIMESTAMP_NANO_OFFSET'),
+  quality('QUALITY'),
+  value('VALUE'),
+  ;
 
-extension ColumnNameValueExtension on ColumnName {
-  String toValue() {
-    switch (this) {
-      case ColumnName.alias:
-        return 'ALIAS';
-      case ColumnName.assetId:
-        return 'ASSET_ID';
-      case ColumnName.propertyId:
-        return 'PROPERTY_ID';
-      case ColumnName.dataType:
-        return 'DATA_TYPE';
-      case ColumnName.timestampSeconds:
-        return 'TIMESTAMP_SECONDS';
-      case ColumnName.timestampNanoOffset:
-        return 'TIMESTAMP_NANO_OFFSET';
-      case ColumnName.quality:
-        return 'QUALITY';
-      case ColumnName.value:
-        return 'VALUE';
-    }
-  }
-}
+  final String value;
 
-extension ColumnNameFromString on String {
-  ColumnName toColumnName() {
-    switch (this) {
-      case 'ALIAS':
-        return ColumnName.alias;
-      case 'ASSET_ID':
-        return ColumnName.assetId;
-      case 'PROPERTY_ID':
-        return ColumnName.propertyId;
-      case 'DATA_TYPE':
-        return ColumnName.dataType;
-      case 'TIMESTAMP_SECONDS':
-        return ColumnName.timestampSeconds;
-      case 'TIMESTAMP_NANO_OFFSET':
-        return ColumnName.timestampNanoOffset;
-      case 'QUALITY':
-        return ColumnName.quality;
-      case 'VALUE':
-        return ColumnName.value;
-    }
-    throw Exception('$this is not known in enum ColumnName');
-  }
+  const ColumnName(this.value);
+
+  static ColumnName fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum ColumnName'));
 }
 
 /// Contains information about a composite model property on an asset.
@@ -6652,31 +6357,18 @@ class CompositeModelProperty {
 }
 
 enum ComputeLocation {
-  edge,
-  cloud,
-}
+  edge('EDGE'),
+  cloud('CLOUD'),
+  ;
 
-extension ComputeLocationValueExtension on ComputeLocation {
-  String toValue() {
-    switch (this) {
-      case ComputeLocation.edge:
-        return 'EDGE';
-      case ComputeLocation.cloud:
-        return 'CLOUD';
-    }
-  }
-}
+  final String value;
 
-extension ComputeLocationFromString on String {
-  ComputeLocation toComputeLocation() {
-    switch (this) {
-      case 'EDGE':
-        return ComputeLocation.edge;
-      case 'CLOUD':
-        return ComputeLocation.cloud;
-    }
-    throw Exception('$this is not known in enum ComputeLocation');
-  }
+  const ComputeLocation(this.value);
+
+  static ComputeLocation fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum ComputeLocation'));
 }
 
 /// Contains the details of an IoT SiteWise configuration error.
@@ -6694,7 +6386,7 @@ class ConfigurationErrorDetails {
 
   factory ConfigurationErrorDetails.fromJson(Map<String, dynamic> json) {
     return ConfigurationErrorDetails(
-      code: (json['code'] as String).toErrorCode(),
+      code: ErrorCode.fromString((json['code'] as String)),
       message: json['message'] as String,
     );
   }
@@ -6703,43 +6395,26 @@ class ConfigurationErrorDetails {
     final code = this.code;
     final message = this.message;
     return {
-      'code': code.toValue(),
+      'code': code.value,
       'message': message,
     };
   }
 }
 
 enum ConfigurationState {
-  active,
-  updateInProgress,
-  updateFailed,
-}
+  active('ACTIVE'),
+  updateInProgress('UPDATE_IN_PROGRESS'),
+  updateFailed('UPDATE_FAILED'),
+  ;
 
-extension ConfigurationStateValueExtension on ConfigurationState {
-  String toValue() {
-    switch (this) {
-      case ConfigurationState.active:
-        return 'ACTIVE';
-      case ConfigurationState.updateInProgress:
-        return 'UPDATE_IN_PROGRESS';
-      case ConfigurationState.updateFailed:
-        return 'UPDATE_FAILED';
-    }
-  }
-}
+  final String value;
 
-extension ConfigurationStateFromString on String {
-  ConfigurationState toConfigurationState() {
-    switch (this) {
-      case 'ACTIVE':
-        return ConfigurationState.active;
-      case 'UPDATE_IN_PROGRESS':
-        return ConfigurationState.updateInProgress;
-      case 'UPDATE_FAILED':
-        return ConfigurationState.updateFailed;
-    }
-    throw Exception('$this is not known in enum ConfigurationState');
-  }
+  const ConfigurationState(this.value);
+
+  static ConfigurationState fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum ConfigurationState'));
 }
 
 /// Contains current status information for the configuration.
@@ -6757,7 +6432,7 @@ class ConfigurationStatus {
 
   factory ConfigurationStatus.fromJson(Map<String, dynamic> json) {
     return ConfigurationStatus(
-      state: (json['state'] as String).toConfigurationState(),
+      state: ConfigurationState.fromString((json['state'] as String)),
       error: json['error'] != null
           ? ConfigurationErrorDetails.fromJson(
               json['error'] as Map<String, dynamic>)
@@ -6769,7 +6444,7 @@ class ConfigurationStatus {
     final state = this.state;
     final error = this.error;
     return {
-      'state': state.toValue(),
+      'state': state.value,
       if (error != null) 'error': error,
     };
   }
@@ -6942,7 +6617,7 @@ class CreateBulkImportJobResponse {
     return CreateBulkImportJobResponse(
       jobId: json['jobId'] as String,
       jobName: json['jobName'] as String,
-      jobStatus: (json['jobStatus'] as String).toJobStatus(),
+      jobStatus: JobStatus.fromString((json['jobStatus'] as String)),
     );
   }
 
@@ -6953,7 +6628,7 @@ class CreateBulkImportJobResponse {
     return {
       'jobId': jobId,
       'jobName': jobName,
-      'jobStatus': jobStatus.toValue(),
+      'jobStatus': jobStatus.value,
     };
   }
 }
@@ -7131,7 +6806,7 @@ class Csv {
     return Csv(
       columnNames: (json['columnNames'] as List?)
           ?.whereNotNull()
-          .map((e) => (e as String).toColumnName())
+          .map((e) => ColumnName.fromString((e as String)))
           .toList(),
     );
   }
@@ -7140,7 +6815,7 @@ class Csv {
     final columnNames = this.columnNames;
     return {
       if (columnNames != null)
-        'columnNames': columnNames.map((e) => e.toValue()).toList(),
+        'columnNames': columnNames.map((e) => e.value).toList(),
     };
   }
 }
@@ -7394,7 +7069,7 @@ class DescribeAccessPolicyResponse {
       accessPolicyLastUpdateDate: nonNullableTimeStampFromJson(
           json['accessPolicyLastUpdateDate'] as Object),
       accessPolicyPermission:
-          (json['accessPolicyPermission'] as String).toPermission(),
+          Permission.fromString((json['accessPolicyPermission'] as String)),
       accessPolicyResource: Resource.fromJson(
           json['accessPolicyResource'] as Map<String, dynamic>),
     );
@@ -7415,7 +7090,7 @@ class DescribeAccessPolicyResponse {
       'accessPolicyIdentity': accessPolicyIdentity,
       'accessPolicyLastUpdateDate':
           unixTimestampToJson(accessPolicyLastUpdateDate),
-      'accessPolicyPermission': accessPolicyPermission.toValue(),
+      'accessPolicyPermission': accessPolicyPermission.value,
       'accessPolicyResource': accessPolicyResource,
     };
   }
@@ -7796,7 +7471,7 @@ class DescribeBulkImportJobResponse {
           nonNullableTimeStampFromJson(json['jobLastUpdateDate'] as Object),
       jobName: json['jobName'] as String,
       jobRoleArn: json['jobRoleArn'] as String,
-      jobStatus: (json['jobStatus'] as String).toJobStatus(),
+      jobStatus: JobStatus.fromString((json['jobStatus'] as String)),
     );
   }
 
@@ -7819,7 +7494,7 @@ class DescribeBulkImportJobResponse {
       'jobLastUpdateDate': unixTimestampToJson(jobLastUpdateDate),
       'jobName': jobName,
       'jobRoleArn': jobRoleArn,
-      'jobStatus': jobStatus.toValue(),
+      'jobStatus': jobStatus.value,
     };
   }
 }
@@ -7928,7 +7603,8 @@ class DescribeDefaultEncryptionConfigurationResponse {
     return DescribeDefaultEncryptionConfigurationResponse(
       configurationStatus: ConfigurationStatus.fromJson(
           json['configurationStatus'] as Map<String, dynamic>),
-      encryptionType: (json['encryptionType'] as String).toEncryptionType(),
+      encryptionType:
+          EncryptionType.fromString((json['encryptionType'] as String)),
       kmsKeyArn: json['kmsKeyArn'] as String?,
     );
   }
@@ -7939,7 +7615,7 @@ class DescribeDefaultEncryptionConfigurationResponse {
     final kmsKeyArn = this.kmsKeyArn;
     return {
       'configurationStatus': configurationStatus,
-      'encryptionType': encryptionType.toValue(),
+      'encryptionType': encryptionType.value,
       if (kmsKeyArn != null) 'kmsKeyArn': kmsKeyArn,
     };
   }
@@ -7988,8 +7664,8 @@ class DescribeGatewayCapabilityConfigurationResponse {
     return DescribeGatewayCapabilityConfigurationResponse(
       capabilityConfiguration: json['capabilityConfiguration'] as String,
       capabilityNamespace: json['capabilityNamespace'] as String,
-      capabilitySyncStatus:
-          (json['capabilitySyncStatus'] as String).toCapabilitySyncStatus(),
+      capabilitySyncStatus: CapabilitySyncStatus.fromString(
+          (json['capabilitySyncStatus'] as String)),
       gatewayId: json['gatewayId'] as String,
     );
   }
@@ -8002,7 +7678,7 @@ class DescribeGatewayCapabilityConfigurationResponse {
     return {
       'capabilityConfiguration': capabilityConfiguration,
       'capabilityNamespace': capabilityNamespace,
-      'capabilitySyncStatus': capabilitySyncStatus.toValue(),
+      'capabilitySyncStatus': capabilitySyncStatus.value,
       'gatewayId': gatewayId,
     };
   }
@@ -8210,7 +7886,8 @@ class DescribePortalResponse {
           ? Alarms.fromJson(json['alarms'] as Map<String, dynamic>)
           : null,
       notificationSenderEmail: json['notificationSenderEmail'] as String?,
-      portalAuthMode: (json['portalAuthMode'] as String?)?.toAuthMode(),
+      portalAuthMode:
+          (json['portalAuthMode'] as String?)?.let(AuthMode.fromString),
       portalDescription: json['portalDescription'] as String?,
       portalLogoImageLocation: json['portalLogoImageLocation'] != null
           ? ImageLocation.fromJson(
@@ -8249,7 +7926,7 @@ class DescribePortalResponse {
       if (alarms != null) 'alarms': alarms,
       if (notificationSenderEmail != null)
         'notificationSenderEmail': notificationSenderEmail,
-      if (portalAuthMode != null) 'portalAuthMode': portalAuthMode.toValue(),
+      if (portalAuthMode != null) 'portalAuthMode': portalAuthMode.value,
       if (portalDescription != null) 'portalDescription': portalDescription,
       if (portalLogoImageLocation != null)
         'portalLogoImageLocation': portalLogoImageLocation,
@@ -8393,9 +8070,9 @@ class DescribeStorageConfigurationResponse {
     return DescribeStorageConfigurationResponse(
       configurationStatus: ConfigurationStatus.fromJson(
           json['configurationStatus'] as Map<String, dynamic>),
-      storageType: (json['storageType'] as String).toStorageType(),
+      storageType: StorageType.fromString((json['storageType'] as String)),
       disassociatedDataStorage: (json['disassociatedDataStorage'] as String?)
-          ?.toDisassociatedDataStorageState(),
+          ?.let(DisassociatedDataStorageState.fromString),
       lastUpdateDate: timeStampFromJson(json['lastUpdateDate']),
       multiLayerStorage: json['multiLayerStorage'] != null
           ? MultiLayerStorage.fromJson(
@@ -8417,9 +8094,9 @@ class DescribeStorageConfigurationResponse {
     final retentionPeriod = this.retentionPeriod;
     return {
       'configurationStatus': configurationStatus,
-      'storageType': storageType.toValue(),
+      'storageType': storageType.value,
       if (disassociatedDataStorage != null)
-        'disassociatedDataStorage': disassociatedDataStorage.toValue(),
+        'disassociatedDataStorage': disassociatedDataStorage.value,
       if (lastUpdateDate != null)
         'lastUpdateDate': unixTimestampToJson(lastUpdateDate),
       if (multiLayerStorage != null) 'multiLayerStorage': multiLayerStorage,
@@ -8484,7 +8161,7 @@ class DescribeTimeSeriesResponse {
 
   factory DescribeTimeSeriesResponse.fromJson(Map<String, dynamic> json) {
     return DescribeTimeSeriesResponse(
-      dataType: (json['dataType'] as String).toPropertyDataType(),
+      dataType: PropertyDataType.fromString((json['dataType'] as String)),
       timeSeriesArn: json['timeSeriesArn'] as String,
       timeSeriesCreationDate: nonNullableTimeStampFromJson(
           json['timeSeriesCreationDate'] as Object),
@@ -8509,7 +8186,7 @@ class DescribeTimeSeriesResponse {
     final dataTypeSpec = this.dataTypeSpec;
     final propertyId = this.propertyId;
     return {
-      'dataType': dataType.toValue(),
+      'dataType': dataType.value,
       'timeSeriesArn': timeSeriesArn,
       'timeSeriesCreationDate': unixTimestampToJson(timeSeriesCreationDate),
       'timeSeriesId': timeSeriesId,
@@ -8537,7 +8214,7 @@ class DetailedError {
 
   factory DetailedError.fromJson(Map<String, dynamic> json) {
     return DetailedError(
-      code: (json['code'] as String).toDetailedErrorCode(),
+      code: DetailedErrorCode.fromString((json['code'] as String)),
       message: json['message'] as String,
     );
   }
@@ -8546,123 +8223,69 @@ class DetailedError {
     final code = this.code;
     final message = this.message;
     return {
-      'code': code.toValue(),
+      'code': code.value,
       'message': message,
     };
   }
 }
 
 enum DetailedErrorCode {
-  incompatibleComputeLocation,
-  incompatibleForwardingConfiguration,
-}
+  incompatibleComputeLocation('INCOMPATIBLE_COMPUTE_LOCATION'),
+  incompatibleForwardingConfiguration('INCOMPATIBLE_FORWARDING_CONFIGURATION'),
+  ;
 
-extension DetailedErrorCodeValueExtension on DetailedErrorCode {
-  String toValue() {
-    switch (this) {
-      case DetailedErrorCode.incompatibleComputeLocation:
-        return 'INCOMPATIBLE_COMPUTE_LOCATION';
-      case DetailedErrorCode.incompatibleForwardingConfiguration:
-        return 'INCOMPATIBLE_FORWARDING_CONFIGURATION';
-    }
-  }
-}
+  final String value;
 
-extension DetailedErrorCodeFromString on String {
-  DetailedErrorCode toDetailedErrorCode() {
-    switch (this) {
-      case 'INCOMPATIBLE_COMPUTE_LOCATION':
-        return DetailedErrorCode.incompatibleComputeLocation;
-      case 'INCOMPATIBLE_FORWARDING_CONFIGURATION':
-        return DetailedErrorCode.incompatibleForwardingConfiguration;
-    }
-    throw Exception('$this is not known in enum DetailedErrorCode');
-  }
+  const DetailedErrorCode(this.value);
+
+  static DetailedErrorCode fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum DetailedErrorCode'));
 }
 
 enum DisassociatedDataStorageState {
-  enabled,
-  disabled,
-}
+  enabled('ENABLED'),
+  disabled('DISABLED'),
+  ;
 
-extension DisassociatedDataStorageStateValueExtension
-    on DisassociatedDataStorageState {
-  String toValue() {
-    switch (this) {
-      case DisassociatedDataStorageState.enabled:
-        return 'ENABLED';
-      case DisassociatedDataStorageState.disabled:
-        return 'DISABLED';
-    }
-  }
-}
+  final String value;
 
-extension DisassociatedDataStorageStateFromString on String {
-  DisassociatedDataStorageState toDisassociatedDataStorageState() {
-    switch (this) {
-      case 'ENABLED':
-        return DisassociatedDataStorageState.enabled;
-      case 'DISABLED':
-        return DisassociatedDataStorageState.disabled;
-    }
-    throw Exception('$this is not known in enum DisassociatedDataStorageState');
-  }
+  const DisassociatedDataStorageState(this.value);
+
+  static DisassociatedDataStorageState fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum DisassociatedDataStorageState'));
 }
 
 enum EncryptionType {
-  sitewiseDefaultEncryption,
-  kmsBasedEncryption,
-}
+  sitewiseDefaultEncryption('SITEWISE_DEFAULT_ENCRYPTION'),
+  kmsBasedEncryption('KMS_BASED_ENCRYPTION'),
+  ;
 
-extension EncryptionTypeValueExtension on EncryptionType {
-  String toValue() {
-    switch (this) {
-      case EncryptionType.sitewiseDefaultEncryption:
-        return 'SITEWISE_DEFAULT_ENCRYPTION';
-      case EncryptionType.kmsBasedEncryption:
-        return 'KMS_BASED_ENCRYPTION';
-    }
-  }
-}
+  final String value;
 
-extension EncryptionTypeFromString on String {
-  EncryptionType toEncryptionType() {
-    switch (this) {
-      case 'SITEWISE_DEFAULT_ENCRYPTION':
-        return EncryptionType.sitewiseDefaultEncryption;
-      case 'KMS_BASED_ENCRYPTION':
-        return EncryptionType.kmsBasedEncryption;
-    }
-    throw Exception('$this is not known in enum EncryptionType');
-  }
+  const EncryptionType(this.value);
+
+  static EncryptionType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum EncryptionType'));
 }
 
 enum ErrorCode {
-  validationError,
-  internalFailure,
-}
+  validationError('VALIDATION_ERROR'),
+  internalFailure('INTERNAL_FAILURE'),
+  ;
 
-extension ErrorCodeValueExtension on ErrorCode {
-  String toValue() {
-    switch (this) {
-      case ErrorCode.validationError:
-        return 'VALIDATION_ERROR';
-      case ErrorCode.internalFailure:
-        return 'INTERNAL_FAILURE';
-    }
-  }
-}
+  final String value;
 
-extension ErrorCodeFromString on String {
-  ErrorCode toErrorCode() {
-    switch (this) {
-      case 'VALIDATION_ERROR':
-        return ErrorCode.validationError;
-      case 'INTERNAL_FAILURE':
-        return ErrorCode.internalFailure;
-    }
-    throw Exception('$this is not known in enum ErrorCode');
-  }
+  const ErrorCode(this.value);
+
+  static ErrorCode fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum ErrorCode'));
 }
 
 /// Contains the details of an IoT SiteWise error.
@@ -8684,7 +8307,7 @@ class ErrorDetails {
 
   factory ErrorDetails.fromJson(Map<String, dynamic> json) {
     return ErrorDetails(
-      code: (json['code'] as String).toErrorCode(),
+      code: ErrorCode.fromString((json['code'] as String)),
       message: json['message'] as String,
       details: (json['details'] as List?)
           ?.whereNotNull()
@@ -8698,7 +8321,7 @@ class ErrorDetails {
     final message = this.message;
     final details = this.details;
     return {
-      'code': code.toValue(),
+      'code': code.value,
       'message': message,
       if (details != null) 'details': details,
     };
@@ -8848,44 +8471,31 @@ class ForwardingConfig {
 
   factory ForwardingConfig.fromJson(Map<String, dynamic> json) {
     return ForwardingConfig(
-      state: (json['state'] as String).toForwardingConfigState(),
+      state: ForwardingConfigState.fromString((json['state'] as String)),
     );
   }
 
   Map<String, dynamic> toJson() {
     final state = this.state;
     return {
-      'state': state.toValue(),
+      'state': state.value,
     };
   }
 }
 
 enum ForwardingConfigState {
-  disabled,
-  enabled,
-}
+  disabled('DISABLED'),
+  enabled('ENABLED'),
+  ;
 
-extension ForwardingConfigStateValueExtension on ForwardingConfigState {
-  String toValue() {
-    switch (this) {
-      case ForwardingConfigState.disabled:
-        return 'DISABLED';
-      case ForwardingConfigState.enabled:
-        return 'ENABLED';
-    }
-  }
-}
+  final String value;
 
-extension ForwardingConfigStateFromString on String {
-  ForwardingConfigState toForwardingConfigState() {
-    switch (this) {
-      case 'DISABLED':
-        return ForwardingConfigState.disabled;
-      case 'ENABLED':
-        return ForwardingConfigState.enabled;
-    }
-    throw Exception('$this is not known in enum ForwardingConfigState');
-  }
+  const ForwardingConfigState(this.value);
+
+  static ForwardingConfigState fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum ForwardingConfigState'));
 }
 
 /// Contains a summary of a gateway capability configuration.
@@ -8923,8 +8533,8 @@ class GatewayCapabilitySummary {
   factory GatewayCapabilitySummary.fromJson(Map<String, dynamic> json) {
     return GatewayCapabilitySummary(
       capabilityNamespace: json['capabilityNamespace'] as String,
-      capabilitySyncStatus:
-          (json['capabilitySyncStatus'] as String).toCapabilitySyncStatus(),
+      capabilitySyncStatus: CapabilitySyncStatus.fromString(
+          (json['capabilitySyncStatus'] as String)),
     );
   }
 
@@ -8933,7 +8543,7 @@ class GatewayCapabilitySummary {
     final capabilitySyncStatus = this.capabilitySyncStatus;
     return {
       'capabilityNamespace': capabilityNamespace,
-      'capabilitySyncStatus': capabilitySyncStatus.toValue(),
+      'capabilitySyncStatus': capabilitySyncStatus.value,
     };
   }
 }
@@ -9377,36 +8987,19 @@ class Identity {
 }
 
 enum IdentityType {
-  user,
-  group,
-  iam,
-}
+  user('USER'),
+  group('GROUP'),
+  iam('IAM'),
+  ;
 
-extension IdentityTypeValueExtension on IdentityType {
-  String toValue() {
-    switch (this) {
-      case IdentityType.user:
-        return 'USER';
-      case IdentityType.group:
-        return 'GROUP';
-      case IdentityType.iam:
-        return 'IAM';
-    }
-  }
-}
+  final String value;
 
-extension IdentityTypeFromString on String {
-  IdentityType toIdentityType() {
-    switch (this) {
-      case 'USER':
-        return IdentityType.user;
-      case 'GROUP':
-        return IdentityType.group;
-      case 'IAM':
-        return IdentityType.iam;
-    }
-    throw Exception('$this is not known in enum IdentityType');
-  }
+  const IdentityType(this.value);
+
+  static IdentityType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum IdentityType'));
 }
 
 /// Contains an image that is one of the following:
@@ -9460,32 +9053,23 @@ class ImageFile {
     final type = this.type;
     return {
       'data': base64Encode(data),
-      'type': type.toValue(),
+      'type': type.value,
     };
   }
 }
 
 enum ImageFileType {
-  png,
-}
+  png('PNG'),
+  ;
 
-extension ImageFileTypeValueExtension on ImageFileType {
-  String toValue() {
-    switch (this) {
-      case ImageFileType.png:
-        return 'PNG';
-    }
-  }
-}
+  final String value;
 
-extension ImageFileTypeFromString on String {
-  ImageFileType toImageFileType() {
-    switch (this) {
-      case 'PNG':
-        return ImageFileType.png;
-    }
-    throw Exception('$this is not known in enum ImageFileType');
-  }
+  const ImageFileType(this.value);
+
+  static ImageFileType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum ImageFileType'));
 }
 
 /// Contains an image that is uploaded to IoT SiteWise and available at a URL.
@@ -9573,51 +9157,21 @@ class JobConfiguration {
 }
 
 enum JobStatus {
-  pending,
-  cancelled,
-  running,
-  completed,
-  failed,
-  completedWithFailures,
-}
+  pending('PENDING'),
+  cancelled('CANCELLED'),
+  running('RUNNING'),
+  completed('COMPLETED'),
+  failed('FAILED'),
+  completedWithFailures('COMPLETED_WITH_FAILURES'),
+  ;
 
-extension JobStatusValueExtension on JobStatus {
-  String toValue() {
-    switch (this) {
-      case JobStatus.pending:
-        return 'PENDING';
-      case JobStatus.cancelled:
-        return 'CANCELLED';
-      case JobStatus.running:
-        return 'RUNNING';
-      case JobStatus.completed:
-        return 'COMPLETED';
-      case JobStatus.failed:
-        return 'FAILED';
-      case JobStatus.completedWithFailures:
-        return 'COMPLETED_WITH_FAILURES';
-    }
-  }
-}
+  final String value;
 
-extension JobStatusFromString on String {
-  JobStatus toJobStatus() {
-    switch (this) {
-      case 'PENDING':
-        return JobStatus.pending;
-      case 'CANCELLED':
-        return JobStatus.cancelled;
-      case 'RUNNING':
-        return JobStatus.running;
-      case 'COMPLETED':
-        return JobStatus.completed;
-      case 'FAILED':
-        return JobStatus.failed;
-      case 'COMPLETED_WITH_FAILURES':
-        return JobStatus.completedWithFailures;
-    }
-    throw Exception('$this is not known in enum JobStatus');
-  }
+  const JobStatus(this.value);
+
+  static JobStatus fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum JobStatus'));
 }
 
 /// Contains a job summary information.
@@ -9669,7 +9223,7 @@ class JobSummary {
     return JobSummary(
       id: json['id'] as String,
       name: json['name'] as String,
-      status: (json['status'] as String).toJobStatus(),
+      status: JobStatus.fromString((json['status'] as String)),
     );
   }
 
@@ -9680,7 +9234,7 @@ class JobSummary {
     return {
       'id': id,
       'name': name,
-      'status': status.toValue(),
+      'status': status.value,
     };
   }
 }
@@ -9719,33 +9273,18 @@ class ListAccessPoliciesResponse {
 }
 
 enum ListAssetModelPropertiesFilter {
-  all,
-  base,
-}
+  all('ALL'),
+  base('BASE'),
+  ;
 
-extension ListAssetModelPropertiesFilterValueExtension
-    on ListAssetModelPropertiesFilter {
-  String toValue() {
-    switch (this) {
-      case ListAssetModelPropertiesFilter.all:
-        return 'ALL';
-      case ListAssetModelPropertiesFilter.base:
-        return 'BASE';
-    }
-  }
-}
+  final String value;
 
-extension ListAssetModelPropertiesFilterFromString on String {
-  ListAssetModelPropertiesFilter toListAssetModelPropertiesFilter() {
-    switch (this) {
-      case 'ALL':
-        return ListAssetModelPropertiesFilter.all;
-      case 'BASE':
-        return ListAssetModelPropertiesFilter.base;
-    }
-    throw Exception(
-        '$this is not known in enum ListAssetModelPropertiesFilter');
-  }
+  const ListAssetModelPropertiesFilter(this.value);
+
+  static ListAssetModelPropertiesFilter fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum ListAssetModelPropertiesFilter'));
 }
 
 class ListAssetModelPropertiesResponse {
@@ -9817,31 +9356,18 @@ class ListAssetModelsResponse {
 }
 
 enum ListAssetPropertiesFilter {
-  all,
-  base,
-}
+  all('ALL'),
+  base('BASE'),
+  ;
 
-extension ListAssetPropertiesFilterValueExtension on ListAssetPropertiesFilter {
-  String toValue() {
-    switch (this) {
-      case ListAssetPropertiesFilter.all:
-        return 'ALL';
-      case ListAssetPropertiesFilter.base:
-        return 'BASE';
-    }
-  }
-}
+  final String value;
 
-extension ListAssetPropertiesFilterFromString on String {
-  ListAssetPropertiesFilter toListAssetPropertiesFilter() {
-    switch (this) {
-      case 'ALL':
-        return ListAssetPropertiesFilter.all;
-      case 'BASE':
-        return ListAssetPropertiesFilter.base;
-    }
-    throw Exception('$this is not known in enum ListAssetPropertiesFilter');
-  }
+  const ListAssetPropertiesFilter(this.value);
+
+  static ListAssetPropertiesFilter fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum ListAssetPropertiesFilter'));
 }
 
 class ListAssetPropertiesResponse {
@@ -9912,31 +9438,18 @@ class ListAssetRelationshipsResponse {
 }
 
 enum ListAssetsFilter {
-  all,
-  topLevel,
-}
+  all('ALL'),
+  topLevel('TOP_LEVEL'),
+  ;
 
-extension ListAssetsFilterValueExtension on ListAssetsFilter {
-  String toValue() {
-    switch (this) {
-      case ListAssetsFilter.all:
-        return 'ALL';
-      case ListAssetsFilter.topLevel:
-        return 'TOP_LEVEL';
-    }
-  }
-}
+  final String value;
 
-extension ListAssetsFilterFromString on String {
-  ListAssetsFilter toListAssetsFilter() {
-    switch (this) {
-      case 'ALL':
-        return ListAssetsFilter.all;
-      case 'TOP_LEVEL':
-        return ListAssetsFilter.topLevel;
-    }
-    throw Exception('$this is not known in enum ListAssetsFilter');
-  }
+  const ListAssetsFilter(this.value);
+
+  static ListAssetsFilter fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum ListAssetsFilter'));
 }
 
 class ListAssetsResponse {
@@ -10007,56 +9520,23 @@ class ListAssociatedAssetsResponse {
 }
 
 enum ListBulkImportJobsFilter {
-  all,
-  pending,
-  running,
-  cancelled,
-  failed,
-  completedWithFailures,
-  completed,
-}
+  all('ALL'),
+  pending('PENDING'),
+  running('RUNNING'),
+  cancelled('CANCELLED'),
+  failed('FAILED'),
+  completedWithFailures('COMPLETED_WITH_FAILURES'),
+  completed('COMPLETED'),
+  ;
 
-extension ListBulkImportJobsFilterValueExtension on ListBulkImportJobsFilter {
-  String toValue() {
-    switch (this) {
-      case ListBulkImportJobsFilter.all:
-        return 'ALL';
-      case ListBulkImportJobsFilter.pending:
-        return 'PENDING';
-      case ListBulkImportJobsFilter.running:
-        return 'RUNNING';
-      case ListBulkImportJobsFilter.cancelled:
-        return 'CANCELLED';
-      case ListBulkImportJobsFilter.failed:
-        return 'FAILED';
-      case ListBulkImportJobsFilter.completedWithFailures:
-        return 'COMPLETED_WITH_FAILURES';
-      case ListBulkImportJobsFilter.completed:
-        return 'COMPLETED';
-    }
-  }
-}
+  final String value;
 
-extension ListBulkImportJobsFilterFromString on String {
-  ListBulkImportJobsFilter toListBulkImportJobsFilter() {
-    switch (this) {
-      case 'ALL':
-        return ListBulkImportJobsFilter.all;
-      case 'PENDING':
-        return ListBulkImportJobsFilter.pending;
-      case 'RUNNING':
-        return ListBulkImportJobsFilter.running;
-      case 'CANCELLED':
-        return ListBulkImportJobsFilter.cancelled;
-      case 'FAILED':
-        return ListBulkImportJobsFilter.failed;
-      case 'COMPLETED_WITH_FAILURES':
-        return ListBulkImportJobsFilter.completedWithFailures;
-      case 'COMPLETED':
-        return ListBulkImportJobsFilter.completed;
-    }
-    throw Exception('$this is not known in enum ListBulkImportJobsFilter');
-  }
+  const ListBulkImportJobsFilter(this.value);
+
+  static ListBulkImportJobsFilter fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum ListBulkImportJobsFilter'));
 }
 
 class ListBulkImportJobsResponse {
@@ -10317,64 +9797,34 @@ class ListTimeSeriesResponse {
 }
 
 enum ListTimeSeriesType {
-  associated,
-  disassociated,
-}
+  associated('ASSOCIATED'),
+  disassociated('DISASSOCIATED'),
+  ;
 
-extension ListTimeSeriesTypeValueExtension on ListTimeSeriesType {
-  String toValue() {
-    switch (this) {
-      case ListTimeSeriesType.associated:
-        return 'ASSOCIATED';
-      case ListTimeSeriesType.disassociated:
-        return 'DISASSOCIATED';
-    }
-  }
-}
+  final String value;
 
-extension ListTimeSeriesTypeFromString on String {
-  ListTimeSeriesType toListTimeSeriesType() {
-    switch (this) {
-      case 'ASSOCIATED':
-        return ListTimeSeriesType.associated;
-      case 'DISASSOCIATED':
-        return ListTimeSeriesType.disassociated;
-    }
-    throw Exception('$this is not known in enum ListTimeSeriesType');
-  }
+  const ListTimeSeriesType(this.value);
+
+  static ListTimeSeriesType fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum ListTimeSeriesType'));
 }
 
 enum LoggingLevel {
-  error,
-  info,
-  off,
-}
+  error('ERROR'),
+  info('INFO'),
+  off('OFF'),
+  ;
 
-extension LoggingLevelValueExtension on LoggingLevel {
-  String toValue() {
-    switch (this) {
-      case LoggingLevel.error:
-        return 'ERROR';
-      case LoggingLevel.info:
-        return 'INFO';
-      case LoggingLevel.off:
-        return 'OFF';
-    }
-  }
-}
+  final String value;
 
-extension LoggingLevelFromString on String {
-  LoggingLevel toLoggingLevel() {
-    switch (this) {
-      case 'ERROR':
-        return LoggingLevel.error;
-      case 'INFO':
-        return LoggingLevel.info;
-      case 'OFF':
-        return LoggingLevel.off;
-    }
-    throw Exception('$this is not known in enum LoggingLevel');
-  }
+  const LoggingLevel(this.value);
+
+  static LoggingLevel fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum LoggingLevel'));
 }
 
 /// Contains logging options.
@@ -10388,14 +9838,14 @@ class LoggingOptions {
 
   factory LoggingOptions.fromJson(Map<String, dynamic> json) {
     return LoggingOptions(
-      level: (json['level'] as String).toLoggingLevel(),
+      level: LoggingLevel.fromString((json['level'] as String)),
     );
   }
 
   Map<String, dynamic> toJson() {
     final level = this.level;
     return {
-      'level': level.toValue(),
+      'level': level.value,
     };
   }
 }
@@ -10541,14 +9991,15 @@ class MetricProcessingConfig {
 
   factory MetricProcessingConfig.fromJson(Map<String, dynamic> json) {
     return MetricProcessingConfig(
-      computeLocation: (json['computeLocation'] as String).toComputeLocation(),
+      computeLocation:
+          ComputeLocation.fromString((json['computeLocation'] as String)),
     );
   }
 
   Map<String, dynamic> toJson() {
     final computeLocation = this.computeLocation;
     return {
-      'computeLocation': computeLocation.toValue(),
+      'computeLocation': computeLocation.value,
     };
   }
 }
@@ -10580,36 +10031,19 @@ class MetricWindow {
 }
 
 enum MonitorErrorCode {
-  internalFailure,
-  validationError,
-  limitExceeded,
-}
+  internalFailure('INTERNAL_FAILURE'),
+  validationError('VALIDATION_ERROR'),
+  limitExceeded('LIMIT_EXCEEDED'),
+  ;
 
-extension MonitorErrorCodeValueExtension on MonitorErrorCode {
-  String toValue() {
-    switch (this) {
-      case MonitorErrorCode.internalFailure:
-        return 'INTERNAL_FAILURE';
-      case MonitorErrorCode.validationError:
-        return 'VALIDATION_ERROR';
-      case MonitorErrorCode.limitExceeded:
-        return 'LIMIT_EXCEEDED';
-    }
-  }
-}
+  final String value;
 
-extension MonitorErrorCodeFromString on String {
-  MonitorErrorCode toMonitorErrorCode() {
-    switch (this) {
-      case 'INTERNAL_FAILURE':
-        return MonitorErrorCode.internalFailure;
-      case 'VALIDATION_ERROR':
-        return MonitorErrorCode.validationError;
-      case 'LIMIT_EXCEEDED':
-        return MonitorErrorCode.limitExceeded;
-    }
-    throw Exception('$this is not known in enum MonitorErrorCode');
-  }
+  const MonitorErrorCode(this.value);
+
+  static MonitorErrorCode fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum MonitorErrorCode'));
 }
 
 /// Contains IoT SiteWise Monitor error details.
@@ -10627,7 +10061,7 @@ class MonitorErrorDetails {
 
   factory MonitorErrorDetails.fromJson(Map<String, dynamic> json) {
     return MonitorErrorDetails(
-      code: (json['code'] as String?)?.toMonitorErrorCode(),
+      code: (json['code'] as String?)?.let(MonitorErrorCode.fromString),
       message: json['message'] as String?,
     );
   }
@@ -10636,7 +10070,7 @@ class MonitorErrorDetails {
     final code = this.code;
     final message = this.message;
     return {
-      if (code != null) 'code': code.toValue(),
+      if (code != null) 'code': code.value,
       if (message != null) 'message': message,
     };
   }
@@ -10667,31 +10101,17 @@ class MultiLayerStorage {
 }
 
 enum Permission {
-  administrator,
-  viewer,
-}
+  administrator('ADMINISTRATOR'),
+  viewer('VIEWER'),
+  ;
 
-extension PermissionValueExtension on Permission {
-  String toValue() {
-    switch (this) {
-      case Permission.administrator:
-        return 'ADMINISTRATOR';
-      case Permission.viewer:
-        return 'VIEWER';
-    }
-  }
-}
+  final String value;
 
-extension PermissionFromString on String {
-  Permission toPermission() {
-    switch (this) {
-      case 'ADMINISTRATOR':
-        return Permission.administrator;
-      case 'VIEWER':
-        return Permission.viewer;
-    }
-    throw Exception('$this is not known in enum Permission');
-  }
+  const Permission(this.value);
+
+  static Permission fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum Permission'));
 }
 
 /// Identifies an IoT SiteWise Monitor portal.
@@ -10718,46 +10138,20 @@ class PortalResource {
 }
 
 enum PortalState {
-  creating,
-  updating,
-  deleting,
-  active,
-  failed,
-}
+  creating('CREATING'),
+  updating('UPDATING'),
+  deleting('DELETING'),
+  active('ACTIVE'),
+  failed('FAILED'),
+  ;
 
-extension PortalStateValueExtension on PortalState {
-  String toValue() {
-    switch (this) {
-      case PortalState.creating:
-        return 'CREATING';
-      case PortalState.updating:
-        return 'UPDATING';
-      case PortalState.deleting:
-        return 'DELETING';
-      case PortalState.active:
-        return 'ACTIVE';
-      case PortalState.failed:
-        return 'FAILED';
-    }
-  }
-}
+  final String value;
 
-extension PortalStateFromString on String {
-  PortalState toPortalState() {
-    switch (this) {
-      case 'CREATING':
-        return PortalState.creating;
-      case 'UPDATING':
-        return PortalState.updating;
-      case 'DELETING':
-        return PortalState.deleting;
-      case 'ACTIVE':
-        return PortalState.active;
-      case 'FAILED':
-        return PortalState.failed;
-    }
-    throw Exception('$this is not known in enum PortalState');
-  }
+  const PortalState(this.value);
+
+  static PortalState fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum PortalState'));
 }
 
 /// Contains information about the current status of a portal.
@@ -10775,7 +10169,7 @@ class PortalStatus {
 
   factory PortalStatus.fromJson(Map<String, dynamic> json) {
     return PortalStatus(
-      state: (json['state'] as String).toPortalState(),
+      state: PortalState.fromString((json['state'] as String)),
       error: json['error'] != null
           ? MonitorErrorDetails.fromJson(json['error'] as Map<String, dynamic>)
           : null,
@@ -10786,7 +10180,7 @@ class PortalStatus {
     final state = this.state;
     final error = this.error;
     return {
-      'state': state.toValue(),
+      'state': state.value,
       if (error != null) 'error': error,
     };
   }
@@ -10993,7 +10387,7 @@ class Property {
 
   factory Property.fromJson(Map<String, dynamic> json) {
     return Property(
-      dataType: (json['dataType'] as String).toPropertyDataType(),
+      dataType: PropertyDataType.fromString((json['dataType'] as String)),
       id: json['id'] as String,
       name: json['name'] as String,
       alias: json['alias'] as String?,
@@ -11017,7 +10411,7 @@ class Property {
     final type = this.type;
     final unit = this.unit;
     return {
-      'dataType': dataType.toValue(),
+      'dataType': dataType.value,
       'id': id,
       'name': name,
       if (alias != null) 'alias': alias,
@@ -11029,46 +10423,21 @@ class Property {
 }
 
 enum PropertyDataType {
-  string,
-  integer,
-  double,
-  boolean,
-  struct,
-}
+  string('STRING'),
+  integer('INTEGER'),
+  double('DOUBLE'),
+  boolean('BOOLEAN'),
+  struct('STRUCT'),
+  ;
 
-extension PropertyDataTypeValueExtension on PropertyDataType {
-  String toValue() {
-    switch (this) {
-      case PropertyDataType.string:
-        return 'STRING';
-      case PropertyDataType.integer:
-        return 'INTEGER';
-      case PropertyDataType.double:
-        return 'DOUBLE';
-      case PropertyDataType.boolean:
-        return 'BOOLEAN';
-      case PropertyDataType.struct:
-        return 'STRUCT';
-    }
-  }
-}
+  final String value;
 
-extension PropertyDataTypeFromString on String {
-  PropertyDataType toPropertyDataType() {
-    switch (this) {
-      case 'STRING':
-        return PropertyDataType.string;
-      case 'INTEGER':
-        return PropertyDataType.integer;
-      case 'DOUBLE':
-        return PropertyDataType.double;
-      case 'BOOLEAN':
-        return PropertyDataType.boolean;
-      case 'STRUCT':
-        return PropertyDataType.struct;
-    }
-    throw Exception('$this is not known in enum PropertyDataType');
-  }
+  const PropertyDataType(this.value);
+
+  static PropertyDataType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum PropertyDataType'));
 }
 
 /// Contains asset property value notification information. When the
@@ -11091,7 +10460,7 @@ class PropertyNotification {
 
   factory PropertyNotification.fromJson(Map<String, dynamic> json) {
     return PropertyNotification(
-      state: (json['state'] as String).toPropertyNotificationState(),
+      state: PropertyNotificationState.fromString((json['state'] as String)),
       topic: json['topic'] as String,
     );
   }
@@ -11100,38 +10469,25 @@ class PropertyNotification {
     final state = this.state;
     final topic = this.topic;
     return {
-      'state': state.toValue(),
+      'state': state.value,
       'topic': topic,
     };
   }
 }
 
 enum PropertyNotificationState {
-  enabled,
-  disabled,
-}
+  enabled('ENABLED'),
+  disabled('DISABLED'),
+  ;
 
-extension PropertyNotificationStateValueExtension on PropertyNotificationState {
-  String toValue() {
-    switch (this) {
-      case PropertyNotificationState.enabled:
-        return 'ENABLED';
-      case PropertyNotificationState.disabled:
-        return 'DISABLED';
-    }
-  }
-}
+  final String value;
 
-extension PropertyNotificationStateFromString on String {
-  PropertyNotificationState toPropertyNotificationState() {
-    switch (this) {
-      case 'ENABLED':
-        return PropertyNotificationState.enabled;
-      case 'DISABLED':
-        return PropertyNotificationState.disabled;
-    }
-    throw Exception('$this is not known in enum PropertyNotificationState');
-  }
+  const PropertyNotificationState(this.value);
+
+  static PropertyNotificationState fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum PropertyNotificationState'));
 }
 
 /// Contains a property type, which can be one of <code>attribute</code>,
@@ -11272,7 +10628,8 @@ class PutDefaultEncryptionConfigurationResponse {
     return PutDefaultEncryptionConfigurationResponse(
       configurationStatus: ConfigurationStatus.fromJson(
           json['configurationStatus'] as Map<String, dynamic>),
-      encryptionType: (json['encryptionType'] as String).toEncryptionType(),
+      encryptionType:
+          EncryptionType.fromString((json['encryptionType'] as String)),
       kmsKeyArn: json['kmsKeyArn'] as String?,
     );
   }
@@ -11283,7 +10640,7 @@ class PutDefaultEncryptionConfigurationResponse {
     final kmsKeyArn = this.kmsKeyArn;
     return {
       'configurationStatus': configurationStatus,
-      'encryptionType': encryptionType.toValue(),
+      'encryptionType': encryptionType.value,
       if (kmsKeyArn != null) 'kmsKeyArn': kmsKeyArn,
     };
   }
@@ -11358,9 +10715,9 @@ class PutStorageConfigurationResponse {
     return PutStorageConfigurationResponse(
       configurationStatus: ConfigurationStatus.fromJson(
           json['configurationStatus'] as Map<String, dynamic>),
-      storageType: (json['storageType'] as String).toStorageType(),
+      storageType: StorageType.fromString((json['storageType'] as String)),
       disassociatedDataStorage: (json['disassociatedDataStorage'] as String?)
-          ?.toDisassociatedDataStorageState(),
+          ?.let(DisassociatedDataStorageState.fromString),
       multiLayerStorage: json['multiLayerStorage'] != null
           ? MultiLayerStorage.fromJson(
               json['multiLayerStorage'] as Map<String, dynamic>)
@@ -11380,9 +10737,9 @@ class PutStorageConfigurationResponse {
     final retentionPeriod = this.retentionPeriod;
     return {
       'configurationStatus': configurationStatus,
-      'storageType': storageType.toValue(),
+      'storageType': storageType.value,
       if (disassociatedDataStorage != null)
-        'disassociatedDataStorage': disassociatedDataStorage.toValue(),
+        'disassociatedDataStorage': disassociatedDataStorage.value,
       if (multiLayerStorage != null) 'multiLayerStorage': multiLayerStorage,
       if (retentionPeriod != null) 'retentionPeriod': retentionPeriod,
     };
@@ -11390,36 +10747,18 @@ class PutStorageConfigurationResponse {
 }
 
 enum Quality {
-  good,
-  bad,
-  uncertain,
-}
+  good('GOOD'),
+  bad('BAD'),
+  uncertain('UNCERTAIN'),
+  ;
 
-extension QualityValueExtension on Quality {
-  String toValue() {
-    switch (this) {
-      case Quality.good:
-        return 'GOOD';
-      case Quality.bad:
-        return 'BAD';
-      case Quality.uncertain:
-        return 'UNCERTAIN';
-    }
-  }
-}
+  final String value;
 
-extension QualityFromString on String {
-  Quality toQuality() {
-    switch (this) {
-      case 'GOOD':
-        return Quality.good;
-      case 'BAD':
-        return Quality.bad;
-      case 'UNCERTAIN':
-        return Quality.uncertain;
-    }
-    throw Exception('$this is not known in enum Quality');
-  }
+  const Quality(this.value);
+
+  static Quality fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception('$value is not known in enum Quality'));
 }
 
 /// Contains an IoT SiteWise Monitor resource ID for a portal or project.
@@ -11457,31 +10796,18 @@ class Resource {
 }
 
 enum ResourceType {
-  portal,
-  project,
-}
+  portal('PORTAL'),
+  project('PROJECT'),
+  ;
 
-extension ResourceTypeValueExtension on ResourceType {
-  String toValue() {
-    switch (this) {
-      case ResourceType.portal:
-        return 'PORTAL';
-      case ResourceType.project:
-        return 'PROJECT';
-    }
-  }
-}
+  final String value;
 
-extension ResourceTypeFromString on String {
-  ResourceType toResourceType() {
-    switch (this) {
-      case 'PORTAL':
-        return ResourceType.portal;
-      case 'PROJECT':
-        return ResourceType.project;
-    }
-    throw Exception('$this is not known in enum ResourceType');
-  }
+  const ResourceType(this.value);
+
+  static ResourceType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum ResourceType'));
 }
 
 /// How many days your data is kept in the hot tier. By default, your data is
@@ -11524,31 +10850,17 @@ class RetentionPeriod {
 }
 
 enum StorageType {
-  sitewiseDefaultStorage,
-  multiLayerStorage,
-}
+  sitewiseDefaultStorage('SITEWISE_DEFAULT_STORAGE'),
+  multiLayerStorage('MULTI_LAYER_STORAGE'),
+  ;
 
-extension StorageTypeValueExtension on StorageType {
-  String toValue() {
-    switch (this) {
-      case StorageType.sitewiseDefaultStorage:
-        return 'SITEWISE_DEFAULT_STORAGE';
-      case StorageType.multiLayerStorage:
-        return 'MULTI_LAYER_STORAGE';
-    }
-  }
-}
+  final String value;
 
-extension StorageTypeFromString on String {
-  StorageType toStorageType() {
-    switch (this) {
-      case 'SITEWISE_DEFAULT_STORAGE':
-        return StorageType.sitewiseDefaultStorage;
-      case 'MULTI_LAYER_STORAGE':
-        return StorageType.multiLayerStorage;
-    }
-    throw Exception('$this is not known in enum StorageType');
-  }
+  const StorageType(this.value);
+
+  static StorageType fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum StorageType'));
 }
 
 class TagResourceResponse {
@@ -11595,31 +10907,18 @@ class TimeInNanos {
 }
 
 enum TimeOrdering {
-  ascending,
-  descending,
-}
+  ascending('ASCENDING'),
+  descending('DESCENDING'),
+  ;
 
-extension TimeOrderingValueExtension on TimeOrdering {
-  String toValue() {
-    switch (this) {
-      case TimeOrdering.ascending:
-        return 'ASCENDING';
-      case TimeOrdering.descending:
-        return 'DESCENDING';
-    }
-  }
-}
+  final String value;
 
-extension TimeOrderingFromString on String {
-  TimeOrdering toTimeOrdering() {
-    switch (this) {
-      case 'ASCENDING':
-        return TimeOrdering.ascending;
-      case 'DESCENDING':
-        return TimeOrdering.descending;
-    }
-    throw Exception('$this is not known in enum TimeOrdering');
-  }
+  const TimeOrdering(this.value);
+
+  static TimeOrdering fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum TimeOrdering'));
 }
 
 /// Contains a summary of a time series (data stream).
@@ -11679,7 +10978,7 @@ class TimeSeriesSummary {
 
   factory TimeSeriesSummary.fromJson(Map<String, dynamic> json) {
     return TimeSeriesSummary(
-      dataType: (json['dataType'] as String).toPropertyDataType(),
+      dataType: PropertyDataType.fromString((json['dataType'] as String)),
       timeSeriesArn: json['timeSeriesArn'] as String,
       timeSeriesCreationDate: nonNullableTimeStampFromJson(
           json['timeSeriesCreationDate'] as Object),
@@ -11704,7 +11003,7 @@ class TimeSeriesSummary {
     final dataTypeSpec = this.dataTypeSpec;
     final propertyId = this.propertyId;
     return {
-      'dataType': dataType.toValue(),
+      'dataType': dataType.value,
       'timeSeriesArn': timeSeriesArn,
       'timeSeriesCreationDate': unixTimestampToJson(timeSeriesCreationDate),
       'timeSeriesId': timeSeriesId,
@@ -11794,7 +11093,8 @@ class TransformProcessingConfig {
 
   factory TransformProcessingConfig.fromJson(Map<String, dynamic> json) {
     return TransformProcessingConfig(
-      computeLocation: (json['computeLocation'] as String).toComputeLocation(),
+      computeLocation:
+          ComputeLocation.fromString((json['computeLocation'] as String)),
       forwardingConfig: json['forwardingConfig'] != null
           ? ForwardingConfig.fromJson(
               json['forwardingConfig'] as Map<String, dynamic>)
@@ -11806,61 +11106,39 @@ class TransformProcessingConfig {
     final computeLocation = this.computeLocation;
     final forwardingConfig = this.forwardingConfig;
     return {
-      'computeLocation': computeLocation.toValue(),
+      'computeLocation': computeLocation.value,
       if (forwardingConfig != null) 'forwardingConfig': forwardingConfig,
     };
   }
 }
 
 enum TraversalDirection {
-  parent,
-  child,
-}
+  parent('PARENT'),
+  child('CHILD'),
+  ;
 
-extension TraversalDirectionValueExtension on TraversalDirection {
-  String toValue() {
-    switch (this) {
-      case TraversalDirection.parent:
-        return 'PARENT';
-      case TraversalDirection.child:
-        return 'CHILD';
-    }
-  }
-}
+  final String value;
 
-extension TraversalDirectionFromString on String {
-  TraversalDirection toTraversalDirection() {
-    switch (this) {
-      case 'PARENT':
-        return TraversalDirection.parent;
-      case 'CHILD':
-        return TraversalDirection.child;
-    }
-    throw Exception('$this is not known in enum TraversalDirection');
-  }
+  const TraversalDirection(this.value);
+
+  static TraversalDirection fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum TraversalDirection'));
 }
 
 enum TraversalType {
-  pathToRoot,
-}
+  pathToRoot('PATH_TO_ROOT'),
+  ;
 
-extension TraversalTypeValueExtension on TraversalType {
-  String toValue() {
-    switch (this) {
-      case TraversalType.pathToRoot:
-        return 'PATH_TO_ROOT';
-    }
-  }
-}
+  final String value;
 
-extension TraversalTypeFromString on String {
-  TraversalType toTraversalType() {
-    switch (this) {
-      case 'PATH_TO_ROOT':
-        return TraversalType.pathToRoot;
-    }
-    throw Exception('$this is not known in enum TraversalType');
-  }
+  const TraversalType(this.value);
+
+  static TraversalType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum TraversalType'));
 }
 
 /// Contains a tumbling window, which is a repeating fixed-sized,
@@ -12097,8 +11375,8 @@ class UpdateGatewayCapabilityConfigurationResponse {
       Map<String, dynamic> json) {
     return UpdateGatewayCapabilityConfigurationResponse(
       capabilityNamespace: json['capabilityNamespace'] as String,
-      capabilitySyncStatus:
-          (json['capabilitySyncStatus'] as String).toCapabilitySyncStatus(),
+      capabilitySyncStatus: CapabilitySyncStatus.fromString(
+          (json['capabilitySyncStatus'] as String)),
     );
   }
 
@@ -12107,7 +11385,7 @@ class UpdateGatewayCapabilityConfigurationResponse {
     final capabilitySyncStatus = this.capabilitySyncStatus;
     return {
       'capabilityNamespace': capabilityNamespace,
-      'capabilitySyncStatus': capabilitySyncStatus.toValue(),
+      'capabilitySyncStatus': capabilitySyncStatus.value,
     };
   }
 }

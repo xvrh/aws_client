@@ -254,8 +254,7 @@ class PinpointSmsVoiceV2 {
       payload: {
         'ConfigurationSetName': configurationSetName,
         'EventDestinationName': eventDestinationName,
-        'MatchingEventTypes':
-            matchingEventTypes.map((e) => e.toValue()).toList(),
+        'MatchingEventTypes': matchingEventTypes.map((e) => e.value).toList(),
         'ClientToken': clientToken ?? _s.generateIdempotencyToken(),
         if (cloudWatchLogsDestination != null)
           'CloudWatchLogsDestination': cloudWatchLogsDestination,
@@ -392,7 +391,7 @@ class PinpointSmsVoiceV2 {
       headers: headers,
       payload: {
         'IsoCountryCode': isoCountryCode,
-        'MessageType': messageType.toValue(),
+        'MessageType': messageType.value,
         'OriginationIdentity': originationIdentity,
         'ClientToken': clientToken ?? _s.generateIdempotencyToken(),
         if (deletionProtectionEnabled != null)
@@ -1613,7 +1612,7 @@ class PinpointSmsVoiceV2 {
         'Keyword': keyword,
         'KeywordMessage': keywordMessage,
         'OriginationIdentity': originationIdentity,
-        if (keywordAction != null) 'KeywordAction': keywordAction.toValue(),
+        if (keywordAction != null) 'KeywordAction': keywordAction.value,
       },
     );
 
@@ -1774,10 +1773,9 @@ class PinpointSmsVoiceV2 {
       headers: headers,
       payload: {
         'IsoCountryCode': isoCountryCode,
-        'MessageType': messageType.toValue(),
-        'NumberCapabilities':
-            numberCapabilities.map((e) => e.toValue()).toList(),
-        'NumberType': numberType.toValue(),
+        'MessageType': messageType.value,
+        'NumberCapabilities': numberCapabilities.map((e) => e.value).toList(),
+        'NumberType': numberType.value,
         'ClientToken': clientToken ?? _s.generateIdempotencyToken(),
         if (deletionProtectionEnabled != null)
           'DeletionProtectionEnabled': deletionProtectionEnabled,
@@ -1889,13 +1887,13 @@ class PinpointSmsVoiceV2 {
           'ConfigurationSetName': configurationSetName,
         if (context != null) 'Context': context,
         if (destinationCountryParameters != null)
-          'DestinationCountryParameters': destinationCountryParameters
-              .map((k, e) => MapEntry(k.toValue(), e)),
+          'DestinationCountryParameters':
+              destinationCountryParameters.map((k, e) => MapEntry(k.value, e)),
         if (dryRun != null) 'DryRun': dryRun,
         if (keyword != null) 'Keyword': keyword,
         if (maxPrice != null) 'MaxPrice': maxPrice,
         if (messageBody != null) 'MessageBody': messageBody,
-        if (messageType != null) 'MessageType': messageType.toValue(),
+        if (messageType != null) 'MessageType': messageType.value,
         if (originationIdentity != null)
           'OriginationIdentity': originationIdentity,
         if (timeToLive != null) 'TimeToLive': timeToLive,
@@ -2004,9 +2002,9 @@ class PinpointSmsVoiceV2 {
         if (maxPricePerMinute != null) 'MaxPricePerMinute': maxPricePerMinute,
         if (messageBody != null) 'MessageBody': messageBody,
         if (messageBodyTextType != null)
-          'MessageBodyTextType': messageBodyTextType.toValue(),
+          'MessageBodyTextType': messageBodyTextType.value,
         if (timeToLive != null) 'TimeToLive': timeToLive,
-        if (voiceId != null) 'VoiceId': voiceId.toValue(),
+        if (voiceId != null) 'VoiceId': voiceId.value,
       },
     );
 
@@ -2052,7 +2050,7 @@ class PinpointSmsVoiceV2 {
       headers: headers,
       payload: {
         'ConfigurationSetName': configurationSetName,
-        'MessageType': messageType.toValue(),
+        'MessageType': messageType.value,
       },
     );
 
@@ -2334,8 +2332,7 @@ class PinpointSmsVoiceV2 {
         if (kinesisFirehoseDestination != null)
           'KinesisFirehoseDestination': kinesisFirehoseDestination,
         if (matchingEventTypes != null)
-          'MatchingEventTypes':
-              matchingEventTypes.map((e) => e.toValue()).toList(),
+          'MatchingEventTypes': matchingEventTypes.map((e) => e.value).toList(),
         if (snsDestination != null) 'SnsDestination': snsDestination,
       },
     );
@@ -2511,7 +2508,7 @@ class AccountAttribute {
 
   factory AccountAttribute.fromJson(Map<String, dynamic> json) {
     return AccountAttribute(
-      name: (json['Name'] as String).toAccountAttributeName(),
+      name: AccountAttributeName.fromString((json['Name'] as String)),
       value: json['Value'] as String,
     );
   }
@@ -2520,33 +2517,24 @@ class AccountAttribute {
     final name = this.name;
     final value = this.value;
     return {
-      'Name': name.toValue(),
+      'Name': name.value,
       'Value': value,
     };
   }
 }
 
 enum AccountAttributeName {
-  accountTier,
-}
+  accountTier('ACCOUNT_TIER'),
+  ;
 
-extension AccountAttributeNameValueExtension on AccountAttributeName {
-  String toValue() {
-    switch (this) {
-      case AccountAttributeName.accountTier:
-        return 'ACCOUNT_TIER';
-    }
-  }
-}
+  final String value;
 
-extension AccountAttributeNameFromString on String {
-  AccountAttributeName toAccountAttributeName() {
-    switch (this) {
-      case 'ACCOUNT_TIER':
-        return AccountAttributeName.accountTier;
-    }
-    throw Exception('$this is not known in enum AccountAttributeName');
-  }
+  const AccountAttributeName(this.value);
+
+  static AccountAttributeName fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum AccountAttributeName'));
 }
 
 /// The current resource quotas associated with an Amazon Web Services account.
@@ -2569,7 +2557,7 @@ class AccountLimit {
   factory AccountLimit.fromJson(Map<String, dynamic> json) {
     return AccountLimit(
       max: json['Max'] as int,
-      name: (json['Name'] as String).toAccountLimitName(),
+      name: AccountLimitName.fromString((json['Name'] as String)),
       used: json['Used'] as int,
     );
   }
@@ -2580,48 +2568,27 @@ class AccountLimit {
     final used = this.used;
     return {
       'Max': max,
-      'Name': name.toValue(),
+      'Name': name.value,
       'Used': used,
     };
   }
 }
 
 enum AccountLimitName {
-  phoneNumbers,
-  pools,
-  configurationSets,
-  optOutLists,
-}
+  phoneNumbers('PHONE_NUMBERS'),
+  pools('POOLS'),
+  configurationSets('CONFIGURATION_SETS'),
+  optOutLists('OPT_OUT_LISTS'),
+  ;
 
-extension AccountLimitNameValueExtension on AccountLimitName {
-  String toValue() {
-    switch (this) {
-      case AccountLimitName.phoneNumbers:
-        return 'PHONE_NUMBERS';
-      case AccountLimitName.pools:
-        return 'POOLS';
-      case AccountLimitName.configurationSets:
-        return 'CONFIGURATION_SETS';
-      case AccountLimitName.optOutLists:
-        return 'OPT_OUT_LISTS';
-    }
-  }
-}
+  final String value;
 
-extension AccountLimitNameFromString on String {
-  AccountLimitName toAccountLimitName() {
-    switch (this) {
-      case 'PHONE_NUMBERS':
-        return AccountLimitName.phoneNumbers;
-      case 'POOLS':
-        return AccountLimitName.pools;
-      case 'CONFIGURATION_SETS':
-        return AccountLimitName.configurationSets;
-      case 'OPT_OUT_LISTS':
-        return AccountLimitName.optOutLists;
-    }
-    throw Exception('$this is not known in enum AccountLimitName');
-  }
+  const AccountLimitName(this.value);
+
+  static AccountLimitName fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum AccountLimitName'));
 }
 
 class AssociateOriginationIdentityResult {
@@ -2730,49 +2697,27 @@ class ConfigurationSetFilter {
     final name = this.name;
     final values = this.values;
     return {
-      'Name': name.toValue(),
+      'Name': name.value,
       'Values': values,
     };
   }
 }
 
 enum ConfigurationSetFilterName {
-  eventDestinationName,
-  matchingEventTypes,
-  defaultMessageType,
-  defaultSenderId,
-}
+  eventDestinationName('event-destination-name'),
+  matchingEventTypes('matching-event-types'),
+  defaultMessageType('default-message-type'),
+  defaultSenderId('default-sender-id'),
+  ;
 
-extension ConfigurationSetFilterNameValueExtension
-    on ConfigurationSetFilterName {
-  String toValue() {
-    switch (this) {
-      case ConfigurationSetFilterName.eventDestinationName:
-        return 'event-destination-name';
-      case ConfigurationSetFilterName.matchingEventTypes:
-        return 'matching-event-types';
-      case ConfigurationSetFilterName.defaultMessageType:
-        return 'default-message-type';
-      case ConfigurationSetFilterName.defaultSenderId:
-        return 'default-sender-id';
-    }
-  }
-}
+  final String value;
 
-extension ConfigurationSetFilterNameFromString on String {
-  ConfigurationSetFilterName toConfigurationSetFilterName() {
-    switch (this) {
-      case 'event-destination-name':
-        return ConfigurationSetFilterName.eventDestinationName;
-      case 'matching-event-types':
-        return ConfigurationSetFilterName.matchingEventTypes;
-      case 'default-message-type':
-        return ConfigurationSetFilterName.defaultMessageType;
-      case 'default-sender-id':
-        return ConfigurationSetFilterName.defaultSenderId;
-    }
-    throw Exception('$this is not known in enum ConfigurationSetFilterName');
-  }
+  const ConfigurationSetFilterName(this.value);
+
+  static ConfigurationSetFilterName fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum ConfigurationSetFilterName'));
 }
 
 /// Information related to a given configuration set in your Amazon Web Services
@@ -2820,7 +2765,7 @@ class ConfigurationSetInformation {
           .map((e) => EventDestination.fromJson(e as Map<String, dynamic>))
           .toList(),
       defaultMessageType:
-          (json['DefaultMessageType'] as String?)?.toMessageType(),
+          (json['DefaultMessageType'] as String?)?.let(MessageType.fromString),
       defaultSenderId: json['DefaultSenderId'] as String?,
     );
   }
@@ -2838,7 +2783,7 @@ class ConfigurationSetInformation {
       'CreatedTimestamp': unixTimestampToJson(createdTimestamp),
       'EventDestinations': eventDestinations,
       if (defaultMessageType != null)
-        'DefaultMessageType': defaultMessageType.toValue(),
+        'DefaultMessageType': defaultMessageType.value,
       if (defaultSenderId != null) 'DefaultSenderId': defaultSenderId,
     };
   }
@@ -3061,13 +3006,14 @@ class CreatePoolResult {
     return CreatePoolResult(
       createdTimestamp: timeStampFromJson(json['CreatedTimestamp']),
       deletionProtectionEnabled: json['DeletionProtectionEnabled'] as bool?,
-      messageType: (json['MessageType'] as String?)?.toMessageType(),
+      messageType:
+          (json['MessageType'] as String?)?.let(MessageType.fromString),
       optOutListName: json['OptOutListName'] as String?,
       poolArn: json['PoolArn'] as String?,
       poolId: json['PoolId'] as String?,
       selfManagedOptOutsEnabled: json['SelfManagedOptOutsEnabled'] as bool?,
       sharedRoutesEnabled: json['SharedRoutesEnabled'] as bool?,
-      status: (json['Status'] as String?)?.toPoolStatus(),
+      status: (json['Status'] as String?)?.let(PoolStatus.fromString),
       tags: (json['Tags'] as List?)
           ?.whereNotNull()
           .map((e) => Tag.fromJson(e as Map<String, dynamic>))
@@ -3095,7 +3041,7 @@ class CreatePoolResult {
         'CreatedTimestamp': unixTimestampToJson(createdTimestamp),
       if (deletionProtectionEnabled != null)
         'DeletionProtectionEnabled': deletionProtectionEnabled,
-      if (messageType != null) 'MessageType': messageType.toValue(),
+      if (messageType != null) 'MessageType': messageType.value,
       if (optOutListName != null) 'OptOutListName': optOutListName,
       if (poolArn != null) 'PoolArn': poolArn,
       if (poolId != null) 'PoolId': poolId,
@@ -3103,7 +3049,7 @@ class CreatePoolResult {
         'SelfManagedOptOutsEnabled': selfManagedOptOutsEnabled,
       if (sharedRoutesEnabled != null)
         'SharedRoutesEnabled': sharedRoutesEnabled,
-      if (status != null) 'Status': status.toValue(),
+      if (status != null) 'Status': status.value,
       if (tags != null) 'Tags': tags,
       if (twoWayChannelArn != null) 'TwoWayChannelArn': twoWayChannelArn,
       if (twoWayEnabled != null) 'TwoWayEnabled': twoWayEnabled,
@@ -3147,7 +3093,7 @@ class DeleteConfigurationSetResult {
       configurationSetName: json['ConfigurationSetName'] as String?,
       createdTimestamp: timeStampFromJson(json['CreatedTimestamp']),
       defaultMessageType:
-          (json['DefaultMessageType'] as String?)?.toMessageType(),
+          (json['DefaultMessageType'] as String?)?.let(MessageType.fromString),
       defaultSenderId: json['DefaultSenderId'] as String?,
       eventDestinations: (json['EventDestinations'] as List?)
           ?.whereNotNull()
@@ -3171,7 +3117,7 @@ class DeleteConfigurationSetResult {
       if (createdTimestamp != null)
         'CreatedTimestamp': unixTimestampToJson(createdTimestamp),
       if (defaultMessageType != null)
-        'DefaultMessageType': defaultMessageType.toValue(),
+        'DefaultMessageType': defaultMessageType.value,
       if (defaultSenderId != null) 'DefaultSenderId': defaultSenderId,
       if (eventDestinations != null) 'EventDestinations': eventDestinations,
     };
@@ -3198,7 +3144,8 @@ class DeleteDefaultMessageTypeResult {
     return DeleteDefaultMessageTypeResult(
       configurationSetArn: json['ConfigurationSetArn'] as String?,
       configurationSetName: json['ConfigurationSetName'] as String?,
-      messageType: (json['MessageType'] as String?)?.toMessageType(),
+      messageType:
+          (json['MessageType'] as String?)?.let(MessageType.fromString),
     );
   }
 
@@ -3211,7 +3158,7 @@ class DeleteDefaultMessageTypeResult {
         'ConfigurationSetArn': configurationSetArn,
       if (configurationSetName != null)
         'ConfigurationSetName': configurationSetName,
-      if (messageType != null) 'MessageType': messageType.toValue(),
+      if (messageType != null) 'MessageType': messageType.value,
     };
   }
 }
@@ -3322,7 +3269,8 @@ class DeleteKeywordResult {
   factory DeleteKeywordResult.fromJson(Map<String, dynamic> json) {
     return DeleteKeywordResult(
       keyword: json['Keyword'] as String?,
-      keywordAction: (json['KeywordAction'] as String?)?.toKeywordAction(),
+      keywordAction:
+          (json['KeywordAction'] as String?)?.let(KeywordAction.fromString),
       keywordMessage: json['KeywordMessage'] as String?,
       originationIdentity: json['OriginationIdentity'] as String?,
       originationIdentityArn: json['OriginationIdentityArn'] as String?,
@@ -3337,7 +3285,7 @@ class DeleteKeywordResult {
     final originationIdentityArn = this.originationIdentityArn;
     return {
       if (keyword != null) 'Keyword': keyword,
-      if (keywordAction != null) 'KeywordAction': keywordAction.toValue(),
+      if (keywordAction != null) 'KeywordAction': keywordAction.value,
       if (keywordMessage != null) 'KeywordMessage': keywordMessage,
       if (originationIdentity != null)
         'OriginationIdentity': originationIdentity,
@@ -3505,13 +3453,14 @@ class DeletePoolResult {
   factory DeletePoolResult.fromJson(Map<String, dynamic> json) {
     return DeletePoolResult(
       createdTimestamp: timeStampFromJson(json['CreatedTimestamp']),
-      messageType: (json['MessageType'] as String?)?.toMessageType(),
+      messageType:
+          (json['MessageType'] as String?)?.let(MessageType.fromString),
       optOutListName: json['OptOutListName'] as String?,
       poolArn: json['PoolArn'] as String?,
       poolId: json['PoolId'] as String?,
       selfManagedOptOutsEnabled: json['SelfManagedOptOutsEnabled'] as bool?,
       sharedRoutesEnabled: json['SharedRoutesEnabled'] as bool?,
-      status: (json['Status'] as String?)?.toPoolStatus(),
+      status: (json['Status'] as String?)?.let(PoolStatus.fromString),
       twoWayChannelArn: json['TwoWayChannelArn'] as String?,
       twoWayEnabled: json['TwoWayEnabled'] as bool?,
     );
@@ -3531,7 +3480,7 @@ class DeletePoolResult {
     return {
       if (createdTimestamp != null)
         'CreatedTimestamp': unixTimestampToJson(createdTimestamp),
-      if (messageType != null) 'MessageType': messageType.toValue(),
+      if (messageType != null) 'MessageType': messageType.value,
       if (optOutListName != null) 'OptOutListName': optOutListName,
       if (poolArn != null) 'PoolArn': poolArn,
       if (poolId != null) 'PoolId': poolId,
@@ -3539,7 +3488,7 @@ class DeletePoolResult {
         'SelfManagedOptOutsEnabled': selfManagedOptOutsEnabled,
       if (sharedRoutesEnabled != null)
         'SharedRoutesEnabled': sharedRoutesEnabled,
-      if (status != null) 'Status': status.toValue(),
+      if (status != null) 'Status': status.value,
       if (twoWayChannelArn != null) 'TwoWayChannelArn': twoWayChannelArn,
       if (twoWayEnabled != null) 'TwoWayEnabled': twoWayEnabled,
     };
@@ -3963,33 +3912,18 @@ class DescribeSpendLimitsResult {
 }
 
 enum DestinationCountryParameterKey {
-  inTemplateId,
-  inEntityId,
-}
+  inTemplateId('IN_TEMPLATE_ID'),
+  inEntityId('IN_ENTITY_ID'),
+  ;
 
-extension DestinationCountryParameterKeyValueExtension
-    on DestinationCountryParameterKey {
-  String toValue() {
-    switch (this) {
-      case DestinationCountryParameterKey.inTemplateId:
-        return 'IN_TEMPLATE_ID';
-      case DestinationCountryParameterKey.inEntityId:
-        return 'IN_ENTITY_ID';
-    }
-  }
-}
+  final String value;
 
-extension DestinationCountryParameterKeyFromString on String {
-  DestinationCountryParameterKey toDestinationCountryParameterKey() {
-    switch (this) {
-      case 'IN_TEMPLATE_ID':
-        return DestinationCountryParameterKey.inTemplateId;
-      case 'IN_ENTITY_ID':
-        return DestinationCountryParameterKey.inEntityId;
-    }
-    throw Exception(
-        '$this is not known in enum DestinationCountryParameterKey');
-  }
+  const DestinationCountryParameterKey(this.value);
+
+  static DestinationCountryParameterKey fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum DestinationCountryParameterKey'));
 }
 
 class DisassociateOriginationIdentityResult {
@@ -4088,7 +4022,7 @@ class EventDestination {
       eventDestinationName: json['EventDestinationName'] as String,
       matchingEventTypes: (json['MatchingEventTypes'] as List)
           .whereNotNull()
-          .map((e) => (e as String).toEventType())
+          .map((e) => EventType.fromString((e as String)))
           .toList(),
       cloudWatchLogsDestination: json['CloudWatchLogsDestination'] != null
           ? CloudWatchLogsDestination.fromJson(
@@ -4115,7 +4049,7 @@ class EventDestination {
     return {
       'Enabled': enabled,
       'EventDestinationName': eventDestinationName,
-      'MatchingEventTypes': matchingEventTypes.map((e) => e.toValue()).toList(),
+      'MatchingEventTypes': matchingEventTypes.map((e) => e.value).toList(),
       if (cloudWatchLogsDestination != null)
         'CloudWatchLogsDestination': cloudWatchLogsDestination,
       if (kinesisFirehoseDestination != null)
@@ -4126,179 +4060,56 @@ class EventDestination {
 }
 
 enum EventType {
-  all,
-  textAll,
-  textSent,
-  textPending,
-  textQueued,
-  textSuccessful,
-  textDelivered,
-  textInvalid,
-  textInvalidMessage,
-  textUnreachable,
-  textCarrierUnreachable,
-  textBlocked,
-  textCarrierBlocked,
-  textSpam,
-  textUnknown,
-  textTtlExpired,
-  voiceAll,
-  voiceInitiated,
-  voiceRinging,
-  voiceAnswered,
-  voiceCompleted,
-  voiceBusy,
-  voiceNoAnswer,
-  voiceFailed,
-  voiceTtlExpired,
-}
+  all('ALL'),
+  textAll('TEXT_ALL'),
+  textSent('TEXT_SENT'),
+  textPending('TEXT_PENDING'),
+  textQueued('TEXT_QUEUED'),
+  textSuccessful('TEXT_SUCCESSFUL'),
+  textDelivered('TEXT_DELIVERED'),
+  textInvalid('TEXT_INVALID'),
+  textInvalidMessage('TEXT_INVALID_MESSAGE'),
+  textUnreachable('TEXT_UNREACHABLE'),
+  textCarrierUnreachable('TEXT_CARRIER_UNREACHABLE'),
+  textBlocked('TEXT_BLOCKED'),
+  textCarrierBlocked('TEXT_CARRIER_BLOCKED'),
+  textSpam('TEXT_SPAM'),
+  textUnknown('TEXT_UNKNOWN'),
+  textTtlExpired('TEXT_TTL_EXPIRED'),
+  voiceAll('VOICE_ALL'),
+  voiceInitiated('VOICE_INITIATED'),
+  voiceRinging('VOICE_RINGING'),
+  voiceAnswered('VOICE_ANSWERED'),
+  voiceCompleted('VOICE_COMPLETED'),
+  voiceBusy('VOICE_BUSY'),
+  voiceNoAnswer('VOICE_NO_ANSWER'),
+  voiceFailed('VOICE_FAILED'),
+  voiceTtlExpired('VOICE_TTL_EXPIRED'),
+  ;
 
-extension EventTypeValueExtension on EventType {
-  String toValue() {
-    switch (this) {
-      case EventType.all:
-        return 'ALL';
-      case EventType.textAll:
-        return 'TEXT_ALL';
-      case EventType.textSent:
-        return 'TEXT_SENT';
-      case EventType.textPending:
-        return 'TEXT_PENDING';
-      case EventType.textQueued:
-        return 'TEXT_QUEUED';
-      case EventType.textSuccessful:
-        return 'TEXT_SUCCESSFUL';
-      case EventType.textDelivered:
-        return 'TEXT_DELIVERED';
-      case EventType.textInvalid:
-        return 'TEXT_INVALID';
-      case EventType.textInvalidMessage:
-        return 'TEXT_INVALID_MESSAGE';
-      case EventType.textUnreachable:
-        return 'TEXT_UNREACHABLE';
-      case EventType.textCarrierUnreachable:
-        return 'TEXT_CARRIER_UNREACHABLE';
-      case EventType.textBlocked:
-        return 'TEXT_BLOCKED';
-      case EventType.textCarrierBlocked:
-        return 'TEXT_CARRIER_BLOCKED';
-      case EventType.textSpam:
-        return 'TEXT_SPAM';
-      case EventType.textUnknown:
-        return 'TEXT_UNKNOWN';
-      case EventType.textTtlExpired:
-        return 'TEXT_TTL_EXPIRED';
-      case EventType.voiceAll:
-        return 'VOICE_ALL';
-      case EventType.voiceInitiated:
-        return 'VOICE_INITIATED';
-      case EventType.voiceRinging:
-        return 'VOICE_RINGING';
-      case EventType.voiceAnswered:
-        return 'VOICE_ANSWERED';
-      case EventType.voiceCompleted:
-        return 'VOICE_COMPLETED';
-      case EventType.voiceBusy:
-        return 'VOICE_BUSY';
-      case EventType.voiceNoAnswer:
-        return 'VOICE_NO_ANSWER';
-      case EventType.voiceFailed:
-        return 'VOICE_FAILED';
-      case EventType.voiceTtlExpired:
-        return 'VOICE_TTL_EXPIRED';
-    }
-  }
-}
+  final String value;
 
-extension EventTypeFromString on String {
-  EventType toEventType() {
-    switch (this) {
-      case 'ALL':
-        return EventType.all;
-      case 'TEXT_ALL':
-        return EventType.textAll;
-      case 'TEXT_SENT':
-        return EventType.textSent;
-      case 'TEXT_PENDING':
-        return EventType.textPending;
-      case 'TEXT_QUEUED':
-        return EventType.textQueued;
-      case 'TEXT_SUCCESSFUL':
-        return EventType.textSuccessful;
-      case 'TEXT_DELIVERED':
-        return EventType.textDelivered;
-      case 'TEXT_INVALID':
-        return EventType.textInvalid;
-      case 'TEXT_INVALID_MESSAGE':
-        return EventType.textInvalidMessage;
-      case 'TEXT_UNREACHABLE':
-        return EventType.textUnreachable;
-      case 'TEXT_CARRIER_UNREACHABLE':
-        return EventType.textCarrierUnreachable;
-      case 'TEXT_BLOCKED':
-        return EventType.textBlocked;
-      case 'TEXT_CARRIER_BLOCKED':
-        return EventType.textCarrierBlocked;
-      case 'TEXT_SPAM':
-        return EventType.textSpam;
-      case 'TEXT_UNKNOWN':
-        return EventType.textUnknown;
-      case 'TEXT_TTL_EXPIRED':
-        return EventType.textTtlExpired;
-      case 'VOICE_ALL':
-        return EventType.voiceAll;
-      case 'VOICE_INITIATED':
-        return EventType.voiceInitiated;
-      case 'VOICE_RINGING':
-        return EventType.voiceRinging;
-      case 'VOICE_ANSWERED':
-        return EventType.voiceAnswered;
-      case 'VOICE_COMPLETED':
-        return EventType.voiceCompleted;
-      case 'VOICE_BUSY':
-        return EventType.voiceBusy;
-      case 'VOICE_NO_ANSWER':
-        return EventType.voiceNoAnswer;
-      case 'VOICE_FAILED':
-        return EventType.voiceFailed;
-      case 'VOICE_TTL_EXPIRED':
-        return EventType.voiceTtlExpired;
-    }
-    throw Exception('$this is not known in enum EventType');
-  }
+  const EventType(this.value);
+
+  static EventType fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum EventType'));
 }
 
 enum KeywordAction {
-  automaticResponse,
-  optOut,
-  optIn,
-}
+  automaticResponse('AUTOMATIC_RESPONSE'),
+  optOut('OPT_OUT'),
+  optIn('OPT_IN'),
+  ;
 
-extension KeywordActionValueExtension on KeywordAction {
-  String toValue() {
-    switch (this) {
-      case KeywordAction.automaticResponse:
-        return 'AUTOMATIC_RESPONSE';
-      case KeywordAction.optOut:
-        return 'OPT_OUT';
-      case KeywordAction.optIn:
-        return 'OPT_IN';
-    }
-  }
-}
+  final String value;
 
-extension KeywordActionFromString on String {
-  KeywordAction toKeywordAction() {
-    switch (this) {
-      case 'AUTOMATIC_RESPONSE':
-        return KeywordAction.automaticResponse;
-      case 'OPT_OUT':
-        return KeywordAction.optOut;
-      case 'OPT_IN':
-        return KeywordAction.optIn;
-    }
-    throw Exception('$this is not known in enum KeywordAction');
-  }
+  const KeywordAction(this.value);
+
+  static KeywordAction fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum KeywordAction'));
 }
 
 /// The information for keywords that meet a specified criteria.
@@ -4318,33 +4129,24 @@ class KeywordFilter {
     final name = this.name;
     final values = this.values;
     return {
-      'Name': name.toValue(),
+      'Name': name.value,
       'Values': values,
     };
   }
 }
 
 enum KeywordFilterName {
-  keywordAction,
-}
+  keywordAction('keyword-action'),
+  ;
 
-extension KeywordFilterNameValueExtension on KeywordFilterName {
-  String toValue() {
-    switch (this) {
-      case KeywordFilterName.keywordAction:
-        return 'keyword-action';
-    }
-  }
-}
+  final String value;
 
-extension KeywordFilterNameFromString on String {
-  KeywordFilterName toKeywordFilterName() {
-    switch (this) {
-      case 'keyword-action':
-        return KeywordFilterName.keywordAction;
-    }
-    throw Exception('$this is not known in enum KeywordFilterName');
-  }
+  const KeywordFilterName(this.value);
+
+  static KeywordFilterName fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum KeywordFilterName'));
 }
 
 /// The information for all keywords in a pool.
@@ -4367,7 +4169,8 @@ class KeywordInformation {
   factory KeywordInformation.fromJson(Map<String, dynamic> json) {
     return KeywordInformation(
       keyword: json['Keyword'] as String,
-      keywordAction: (json['KeywordAction'] as String).toKeywordAction(),
+      keywordAction:
+          KeywordAction.fromString((json['KeywordAction'] as String)),
       keywordMessage: json['KeywordMessage'] as String,
     );
   }
@@ -4378,7 +4181,7 @@ class KeywordInformation {
     final keywordMessage = this.keywordMessage;
     return {
       'Keyword': keyword,
-      'KeywordAction': keywordAction.toValue(),
+      'KeywordAction': keywordAction.value,
       'KeywordMessage': keywordMessage,
     };
   }
@@ -4503,140 +4306,66 @@ class ListTagsForResourceResult {
 }
 
 enum MessageType {
-  transactional,
-  promotional,
-}
+  transactional('TRANSACTIONAL'),
+  promotional('PROMOTIONAL'),
+  ;
 
-extension MessageTypeValueExtension on MessageType {
-  String toValue() {
-    switch (this) {
-      case MessageType.transactional:
-        return 'TRANSACTIONAL';
-      case MessageType.promotional:
-        return 'PROMOTIONAL';
-    }
-  }
-}
+  final String value;
 
-extension MessageTypeFromString on String {
-  MessageType toMessageType() {
-    switch (this) {
-      case 'TRANSACTIONAL':
-        return MessageType.transactional;
-      case 'PROMOTIONAL':
-        return MessageType.promotional;
-    }
-    throw Exception('$this is not known in enum MessageType');
-  }
+  const MessageType(this.value);
+
+  static MessageType fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum MessageType'));
 }
 
 enum NumberCapability {
-  sms,
-  voice,
-}
+  sms('SMS'),
+  voice('VOICE'),
+  ;
 
-extension NumberCapabilityValueExtension on NumberCapability {
-  String toValue() {
-    switch (this) {
-      case NumberCapability.sms:
-        return 'SMS';
-      case NumberCapability.voice:
-        return 'VOICE';
-    }
-  }
-}
+  final String value;
 
-extension NumberCapabilityFromString on String {
-  NumberCapability toNumberCapability() {
-    switch (this) {
-      case 'SMS':
-        return NumberCapability.sms;
-      case 'VOICE':
-        return NumberCapability.voice;
-    }
-    throw Exception('$this is not known in enum NumberCapability');
-  }
+  const NumberCapability(this.value);
+
+  static NumberCapability fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum NumberCapability'));
 }
 
 enum NumberStatus {
-  pending,
-  active,
-  associating,
-  disassociating,
-  deleted,
-}
+  pending('PENDING'),
+  active('ACTIVE'),
+  associating('ASSOCIATING'),
+  disassociating('DISASSOCIATING'),
+  deleted('DELETED'),
+  ;
 
-extension NumberStatusValueExtension on NumberStatus {
-  String toValue() {
-    switch (this) {
-      case NumberStatus.pending:
-        return 'PENDING';
-      case NumberStatus.active:
-        return 'ACTIVE';
-      case NumberStatus.associating:
-        return 'ASSOCIATING';
-      case NumberStatus.disassociating:
-        return 'DISASSOCIATING';
-      case NumberStatus.deleted:
-        return 'DELETED';
-    }
-  }
-}
+  final String value;
 
-extension NumberStatusFromString on String {
-  NumberStatus toNumberStatus() {
-    switch (this) {
-      case 'PENDING':
-        return NumberStatus.pending;
-      case 'ACTIVE':
-        return NumberStatus.active;
-      case 'ASSOCIATING':
-        return NumberStatus.associating;
-      case 'DISASSOCIATING':
-        return NumberStatus.disassociating;
-      case 'DELETED':
-        return NumberStatus.deleted;
-    }
-    throw Exception('$this is not known in enum NumberStatus');
-  }
+  const NumberStatus(this.value);
+
+  static NumberStatus fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum NumberStatus'));
 }
 
 enum NumberType {
-  shortCode,
-  longCode,
-  tollFree,
-  tenDlc,
-}
+  shortCode('SHORT_CODE'),
+  longCode('LONG_CODE'),
+  tollFree('TOLL_FREE'),
+  tenDlc('TEN_DLC'),
+  ;
 
-extension NumberTypeValueExtension on NumberType {
-  String toValue() {
-    switch (this) {
-      case NumberType.shortCode:
-        return 'SHORT_CODE';
-      case NumberType.longCode:
-        return 'LONG_CODE';
-      case NumberType.tollFree:
-        return 'TOLL_FREE';
-      case NumberType.tenDlc:
-        return 'TEN_DLC';
-    }
-  }
-}
+  final String value;
 
-extension NumberTypeFromString on String {
-  NumberType toNumberType() {
-    switch (this) {
-      case 'SHORT_CODE':
-        return NumberType.shortCode;
-      case 'LONG_CODE':
-        return NumberType.longCode;
-      case 'TOLL_FREE':
-        return NumberType.tollFree;
-      case 'TEN_DLC':
-        return NumberType.tenDlc;
-    }
-    throw Exception('$this is not known in enum NumberType');
-  }
+  const NumberType(this.value);
+
+  static NumberType fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum NumberType'));
 }
 
 /// The information for all OptOutList in an Amazon Web Services account.
@@ -4695,33 +4424,24 @@ class OptedOutFilter {
     final name = this.name;
     final values = this.values;
     return {
-      'Name': name.toValue(),
+      'Name': name.value,
       'Values': values,
     };
   }
 }
 
 enum OptedOutFilterName {
-  endUserOptedOut,
-}
+  endUserOptedOut('end-user-opted-out'),
+  ;
 
-extension OptedOutFilterNameValueExtension on OptedOutFilterName {
-  String toValue() {
-    switch (this) {
-      case OptedOutFilterName.endUserOptedOut:
-        return 'end-user-opted-out';
-    }
-  }
-}
+  final String value;
 
-extension OptedOutFilterNameFromString on String {
-  OptedOutFilterName toOptedOutFilterName() {
-    switch (this) {
-      case 'end-user-opted-out':
-        return OptedOutFilterName.endUserOptedOut;
-    }
-    throw Exception('$this is not known in enum OptedOutFilterName');
-  }
+  const OptedOutFilterName(this.value);
+
+  static OptedOutFilterName fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum OptedOutFilterName'));
 }
 
 /// The information for an opted out number in an Amazon Web Services account.
@@ -4791,7 +4511,7 @@ class OriginationIdentityMetadata {
       isoCountryCode: json['IsoCountryCode'] as String,
       numberCapabilities: (json['NumberCapabilities'] as List)
           .whereNotNull()
-          .map((e) => (e as String).toNumberCapability())
+          .map((e) => NumberCapability.fromString((e as String)))
           .toList(),
       originationIdentity: json['OriginationIdentity'] as String,
       originationIdentityArn: json['OriginationIdentityArn'] as String,
@@ -4805,7 +4525,7 @@ class OriginationIdentityMetadata {
     final originationIdentityArn = this.originationIdentityArn;
     return {
       'IsoCountryCode': isoCountryCode,
-      'NumberCapabilities': numberCapabilities.map((e) => e.toValue()).toList(),
+      'NumberCapabilities': numberCapabilities.map((e) => e.value).toList(),
       'OriginationIdentity': originationIdentity,
       'OriginationIdentityArn': originationIdentityArn,
     };
@@ -4829,73 +4549,32 @@ class PhoneNumberFilter {
     final name = this.name;
     final values = this.values;
     return {
-      'Name': name.toValue(),
+      'Name': name.value,
       'Values': values,
     };
   }
 }
 
 enum PhoneNumberFilterName {
-  status,
-  isoCountryCode,
-  messageType,
-  numberCapability,
-  numberType,
-  twoWayEnabled,
-  selfManagedOptOutsEnabled,
-  optOutListName,
-  deletionProtectionEnabled,
-}
+  status('status'),
+  isoCountryCode('iso-country-code'),
+  messageType('message-type'),
+  numberCapability('number-capability'),
+  numberType('number-type'),
+  twoWayEnabled('two-way-enabled'),
+  selfManagedOptOutsEnabled('self-managed-opt-outs-enabled'),
+  optOutListName('opt-out-list-name'),
+  deletionProtectionEnabled('deletion-protection-enabled'),
+  ;
 
-extension PhoneNumberFilterNameValueExtension on PhoneNumberFilterName {
-  String toValue() {
-    switch (this) {
-      case PhoneNumberFilterName.status:
-        return 'status';
-      case PhoneNumberFilterName.isoCountryCode:
-        return 'iso-country-code';
-      case PhoneNumberFilterName.messageType:
-        return 'message-type';
-      case PhoneNumberFilterName.numberCapability:
-        return 'number-capability';
-      case PhoneNumberFilterName.numberType:
-        return 'number-type';
-      case PhoneNumberFilterName.twoWayEnabled:
-        return 'two-way-enabled';
-      case PhoneNumberFilterName.selfManagedOptOutsEnabled:
-        return 'self-managed-opt-outs-enabled';
-      case PhoneNumberFilterName.optOutListName:
-        return 'opt-out-list-name';
-      case PhoneNumberFilterName.deletionProtectionEnabled:
-        return 'deletion-protection-enabled';
-    }
-  }
-}
+  final String value;
 
-extension PhoneNumberFilterNameFromString on String {
-  PhoneNumberFilterName toPhoneNumberFilterName() {
-    switch (this) {
-      case 'status':
-        return PhoneNumberFilterName.status;
-      case 'iso-country-code':
-        return PhoneNumberFilterName.isoCountryCode;
-      case 'message-type':
-        return PhoneNumberFilterName.messageType;
-      case 'number-capability':
-        return PhoneNumberFilterName.numberCapability;
-      case 'number-type':
-        return PhoneNumberFilterName.numberType;
-      case 'two-way-enabled':
-        return PhoneNumberFilterName.twoWayEnabled;
-      case 'self-managed-opt-outs-enabled':
-        return PhoneNumberFilterName.selfManagedOptOutsEnabled;
-      case 'opt-out-list-name':
-        return PhoneNumberFilterName.optOutListName;
-      case 'deletion-protection-enabled':
-        return PhoneNumberFilterName.deletionProtectionEnabled;
-    }
-    throw Exception('$this is not known in enum PhoneNumberFilterName');
-  }
+  const PhoneNumberFilterName(this.value);
+
+  static PhoneNumberFilterName fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum PhoneNumberFilterName'));
 }
 
 /// The information for a phone number in an Amazon Web Services account.
@@ -4986,18 +4665,18 @@ class PhoneNumberInformation {
           nonNullableTimeStampFromJson(json['CreatedTimestamp'] as Object),
       deletionProtectionEnabled: json['DeletionProtectionEnabled'] as bool,
       isoCountryCode: json['IsoCountryCode'] as String,
-      messageType: (json['MessageType'] as String).toMessageType(),
+      messageType: MessageType.fromString((json['MessageType'] as String)),
       monthlyLeasingPrice: json['MonthlyLeasingPrice'] as String,
       numberCapabilities: (json['NumberCapabilities'] as List)
           .whereNotNull()
-          .map((e) => (e as String).toNumberCapability())
+          .map((e) => NumberCapability.fromString((e as String)))
           .toList(),
-      numberType: (json['NumberType'] as String).toNumberType(),
+      numberType: NumberType.fromString((json['NumberType'] as String)),
       optOutListName: json['OptOutListName'] as String,
       phoneNumber: json['PhoneNumber'] as String,
       phoneNumberArn: json['PhoneNumberArn'] as String,
       selfManagedOptOutsEnabled: json['SelfManagedOptOutsEnabled'] as bool,
-      status: (json['Status'] as String).toNumberStatus(),
+      status: NumberStatus.fromString((json['Status'] as String)),
       twoWayEnabled: json['TwoWayEnabled'] as bool,
       phoneNumberId: json['PhoneNumberId'] as String?,
       poolId: json['PoolId'] as String?,
@@ -5026,15 +4705,15 @@ class PhoneNumberInformation {
       'CreatedTimestamp': unixTimestampToJson(createdTimestamp),
       'DeletionProtectionEnabled': deletionProtectionEnabled,
       'IsoCountryCode': isoCountryCode,
-      'MessageType': messageType.toValue(),
+      'MessageType': messageType.value,
       'MonthlyLeasingPrice': monthlyLeasingPrice,
-      'NumberCapabilities': numberCapabilities.map((e) => e.toValue()).toList(),
-      'NumberType': numberType.toValue(),
+      'NumberCapabilities': numberCapabilities.map((e) => e.value).toList(),
+      'NumberType': numberType.value,
       'OptOutListName': optOutListName,
       'PhoneNumber': phoneNumber,
       'PhoneNumberArn': phoneNumberArn,
       'SelfManagedOptOutsEnabled': selfManagedOptOutsEnabled,
-      'Status': status.toValue(),
+      'Status': status.value,
       'TwoWayEnabled': twoWayEnabled,
       if (phoneNumberId != null) 'PhoneNumberId': phoneNumberId,
       if (poolId != null) 'PoolId': poolId,
@@ -5060,63 +4739,30 @@ class PoolFilter {
     final name = this.name;
     final values = this.values;
     return {
-      'Name': name.toValue(),
+      'Name': name.value,
       'Values': values,
     };
   }
 }
 
 enum PoolFilterName {
-  status,
-  messageType,
-  twoWayEnabled,
-  selfManagedOptOutsEnabled,
-  optOutListName,
-  sharedRoutesEnabled,
-  deletionProtectionEnabled,
-}
+  status('status'),
+  messageType('message-type'),
+  twoWayEnabled('two-way-enabled'),
+  selfManagedOptOutsEnabled('self-managed-opt-outs-enabled'),
+  optOutListName('opt-out-list-name'),
+  sharedRoutesEnabled('shared-routes-enabled'),
+  deletionProtectionEnabled('deletion-protection-enabled'),
+  ;
 
-extension PoolFilterNameValueExtension on PoolFilterName {
-  String toValue() {
-    switch (this) {
-      case PoolFilterName.status:
-        return 'status';
-      case PoolFilterName.messageType:
-        return 'message-type';
-      case PoolFilterName.twoWayEnabled:
-        return 'two-way-enabled';
-      case PoolFilterName.selfManagedOptOutsEnabled:
-        return 'self-managed-opt-outs-enabled';
-      case PoolFilterName.optOutListName:
-        return 'opt-out-list-name';
-      case PoolFilterName.sharedRoutesEnabled:
-        return 'shared-routes-enabled';
-      case PoolFilterName.deletionProtectionEnabled:
-        return 'deletion-protection-enabled';
-    }
-  }
-}
+  final String value;
 
-extension PoolFilterNameFromString on String {
-  PoolFilterName toPoolFilterName() {
-    switch (this) {
-      case 'status':
-        return PoolFilterName.status;
-      case 'message-type':
-        return PoolFilterName.messageType;
-      case 'two-way-enabled':
-        return PoolFilterName.twoWayEnabled;
-      case 'self-managed-opt-outs-enabled':
-        return PoolFilterName.selfManagedOptOutsEnabled;
-      case 'opt-out-list-name':
-        return PoolFilterName.optOutListName;
-      case 'shared-routes-enabled':
-        return PoolFilterName.sharedRoutesEnabled;
-      case 'deletion-protection-enabled':
-        return PoolFilterName.deletionProtectionEnabled;
-    }
-    throw Exception('$this is not known in enum PoolFilterName');
-  }
+  const PoolFilterName(this.value);
+
+  static PoolFilterName fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum PoolFilterName'));
 }
 
 /// The information for a pool in an Amazon Web Services account.
@@ -5190,13 +4836,13 @@ class PoolInformation {
       createdTimestamp:
           nonNullableTimeStampFromJson(json['CreatedTimestamp'] as Object),
       deletionProtectionEnabled: json['DeletionProtectionEnabled'] as bool,
-      messageType: (json['MessageType'] as String).toMessageType(),
+      messageType: MessageType.fromString((json['MessageType'] as String)),
       optOutListName: json['OptOutListName'] as String,
       poolArn: json['PoolArn'] as String,
       poolId: json['PoolId'] as String,
       selfManagedOptOutsEnabled: json['SelfManagedOptOutsEnabled'] as bool,
       sharedRoutesEnabled: json['SharedRoutesEnabled'] as bool,
-      status: (json['Status'] as String).toPoolStatus(),
+      status: PoolStatus.fromString((json['Status'] as String)),
       twoWayEnabled: json['TwoWayEnabled'] as bool,
       twoWayChannelArn: json['TwoWayChannelArn'] as String?,
     );
@@ -5217,13 +4863,13 @@ class PoolInformation {
     return {
       'CreatedTimestamp': unixTimestampToJson(createdTimestamp),
       'DeletionProtectionEnabled': deletionProtectionEnabled,
-      'MessageType': messageType.toValue(),
+      'MessageType': messageType.value,
       'OptOutListName': optOutListName,
       'PoolArn': poolArn,
       'PoolId': poolId,
       'SelfManagedOptOutsEnabled': selfManagedOptOutsEnabled,
       'SharedRoutesEnabled': sharedRoutesEnabled,
-      'Status': status.toValue(),
+      'Status': status.value,
       'TwoWayEnabled': twoWayEnabled,
       if (twoWayChannelArn != null) 'TwoWayChannelArn': twoWayChannelArn,
     };
@@ -5248,73 +4894,40 @@ class PoolOriginationIdentitiesFilter {
     final name = this.name;
     final values = this.values;
     return {
-      'Name': name.toValue(),
+      'Name': name.value,
       'Values': values,
     };
   }
 }
 
 enum PoolOriginationIdentitiesFilterName {
-  isoCountryCode,
-  numberCapability,
-}
+  isoCountryCode('iso-country-code'),
+  numberCapability('number-capability'),
+  ;
 
-extension PoolOriginationIdentitiesFilterNameValueExtension
-    on PoolOriginationIdentitiesFilterName {
-  String toValue() {
-    switch (this) {
-      case PoolOriginationIdentitiesFilterName.isoCountryCode:
-        return 'iso-country-code';
-      case PoolOriginationIdentitiesFilterName.numberCapability:
-        return 'number-capability';
-    }
-  }
-}
+  final String value;
 
-extension PoolOriginationIdentitiesFilterNameFromString on String {
-  PoolOriginationIdentitiesFilterName toPoolOriginationIdentitiesFilterName() {
-    switch (this) {
-      case 'iso-country-code':
-        return PoolOriginationIdentitiesFilterName.isoCountryCode;
-      case 'number-capability':
-        return PoolOriginationIdentitiesFilterName.numberCapability;
-    }
-    throw Exception(
-        '$this is not known in enum PoolOriginationIdentitiesFilterName');
-  }
+  const PoolOriginationIdentitiesFilterName(this.value);
+
+  static PoolOriginationIdentitiesFilterName fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum PoolOriginationIdentitiesFilterName'));
 }
 
 enum PoolStatus {
-  creating,
-  active,
-  deleting,
-}
+  creating('CREATING'),
+  active('ACTIVE'),
+  deleting('DELETING'),
+  ;
 
-extension PoolStatusValueExtension on PoolStatus {
-  String toValue() {
-    switch (this) {
-      case PoolStatus.creating:
-        return 'CREATING';
-      case PoolStatus.active:
-        return 'ACTIVE';
-      case PoolStatus.deleting:
-        return 'DELETING';
-    }
-  }
-}
+  final String value;
 
-extension PoolStatusFromString on String {
-  PoolStatus toPoolStatus() {
-    switch (this) {
-      case 'CREATING':
-        return PoolStatus.creating;
-      case 'ACTIVE':
-        return PoolStatus.active;
-      case 'DELETING':
-        return PoolStatus.deleting;
-    }
-    throw Exception('$this is not known in enum PoolStatus');
-  }
+  const PoolStatus(this.value);
+
+  static PoolStatus fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum PoolStatus'));
 }
 
 class PutKeywordResult {
@@ -5344,7 +4957,8 @@ class PutKeywordResult {
   factory PutKeywordResult.fromJson(Map<String, dynamic> json) {
     return PutKeywordResult(
       keyword: json['Keyword'] as String?,
-      keywordAction: (json['KeywordAction'] as String?)?.toKeywordAction(),
+      keywordAction:
+          (json['KeywordAction'] as String?)?.let(KeywordAction.fromString),
       keywordMessage: json['KeywordMessage'] as String?,
       originationIdentity: json['OriginationIdentity'] as String?,
       originationIdentityArn: json['OriginationIdentityArn'] as String?,
@@ -5359,7 +4973,7 @@ class PutKeywordResult {
     final originationIdentityArn = this.originationIdentityArn;
     return {
       if (keyword != null) 'Keyword': keyword,
-      if (keywordAction != null) 'KeywordAction': keywordAction.toValue(),
+      if (keywordAction != null) 'KeywordAction': keywordAction.value,
       if (keywordMessage != null) 'KeywordMessage': keywordMessage,
       if (originationIdentity != null)
         'OriginationIdentity': originationIdentity,
@@ -5494,19 +5108,20 @@ class ReleasePhoneNumberResult {
     return ReleasePhoneNumberResult(
       createdTimestamp: timeStampFromJson(json['CreatedTimestamp']),
       isoCountryCode: json['IsoCountryCode'] as String?,
-      messageType: (json['MessageType'] as String?)?.toMessageType(),
+      messageType:
+          (json['MessageType'] as String?)?.let(MessageType.fromString),
       monthlyLeasingPrice: json['MonthlyLeasingPrice'] as String?,
       numberCapabilities: (json['NumberCapabilities'] as List?)
           ?.whereNotNull()
-          .map((e) => (e as String).toNumberCapability())
+          .map((e) => NumberCapability.fromString((e as String)))
           .toList(),
-      numberType: (json['NumberType'] as String?)?.toNumberType(),
+      numberType: (json['NumberType'] as String?)?.let(NumberType.fromString),
       optOutListName: json['OptOutListName'] as String?,
       phoneNumber: json['PhoneNumber'] as String?,
       phoneNumberArn: json['PhoneNumberArn'] as String?,
       phoneNumberId: json['PhoneNumberId'] as String?,
       selfManagedOptOutsEnabled: json['SelfManagedOptOutsEnabled'] as bool?,
-      status: (json['Status'] as String?)?.toNumberStatus(),
+      status: (json['Status'] as String?)?.let(NumberStatus.fromString),
       twoWayChannelArn: json['TwoWayChannelArn'] as String?,
       twoWayEnabled: json['TwoWayEnabled'] as bool?,
     );
@@ -5531,20 +5146,19 @@ class ReleasePhoneNumberResult {
       if (createdTimestamp != null)
         'CreatedTimestamp': unixTimestampToJson(createdTimestamp),
       if (isoCountryCode != null) 'IsoCountryCode': isoCountryCode,
-      if (messageType != null) 'MessageType': messageType.toValue(),
+      if (messageType != null) 'MessageType': messageType.value,
       if (monthlyLeasingPrice != null)
         'MonthlyLeasingPrice': monthlyLeasingPrice,
       if (numberCapabilities != null)
-        'NumberCapabilities':
-            numberCapabilities.map((e) => e.toValue()).toList(),
-      if (numberType != null) 'NumberType': numberType.toValue(),
+        'NumberCapabilities': numberCapabilities.map((e) => e.value).toList(),
+      if (numberType != null) 'NumberType': numberType.value,
       if (optOutListName != null) 'OptOutListName': optOutListName,
       if (phoneNumber != null) 'PhoneNumber': phoneNumber,
       if (phoneNumberArn != null) 'PhoneNumberArn': phoneNumberArn,
       if (phoneNumberId != null) 'PhoneNumberId': phoneNumberId,
       if (selfManagedOptOutsEnabled != null)
         'SelfManagedOptOutsEnabled': selfManagedOptOutsEnabled,
-      if (status != null) 'Status': status.toValue(),
+      if (status != null) 'Status': status.value,
       if (twoWayChannelArn != null) 'TwoWayChannelArn': twoWayChannelArn,
       if (twoWayEnabled != null) 'TwoWayEnabled': twoWayEnabled,
     };
@@ -5642,20 +5256,22 @@ class RequestPhoneNumberResult {
       createdTimestamp: timeStampFromJson(json['CreatedTimestamp']),
       deletionProtectionEnabled: json['DeletionProtectionEnabled'] as bool?,
       isoCountryCode: json['IsoCountryCode'] as String?,
-      messageType: (json['MessageType'] as String?)?.toMessageType(),
+      messageType:
+          (json['MessageType'] as String?)?.let(MessageType.fromString),
       monthlyLeasingPrice: json['MonthlyLeasingPrice'] as String?,
       numberCapabilities: (json['NumberCapabilities'] as List?)
           ?.whereNotNull()
-          .map((e) => (e as String).toNumberCapability())
+          .map((e) => NumberCapability.fromString((e as String)))
           .toList(),
-      numberType: (json['NumberType'] as String?)?.toRequestableNumberType(),
+      numberType: (json['NumberType'] as String?)
+          ?.let(RequestableNumberType.fromString),
       optOutListName: json['OptOutListName'] as String?,
       phoneNumber: json['PhoneNumber'] as String?,
       phoneNumberArn: json['PhoneNumberArn'] as String?,
       phoneNumberId: json['PhoneNumberId'] as String?,
       poolId: json['PoolId'] as String?,
       selfManagedOptOutsEnabled: json['SelfManagedOptOutsEnabled'] as bool?,
-      status: (json['Status'] as String?)?.toNumberStatus(),
+      status: (json['Status'] as String?)?.let(NumberStatus.fromString),
       tags: (json['Tags'] as List?)
           ?.whereNotNull()
           .map((e) => Tag.fromJson(e as Map<String, dynamic>))
@@ -5689,13 +5305,12 @@ class RequestPhoneNumberResult {
       if (deletionProtectionEnabled != null)
         'DeletionProtectionEnabled': deletionProtectionEnabled,
       if (isoCountryCode != null) 'IsoCountryCode': isoCountryCode,
-      if (messageType != null) 'MessageType': messageType.toValue(),
+      if (messageType != null) 'MessageType': messageType.value,
       if (monthlyLeasingPrice != null)
         'MonthlyLeasingPrice': monthlyLeasingPrice,
       if (numberCapabilities != null)
-        'NumberCapabilities':
-            numberCapabilities.map((e) => e.toValue()).toList(),
-      if (numberType != null) 'NumberType': numberType.toValue(),
+        'NumberCapabilities': numberCapabilities.map((e) => e.value).toList(),
+      if (numberType != null) 'NumberType': numberType.value,
       if (optOutListName != null) 'OptOutListName': optOutListName,
       if (phoneNumber != null) 'PhoneNumber': phoneNumber,
       if (phoneNumberArn != null) 'PhoneNumberArn': phoneNumberArn,
@@ -5703,7 +5318,7 @@ class RequestPhoneNumberResult {
       if (poolId != null) 'PoolId': poolId,
       if (selfManagedOptOutsEnabled != null)
         'SelfManagedOptOutsEnabled': selfManagedOptOutsEnabled,
-      if (status != null) 'Status': status.toValue(),
+      if (status != null) 'Status': status.value,
       if (tags != null) 'Tags': tags,
       if (twoWayChannelArn != null) 'TwoWayChannelArn': twoWayChannelArn,
       if (twoWayEnabled != null) 'TwoWayEnabled': twoWayEnabled,
@@ -5712,36 +5327,19 @@ class RequestPhoneNumberResult {
 }
 
 enum RequestableNumberType {
-  longCode,
-  tollFree,
-  tenDlc,
-}
+  longCode('LONG_CODE'),
+  tollFree('TOLL_FREE'),
+  tenDlc('TEN_DLC'),
+  ;
 
-extension RequestableNumberTypeValueExtension on RequestableNumberType {
-  String toValue() {
-    switch (this) {
-      case RequestableNumberType.longCode:
-        return 'LONG_CODE';
-      case RequestableNumberType.tollFree:
-        return 'TOLL_FREE';
-      case RequestableNumberType.tenDlc:
-        return 'TEN_DLC';
-    }
-  }
-}
+  final String value;
 
-extension RequestableNumberTypeFromString on String {
-  RequestableNumberType toRequestableNumberType() {
-    switch (this) {
-      case 'LONG_CODE':
-        return RequestableNumberType.longCode;
-      case 'TOLL_FREE':
-        return RequestableNumberType.tollFree;
-      case 'TEN_DLC':
-        return RequestableNumberType.tenDlc;
-    }
-    throw Exception('$this is not known in enum RequestableNumberType');
-  }
+  const RequestableNumberType(this.value);
+
+  static RequestableNumberType fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum RequestableNumberType'));
 }
 
 class SendTextMessageResult {
@@ -5833,43 +5431,26 @@ class SenderIdFilter {
     final name = this.name;
     final values = this.values;
     return {
-      'Name': name.toValue(),
+      'Name': name.value,
       'Values': values,
     };
   }
 }
 
 enum SenderIdFilterName {
-  senderId,
-  isoCountryCode,
-  messageType,
-}
+  senderId('sender-id'),
+  isoCountryCode('iso-country-code'),
+  messageType('message-type'),
+  ;
 
-extension SenderIdFilterNameValueExtension on SenderIdFilterName {
-  String toValue() {
-    switch (this) {
-      case SenderIdFilterName.senderId:
-        return 'sender-id';
-      case SenderIdFilterName.isoCountryCode:
-        return 'iso-country-code';
-      case SenderIdFilterName.messageType:
-        return 'message-type';
-    }
-  }
-}
+  final String value;
 
-extension SenderIdFilterNameFromString on String {
-  SenderIdFilterName toSenderIdFilterName() {
-    switch (this) {
-      case 'sender-id':
-        return SenderIdFilterName.senderId;
-      case 'iso-country-code':
-        return SenderIdFilterName.isoCountryCode;
-      case 'message-type':
-        return SenderIdFilterName.messageType;
-    }
-    throw Exception('$this is not known in enum SenderIdFilterName');
-  }
+  const SenderIdFilterName(this.value);
+
+  static SenderIdFilterName fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum SenderIdFilterName'));
 }
 
 /// The information for all SenderIds in an Amazon Web Services account.
@@ -5906,7 +5487,7 @@ class SenderIdInformation {
       isoCountryCode: json['IsoCountryCode'] as String,
       messageTypes: (json['MessageTypes'] as List)
           .whereNotNull()
-          .map((e) => (e as String).toMessageType())
+          .map((e) => MessageType.fromString((e as String)))
           .toList(),
       monthlyLeasingPrice: json['MonthlyLeasingPrice'] as String,
       senderId: json['SenderId'] as String,
@@ -5922,7 +5503,7 @@ class SenderIdInformation {
     final senderIdArn = this.senderIdArn;
     return {
       'IsoCountryCode': isoCountryCode,
-      'MessageTypes': messageTypes.map((e) => e.toValue()).toList(),
+      'MessageTypes': messageTypes.map((e) => e.value).toList(),
       'MonthlyLeasingPrice': monthlyLeasingPrice,
       'SenderId': senderId,
       'SenderIdArn': senderIdArn,
@@ -5950,7 +5531,8 @@ class SetDefaultMessageTypeResult {
     return SetDefaultMessageTypeResult(
       configurationSetArn: json['ConfigurationSetArn'] as String?,
       configurationSetName: json['ConfigurationSetName'] as String?,
-      messageType: (json['MessageType'] as String?)?.toMessageType(),
+      messageType:
+          (json['MessageType'] as String?)?.let(MessageType.fromString),
     );
   }
 
@@ -5963,7 +5545,7 @@ class SetDefaultMessageTypeResult {
         'ConfigurationSetArn': configurationSetArn,
       if (configurationSetName != null)
         'ConfigurationSetName': configurationSetName,
-      if (messageType != null) 'MessageType': messageType.toValue(),
+      if (messageType != null) 'MessageType': messageType.value,
     };
   }
 }
@@ -6113,7 +5695,7 @@ class SpendLimit {
     return SpendLimit(
       enforcedLimit: json['EnforcedLimit'] as int,
       maxLimit: json['MaxLimit'] as int,
-      name: (json['Name'] as String).toSpendLimitName(),
+      name: SpendLimitName.fromString((json['Name'] as String)),
       overridden: json['Overridden'] as bool,
     );
   }
@@ -6126,38 +5708,25 @@ class SpendLimit {
     return {
       'EnforcedLimit': enforcedLimit,
       'MaxLimit': maxLimit,
-      'Name': name.toValue(),
+      'Name': name.value,
       'Overridden': overridden,
     };
   }
 }
 
 enum SpendLimitName {
-  textMessageMonthlySpendLimit,
-  voiceMessageMonthlySpendLimit,
-}
+  textMessageMonthlySpendLimit('TEXT_MESSAGE_MONTHLY_SPEND_LIMIT'),
+  voiceMessageMonthlySpendLimit('VOICE_MESSAGE_MONTHLY_SPEND_LIMIT'),
+  ;
 
-extension SpendLimitNameValueExtension on SpendLimitName {
-  String toValue() {
-    switch (this) {
-      case SpendLimitName.textMessageMonthlySpendLimit:
-        return 'TEXT_MESSAGE_MONTHLY_SPEND_LIMIT';
-      case SpendLimitName.voiceMessageMonthlySpendLimit:
-        return 'VOICE_MESSAGE_MONTHLY_SPEND_LIMIT';
-    }
-  }
-}
+  final String value;
 
-extension SpendLimitNameFromString on String {
-  SpendLimitName toSpendLimitName() {
-    switch (this) {
-      case 'TEXT_MESSAGE_MONTHLY_SPEND_LIMIT':
-        return SpendLimitName.textMessageMonthlySpendLimit;
-      case 'VOICE_MESSAGE_MONTHLY_SPEND_LIMIT':
-        return SpendLimitName.voiceMessageMonthlySpendLimit;
-    }
-    throw Exception('$this is not known in enum SpendLimitName');
-  }
+  const SpendLimitName(this.value);
+
+  static SpendLimitName fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum SpendLimitName'));
 }
 
 /// The list of tags to be added to the specified topic.
@@ -6330,19 +5899,20 @@ class UpdatePhoneNumberResult {
       createdTimestamp: timeStampFromJson(json['CreatedTimestamp']),
       deletionProtectionEnabled: json['DeletionProtectionEnabled'] as bool?,
       isoCountryCode: json['IsoCountryCode'] as String?,
-      messageType: (json['MessageType'] as String?)?.toMessageType(),
+      messageType:
+          (json['MessageType'] as String?)?.let(MessageType.fromString),
       monthlyLeasingPrice: json['MonthlyLeasingPrice'] as String?,
       numberCapabilities: (json['NumberCapabilities'] as List?)
           ?.whereNotNull()
-          .map((e) => (e as String).toNumberCapability())
+          .map((e) => NumberCapability.fromString((e as String)))
           .toList(),
-      numberType: (json['NumberType'] as String?)?.toNumberType(),
+      numberType: (json['NumberType'] as String?)?.let(NumberType.fromString),
       optOutListName: json['OptOutListName'] as String?,
       phoneNumber: json['PhoneNumber'] as String?,
       phoneNumberArn: json['PhoneNumberArn'] as String?,
       phoneNumberId: json['PhoneNumberId'] as String?,
       selfManagedOptOutsEnabled: json['SelfManagedOptOutsEnabled'] as bool?,
-      status: (json['Status'] as String?)?.toNumberStatus(),
+      status: (json['Status'] as String?)?.let(NumberStatus.fromString),
       twoWayChannelArn: json['TwoWayChannelArn'] as String?,
       twoWayEnabled: json['TwoWayEnabled'] as bool?,
     );
@@ -6370,20 +5940,19 @@ class UpdatePhoneNumberResult {
       if (deletionProtectionEnabled != null)
         'DeletionProtectionEnabled': deletionProtectionEnabled,
       if (isoCountryCode != null) 'IsoCountryCode': isoCountryCode,
-      if (messageType != null) 'MessageType': messageType.toValue(),
+      if (messageType != null) 'MessageType': messageType.value,
       if (monthlyLeasingPrice != null)
         'MonthlyLeasingPrice': monthlyLeasingPrice,
       if (numberCapabilities != null)
-        'NumberCapabilities':
-            numberCapabilities.map((e) => e.toValue()).toList(),
-      if (numberType != null) 'NumberType': numberType.toValue(),
+        'NumberCapabilities': numberCapabilities.map((e) => e.value).toList(),
+      if (numberType != null) 'NumberType': numberType.value,
       if (optOutListName != null) 'OptOutListName': optOutListName,
       if (phoneNumber != null) 'PhoneNumber': phoneNumber,
       if (phoneNumberArn != null) 'PhoneNumberArn': phoneNumberArn,
       if (phoneNumberId != null) 'PhoneNumberId': phoneNumberId,
       if (selfManagedOptOutsEnabled != null)
         'SelfManagedOptOutsEnabled': selfManagedOptOutsEnabled,
-      if (status != null) 'Status': status.toValue(),
+      if (status != null) 'Status': status.value,
       if (twoWayChannelArn != null) 'TwoWayChannelArn': twoWayChannelArn,
       if (twoWayEnabled != null) 'TwoWayEnabled': twoWayEnabled,
     };
@@ -6448,13 +6017,14 @@ class UpdatePoolResult {
     return UpdatePoolResult(
       createdTimestamp: timeStampFromJson(json['CreatedTimestamp']),
       deletionProtectionEnabled: json['DeletionProtectionEnabled'] as bool?,
-      messageType: (json['MessageType'] as String?)?.toMessageType(),
+      messageType:
+          (json['MessageType'] as String?)?.let(MessageType.fromString),
       optOutListName: json['OptOutListName'] as String?,
       poolArn: json['PoolArn'] as String?,
       poolId: json['PoolId'] as String?,
       selfManagedOptOutsEnabled: json['SelfManagedOptOutsEnabled'] as bool?,
       sharedRoutesEnabled: json['SharedRoutesEnabled'] as bool?,
-      status: (json['Status'] as String?)?.toPoolStatus(),
+      status: (json['Status'] as String?)?.let(PoolStatus.fromString),
       twoWayChannelArn: json['TwoWayChannelArn'] as String?,
       twoWayEnabled: json['TwoWayEnabled'] as bool?,
     );
@@ -6477,7 +6047,7 @@ class UpdatePoolResult {
         'CreatedTimestamp': unixTimestampToJson(createdTimestamp),
       if (deletionProtectionEnabled != null)
         'DeletionProtectionEnabled': deletionProtectionEnabled,
-      if (messageType != null) 'MessageType': messageType.toValue(),
+      if (messageType != null) 'MessageType': messageType.value,
       if (optOutListName != null) 'OptOutListName': optOutListName,
       if (poolArn != null) 'PoolArn': poolArn,
       if (poolId != null) 'PoolId': poolId,
@@ -6485,7 +6055,7 @@ class UpdatePoolResult {
         'SelfManagedOptOutsEnabled': selfManagedOptOutsEnabled,
       if (sharedRoutesEnabled != null)
         'SharedRoutesEnabled': sharedRoutesEnabled,
-      if (status != null) 'Status': status.toValue(),
+      if (status != null) 'Status': status.value,
       if (twoWayChannelArn != null) 'TwoWayChannelArn': twoWayChannelArn,
       if (twoWayEnabled != null) 'TwoWayEnabled': twoWayEnabled,
     };
@@ -6493,344 +6063,89 @@ class UpdatePoolResult {
 }
 
 enum VoiceId {
-  amy,
-  astrid,
-  bianca,
-  brian,
-  camila,
-  carla,
-  carmen,
-  celine,
-  chantal,
-  conchita,
-  cristiano,
-  dora,
-  emma,
-  enrique,
-  ewa,
-  filiz,
-  geraint,
-  giorgio,
-  gwyneth,
-  hans,
-  ines,
-  ivy,
-  jacek,
-  jan,
-  joanna,
-  joey,
-  justin,
-  karl,
-  kendra,
-  kimberly,
-  lea,
-  liv,
-  lotte,
-  lucia,
-  lupe,
-  mads,
-  maja,
-  marlene,
-  mathieu,
-  matthew,
-  maxim,
-  mia,
-  miguel,
-  mizuki,
-  naja,
-  nicole,
-  penelope,
-  raveena,
-  ricardo,
-  ruben,
-  russell,
-  salli,
-  seoyeon,
-  takumi,
-  tatyana,
-  vicki,
-  vitoria,
-  zeina,
-  zhiyu,
-}
+  amy('AMY'),
+  astrid('ASTRID'),
+  bianca('BIANCA'),
+  brian('BRIAN'),
+  camila('CAMILA'),
+  carla('CARLA'),
+  carmen('CARMEN'),
+  celine('CELINE'),
+  chantal('CHANTAL'),
+  conchita('CONCHITA'),
+  cristiano('CRISTIANO'),
+  dora('DORA'),
+  emma('EMMA'),
+  enrique('ENRIQUE'),
+  ewa('EWA'),
+  filiz('FILIZ'),
+  geraint('GERAINT'),
+  giorgio('GIORGIO'),
+  gwyneth('GWYNETH'),
+  hans('HANS'),
+  ines('INES'),
+  ivy('IVY'),
+  jacek('JACEK'),
+  jan('JAN'),
+  joanna('JOANNA'),
+  joey('JOEY'),
+  justin('JUSTIN'),
+  karl('KARL'),
+  kendra('KENDRA'),
+  kimberly('KIMBERLY'),
+  lea('LEA'),
+  liv('LIV'),
+  lotte('LOTTE'),
+  lucia('LUCIA'),
+  lupe('LUPE'),
+  mads('MADS'),
+  maja('MAJA'),
+  marlene('MARLENE'),
+  mathieu('MATHIEU'),
+  matthew('MATTHEW'),
+  maxim('MAXIM'),
+  mia('MIA'),
+  miguel('MIGUEL'),
+  mizuki('MIZUKI'),
+  naja('NAJA'),
+  nicole('NICOLE'),
+  penelope('PENELOPE'),
+  raveena('RAVEENA'),
+  ricardo('RICARDO'),
+  ruben('RUBEN'),
+  russell('RUSSELL'),
+  salli('SALLI'),
+  seoyeon('SEOYEON'),
+  takumi('TAKUMI'),
+  tatyana('TATYANA'),
+  vicki('VICKI'),
+  vitoria('VITORIA'),
+  zeina('ZEINA'),
+  zhiyu('ZHIYU'),
+  ;
 
-extension VoiceIdValueExtension on VoiceId {
-  String toValue() {
-    switch (this) {
-      case VoiceId.amy:
-        return 'AMY';
-      case VoiceId.astrid:
-        return 'ASTRID';
-      case VoiceId.bianca:
-        return 'BIANCA';
-      case VoiceId.brian:
-        return 'BRIAN';
-      case VoiceId.camila:
-        return 'CAMILA';
-      case VoiceId.carla:
-        return 'CARLA';
-      case VoiceId.carmen:
-        return 'CARMEN';
-      case VoiceId.celine:
-        return 'CELINE';
-      case VoiceId.chantal:
-        return 'CHANTAL';
-      case VoiceId.conchita:
-        return 'CONCHITA';
-      case VoiceId.cristiano:
-        return 'CRISTIANO';
-      case VoiceId.dora:
-        return 'DORA';
-      case VoiceId.emma:
-        return 'EMMA';
-      case VoiceId.enrique:
-        return 'ENRIQUE';
-      case VoiceId.ewa:
-        return 'EWA';
-      case VoiceId.filiz:
-        return 'FILIZ';
-      case VoiceId.geraint:
-        return 'GERAINT';
-      case VoiceId.giorgio:
-        return 'GIORGIO';
-      case VoiceId.gwyneth:
-        return 'GWYNETH';
-      case VoiceId.hans:
-        return 'HANS';
-      case VoiceId.ines:
-        return 'INES';
-      case VoiceId.ivy:
-        return 'IVY';
-      case VoiceId.jacek:
-        return 'JACEK';
-      case VoiceId.jan:
-        return 'JAN';
-      case VoiceId.joanna:
-        return 'JOANNA';
-      case VoiceId.joey:
-        return 'JOEY';
-      case VoiceId.justin:
-        return 'JUSTIN';
-      case VoiceId.karl:
-        return 'KARL';
-      case VoiceId.kendra:
-        return 'KENDRA';
-      case VoiceId.kimberly:
-        return 'KIMBERLY';
-      case VoiceId.lea:
-        return 'LEA';
-      case VoiceId.liv:
-        return 'LIV';
-      case VoiceId.lotte:
-        return 'LOTTE';
-      case VoiceId.lucia:
-        return 'LUCIA';
-      case VoiceId.lupe:
-        return 'LUPE';
-      case VoiceId.mads:
-        return 'MADS';
-      case VoiceId.maja:
-        return 'MAJA';
-      case VoiceId.marlene:
-        return 'MARLENE';
-      case VoiceId.mathieu:
-        return 'MATHIEU';
-      case VoiceId.matthew:
-        return 'MATTHEW';
-      case VoiceId.maxim:
-        return 'MAXIM';
-      case VoiceId.mia:
-        return 'MIA';
-      case VoiceId.miguel:
-        return 'MIGUEL';
-      case VoiceId.mizuki:
-        return 'MIZUKI';
-      case VoiceId.naja:
-        return 'NAJA';
-      case VoiceId.nicole:
-        return 'NICOLE';
-      case VoiceId.penelope:
-        return 'PENELOPE';
-      case VoiceId.raveena:
-        return 'RAVEENA';
-      case VoiceId.ricardo:
-        return 'RICARDO';
-      case VoiceId.ruben:
-        return 'RUBEN';
-      case VoiceId.russell:
-        return 'RUSSELL';
-      case VoiceId.salli:
-        return 'SALLI';
-      case VoiceId.seoyeon:
-        return 'SEOYEON';
-      case VoiceId.takumi:
-        return 'TAKUMI';
-      case VoiceId.tatyana:
-        return 'TATYANA';
-      case VoiceId.vicki:
-        return 'VICKI';
-      case VoiceId.vitoria:
-        return 'VITORIA';
-      case VoiceId.zeina:
-        return 'ZEINA';
-      case VoiceId.zhiyu:
-        return 'ZHIYU';
-    }
-  }
-}
+  final String value;
 
-extension VoiceIdFromString on String {
-  VoiceId toVoiceId() {
-    switch (this) {
-      case 'AMY':
-        return VoiceId.amy;
-      case 'ASTRID':
-        return VoiceId.astrid;
-      case 'BIANCA':
-        return VoiceId.bianca;
-      case 'BRIAN':
-        return VoiceId.brian;
-      case 'CAMILA':
-        return VoiceId.camila;
-      case 'CARLA':
-        return VoiceId.carla;
-      case 'CARMEN':
-        return VoiceId.carmen;
-      case 'CELINE':
-        return VoiceId.celine;
-      case 'CHANTAL':
-        return VoiceId.chantal;
-      case 'CONCHITA':
-        return VoiceId.conchita;
-      case 'CRISTIANO':
-        return VoiceId.cristiano;
-      case 'DORA':
-        return VoiceId.dora;
-      case 'EMMA':
-        return VoiceId.emma;
-      case 'ENRIQUE':
-        return VoiceId.enrique;
-      case 'EWA':
-        return VoiceId.ewa;
-      case 'FILIZ':
-        return VoiceId.filiz;
-      case 'GERAINT':
-        return VoiceId.geraint;
-      case 'GIORGIO':
-        return VoiceId.giorgio;
-      case 'GWYNETH':
-        return VoiceId.gwyneth;
-      case 'HANS':
-        return VoiceId.hans;
-      case 'INES':
-        return VoiceId.ines;
-      case 'IVY':
-        return VoiceId.ivy;
-      case 'JACEK':
-        return VoiceId.jacek;
-      case 'JAN':
-        return VoiceId.jan;
-      case 'JOANNA':
-        return VoiceId.joanna;
-      case 'JOEY':
-        return VoiceId.joey;
-      case 'JUSTIN':
-        return VoiceId.justin;
-      case 'KARL':
-        return VoiceId.karl;
-      case 'KENDRA':
-        return VoiceId.kendra;
-      case 'KIMBERLY':
-        return VoiceId.kimberly;
-      case 'LEA':
-        return VoiceId.lea;
-      case 'LIV':
-        return VoiceId.liv;
-      case 'LOTTE':
-        return VoiceId.lotte;
-      case 'LUCIA':
-        return VoiceId.lucia;
-      case 'LUPE':
-        return VoiceId.lupe;
-      case 'MADS':
-        return VoiceId.mads;
-      case 'MAJA':
-        return VoiceId.maja;
-      case 'MARLENE':
-        return VoiceId.marlene;
-      case 'MATHIEU':
-        return VoiceId.mathieu;
-      case 'MATTHEW':
-        return VoiceId.matthew;
-      case 'MAXIM':
-        return VoiceId.maxim;
-      case 'MIA':
-        return VoiceId.mia;
-      case 'MIGUEL':
-        return VoiceId.miguel;
-      case 'MIZUKI':
-        return VoiceId.mizuki;
-      case 'NAJA':
-        return VoiceId.naja;
-      case 'NICOLE':
-        return VoiceId.nicole;
-      case 'PENELOPE':
-        return VoiceId.penelope;
-      case 'RAVEENA':
-        return VoiceId.raveena;
-      case 'RICARDO':
-        return VoiceId.ricardo;
-      case 'RUBEN':
-        return VoiceId.ruben;
-      case 'RUSSELL':
-        return VoiceId.russell;
-      case 'SALLI':
-        return VoiceId.salli;
-      case 'SEOYEON':
-        return VoiceId.seoyeon;
-      case 'TAKUMI':
-        return VoiceId.takumi;
-      case 'TATYANA':
-        return VoiceId.tatyana;
-      case 'VICKI':
-        return VoiceId.vicki;
-      case 'VITORIA':
-        return VoiceId.vitoria;
-      case 'ZEINA':
-        return VoiceId.zeina;
-      case 'ZHIYU':
-        return VoiceId.zhiyu;
-    }
-    throw Exception('$this is not known in enum VoiceId');
-  }
+  const VoiceId(this.value);
+
+  static VoiceId fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception('$value is not known in enum VoiceId'));
 }
 
 enum VoiceMessageBodyTextType {
-  text,
-  ssml,
-}
+  text('TEXT'),
+  ssml('SSML'),
+  ;
 
-extension VoiceMessageBodyTextTypeValueExtension on VoiceMessageBodyTextType {
-  String toValue() {
-    switch (this) {
-      case VoiceMessageBodyTextType.text:
-        return 'TEXT';
-      case VoiceMessageBodyTextType.ssml:
-        return 'SSML';
-    }
-  }
-}
+  final String value;
 
-extension VoiceMessageBodyTextTypeFromString on String {
-  VoiceMessageBodyTextType toVoiceMessageBodyTextType() {
-    switch (this) {
-      case 'TEXT':
-        return VoiceMessageBodyTextType.text;
-      case 'SSML':
-        return VoiceMessageBodyTextType.ssml;
-    }
-    throw Exception('$this is not known in enum VoiceMessageBodyTextType');
-  }
+  const VoiceMessageBodyTextType(this.value);
+
+  static VoiceMessageBodyTextType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum VoiceMessageBodyTextType'));
 }
 
 class AccessDeniedException extends _s.GenericAwsException {

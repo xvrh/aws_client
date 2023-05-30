@@ -159,7 +159,7 @@ class CloudWatchRum {
     String? destinationArn,
   }) async {
     final $payload = <String, dynamic>{
-      'Destination': destination.toValue(),
+      'Destination': destination.value,
       'MetricDefinitions': metricDefinitions,
       if (destinationArn != null) 'DestinationArn': destinationArn,
     };
@@ -220,7 +220,7 @@ class CloudWatchRum {
     String? destinationArn,
   }) async {
     final $query = <String, List<String>>{
-      'destination': [destination.toValue()],
+      'destination': [destination.value],
       'metricDefinitionIds': metricDefinitionIds,
       if (destinationArn != null) 'destinationArn': [destinationArn],
     };
@@ -281,7 +281,7 @@ class CloudWatchRum {
       100,
     );
     final $query = <String, List<String>>{
-      'destination': [destination.toValue()],
+      'destination': [destination.value],
       if (destinationArn != null) 'destinationArn': [destinationArn],
       if (maxResults != null) 'maxResults': [maxResults.toString()],
       if (nextToken != null) 'nextToken': [nextToken],
@@ -452,7 +452,7 @@ class CloudWatchRum {
     String? destinationArn,
   }) async {
     final $query = <String, List<String>>{
-      'destination': [destination.toValue()],
+      'destination': [destination.value],
       if (destinationArn != null) 'destinationArn': [destinationArn],
     };
     final response = await _protocol.send(
@@ -747,7 +747,7 @@ class CloudWatchRum {
     String? iamRoleArn,
   }) async {
     final $payload = <String, dynamic>{
-      'Destination': destination.toValue(),
+      'Destination': destination.value,
       if (destinationArn != null) 'DestinationArn': destinationArn,
       if (iamRoleArn != null) 'IamRoleArn': iamRoleArn,
     };
@@ -958,7 +958,7 @@ class CloudWatchRum {
     String? destinationArn,
   }) async {
     final $payload = <String, dynamic>{
-      'Destination': destination.toValue(),
+      'Destination': destination.value,
       'MetricDefinition': metricDefinition,
       'MetricDefinitionId': metricDefinitionId,
       if (destinationArn != null) 'DestinationArn': destinationArn,
@@ -1045,7 +1045,7 @@ class AppMonitor {
       id: json['Id'] as String?,
       lastModified: json['LastModified'] as String?,
       name: json['Name'] as String?,
-      state: (json['State'] as String?)?.toStateEnum(),
+      state: (json['State'] as String?)?.let(StateEnum.fromString),
       tags: (json['Tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
@@ -1072,7 +1072,7 @@ class AppMonitor {
       if (id != null) 'Id': id,
       if (lastModified != null) 'LastModified': lastModified,
       if (name != null) 'Name': name,
-      if (state != null) 'State': state.toValue(),
+      if (state != null) 'State': state.value,
       if (tags != null) 'Tags': tags,
     };
   }
@@ -1186,7 +1186,7 @@ class AppMonitorConfiguration {
       sessionSampleRate: json['SessionSampleRate'] as double?,
       telemetries: (json['Telemetries'] as List?)
           ?.whereNotNull()
-          .map((e) => (e as String).toTelemetry())
+          .map((e) => Telemetry.fromString((e as String)))
           .toList(),
     );
   }
@@ -1211,7 +1211,7 @@ class AppMonitorConfiguration {
       if (includedPages != null) 'IncludedPages': includedPages,
       if (sessionSampleRate != null) 'SessionSampleRate': sessionSampleRate,
       if (telemetries != null)
-        'Telemetries': telemetries.map((e) => e.toValue()).toList(),
+        'Telemetries': telemetries.map((e) => e.value).toList(),
     };
   }
 }
@@ -1277,7 +1277,7 @@ class AppMonitorSummary {
       id: json['Id'] as String?,
       lastModified: json['LastModified'] as String?,
       name: json['Name'] as String?,
-      state: (json['State'] as String?)?.toStateEnum(),
+      state: (json['State'] as String?)?.let(StateEnum.fromString),
     );
   }
 
@@ -1292,7 +1292,7 @@ class AppMonitorSummary {
       if (id != null) 'Id': id,
       if (lastModified != null) 'LastModified': lastModified,
       if (name != null) 'Name': name,
-      if (state != null) 'State': state.toValue(),
+      if (state != null) 'State': state.value,
     };
   }
 }
@@ -1523,44 +1523,31 @@ class CustomEvents {
 
   factory CustomEvents.fromJson(Map<String, dynamic> json) {
     return CustomEvents(
-      status: (json['Status'] as String?)?.toCustomEventsStatus(),
+      status: (json['Status'] as String?)?.let(CustomEventsStatus.fromString),
     );
   }
 
   Map<String, dynamic> toJson() {
     final status = this.status;
     return {
-      if (status != null) 'Status': status.toValue(),
+      if (status != null) 'Status': status.value,
     };
   }
 }
 
 enum CustomEventsStatus {
-  enabled,
-  disabled,
-}
+  enabled('ENABLED'),
+  disabled('DISABLED'),
+  ;
 
-extension CustomEventsStatusValueExtension on CustomEventsStatus {
-  String toValue() {
-    switch (this) {
-      case CustomEventsStatus.enabled:
-        return 'ENABLED';
-      case CustomEventsStatus.disabled:
-        return 'DISABLED';
-    }
-  }
-}
+  final String value;
 
-extension CustomEventsStatusFromString on String {
-  CustomEventsStatus toCustomEventsStatus() {
-    switch (this) {
-      case 'ENABLED':
-        return CustomEventsStatus.enabled;
-      case 'DISABLED':
-        return CustomEventsStatus.disabled;
-    }
-    throw Exception('$this is not known in enum CustomEventsStatus');
-  }
+  const CustomEventsStatus(this.value);
+
+  static CustomEventsStatus fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum CustomEventsStatus'));
 }
 
 /// A structure that contains the information about whether the app monitor
@@ -2236,31 +2223,18 @@ class MetricDefinitionRequest {
 }
 
 enum MetricDestination {
-  cloudWatch,
-  evidently,
-}
+  cloudWatch('CloudWatch'),
+  evidently('Evidently'),
+  ;
 
-extension MetricDestinationValueExtension on MetricDestination {
-  String toValue() {
-    switch (this) {
-      case MetricDestination.cloudWatch:
-        return 'CloudWatch';
-      case MetricDestination.evidently:
-        return 'Evidently';
-    }
-  }
-}
+  final String value;
 
-extension MetricDestinationFromString on String {
-  MetricDestination toMetricDestination() {
-    switch (this) {
-      case 'CloudWatch':
-        return MetricDestination.cloudWatch;
-      case 'Evidently':
-        return MetricDestination.evidently;
-    }
-    throw Exception('$this is not known in enum MetricDestination');
-  }
+  const MetricDestination(this.value);
+
+  static MetricDestination fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum MetricDestination'));
 }
 
 /// A structure that displays information about one destination that CloudWatch
@@ -2287,7 +2261,8 @@ class MetricDestinationSummary {
 
   factory MetricDestinationSummary.fromJson(Map<String, dynamic> json) {
     return MetricDestinationSummary(
-      destination: (json['Destination'] as String?)?.toMetricDestination(),
+      destination:
+          (json['Destination'] as String?)?.let(MetricDestination.fromString),
       destinationArn: json['DestinationArn'] as String?,
       iamRoleArn: json['IamRoleArn'] as String?,
     );
@@ -2298,7 +2273,7 @@ class MetricDestinationSummary {
     final destinationArn = this.destinationArn;
     final iamRoleArn = this.iamRoleArn;
     return {
-      if (destination != null) 'Destination': destination.toValue(),
+      if (destination != null) 'Destination': destination.value,
       if (destinationArn != null) 'DestinationArn': destinationArn,
       if (iamRoleArn != null) 'IamRoleArn': iamRoleArn,
     };
@@ -2417,36 +2392,18 @@ class RumEvent {
 }
 
 enum StateEnum {
-  created,
-  deleting,
-  active,
-}
+  created('CREATED'),
+  deleting('DELETING'),
+  active('ACTIVE'),
+  ;
 
-extension StateEnumValueExtension on StateEnum {
-  String toValue() {
-    switch (this) {
-      case StateEnum.created:
-        return 'CREATED';
-      case StateEnum.deleting:
-        return 'DELETING';
-      case StateEnum.active:
-        return 'ACTIVE';
-    }
-  }
-}
+  final String value;
 
-extension StateEnumFromString on String {
-  StateEnum toStateEnum() {
-    switch (this) {
-      case 'CREATED':
-        return StateEnum.created;
-      case 'DELETING':
-        return StateEnum.deleting;
-      case 'ACTIVE':
-        return StateEnum.active;
-    }
-    throw Exception('$this is not known in enum StateEnum');
-  }
+  const StateEnum(this.value);
+
+  static StateEnum fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum StateEnum'));
 }
 
 class TagResourceResponse {
@@ -2462,36 +2419,18 @@ class TagResourceResponse {
 }
 
 enum Telemetry {
-  errors,
-  performance,
-  http,
-}
+  errors('errors'),
+  performance('performance'),
+  http('http'),
+  ;
 
-extension TelemetryValueExtension on Telemetry {
-  String toValue() {
-    switch (this) {
-      case Telemetry.errors:
-        return 'errors';
-      case Telemetry.performance:
-        return 'performance';
-      case Telemetry.http:
-        return 'http';
-    }
-  }
-}
+  final String value;
 
-extension TelemetryFromString on String {
-  Telemetry toTelemetry() {
-    switch (this) {
-      case 'errors':
-        return Telemetry.errors;
-      case 'performance':
-        return Telemetry.performance;
-      case 'http':
-        return Telemetry.http;
-    }
-    throw Exception('$this is not known in enum Telemetry');
-  }
+  const Telemetry(this.value);
+
+  static Telemetry fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum Telemetry'));
 }
 
 /// A structure that defines the time range that you want to retrieve results

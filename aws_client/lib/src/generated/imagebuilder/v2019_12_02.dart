@@ -193,7 +193,7 @@ class Imagebuilder {
   }) async {
     final $payload = <String, dynamic>{
       'name': name,
-      'platform': platform.toValue(),
+      'platform': platform.value,
       'semanticVersion': semanticVersion,
       if (changeDescription != null) 'changeDescription': changeDescription,
       'clientToken': clientToken ?? _s.generateIdempotencyToken(),
@@ -316,7 +316,7 @@ class Imagebuilder {
   }) async {
     final $payload = <String, dynamic>{
       'components': components,
-      'containerType': containerType.toValue(),
+      'containerType': containerType.value,
       'name': name,
       'parentImage': parentImage,
       'semanticVersion': semanticVersion,
@@ -332,8 +332,7 @@ class Imagebuilder {
       if (instanceConfiguration != null)
         'instanceConfiguration': instanceConfiguration,
       if (kmsKeyId != null) 'kmsKeyId': kmsKeyId,
-      if (platformOverride != null)
-        'platformOverride': platformOverride.toValue(),
+      if (platformOverride != null) 'platformOverride': platformOverride.value,
       if (tags != null) 'tags': tags,
       if (workingDirectory != null) 'workingDirectory': workingDirectory,
     };
@@ -572,7 +571,7 @@ class Imagebuilder {
       if (imageTestsConfiguration != null)
         'imageTestsConfiguration': imageTestsConfiguration,
       if (schedule != null) 'schedule': schedule,
-      if (status != null) 'status': status.toValue(),
+      if (status != null) 'status': status.value,
       if (tags != null) 'tags': tags,
     };
     final response = await _protocol.send(
@@ -1474,11 +1473,11 @@ class Imagebuilder {
     String? uri,
   }) async {
     final $payload = <String, dynamic>{
-      'format': format.toValue(),
+      'format': format.value,
       'name': name,
-      'platform': platform.toValue(),
+      'platform': platform.value,
       'semanticVersion': semanticVersion,
-      'type': type.toValue(),
+      'type': type.value,
       if (changeDescription != null) 'changeDescription': changeDescription,
       'clientToken': clientToken ?? _s.generateIdempotencyToken(),
       if (data != null) 'data': data,
@@ -1569,7 +1568,7 @@ class Imagebuilder {
   }) async {
     final $payload = <String, dynamic>{
       'name': name,
-      'platform': platform.toValue(),
+      'platform': platform.value,
       'semanticVersion': semanticVersion,
       'vmImportTaskId': vmImportTaskId,
       'clientToken': clientToken ?? _s.generateIdempotencyToken(),
@@ -1725,7 +1724,7 @@ class Imagebuilder {
       if (filters != null) 'filters': filters,
       if (maxResults != null) 'maxResults': maxResults,
       if (nextToken != null) 'nextToken': nextToken,
-      if (owner != null) 'owner': owner.toValue(),
+      if (owner != null) 'owner': owner.value,
     };
     final response = await _protocol.send(
       payload: $payload,
@@ -1791,7 +1790,7 @@ class Imagebuilder {
       if (filters != null) 'filters': filters,
       if (maxResults != null) 'maxResults': maxResults,
       if (nextToken != null) 'nextToken': nextToken,
-      if (owner != null) 'owner': owner.toValue(),
+      if (owner != null) 'owner': owner.value,
     };
     final response = await _protocol.send(
       payload: $payload,
@@ -2141,7 +2140,7 @@ class Imagebuilder {
       if (filters != null) 'filters': filters,
       if (maxResults != null) 'maxResults': maxResults,
       if (nextToken != null) 'nextToken': nextToken,
-      if (owner != null) 'owner': owner.toValue(),
+      if (owner != null) 'owner': owner.value,
     };
     final response = await _protocol.send(
       payload: $payload,
@@ -2337,7 +2336,7 @@ class Imagebuilder {
       if (includeDeprecated != null) 'includeDeprecated': includeDeprecated,
       if (maxResults != null) 'maxResults': maxResults,
       if (nextToken != null) 'nextToken': nextToken,
-      if (owner != null) 'owner': owner.toValue(),
+      if (owner != null) 'owner': owner.value,
     };
     final response = await _protocol.send(
       payload: $payload,
@@ -2894,7 +2893,7 @@ class Imagebuilder {
       if (imageTestsConfiguration != null)
         'imageTestsConfiguration': imageTestsConfiguration,
       if (schedule != null) 'schedule': schedule,
-      if (status != null) 'status': status.toValue(),
+      if (status != null) 'status': status.value,
     };
     final response = await _protocol.send(
       payload: $payload,
@@ -3260,36 +3259,18 @@ class AmiDistributionConfiguration {
 }
 
 enum BuildType {
-  userInitiated,
-  scheduled,
-  import,
-}
+  userInitiated('USER_INITIATED'),
+  scheduled('SCHEDULED'),
+  import('IMPORT'),
+  ;
 
-extension BuildTypeValueExtension on BuildType {
-  String toValue() {
-    switch (this) {
-      case BuildType.userInitiated:
-        return 'USER_INITIATED';
-      case BuildType.scheduled:
-        return 'SCHEDULED';
-      case BuildType.import:
-        return 'IMPORT';
-    }
-  }
-}
+  final String value;
 
-extension BuildTypeFromString on String {
-  BuildType toBuildType() {
-    switch (this) {
-      case 'USER_INITIATED':
-        return BuildType.userInitiated;
-      case 'SCHEDULED':
-        return BuildType.scheduled;
-      case 'IMPORT':
-        return BuildType.import;
-    }
-    throw Exception('$this is not known in enum BuildType');
-  }
+  const BuildType(this.value);
+
+  static BuildType fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum BuildType'));
 }
 
 class CancelImageCreationResponse {
@@ -3430,7 +3411,7 @@ class Component {
           .map((e) =>
               ComponentParameterDetail.fromJson(e as Map<String, dynamic>))
           .toList(),
-      platform: (json['platform'] as String?)?.toPlatform(),
+      platform: (json['platform'] as String?)?.let(Platform.fromString),
       publisher: json['publisher'] as String?,
       state: json['state'] != null
           ? ComponentState.fromJson(json['state'] as Map<String, dynamic>)
@@ -3441,7 +3422,7 @@ class Component {
           .toList(),
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
-      type: (json['type'] as String?)?.toComponentType(),
+      type: (json['type'] as String?)?.let(ComponentType.fromString),
       version: json['version'] as String?,
     );
   }
@@ -3477,13 +3458,13 @@ class Component {
       if (obfuscate != null) 'obfuscate': obfuscate,
       if (owner != null) 'owner': owner,
       if (parameters != null) 'parameters': parameters,
-      if (platform != null) 'platform': platform.toValue(),
+      if (platform != null) 'platform': platform.value,
       if (publisher != null) 'publisher': publisher,
       if (state != null) 'state': state,
       if (supportedOsVersions != null)
         'supportedOsVersions': supportedOsVersions,
       if (tags != null) 'tags': tags,
-      if (type != null) 'type': type.toValue(),
+      if (type != null) 'type': type.value,
       if (version != null) 'version': version,
     };
   }
@@ -3524,26 +3505,17 @@ class ComponentConfiguration {
 }
 
 enum ComponentFormat {
-  shell,
-}
+  shell('SHELL'),
+  ;
 
-extension ComponentFormatValueExtension on ComponentFormat {
-  String toValue() {
-    switch (this) {
-      case ComponentFormat.shell:
-        return 'SHELL';
-    }
-  }
-}
+  final String value;
 
-extension ComponentFormatFromString on String {
-  ComponentFormat toComponentFormat() {
-    switch (this) {
-      case 'SHELL':
-        return ComponentFormat.shell;
-    }
-    throw Exception('$this is not known in enum ComponentFormat');
-  }
+  const ComponentFormat(this.value);
+
+  static ComponentFormat fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum ComponentFormat'));
 }
 
 /// Contains a key/value pair that sets the named component parameter.
@@ -3645,7 +3617,7 @@ class ComponentState {
   factory ComponentState.fromJson(Map<String, dynamic> json) {
     return ComponentState(
       reason: json['reason'] as String?,
-      status: (json['status'] as String?)?.toComponentStatus(),
+      status: (json['status'] as String?)?.let(ComponentStatus.fromString),
     );
   }
 
@@ -3654,32 +3626,23 @@ class ComponentState {
     final status = this.status;
     return {
       if (reason != null) 'reason': reason,
-      if (status != null) 'status': status.toValue(),
+      if (status != null) 'status': status.value,
     };
   }
 }
 
 enum ComponentStatus {
-  deprecated,
-}
+  deprecated('DEPRECATED'),
+  ;
 
-extension ComponentStatusValueExtension on ComponentStatus {
-  String toValue() {
-    switch (this) {
-      case ComponentStatus.deprecated:
-        return 'DEPRECATED';
-    }
-  }
-}
+  final String value;
 
-extension ComponentStatusFromString on String {
-  ComponentStatus toComponentStatus() {
-    switch (this) {
-      case 'DEPRECATED':
-        return ComponentStatus.deprecated;
-    }
-    throw Exception('$this is not known in enum ComponentStatus');
-  }
+  const ComponentStatus(this.value);
+
+  static ComponentStatus fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum ComponentStatus'));
 }
 
 /// A high-level summary of a component.
@@ -3757,7 +3720,7 @@ class ComponentSummary {
       name: json['name'] as String?,
       obfuscate: json['obfuscate'] as bool?,
       owner: json['owner'] as String?,
-      platform: (json['platform'] as String?)?.toPlatform(),
+      platform: (json['platform'] as String?)?.let(Platform.fromString),
       publisher: json['publisher'] as String?,
       state: json['state'] != null
           ? ComponentState.fromJson(json['state'] as Map<String, dynamic>)
@@ -3768,7 +3731,7 @@ class ComponentSummary {
           .toList(),
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
-      type: (json['type'] as String?)?.toComponentType(),
+      type: (json['type'] as String?)?.let(ComponentType.fromString),
       version: json['version'] as String?,
     );
   }
@@ -3796,44 +3759,31 @@ class ComponentSummary {
       if (name != null) 'name': name,
       if (obfuscate != null) 'obfuscate': obfuscate,
       if (owner != null) 'owner': owner,
-      if (platform != null) 'platform': platform.toValue(),
+      if (platform != null) 'platform': platform.value,
       if (publisher != null) 'publisher': publisher,
       if (state != null) 'state': state,
       if (supportedOsVersions != null)
         'supportedOsVersions': supportedOsVersions,
       if (tags != null) 'tags': tags,
-      if (type != null) 'type': type.toValue(),
+      if (type != null) 'type': type.value,
       if (version != null) 'version': version,
     };
   }
 }
 
 enum ComponentType {
-  build,
-  test,
-}
+  build('BUILD'),
+  test('TEST'),
+  ;
 
-extension ComponentTypeValueExtension on ComponentType {
-  String toValue() {
-    switch (this) {
-      case ComponentType.build:
-        return 'BUILD';
-      case ComponentType.test:
-        return 'TEST';
-    }
-  }
-}
+  final String value;
 
-extension ComponentTypeFromString on String {
-  ComponentType toComponentType() {
-    switch (this) {
-      case 'BUILD':
-        return ComponentType.build;
-      case 'TEST':
-        return ComponentType.test;
-    }
-    throw Exception('$this is not known in enum ComponentType');
-  }
+  const ComponentType(this.value);
+
+  static ComponentType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum ComponentType'));
 }
 
 /// The defining characteristics of a specific version of an Amazon Web Services
@@ -3925,12 +3875,12 @@ class ComponentVersion {
       description: json['description'] as String?,
       name: json['name'] as String?,
       owner: json['owner'] as String?,
-      platform: (json['platform'] as String?)?.toPlatform(),
+      platform: (json['platform'] as String?)?.let(Platform.fromString),
       supportedOsVersions: (json['supportedOsVersions'] as List?)
           ?.whereNotNull()
           .map((e) => e as String)
           .toList(),
-      type: (json['type'] as String?)?.toComponentType(),
+      type: (json['type'] as String?)?.let(ComponentType.fromString),
       version: json['version'] as String?,
     );
   }
@@ -3951,10 +3901,10 @@ class ComponentVersion {
       if (description != null) 'description': description,
       if (name != null) 'name': name,
       if (owner != null) 'owner': owner,
-      if (platform != null) 'platform': platform.toValue(),
+      if (platform != null) 'platform': platform.value,
       if (supportedOsVersions != null)
         'supportedOsVersions': supportedOsVersions,
-      if (type != null) 'type': type.toValue(),
+      if (type != null) 'type': type.value,
       if (version != null) 'version': version,
     };
   }
@@ -4163,7 +4113,8 @@ class ContainerRecipe {
           .map(
               (e) => ComponentConfiguration.fromJson(e as Map<String, dynamic>))
           .toList(),
-      containerType: (json['containerType'] as String?)?.toContainerType(),
+      containerType:
+          (json['containerType'] as String?)?.let(ContainerType.fromString),
       dateCreated: json['dateCreated'] as String?,
       description: json['description'] as String?,
       dockerfileTemplateData: json['dockerfileTemplateData'] as String?,
@@ -4176,7 +4127,7 @@ class ContainerRecipe {
       name: json['name'] as String?,
       owner: json['owner'] as String?,
       parentImage: json['parentImage'] as String?,
-      platform: (json['platform'] as String?)?.toPlatform(),
+      platform: (json['platform'] as String?)?.let(Platform.fromString),
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
       targetRepository: json['targetRepository'] != null
@@ -4209,7 +4160,7 @@ class ContainerRecipe {
     return {
       if (arn != null) 'arn': arn,
       if (components != null) 'components': components,
-      if (containerType != null) 'containerType': containerType.toValue(),
+      if (containerType != null) 'containerType': containerType.value,
       if (dateCreated != null) 'dateCreated': dateCreated,
       if (description != null) 'description': description,
       if (dockerfileTemplateData != null)
@@ -4221,7 +4172,7 @@ class ContainerRecipe {
       if (name != null) 'name': name,
       if (owner != null) 'owner': owner,
       if (parentImage != null) 'parentImage': parentImage,
-      if (platform != null) 'platform': platform.toValue(),
+      if (platform != null) 'platform': platform.value,
       if (tags != null) 'tags': tags,
       if (targetRepository != null) 'targetRepository': targetRepository,
       if (version != null) 'version': version,
@@ -4270,12 +4221,13 @@ class ContainerRecipeSummary {
   factory ContainerRecipeSummary.fromJson(Map<String, dynamic> json) {
     return ContainerRecipeSummary(
       arn: json['arn'] as String?,
-      containerType: (json['containerType'] as String?)?.toContainerType(),
+      containerType:
+          (json['containerType'] as String?)?.let(ContainerType.fromString),
       dateCreated: json['dateCreated'] as String?,
       name: json['name'] as String?,
       owner: json['owner'] as String?,
       parentImage: json['parentImage'] as String?,
-      platform: (json['platform'] as String?)?.toPlatform(),
+      platform: (json['platform'] as String?)?.let(Platform.fromString),
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
@@ -4292,62 +4244,43 @@ class ContainerRecipeSummary {
     final tags = this.tags;
     return {
       if (arn != null) 'arn': arn,
-      if (containerType != null) 'containerType': containerType.toValue(),
+      if (containerType != null) 'containerType': containerType.value,
       if (dateCreated != null) 'dateCreated': dateCreated,
       if (name != null) 'name': name,
       if (owner != null) 'owner': owner,
       if (parentImage != null) 'parentImage': parentImage,
-      if (platform != null) 'platform': platform.toValue(),
+      if (platform != null) 'platform': platform.value,
       if (tags != null) 'tags': tags,
     };
   }
 }
 
 enum ContainerRepositoryService {
-  ecr,
-}
+  ecr('ECR'),
+  ;
 
-extension ContainerRepositoryServiceValueExtension
-    on ContainerRepositoryService {
-  String toValue() {
-    switch (this) {
-      case ContainerRepositoryService.ecr:
-        return 'ECR';
-    }
-  }
-}
+  final String value;
 
-extension ContainerRepositoryServiceFromString on String {
-  ContainerRepositoryService toContainerRepositoryService() {
-    switch (this) {
-      case 'ECR':
-        return ContainerRepositoryService.ecr;
-    }
-    throw Exception('$this is not known in enum ContainerRepositoryService');
-  }
+  const ContainerRepositoryService(this.value);
+
+  static ContainerRepositoryService fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum ContainerRepositoryService'));
 }
 
 enum ContainerType {
-  docker,
-}
+  docker('DOCKER'),
+  ;
 
-extension ContainerTypeValueExtension on ContainerType {
-  String toValue() {
-    switch (this) {
-      case ContainerType.docker:
-        return 'DOCKER';
-    }
-  }
-}
+  final String value;
 
-extension ContainerTypeFromString on String {
-  ContainerType toContainerType() {
-    switch (this) {
-      case 'DOCKER':
-        return ContainerType.docker;
-    }
-    throw Exception('$this is not known in enum ContainerType');
-  }
+  const ContainerType(this.value);
+
+  static ContainerType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum ContainerType'));
 }
 
 class CreateComponentResponse {
@@ -4975,36 +4908,19 @@ class DeleteInfrastructureConfigurationResponse {
 }
 
 enum DiskImageFormat {
-  vmdk,
-  raw,
-  vhd,
-}
+  vmdk('VMDK'),
+  raw('RAW'),
+  vhd('VHD'),
+  ;
 
-extension DiskImageFormatValueExtension on DiskImageFormat {
-  String toValue() {
-    switch (this) {
-      case DiskImageFormat.vmdk:
-        return 'VMDK';
-      case DiskImageFormat.raw:
-        return 'RAW';
-      case DiskImageFormat.vhd:
-        return 'VHD';
-    }
-  }
-}
+  final String value;
 
-extension DiskImageFormatFromString on String {
-  DiskImageFormat toDiskImageFormat() {
-    switch (this) {
-      case 'VMDK':
-        return DiskImageFormat.vmdk;
-      case 'RAW':
-        return DiskImageFormat.raw;
-      case 'VHD':
-        return DiskImageFormat.vhd;
-    }
-    throw Exception('$this is not known in enum DiskImageFormat');
-  }
+  const DiskImageFormat(this.value);
+
+  static DiskImageFormat fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum DiskImageFormat'));
 }
 
 /// Defines the settings for a specific Region.
@@ -5301,7 +5217,8 @@ class EbsInstanceBlockDeviceSpecification {
       snapshotId: json['snapshotId'] as String?,
       throughput: json['throughput'] as int?,
       volumeSize: json['volumeSize'] as int?,
-      volumeType: (json['volumeType'] as String?)?.toEbsVolumeType(),
+      volumeType:
+          (json['volumeType'] as String?)?.let(EbsVolumeType.fromString),
     );
   }
 
@@ -5323,62 +5240,29 @@ class EbsInstanceBlockDeviceSpecification {
       if (snapshotId != null) 'snapshotId': snapshotId,
       if (throughput != null) 'throughput': throughput,
       if (volumeSize != null) 'volumeSize': volumeSize,
-      if (volumeType != null) 'volumeType': volumeType.toValue(),
+      if (volumeType != null) 'volumeType': volumeType.value,
     };
   }
 }
 
 enum EbsVolumeType {
-  standard,
-  io1,
-  io2,
-  gp2,
-  gp3,
-  sc1,
-  st1,
-}
+  standard('standard'),
+  io1('io1'),
+  io2('io2'),
+  gp2('gp2'),
+  gp3('gp3'),
+  sc1('sc1'),
+  st1('st1'),
+  ;
 
-extension EbsVolumeTypeValueExtension on EbsVolumeType {
-  String toValue() {
-    switch (this) {
-      case EbsVolumeType.standard:
-        return 'standard';
-      case EbsVolumeType.io1:
-        return 'io1';
-      case EbsVolumeType.io2:
-        return 'io2';
-      case EbsVolumeType.gp2:
-        return 'gp2';
-      case EbsVolumeType.gp3:
-        return 'gp3';
-      case EbsVolumeType.sc1:
-        return 'sc1';
-      case EbsVolumeType.st1:
-        return 'st1';
-    }
-  }
-}
+  final String value;
 
-extension EbsVolumeTypeFromString on String {
-  EbsVolumeType toEbsVolumeType() {
-    switch (this) {
-      case 'standard':
-        return EbsVolumeType.standard;
-      case 'io1':
-        return EbsVolumeType.io1;
-      case 'io2':
-        return EbsVolumeType.io2;
-      case 'gp2':
-        return EbsVolumeType.gp2;
-      case 'gp3':
-        return EbsVolumeType.gp3;
-      case 'sc1':
-        return EbsVolumeType.sc1;
-      case 'st1':
-        return EbsVolumeType.st1;
-    }
-    throw Exception('$this is not known in enum EbsVolumeType');
-  }
+  const EbsVolumeType(this.value);
+
+  static EbsVolumeType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum EbsVolumeType'));
 }
 
 /// Settings that Image Builder uses to configure the ECR repository and the
@@ -6000,12 +5884,13 @@ class GetWorkflowExecutionResponse {
       message: json['message'] as String?,
       requestId: json['requestId'] as String?,
       startTime: json['startTime'] as String?,
-      status: (json['status'] as String?)?.toWorkflowExecutionStatus(),
+      status:
+          (json['status'] as String?)?.let(WorkflowExecutionStatus.fromString),
       totalStepCount: json['totalStepCount'] as int?,
       totalStepsFailed: json['totalStepsFailed'] as int?,
       totalStepsSkipped: json['totalStepsSkipped'] as int?,
       totalStepsSucceeded: json['totalStepsSucceeded'] as int?,
-      type: (json['type'] as String?)?.toWorkflowType(),
+      type: (json['type'] as String?)?.let(WorkflowType.fromString),
       workflowBuildVersionArn: json['workflowBuildVersionArn'] as String?,
       workflowExecutionId: json['workflowExecutionId'] as String?,
     );
@@ -6032,13 +5917,13 @@ class GetWorkflowExecutionResponse {
       if (message != null) 'message': message,
       if (requestId != null) 'requestId': requestId,
       if (startTime != null) 'startTime': startTime,
-      if (status != null) 'status': status.toValue(),
+      if (status != null) 'status': status.value,
       if (totalStepCount != null) 'totalStepCount': totalStepCount,
       if (totalStepsFailed != null) 'totalStepsFailed': totalStepsFailed,
       if (totalStepsSkipped != null) 'totalStepsSkipped': totalStepsSkipped,
       if (totalStepsSucceeded != null)
         'totalStepsSucceeded': totalStepsSucceeded,
-      if (type != null) 'type': type.toValue(),
+      if (type != null) 'type': type.value,
       if (workflowBuildVersionArn != null)
         'workflowBuildVersionArn': workflowBuildVersionArn,
       if (workflowExecutionId != null)
@@ -6142,9 +6027,10 @@ class GetWorkflowStepExecutionResponse {
       outputs: json['outputs'] as String?,
       requestId: json['requestId'] as String?,
       rollbackStatus: (json['rollbackStatus'] as String?)
-          ?.toWorkflowStepExecutionRollbackStatus(),
+          ?.let(WorkflowStepExecutionRollbackStatus.fromString),
       startTime: json['startTime'] as String?,
-      status: (json['status'] as String?)?.toWorkflowStepExecutionStatus(),
+      status: (json['status'] as String?)
+          ?.let(WorkflowStepExecutionStatus.fromString),
       stepExecutionId: json['stepExecutionId'] as String?,
       timeoutSeconds: json['timeoutSeconds'] as int?,
       workflowBuildVersionArn: json['workflowBuildVersionArn'] as String?,
@@ -6182,9 +6068,9 @@ class GetWorkflowStepExecutionResponse {
       if (onFailure != null) 'onFailure': onFailure,
       if (outputs != null) 'outputs': outputs,
       if (requestId != null) 'requestId': requestId,
-      if (rollbackStatus != null) 'rollbackStatus': rollbackStatus.toValue(),
+      if (rollbackStatus != null) 'rollbackStatus': rollbackStatus.value,
       if (startTime != null) 'startTime': startTime,
-      if (status != null) 'status': status.toValue(),
+      if (status != null) 'status': status.value,
       if (stepExecutionId != null) 'stepExecutionId': stepExecutionId,
       if (timeoutSeconds != null) 'timeoutSeconds': timeoutSeconds,
       if (workflowBuildVersionArn != null)
@@ -6351,7 +6237,7 @@ class Image {
   factory Image.fromJson(Map<String, dynamic> json) {
     return Image(
       arn: json['arn'] as String?,
-      buildType: (json['buildType'] as String?)?.toBuildType(),
+      buildType: (json['buildType'] as String?)?.let(BuildType.fromString),
       containerRecipe: json['containerRecipe'] != null
           ? ContainerRecipe.fromJson(
               json['containerRecipe'] as Map<String, dynamic>)
@@ -6370,7 +6256,8 @@ class Image {
           ? ImageScanningConfiguration.fromJson(
               json['imageScanningConfiguration'] as Map<String, dynamic>)
           : null,
-      imageSource: (json['imageSource'] as String?)?.toImageSource(),
+      imageSource:
+          (json['imageSource'] as String?)?.let(ImageSource.fromString),
       imageTestsConfiguration: json['imageTestsConfiguration'] != null
           ? ImageTestsConfiguration.fromJson(
               json['imageTestsConfiguration'] as Map<String, dynamic>)
@@ -6385,7 +6272,7 @@ class Image {
           ? OutputResources.fromJson(
               json['outputResources'] as Map<String, dynamic>)
           : null,
-      platform: (json['platform'] as String?)?.toPlatform(),
+      platform: (json['platform'] as String?)?.let(Platform.fromString),
       scanState: json['scanState'] != null
           ? ImageScanState.fromJson(json['scanState'] as Map<String, dynamic>)
           : null,
@@ -6396,7 +6283,7 @@ class Image {
           : null,
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
-      type: (json['type'] as String?)?.toImageType(),
+      type: (json['type'] as String?)?.let(ImageType.fromString),
       version: json['version'] as String?,
     );
   }
@@ -6426,7 +6313,7 @@ class Image {
     final version = this.version;
     return {
       if (arn != null) 'arn': arn,
-      if (buildType != null) 'buildType': buildType.toValue(),
+      if (buildType != null) 'buildType': buildType.value,
       if (containerRecipe != null) 'containerRecipe': containerRecipe,
       if (dateCreated != null) 'dateCreated': dateCreated,
       if (distributionConfiguration != null)
@@ -6436,7 +6323,7 @@ class Image {
       if (imageRecipe != null) 'imageRecipe': imageRecipe,
       if (imageScanningConfiguration != null)
         'imageScanningConfiguration': imageScanningConfiguration,
-      if (imageSource != null) 'imageSource': imageSource.toValue(),
+      if (imageSource != null) 'imageSource': imageSource.value,
       if (imageTestsConfiguration != null)
         'imageTestsConfiguration': imageTestsConfiguration,
       if (infrastructureConfiguration != null)
@@ -6444,13 +6331,13 @@ class Image {
       if (name != null) 'name': name,
       if (osVersion != null) 'osVersion': osVersion,
       if (outputResources != null) 'outputResources': outputResources,
-      if (platform != null) 'platform': platform.toValue(),
+      if (platform != null) 'platform': platform.value,
       if (scanState != null) 'scanState': scanState,
       if (sourcePipelineArn != null) 'sourcePipelineArn': sourcePipelineArn,
       if (sourcePipelineName != null) 'sourcePipelineName': sourcePipelineName,
       if (state != null) 'state': state,
       if (tags != null) 'tags': tags,
-      if (type != null) 'type': type.toValue(),
+      if (type != null) 'type': type.value,
       if (version != null) 'version': version,
     };
   }
@@ -6632,11 +6519,11 @@ class ImagePipeline {
       infrastructureConfigurationArn:
           json['infrastructureConfigurationArn'] as String?,
       name: json['name'] as String?,
-      platform: (json['platform'] as String?)?.toPlatform(),
+      platform: (json['platform'] as String?)?.let(Platform.fromString),
       schedule: json['schedule'] != null
           ? Schedule.fromJson(json['schedule'] as Map<String, dynamic>)
           : null,
-      status: (json['status'] as String?)?.toPipelineStatus(),
+      status: (json['status'] as String?)?.let(PipelineStatus.fromString),
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
@@ -6681,9 +6568,9 @@ class ImagePipeline {
       if (infrastructureConfigurationArn != null)
         'infrastructureConfigurationArn': infrastructureConfigurationArn,
       if (name != null) 'name': name,
-      if (platform != null) 'platform': platform.toValue(),
+      if (platform != null) 'platform': platform.value,
       if (schedule != null) 'schedule': schedule,
-      if (status != null) 'status': status.toValue(),
+      if (status != null) 'status': status.value,
       if (tags != null) 'tags': tags,
     };
   }
@@ -6815,10 +6702,10 @@ class ImageRecipe {
       name: json['name'] as String?,
       owner: json['owner'] as String?,
       parentImage: json['parentImage'] as String?,
-      platform: (json['platform'] as String?)?.toPlatform(),
+      platform: (json['platform'] as String?)?.let(Platform.fromString),
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
-      type: (json['type'] as String?)?.toImageType(),
+      type: (json['type'] as String?)?.let(ImageType.fromString),
       version: json['version'] as String?,
       workingDirectory: json['workingDirectory'] as String?,
     );
@@ -6852,9 +6739,9 @@ class ImageRecipe {
       if (name != null) 'name': name,
       if (owner != null) 'owner': owner,
       if (parentImage != null) 'parentImage': parentImage,
-      if (platform != null) 'platform': platform.toValue(),
+      if (platform != null) 'platform': platform.value,
       if (tags != null) 'tags': tags,
-      if (type != null) 'type': type.toValue(),
+      if (type != null) 'type': type.value,
       if (version != null) 'version': version,
       if (workingDirectory != null) 'workingDirectory': workingDirectory,
     };
@@ -6901,7 +6788,7 @@ class ImageRecipeSummary {
       name: json['name'] as String?,
       owner: json['owner'] as String?,
       parentImage: json['parentImage'] as String?,
-      platform: (json['platform'] as String?)?.toPlatform(),
+      platform: (json['platform'] as String?)?.let(Platform.fromString),
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
@@ -6921,7 +6808,7 @@ class ImageRecipeSummary {
       if (name != null) 'name': name,
       if (owner != null) 'owner': owner,
       if (parentImage != null) 'parentImage': parentImage,
-      if (platform != null) 'platform': platform.toValue(),
+      if (platform != null) 'platform': platform.value,
       if (tags != null) 'tags': tags,
     };
   }
@@ -7160,7 +7047,7 @@ class ImageScanState {
   factory ImageScanState.fromJson(Map<String, dynamic> json) {
     return ImageScanState(
       reason: json['reason'] as String?,
-      status: (json['status'] as String?)?.toImageScanStatus(),
+      status: (json['status'] as String?)?.let(ImageScanStatus.fromString),
     );
   }
 
@@ -7169,62 +7056,29 @@ class ImageScanState {
     final status = this.status;
     return {
       if (reason != null) 'reason': reason,
-      if (status != null) 'status': status.toValue(),
+      if (status != null) 'status': status.value,
     };
   }
 }
 
 enum ImageScanStatus {
-  pending,
-  scanning,
-  collecting,
-  completed,
-  abandoned,
-  failed,
-  timedOut,
-}
+  pending('PENDING'),
+  scanning('SCANNING'),
+  collecting('COLLECTING'),
+  completed('COMPLETED'),
+  abandoned('ABANDONED'),
+  failed('FAILED'),
+  timedOut('TIMED_OUT'),
+  ;
 
-extension ImageScanStatusValueExtension on ImageScanStatus {
-  String toValue() {
-    switch (this) {
-      case ImageScanStatus.pending:
-        return 'PENDING';
-      case ImageScanStatus.scanning:
-        return 'SCANNING';
-      case ImageScanStatus.collecting:
-        return 'COLLECTING';
-      case ImageScanStatus.completed:
-        return 'COMPLETED';
-      case ImageScanStatus.abandoned:
-        return 'ABANDONED';
-      case ImageScanStatus.failed:
-        return 'FAILED';
-      case ImageScanStatus.timedOut:
-        return 'TIMED_OUT';
-    }
-  }
-}
+  final String value;
 
-extension ImageScanStatusFromString on String {
-  ImageScanStatus toImageScanStatus() {
-    switch (this) {
-      case 'PENDING':
-        return ImageScanStatus.pending;
-      case 'SCANNING':
-        return ImageScanStatus.scanning;
-      case 'COLLECTING':
-        return ImageScanStatus.collecting;
-      case 'COMPLETED':
-        return ImageScanStatus.completed;
-      case 'ABANDONED':
-        return ImageScanStatus.abandoned;
-      case 'FAILED':
-        return ImageScanStatus.failed;
-      case 'TIMED_OUT':
-        return ImageScanStatus.timedOut;
-    }
-    throw Exception('$this is not known in enum ImageScanStatus');
-  }
+  const ImageScanStatus(this.value);
+
+  static ImageScanStatus fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum ImageScanStatus'));
 }
 
 /// Contains settings for Image Builder image resource and container image
@@ -7265,41 +7119,19 @@ class ImageScanningConfiguration {
 }
 
 enum ImageSource {
-  amazonManaged,
-  awsMarketplace,
-  imported,
-  custom,
-}
+  amazonManaged('AMAZON_MANAGED'),
+  awsMarketplace('AWS_MARKETPLACE'),
+  imported('IMPORTED'),
+  custom('CUSTOM'),
+  ;
 
-extension ImageSourceValueExtension on ImageSource {
-  String toValue() {
-    switch (this) {
-      case ImageSource.amazonManaged:
-        return 'AMAZON_MANAGED';
-      case ImageSource.awsMarketplace:
-        return 'AWS_MARKETPLACE';
-      case ImageSource.imported:
-        return 'IMPORTED';
-      case ImageSource.custom:
-        return 'CUSTOM';
-    }
-  }
-}
+  final String value;
 
-extension ImageSourceFromString on String {
-  ImageSource toImageSource() {
-    switch (this) {
-      case 'AMAZON_MANAGED':
-        return ImageSource.amazonManaged;
-      case 'AWS_MARKETPLACE':
-        return ImageSource.awsMarketplace;
-      case 'IMPORTED':
-        return ImageSource.imported;
-      case 'CUSTOM':
-        return ImageSource.custom;
-    }
-    throw Exception('$this is not known in enum ImageSource');
-  }
+  const ImageSource(this.value);
+
+  static ImageSource fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum ImageSource'));
 }
 
 /// Image status and the reason for that status.
@@ -7318,7 +7150,7 @@ class ImageState {
   factory ImageState.fromJson(Map<String, dynamic> json) {
     return ImageState(
       reason: json['reason'] as String?,
-      status: (json['status'] as String?)?.toImageStatus(),
+      status: (json['status'] as String?)?.let(ImageStatus.fromString),
     );
   }
 
@@ -7327,82 +7159,32 @@ class ImageState {
     final status = this.status;
     return {
       if (reason != null) 'reason': reason,
-      if (status != null) 'status': status.toValue(),
+      if (status != null) 'status': status.value,
     };
   }
 }
 
 enum ImageStatus {
-  pending,
-  creating,
-  building,
-  testing,
-  distributing,
-  integrating,
-  available,
-  cancelled,
-  failed,
-  deprecated,
-  deleted,
-}
+  pending('PENDING'),
+  creating('CREATING'),
+  building('BUILDING'),
+  testing('TESTING'),
+  distributing('DISTRIBUTING'),
+  integrating('INTEGRATING'),
+  available('AVAILABLE'),
+  cancelled('CANCELLED'),
+  failed('FAILED'),
+  deprecated('DEPRECATED'),
+  deleted('DELETED'),
+  ;
 
-extension ImageStatusValueExtension on ImageStatus {
-  String toValue() {
-    switch (this) {
-      case ImageStatus.pending:
-        return 'PENDING';
-      case ImageStatus.creating:
-        return 'CREATING';
-      case ImageStatus.building:
-        return 'BUILDING';
-      case ImageStatus.testing:
-        return 'TESTING';
-      case ImageStatus.distributing:
-        return 'DISTRIBUTING';
-      case ImageStatus.integrating:
-        return 'INTEGRATING';
-      case ImageStatus.available:
-        return 'AVAILABLE';
-      case ImageStatus.cancelled:
-        return 'CANCELLED';
-      case ImageStatus.failed:
-        return 'FAILED';
-      case ImageStatus.deprecated:
-        return 'DEPRECATED';
-      case ImageStatus.deleted:
-        return 'DELETED';
-    }
-  }
-}
+  final String value;
 
-extension ImageStatusFromString on String {
-  ImageStatus toImageStatus() {
-    switch (this) {
-      case 'PENDING':
-        return ImageStatus.pending;
-      case 'CREATING':
-        return ImageStatus.creating;
-      case 'BUILDING':
-        return ImageStatus.building;
-      case 'TESTING':
-        return ImageStatus.testing;
-      case 'DISTRIBUTING':
-        return ImageStatus.distributing;
-      case 'INTEGRATING':
-        return ImageStatus.integrating;
-      case 'AVAILABLE':
-        return ImageStatus.available;
-      case 'CANCELLED':
-        return ImageStatus.cancelled;
-      case 'FAILED':
-        return ImageStatus.failed;
-      case 'DEPRECATED':
-        return ImageStatus.deprecated;
-      case 'DELETED':
-        return ImageStatus.deleted;
-    }
-    throw Exception('$this is not known in enum ImageStatus');
-  }
+  const ImageStatus(this.value);
+
+  static ImageStatus fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum ImageStatus'));
 }
 
 /// An image summary.
@@ -7481,9 +7263,10 @@ class ImageSummary {
   factory ImageSummary.fromJson(Map<String, dynamic> json) {
     return ImageSummary(
       arn: json['arn'] as String?,
-      buildType: (json['buildType'] as String?)?.toBuildType(),
+      buildType: (json['buildType'] as String?)?.let(BuildType.fromString),
       dateCreated: json['dateCreated'] as String?,
-      imageSource: (json['imageSource'] as String?)?.toImageSource(),
+      imageSource:
+          (json['imageSource'] as String?)?.let(ImageSource.fromString),
       name: json['name'] as String?,
       osVersion: json['osVersion'] as String?,
       outputResources: json['outputResources'] != null
@@ -7491,13 +7274,13 @@ class ImageSummary {
               json['outputResources'] as Map<String, dynamic>)
           : null,
       owner: json['owner'] as String?,
-      platform: (json['platform'] as String?)?.toPlatform(),
+      platform: (json['platform'] as String?)?.let(Platform.fromString),
       state: json['state'] != null
           ? ImageState.fromJson(json['state'] as Map<String, dynamic>)
           : null,
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
-      type: (json['type'] as String?)?.toImageType(),
+      type: (json['type'] as String?)?.let(ImageType.fromString),
       version: json['version'] as String?,
     );
   }
@@ -7518,17 +7301,17 @@ class ImageSummary {
     final version = this.version;
     return {
       if (arn != null) 'arn': arn,
-      if (buildType != null) 'buildType': buildType.toValue(),
+      if (buildType != null) 'buildType': buildType.value,
       if (dateCreated != null) 'dateCreated': dateCreated,
-      if (imageSource != null) 'imageSource': imageSource.toValue(),
+      if (imageSource != null) 'imageSource': imageSource.value,
       if (name != null) 'name': name,
       if (osVersion != null) 'osVersion': osVersion,
       if (outputResources != null) 'outputResources': outputResources,
       if (owner != null) 'owner': owner,
-      if (platform != null) 'platform': platform.toValue(),
+      if (platform != null) 'platform': platform.value,
       if (state != null) 'state': state,
       if (tags != null) 'tags': tags,
-      if (type != null) 'type': type.toValue(),
+      if (type != null) 'type': type.value,
       if (version != null) 'version': version,
     };
   }
@@ -7572,31 +7355,17 @@ class ImageTestsConfiguration {
 }
 
 enum ImageType {
-  ami,
-  docker,
-}
+  ami('AMI'),
+  docker('DOCKER'),
+  ;
 
-extension ImageTypeValueExtension on ImageType {
-  String toValue() {
-    switch (this) {
-      case ImageType.ami:
-        return 'AMI';
-      case ImageType.docker:
-        return 'DOCKER';
-    }
-  }
-}
+  final String value;
 
-extension ImageTypeFromString on String {
-  ImageType toImageType() {
-    switch (this) {
-      case 'AMI':
-        return ImageType.ami;
-      case 'DOCKER':
-        return ImageType.docker;
-    }
-    throw Exception('$this is not known in enum ImageType');
-  }
+  const ImageType(this.value);
+
+  static ImageType fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum ImageType'));
 }
 
 /// The defining characteristics of a specific version of an Image Builder
@@ -7705,14 +7474,15 @@ class ImageVersion {
   factory ImageVersion.fromJson(Map<String, dynamic> json) {
     return ImageVersion(
       arn: json['arn'] as String?,
-      buildType: (json['buildType'] as String?)?.toBuildType(),
+      buildType: (json['buildType'] as String?)?.let(BuildType.fromString),
       dateCreated: json['dateCreated'] as String?,
-      imageSource: (json['imageSource'] as String?)?.toImageSource(),
+      imageSource:
+          (json['imageSource'] as String?)?.let(ImageSource.fromString),
       name: json['name'] as String?,
       osVersion: json['osVersion'] as String?,
       owner: json['owner'] as String?,
-      platform: (json['platform'] as String?)?.toPlatform(),
-      type: (json['type'] as String?)?.toImageType(),
+      platform: (json['platform'] as String?)?.let(Platform.fromString),
+      type: (json['type'] as String?)?.let(ImageType.fromString),
       version: json['version'] as String?,
     );
   }
@@ -7730,14 +7500,14 @@ class ImageVersion {
     final version = this.version;
     return {
       if (arn != null) 'arn': arn,
-      if (buildType != null) 'buildType': buildType.toValue(),
+      if (buildType != null) 'buildType': buildType.value,
       if (dateCreated != null) 'dateCreated': dateCreated,
-      if (imageSource != null) 'imageSource': imageSource.toValue(),
+      if (imageSource != null) 'imageSource': imageSource.value,
       if (name != null) 'name': name,
       if (osVersion != null) 'osVersion': osVersion,
       if (owner != null) 'owner': owner,
-      if (platform != null) 'platform': platform.toValue(),
-      if (type != null) 'type': type.toValue(),
+      if (platform != null) 'platform': platform.value,
+      if (type != null) 'type': type.value,
       if (version != null) 'version': version,
     };
   }
@@ -9173,41 +8943,19 @@ class OutputResources {
 }
 
 enum Ownership {
-  self,
-  shared,
-  amazon,
-  thirdParty,
-}
+  self('Self'),
+  shared('Shared'),
+  amazon('Amazon'),
+  thirdParty('ThirdParty'),
+  ;
 
-extension OwnershipValueExtension on Ownership {
-  String toValue() {
-    switch (this) {
-      case Ownership.self:
-        return 'Self';
-      case Ownership.shared:
-        return 'Shared';
-      case Ownership.amazon:
-        return 'Amazon';
-      case Ownership.thirdParty:
-        return 'ThirdParty';
-    }
-  }
-}
+  final String value;
 
-extension OwnershipFromString on String {
-  Ownership toOwnership() {
-    switch (this) {
-      case 'Self':
-        return Ownership.self;
-      case 'Shared':
-        return Ownership.shared;
-      case 'Amazon':
-        return Ownership.amazon;
-      case 'ThirdParty':
-        return Ownership.thirdParty;
-    }
-    throw Exception('$this is not known in enum Ownership');
-  }
+  const Ownership(this.value);
+
+  static Ownership fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum Ownership'));
 }
 
 /// Information about package vulnerability findings.
@@ -9316,91 +9064,48 @@ class PackageVulnerabilityDetails {
 }
 
 enum PipelineExecutionStartCondition {
-  expressionMatchOnly,
-  expressionMatchAndDependencyUpdatesAvailable,
-}
+  expressionMatchOnly('EXPRESSION_MATCH_ONLY'),
+  expressionMatchAndDependencyUpdatesAvailable(
+      'EXPRESSION_MATCH_AND_DEPENDENCY_UPDATES_AVAILABLE'),
+  ;
 
-extension PipelineExecutionStartConditionValueExtension
-    on PipelineExecutionStartCondition {
-  String toValue() {
-    switch (this) {
-      case PipelineExecutionStartCondition.expressionMatchOnly:
-        return 'EXPRESSION_MATCH_ONLY';
-      case PipelineExecutionStartCondition
-            .expressionMatchAndDependencyUpdatesAvailable:
-        return 'EXPRESSION_MATCH_AND_DEPENDENCY_UPDATES_AVAILABLE';
-    }
-  }
-}
+  final String value;
 
-extension PipelineExecutionStartConditionFromString on String {
-  PipelineExecutionStartCondition toPipelineExecutionStartCondition() {
-    switch (this) {
-      case 'EXPRESSION_MATCH_ONLY':
-        return PipelineExecutionStartCondition.expressionMatchOnly;
-      case 'EXPRESSION_MATCH_AND_DEPENDENCY_UPDATES_AVAILABLE':
-        return PipelineExecutionStartCondition
-            .expressionMatchAndDependencyUpdatesAvailable;
-    }
-    throw Exception(
-        '$this is not known in enum PipelineExecutionStartCondition');
-  }
+  const PipelineExecutionStartCondition(this.value);
+
+  static PipelineExecutionStartCondition fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum PipelineExecutionStartCondition'));
 }
 
 enum PipelineStatus {
-  disabled,
-  enabled,
-}
+  disabled('DISABLED'),
+  enabled('ENABLED'),
+  ;
 
-extension PipelineStatusValueExtension on PipelineStatus {
-  String toValue() {
-    switch (this) {
-      case PipelineStatus.disabled:
-        return 'DISABLED';
-      case PipelineStatus.enabled:
-        return 'ENABLED';
-    }
-  }
-}
+  final String value;
 
-extension PipelineStatusFromString on String {
-  PipelineStatus toPipelineStatus() {
-    switch (this) {
-      case 'DISABLED':
-        return PipelineStatus.disabled;
-      case 'ENABLED':
-        return PipelineStatus.enabled;
-    }
-    throw Exception('$this is not known in enum PipelineStatus');
-  }
+  const PipelineStatus(this.value);
+
+  static PipelineStatus fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum PipelineStatus'));
 }
 
 enum Platform {
-  windows,
-  linux,
-}
+  windows('Windows'),
+  linux('Linux'),
+  ;
 
-extension PlatformValueExtension on Platform {
-  String toValue() {
-    switch (this) {
-      case Platform.windows:
-        return 'Windows';
-      case Platform.linux:
-        return 'Linux';
-    }
-  }
-}
+  final String value;
 
-extension PlatformFromString on String {
-  Platform toPlatform() {
-    switch (this) {
-      case 'Windows':
-        return Platform.windows;
-      case 'Linux':
-        return Platform.linux;
-    }
-    throw Exception('$this is not known in enum Platform');
-  }
+  const Platform(this.value);
+
+  static Platform fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum Platform'));
 }
 
 class PutComponentPolicyResponse {
@@ -9621,7 +9326,8 @@ class S3ExportConfiguration {
 
   factory S3ExportConfiguration.fromJson(Map<String, dynamic> json) {
     return S3ExportConfiguration(
-      diskImageFormat: (json['diskImageFormat'] as String).toDiskImageFormat(),
+      diskImageFormat:
+          DiskImageFormat.fromString((json['diskImageFormat'] as String)),
       roleName: json['roleName'] as String,
       s3Bucket: json['s3Bucket'] as String,
       s3Prefix: json['s3Prefix'] as String?,
@@ -9634,7 +9340,7 @@ class S3ExportConfiguration {
     final s3Bucket = this.s3Bucket;
     final s3Prefix = this.s3Prefix;
     return {
-      'diskImageFormat': diskImageFormat.toValue(),
+      'diskImageFormat': diskImageFormat.value,
       'roleName': roleName,
       's3Bucket': s3Bucket,
       if (s3Prefix != null) 's3Prefix': s3Prefix,
@@ -9712,7 +9418,7 @@ class Schedule {
     return Schedule(
       pipelineExecutionStartCondition:
           (json['pipelineExecutionStartCondition'] as String?)
-              ?.toPipelineExecutionStartCondition(),
+              ?.let(PipelineExecutionStartCondition.fromString),
       scheduleExpression: json['scheduleExpression'] as String?,
       timezone: json['timezone'] as String?,
     );
@@ -9726,7 +9432,7 @@ class Schedule {
     return {
       if (pipelineExecutionStartCondition != null)
         'pipelineExecutionStartCondition':
-            pipelineExecutionStartCondition.toValue(),
+            pipelineExecutionStartCondition.value,
       if (scheduleExpression != null) 'scheduleExpression': scheduleExpression,
       if (timezone != null) 'timezone': timezone,
     };
@@ -9874,7 +9580,8 @@ class TargetContainerRepository {
   factory TargetContainerRepository.fromJson(Map<String, dynamic> json) {
     return TargetContainerRepository(
       repositoryName: json['repositoryName'] as String,
-      service: (json['service'] as String).toContainerRepositoryService(),
+      service:
+          ContainerRepositoryService.fromString((json['service'] as String)),
     );
   }
 
@@ -9883,7 +9590,7 @@ class TargetContainerRepository {
     final service = this.service;
     return {
       'repositoryName': repositoryName,
-      'service': service.toValue(),
+      'service': service.value,
     };
   }
 }
@@ -10198,12 +9905,13 @@ class WorkflowExecutionMetadata {
       endTime: json['endTime'] as String?,
       message: json['message'] as String?,
       startTime: json['startTime'] as String?,
-      status: (json['status'] as String?)?.toWorkflowExecutionStatus(),
+      status:
+          (json['status'] as String?)?.let(WorkflowExecutionStatus.fromString),
       totalStepCount: json['totalStepCount'] as int?,
       totalStepsFailed: json['totalStepsFailed'] as int?,
       totalStepsSkipped: json['totalStepsSkipped'] as int?,
       totalStepsSucceeded: json['totalStepsSucceeded'] as int?,
-      type: (json['type'] as String?)?.toWorkflowType(),
+      type: (json['type'] as String?)?.let(WorkflowType.fromString),
       workflowBuildVersionArn: json['workflowBuildVersionArn'] as String?,
       workflowExecutionId: json['workflowExecutionId'] as String?,
     );
@@ -10225,13 +9933,13 @@ class WorkflowExecutionMetadata {
       if (endTime != null) 'endTime': endTime,
       if (message != null) 'message': message,
       if (startTime != null) 'startTime': startTime,
-      if (status != null) 'status': status.toValue(),
+      if (status != null) 'status': status.value,
       if (totalStepCount != null) 'totalStepCount': totalStepCount,
       if (totalStepsFailed != null) 'totalStepsFailed': totalStepsFailed,
       if (totalStepsSkipped != null) 'totalStepsSkipped': totalStepsSkipped,
       if (totalStepsSucceeded != null)
         'totalStepsSucceeded': totalStepsSucceeded,
-      if (type != null) 'type': type.toValue(),
+      if (type != null) 'type': type.value,
       if (workflowBuildVersionArn != null)
         'workflowBuildVersionArn': workflowBuildVersionArn,
       if (workflowExecutionId != null)
@@ -10241,140 +9949,58 @@ class WorkflowExecutionMetadata {
 }
 
 enum WorkflowExecutionStatus {
-  pending,
-  skipped,
-  running,
-  completed,
-  failed,
-  rollbackInProgress,
-  rollbackCompleted,
-}
+  pending('PENDING'),
+  skipped('SKIPPED'),
+  running('RUNNING'),
+  completed('COMPLETED'),
+  failed('FAILED'),
+  rollbackInProgress('ROLLBACK_IN_PROGRESS'),
+  rollbackCompleted('ROLLBACK_COMPLETED'),
+  ;
 
-extension WorkflowExecutionStatusValueExtension on WorkflowExecutionStatus {
-  String toValue() {
-    switch (this) {
-      case WorkflowExecutionStatus.pending:
-        return 'PENDING';
-      case WorkflowExecutionStatus.skipped:
-        return 'SKIPPED';
-      case WorkflowExecutionStatus.running:
-        return 'RUNNING';
-      case WorkflowExecutionStatus.completed:
-        return 'COMPLETED';
-      case WorkflowExecutionStatus.failed:
-        return 'FAILED';
-      case WorkflowExecutionStatus.rollbackInProgress:
-        return 'ROLLBACK_IN_PROGRESS';
-      case WorkflowExecutionStatus.rollbackCompleted:
-        return 'ROLLBACK_COMPLETED';
-    }
-  }
-}
+  final String value;
 
-extension WorkflowExecutionStatusFromString on String {
-  WorkflowExecutionStatus toWorkflowExecutionStatus() {
-    switch (this) {
-      case 'PENDING':
-        return WorkflowExecutionStatus.pending;
-      case 'SKIPPED':
-        return WorkflowExecutionStatus.skipped;
-      case 'RUNNING':
-        return WorkflowExecutionStatus.running;
-      case 'COMPLETED':
-        return WorkflowExecutionStatus.completed;
-      case 'FAILED':
-        return WorkflowExecutionStatus.failed;
-      case 'ROLLBACK_IN_PROGRESS':
-        return WorkflowExecutionStatus.rollbackInProgress;
-      case 'ROLLBACK_COMPLETED':
-        return WorkflowExecutionStatus.rollbackCompleted;
-    }
-    throw Exception('$this is not known in enum WorkflowExecutionStatus');
-  }
+  const WorkflowExecutionStatus(this.value);
+
+  static WorkflowExecutionStatus fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum WorkflowExecutionStatus'));
 }
 
 enum WorkflowStepExecutionRollbackStatus {
-  running,
-  completed,
-  skipped,
-  failed,
-}
+  running('RUNNING'),
+  completed('COMPLETED'),
+  skipped('SKIPPED'),
+  failed('FAILED'),
+  ;
 
-extension WorkflowStepExecutionRollbackStatusValueExtension
-    on WorkflowStepExecutionRollbackStatus {
-  String toValue() {
-    switch (this) {
-      case WorkflowStepExecutionRollbackStatus.running:
-        return 'RUNNING';
-      case WorkflowStepExecutionRollbackStatus.completed:
-        return 'COMPLETED';
-      case WorkflowStepExecutionRollbackStatus.skipped:
-        return 'SKIPPED';
-      case WorkflowStepExecutionRollbackStatus.failed:
-        return 'FAILED';
-    }
-  }
-}
+  final String value;
 
-extension WorkflowStepExecutionRollbackStatusFromString on String {
-  WorkflowStepExecutionRollbackStatus toWorkflowStepExecutionRollbackStatus() {
-    switch (this) {
-      case 'RUNNING':
-        return WorkflowStepExecutionRollbackStatus.running;
-      case 'COMPLETED':
-        return WorkflowStepExecutionRollbackStatus.completed;
-      case 'SKIPPED':
-        return WorkflowStepExecutionRollbackStatus.skipped;
-      case 'FAILED':
-        return WorkflowStepExecutionRollbackStatus.failed;
-    }
-    throw Exception(
-        '$this is not known in enum WorkflowStepExecutionRollbackStatus');
-  }
+  const WorkflowStepExecutionRollbackStatus(this.value);
+
+  static WorkflowStepExecutionRollbackStatus fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum WorkflowStepExecutionRollbackStatus'));
 }
 
 enum WorkflowStepExecutionStatus {
-  pending,
-  skipped,
-  running,
-  completed,
-  failed,
-}
+  pending('PENDING'),
+  skipped('SKIPPED'),
+  running('RUNNING'),
+  completed('COMPLETED'),
+  failed('FAILED'),
+  ;
 
-extension WorkflowStepExecutionStatusValueExtension
-    on WorkflowStepExecutionStatus {
-  String toValue() {
-    switch (this) {
-      case WorkflowStepExecutionStatus.pending:
-        return 'PENDING';
-      case WorkflowStepExecutionStatus.skipped:
-        return 'SKIPPED';
-      case WorkflowStepExecutionStatus.running:
-        return 'RUNNING';
-      case WorkflowStepExecutionStatus.completed:
-        return 'COMPLETED';
-      case WorkflowStepExecutionStatus.failed:
-        return 'FAILED';
-    }
-  }
-}
+  final String value;
 
-extension WorkflowStepExecutionStatusFromString on String {
-  WorkflowStepExecutionStatus toWorkflowStepExecutionStatus() {
-    switch (this) {
-      case 'PENDING':
-        return WorkflowStepExecutionStatus.pending;
-      case 'SKIPPED':
-        return WorkflowStepExecutionStatus.skipped;
-      case 'RUNNING':
-        return WorkflowStepExecutionStatus.running;
-      case 'COMPLETED':
-        return WorkflowStepExecutionStatus.completed;
-      case 'FAILED':
-        return WorkflowStepExecutionStatus.failed;
-    }
-    throw Exception('$this is not known in enum WorkflowStepExecutionStatus');
-  }
+  const WorkflowStepExecutionStatus(this.value);
+
+  static WorkflowStepExecutionStatus fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum WorkflowStepExecutionStatus'));
 }
 
 /// Runtime details and status for the workflow step.
@@ -10437,9 +10063,10 @@ class WorkflowStepMetadata {
       name: json['name'] as String?,
       outputs: json['outputs'] as String?,
       rollbackStatus: (json['rollbackStatus'] as String?)
-          ?.toWorkflowStepExecutionRollbackStatus(),
+          ?.let(WorkflowStepExecutionRollbackStatus.fromString),
       startTime: json['startTime'] as String?,
-      status: (json['status'] as String?)?.toWorkflowStepExecutionStatus(),
+      status: (json['status'] as String?)
+          ?.let(WorkflowStepExecutionStatus.fromString),
       stepExecutionId: json['stepExecutionId'] as String?,
     );
   }
@@ -10464,45 +10091,28 @@ class WorkflowStepMetadata {
       if (message != null) 'message': message,
       if (name != null) 'name': name,
       if (outputs != null) 'outputs': outputs,
-      if (rollbackStatus != null) 'rollbackStatus': rollbackStatus.toValue(),
+      if (rollbackStatus != null) 'rollbackStatus': rollbackStatus.value,
       if (startTime != null) 'startTime': startTime,
-      if (status != null) 'status': status.toValue(),
+      if (status != null) 'status': status.value,
       if (stepExecutionId != null) 'stepExecutionId': stepExecutionId,
     };
   }
 }
 
 enum WorkflowType {
-  build,
-  test,
-  distribution,
-}
+  build('BUILD'),
+  test('TEST'),
+  distribution('DISTRIBUTION'),
+  ;
 
-extension WorkflowTypeValueExtension on WorkflowType {
-  String toValue() {
-    switch (this) {
-      case WorkflowType.build:
-        return 'BUILD';
-      case WorkflowType.test:
-        return 'TEST';
-      case WorkflowType.distribution:
-        return 'DISTRIBUTION';
-    }
-  }
-}
+  final String value;
 
-extension WorkflowTypeFromString on String {
-  WorkflowType toWorkflowType() {
-    switch (this) {
-      case 'BUILD':
-        return WorkflowType.build;
-      case 'TEST':
-        return WorkflowType.test;
-      case 'DISTRIBUTION':
-        return WorkflowType.distribution;
-    }
-    throw Exception('$this is not known in enum WorkflowType');
-  }
+  const WorkflowType(this.value);
+
+  static WorkflowType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum WorkflowType'));
 }
 
 class CallRateLimitExceededException extends _s.GenericAwsException {

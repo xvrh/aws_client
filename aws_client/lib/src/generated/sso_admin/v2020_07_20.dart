@@ -255,9 +255,9 @@ class SsoAdmin {
         'InstanceArn': instanceArn,
         'PermissionSetArn': permissionSetArn,
         'PrincipalId': principalId,
-        'PrincipalType': principalType.toValue(),
+        'PrincipalType': principalType.value,
         'TargetId': targetId,
-        'TargetType': targetType.toValue(),
+        'TargetType': targetType.value,
       },
     );
 
@@ -452,9 +452,9 @@ class SsoAdmin {
         'InstanceArn': instanceArn,
         'PermissionSetArn': permissionSetArn,
         'PrincipalId': principalId,
-        'PrincipalType': principalType.toValue(),
+        'PrincipalType': principalType.value,
         'TargetId': targetId,
-        'TargetType': targetType.toValue(),
+        'TargetType': targetType.value,
       },
     );
 
@@ -1241,7 +1241,7 @@ class SsoAdmin {
         if (maxResults != null) 'MaxResults': maxResults,
         if (nextToken != null) 'NextToken': nextToken,
         if (provisioningStatus != null)
-          'ProvisioningStatus': provisioningStatus.toValue(),
+          'ProvisioningStatus': provisioningStatus.value,
       },
     );
 
@@ -1580,7 +1580,7 @@ class SsoAdmin {
         if (maxResults != null) 'MaxResults': maxResults,
         if (nextToken != null) 'NextToken': nextToken,
         if (provisioningStatus != null)
-          'ProvisioningStatus': provisioningStatus.toValue(),
+          'ProvisioningStatus': provisioningStatus.value,
       },
     );
 
@@ -1679,7 +1679,7 @@ class SsoAdmin {
       payload: {
         'InstanceArn': instanceArn,
         'PermissionSetArn': permissionSetArn,
-        'TargetType': targetType.toValue(),
+        'TargetType': targetType.value,
         if (targetId != null) 'TargetId': targetId,
       },
     );
@@ -2081,7 +2081,8 @@ class AccountAssignment {
       accountId: json['AccountId'] as String?,
       permissionSetArn: json['PermissionSetArn'] as String?,
       principalId: json['PrincipalId'] as String?,
-      principalType: (json['PrincipalType'] as String?)?.toPrincipalType(),
+      principalType:
+          (json['PrincipalType'] as String?)?.let(PrincipalType.fromString),
     );
   }
 
@@ -2094,7 +2095,7 @@ class AccountAssignment {
       if (accountId != null) 'AccountId': accountId,
       if (permissionSetArn != null) 'PermissionSetArn': permissionSetArn,
       if (principalId != null) 'PrincipalId': principalId,
-      if (principalType != null) 'PrincipalType': principalType.toValue(),
+      if (principalType != null) 'PrincipalType': principalType.value,
     };
   }
 }
@@ -2156,11 +2157,12 @@ class AccountAssignmentOperationStatus {
       failureReason: json['FailureReason'] as String?,
       permissionSetArn: json['PermissionSetArn'] as String?,
       principalId: json['PrincipalId'] as String?,
-      principalType: (json['PrincipalType'] as String?)?.toPrincipalType(),
+      principalType:
+          (json['PrincipalType'] as String?)?.let(PrincipalType.fromString),
       requestId: json['RequestId'] as String?,
-      status: (json['Status'] as String?)?.toStatusValues(),
+      status: (json['Status'] as String?)?.let(StatusValues.fromString),
       targetId: json['TargetId'] as String?,
-      targetType: (json['TargetType'] as String?)?.toTargetType(),
+      targetType: (json['TargetType'] as String?)?.let(TargetType.fromString),
     );
   }
 
@@ -2179,11 +2181,11 @@ class AccountAssignmentOperationStatus {
       if (failureReason != null) 'FailureReason': failureReason,
       if (permissionSetArn != null) 'PermissionSetArn': permissionSetArn,
       if (principalId != null) 'PrincipalId': principalId,
-      if (principalType != null) 'PrincipalType': principalType.toValue(),
+      if (principalType != null) 'PrincipalType': principalType.value,
       if (requestId != null) 'RequestId': requestId,
-      if (status != null) 'Status': status.toValue(),
+      if (status != null) 'Status': status.value,
       if (targetId != null) 'TargetId': targetId,
-      if (targetType != null) 'TargetType': targetType.toValue(),
+      if (targetType != null) 'TargetType': targetType.value,
     };
   }
 }
@@ -2211,7 +2213,7 @@ class AccountAssignmentOperationStatusMetadata {
     return AccountAssignmentOperationStatusMetadata(
       createdDate: timeStampFromJson(json['CreatedDate']),
       requestId: json['RequestId'] as String?,
-      status: (json['Status'] as String?)?.toStatusValues(),
+      status: (json['Status'] as String?)?.let(StatusValues.fromString),
     );
   }
 
@@ -2222,7 +2224,7 @@ class AccountAssignmentOperationStatusMetadata {
     return {
       if (createdDate != null) 'CreatedDate': unixTimestampToJson(createdDate),
       if (requestId != null) 'RequestId': requestId,
-      if (status != null) 'Status': status.toValue(),
+      if (status != null) 'Status': status.value,
     };
   }
 }
@@ -2557,7 +2559,7 @@ class DescribeInstanceAccessControlAttributeConfigurationResponse {
                       as Map<String, dynamic>)
               : null,
       status: (json['Status'] as String?)
-          ?.toInstanceAccessControlAttributeConfigurationStatus(),
+          ?.let(InstanceAccessControlAttributeConfigurationStatus.fromString),
       statusReason: json['StatusReason'] as String?,
     );
   }
@@ -2571,7 +2573,7 @@ class DescribeInstanceAccessControlAttributeConfigurationResponse {
       if (instanceAccessControlAttributeConfiguration != null)
         'InstanceAccessControlAttributeConfiguration':
             instanceAccessControlAttributeConfiguration,
-      if (status != null) 'Status': status.toValue(),
+      if (status != null) 'Status': status.value,
       if (statusReason != null) 'StatusReason': statusReason,
     };
   }
@@ -2739,41 +2741,20 @@ class InstanceAccessControlAttributeConfiguration {
 }
 
 enum InstanceAccessControlAttributeConfigurationStatus {
-  enabled,
-  creationInProgress,
-  creationFailed,
-}
+  enabled('ENABLED'),
+  creationInProgress('CREATION_IN_PROGRESS'),
+  creationFailed('CREATION_FAILED'),
+  ;
 
-extension InstanceAccessControlAttributeConfigurationStatusValueExtension
-    on InstanceAccessControlAttributeConfigurationStatus {
-  String toValue() {
-    switch (this) {
-      case InstanceAccessControlAttributeConfigurationStatus.enabled:
-        return 'ENABLED';
-      case InstanceAccessControlAttributeConfigurationStatus.creationInProgress:
-        return 'CREATION_IN_PROGRESS';
-      case InstanceAccessControlAttributeConfigurationStatus.creationFailed:
-        return 'CREATION_FAILED';
-    }
-  }
-}
+  final String value;
 
-extension InstanceAccessControlAttributeConfigurationStatusFromString
-    on String {
-  InstanceAccessControlAttributeConfigurationStatus
-      toInstanceAccessControlAttributeConfigurationStatus() {
-    switch (this) {
-      case 'ENABLED':
-        return InstanceAccessControlAttributeConfigurationStatus.enabled;
-      case 'CREATION_IN_PROGRESS':
-        return InstanceAccessControlAttributeConfigurationStatus
-            .creationInProgress;
-      case 'CREATION_FAILED':
-        return InstanceAccessControlAttributeConfigurationStatus.creationFailed;
-    }
-    throw Exception(
-        '$this is not known in enum InstanceAccessControlAttributeConfigurationStatus');
-  }
+  const InstanceAccessControlAttributeConfigurationStatus(this.value);
+
+  static InstanceAccessControlAttributeConfigurationStatus fromString(
+          String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum InstanceAccessControlAttributeConfigurationStatus'));
 }
 
 /// Provides information about the IAM Identity Center instance.
@@ -3213,7 +3194,7 @@ class OperationStatusFilter {
   Map<String, dynamic> toJson() {
     final status = this.status;
     return {
-      if (status != null) 'Status': status.toValue(),
+      if (status != null) 'Status': status.value,
     };
   }
 }
@@ -3322,7 +3303,7 @@ class PermissionSetProvisioningStatus {
       failureReason: json['FailureReason'] as String?,
       permissionSetArn: json['PermissionSetArn'] as String?,
       requestId: json['RequestId'] as String?,
-      status: (json['Status'] as String?)?.toStatusValues(),
+      status: (json['Status'] as String?)?.let(StatusValues.fromString),
     );
   }
 
@@ -3339,7 +3320,7 @@ class PermissionSetProvisioningStatus {
       if (failureReason != null) 'FailureReason': failureReason,
       if (permissionSetArn != null) 'PermissionSetArn': permissionSetArn,
       if (requestId != null) 'RequestId': requestId,
-      if (status != null) 'Status': status.toValue(),
+      if (status != null) 'Status': status.value,
     };
   }
 }
@@ -3367,7 +3348,7 @@ class PermissionSetProvisioningStatusMetadata {
     return PermissionSetProvisioningStatusMetadata(
       createdDate: timeStampFromJson(json['CreatedDate']),
       requestId: json['RequestId'] as String?,
-      status: (json['Status'] as String?)?.toStatusValues(),
+      status: (json['Status'] as String?)?.let(StatusValues.fromString),
     );
   }
 
@@ -3378,7 +3359,7 @@ class PermissionSetProvisioningStatusMetadata {
     return {
       if (createdDate != null) 'CreatedDate': unixTimestampToJson(createdDate),
       if (requestId != null) 'RequestId': requestId,
-      if (status != null) 'Status': status.toValue(),
+      if (status != null) 'Status': status.value,
     };
   }
 }
@@ -3437,31 +3418,18 @@ class PermissionsBoundary {
 }
 
 enum PrincipalType {
-  user,
-  group,
-}
+  user('USER'),
+  group('GROUP'),
+  ;
 
-extension PrincipalTypeValueExtension on PrincipalType {
-  String toValue() {
-    switch (this) {
-      case PrincipalType.user:
-        return 'USER';
-      case PrincipalType.group:
-        return 'GROUP';
-    }
-  }
-}
+  final String value;
 
-extension PrincipalTypeFromString on String {
-  PrincipalType toPrincipalType() {
-    switch (this) {
-      case 'USER':
-        return PrincipalType.user;
-      case 'GROUP':
-        return PrincipalType.group;
-    }
-    throw Exception('$this is not known in enum PrincipalType');
-  }
+  const PrincipalType(this.value);
+
+  static PrincipalType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum PrincipalType'));
 }
 
 class ProvisionPermissionSetResponse {
@@ -3494,59 +3462,33 @@ class ProvisionPermissionSetResponse {
 }
 
 enum ProvisionTargetType {
-  awsAccount,
-  allProvisionedAccounts,
-}
+  awsAccount('AWS_ACCOUNT'),
+  allProvisionedAccounts('ALL_PROVISIONED_ACCOUNTS'),
+  ;
 
-extension ProvisionTargetTypeValueExtension on ProvisionTargetType {
-  String toValue() {
-    switch (this) {
-      case ProvisionTargetType.awsAccount:
-        return 'AWS_ACCOUNT';
-      case ProvisionTargetType.allProvisionedAccounts:
-        return 'ALL_PROVISIONED_ACCOUNTS';
-    }
-  }
-}
+  final String value;
 
-extension ProvisionTargetTypeFromString on String {
-  ProvisionTargetType toProvisionTargetType() {
-    switch (this) {
-      case 'AWS_ACCOUNT':
-        return ProvisionTargetType.awsAccount;
-      case 'ALL_PROVISIONED_ACCOUNTS':
-        return ProvisionTargetType.allProvisionedAccounts;
-    }
-    throw Exception('$this is not known in enum ProvisionTargetType');
-  }
+  const ProvisionTargetType(this.value);
+
+  static ProvisionTargetType fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum ProvisionTargetType'));
 }
 
 enum ProvisioningStatus {
-  latestPermissionSetProvisioned,
-  latestPermissionSetNotProvisioned,
-}
+  latestPermissionSetProvisioned('LATEST_PERMISSION_SET_PROVISIONED'),
+  latestPermissionSetNotProvisioned('LATEST_PERMISSION_SET_NOT_PROVISIONED'),
+  ;
 
-extension ProvisioningStatusValueExtension on ProvisioningStatus {
-  String toValue() {
-    switch (this) {
-      case ProvisioningStatus.latestPermissionSetProvisioned:
-        return 'LATEST_PERMISSION_SET_PROVISIONED';
-      case ProvisioningStatus.latestPermissionSetNotProvisioned:
-        return 'LATEST_PERMISSION_SET_NOT_PROVISIONED';
-    }
-  }
-}
+  final String value;
 
-extension ProvisioningStatusFromString on String {
-  ProvisioningStatus toProvisioningStatus() {
-    switch (this) {
-      case 'LATEST_PERMISSION_SET_PROVISIONED':
-        return ProvisioningStatus.latestPermissionSetProvisioned;
-      case 'LATEST_PERMISSION_SET_NOT_PROVISIONED':
-        return ProvisioningStatus.latestPermissionSetNotProvisioned;
-    }
-    throw Exception('$this is not known in enum ProvisioningStatus');
-  }
+  const ProvisioningStatus(this.value);
+
+  static ProvisioningStatus fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum ProvisioningStatus'));
 }
 
 class PutInlinePolicyToPermissionSetResponse {
@@ -3576,36 +3518,19 @@ class PutPermissionsBoundaryToPermissionSetResponse {
 }
 
 enum StatusValues {
-  inProgress,
-  failed,
-  succeeded,
-}
+  inProgress('IN_PROGRESS'),
+  failed('FAILED'),
+  succeeded('SUCCEEDED'),
+  ;
 
-extension StatusValuesValueExtension on StatusValues {
-  String toValue() {
-    switch (this) {
-      case StatusValues.inProgress:
-        return 'IN_PROGRESS';
-      case StatusValues.failed:
-        return 'FAILED';
-      case StatusValues.succeeded:
-        return 'SUCCEEDED';
-    }
-  }
-}
+  final String value;
 
-extension StatusValuesFromString on String {
-  StatusValues toStatusValues() {
-    switch (this) {
-      case 'IN_PROGRESS':
-        return StatusValues.inProgress;
-      case 'FAILED':
-        return StatusValues.failed;
-      case 'SUCCEEDED':
-        return StatusValues.succeeded;
-    }
-    throw Exception('$this is not known in enum StatusValues');
-  }
+  const StatusValues(this.value);
+
+  static StatusValues fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum StatusValues'));
 }
 
 /// A set of key-value pairs that are used to manage the resource. Tags can only
@@ -3653,26 +3578,16 @@ class TagResourceResponse {
 }
 
 enum TargetType {
-  awsAccount,
-}
+  awsAccount('AWS_ACCOUNT'),
+  ;
 
-extension TargetTypeValueExtension on TargetType {
-  String toValue() {
-    switch (this) {
-      case TargetType.awsAccount:
-        return 'AWS_ACCOUNT';
-    }
-  }
-}
+  final String value;
 
-extension TargetTypeFromString on String {
-  TargetType toTargetType() {
-    switch (this) {
-      case 'AWS_ACCOUNT':
-        return TargetType.awsAccount;
-    }
-    throw Exception('$this is not known in enum TargetType');
-  }
+  const TargetType(this.value);
+
+  static TargetType fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum TargetType'));
 }
 
 class UntagResourceResponse {

@@ -169,7 +169,7 @@ class EventBridgeScheduler {
       if (scheduleExpressionTimezone != null)
         'ScheduleExpressionTimezone': scheduleExpressionTimezone,
       if (startDate != null) 'StartDate': unixTimestampToJson(startDate),
-      if (state != null) 'State': state.toValue(),
+      if (state != null) 'State': state.value,
     };
     final response = await _protocol.send(
       payload: $payload,
@@ -431,7 +431,7 @@ class EventBridgeScheduler {
       if (maxResults != null) 'MaxResults': [maxResults.toString()],
       if (namePrefix != null) 'NamePrefix': [namePrefix],
       if (nextToken != null) 'NextToken': [nextToken],
-      if (state != null) 'State': [state.toValue()],
+      if (state != null) 'State': [state.value],
     };
     final response = await _protocol.send(
       payload: null,
@@ -651,7 +651,7 @@ class EventBridgeScheduler {
       if (scheduleExpressionTimezone != null)
         'ScheduleExpressionTimezone': scheduleExpressionTimezone,
       if (startDate != null) 'StartDate': unixTimestampToJson(startDate),
-      if (state != null) 'State': state.toValue(),
+      if (state != null) 'State': state.value,
     };
     final response = await _protocol.send(
       payload: $payload,
@@ -664,31 +664,18 @@ class EventBridgeScheduler {
 }
 
 enum AssignPublicIp {
-  enabled,
-  disabled,
-}
+  enabled('ENABLED'),
+  disabled('DISABLED'),
+  ;
 
-extension AssignPublicIpValueExtension on AssignPublicIp {
-  String toValue() {
-    switch (this) {
-      case AssignPublicIp.enabled:
-        return 'ENABLED';
-      case AssignPublicIp.disabled:
-        return 'DISABLED';
-    }
-  }
-}
+  final String value;
 
-extension AssignPublicIpFromString on String {
-  AssignPublicIp toAssignPublicIp() {
-    switch (this) {
-      case 'ENABLED':
-        return AssignPublicIp.enabled;
-      case 'DISABLED':
-        return AssignPublicIp.disabled;
-    }
-    throw Exception('$this is not known in enum AssignPublicIp');
-  }
+  const AssignPublicIp(this.value);
+
+  static AssignPublicIp fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum AssignPublicIp'));
 }
 
 /// This structure specifies the VPC subnets and security groups for the task,
@@ -723,7 +710,8 @@ class AwsVpcConfiguration {
           .whereNotNull()
           .map((e) => e as String)
           .toList(),
-      assignPublicIp: (json['AssignPublicIp'] as String?)?.toAssignPublicIp(),
+      assignPublicIp:
+          (json['AssignPublicIp'] as String?)?.let(AssignPublicIp.fromString),
       securityGroups: (json['SecurityGroups'] as List?)
           ?.whereNotNull()
           .map((e) => e as String)
@@ -737,7 +725,7 @@ class AwsVpcConfiguration {
     final securityGroups = this.securityGroups;
     return {
       'Subnets': subnets,
-      if (assignPublicIp != null) 'AssignPublicIp': assignPublicIp.toValue(),
+      if (assignPublicIp != null) 'AssignPublicIp': assignPublicIp.value,
       if (securityGroups != null) 'SecurityGroups': securityGroups,
     };
   }
@@ -981,7 +969,7 @@ class EcsParameters {
       enableECSManagedTags: json['EnableECSManagedTags'] as bool?,
       enableExecuteCommand: json['EnableExecuteCommand'] as bool?,
       group: json['Group'] as String?,
-      launchType: (json['LaunchType'] as String?)?.toLaunchType(),
+      launchType: (json['LaunchType'] as String?)?.let(LaunchType.fromString),
       networkConfiguration: json['NetworkConfiguration'] != null
           ? NetworkConfiguration.fromJson(
               json['NetworkConfiguration'] as Map<String, dynamic>)
@@ -995,7 +983,8 @@ class EcsParameters {
           .map((e) => PlacementStrategy.fromJson(e as Map<String, dynamic>))
           .toList(),
       platformVersion: json['PlatformVersion'] as String?,
-      propagateTags: (json['PropagateTags'] as String?)?.toPropagateTags(),
+      propagateTags:
+          (json['PropagateTags'] as String?)?.let(PropagateTags.fromString),
       referenceId: json['ReferenceId'] as String?,
       tags: (json['Tags'] as List?)
           ?.whereNotNull()
@@ -1030,14 +1019,14 @@ class EcsParameters {
       if (enableExecuteCommand != null)
         'EnableExecuteCommand': enableExecuteCommand,
       if (group != null) 'Group': group,
-      if (launchType != null) 'LaunchType': launchType.toValue(),
+      if (launchType != null) 'LaunchType': launchType.value,
       if (networkConfiguration != null)
         'NetworkConfiguration': networkConfiguration,
       if (placementConstraints != null)
         'PlacementConstraints': placementConstraints,
       if (placementStrategy != null) 'PlacementStrategy': placementStrategy,
       if (platformVersion != null) 'PlatformVersion': platformVersion,
-      if (propagateTags != null) 'PropagateTags': propagateTags.toValue(),
+      if (propagateTags != null) 'PropagateTags': propagateTags.value,
       if (referenceId != null) 'ReferenceId': referenceId,
       if (tags != null) 'Tags': tags,
       if (taskCount != null) 'TaskCount': taskCount,
@@ -1094,7 +1083,7 @@ class FlexibleTimeWindow {
 
   factory FlexibleTimeWindow.fromJson(Map<String, dynamic> json) {
     return FlexibleTimeWindow(
-      mode: (json['Mode'] as String).toFlexibleTimeWindowMode(),
+      mode: FlexibleTimeWindowMode.fromString((json['Mode'] as String)),
       maximumWindowInMinutes: json['MaximumWindowInMinutes'] as int?,
     );
   }
@@ -1103,7 +1092,7 @@ class FlexibleTimeWindow {
     final mode = this.mode;
     final maximumWindowInMinutes = this.maximumWindowInMinutes;
     return {
-      'Mode': mode.toValue(),
+      'Mode': mode.value,
       if (maximumWindowInMinutes != null)
         'MaximumWindowInMinutes': maximumWindowInMinutes,
     };
@@ -1111,31 +1100,18 @@ class FlexibleTimeWindow {
 }
 
 enum FlexibleTimeWindowMode {
-  off,
-  flexible,
-}
+  off('OFF'),
+  flexible('FLEXIBLE'),
+  ;
 
-extension FlexibleTimeWindowModeValueExtension on FlexibleTimeWindowMode {
-  String toValue() {
-    switch (this) {
-      case FlexibleTimeWindowMode.off:
-        return 'OFF';
-      case FlexibleTimeWindowMode.flexible:
-        return 'FLEXIBLE';
-    }
-  }
-}
+  final String value;
 
-extension FlexibleTimeWindowModeFromString on String {
-  FlexibleTimeWindowMode toFlexibleTimeWindowMode() {
-    switch (this) {
-      case 'OFF':
-        return FlexibleTimeWindowMode.off;
-      case 'FLEXIBLE':
-        return FlexibleTimeWindowMode.flexible;
-    }
-    throw Exception('$this is not known in enum FlexibleTimeWindowMode');
-  }
+  const FlexibleTimeWindowMode(this.value);
+
+  static FlexibleTimeWindowMode fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum FlexibleTimeWindowMode'));
 }
 
 class GetScheduleGroupOutput {
@@ -1168,7 +1144,7 @@ class GetScheduleGroupOutput {
       creationDate: timeStampFromJson(json['CreationDate']),
       lastModificationDate: timeStampFromJson(json['LastModificationDate']),
       name: json['Name'] as String?,
-      state: (json['State'] as String?)?.toScheduleGroupState(),
+      state: (json['State'] as String?)?.let(ScheduleGroupState.fromString),
     );
   }
 
@@ -1185,7 +1161,7 @@ class GetScheduleGroupOutput {
       if (lastModificationDate != null)
         'LastModificationDate': unixTimestampToJson(lastModificationDate),
       if (name != null) 'Name': name,
-      if (state != null) 'State': state.toValue(),
+      if (state != null) 'State': state.value,
     };
   }
 }
@@ -1309,7 +1285,7 @@ class GetScheduleOutput {
       scheduleExpression: json['ScheduleExpression'] as String?,
       scheduleExpressionTimezone: json['ScheduleExpressionTimezone'] as String?,
       startDate: timeStampFromJson(json['StartDate']),
-      state: (json['State'] as String?)?.toScheduleState(),
+      state: (json['State'] as String?)?.let(ScheduleState.fromString),
       target: json['Target'] != null
           ? Target.fromJson(json['Target'] as Map<String, dynamic>)
           : null,
@@ -1347,7 +1323,7 @@ class GetScheduleOutput {
       if (scheduleExpressionTimezone != null)
         'ScheduleExpressionTimezone': scheduleExpressionTimezone,
       if (startDate != null) 'StartDate': unixTimestampToJson(startDate),
-      if (state != null) 'State': state.toValue(),
+      if (state != null) 'State': state.value,
       if (target != null) 'Target': target,
     };
   }
@@ -1383,36 +1359,18 @@ class KinesisParameters {
 }
 
 enum LaunchType {
-  ec2,
-  fargate,
-  external,
-}
+  ec2('EC2'),
+  fargate('FARGATE'),
+  external('EXTERNAL'),
+  ;
 
-extension LaunchTypeValueExtension on LaunchType {
-  String toValue() {
-    switch (this) {
-      case LaunchType.ec2:
-        return 'EC2';
-      case LaunchType.fargate:
-        return 'FARGATE';
-      case LaunchType.external:
-        return 'EXTERNAL';
-    }
-  }
-}
+  final String value;
 
-extension LaunchTypeFromString on String {
-  LaunchType toLaunchType() {
-    switch (this) {
-      case 'EC2':
-        return LaunchType.ec2;
-      case 'FARGATE':
-        return LaunchType.fargate;
-      case 'EXTERNAL':
-        return LaunchType.external;
-    }
-    throw Exception('$this is not known in enum LaunchType');
-  }
+  const LaunchType(this.value);
+
+  static LaunchType fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum LaunchType'));
 }
 
 class ListScheduleGroupsOutput {
@@ -1558,7 +1516,7 @@ class PlacementConstraint {
   factory PlacementConstraint.fromJson(Map<String, dynamic> json) {
     return PlacementConstraint(
       expression: json['expression'] as String?,
-      type: (json['type'] as String?)?.toPlacementConstraintType(),
+      type: (json['type'] as String?)?.let(PlacementConstraintType.fromString),
     );
   }
 
@@ -1567,37 +1525,24 @@ class PlacementConstraint {
     final type = this.type;
     return {
       if (expression != null) 'expression': expression,
-      if (type != null) 'type': type.toValue(),
+      if (type != null) 'type': type.value,
     };
   }
 }
 
 enum PlacementConstraintType {
-  distinctInstance,
-  memberOf,
-}
+  distinctInstance('distinctInstance'),
+  memberOf('memberOf'),
+  ;
 
-extension PlacementConstraintTypeValueExtension on PlacementConstraintType {
-  String toValue() {
-    switch (this) {
-      case PlacementConstraintType.distinctInstance:
-        return 'distinctInstance';
-      case PlacementConstraintType.memberOf:
-        return 'memberOf';
-    }
-  }
-}
+  final String value;
 
-extension PlacementConstraintTypeFromString on String {
-  PlacementConstraintType toPlacementConstraintType() {
-    switch (this) {
-      case 'distinctInstance':
-        return PlacementConstraintType.distinctInstance;
-      case 'memberOf':
-        return PlacementConstraintType.memberOf;
-    }
-    throw Exception('$this is not known in enum PlacementConstraintType');
-  }
+  const PlacementConstraintType(this.value);
+
+  static PlacementConstraintType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum PlacementConstraintType'));
 }
 
 /// The task placement strategy for a task or service.
@@ -1629,7 +1574,7 @@ class PlacementStrategy {
   factory PlacementStrategy.fromJson(Map<String, dynamic> json) {
     return PlacementStrategy(
       field: json['field'] as String?,
-      type: (json['type'] as String?)?.toPlacementStrategyType(),
+      type: (json['type'] as String?)?.let(PlacementStrategyType.fromString),
     );
   }
 
@@ -1638,65 +1583,39 @@ class PlacementStrategy {
     final type = this.type;
     return {
       if (field != null) 'field': field,
-      if (type != null) 'type': type.toValue(),
+      if (type != null) 'type': type.value,
     };
   }
 }
 
 enum PlacementStrategyType {
-  random,
-  spread,
-  binpack,
-}
+  random('random'),
+  spread('spread'),
+  binpack('binpack'),
+  ;
 
-extension PlacementStrategyTypeValueExtension on PlacementStrategyType {
-  String toValue() {
-    switch (this) {
-      case PlacementStrategyType.random:
-        return 'random';
-      case PlacementStrategyType.spread:
-        return 'spread';
-      case PlacementStrategyType.binpack:
-        return 'binpack';
-    }
-  }
-}
+  final String value;
 
-extension PlacementStrategyTypeFromString on String {
-  PlacementStrategyType toPlacementStrategyType() {
-    switch (this) {
-      case 'random':
-        return PlacementStrategyType.random;
-      case 'spread':
-        return PlacementStrategyType.spread;
-      case 'binpack':
-        return PlacementStrategyType.binpack;
-    }
-    throw Exception('$this is not known in enum PlacementStrategyType');
-  }
+  const PlacementStrategyType(this.value);
+
+  static PlacementStrategyType fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum PlacementStrategyType'));
 }
 
 enum PropagateTags {
-  taskDefinition,
-}
+  taskDefinition('TASK_DEFINITION'),
+  ;
 
-extension PropagateTagsValueExtension on PropagateTags {
-  String toValue() {
-    switch (this) {
-      case PropagateTags.taskDefinition:
-        return 'TASK_DEFINITION';
-    }
-  }
-}
+  final String value;
 
-extension PropagateTagsFromString on String {
-  PropagateTags toPropagateTags() {
-    switch (this) {
-      case 'TASK_DEFINITION':
-        return PropagateTags.taskDefinition;
-    }
-    throw Exception('$this is not known in enum PropagateTags');
-  }
+  const PropagateTags(this.value);
+
+  static PropagateTags fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum PropagateTags'));
 }
 
 /// A <code>RetryPolicy</code> object that includes information about the retry
@@ -1801,31 +1720,18 @@ class SageMakerPipelineParameters {
 }
 
 enum ScheduleGroupState {
-  active,
-  deleting,
-}
+  active('ACTIVE'),
+  deleting('DELETING'),
+  ;
 
-extension ScheduleGroupStateValueExtension on ScheduleGroupState {
-  String toValue() {
-    switch (this) {
-      case ScheduleGroupState.active:
-        return 'ACTIVE';
-      case ScheduleGroupState.deleting:
-        return 'DELETING';
-    }
-  }
-}
+  final String value;
 
-extension ScheduleGroupStateFromString on String {
-  ScheduleGroupState toScheduleGroupState() {
-    switch (this) {
-      case 'ACTIVE':
-        return ScheduleGroupState.active;
-      case 'DELETING':
-        return ScheduleGroupState.deleting;
-    }
-    throw Exception('$this is not known in enum ScheduleGroupState');
-  }
+  const ScheduleGroupState(this.value);
+
+  static ScheduleGroupState fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum ScheduleGroupState'));
 }
 
 /// The details of a schedule group.
@@ -1859,7 +1765,7 @@ class ScheduleGroupSummary {
       creationDate: timeStampFromJson(json['CreationDate']),
       lastModificationDate: timeStampFromJson(json['LastModificationDate']),
       name: json['Name'] as String?,
-      state: (json['State'] as String?)?.toScheduleGroupState(),
+      state: (json['State'] as String?)?.let(ScheduleGroupState.fromString),
     );
   }
 
@@ -1876,37 +1782,24 @@ class ScheduleGroupSummary {
       if (lastModificationDate != null)
         'LastModificationDate': unixTimestampToJson(lastModificationDate),
       if (name != null) 'Name': name,
-      if (state != null) 'State': state.toValue(),
+      if (state != null) 'State': state.value,
     };
   }
 }
 
 enum ScheduleState {
-  enabled,
-  disabled,
-}
+  enabled('ENABLED'),
+  disabled('DISABLED'),
+  ;
 
-extension ScheduleStateValueExtension on ScheduleState {
-  String toValue() {
-    switch (this) {
-      case ScheduleState.enabled:
-        return 'ENABLED';
-      case ScheduleState.disabled:
-        return 'DISABLED';
-    }
-  }
-}
+  final String value;
 
-extension ScheduleStateFromString on String {
-  ScheduleState toScheduleState() {
-    switch (this) {
-      case 'ENABLED':
-        return ScheduleState.enabled;
-      case 'DISABLED':
-        return ScheduleState.disabled;
-    }
-    throw Exception('$this is not known in enum ScheduleState');
-  }
+  const ScheduleState(this.value);
+
+  static ScheduleState fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum ScheduleState'));
 }
 
 /// The details of a schedule.
@@ -1949,7 +1842,7 @@ class ScheduleSummary {
       groupName: json['GroupName'] as String?,
       lastModificationDate: timeStampFromJson(json['LastModificationDate']),
       name: json['Name'] as String?,
-      state: (json['State'] as String?)?.toScheduleState(),
+      state: (json['State'] as String?)?.let(ScheduleState.fromString),
       target: json['Target'] != null
           ? TargetSummary.fromJson(json['Target'] as Map<String, dynamic>)
           : null,
@@ -1972,7 +1865,7 @@ class ScheduleSummary {
       if (lastModificationDate != null)
         'LastModificationDate': unixTimestampToJson(lastModificationDate),
       if (name != null) 'Name': name,
-      if (state != null) 'State': state.toValue(),
+      if (state != null) 'State': state.value,
       if (target != null) 'Target': target,
     };
   }

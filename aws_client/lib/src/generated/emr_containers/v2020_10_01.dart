@@ -539,7 +539,7 @@ class EmrContainers {
       if (maxResults != null) 'maxResults': [maxResults.toString()],
       if (name != null) 'name': [name],
       if (nextToken != null) 'nextToken': [nextToken],
-      if (states != null) 'states': states.map((e) => e.toValue()).toList(),
+      if (states != null) 'states': states.map((e) => e.value).toList(),
     };
     final response = await _protocol.send(
       payload: null,
@@ -639,7 +639,7 @@ class EmrContainers {
         'createdBefore': [_s.iso8601ToJson(createdBefore).toString()],
       if (maxResults != null) 'maxResults': [maxResults.toString()],
       if (nextToken != null) 'nextToken': [nextToken],
-      if (states != null) 'states': states.map((e) => e.toValue()).toList(),
+      if (states != null) 'states': states.map((e) => e.value).toList(),
       if (types != null) 'types': types,
     };
     final response = await _protocol.send(
@@ -717,14 +717,14 @@ class EmrContainers {
       if (containerProviderId != null)
         'containerProviderId': [containerProviderId],
       if (containerProviderType != null)
-        'containerProviderType': [containerProviderType.toValue()],
+        'containerProviderType': [containerProviderType.value],
       if (createdAfter != null)
         'createdAfter': [_s.iso8601ToJson(createdAfter).toString()],
       if (createdBefore != null)
         'createdBefore': [_s.iso8601ToJson(createdBefore).toString()],
       if (maxResults != null) 'maxResults': [maxResults.toString()],
       if (nextToken != null) 'nextToken': [nextToken],
-      if (states != null) 'states': states.map((e) => e.toValue()).toList(),
+      if (states != null) 'states': states.map((e) => e.value).toList(),
     };
     final response = await _protocol.send(
       payload: null,
@@ -1101,7 +1101,7 @@ class ContainerProvider {
   factory ContainerProvider.fromJson(Map<String, dynamic> json) {
     return ContainerProvider(
       id: json['id'] as String,
-      type: (json['type'] as String).toContainerProviderType(),
+      type: ContainerProviderType.fromString((json['type'] as String)),
       info: json['info'] != null
           ? ContainerInfo.fromJson(json['info'] as Map<String, dynamic>)
           : null,
@@ -1114,33 +1114,24 @@ class ContainerProvider {
     final info = this.info;
     return {
       'id': id,
-      'type': type.toValue(),
+      'type': type.value,
       if (info != null) 'info': info,
     };
   }
 }
 
 enum ContainerProviderType {
-  eks,
-}
+  eks('EKS'),
+  ;
 
-extension ContainerProviderTypeValueExtension on ContainerProviderType {
-  String toValue() {
-    switch (this) {
-      case ContainerProviderType.eks:
-        return 'EKS';
-    }
-  }
-}
+  final String value;
 
-extension ContainerProviderTypeFromString on String {
-  ContainerProviderType toContainerProviderType() {
-    switch (this) {
-      case 'EKS':
-        return ContainerProviderType.eks;
-    }
-    throw Exception('$this is not known in enum ContainerProviderType');
-  }
+  const ContainerProviderType(this.value);
+
+  static ContainerProviderType fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum ContainerProviderType'));
 }
 
 class CreateJobTemplateResponse {
@@ -1575,13 +1566,14 @@ class Endpoint {
           : null,
       createdAt: timeStampFromJson(json['createdAt']),
       executionRoleArn: json['executionRoleArn'] as String?,
-      failureReason: (json['failureReason'] as String?)?.toFailureReason(),
+      failureReason:
+          (json['failureReason'] as String?)?.let(FailureReason.fromString),
       id: json['id'] as String?,
       name: json['name'] as String?,
       releaseLabel: json['releaseLabel'] as String?,
       securityGroup: json['securityGroup'] as String?,
       serverUrl: json['serverUrl'] as String?,
-      state: (json['state'] as String?)?.toEndpointState(),
+      state: (json['state'] as String?)?.let(EndpointState.fromString),
       stateDetails: json['stateDetails'] as String?,
       subnetIds: (json['subnetIds'] as List?)
           ?.whereNotNull()
@@ -1622,13 +1614,13 @@ class Endpoint {
         'configurationOverrides': configurationOverrides,
       if (createdAt != null) 'createdAt': iso8601ToJson(createdAt),
       if (executionRoleArn != null) 'executionRoleArn': executionRoleArn,
-      if (failureReason != null) 'failureReason': failureReason.toValue(),
+      if (failureReason != null) 'failureReason': failureReason.value,
       if (id != null) 'id': id,
       if (name != null) 'name': name,
       if (releaseLabel != null) 'releaseLabel': releaseLabel,
       if (securityGroup != null) 'securityGroup': securityGroup,
       if (serverUrl != null) 'serverUrl': serverUrl,
-      if (state != null) 'state': state.toValue(),
+      if (state != null) 'state': state.value,
       if (stateDetails != null) 'stateDetails': stateDetails,
       if (subnetIds != null) 'subnetIds': subnetIds,
       if (tags != null) 'tags': tags,
@@ -1639,84 +1631,38 @@ class Endpoint {
 }
 
 enum EndpointState {
-  creating,
-  active,
-  terminating,
-  terminated,
-  terminatedWithErrors,
-}
+  creating('CREATING'),
+  active('ACTIVE'),
+  terminating('TERMINATING'),
+  terminated('TERMINATED'),
+  terminatedWithErrors('TERMINATED_WITH_ERRORS'),
+  ;
 
-extension EndpointStateValueExtension on EndpointState {
-  String toValue() {
-    switch (this) {
-      case EndpointState.creating:
-        return 'CREATING';
-      case EndpointState.active:
-        return 'ACTIVE';
-      case EndpointState.terminating:
-        return 'TERMINATING';
-      case EndpointState.terminated:
-        return 'TERMINATED';
-      case EndpointState.terminatedWithErrors:
-        return 'TERMINATED_WITH_ERRORS';
-    }
-  }
-}
+  final String value;
 
-extension EndpointStateFromString on String {
-  EndpointState toEndpointState() {
-    switch (this) {
-      case 'CREATING':
-        return EndpointState.creating;
-      case 'ACTIVE':
-        return EndpointState.active;
-      case 'TERMINATING':
-        return EndpointState.terminating;
-      case 'TERMINATED':
-        return EndpointState.terminated;
-      case 'TERMINATED_WITH_ERRORS':
-        return EndpointState.terminatedWithErrors;
-    }
-    throw Exception('$this is not known in enum EndpointState');
-  }
+  const EndpointState(this.value);
+
+  static EndpointState fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum EndpointState'));
 }
 
 enum FailureReason {
-  internalError,
-  userError,
-  validationError,
-  clusterUnavailable,
-}
+  internalError('INTERNAL_ERROR'),
+  userError('USER_ERROR'),
+  validationError('VALIDATION_ERROR'),
+  clusterUnavailable('CLUSTER_UNAVAILABLE'),
+  ;
 
-extension FailureReasonValueExtension on FailureReason {
-  String toValue() {
-    switch (this) {
-      case FailureReason.internalError:
-        return 'INTERNAL_ERROR';
-      case FailureReason.userError:
-        return 'USER_ERROR';
-      case FailureReason.validationError:
-        return 'VALIDATION_ERROR';
-      case FailureReason.clusterUnavailable:
-        return 'CLUSTER_UNAVAILABLE';
-    }
-  }
-}
+  final String value;
 
-extension FailureReasonFromString on String {
-  FailureReason toFailureReason() {
-    switch (this) {
-      case 'INTERNAL_ERROR':
-        return FailureReason.internalError;
-      case 'USER_ERROR':
-        return FailureReason.userError;
-      case 'VALIDATION_ERROR':
-        return FailureReason.validationError;
-      case 'CLUSTER_UNAVAILABLE':
-        return FailureReason.clusterUnavailable;
-    }
-    throw Exception('$this is not known in enum FailureReason');
-  }
+  const FailureReason(this.value);
+
+  static FailureReason fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum FailureReason'));
 }
 
 class GetManagedEndpointSessionCredentialsResponse {
@@ -1886,7 +1832,8 @@ class JobRun {
       createdAt: timeStampFromJson(json['createdAt']),
       createdBy: json['createdBy'] as String?,
       executionRoleArn: json['executionRoleArn'] as String?,
-      failureReason: (json['failureReason'] as String?)?.toFailureReason(),
+      failureReason:
+          (json['failureReason'] as String?)?.let(FailureReason.fromString),
       finishedAt: timeStampFromJson(json['finishedAt']),
       id: json['id'] as String?,
       jobDriver: json['jobDriver'] != null
@@ -1902,7 +1849,7 @@ class JobRun {
           ? RetryPolicyExecution.fromJson(
               json['retryPolicyExecution'] as Map<String, dynamic>)
           : null,
-      state: (json['state'] as String?)?.toJobRunState(),
+      state: (json['state'] as String?)?.let(JobRunState.fromString),
       stateDetails: json['stateDetails'] as String?,
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
@@ -1937,7 +1884,7 @@ class JobRun {
       if (createdAt != null) 'createdAt': iso8601ToJson(createdAt),
       if (createdBy != null) 'createdBy': createdBy,
       if (executionRoleArn != null) 'executionRoleArn': executionRoleArn,
-      if (failureReason != null) 'failureReason': failureReason.toValue(),
+      if (failureReason != null) 'failureReason': failureReason.value,
       if (finishedAt != null) 'finishedAt': iso8601ToJson(finishedAt),
       if (id != null) 'id': id,
       if (jobDriver != null) 'jobDriver': jobDriver,
@@ -1947,7 +1894,7 @@ class JobRun {
         'retryPolicyConfiguration': retryPolicyConfiguration,
       if (retryPolicyExecution != null)
         'retryPolicyExecution': retryPolicyExecution,
-      if (state != null) 'state': state.toValue(),
+      if (state != null) 'state': state.value,
       if (stateDetails != null) 'stateDetails': stateDetails,
       if (tags != null) 'tags': tags,
       if (virtualClusterId != null) 'virtualClusterId': virtualClusterId,
@@ -1956,56 +1903,22 @@ class JobRun {
 }
 
 enum JobRunState {
-  pending,
-  submitted,
-  running,
-  failed,
-  cancelled,
-  cancelPending,
-  completed,
-}
+  pending('PENDING'),
+  submitted('SUBMITTED'),
+  running('RUNNING'),
+  failed('FAILED'),
+  cancelled('CANCELLED'),
+  cancelPending('CANCEL_PENDING'),
+  completed('COMPLETED'),
+  ;
 
-extension JobRunStateValueExtension on JobRunState {
-  String toValue() {
-    switch (this) {
-      case JobRunState.pending:
-        return 'PENDING';
-      case JobRunState.submitted:
-        return 'SUBMITTED';
-      case JobRunState.running:
-        return 'RUNNING';
-      case JobRunState.failed:
-        return 'FAILED';
-      case JobRunState.cancelled:
-        return 'CANCELLED';
-      case JobRunState.cancelPending:
-        return 'CANCEL_PENDING';
-      case JobRunState.completed:
-        return 'COMPLETED';
-    }
-  }
-}
+  final String value;
 
-extension JobRunStateFromString on String {
-  JobRunState toJobRunState() {
-    switch (this) {
-      case 'PENDING':
-        return JobRunState.pending;
-      case 'SUBMITTED':
-        return JobRunState.submitted;
-      case 'RUNNING':
-        return JobRunState.running;
-      case 'FAILED':
-        return JobRunState.failed;
-      case 'CANCELLED':
-        return JobRunState.cancelled;
-      case 'CANCEL_PENDING':
-        return JobRunState.cancelPending;
-      case 'COMPLETED':
-        return JobRunState.completed;
-    }
-    throw Exception('$this is not known in enum JobRunState');
-  }
+  const JobRunState(this.value);
+
+  static JobRunState fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum JobRunState'));
 }
 
 /// This entity describes a job template. Job template stores values of
@@ -2337,7 +2250,7 @@ class MonitoringConfiguration {
                       as Map<String, dynamic>)
               : null,
       persistentAppUI:
-          (json['persistentAppUI'] as String?)?.toPersistentAppUI(),
+          (json['persistentAppUI'] as String?)?.let(PersistentAppUI.fromString),
       s3MonitoringConfiguration: json['s3MonitoringConfiguration'] != null
           ? S3MonitoringConfiguration.fromJson(
               json['s3MonitoringConfiguration'] as Map<String, dynamic>)
@@ -2353,7 +2266,7 @@ class MonitoringConfiguration {
     return {
       if (cloudWatchMonitoringConfiguration != null)
         'cloudWatchMonitoringConfiguration': cloudWatchMonitoringConfiguration,
-      if (persistentAppUI != null) 'persistentAppUI': persistentAppUI.toValue(),
+      if (persistentAppUI != null) 'persistentAppUI': persistentAppUI.value,
       if (s3MonitoringConfiguration != null)
         's3MonitoringConfiguration': s3MonitoringConfiguration,
     };
@@ -2512,31 +2425,18 @@ class ParametricS3MonitoringConfiguration {
 }
 
 enum PersistentAppUI {
-  enabled,
-  disabled,
-}
+  enabled('ENABLED'),
+  disabled('DISABLED'),
+  ;
 
-extension PersistentAppUIValueExtension on PersistentAppUI {
-  String toValue() {
-    switch (this) {
-      case PersistentAppUI.enabled:
-        return 'ENABLED';
-      case PersistentAppUI.disabled:
-        return 'DISABLED';
-    }
-  }
-}
+  final String value;
 
-extension PersistentAppUIFromString on String {
-  PersistentAppUI toPersistentAppUI() {
-    switch (this) {
-      case 'ENABLED':
-        return PersistentAppUI.enabled;
-      case 'DISABLED':
-        return PersistentAppUI.disabled;
-    }
-    throw Exception('$this is not known in enum PersistentAppUI');
-  }
+  const PersistentAppUI(this.value);
+
+  static PersistentAppUI fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum PersistentAppUI'));
 }
 
 /// The configuration of the retry policy that the job runs on.
@@ -2754,7 +2654,8 @@ class TemplateParameterConfiguration {
   factory TemplateParameterConfiguration.fromJson(Map<String, dynamic> json) {
     return TemplateParameterConfiguration(
       defaultValue: json['defaultValue'] as String?,
-      type: (json['type'] as String?)?.toTemplateParameterDataType(),
+      type:
+          (json['type'] as String?)?.let(TemplateParameterDataType.fromString),
     );
   }
 
@@ -2763,37 +2664,24 @@ class TemplateParameterConfiguration {
     final type = this.type;
     return {
       if (defaultValue != null) 'defaultValue': defaultValue,
-      if (type != null) 'type': type.toValue(),
+      if (type != null) 'type': type.value,
     };
   }
 }
 
 enum TemplateParameterDataType {
-  number,
-  string,
-}
+  number('NUMBER'),
+  string('STRING'),
+  ;
 
-extension TemplateParameterDataTypeValueExtension on TemplateParameterDataType {
-  String toValue() {
-    switch (this) {
-      case TemplateParameterDataType.number:
-        return 'NUMBER';
-      case TemplateParameterDataType.string:
-        return 'STRING';
-    }
-  }
-}
+  final String value;
 
-extension TemplateParameterDataTypeFromString on String {
-  TemplateParameterDataType toTemplateParameterDataType() {
-    switch (this) {
-      case 'NUMBER':
-        return TemplateParameterDataType.number;
-      case 'STRING':
-        return TemplateParameterDataType.string;
-    }
-    throw Exception('$this is not known in enum TemplateParameterDataType');
-  }
+  const TemplateParameterDataType(this.value);
+
+  static TemplateParameterDataType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum TemplateParameterDataType'));
 }
 
 class UntagResourceResponse {
@@ -2857,7 +2745,7 @@ class VirtualCluster {
       createdAt: timeStampFromJson(json['createdAt']),
       id: json['id'] as String?,
       name: json['name'] as String?,
-      state: (json['state'] as String?)?.toVirtualClusterState(),
+      state: (json['state'] as String?)?.let(VirtualClusterState.fromString),
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
@@ -2877,48 +2765,27 @@ class VirtualCluster {
       if (createdAt != null) 'createdAt': iso8601ToJson(createdAt),
       if (id != null) 'id': id,
       if (name != null) 'name': name,
-      if (state != null) 'state': state.toValue(),
+      if (state != null) 'state': state.value,
       if (tags != null) 'tags': tags,
     };
   }
 }
 
 enum VirtualClusterState {
-  running,
-  terminating,
-  terminated,
-  arrested,
-}
+  running('RUNNING'),
+  terminating('TERMINATING'),
+  terminated('TERMINATED'),
+  arrested('ARRESTED'),
+  ;
 
-extension VirtualClusterStateValueExtension on VirtualClusterState {
-  String toValue() {
-    switch (this) {
-      case VirtualClusterState.running:
-        return 'RUNNING';
-      case VirtualClusterState.terminating:
-        return 'TERMINATING';
-      case VirtualClusterState.terminated:
-        return 'TERMINATED';
-      case VirtualClusterState.arrested:
-        return 'ARRESTED';
-    }
-  }
-}
+  final String value;
 
-extension VirtualClusterStateFromString on String {
-  VirtualClusterState toVirtualClusterState() {
-    switch (this) {
-      case 'RUNNING':
-        return VirtualClusterState.running;
-      case 'TERMINATING':
-        return VirtualClusterState.terminating;
-      case 'TERMINATED':
-        return VirtualClusterState.terminated;
-      case 'ARRESTED':
-        return VirtualClusterState.arrested;
-    }
-    throw Exception('$this is not known in enum VirtualClusterState');
-  }
+  const VirtualClusterState(this.value);
+
+  static VirtualClusterState fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum VirtualClusterState'));
 }
 
 class InternalServerException extends _s.GenericAwsException {

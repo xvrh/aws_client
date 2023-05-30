@@ -144,7 +144,7 @@ class SecurityLake {
     Map<String, List<String>>? enableTwoDimensions,
   }) async {
     final $payload = <String, dynamic>{
-      'inputOrder': inputOrder.map((e) => e.toValue()).toList(),
+      'inputOrder': inputOrder.map((e) => e.value).toList(),
       if (enableAllDimensions != null)
         'enableAllDimensions': enableAllDimensions,
       if (enableSingleDimension != null)
@@ -210,7 +210,7 @@ class SecurityLake {
   }) async {
     final $payload = <String, dynamic>{
       'customSourceName': customSourceName,
-      'eventClass': eventClass.toValue(),
+      'eventClass': eventClass.value,
       'glueInvocationRoleArn': glueInvocationRoleArn,
       'logProviderAccountId': logProviderAccountId,
     };
@@ -280,12 +280,11 @@ class SecurityLake {
   }) async {
     final $payload = <String, dynamic>{
       if (configurations != null)
-        'configurations':
-            configurations.map((k, e) => MapEntry(k.toValue(), e)),
+        'configurations': configurations.map((k, e) => MapEntry(k.value, e)),
       if (enableAll != null) 'enableAll': enableAll,
       if (metaStoreManagerRoleArn != null)
         'metaStoreManagerRoleArn': metaStoreManagerRoleArn,
-      if (regions != null) 'regions': regions.map((e) => e.toValue()).toList(),
+      if (regions != null) 'regions': regions.map((e) => e.value).toList(),
     };
     final response = await _protocol.send(
       payload: $payload,
@@ -368,7 +367,7 @@ class SecurityLake {
   }) async {
     final $payload = <String, dynamic>{
       'notificationEndpoint': notificationEndpoint,
-      'subscriptionProtocol': subscriptionProtocol.toValue(),
+      'subscriptionProtocol': subscriptionProtocol.value,
     };
     final response = await _protocol.send(
       payload: $payload,
@@ -427,7 +426,7 @@ class SecurityLake {
       'sourceTypes': sourceTypes,
       'subscriberName': subscriberName,
       if (accessTypes != null)
-        'accessTypes': accessTypes.map((e) => e.toValue()).toList(),
+        'accessTypes': accessTypes.map((e) => e.value).toList(),
       if (subscriberDescription != null)
         'subscriberDescription': subscriberDescription,
     };
@@ -493,7 +492,7 @@ class SecurityLake {
       if (createSqs != null) 'createSqs': createSqs,
       if (httpsApiKeyName != null) 'httpsApiKeyName': httpsApiKeyName,
       if (httpsApiKeyValue != null) 'httpsApiKeyValue': httpsApiKeyValue,
-      if (httpsMethod != null) 'httpsMethod': httpsMethod.toValue(),
+      if (httpsMethod != null) 'httpsMethod': httpsMethod.value,
       if (roleArn != null) 'roleArn': roleArn,
       if (subscriptionEndpoint != null)
         'subscriptionEndpoint': subscriptionEndpoint,
@@ -559,7 +558,7 @@ class SecurityLake {
     Map<String, List<String>>? disableTwoDimensions,
   }) async {
     final $payload = <String, dynamic>{
-      'inputOrder': inputOrder.map((e) => e.toValue()).toList(),
+      'inputOrder': inputOrder.map((e) => e.value).toList(),
       if (disableAllDimensions != null)
         'disableAllDimensions': disableAllDimensions,
       if (disableSingleDimension != null)
@@ -936,7 +935,7 @@ class SecurityLake {
       if (maxFailures != null) 'maxFailures': maxFailures,
       if (nextToken != null) 'nextToken': nextToken,
       if (regionSet != null)
-        'regionSet': regionSet.map((e) => e.toValue()).toList(),
+        'regionSet': regionSet.map((e) => e.value).toList(),
     };
     final response = await _protocol.send(
       payload: $payload,
@@ -989,7 +988,7 @@ class SecurityLake {
   }) async {
     final $payload = <String, dynamic>{
       if (inputOrder != null)
-        'inputOrder': inputOrder.map((e) => e.toValue()).toList(),
+        'inputOrder': inputOrder.map((e) => e.value).toList(),
       if (listAllDimensions != null) 'listAllDimensions': listAllDimensions,
       if (listSingleDimension != null)
         'listSingleDimension': listSingleDimension,
@@ -1058,7 +1057,7 @@ class SecurityLake {
     required Map<Region, LakeConfigurationRequest> configurations,
   }) async {
     final $payload = <String, dynamic>{
-      'configurations': configurations.map((k, e) => MapEntry(k.toValue(), e)),
+      'configurations': configurations.map((k, e) => MapEntry(k.value, e)),
     };
     final response = await _protocol.send(
       payload: $payload,
@@ -1120,7 +1119,7 @@ class SecurityLake {
   }) async {
     final $payload = <String, dynamic>{
       'notificationEndpoint': notificationEndpoint,
-      'subscriptionProtocol': subscriptionProtocol.toValue(),
+      'subscriptionProtocol': subscriptionProtocol.value,
     };
     final response = await _protocol.send(
       payload: $payload,
@@ -1236,7 +1235,7 @@ class SecurityLake {
       if (createSqs != null) 'createSqs': createSqs,
       if (httpsApiKeyName != null) 'httpsApiKeyName': httpsApiKeyName,
       if (httpsApiKeyValue != null) 'httpsApiKeyValue': httpsApiKeyValue,
-      if (httpsMethod != null) 'httpsMethod': httpsMethod.toValue(),
+      if (httpsMethod != null) 'httpsMethod': httpsMethod.value,
       if (roleArn != null) 'roleArn': roleArn,
       if (subscriptionEndpoint != null)
         'subscriptionEndpoint': subscriptionEndpoint,
@@ -1254,31 +1253,17 @@ class SecurityLake {
 }
 
 enum AccessType {
-  lakeformation,
-  s3,
-}
+  lakeformation('LAKEFORMATION'),
+  s3('S3'),
+  ;
 
-extension AccessTypeValueExtension on AccessType {
-  String toValue() {
-    switch (this) {
-      case AccessType.lakeformation:
-        return 'LAKEFORMATION';
-      case AccessType.s3:
-        return 'S3';
-    }
-  }
-}
+  final String value;
 
-extension AccessTypeFromString on String {
-  AccessType toAccessType() {
-    switch (this) {
-      case 'LAKEFORMATION':
-        return AccessType.lakeformation;
-      case 'S3':
-        return AccessType.s3;
-    }
-    throw Exception('$this is not known in enum AccessType');
-  }
+  const AccessType(this.value);
+
+  static AccessType fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum AccessType'));
 }
 
 /// Amazon Security Lake collects logs and events from supported Amazon Web
@@ -1312,7 +1297,8 @@ class AccountSources {
     return AccountSources(
       account: json['account'] as String,
       sourceType: json['sourceType'] as String,
-      eventClass: (json['eventClass'] as String?)?.toOcsfEventClass(),
+      eventClass:
+          (json['eventClass'] as String?)?.let(OcsfEventClass.fromString),
       logsStatus: (json['logsStatus'] as List?)
           ?.whereNotNull()
           .map((e) => LogsStatus.fromJson(e as Map<String, dynamic>))
@@ -1328,7 +1314,7 @@ class AccountSources {
     return {
       'account': account,
       'sourceType': sourceType,
-      if (eventClass != null) 'eventClass': eventClass.toValue(),
+      if (eventClass != null) 'eventClass': eventClass.value,
       if (logsStatus != null) 'logsStatus': logsStatus,
     };
   }
@@ -1352,10 +1338,10 @@ class AutoEnableNewRegionConfiguration {
 
   factory AutoEnableNewRegionConfiguration.fromJson(Map<String, dynamic> json) {
     return AutoEnableNewRegionConfiguration(
-      region: (json['region'] as String).toRegion(),
+      region: Region.fromString((json['region'] as String)),
       sources: (json['sources'] as List)
           .whereNotNull()
-          .map((e) => (e as String).toAwsLogSourceType())
+          .map((e) => AwsLogSourceType.fromString((e as String)))
           .toList(),
     );
   }
@@ -1364,48 +1350,27 @@ class AutoEnableNewRegionConfiguration {
     final region = this.region;
     final sources = this.sources;
     return {
-      'region': region.toValue(),
-      'sources': sources.map((e) => e.toValue()).toList(),
+      'region': region.value,
+      'sources': sources.map((e) => e.value).toList(),
     };
   }
 }
 
 enum AwsLogSourceType {
-  route53,
-  vpcFlow,
-  cloudTrail,
-  shFindings,
-}
+  route53('ROUTE53'),
+  vpcFlow('VPC_FLOW'),
+  cloudTrail('CLOUD_TRAIL'),
+  shFindings('SH_FINDINGS'),
+  ;
 
-extension AwsLogSourceTypeValueExtension on AwsLogSourceType {
-  String toValue() {
-    switch (this) {
-      case AwsLogSourceType.route53:
-        return 'ROUTE53';
-      case AwsLogSourceType.vpcFlow:
-        return 'VPC_FLOW';
-      case AwsLogSourceType.cloudTrail:
-        return 'CLOUD_TRAIL';
-      case AwsLogSourceType.shFindings:
-        return 'SH_FINDINGS';
-    }
-  }
-}
+  final String value;
 
-extension AwsLogSourceTypeFromString on String {
-  AwsLogSourceType toAwsLogSourceType() {
-    switch (this) {
-      case 'ROUTE53':
-        return AwsLogSourceType.route53;
-      case 'VPC_FLOW':
-        return AwsLogSourceType.vpcFlow;
-      case 'CLOUD_TRAIL':
-        return AwsLogSourceType.cloudTrail;
-      case 'SH_FINDINGS':
-        return AwsLogSourceType.shFindings;
-    }
-    throw Exception('$this is not known in enum AwsLogSourceType');
-  }
+  const AwsLogSourceType(this.value);
+
+  static AwsLogSourceType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum AwsLogSourceType'));
 }
 
 class CreateAwsLogSourceResponse {
@@ -1782,64 +1747,33 @@ class DeleteSubscriptionNotificationConfigurationResponse {
 }
 
 enum Dimension {
-  region,
-  sourceType,
-  member,
-}
+  region('REGION'),
+  sourceType('SOURCE_TYPE'),
+  member('MEMBER'),
+  ;
 
-extension DimensionValueExtension on Dimension {
-  String toValue() {
-    switch (this) {
-      case Dimension.region:
-        return 'REGION';
-      case Dimension.sourceType:
-        return 'SOURCE_TYPE';
-      case Dimension.member:
-        return 'MEMBER';
-    }
-  }
-}
+  final String value;
 
-extension DimensionFromString on String {
-  Dimension toDimension() {
-    switch (this) {
-      case 'REGION':
-        return Dimension.region;
-      case 'SOURCE_TYPE':
-        return Dimension.sourceType;
-      case 'MEMBER':
-        return Dimension.member;
-    }
-    throw Exception('$this is not known in enum Dimension');
-  }
+  const Dimension(this.value);
+
+  static Dimension fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum Dimension'));
 }
 
 enum EndpointProtocol {
-  https,
-  sqs,
-}
+  https('HTTPS'),
+  sqs('SQS'),
+  ;
 
-extension EndpointProtocolValueExtension on EndpointProtocol {
-  String toValue() {
-    switch (this) {
-      case EndpointProtocol.https:
-        return 'HTTPS';
-      case EndpointProtocol.sqs:
-        return 'SQS';
-    }
-  }
-}
+  final String value;
 
-extension EndpointProtocolFromString on String {
-  EndpointProtocol toEndpointProtocol() {
-    switch (this) {
-      case 'HTTPS':
-        return EndpointProtocol.https;
-      case 'SQS':
-        return EndpointProtocol.sqs;
-    }
-    throw Exception('$this is not known in enum EndpointProtocol');
-  }
+  const EndpointProtocol(this.value);
+
+  static EndpointProtocol fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum EndpointProtocol'));
 }
 
 /// List of all failures.
@@ -1999,7 +1933,7 @@ class GetDatalakeResponse {
   factory GetDatalakeResponse.fromJson(Map<String, dynamic> json) {
     return GetDatalakeResponse(
       configurations: (json['configurations'] as Map<String, dynamic>).map(
-          (k, e) => MapEntry(k.toRegion(),
+          (k, e) => MapEntry(Region.fromString(k),
               LakeConfigurationResponse.fromJson(e as Map<String, dynamic>))),
     );
   }
@@ -2007,7 +1941,7 @@ class GetDatalakeResponse {
   Map<String, dynamic> toJson() {
     final configurations = this.configurations;
     return {
-      'configurations': configurations.map((k, e) => MapEntry(k.toValue(), e)),
+      'configurations': configurations.map((k, e) => MapEntry(k.value, e)),
     };
   }
 }
@@ -2075,31 +2009,17 @@ class GetSubscriberResponse {
 }
 
 enum HttpsMethod {
-  post,
-  put,
-}
+  post('POST'),
+  put('PUT'),
+  ;
 
-extension HttpsMethodValueExtension on HttpsMethod {
-  String toValue() {
-    switch (this) {
-      case HttpsMethod.post:
-        return 'POST';
-      case HttpsMethod.put:
-        return 'PUT';
-    }
-  }
-}
+  final String value;
 
-extension HttpsMethodFromString on String {
-  HttpsMethod toHttpsMethod() {
-    switch (this) {
-      case 'POST':
-        return HttpsMethod.post;
-      case 'PUT':
-        return HttpsMethod.put;
-    }
-    throw Exception('$this is not known in enum HttpsMethod');
-  }
+  const HttpsMethod(this.value);
+
+  static HttpsMethod fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum HttpsMethod'));
 }
 
 /// Provides details of Amazon Security Lake configuration object.
@@ -2149,7 +2069,7 @@ class LakeConfigurationRequest {
       if (encryptionKey != null) 'encryptionKey': encryptionKey,
       if (replicationDestinationRegions != null)
         'replicationDestinationRegions':
-            replicationDestinationRegions.map((e) => e.toValue()).toList(),
+            replicationDestinationRegions.map((e) => e.value).toList(),
       if (replicationRoleArn != null) 'replicationRoleArn': replicationRoleArn,
       if (retentionSettings != null) 'retentionSettings': retentionSettings,
       if (tagsMap != null) 'tagsMap': tagsMap,
@@ -2217,7 +2137,7 @@ class LakeConfigurationResponse {
       replicationDestinationRegions:
           (json['replicationDestinationRegions'] as List?)
               ?.whereNotNull()
-              .map((e) => (e as String).toRegion())
+              .map((e) => Region.fromString((e as String)))
               .toList(),
       replicationRoleArn: json['replicationRoleArn'] as String?,
       retentionSettings: (json['retentionSettings'] as List?)
@@ -2225,7 +2145,7 @@ class LakeConfigurationResponse {
           .map((e) => RetentionSetting.fromJson(e as Map<String, dynamic>))
           .toList(),
       s3BucketArn: json['s3BucketArn'] as String?,
-      status: (json['status'] as String?)?.toSettingsStatus(),
+      status: (json['status'] as String?)?.let(SettingsStatus.fromString),
       tagsMap: (json['tagsMap'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
       updateStatus: json['updateStatus'] != null
@@ -2247,11 +2167,11 @@ class LakeConfigurationResponse {
       if (encryptionKey != null) 'encryptionKey': encryptionKey,
       if (replicationDestinationRegions != null)
         'replicationDestinationRegions':
-            replicationDestinationRegions.map((e) => e.toValue()).toList(),
+            replicationDestinationRegions.map((e) => e.value).toList(),
       if (replicationRoleArn != null) 'replicationRoleArn': replicationRoleArn,
       if (retentionSettings != null) 'retentionSettings': retentionSettings,
       if (s3BucketArn != null) 's3BucketArn': s3BucketArn,
-      if (status != null) 'status': status.toValue(),
+      if (status != null) 'status': status.value,
       if (tagsMap != null) 'tagsMap': tagsMap,
       if (updateStatus != null) 'updateStatus': updateStatus,
     };
@@ -2419,7 +2339,7 @@ class LogsStatus {
 
   factory LogsStatus.fromJson(Map<String, dynamic> json) {
     return LogsStatus(
-      healthStatus: (json['healthStatus'] as String).toSourceStatus(),
+      healthStatus: SourceStatus.fromString((json['healthStatus'] as String)),
       pathToLogs: json['pathToLogs'] as String,
     );
   }
@@ -2428,193 +2348,56 @@ class LogsStatus {
     final healthStatus = this.healthStatus;
     final pathToLogs = this.pathToLogs;
     return {
-      'healthStatus': healthStatus.toValue(),
+      'healthStatus': healthStatus.value,
       'pathToLogs': pathToLogs,
     };
   }
 }
 
 enum OcsfEventClass {
-  accessActivity,
-  fileActivity,
-  kernelActivity,
-  kernelExtension,
-  memoryActivity,
-  moduleActivity,
-  processActivity,
-  registryKeyActivity,
-  registryValueActivity,
-  resourceActivity,
-  scheduledJobActivity,
-  securityFinding,
-  accountChange,
-  authentication,
-  authorization,
-  entityManagementAudit,
-  dhcpActivity,
-  networkActivity,
-  dnsActivity,
-  ftpActivity,
-  httpActivity,
-  rdpActivity,
-  smbActivity,
-  sshActivity,
-  cloudApi,
-  containerLifecycle,
-  databaseLifecycle,
-  configState,
-  cloudStorage,
-  inventoryInfo,
-  rfbActivity,
-  smtpActivity,
-  virtualMachineActivity,
-}
+  accessActivity('ACCESS_ACTIVITY'),
+  fileActivity('FILE_ACTIVITY'),
+  kernelActivity('KERNEL_ACTIVITY'),
+  kernelExtension('KERNEL_EXTENSION'),
+  memoryActivity('MEMORY_ACTIVITY'),
+  moduleActivity('MODULE_ACTIVITY'),
+  processActivity('PROCESS_ACTIVITY'),
+  registryKeyActivity('REGISTRY_KEY_ACTIVITY'),
+  registryValueActivity('REGISTRY_VALUE_ACTIVITY'),
+  resourceActivity('RESOURCE_ACTIVITY'),
+  scheduledJobActivity('SCHEDULED_JOB_ACTIVITY'),
+  securityFinding('SECURITY_FINDING'),
+  accountChange('ACCOUNT_CHANGE'),
+  authentication('AUTHENTICATION'),
+  authorization('AUTHORIZATION'),
+  entityManagementAudit('ENTITY_MANAGEMENT_AUDIT'),
+  dhcpActivity('DHCP_ACTIVITY'),
+  networkActivity('NETWORK_ACTIVITY'),
+  dnsActivity('DNS_ACTIVITY'),
+  ftpActivity('FTP_ACTIVITY'),
+  httpActivity('HTTP_ACTIVITY'),
+  rdpActivity('RDP_ACTIVITY'),
+  smbActivity('SMB_ACTIVITY'),
+  sshActivity('SSH_ACTIVITY'),
+  cloudApi('CLOUD_API'),
+  containerLifecycle('CONTAINER_LIFECYCLE'),
+  databaseLifecycle('DATABASE_LIFECYCLE'),
+  configState('CONFIG_STATE'),
+  cloudStorage('CLOUD_STORAGE'),
+  inventoryInfo('INVENTORY_INFO'),
+  rfbActivity('RFB_ACTIVITY'),
+  smtpActivity('SMTP_ACTIVITY'),
+  virtualMachineActivity('VIRTUAL_MACHINE_ACTIVITY'),
+  ;
 
-extension OcsfEventClassValueExtension on OcsfEventClass {
-  String toValue() {
-    switch (this) {
-      case OcsfEventClass.accessActivity:
-        return 'ACCESS_ACTIVITY';
-      case OcsfEventClass.fileActivity:
-        return 'FILE_ACTIVITY';
-      case OcsfEventClass.kernelActivity:
-        return 'KERNEL_ACTIVITY';
-      case OcsfEventClass.kernelExtension:
-        return 'KERNEL_EXTENSION';
-      case OcsfEventClass.memoryActivity:
-        return 'MEMORY_ACTIVITY';
-      case OcsfEventClass.moduleActivity:
-        return 'MODULE_ACTIVITY';
-      case OcsfEventClass.processActivity:
-        return 'PROCESS_ACTIVITY';
-      case OcsfEventClass.registryKeyActivity:
-        return 'REGISTRY_KEY_ACTIVITY';
-      case OcsfEventClass.registryValueActivity:
-        return 'REGISTRY_VALUE_ACTIVITY';
-      case OcsfEventClass.resourceActivity:
-        return 'RESOURCE_ACTIVITY';
-      case OcsfEventClass.scheduledJobActivity:
-        return 'SCHEDULED_JOB_ACTIVITY';
-      case OcsfEventClass.securityFinding:
-        return 'SECURITY_FINDING';
-      case OcsfEventClass.accountChange:
-        return 'ACCOUNT_CHANGE';
-      case OcsfEventClass.authentication:
-        return 'AUTHENTICATION';
-      case OcsfEventClass.authorization:
-        return 'AUTHORIZATION';
-      case OcsfEventClass.entityManagementAudit:
-        return 'ENTITY_MANAGEMENT_AUDIT';
-      case OcsfEventClass.dhcpActivity:
-        return 'DHCP_ACTIVITY';
-      case OcsfEventClass.networkActivity:
-        return 'NETWORK_ACTIVITY';
-      case OcsfEventClass.dnsActivity:
-        return 'DNS_ACTIVITY';
-      case OcsfEventClass.ftpActivity:
-        return 'FTP_ACTIVITY';
-      case OcsfEventClass.httpActivity:
-        return 'HTTP_ACTIVITY';
-      case OcsfEventClass.rdpActivity:
-        return 'RDP_ACTIVITY';
-      case OcsfEventClass.smbActivity:
-        return 'SMB_ACTIVITY';
-      case OcsfEventClass.sshActivity:
-        return 'SSH_ACTIVITY';
-      case OcsfEventClass.cloudApi:
-        return 'CLOUD_API';
-      case OcsfEventClass.containerLifecycle:
-        return 'CONTAINER_LIFECYCLE';
-      case OcsfEventClass.databaseLifecycle:
-        return 'DATABASE_LIFECYCLE';
-      case OcsfEventClass.configState:
-        return 'CONFIG_STATE';
-      case OcsfEventClass.cloudStorage:
-        return 'CLOUD_STORAGE';
-      case OcsfEventClass.inventoryInfo:
-        return 'INVENTORY_INFO';
-      case OcsfEventClass.rfbActivity:
-        return 'RFB_ACTIVITY';
-      case OcsfEventClass.smtpActivity:
-        return 'SMTP_ACTIVITY';
-      case OcsfEventClass.virtualMachineActivity:
-        return 'VIRTUAL_MACHINE_ACTIVITY';
-    }
-  }
-}
+  final String value;
 
-extension OcsfEventClassFromString on String {
-  OcsfEventClass toOcsfEventClass() {
-    switch (this) {
-      case 'ACCESS_ACTIVITY':
-        return OcsfEventClass.accessActivity;
-      case 'FILE_ACTIVITY':
-        return OcsfEventClass.fileActivity;
-      case 'KERNEL_ACTIVITY':
-        return OcsfEventClass.kernelActivity;
-      case 'KERNEL_EXTENSION':
-        return OcsfEventClass.kernelExtension;
-      case 'MEMORY_ACTIVITY':
-        return OcsfEventClass.memoryActivity;
-      case 'MODULE_ACTIVITY':
-        return OcsfEventClass.moduleActivity;
-      case 'PROCESS_ACTIVITY':
-        return OcsfEventClass.processActivity;
-      case 'REGISTRY_KEY_ACTIVITY':
-        return OcsfEventClass.registryKeyActivity;
-      case 'REGISTRY_VALUE_ACTIVITY':
-        return OcsfEventClass.registryValueActivity;
-      case 'RESOURCE_ACTIVITY':
-        return OcsfEventClass.resourceActivity;
-      case 'SCHEDULED_JOB_ACTIVITY':
-        return OcsfEventClass.scheduledJobActivity;
-      case 'SECURITY_FINDING':
-        return OcsfEventClass.securityFinding;
-      case 'ACCOUNT_CHANGE':
-        return OcsfEventClass.accountChange;
-      case 'AUTHENTICATION':
-        return OcsfEventClass.authentication;
-      case 'AUTHORIZATION':
-        return OcsfEventClass.authorization;
-      case 'ENTITY_MANAGEMENT_AUDIT':
-        return OcsfEventClass.entityManagementAudit;
-      case 'DHCP_ACTIVITY':
-        return OcsfEventClass.dhcpActivity;
-      case 'NETWORK_ACTIVITY':
-        return OcsfEventClass.networkActivity;
-      case 'DNS_ACTIVITY':
-        return OcsfEventClass.dnsActivity;
-      case 'FTP_ACTIVITY':
-        return OcsfEventClass.ftpActivity;
-      case 'HTTP_ACTIVITY':
-        return OcsfEventClass.httpActivity;
-      case 'RDP_ACTIVITY':
-        return OcsfEventClass.rdpActivity;
-      case 'SMB_ACTIVITY':
-        return OcsfEventClass.smbActivity;
-      case 'SSH_ACTIVITY':
-        return OcsfEventClass.sshActivity;
-      case 'CLOUD_API':
-        return OcsfEventClass.cloudApi;
-      case 'CONTAINER_LIFECYCLE':
-        return OcsfEventClass.containerLifecycle;
-      case 'DATABASE_LIFECYCLE':
-        return OcsfEventClass.databaseLifecycle;
-      case 'CONFIG_STATE':
-        return OcsfEventClass.configState;
-      case 'CLOUD_STORAGE':
-        return OcsfEventClass.cloudStorage;
-      case 'INVENTORY_INFO':
-        return OcsfEventClass.inventoryInfo;
-      case 'RFB_ACTIVITY':
-        return OcsfEventClass.rfbActivity;
-      case 'SMTP_ACTIVITY':
-        return OcsfEventClass.smtpActivity;
-      case 'VIRTUAL_MACHINE_ACTIVITY':
-        return OcsfEventClass.virtualMachineActivity;
-    }
-    throw Exception('$this is not known in enum OcsfEventClass');
-  }
+  const OcsfEventClass(this.value);
+
+  static OcsfEventClass fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum OcsfEventClass'));
 }
 
 /// Protocol used in Amazon Security Lake that dictates how notifications are
@@ -2649,56 +2432,22 @@ class ProtocolAndNotificationEndpoint {
 }
 
 enum Region {
-  usEast_1,
-  usWest_2,
-  euCentral_1,
-  usEast_2,
-  euWest_1,
-  apNortheast_1,
-  apSoutheast_2,
-}
+  usEast_1('us-east-1'),
+  usWest_2('us-west-2'),
+  euCentral_1('eu-central-1'),
+  usEast_2('us-east-2'),
+  euWest_1('eu-west-1'),
+  apNortheast_1('ap-northeast-1'),
+  apSoutheast_2('ap-southeast-2'),
+  ;
 
-extension RegionValueExtension on Region {
-  String toValue() {
-    switch (this) {
-      case Region.usEast_1:
-        return 'us-east-1';
-      case Region.usWest_2:
-        return 'us-west-2';
-      case Region.euCentral_1:
-        return 'eu-central-1';
-      case Region.usEast_2:
-        return 'us-east-2';
-      case Region.euWest_1:
-        return 'eu-west-1';
-      case Region.apNortheast_1:
-        return 'ap-northeast-1';
-      case Region.apSoutheast_2:
-        return 'ap-southeast-2';
-    }
-  }
-}
+  final String value;
 
-extension RegionFromString on String {
-  Region toRegion() {
-    switch (this) {
-      case 'us-east-1':
-        return Region.usEast_1;
-      case 'us-west-2':
-        return Region.usWest_2;
-      case 'eu-central-1':
-        return Region.euCentral_1;
-      case 'us-east-2':
-        return Region.usEast_2;
-      case 'eu-west-1':
-        return Region.euWest_1;
-      case 'ap-northeast-1':
-        return Region.apNortheast_1;
-      case 'ap-southeast-2':
-        return Region.apSoutheast_2;
-    }
-    throw Exception('$this is not known in enum Region');
-  }
+  const Region(this.value);
+
+  static Region fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception('$value is not known in enum Region'));
 }
 
 /// Retention settings for the destination Amazon S3 buckets in Amazon Security
@@ -2721,7 +2470,8 @@ class RetentionSetting {
   factory RetentionSetting.fromJson(Map<String, dynamic> json) {
     return RetentionSetting(
       retentionPeriod: json['retentionPeriod'] as int?,
-      storageClass: (json['storageClass'] as String?)?.toStorageClass(),
+      storageClass:
+          (json['storageClass'] as String?)?.let(StorageClass.fromString),
     );
   }
 
@@ -2730,42 +2480,25 @@ class RetentionSetting {
     final storageClass = this.storageClass;
     return {
       if (retentionPeriod != null) 'retentionPeriod': retentionPeriod,
-      if (storageClass != null) 'storageClass': storageClass.toValue(),
+      if (storageClass != null) 'storageClass': storageClass.value,
     };
   }
 }
 
 enum SourceStatus {
-  active,
-  deactivated,
-  pending,
-}
+  active('ACTIVE'),
+  deactivated('DEACTIVATED'),
+  pending('PENDING'),
+  ;
 
-extension SourceStatusValueExtension on SourceStatus {
-  String toValue() {
-    switch (this) {
-      case SourceStatus.active:
-        return 'ACTIVE';
-      case SourceStatus.deactivated:
-        return 'DEACTIVATED';
-      case SourceStatus.pending:
-        return 'PENDING';
-    }
-  }
-}
+  final String value;
 
-extension SourceStatusFromString on String {
-  SourceStatus toSourceStatus() {
-    switch (this) {
-      case 'ACTIVE':
-        return SourceStatus.active;
-      case 'DEACTIVATED':
-        return SourceStatus.deactivated;
-      case 'PENDING':
-        return SourceStatus.pending;
-    }
-    throw Exception('$this is not known in enum SourceStatus');
-  }
+  const SourceStatus(this.value);
+
+  static SourceStatus fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum SourceStatus'));
 }
 
 /// The supported source types from which logs and events are collected in
@@ -2789,7 +2522,8 @@ class SourceType {
 
   factory SourceType.fromJson(Map<String, dynamic> json) {
     return SourceType(
-      awsSourceType: (json['awsSourceType'] as String?)?.toAwsLogSourceType(),
+      awsSourceType:
+          (json['awsSourceType'] as String?)?.let(AwsLogSourceType.fromString),
       customSourceType: json['customSourceType'] as String?,
     );
   }
@@ -2798,63 +2532,30 @@ class SourceType {
     final awsSourceType = this.awsSourceType;
     final customSourceType = this.customSourceType;
     return {
-      if (awsSourceType != null) 'awsSourceType': awsSourceType.toValue(),
+      if (awsSourceType != null) 'awsSourceType': awsSourceType.value,
       if (customSourceType != null) 'customSourceType': customSourceType,
     };
   }
 }
 
 enum StorageClass {
-  standardIa,
-  onezoneIa,
-  intelligentTiering,
-  glacierIr,
-  glacier,
-  deepArchive,
-  expire,
-}
+  standardIa('STANDARD_IA'),
+  onezoneIa('ONEZONE_IA'),
+  intelligentTiering('INTELLIGENT_TIERING'),
+  glacierIr('GLACIER_IR'),
+  glacier('GLACIER'),
+  deepArchive('DEEP_ARCHIVE'),
+  expire('EXPIRE'),
+  ;
 
-extension StorageClassValueExtension on StorageClass {
-  String toValue() {
-    switch (this) {
-      case StorageClass.standardIa:
-        return 'STANDARD_IA';
-      case StorageClass.onezoneIa:
-        return 'ONEZONE_IA';
-      case StorageClass.intelligentTiering:
-        return 'INTELLIGENT_TIERING';
-      case StorageClass.glacierIr:
-        return 'GLACIER_IR';
-      case StorageClass.glacier:
-        return 'GLACIER';
-      case StorageClass.deepArchive:
-        return 'DEEP_ARCHIVE';
-      case StorageClass.expire:
-        return 'EXPIRE';
-    }
-  }
-}
+  final String value;
 
-extension StorageClassFromString on String {
-  StorageClass toStorageClass() {
-    switch (this) {
-      case 'STANDARD_IA':
-        return StorageClass.standardIa;
-      case 'ONEZONE_IA':
-        return StorageClass.onezoneIa;
-      case 'INTELLIGENT_TIERING':
-        return StorageClass.intelligentTiering;
-      case 'GLACIER_IR':
-        return StorageClass.glacierIr;
-      case 'GLACIER':
-        return StorageClass.glacier;
-      case 'DEEP_ARCHIVE':
-        return StorageClass.deepArchive;
-      case 'EXPIRE':
-        return StorageClass.expire;
-    }
-    throw Exception('$this is not known in enum StorageClass');
-  }
+  const StorageClass(this.value);
+
+  static StorageClass fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum StorageClass'));
 }
 
 /// Provides details about the Amazon Security Lake account subscription.
@@ -2961,7 +2662,7 @@ class SubscriberResource {
       subscriptionId: json['subscriptionId'] as String,
       accessTypes: (json['accessTypes'] as List?)
           ?.whereNotNull()
-          .map((e) => (e as String).toAccessType())
+          .map((e) => AccessType.fromString((e as String)))
           .toList(),
       createdAt: timeStampFromJson(json['createdAt']),
       externalId: json['externalId'] as String?,
@@ -2973,10 +2674,10 @@ class SubscriberResource {
       subscriberDescription: json['subscriberDescription'] as String?,
       subscriberName: json['subscriberName'] as String?,
       subscriptionEndpoint: json['subscriptionEndpoint'] as String?,
-      subscriptionProtocol:
-          (json['subscriptionProtocol'] as String?)?.toEndpointProtocol(),
-      subscriptionStatus:
-          (json['subscriptionStatus'] as String?)?.toSubscriptionStatus(),
+      subscriptionProtocol: (json['subscriptionProtocol'] as String?)
+          ?.let(EndpointProtocol.fromString),
+      subscriptionStatus: (json['subscriptionStatus'] as String?)
+          ?.let(SubscriptionStatus.fromString),
       updatedAt: timeStampFromJson(json['updatedAt']),
     );
   }
@@ -3004,7 +2705,7 @@ class SubscriberResource {
       'sourceTypes': sourceTypes,
       'subscriptionId': subscriptionId,
       if (accessTypes != null)
-        'accessTypes': accessTypes.map((e) => e.toValue()).toList(),
+        'accessTypes': accessTypes.map((e) => e.value).toList(),
       if (createdAt != null) 'createdAt': iso8601ToJson(createdAt),
       if (externalId != null) 'externalId': externalId,
       if (resourceShareArn != null) 'resourceShareArn': resourceShareArn,
@@ -3018,113 +2719,51 @@ class SubscriberResource {
       if (subscriptionEndpoint != null)
         'subscriptionEndpoint': subscriptionEndpoint,
       if (subscriptionProtocol != null)
-        'subscriptionProtocol': subscriptionProtocol.toValue(),
+        'subscriptionProtocol': subscriptionProtocol.value,
       if (subscriptionStatus != null)
-        'subscriptionStatus': subscriptionStatus.toValue(),
+        'subscriptionStatus': subscriptionStatus.value,
       if (updatedAt != null) 'updatedAt': iso8601ToJson(updatedAt),
     };
   }
 }
 
 enum SubscriptionProtocolType {
-  http,
-  https,
-  email,
-  emailJson,
-  sms,
-  sqs,
-  lambda,
-  app,
-  firehose,
-}
+  http('HTTP'),
+  https('HTTPS'),
+  email('EMAIL'),
+  emailJson('EMAIL_JSON'),
+  sms('SMS'),
+  sqs('SQS'),
+  lambda('LAMBDA'),
+  app('APP'),
+  firehose('FIREHOSE'),
+  ;
 
-extension SubscriptionProtocolTypeValueExtension on SubscriptionProtocolType {
-  String toValue() {
-    switch (this) {
-      case SubscriptionProtocolType.http:
-        return 'HTTP';
-      case SubscriptionProtocolType.https:
-        return 'HTTPS';
-      case SubscriptionProtocolType.email:
-        return 'EMAIL';
-      case SubscriptionProtocolType.emailJson:
-        return 'EMAIL_JSON';
-      case SubscriptionProtocolType.sms:
-        return 'SMS';
-      case SubscriptionProtocolType.sqs:
-        return 'SQS';
-      case SubscriptionProtocolType.lambda:
-        return 'LAMBDA';
-      case SubscriptionProtocolType.app:
-        return 'APP';
-      case SubscriptionProtocolType.firehose:
-        return 'FIREHOSE';
-    }
-  }
-}
+  final String value;
 
-extension SubscriptionProtocolTypeFromString on String {
-  SubscriptionProtocolType toSubscriptionProtocolType() {
-    switch (this) {
-      case 'HTTP':
-        return SubscriptionProtocolType.http;
-      case 'HTTPS':
-        return SubscriptionProtocolType.https;
-      case 'EMAIL':
-        return SubscriptionProtocolType.email;
-      case 'EMAIL_JSON':
-        return SubscriptionProtocolType.emailJson;
-      case 'SMS':
-        return SubscriptionProtocolType.sms;
-      case 'SQS':
-        return SubscriptionProtocolType.sqs;
-      case 'LAMBDA':
-        return SubscriptionProtocolType.lambda;
-      case 'APP':
-        return SubscriptionProtocolType.app;
-      case 'FIREHOSE':
-        return SubscriptionProtocolType.firehose;
-    }
-    throw Exception('$this is not known in enum SubscriptionProtocolType');
-  }
+  const SubscriptionProtocolType(this.value);
+
+  static SubscriptionProtocolType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum SubscriptionProtocolType'));
 }
 
 enum SubscriptionStatus {
-  active,
-  deactivated,
-  pending,
-  ready,
-}
+  active('ACTIVE'),
+  deactivated('DEACTIVATED'),
+  pending('PENDING'),
+  ready('READY'),
+  ;
 
-extension SubscriptionStatusValueExtension on SubscriptionStatus {
-  String toValue() {
-    switch (this) {
-      case SubscriptionStatus.active:
-        return 'ACTIVE';
-      case SubscriptionStatus.deactivated:
-        return 'DEACTIVATED';
-      case SubscriptionStatus.pending:
-        return 'PENDING';
-      case SubscriptionStatus.ready:
-        return 'READY';
-    }
-  }
-}
+  final String value;
 
-extension SubscriptionStatusFromString on String {
-  SubscriptionStatus toSubscriptionStatus() {
-    switch (this) {
-      case 'ACTIVE':
-        return SubscriptionStatus.active;
-      case 'DEACTIVATED':
-        return SubscriptionStatus.deactivated;
-      case 'PENDING':
-        return SubscriptionStatus.pending;
-      case 'READY':
-        return SubscriptionStatus.ready;
-    }
-    throw Exception('$this is not known in enum SubscriptionStatus');
-  }
+  const SubscriptionStatus(this.value);
+
+  static SubscriptionStatus fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum SubscriptionStatus'));
 }
 
 class UpdateDatalakeExceptionsExpiryResponse {
@@ -3196,7 +2835,7 @@ class UpdateStatus {
           : null,
       lastUpdateRequestId: json['lastUpdateRequestId'] as String?,
       lastUpdateStatus:
-          (json['lastUpdateStatus'] as String?)?.toSettingsStatus(),
+          (json['lastUpdateStatus'] as String?)?.let(SettingsStatus.fromString),
     );
   }
 
@@ -3208,8 +2847,7 @@ class UpdateStatus {
       if (lastUpdateFailure != null) 'lastUpdateFailure': lastUpdateFailure,
       if (lastUpdateRequestId != null)
         'lastUpdateRequestId': lastUpdateRequestId,
-      if (lastUpdateStatus != null)
-        'lastUpdateStatus': lastUpdateStatus.toValue(),
+      if (lastUpdateStatus != null) 'lastUpdateStatus': lastUpdateStatus.value,
     };
   }
 }
@@ -3263,41 +2901,20 @@ class UpdateSubscriptionNotificationConfigurationResponse {
 }
 
 enum SettingsStatus {
-  initialized,
-  pending,
-  completed,
-  failed,
-}
+  initialized('INITIALIZED'),
+  pending('PENDING'),
+  completed('COMPLETED'),
+  failed('FAILED'),
+  ;
 
-extension SettingsStatusValueExtension on SettingsStatus {
-  String toValue() {
-    switch (this) {
-      case SettingsStatus.initialized:
-        return 'INITIALIZED';
-      case SettingsStatus.pending:
-        return 'PENDING';
-      case SettingsStatus.completed:
-        return 'COMPLETED';
-      case SettingsStatus.failed:
-        return 'FAILED';
-    }
-  }
-}
+  final String value;
 
-extension SettingsStatusFromString on String {
-  SettingsStatus toSettingsStatus() {
-    switch (this) {
-      case 'INITIALIZED':
-        return SettingsStatus.initialized;
-      case 'PENDING':
-        return SettingsStatus.pending;
-      case 'COMPLETED':
-        return SettingsStatus.completed;
-      case 'FAILED':
-        return SettingsStatus.failed;
-    }
-    throw Exception('$this is not known in enum SettingsStatus');
-  }
+  const SettingsStatus(this.value);
+
+  static SettingsStatus fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum SettingsStatus'));
 }
 
 class AccessDeniedException extends _s.GenericAwsException {

@@ -151,7 +151,7 @@ class ChimeSdkMessaging {
     final $payload = <String, dynamic>{
       'MemberArns': memberArns,
       if (subChannelId != null) 'SubChannelId': subChannelId,
-      if (type != null) 'Type': type.toValue(),
+      if (type != null) 'Type': type.value,
     };
     final response = await _protocol.send(
       payload: $payload,
@@ -316,9 +316,9 @@ class ChimeSdkMessaging {
       if (expirationSettings != null) 'ExpirationSettings': expirationSettings,
       if (memberArns != null) 'MemberArns': memberArns,
       if (metadata != null) 'Metadata': metadata,
-      if (mode != null) 'Mode': mode.toValue(),
+      if (mode != null) 'Mode': mode.value,
       if (moderatorArns != null) 'ModeratorArns': moderatorArns,
-      if (privacy != null) 'Privacy': privacy.toValue(),
+      if (privacy != null) 'Privacy': privacy.value,
       if (tags != null) 'Tags': tags,
     };
     final response = await _protocol.send(
@@ -538,7 +538,7 @@ class ChimeSdkMessaging {
     };
     final $payload = <String, dynamic>{
       'MemberArn': memberArn,
-      'Type': type.toValue(),
+      'Type': type.value,
       if (subChannelId != null) 'SubChannelId': subChannelId,
     };
     final response = await _protocol.send(
@@ -1643,7 +1643,7 @@ class ChimeSdkMessaging {
       if (maxResults != null) 'max-results': [maxResults.toString()],
       if (nextToken != null) 'next-token': [nextToken],
       if (subChannelId != null) 'sub-channel-id': [subChannelId],
-      if (type != null) 'type': [type.toValue()],
+      if (type != null) 'type': [type.value],
     };
     final response = await _protocol.send(
       payload: null,
@@ -1795,7 +1795,7 @@ class ChimeSdkMessaging {
         'not-after': [_s.iso8601ToJson(notAfter).toString()],
       if (notBefore != null)
         'not-before': [_s.iso8601ToJson(notBefore).toString()],
-      if (sortOrder != null) 'sort-order': [sortOrder.toValue()],
+      if (sortOrder != null) 'sort-order': [sortOrder.value],
       if (subChannelId != null) 'sub-channel-id': [subChannelId],
     };
     final response = await _protocol.send(
@@ -1930,7 +1930,7 @@ class ChimeSdkMessaging {
       'app-instance-arn': [appInstanceArn],
       if (maxResults != null) 'max-results': [maxResults.toString()],
       if (nextToken != null) 'next-token': [nextToken],
-      if (privacy != null) 'privacy': [privacy.toValue()],
+      if (privacy != null) 'privacy': [privacy.value],
     };
     final response = await _protocol.send(
       payload: null,
@@ -2465,8 +2465,8 @@ class ChimeSdkMessaging {
     };
     final $payload = <String, dynamic>{
       'Content': content,
-      'Persistence': persistence.toValue(),
-      'Type': type.toValue(),
+      'Persistence': persistence.value,
+      'Type': type.value,
       'ClientRequestToken': clientRequestToken ?? _s.generateIdempotencyToken(),
       if (contentType != null) 'ContentType': contentType,
       if (messageAttributes != null) 'MessageAttributes': messageAttributes,
@@ -2591,7 +2591,7 @@ class ChimeSdkMessaging {
     };
     final $payload = <String, dynamic>{
       if (metadata != null) 'Metadata': metadata,
-      if (mode != null) 'Mode': mode.toValue(),
+      if (mode != null) 'Mode': mode.value,
       if (name != null) 'Name': name,
     };
     final response = await _protocol.send(
@@ -2749,36 +2749,19 @@ class ChimeSdkMessaging {
 }
 
 enum AllowNotifications {
-  all,
-  none,
-  filtered,
-}
+  all('ALL'),
+  none('NONE'),
+  filtered('FILTERED'),
+  ;
 
-extension AllowNotificationsValueExtension on AllowNotifications {
-  String toValue() {
-    switch (this) {
-      case AllowNotifications.all:
-        return 'ALL';
-      case AllowNotifications.none:
-        return 'NONE';
-      case AllowNotifications.filtered:
-        return 'FILTERED';
-    }
-  }
-}
+  final String value;
 
-extension AllowNotificationsFromString on String {
-  AllowNotifications toAllowNotifications() {
-    switch (this) {
-      case 'ALL':
-        return AllowNotifications.all;
-      case 'NONE':
-        return AllowNotifications.none;
-      case 'FILTERED':
-        return AllowNotifications.filtered;
-    }
-    throw Exception('$this is not known in enum AllowNotifications');
-  }
+  const AllowNotifications(this.value);
+
+  static AllowNotifications fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum AllowNotifications'));
 }
 
 /// Summary of the membership details of an <code>AppInstanceUser</code>.
@@ -2804,7 +2787,7 @@ class AppInstanceUserMembershipSummary {
     return AppInstanceUserMembershipSummary(
       readMarkerTimestamp: timeStampFromJson(json['ReadMarkerTimestamp']),
       subChannelId: json['SubChannelId'] as String?,
-      type: (json['Type'] as String?)?.toChannelMembershipType(),
+      type: (json['Type'] as String?)?.let(ChannelMembershipType.fromString),
     );
   }
 
@@ -2816,7 +2799,7 @@ class AppInstanceUserMembershipSummary {
       if (readMarkerTimestamp != null)
         'ReadMarkerTimestamp': unixTimestampToJson(readMarkerTimestamp),
       if (subChannelId != null) 'SubChannelId': subChannelId,
-      if (type != null) 'Type': type.toValue(),
+      if (type != null) 'Type': type.value,
     };
   }
 }
@@ -2858,7 +2841,7 @@ class BatchChannelMemberships {
           .map((e) => Identity.fromJson(e as Map<String, dynamic>))
           .toList(),
       subChannelId: json['SubChannelId'] as String?,
-      type: (json['Type'] as String?)?.toChannelMembershipType(),
+      type: (json['Type'] as String?)?.let(ChannelMembershipType.fromString),
     );
   }
 
@@ -2873,7 +2856,7 @@ class BatchChannelMemberships {
       if (invitedBy != null) 'InvitedBy': invitedBy,
       if (members != null) 'Members': members,
       if (subChannelId != null) 'SubChannelId': subChannelId,
-      if (type != null) 'Type': type.toValue(),
+      if (type != null) 'Type': type.value,
     };
   }
 }
@@ -2899,7 +2882,7 @@ class BatchCreateChannelMembershipError {
   factory BatchCreateChannelMembershipError.fromJson(
       Map<String, dynamic> json) {
     return BatchCreateChannelMembershipError(
-      errorCode: (json['ErrorCode'] as String?)?.toErrorCode(),
+      errorCode: (json['ErrorCode'] as String?)?.let(ErrorCode.fromString),
       errorMessage: json['ErrorMessage'] as String?,
       memberArn: json['MemberArn'] as String?,
     );
@@ -2910,7 +2893,7 @@ class BatchCreateChannelMembershipError {
     final errorMessage = this.errorMessage;
     final memberArn = this.memberArn;
     return {
-      if (errorCode != null) 'ErrorCode': errorCode.toValue(),
+      if (errorCode != null) 'ErrorCode': errorCode.value,
       if (errorMessage != null) 'ErrorMessage': errorMessage,
       if (memberArn != null) 'MemberArn': memberArn,
     };
@@ -3030,9 +3013,9 @@ class Channel {
       lastMessageTimestamp: timeStampFromJson(json['LastMessageTimestamp']),
       lastUpdatedTimestamp: timeStampFromJson(json['LastUpdatedTimestamp']),
       metadata: json['Metadata'] as String?,
-      mode: (json['Mode'] as String?)?.toChannelMode(),
+      mode: (json['Mode'] as String?)?.let(ChannelMode.fromString),
       name: json['Name'] as String?,
-      privacy: (json['Privacy'] as String?)?.toChannelPrivacy(),
+      privacy: (json['Privacy'] as String?)?.let(ChannelPrivacy.fromString),
     );
   }
 
@@ -3063,9 +3046,9 @@ class Channel {
       if (lastUpdatedTimestamp != null)
         'LastUpdatedTimestamp': unixTimestampToJson(lastUpdatedTimestamp),
       if (metadata != null) 'Metadata': metadata,
-      if (mode != null) 'Mode': mode.toValue(),
+      if (mode != null) 'Mode': mode.value,
       if (name != null) 'Name': name,
-      if (privacy != null) 'Privacy': privacy.toValue(),
+      if (privacy != null) 'Privacy': privacy.value,
     };
   }
 }
@@ -3099,9 +3082,9 @@ class ChannelAssociatedWithFlowSummary {
     return ChannelAssociatedWithFlowSummary(
       channelArn: json['ChannelArn'] as String?,
       metadata: json['Metadata'] as String?,
-      mode: (json['Mode'] as String?)?.toChannelMode(),
+      mode: (json['Mode'] as String?)?.let(ChannelMode.fromString),
       name: json['Name'] as String?,
-      privacy: (json['Privacy'] as String?)?.toChannelPrivacy(),
+      privacy: (json['Privacy'] as String?)?.let(ChannelPrivacy.fromString),
     );
   }
 
@@ -3114,9 +3097,9 @@ class ChannelAssociatedWithFlowSummary {
     return {
       if (channelArn != null) 'ChannelArn': channelArn,
       if (metadata != null) 'Metadata': metadata,
-      if (mode != null) 'Mode': mode.toValue(),
+      if (mode != null) 'Mode': mode.value,
       if (name != null) 'Name': name,
-      if (privacy != null) 'Privacy': privacy.toValue(),
+      if (privacy != null) 'Privacy': privacy.value,
     };
   }
 }
@@ -3365,7 +3348,7 @@ class ChannelMembership {
           ? Identity.fromJson(json['Member'] as Map<String, dynamic>)
           : null,
       subChannelId: json['SubChannelId'] as String?,
-      type: (json['Type'] as String?)?.toChannelMembershipType(),
+      type: (json['Type'] as String?)?.let(ChannelMembershipType.fromString),
     );
   }
 
@@ -3386,7 +3369,7 @@ class ChannelMembership {
         'LastUpdatedTimestamp': unixTimestampToJson(lastUpdatedTimestamp),
       if (member != null) 'Member': member,
       if (subChannelId != null) 'SubChannelId': subChannelId,
-      if (type != null) 'Type': type.toValue(),
+      if (type != null) 'Type': type.value,
     };
   }
 }
@@ -3485,31 +3468,18 @@ class ChannelMembershipSummary {
 }
 
 enum ChannelMembershipType {
-  $default,
-  hidden,
-}
+  $default('DEFAULT'),
+  hidden('HIDDEN'),
+  ;
 
-extension ChannelMembershipTypeValueExtension on ChannelMembershipType {
-  String toValue() {
-    switch (this) {
-      case ChannelMembershipType.$default:
-        return 'DEFAULT';
-      case ChannelMembershipType.hidden:
-        return 'HIDDEN';
-    }
-  }
-}
+  final String value;
 
-extension ChannelMembershipTypeFromString on String {
-  ChannelMembershipType toChannelMembershipType() {
-    switch (this) {
-      case 'DEFAULT':
-        return ChannelMembershipType.$default;
-      case 'HIDDEN':
-        return ChannelMembershipType.hidden;
-    }
-    throw Exception('$this is not known in enum ChannelMembershipType');
-  }
+  const ChannelMembershipType(this.value);
+
+  static ChannelMembershipType fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum ChannelMembershipType'));
 }
 
 /// The details of a message in a channel.
@@ -3592,8 +3562,8 @@ class ChannelMessage {
               k, MessageAttributeValue.fromJson(e as Map<String, dynamic>))),
       messageId: json['MessageId'] as String?,
       metadata: json['Metadata'] as String?,
-      persistence:
-          (json['Persistence'] as String?)?.toChannelMessagePersistenceType(),
+      persistence: (json['Persistence'] as String?)
+          ?.let(ChannelMessagePersistenceType.fromString),
       redacted: json['Redacted'] as bool?,
       sender: json['Sender'] != null
           ? Identity.fromJson(json['Sender'] as Map<String, dynamic>)
@@ -3603,7 +3573,7 @@ class ChannelMessage {
               json['Status'] as Map<String, dynamic>)
           : null,
       subChannelId: json['SubChannelId'] as String?,
-      type: (json['Type'] as String?)?.toChannelMessageType(),
+      type: (json['Type'] as String?)?.let(ChannelMessageType.fromString),
     );
   }
 
@@ -3636,12 +3606,12 @@ class ChannelMessage {
       if (messageAttributes != null) 'MessageAttributes': messageAttributes,
       if (messageId != null) 'MessageId': messageId,
       if (metadata != null) 'Metadata': metadata,
-      if (persistence != null) 'Persistence': persistence.toValue(),
+      if (persistence != null) 'Persistence': persistence.value,
       if (redacted != null) 'Redacted': redacted,
       if (sender != null) 'Sender': sender,
       if (status != null) 'Status': status,
       if (subChannelId != null) 'SubChannelId': subChannelId,
-      if (type != null) 'Type': type.toValue(),
+      if (type != null) 'Type': type.value,
     };
   }
 }
@@ -3702,70 +3672,35 @@ class ChannelMessageCallback {
 }
 
 enum ChannelMessagePersistenceType {
-  persistent,
-  nonPersistent,
-}
+  persistent('PERSISTENT'),
+  nonPersistent('NON_PERSISTENT'),
+  ;
 
-extension ChannelMessagePersistenceTypeValueExtension
-    on ChannelMessagePersistenceType {
-  String toValue() {
-    switch (this) {
-      case ChannelMessagePersistenceType.persistent:
-        return 'PERSISTENT';
-      case ChannelMessagePersistenceType.nonPersistent:
-        return 'NON_PERSISTENT';
-    }
-  }
-}
+  final String value;
 
-extension ChannelMessagePersistenceTypeFromString on String {
-  ChannelMessagePersistenceType toChannelMessagePersistenceType() {
-    switch (this) {
-      case 'PERSISTENT':
-        return ChannelMessagePersistenceType.persistent;
-      case 'NON_PERSISTENT':
-        return ChannelMessagePersistenceType.nonPersistent;
-    }
-    throw Exception('$this is not known in enum ChannelMessagePersistenceType');
-  }
+  const ChannelMessagePersistenceType(this.value);
+
+  static ChannelMessagePersistenceType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum ChannelMessagePersistenceType'));
 }
 
 enum ChannelMessageStatus {
-  sent,
-  pending,
-  failed,
-  denied,
-}
+  sent('SENT'),
+  pending('PENDING'),
+  failed('FAILED'),
+  denied('DENIED'),
+  ;
 
-extension ChannelMessageStatusValueExtension on ChannelMessageStatus {
-  String toValue() {
-    switch (this) {
-      case ChannelMessageStatus.sent:
-        return 'SENT';
-      case ChannelMessageStatus.pending:
-        return 'PENDING';
-      case ChannelMessageStatus.failed:
-        return 'FAILED';
-      case ChannelMessageStatus.denied:
-        return 'DENIED';
-    }
-  }
-}
+  final String value;
 
-extension ChannelMessageStatusFromString on String {
-  ChannelMessageStatus toChannelMessageStatus() {
-    switch (this) {
-      case 'SENT':
-        return ChannelMessageStatus.sent;
-      case 'PENDING':
-        return ChannelMessageStatus.pending;
-      case 'FAILED':
-        return ChannelMessageStatus.failed;
-      case 'DENIED':
-        return ChannelMessageStatus.denied;
-    }
-    throw Exception('$this is not known in enum ChannelMessageStatus');
-  }
+  const ChannelMessageStatus(this.value);
+
+  static ChannelMessageStatus fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum ChannelMessageStatus'));
 }
 
 /// Stores information about a message status.
@@ -3784,7 +3719,7 @@ class ChannelMessageStatusStructure {
   factory ChannelMessageStatusStructure.fromJson(Map<String, dynamic> json) {
     return ChannelMessageStatusStructure(
       detail: json['Detail'] as String?,
-      value: (json['Value'] as String?)?.toChannelMessageStatus(),
+      value: (json['Value'] as String?)?.let(ChannelMessageStatus.fromString),
     );
   }
 
@@ -3793,7 +3728,7 @@ class ChannelMessageStatusStructure {
     final value = this.value;
     return {
       if (detail != null) 'Detail': detail,
-      if (value != null) 'Value': value.toValue(),
+      if (value != null) 'Value': value.value,
     };
   }
 }
@@ -3873,7 +3808,7 @@ class ChannelMessageSummary {
           ? ChannelMessageStatusStructure.fromJson(
               json['Status'] as Map<String, dynamic>)
           : null,
-      type: (json['Type'] as String?)?.toChannelMessageType(),
+      type: (json['Type'] as String?)?.let(ChannelMessageType.fromString),
     );
   }
 
@@ -3905,65 +3840,38 @@ class ChannelMessageSummary {
       if (redacted != null) 'Redacted': redacted,
       if (sender != null) 'Sender': sender,
       if (status != null) 'Status': status,
-      if (type != null) 'Type': type.toValue(),
+      if (type != null) 'Type': type.value,
     };
   }
 }
 
 enum ChannelMessageType {
-  standard,
-  control,
-}
+  standard('STANDARD'),
+  control('CONTROL'),
+  ;
 
-extension ChannelMessageTypeValueExtension on ChannelMessageType {
-  String toValue() {
-    switch (this) {
-      case ChannelMessageType.standard:
-        return 'STANDARD';
-      case ChannelMessageType.control:
-        return 'CONTROL';
-    }
-  }
-}
+  final String value;
 
-extension ChannelMessageTypeFromString on String {
-  ChannelMessageType toChannelMessageType() {
-    switch (this) {
-      case 'STANDARD':
-        return ChannelMessageType.standard;
-      case 'CONTROL':
-        return ChannelMessageType.control;
-    }
-    throw Exception('$this is not known in enum ChannelMessageType');
-  }
+  const ChannelMessageType(this.value);
+
+  static ChannelMessageType fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum ChannelMessageType'));
 }
 
 enum ChannelMode {
-  unrestricted,
-  restricted,
-}
+  unrestricted('UNRESTRICTED'),
+  restricted('RESTRICTED'),
+  ;
 
-extension ChannelModeValueExtension on ChannelMode {
-  String toValue() {
-    switch (this) {
-      case ChannelMode.unrestricted:
-        return 'UNRESTRICTED';
-      case ChannelMode.restricted:
-        return 'RESTRICTED';
-    }
-  }
-}
+  final String value;
 
-extension ChannelModeFromString on String {
-  ChannelMode toChannelMode() {
-    switch (this) {
-      case 'UNRESTRICTED':
-        return ChannelMode.unrestricted;
-      case 'RESTRICTED':
-        return ChannelMode.restricted;
-    }
-    throw Exception('$this is not known in enum ChannelMode');
-  }
+  const ChannelMode(this.value);
+
+  static ChannelMode fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum ChannelMode'));
 }
 
 /// Summary of the details of a moderated channel.
@@ -4068,31 +3976,18 @@ class ChannelModeratorSummary {
 }
 
 enum ChannelPrivacy {
-  public,
-  private,
-}
+  public('PUBLIC'),
+  private('PRIVATE'),
+  ;
 
-extension ChannelPrivacyValueExtension on ChannelPrivacy {
-  String toValue() {
-    switch (this) {
-      case ChannelPrivacy.public:
-        return 'PUBLIC';
-      case ChannelPrivacy.private:
-        return 'PRIVATE';
-    }
-  }
-}
+  final String value;
 
-extension ChannelPrivacyFromString on String {
-  ChannelPrivacy toChannelPrivacy() {
-    switch (this) {
-      case 'PUBLIC':
-        return ChannelPrivacy.public;
-      case 'PRIVATE':
-        return ChannelPrivacy.private;
-    }
-    throw Exception('$this is not known in enum ChannelPrivacy');
-  }
+  const ChannelPrivacy(this.value);
+
+  static ChannelPrivacy fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum ChannelPrivacy'));
 }
 
 /// Summary of the details of a <code>Channel</code>.
@@ -4129,9 +4024,9 @@ class ChannelSummary {
       channelArn: json['ChannelArn'] as String?,
       lastMessageTimestamp: timeStampFromJson(json['LastMessageTimestamp']),
       metadata: json['Metadata'] as String?,
-      mode: (json['Mode'] as String?)?.toChannelMode(),
+      mode: (json['Mode'] as String?)?.let(ChannelMode.fromString),
       name: json['Name'] as String?,
-      privacy: (json['Privacy'] as String?)?.toChannelPrivacy(),
+      privacy: (json['Privacy'] as String?)?.let(ChannelPrivacy.fromString),
     );
   }
 
@@ -4147,9 +4042,9 @@ class ChannelSummary {
       if (lastMessageTimestamp != null)
         'LastMessageTimestamp': unixTimestampToJson(lastMessageTimestamp),
       if (metadata != null) 'Metadata': metadata,
-      if (mode != null) 'Mode': mode.toValue(),
+      if (mode != null) 'Mode': mode.value,
       if (name != null) 'Name': name,
-      if (privacy != null) 'Privacy': privacy.toValue(),
+      if (privacy != null) 'Privacy': privacy.value,
     };
   }
 }
@@ -4517,124 +4412,45 @@ class ElasticChannelConfiguration {
 }
 
 enum ErrorCode {
-  badRequest,
-  conflict,
-  forbidden,
-  notFound,
-  preconditionFailed,
-  resourceLimitExceeded,
-  serviceFailure,
-  accessDenied,
-  serviceUnavailable,
-  throttled,
-  throttling,
-  unauthorized,
-  unprocessable,
-  voiceConnectorGroupAssociationsExist,
-  phoneNumberAssociationsExist,
-}
+  badRequest('BadRequest'),
+  conflict('Conflict'),
+  forbidden('Forbidden'),
+  notFound('NotFound'),
+  preconditionFailed('PreconditionFailed'),
+  resourceLimitExceeded('ResourceLimitExceeded'),
+  serviceFailure('ServiceFailure'),
+  accessDenied('AccessDenied'),
+  serviceUnavailable('ServiceUnavailable'),
+  throttled('Throttled'),
+  throttling('Throttling'),
+  unauthorized('Unauthorized'),
+  unprocessable('Unprocessable'),
+  voiceConnectorGroupAssociationsExist('VoiceConnectorGroupAssociationsExist'),
+  phoneNumberAssociationsExist('PhoneNumberAssociationsExist'),
+  ;
 
-extension ErrorCodeValueExtension on ErrorCode {
-  String toValue() {
-    switch (this) {
-      case ErrorCode.badRequest:
-        return 'BadRequest';
-      case ErrorCode.conflict:
-        return 'Conflict';
-      case ErrorCode.forbidden:
-        return 'Forbidden';
-      case ErrorCode.notFound:
-        return 'NotFound';
-      case ErrorCode.preconditionFailed:
-        return 'PreconditionFailed';
-      case ErrorCode.resourceLimitExceeded:
-        return 'ResourceLimitExceeded';
-      case ErrorCode.serviceFailure:
-        return 'ServiceFailure';
-      case ErrorCode.accessDenied:
-        return 'AccessDenied';
-      case ErrorCode.serviceUnavailable:
-        return 'ServiceUnavailable';
-      case ErrorCode.throttled:
-        return 'Throttled';
-      case ErrorCode.throttling:
-        return 'Throttling';
-      case ErrorCode.unauthorized:
-        return 'Unauthorized';
-      case ErrorCode.unprocessable:
-        return 'Unprocessable';
-      case ErrorCode.voiceConnectorGroupAssociationsExist:
-        return 'VoiceConnectorGroupAssociationsExist';
-      case ErrorCode.phoneNumberAssociationsExist:
-        return 'PhoneNumberAssociationsExist';
-    }
-  }
-}
+  final String value;
 
-extension ErrorCodeFromString on String {
-  ErrorCode toErrorCode() {
-    switch (this) {
-      case 'BadRequest':
-        return ErrorCode.badRequest;
-      case 'Conflict':
-        return ErrorCode.conflict;
-      case 'Forbidden':
-        return ErrorCode.forbidden;
-      case 'NotFound':
-        return ErrorCode.notFound;
-      case 'PreconditionFailed':
-        return ErrorCode.preconditionFailed;
-      case 'ResourceLimitExceeded':
-        return ErrorCode.resourceLimitExceeded;
-      case 'ServiceFailure':
-        return ErrorCode.serviceFailure;
-      case 'AccessDenied':
-        return ErrorCode.accessDenied;
-      case 'ServiceUnavailable':
-        return ErrorCode.serviceUnavailable;
-      case 'Throttled':
-        return ErrorCode.throttled;
-      case 'Throttling':
-        return ErrorCode.throttling;
-      case 'Unauthorized':
-        return ErrorCode.unauthorized;
-      case 'Unprocessable':
-        return ErrorCode.unprocessable;
-      case 'VoiceConnectorGroupAssociationsExist':
-        return ErrorCode.voiceConnectorGroupAssociationsExist;
-      case 'PhoneNumberAssociationsExist':
-        return ErrorCode.phoneNumberAssociationsExist;
-    }
-    throw Exception('$this is not known in enum ErrorCode');
-  }
+  const ErrorCode(this.value);
+
+  static ErrorCode fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum ErrorCode'));
 }
 
 enum ExpirationCriterion {
-  createdTimestamp,
-  lastMessageTimestamp,
-}
+  createdTimestamp('CREATED_TIMESTAMP'),
+  lastMessageTimestamp('LAST_MESSAGE_TIMESTAMP'),
+  ;
 
-extension ExpirationCriterionValueExtension on ExpirationCriterion {
-  String toValue() {
-    switch (this) {
-      case ExpirationCriterion.createdTimestamp:
-        return 'CREATED_TIMESTAMP';
-      case ExpirationCriterion.lastMessageTimestamp:
-        return 'LAST_MESSAGE_TIMESTAMP';
-    }
-  }
-}
+  final String value;
 
-extension ExpirationCriterionFromString on String {
-  ExpirationCriterion toExpirationCriterion() {
-    switch (this) {
-      case 'CREATED_TIMESTAMP':
-        return ExpirationCriterion.createdTimestamp;
-      case 'LAST_MESSAGE_TIMESTAMP':
-        return ExpirationCriterion.lastMessageTimestamp;
-    }
-    throw Exception('$this is not known in enum ExpirationCriterion');
-  }
+  const ExpirationCriterion(this.value);
+
+  static ExpirationCriterion fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum ExpirationCriterion'));
 }
 
 /// Settings that control the interval after which a channel is deleted.
@@ -4652,8 +4468,8 @@ class ExpirationSettings {
 
   factory ExpirationSettings.fromJson(Map<String, dynamic> json) {
     return ExpirationSettings(
-      expirationCriterion:
-          (json['ExpirationCriterion'] as String).toExpirationCriterion(),
+      expirationCriterion: ExpirationCriterion.fromString(
+          (json['ExpirationCriterion'] as String)),
       expirationDays: json['ExpirationDays'] as int,
     );
   }
@@ -4662,38 +4478,25 @@ class ExpirationSettings {
     final expirationCriterion = this.expirationCriterion;
     final expirationDays = this.expirationDays;
     return {
-      'ExpirationCriterion': expirationCriterion.toValue(),
+      'ExpirationCriterion': expirationCriterion.value,
       'ExpirationDays': expirationDays,
     };
   }
 }
 
 enum FallbackAction {
-  $continue,
-  abort,
-}
+  $continue('CONTINUE'),
+  abort('ABORT'),
+  ;
 
-extension FallbackActionValueExtension on FallbackAction {
-  String toValue() {
-    switch (this) {
-      case FallbackAction.$continue:
-        return 'CONTINUE';
-      case FallbackAction.abort:
-        return 'ABORT';
-    }
-  }
-}
+  final String value;
 
-extension FallbackActionFromString on String {
-  FallbackAction toFallbackAction() {
-    switch (this) {
-      case 'CONTINUE':
-        return FallbackAction.$continue;
-      case 'ABORT':
-        return FallbackAction.abort;
-    }
-    throw Exception('$this is not known in enum FallbackAction');
-  }
+  const FallbackAction(this.value);
+
+  static FallbackAction fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum FallbackAction'));
 }
 
 class GetChannelMembershipPreferencesResponse {
@@ -4873,26 +4676,17 @@ class Identity {
 }
 
 enum InvocationType {
-  async,
-}
+  async('ASYNC'),
+  ;
 
-extension InvocationTypeValueExtension on InvocationType {
-  String toValue() {
-    switch (this) {
-      case InvocationType.async:
-        return 'ASYNC';
-    }
-  }
-}
+  final String value;
 
-extension InvocationTypeFromString on String {
-  InvocationType toInvocationType() {
-    switch (this) {
-      case 'ASYNC':
-        return InvocationType.async;
-    }
-    throw Exception('$this is not known in enum InvocationType');
-  }
+  const InvocationType(this.value);
+
+  static InvocationType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum InvocationType'));
 }
 
 /// Stores metadata about a Lambda processor.
@@ -4910,7 +4704,8 @@ class LambdaConfiguration {
 
   factory LambdaConfiguration.fromJson(Map<String, dynamic> json) {
     return LambdaConfiguration(
-      invocationType: (json['InvocationType'] as String).toInvocationType(),
+      invocationType:
+          InvocationType.fromString((json['InvocationType'] as String)),
       resourceArn: json['ResourceArn'] as String,
     );
   }
@@ -4919,7 +4714,7 @@ class LambdaConfiguration {
     final invocationType = this.invocationType;
     final resourceArn = this.resourceArn;
     return {
-      'InvocationType': invocationType.toValue(),
+      'InvocationType': invocationType.value,
       'ResourceArn': resourceArn,
     };
   }
@@ -5357,31 +5152,18 @@ class MessageAttributeValue {
 }
 
 enum MessagingDataType {
-  channel,
-  channelMessage,
-}
+  channel('Channel'),
+  channelMessage('ChannelMessage'),
+  ;
 
-extension MessagingDataTypeValueExtension on MessagingDataType {
-  String toValue() {
-    switch (this) {
-      case MessagingDataType.channel:
-        return 'Channel';
-      case MessagingDataType.channelMessage:
-        return 'ChannelMessage';
-    }
-  }
-}
+  final String value;
 
-extension MessagingDataTypeFromString on String {
-  MessagingDataType toMessagingDataType() {
-    switch (this) {
-      case 'Channel':
-        return MessagingDataType.channel;
-      case 'ChannelMessage':
-        return MessagingDataType.channelMessage;
-    }
-    throw Exception('$this is not known in enum MessagingDataType');
-  }
+  const MessagingDataType(this.value);
+
+  static MessagingDataType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum MessagingDataType'));
 }
 
 /// The websocket endpoint used to connect to Amazon Chime SDK messaging.
@@ -5443,7 +5225,8 @@ class Processor {
       configuration: ProcessorConfiguration.fromJson(
           json['Configuration'] as Map<String, dynamic>),
       executionOrder: json['ExecutionOrder'] as int,
-      fallbackAction: (json['FallbackAction'] as String).toFallbackAction(),
+      fallbackAction:
+          FallbackAction.fromString((json['FallbackAction'] as String)),
       name: json['Name'] as String,
     );
   }
@@ -5456,7 +5239,7 @@ class Processor {
     return {
       'Configuration': configuration,
       'ExecutionOrder': executionOrder,
-      'FallbackAction': fallbackAction.toValue(),
+      'FallbackAction': fallbackAction.value,
       'Name': name,
     };
   }
@@ -5512,7 +5295,7 @@ class PushNotificationConfiguration {
     return {
       if (body != null) 'Body': body,
       if (title != null) 'Title': title,
-      if (type != null) 'Type': type.toValue(),
+      if (type != null) 'Type': type.value,
     };
   }
 }
@@ -5537,7 +5320,7 @@ class PushNotificationPreferences {
   factory PushNotificationPreferences.fromJson(Map<String, dynamic> json) {
     return PushNotificationPreferences(
       allowNotifications:
-          (json['AllowNotifications'] as String).toAllowNotifications(),
+          AllowNotifications.fromString((json['AllowNotifications'] as String)),
       filterRule: json['FilterRule'] as String?,
     );
   }
@@ -5546,38 +5329,25 @@ class PushNotificationPreferences {
     final allowNotifications = this.allowNotifications;
     final filterRule = this.filterRule;
     return {
-      'AllowNotifications': allowNotifications.toValue(),
+      'AllowNotifications': allowNotifications.value,
       if (filterRule != null) 'FilterRule': filterRule,
     };
   }
 }
 
 enum PushNotificationType {
-  $default,
-  voip,
-}
+  $default('DEFAULT'),
+  voip('VOIP'),
+  ;
 
-extension PushNotificationTypeValueExtension on PushNotificationType {
-  String toValue() {
-    switch (this) {
-      case PushNotificationType.$default:
-        return 'DEFAULT';
-      case PushNotificationType.voip:
-        return 'VOIP';
-    }
-  }
-}
+  final String value;
 
-extension PushNotificationTypeFromString on String {
-  PushNotificationType toPushNotificationType() {
-    switch (this) {
-      case 'DEFAULT':
-        return PushNotificationType.$default;
-      case 'VOIP':
-        return PushNotificationType.voip;
-    }
-    throw Exception('$this is not known in enum PushNotificationType');
-  }
+  const PushNotificationType(this.value);
+
+  static PushNotificationType fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum PushNotificationType'));
 }
 
 class PutChannelExpirationSettingsResponse {
@@ -5791,62 +5561,40 @@ class SearchField {
     final operator = this.operator;
     final values = this.values;
     return {
-      'Key': key.toValue(),
-      'Operator': operator.toValue(),
+      'Key': key.value,
+      'Operator': operator.value,
       'Values': values,
     };
   }
 }
 
 enum SearchFieldKey {
-  members,
-}
+  members('MEMBERS'),
+  ;
 
-extension SearchFieldKeyValueExtension on SearchFieldKey {
-  String toValue() {
-    switch (this) {
-      case SearchFieldKey.members:
-        return 'MEMBERS';
-    }
-  }
-}
+  final String value;
 
-extension SearchFieldKeyFromString on String {
-  SearchFieldKey toSearchFieldKey() {
-    switch (this) {
-      case 'MEMBERS':
-        return SearchFieldKey.members;
-    }
-    throw Exception('$this is not known in enum SearchFieldKey');
-  }
+  const SearchFieldKey(this.value);
+
+  static SearchFieldKey fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum SearchFieldKey'));
 }
 
 enum SearchFieldOperator {
-  equals,
-  includes,
-}
+  equals('EQUALS'),
+  includes('INCLUDES'),
+  ;
 
-extension SearchFieldOperatorValueExtension on SearchFieldOperator {
-  String toValue() {
-    switch (this) {
-      case SearchFieldOperator.equals:
-        return 'EQUALS';
-      case SearchFieldOperator.includes:
-        return 'INCLUDES';
-    }
-  }
-}
+  final String value;
 
-extension SearchFieldOperatorFromString on String {
-  SearchFieldOperator toSearchFieldOperator() {
-    switch (this) {
-      case 'EQUALS':
-        return SearchFieldOperator.equals;
-      case 'INCLUDES':
-        return SearchFieldOperator.includes;
-    }
-    throw Exception('$this is not known in enum SearchFieldOperator');
-  }
+  const SearchFieldOperator(this.value);
+
+  static SearchFieldOperator fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum SearchFieldOperator'));
 }
 
 class SendChannelMessageResponse {
@@ -5896,31 +5644,17 @@ class SendChannelMessageResponse {
 }
 
 enum SortOrder {
-  ascending,
-  descending,
-}
+  ascending('ASCENDING'),
+  descending('DESCENDING'),
+  ;
 
-extension SortOrderValueExtension on SortOrder {
-  String toValue() {
-    switch (this) {
-      case SortOrder.ascending:
-        return 'ASCENDING';
-      case SortOrder.descending:
-        return 'DESCENDING';
-    }
-  }
-}
+  final String value;
 
-extension SortOrderFromString on String {
-  SortOrder toSortOrder() {
-    switch (this) {
-      case 'ASCENDING':
-        return SortOrder.ascending;
-      case 'DESCENDING':
-        return SortOrder.descending;
-    }
-    throw Exception('$this is not known in enum SortOrder');
-  }
+  const SortOrder(this.value);
+
+  static SortOrder fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum SortOrder'));
 }
 
 /// The configuration for connecting a messaging stream to Amazon Kinesis.
@@ -5938,7 +5672,7 @@ class StreamingConfiguration {
 
   factory StreamingConfiguration.fromJson(Map<String, dynamic> json) {
     return StreamingConfiguration(
-      dataType: (json['DataType'] as String).toMessagingDataType(),
+      dataType: MessagingDataType.fromString((json['DataType'] as String)),
       resourceArn: json['ResourceArn'] as String,
     );
   }
@@ -5947,7 +5681,7 @@ class StreamingConfiguration {
     final dataType = this.dataType;
     final resourceArn = this.resourceArn;
     return {
-      'DataType': dataType.toValue(),
+      'DataType': dataType.value,
       'ResourceArn': resourceArn,
     };
   }

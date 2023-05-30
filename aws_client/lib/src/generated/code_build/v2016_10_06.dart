@@ -469,7 +469,7 @@ class CodeBuild {
       payload: {
         'exportConfig': exportConfig,
         'name': name,
-        'type': type.toValue(),
+        'type': type.value,
         if (tags != null) 'tags': tags,
       },
     );
@@ -540,7 +540,7 @@ class CodeBuild {
       payload: {
         'projectName': projectName,
         if (branchFilter != null) 'branchFilter': branchFilter,
-        if (buildType != null) 'buildType': buildType.toValue(),
+        if (buildType != null) 'buildType': buildType.value,
         if (filterGroups != null) 'filterGroups': filterGroups,
       },
     );
@@ -825,8 +825,8 @@ class CodeBuild {
         if (minLineCoveragePercentage != null)
           'minLineCoveragePercentage': minLineCoveragePercentage,
         if (nextToken != null) 'nextToken': nextToken,
-        if (sortBy != null) 'sortBy': sortBy.toValue(),
-        if (sortOrder != null) 'sortOrder': sortOrder.toValue(),
+        if (sortBy != null) 'sortBy': sortBy.value,
+        if (sortOrder != null) 'sortOrder': sortOrder.value,
       },
     );
 
@@ -952,7 +952,7 @@ class CodeBuild {
       headers: headers,
       payload: {
         'reportGroupArn': reportGroupArn,
-        'trendField': trendField.toValue(),
+        'trendField': trendField.value,
         if (numOfReports != null) 'numOfReports': numOfReports,
       },
     );
@@ -1034,8 +1034,8 @@ class CodeBuild {
       // TODO queryParams
       headers: headers,
       payload: {
-        'authType': authType.toValue(),
-        'serverType': serverType.toValue(),
+        'authType': authType.value,
+        'serverType': serverType.value,
         'token': token,
         if (shouldOverwrite != null) 'shouldOverwrite': shouldOverwrite,
         if (username != null) 'username': username,
@@ -1126,7 +1126,7 @@ class CodeBuild {
         if (filter != null) 'filter': filter,
         if (maxResults != null) 'maxResults': maxResults,
         if (nextToken != null) 'nextToken': nextToken,
-        if (sortOrder != null) 'sortOrder': sortOrder.toValue(),
+        if (sortOrder != null) 'sortOrder': sortOrder.value,
       },
     );
 
@@ -1194,7 +1194,7 @@ class CodeBuild {
         if (maxResults != null) 'maxResults': maxResults,
         if (nextToken != null) 'nextToken': nextToken,
         if (projectName != null) 'projectName': projectName,
-        if (sortOrder != null) 'sortOrder': sortOrder.toValue(),
+        if (sortOrder != null) 'sortOrder': sortOrder.value,
       },
     );
 
@@ -1241,7 +1241,7 @@ class CodeBuild {
       headers: headers,
       payload: {
         if (nextToken != null) 'nextToken': nextToken,
-        if (sortOrder != null) 'sortOrder': sortOrder.toValue(),
+        if (sortOrder != null) 'sortOrder': sortOrder.value,
       },
     );
 
@@ -1302,7 +1302,7 @@ class CodeBuild {
       payload: {
         'projectName': projectName,
         if (nextToken != null) 'nextToken': nextToken,
-        if (sortOrder != null) 'sortOrder': sortOrder.toValue(),
+        if (sortOrder != null) 'sortOrder': sortOrder.value,
       },
     );
 
@@ -1390,8 +1390,8 @@ class CodeBuild {
       headers: headers,
       payload: {
         if (nextToken != null) 'nextToken': nextToken,
-        if (sortBy != null) 'sortBy': sortBy.toValue(),
-        if (sortOrder != null) 'sortOrder': sortOrder.toValue(),
+        if (sortBy != null) 'sortBy': sortBy.value,
+        if (sortOrder != null) 'sortOrder': sortOrder.value,
       },
     );
 
@@ -1463,8 +1463,8 @@ class CodeBuild {
       payload: {
         if (maxResults != null) 'maxResults': maxResults,
         if (nextToken != null) 'nextToken': nextToken,
-        if (sortBy != null) 'sortBy': sortBy.toValue(),
-        if (sortOrder != null) 'sortOrder': sortOrder.toValue(),
+        if (sortBy != null) 'sortBy': sortBy.value,
+        if (sortOrder != null) 'sortOrder': sortOrder.value,
       },
     );
 
@@ -1533,7 +1533,7 @@ class CodeBuild {
         if (filter != null) 'filter': filter,
         if (maxResults != null) 'maxResults': maxResults,
         if (nextToken != null) 'nextToken': nextToken,
-        if (sortOrder != null) 'sortOrder': sortOrder.toValue(),
+        if (sortOrder != null) 'sortOrder': sortOrder.value,
       },
     );
 
@@ -1597,7 +1597,7 @@ class CodeBuild {
         if (filter != null) 'filter': filter,
         if (maxResults != null) 'maxResults': maxResults,
         if (nextToken != null) 'nextToken': nextToken,
-        if (sortOrder != null) 'sortOrder': sortOrder.toValue(),
+        if (sortOrder != null) 'sortOrder': sortOrder.value,
       },
     );
 
@@ -1673,8 +1673,8 @@ class CodeBuild {
       payload: {
         if (maxResults != null) 'maxResults': maxResults,
         if (nextToken != null) 'nextToken': nextToken,
-        if (sortBy != null) 'sortBy': sortBy.toValue(),
-        if (sortOrder != null) 'sortOrder': sortOrder.toValue(),
+        if (sortBy != null) 'sortBy': sortBy.value,
+        if (sortOrder != null) 'sortOrder': sortOrder.value,
       },
     );
 
@@ -1750,8 +1750,8 @@ class CodeBuild {
       payload: {
         if (maxResults != null) 'maxResults': maxResults,
         if (nextToken != null) 'nextToken': nextToken,
-        if (sortBy != null) 'sortBy': sortBy.toValue(),
-        if (sortOrder != null) 'sortOrder': sortOrder.toValue(),
+        if (sortBy != null) 'sortBy': sortBy.value,
+        if (sortOrder != null) 'sortOrder': sortOrder.value,
       },
     );
 
@@ -1890,7 +1890,7 @@ class CodeBuild {
       payload: {
         if (id != null) 'id': id,
         if (idempotencyToken != null) 'idempotencyToken': idempotencyToken,
-        if (retryType != null) 'retryType': retryType.toValue(),
+        if (retryType != null) 'retryType': retryType.value,
       },
     );
 
@@ -2171,13 +2171,13 @@ class CodeBuild {
         if (certificateOverride != null)
           'certificateOverride': certificateOverride,
         if (computeTypeOverride != null)
-          'computeTypeOverride': computeTypeOverride.toValue(),
+          'computeTypeOverride': computeTypeOverride.value,
         if (debugSessionEnabled != null)
           'debugSessionEnabled': debugSessionEnabled,
         if (encryptionKeyOverride != null)
           'encryptionKeyOverride': encryptionKeyOverride,
         if (environmentTypeOverride != null)
-          'environmentTypeOverride': environmentTypeOverride.toValue(),
+          'environmentTypeOverride': environmentTypeOverride.value,
         if (environmentVariablesOverride != null)
           'environmentVariablesOverride': environmentVariablesOverride,
         if (gitCloneDepthOverride != null)
@@ -2188,7 +2188,7 @@ class CodeBuild {
         if (imageOverride != null) 'imageOverride': imageOverride,
         if (imagePullCredentialsTypeOverride != null)
           'imagePullCredentialsTypeOverride':
-              imagePullCredentialsTypeOverride.toValue(),
+              imagePullCredentialsTypeOverride.value,
         if (insecureSslOverride != null)
           'insecureSslOverride': insecureSslOverride,
         if (logsConfigOverride != null)
@@ -2214,7 +2214,7 @@ class CodeBuild {
         if (sourceLocationOverride != null)
           'sourceLocationOverride': sourceLocationOverride,
         if (sourceTypeOverride != null)
-          'sourceTypeOverride': sourceTypeOverride.toValue(),
+          'sourceTypeOverride': sourceTypeOverride.value,
         if (sourceVersion != null) 'sourceVersion': sourceVersion,
         if (timeoutInMinutesOverride != null)
           'timeoutInMinutesOverride': timeoutInMinutesOverride,
@@ -2492,13 +2492,13 @@ class CodeBuild {
         if (certificateOverride != null)
           'certificateOverride': certificateOverride,
         if (computeTypeOverride != null)
-          'computeTypeOverride': computeTypeOverride.toValue(),
+          'computeTypeOverride': computeTypeOverride.value,
         if (debugSessionEnabled != null)
           'debugSessionEnabled': debugSessionEnabled,
         if (encryptionKeyOverride != null)
           'encryptionKeyOverride': encryptionKeyOverride,
         if (environmentTypeOverride != null)
-          'environmentTypeOverride': environmentTypeOverride.toValue(),
+          'environmentTypeOverride': environmentTypeOverride.value,
         if (environmentVariablesOverride != null)
           'environmentVariablesOverride': environmentVariablesOverride,
         if (gitCloneDepthOverride != null)
@@ -2509,7 +2509,7 @@ class CodeBuild {
         if (imageOverride != null) 'imageOverride': imageOverride,
         if (imagePullCredentialsTypeOverride != null)
           'imagePullCredentialsTypeOverride':
-              imagePullCredentialsTypeOverride.toValue(),
+              imagePullCredentialsTypeOverride.value,
         if (insecureSslOverride != null)
           'insecureSslOverride': insecureSslOverride,
         if (logsConfigOverride != null)
@@ -2535,7 +2535,7 @@ class CodeBuild {
         if (sourceLocationOverride != null)
           'sourceLocationOverride': sourceLocationOverride,
         if (sourceTypeOverride != null)
-          'sourceTypeOverride': sourceTypeOverride.toValue(),
+          'sourceTypeOverride': sourceTypeOverride.value,
         if (sourceVersion != null) 'sourceVersion': sourceVersion,
       },
     );
@@ -2882,7 +2882,7 @@ class CodeBuild {
       headers: headers,
       payload: {
         'projectArn': projectArn,
-        'projectVisibility': projectVisibility.toValue(),
+        'projectVisibility': projectVisibility.value,
         if (resourceAccessRole != null)
           'resourceAccessRole': resourceAccessRole,
       },
@@ -2997,7 +2997,7 @@ class CodeBuild {
       payload: {
         'projectName': projectName,
         if (branchFilter != null) 'branchFilter': branchFilter,
-        if (buildType != null) 'buildType': buildType.toValue(),
+        if (buildType != null) 'buildType': buildType.value,
         if (filterGroups != null) 'filterGroups': filterGroups,
         if (rotateSecret != null) 'rotateSecret': rotateSecret,
       },
@@ -3008,125 +3008,64 @@ class CodeBuild {
 }
 
 enum ArtifactNamespace {
-  none,
-  buildId,
-}
+  none('NONE'),
+  buildId('BUILD_ID'),
+  ;
 
-extension ArtifactNamespaceValueExtension on ArtifactNamespace {
-  String toValue() {
-    switch (this) {
-      case ArtifactNamespace.none:
-        return 'NONE';
-      case ArtifactNamespace.buildId:
-        return 'BUILD_ID';
-    }
-  }
-}
+  final String value;
 
-extension ArtifactNamespaceFromString on String {
-  ArtifactNamespace toArtifactNamespace() {
-    switch (this) {
-      case 'NONE':
-        return ArtifactNamespace.none;
-      case 'BUILD_ID':
-        return ArtifactNamespace.buildId;
-    }
-    throw Exception('$this is not known in enum ArtifactNamespace');
-  }
+  const ArtifactNamespace(this.value);
+
+  static ArtifactNamespace fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum ArtifactNamespace'));
 }
 
 enum ArtifactPackaging {
-  none,
-  zip,
-}
+  none('NONE'),
+  zip('ZIP'),
+  ;
 
-extension ArtifactPackagingValueExtension on ArtifactPackaging {
-  String toValue() {
-    switch (this) {
-      case ArtifactPackaging.none:
-        return 'NONE';
-      case ArtifactPackaging.zip:
-        return 'ZIP';
-    }
-  }
-}
+  final String value;
 
-extension ArtifactPackagingFromString on String {
-  ArtifactPackaging toArtifactPackaging() {
-    switch (this) {
-      case 'NONE':
-        return ArtifactPackaging.none;
-      case 'ZIP':
-        return ArtifactPackaging.zip;
-    }
-    throw Exception('$this is not known in enum ArtifactPackaging');
-  }
+  const ArtifactPackaging(this.value);
+
+  static ArtifactPackaging fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum ArtifactPackaging'));
 }
 
 enum ArtifactsType {
-  codepipeline,
-  s3,
-  noArtifacts,
-}
+  codepipeline('CODEPIPELINE'),
+  s3('S3'),
+  noArtifacts('NO_ARTIFACTS'),
+  ;
 
-extension ArtifactsTypeValueExtension on ArtifactsType {
-  String toValue() {
-    switch (this) {
-      case ArtifactsType.codepipeline:
-        return 'CODEPIPELINE';
-      case ArtifactsType.s3:
-        return 'S3';
-      case ArtifactsType.noArtifacts:
-        return 'NO_ARTIFACTS';
-    }
-  }
-}
+  final String value;
 
-extension ArtifactsTypeFromString on String {
-  ArtifactsType toArtifactsType() {
-    switch (this) {
-      case 'CODEPIPELINE':
-        return ArtifactsType.codepipeline;
-      case 'S3':
-        return ArtifactsType.s3;
-      case 'NO_ARTIFACTS':
-        return ArtifactsType.noArtifacts;
-    }
-    throw Exception('$this is not known in enum ArtifactsType');
-  }
+  const ArtifactsType(this.value);
+
+  static ArtifactsType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum ArtifactsType'));
 }
 
 enum AuthType {
-  oauth,
-  basicAuth,
-  personalAccessToken,
-}
+  oauth('OAUTH'),
+  basicAuth('BASIC_AUTH'),
+  personalAccessToken('PERSONAL_ACCESS_TOKEN'),
+  ;
 
-extension AuthTypeValueExtension on AuthType {
-  String toValue() {
-    switch (this) {
-      case AuthType.oauth:
-        return 'OAUTH';
-      case AuthType.basicAuth:
-        return 'BASIC_AUTH';
-      case AuthType.personalAccessToken:
-        return 'PERSONAL_ACCESS_TOKEN';
-    }
-  }
-}
+  final String value;
 
-extension AuthTypeFromString on String {
-  AuthType toAuthType() {
-    switch (this) {
-      case 'OAUTH':
-        return AuthType.oauth;
-      case 'BASIC_AUTH':
-        return AuthType.basicAuth;
-      case 'PERSONAL_ACCESS_TOKEN':
-        return AuthType.personalAccessToken;
-    }
-    throw Exception('$this is not known in enum AuthType');
-  }
+  const AuthType(this.value);
+
+  static AuthType fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum AuthType'));
 }
 
 class BatchDeleteBuildsOutput {
@@ -3347,31 +3286,18 @@ class BatchGetReportsOutput {
 }
 
 enum BatchReportModeType {
-  reportIndividualBuilds,
-  reportAggregatedBatch,
-}
+  reportIndividualBuilds('REPORT_INDIVIDUAL_BUILDS'),
+  reportAggregatedBatch('REPORT_AGGREGATED_BATCH'),
+  ;
 
-extension BatchReportModeTypeValueExtension on BatchReportModeType {
-  String toValue() {
-    switch (this) {
-      case BatchReportModeType.reportIndividualBuilds:
-        return 'REPORT_INDIVIDUAL_BUILDS';
-      case BatchReportModeType.reportAggregatedBatch:
-        return 'REPORT_AGGREGATED_BATCH';
-    }
-  }
-}
+  final String value;
 
-extension BatchReportModeTypeFromString on String {
-  BatchReportModeType toBatchReportModeType() {
-    switch (this) {
-      case 'REPORT_INDIVIDUAL_BUILDS':
-        return BatchReportModeType.reportIndividualBuilds;
-      case 'REPORT_AGGREGATED_BATCH':
-        return BatchReportModeType.reportAggregatedBatch;
-    }
-    throw Exception('$this is not known in enum BatchReportModeType');
-  }
+  const BatchReportModeType(this.value);
+
+  static BatchReportModeType fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum BatchReportModeType'));
 }
 
 /// Specifies restrictions for the batch build.
@@ -3448,36 +3374,19 @@ class BatchRestrictions {
 /// Simple Storage Service User Guide</i>.
 /// </dd> </dl>
 enum BucketOwnerAccess {
-  none,
-  readOnly,
-  full,
-}
+  none('NONE'),
+  readOnly('READ_ONLY'),
+  full('FULL'),
+  ;
 
-extension BucketOwnerAccessValueExtension on BucketOwnerAccess {
-  String toValue() {
-    switch (this) {
-      case BucketOwnerAccess.none:
-        return 'NONE';
-      case BucketOwnerAccess.readOnly:
-        return 'READ_ONLY';
-      case BucketOwnerAccess.full:
-        return 'FULL';
-    }
-  }
-}
+  final String value;
 
-extension BucketOwnerAccessFromString on String {
-  BucketOwnerAccess toBucketOwnerAccess() {
-    switch (this) {
-      case 'NONE':
-        return BucketOwnerAccess.none;
-      case 'READ_ONLY':
-        return BucketOwnerAccess.readOnly;
-      case 'FULL':
-        return BucketOwnerAccess.full;
-    }
-    throw Exception('$this is not known in enum BucketOwnerAccess');
-  }
+  const BucketOwnerAccess(this.value);
+
+  static BucketOwnerAccess fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum BucketOwnerAccess'));
 }
 
 /// Information about a build.
@@ -3727,7 +3636,7 @@ class Build {
       buildBatchArn: json['buildBatchArn'] as String?,
       buildComplete: json['buildComplete'] as bool?,
       buildNumber: json['buildNumber'] as int?,
-      buildStatus: (json['buildStatus'] as String?)?.toStatusType(),
+      buildStatus: (json['buildStatus'] as String?)?.let(StatusType.fromString),
       cache: json['cache'] != null
           ? ProjectCache.fromJson(json['cache'] as Map<String, dynamic>)
           : null,
@@ -3836,7 +3745,7 @@ class Build {
       if (buildBatchArn != null) 'buildBatchArn': buildBatchArn,
       if (buildComplete != null) 'buildComplete': buildComplete,
       if (buildNumber != null) 'buildNumber': buildNumber,
-      if (buildStatus != null) 'buildStatus': buildStatus.toValue(),
+      if (buildStatus != null) 'buildStatus': buildStatus.value,
       if (cache != null) 'cache': cache,
       if (currentPhase != null) 'currentPhase': currentPhase,
       if (debugSession != null) 'debugSession': debugSession,
@@ -3923,8 +3832,8 @@ class BuildArtifacts {
   factory BuildArtifacts.fromJson(Map<String, dynamic> json) {
     return BuildArtifacts(
       artifactIdentifier: json['artifactIdentifier'] as String?,
-      bucketOwnerAccess:
-          (json['bucketOwnerAccess'] as String?)?.toBucketOwnerAccess(),
+      bucketOwnerAccess: (json['bucketOwnerAccess'] as String?)
+          ?.let(BucketOwnerAccess.fromString),
       encryptionDisabled: json['encryptionDisabled'] as bool?,
       location: json['location'] as String?,
       md5sum: json['md5sum'] as String?,
@@ -3944,7 +3853,7 @@ class BuildArtifacts {
     return {
       if (artifactIdentifier != null) 'artifactIdentifier': artifactIdentifier,
       if (bucketOwnerAccess != null)
-        'bucketOwnerAccess': bucketOwnerAccess.toValue(),
+        'bucketOwnerAccess': bucketOwnerAccess.value,
       if (encryptionDisabled != null) 'encryptionDisabled': encryptionDisabled,
       if (location != null) 'location': location,
       if (md5sum != null) 'md5sum': md5sum,
@@ -4157,7 +4066,8 @@ class BuildBatch {
               json['buildBatchConfig'] as Map<String, dynamic>)
           : null,
       buildBatchNumber: json['buildBatchNumber'] as int?,
-      buildBatchStatus: (json['buildBatchStatus'] as String?)?.toStatusType(),
+      buildBatchStatus:
+          (json['buildBatchStatus'] as String?)?.let(StatusType.fromString),
       buildGroups: (json['buildGroups'] as List?)
           ?.whereNotNull()
           .map((e) => BuildGroup.fromJson(e as Map<String, dynamic>))
@@ -4252,8 +4162,7 @@ class BuildBatch {
       if (artifacts != null) 'artifacts': artifacts,
       if (buildBatchConfig != null) 'buildBatchConfig': buildBatchConfig,
       if (buildBatchNumber != null) 'buildBatchNumber': buildBatchNumber,
-      if (buildBatchStatus != null)
-        'buildBatchStatus': buildBatchStatus.toValue(),
+      if (buildBatchStatus != null) 'buildBatchStatus': buildBatchStatus.value,
       if (buildGroups != null) 'buildGroups': buildGroups,
       if (buildTimeoutInMinutes != null)
         'buildTimeoutInMinutes': buildTimeoutInMinutes,
@@ -4302,7 +4211,7 @@ class BuildBatchFilter {
   Map<String, dynamic> toJson() {
     final status = this.status;
     return {
-      if (status != null) 'status': status.toValue(),
+      if (status != null) 'status': status.value,
     };
   }
 }
@@ -4375,8 +4284,9 @@ class BuildBatchPhase {
           .toList(),
       durationInSeconds: json['durationInSeconds'] as int?,
       endTime: timeStampFromJson(json['endTime']),
-      phaseStatus: (json['phaseStatus'] as String?)?.toStatusType(),
-      phaseType: (json['phaseType'] as String?)?.toBuildBatchPhaseType(),
+      phaseStatus: (json['phaseStatus'] as String?)?.let(StatusType.fromString),
+      phaseType:
+          (json['phaseType'] as String?)?.let(BuildBatchPhaseType.fromString),
       startTime: timeStampFromJson(json['startTime']),
     );
   }
@@ -4392,64 +4302,31 @@ class BuildBatchPhase {
       if (contexts != null) 'contexts': contexts,
       if (durationInSeconds != null) 'durationInSeconds': durationInSeconds,
       if (endTime != null) 'endTime': unixTimestampToJson(endTime),
-      if (phaseStatus != null) 'phaseStatus': phaseStatus.toValue(),
-      if (phaseType != null) 'phaseType': phaseType.toValue(),
+      if (phaseStatus != null) 'phaseStatus': phaseStatus.value,
+      if (phaseType != null) 'phaseType': phaseType.value,
       if (startTime != null) 'startTime': unixTimestampToJson(startTime),
     };
   }
 }
 
 enum BuildBatchPhaseType {
-  submitted,
-  downloadBatchspec,
-  inProgress,
-  combineArtifacts,
-  succeeded,
-  failed,
-  stopped,
-}
+  submitted('SUBMITTED'),
+  downloadBatchspec('DOWNLOAD_BATCHSPEC'),
+  inProgress('IN_PROGRESS'),
+  combineArtifacts('COMBINE_ARTIFACTS'),
+  succeeded('SUCCEEDED'),
+  failed('FAILED'),
+  stopped('STOPPED'),
+  ;
 
-extension BuildBatchPhaseTypeValueExtension on BuildBatchPhaseType {
-  String toValue() {
-    switch (this) {
-      case BuildBatchPhaseType.submitted:
-        return 'SUBMITTED';
-      case BuildBatchPhaseType.downloadBatchspec:
-        return 'DOWNLOAD_BATCHSPEC';
-      case BuildBatchPhaseType.inProgress:
-        return 'IN_PROGRESS';
-      case BuildBatchPhaseType.combineArtifacts:
-        return 'COMBINE_ARTIFACTS';
-      case BuildBatchPhaseType.succeeded:
-        return 'SUCCEEDED';
-      case BuildBatchPhaseType.failed:
-        return 'FAILED';
-      case BuildBatchPhaseType.stopped:
-        return 'STOPPED';
-    }
-  }
-}
+  final String value;
 
-extension BuildBatchPhaseTypeFromString on String {
-  BuildBatchPhaseType toBuildBatchPhaseType() {
-    switch (this) {
-      case 'SUBMITTED':
-        return BuildBatchPhaseType.submitted;
-      case 'DOWNLOAD_BATCHSPEC':
-        return BuildBatchPhaseType.downloadBatchspec;
-      case 'IN_PROGRESS':
-        return BuildBatchPhaseType.inProgress;
-      case 'COMBINE_ARTIFACTS':
-        return BuildBatchPhaseType.combineArtifacts;
-      case 'SUCCEEDED':
-        return BuildBatchPhaseType.succeeded;
-      case 'FAILED':
-        return BuildBatchPhaseType.failed;
-      case 'STOPPED':
-        return BuildBatchPhaseType.stopped;
-    }
-    throw Exception('$this is not known in enum BuildBatchPhaseType');
-  }
+  const BuildBatchPhaseType(this.value);
+
+  static BuildBatchPhaseType fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum BuildBatchPhaseType'));
 }
 
 /// Contains information about a batch build build group. Build groups are used
@@ -4625,8 +4502,8 @@ class BuildPhase {
           .toList(),
       durationInSeconds: json['durationInSeconds'] as int?,
       endTime: timeStampFromJson(json['endTime']),
-      phaseStatus: (json['phaseStatus'] as String?)?.toStatusType(),
-      phaseType: (json['phaseType'] as String?)?.toBuildPhaseType(),
+      phaseStatus: (json['phaseStatus'] as String?)?.let(StatusType.fromString),
+      phaseType: (json['phaseType'] as String?)?.let(BuildPhaseType.fromString),
       startTime: timeStampFromJson(json['startTime']),
     );
   }
@@ -4642,84 +4519,35 @@ class BuildPhase {
       if (contexts != null) 'contexts': contexts,
       if (durationInSeconds != null) 'durationInSeconds': durationInSeconds,
       if (endTime != null) 'endTime': unixTimestampToJson(endTime),
-      if (phaseStatus != null) 'phaseStatus': phaseStatus.toValue(),
-      if (phaseType != null) 'phaseType': phaseType.toValue(),
+      if (phaseStatus != null) 'phaseStatus': phaseStatus.value,
+      if (phaseType != null) 'phaseType': phaseType.value,
       if (startTime != null) 'startTime': unixTimestampToJson(startTime),
     };
   }
 }
 
 enum BuildPhaseType {
-  submitted,
-  queued,
-  provisioning,
-  downloadSource,
-  install,
-  preBuild,
-  build,
-  postBuild,
-  uploadArtifacts,
-  finalizing,
-  completed,
-}
+  submitted('SUBMITTED'),
+  queued('QUEUED'),
+  provisioning('PROVISIONING'),
+  downloadSource('DOWNLOAD_SOURCE'),
+  install('INSTALL'),
+  preBuild('PRE_BUILD'),
+  build('BUILD'),
+  postBuild('POST_BUILD'),
+  uploadArtifacts('UPLOAD_ARTIFACTS'),
+  finalizing('FINALIZING'),
+  completed('COMPLETED'),
+  ;
 
-extension BuildPhaseTypeValueExtension on BuildPhaseType {
-  String toValue() {
-    switch (this) {
-      case BuildPhaseType.submitted:
-        return 'SUBMITTED';
-      case BuildPhaseType.queued:
-        return 'QUEUED';
-      case BuildPhaseType.provisioning:
-        return 'PROVISIONING';
-      case BuildPhaseType.downloadSource:
-        return 'DOWNLOAD_SOURCE';
-      case BuildPhaseType.install:
-        return 'INSTALL';
-      case BuildPhaseType.preBuild:
-        return 'PRE_BUILD';
-      case BuildPhaseType.build:
-        return 'BUILD';
-      case BuildPhaseType.postBuild:
-        return 'POST_BUILD';
-      case BuildPhaseType.uploadArtifacts:
-        return 'UPLOAD_ARTIFACTS';
-      case BuildPhaseType.finalizing:
-        return 'FINALIZING';
-      case BuildPhaseType.completed:
-        return 'COMPLETED';
-    }
-  }
-}
+  final String value;
 
-extension BuildPhaseTypeFromString on String {
-  BuildPhaseType toBuildPhaseType() {
-    switch (this) {
-      case 'SUBMITTED':
-        return BuildPhaseType.submitted;
-      case 'QUEUED':
-        return BuildPhaseType.queued;
-      case 'PROVISIONING':
-        return BuildPhaseType.provisioning;
-      case 'DOWNLOAD_SOURCE':
-        return BuildPhaseType.downloadSource;
-      case 'INSTALL':
-        return BuildPhaseType.install;
-      case 'PRE_BUILD':
-        return BuildPhaseType.preBuild;
-      case 'BUILD':
-        return BuildPhaseType.build;
-      case 'POST_BUILD':
-        return BuildPhaseType.postBuild;
-      case 'UPLOAD_ARTIFACTS':
-        return BuildPhaseType.uploadArtifacts;
-      case 'FINALIZING':
-        return BuildPhaseType.finalizing;
-      case 'COMPLETED':
-        return BuildPhaseType.completed;
-    }
-    throw Exception('$this is not known in enum BuildPhaseType');
-  }
+  const BuildPhaseType(this.value);
+
+  static BuildPhaseType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum BuildPhaseType'));
 }
 
 /// Contains information that defines how the CodeBuild build project reports
@@ -4820,7 +4648,7 @@ class BuildSummary {
   factory BuildSummary.fromJson(Map<String, dynamic> json) {
     return BuildSummary(
       arn: json['arn'] as String?,
-      buildStatus: (json['buildStatus'] as String?)?.toStatusType(),
+      buildStatus: (json['buildStatus'] as String?)?.let(StatusType.fromString),
       primaryArtifact: json['primaryArtifact'] != null
           ? ResolvedArtifact.fromJson(
               json['primaryArtifact'] as Map<String, dynamic>)
@@ -4841,7 +4669,7 @@ class BuildSummary {
     final secondaryArtifacts = this.secondaryArtifacts;
     return {
       if (arn != null) 'arn': arn,
-      if (buildStatus != null) 'buildStatus': buildStatus.toValue(),
+      if (buildStatus != null) 'buildStatus': buildStatus.value,
       if (primaryArtifact != null) 'primaryArtifact': primaryArtifact,
       if (requestedOn != null) 'requestedOn': unixTimestampToJson(requestedOn),
       if (secondaryArtifacts != null) 'secondaryArtifacts': secondaryArtifacts,
@@ -4850,69 +4678,33 @@ class BuildSummary {
 }
 
 enum CacheMode {
-  localDockerLayerCache,
-  localSourceCache,
-  localCustomCache,
-}
+  localDockerLayerCache('LOCAL_DOCKER_LAYER_CACHE'),
+  localSourceCache('LOCAL_SOURCE_CACHE'),
+  localCustomCache('LOCAL_CUSTOM_CACHE'),
+  ;
 
-extension CacheModeValueExtension on CacheMode {
-  String toValue() {
-    switch (this) {
-      case CacheMode.localDockerLayerCache:
-        return 'LOCAL_DOCKER_LAYER_CACHE';
-      case CacheMode.localSourceCache:
-        return 'LOCAL_SOURCE_CACHE';
-      case CacheMode.localCustomCache:
-        return 'LOCAL_CUSTOM_CACHE';
-    }
-  }
-}
+  final String value;
 
-extension CacheModeFromString on String {
-  CacheMode toCacheMode() {
-    switch (this) {
-      case 'LOCAL_DOCKER_LAYER_CACHE':
-        return CacheMode.localDockerLayerCache;
-      case 'LOCAL_SOURCE_CACHE':
-        return CacheMode.localSourceCache;
-      case 'LOCAL_CUSTOM_CACHE':
-        return CacheMode.localCustomCache;
-    }
-    throw Exception('$this is not known in enum CacheMode');
-  }
+  const CacheMode(this.value);
+
+  static CacheMode fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum CacheMode'));
 }
 
 enum CacheType {
-  noCache,
-  s3,
-  local,
-}
+  noCache('NO_CACHE'),
+  s3('S3'),
+  local('LOCAL'),
+  ;
 
-extension CacheTypeValueExtension on CacheType {
-  String toValue() {
-    switch (this) {
-      case CacheType.noCache:
-        return 'NO_CACHE';
-      case CacheType.s3:
-        return 'S3';
-      case CacheType.local:
-        return 'LOCAL';
-    }
-  }
-}
+  final String value;
 
-extension CacheTypeFromString on String {
-  CacheType toCacheType() {
-    switch (this) {
-      case 'NO_CACHE':
-        return CacheType.noCache;
-      case 'S3':
-        return CacheType.s3;
-      case 'LOCAL':
-        return CacheType.local;
-    }
-    throw Exception('$this is not known in enum CacheType');
-  }
+  const CacheType(this.value);
+
+  static CacheType fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum CacheType'));
 }
 
 /// Information about CloudWatch Logs for a build project.
@@ -4950,7 +4742,7 @@ class CloudWatchLogsConfig {
 
   factory CloudWatchLogsConfig.fromJson(Map<String, dynamic> json) {
     return CloudWatchLogsConfig(
-      status: (json['status'] as String).toLogsConfigStatusType(),
+      status: LogsConfigStatusType.fromString((json['status'] as String)),
       groupName: json['groupName'] as String?,
       streamName: json['streamName'] as String?,
     );
@@ -4961,7 +4753,7 @@ class CloudWatchLogsConfig {
     final groupName = this.groupName;
     final streamName = this.streamName;
     return {
-      'status': status.toValue(),
+      'status': status.value,
       if (groupName != null) 'groupName': groupName,
       if (streamName != null) 'streamName': streamName,
     };
@@ -5131,41 +4923,19 @@ class CodeCoverageReportSummary {
 }
 
 enum ComputeType {
-  buildGeneral1Small,
-  buildGeneral1Medium,
-  buildGeneral1Large,
-  buildGeneral1_2xlarge,
-}
+  buildGeneral1Small('BUILD_GENERAL1_SMALL'),
+  buildGeneral1Medium('BUILD_GENERAL1_MEDIUM'),
+  buildGeneral1Large('BUILD_GENERAL1_LARGE'),
+  buildGeneral1_2xlarge('BUILD_GENERAL1_2XLARGE'),
+  ;
 
-extension ComputeTypeValueExtension on ComputeType {
-  String toValue() {
-    switch (this) {
-      case ComputeType.buildGeneral1Small:
-        return 'BUILD_GENERAL1_SMALL';
-      case ComputeType.buildGeneral1Medium:
-        return 'BUILD_GENERAL1_MEDIUM';
-      case ComputeType.buildGeneral1Large:
-        return 'BUILD_GENERAL1_LARGE';
-      case ComputeType.buildGeneral1_2xlarge:
-        return 'BUILD_GENERAL1_2XLARGE';
-    }
-  }
-}
+  final String value;
 
-extension ComputeTypeFromString on String {
-  ComputeType toComputeType() {
-    switch (this) {
-      case 'BUILD_GENERAL1_SMALL':
-        return ComputeType.buildGeneral1Small;
-      case 'BUILD_GENERAL1_MEDIUM':
-        return ComputeType.buildGeneral1Medium;
-      case 'BUILD_GENERAL1_LARGE':
-        return ComputeType.buildGeneral1Large;
-      case 'BUILD_GENERAL1_2XLARGE':
-        return ComputeType.buildGeneral1_2xlarge;
-    }
-    throw Exception('$this is not known in enum ComputeType');
-  }
+  const ComputeType(this.value);
+
+  static ComputeType fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum ComputeType'));
 }
 
 class CreateProjectOutput {
@@ -5242,26 +5012,17 @@ class CreateWebhookOutput {
 }
 
 enum CredentialProviderType {
-  secretsManager,
-}
+  secretsManager('SECRETS_MANAGER'),
+  ;
 
-extension CredentialProviderTypeValueExtension on CredentialProviderType {
-  String toValue() {
-    switch (this) {
-      case CredentialProviderType.secretsManager:
-        return 'SECRETS_MANAGER';
-    }
-  }
-}
+  final String value;
 
-extension CredentialProviderTypeFromString on String {
-  CredentialProviderType toCredentialProviderType() {
-    switch (this) {
-      case 'SECRETS_MANAGER':
-        return CredentialProviderType.secretsManager;
-    }
-    throw Exception('$this is not known in enum CredentialProviderType');
-  }
+  const CredentialProviderType(this.value);
+
+  static CredentialProviderType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum CredentialProviderType'));
 }
 
 /// Contains information about the debug session for a build. For more
@@ -5558,7 +5319,7 @@ class EnvironmentLanguage {
           ?.whereNotNull()
           .map((e) => EnvironmentImage.fromJson(e as Map<String, dynamic>))
           .toList(),
-      language: (json['language'] as String?)?.toLanguageType(),
+      language: (json['language'] as String?)?.let(LanguageType.fromString),
     );
   }
 
@@ -5567,7 +5328,7 @@ class EnvironmentLanguage {
     final language = this.language;
     return {
       if (images != null) 'images': images,
-      if (language != null) 'language': language.toValue(),
+      if (language != null) 'language': language.value,
     };
   }
 }
@@ -5593,7 +5354,7 @@ class EnvironmentPlatform {
           ?.whereNotNull()
           .map((e) => EnvironmentLanguage.fromJson(e as Map<String, dynamic>))
           .toList(),
-      platform: (json['platform'] as String?)?.toPlatformType(),
+      platform: (json['platform'] as String?)?.let(PlatformType.fromString),
     );
   }
 
@@ -5602,52 +5363,27 @@ class EnvironmentPlatform {
     final platform = this.platform;
     return {
       if (languages != null) 'languages': languages,
-      if (platform != null) 'platform': platform.toValue(),
+      if (platform != null) 'platform': platform.value,
     };
   }
 }
 
 enum EnvironmentType {
-  windowsContainer,
-  linuxContainer,
-  linuxGpuContainer,
-  armContainer,
-  windowsServer_2019Container,
-}
+  windowsContainer('WINDOWS_CONTAINER'),
+  linuxContainer('LINUX_CONTAINER'),
+  linuxGpuContainer('LINUX_GPU_CONTAINER'),
+  armContainer('ARM_CONTAINER'),
+  windowsServer_2019Container('WINDOWS_SERVER_2019_CONTAINER'),
+  ;
 
-extension EnvironmentTypeValueExtension on EnvironmentType {
-  String toValue() {
-    switch (this) {
-      case EnvironmentType.windowsContainer:
-        return 'WINDOWS_CONTAINER';
-      case EnvironmentType.linuxContainer:
-        return 'LINUX_CONTAINER';
-      case EnvironmentType.linuxGpuContainer:
-        return 'LINUX_GPU_CONTAINER';
-      case EnvironmentType.armContainer:
-        return 'ARM_CONTAINER';
-      case EnvironmentType.windowsServer_2019Container:
-        return 'WINDOWS_SERVER_2019_CONTAINER';
-    }
-  }
-}
+  final String value;
 
-extension EnvironmentTypeFromString on String {
-  EnvironmentType toEnvironmentType() {
-    switch (this) {
-      case 'WINDOWS_CONTAINER':
-        return EnvironmentType.windowsContainer;
-      case 'LINUX_CONTAINER':
-        return EnvironmentType.linuxContainer;
-      case 'LINUX_GPU_CONTAINER':
-        return EnvironmentType.linuxGpuContainer;
-      case 'ARM_CONTAINER':
-        return EnvironmentType.armContainer;
-      case 'WINDOWS_SERVER_2019_CONTAINER':
-        return EnvironmentType.windowsServer_2019Container;
-    }
-    throw Exception('$this is not known in enum EnvironmentType');
-  }
+  const EnvironmentType(this.value);
+
+  static EnvironmentType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum EnvironmentType'));
 }
 
 /// Information about an environment variable for a build project or a build.
@@ -5700,7 +5436,7 @@ class EnvironmentVariable {
     return EnvironmentVariable(
       name: json['name'] as String,
       value: json['value'] as String,
-      type: (json['type'] as String?)?.toEnvironmentVariableType(),
+      type: (json['type'] as String?)?.let(EnvironmentVariableType.fromString),
     );
   }
 
@@ -5711,42 +5447,25 @@ class EnvironmentVariable {
     return {
       'name': name,
       'value': value,
-      if (type != null) 'type': type.toValue(),
+      if (type != null) 'type': type.value,
     };
   }
 }
 
 enum EnvironmentVariableType {
-  plaintext,
-  parameterStore,
-  secretsManager,
-}
+  plaintext('PLAINTEXT'),
+  parameterStore('PARAMETER_STORE'),
+  secretsManager('SECRETS_MANAGER'),
+  ;
 
-extension EnvironmentVariableTypeValueExtension on EnvironmentVariableType {
-  String toValue() {
-    switch (this) {
-      case EnvironmentVariableType.plaintext:
-        return 'PLAINTEXT';
-      case EnvironmentVariableType.parameterStore:
-        return 'PARAMETER_STORE';
-      case EnvironmentVariableType.secretsManager:
-        return 'SECRETS_MANAGER';
-    }
-  }
-}
+  final String value;
 
-extension EnvironmentVariableTypeFromString on String {
-  EnvironmentVariableType toEnvironmentVariableType() {
-    switch (this) {
-      case 'PLAINTEXT':
-        return EnvironmentVariableType.plaintext;
-      case 'PARAMETER_STORE':
-        return EnvironmentVariableType.parameterStore;
-      case 'SECRETS_MANAGER':
-        return EnvironmentVariableType.secretsManager;
-    }
-    throw Exception('$this is not known in enum EnvironmentVariableType');
-  }
+  const EnvironmentVariableType(this.value);
+
+  static EnvironmentVariableType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum EnvironmentVariableType'));
 }
 
 /// Contains information about an exported environment variable.
@@ -5793,26 +5512,17 @@ class ExportedEnvironmentVariable {
 }
 
 enum FileSystemType {
-  efs,
-}
+  efs('EFS'),
+  ;
 
-extension FileSystemTypeValueExtension on FileSystemType {
-  String toValue() {
-    switch (this) {
-      case FileSystemType.efs:
-        return 'EFS';
-    }
-  }
-}
+  final String value;
 
-extension FileSystemTypeFromString on String {
-  FileSystemType toFileSystemType() {
-    switch (this) {
-      case 'EFS':
-        return FileSystemType.efs;
-    }
-    throw Exception('$this is not known in enum FileSystemType');
-  }
+  const FileSystemType(this.value);
+
+  static FileSystemType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum FileSystemType'));
 }
 
 class GetReportGroupTrendOutput {
@@ -5897,31 +5607,18 @@ class GitSubmodulesConfig {
 }
 
 enum ImagePullCredentialsType {
-  codebuild,
-  serviceRole,
-}
+  codebuild('CODEBUILD'),
+  serviceRole('SERVICE_ROLE'),
+  ;
 
-extension ImagePullCredentialsTypeValueExtension on ImagePullCredentialsType {
-  String toValue() {
-    switch (this) {
-      case ImagePullCredentialsType.codebuild:
-        return 'CODEBUILD';
-      case ImagePullCredentialsType.serviceRole:
-        return 'SERVICE_ROLE';
-    }
-  }
-}
+  final String value;
 
-extension ImagePullCredentialsTypeFromString on String {
-  ImagePullCredentialsType toImagePullCredentialsType() {
-    switch (this) {
-      case 'CODEBUILD':
-        return ImagePullCredentialsType.codebuild;
-      case 'SERVICE_ROLE':
-        return ImagePullCredentialsType.serviceRole;
-    }
-    throw Exception('$this is not known in enum ImagePullCredentialsType');
-  }
+  const ImagePullCredentialsType(this.value);
+
+  static ImagePullCredentialsType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum ImagePullCredentialsType'));
 }
 
 class ImportSourceCredentialsOutput {
@@ -5959,71 +5656,26 @@ class InvalidateProjectCacheOutput {
 }
 
 enum LanguageType {
-  java,
-  python,
-  nodeJs,
-  ruby,
-  golang,
-  docker,
-  android,
-  dotnet,
-  base,
-  php,
-}
+  java('JAVA'),
+  python('PYTHON'),
+  nodeJs('NODE_JS'),
+  ruby('RUBY'),
+  golang('GOLANG'),
+  docker('DOCKER'),
+  android('ANDROID'),
+  dotnet('DOTNET'),
+  base('BASE'),
+  php('PHP'),
+  ;
 
-extension LanguageTypeValueExtension on LanguageType {
-  String toValue() {
-    switch (this) {
-      case LanguageType.java:
-        return 'JAVA';
-      case LanguageType.python:
-        return 'PYTHON';
-      case LanguageType.nodeJs:
-        return 'NODE_JS';
-      case LanguageType.ruby:
-        return 'RUBY';
-      case LanguageType.golang:
-        return 'GOLANG';
-      case LanguageType.docker:
-        return 'DOCKER';
-      case LanguageType.android:
-        return 'ANDROID';
-      case LanguageType.dotnet:
-        return 'DOTNET';
-      case LanguageType.base:
-        return 'BASE';
-      case LanguageType.php:
-        return 'PHP';
-    }
-  }
-}
+  final String value;
 
-extension LanguageTypeFromString on String {
-  LanguageType toLanguageType() {
-    switch (this) {
-      case 'JAVA':
-        return LanguageType.java;
-      case 'PYTHON':
-        return LanguageType.python;
-      case 'NODE_JS':
-        return LanguageType.nodeJs;
-      case 'RUBY':
-        return LanguageType.ruby;
-      case 'GOLANG':
-        return LanguageType.golang;
-      case 'DOCKER':
-        return LanguageType.docker;
-      case 'ANDROID':
-        return LanguageType.android;
-      case 'DOTNET':
-        return LanguageType.dotnet;
-      case 'BASE':
-        return LanguageType.base;
-      case 'PHP':
-        return LanguageType.php;
-    }
-    throw Exception('$this is not known in enum LanguageType');
-  }
+  const LanguageType(this.value);
+
+  static LanguageType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum LanguageType'));
 }
 
 class ListBuildBatchesForProjectOutput {
@@ -6489,31 +6141,18 @@ class LogsConfig {
 }
 
 enum LogsConfigStatusType {
-  enabled,
-  disabled,
-}
+  enabled('ENABLED'),
+  disabled('DISABLED'),
+  ;
 
-extension LogsConfigStatusTypeValueExtension on LogsConfigStatusType {
-  String toValue() {
-    switch (this) {
-      case LogsConfigStatusType.enabled:
-        return 'ENABLED';
-      case LogsConfigStatusType.disabled:
-        return 'DISABLED';
-    }
-  }
-}
+  final String value;
 
-extension LogsConfigStatusTypeFromString on String {
-  LogsConfigStatusType toLogsConfigStatusType() {
-    switch (this) {
-      case 'ENABLED':
-        return LogsConfigStatusType.enabled;
-      case 'DISABLED':
-        return LogsConfigStatusType.disabled;
-    }
-    throw Exception('$this is not known in enum LogsConfigStatusType');
-  }
+  const LogsConfigStatusType(this.value);
+
+  static LogsConfigStatusType fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum LogsConfigStatusType'));
 }
 
 /// Information about build logs in CloudWatch Logs.
@@ -6664,41 +6303,20 @@ class PhaseContext {
 }
 
 enum PlatformType {
-  debian,
-  amazonLinux,
-  ubuntu,
-  windowsServer,
-}
+  debian('DEBIAN'),
+  amazonLinux('AMAZON_LINUX'),
+  ubuntu('UBUNTU'),
+  windowsServer('WINDOWS_SERVER'),
+  ;
 
-extension PlatformTypeValueExtension on PlatformType {
-  String toValue() {
-    switch (this) {
-      case PlatformType.debian:
-        return 'DEBIAN';
-      case PlatformType.amazonLinux:
-        return 'AMAZON_LINUX';
-      case PlatformType.ubuntu:
-        return 'UBUNTU';
-      case PlatformType.windowsServer:
-        return 'WINDOWS_SERVER';
-    }
-  }
-}
+  final String value;
 
-extension PlatformTypeFromString on String {
-  PlatformType toPlatformType() {
-    switch (this) {
-      case 'DEBIAN':
-        return PlatformType.debian;
-      case 'AMAZON_LINUX':
-        return PlatformType.amazonLinux;
-      case 'UBUNTU':
-        return PlatformType.ubuntu;
-      case 'WINDOWS_SERVER':
-        return PlatformType.windowsServer;
-    }
-    throw Exception('$this is not known in enum PlatformType');
-  }
+  const PlatformType(this.value);
+
+  static PlatformType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum PlatformType'));
 }
 
 /// Information about a build project.
@@ -6914,8 +6532,8 @@ class Project {
           ? LogsConfig.fromJson(json['logsConfig'] as Map<String, dynamic>)
           : null,
       name: json['name'] as String?,
-      projectVisibility:
-          (json['projectVisibility'] as String?)?.toProjectVisibilityType(),
+      projectVisibility: (json['projectVisibility'] as String?)
+          ?.let(ProjectVisibilityType.fromString),
       publicProjectAlias: json['publicProjectAlias'] as String?,
       queuedTimeoutInMinutes: json['queuedTimeoutInMinutes'] as int?,
       resourceAccessRole: json['resourceAccessRole'] as String?,
@@ -6998,7 +6616,7 @@ class Project {
       if (logsConfig != null) 'logsConfig': logsConfig,
       if (name != null) 'name': name,
       if (projectVisibility != null)
-        'projectVisibility': projectVisibility.toValue(),
+        'projectVisibility': projectVisibility.value,
       if (publicProjectAlias != null) 'publicProjectAlias': publicProjectAlias,
       if (queuedTimeoutInMinutes != null)
         'queuedTimeoutInMinutes': queuedTimeoutInMinutes,
@@ -7220,16 +6838,18 @@ class ProjectArtifacts {
 
   factory ProjectArtifacts.fromJson(Map<String, dynamic> json) {
     return ProjectArtifacts(
-      type: (json['type'] as String).toArtifactsType(),
+      type: ArtifactsType.fromString((json['type'] as String)),
       artifactIdentifier: json['artifactIdentifier'] as String?,
-      bucketOwnerAccess:
-          (json['bucketOwnerAccess'] as String?)?.toBucketOwnerAccess(),
+      bucketOwnerAccess: (json['bucketOwnerAccess'] as String?)
+          ?.let(BucketOwnerAccess.fromString),
       encryptionDisabled: json['encryptionDisabled'] as bool?,
       location: json['location'] as String?,
       name: json['name'] as String?,
-      namespaceType: (json['namespaceType'] as String?)?.toArtifactNamespace(),
+      namespaceType:
+          (json['namespaceType'] as String?)?.let(ArtifactNamespace.fromString),
       overrideArtifactName: json['overrideArtifactName'] as bool?,
-      packaging: (json['packaging'] as String?)?.toArtifactPackaging(),
+      packaging:
+          (json['packaging'] as String?)?.let(ArtifactPackaging.fromString),
       path: json['path'] as String?,
     );
   }
@@ -7246,17 +6866,17 @@ class ProjectArtifacts {
     final packaging = this.packaging;
     final path = this.path;
     return {
-      'type': type.toValue(),
+      'type': type.value,
       if (artifactIdentifier != null) 'artifactIdentifier': artifactIdentifier,
       if (bucketOwnerAccess != null)
-        'bucketOwnerAccess': bucketOwnerAccess.toValue(),
+        'bucketOwnerAccess': bucketOwnerAccess.value,
       if (encryptionDisabled != null) 'encryptionDisabled': encryptionDisabled,
       if (location != null) 'location': location,
       if (name != null) 'name': name,
-      if (namespaceType != null) 'namespaceType': namespaceType.toValue(),
+      if (namespaceType != null) 'namespaceType': namespaceType.value,
       if (overrideArtifactName != null)
         'overrideArtifactName': overrideArtifactName,
-      if (packaging != null) 'packaging': packaging.toValue(),
+      if (packaging != null) 'packaging': packaging.value,
       if (path != null) 'path': path,
     };
   }
@@ -7332,8 +6952,8 @@ class ProjectBuildBatchConfig {
 
   factory ProjectBuildBatchConfig.fromJson(Map<String, dynamic> json) {
     return ProjectBuildBatchConfig(
-      batchReportMode:
-          (json['batchReportMode'] as String?)?.toBatchReportModeType(),
+      batchReportMode: (json['batchReportMode'] as String?)
+          ?.let(BatchReportModeType.fromString),
       combineArtifacts: json['combineArtifacts'] as bool?,
       restrictions: json['restrictions'] != null
           ? BatchRestrictions.fromJson(
@@ -7351,7 +6971,7 @@ class ProjectBuildBatchConfig {
     final serviceRole = this.serviceRole;
     final timeoutInMins = this.timeoutInMins;
     return {
-      if (batchReportMode != null) 'batchReportMode': batchReportMode.toValue(),
+      if (batchReportMode != null) 'batchReportMode': batchReportMode.value,
       if (combineArtifacts != null) 'combineArtifacts': combineArtifacts,
       if (restrictions != null) 'restrictions': restrictions,
       if (serviceRole != null) 'serviceRole': serviceRole,
@@ -7448,11 +7068,11 @@ class ProjectCache {
 
   factory ProjectCache.fromJson(Map<String, dynamic> json) {
     return ProjectCache(
-      type: (json['type'] as String).toCacheType(),
+      type: CacheType.fromString((json['type'] as String)),
       location: json['location'] as String?,
       modes: (json['modes'] as List?)
           ?.whereNotNull()
-          .map((e) => (e as String).toCacheMode())
+          .map((e) => CacheMode.fromString((e as String)))
           .toList(),
     );
   }
@@ -7462,9 +7082,9 @@ class ProjectCache {
     final location = this.location;
     final modes = this.modes;
     return {
-      'type': type.toValue(),
+      'type': type.value,
       if (location != null) 'location': location,
-      if (modes != null) 'modes': modes.map((e) => e.toValue()).toList(),
+      if (modes != null) 'modes': modes.map((e) => e.value).toList(),
     };
   }
 }
@@ -7649,16 +7269,16 @@ class ProjectEnvironment {
 
   factory ProjectEnvironment.fromJson(Map<String, dynamic> json) {
     return ProjectEnvironment(
-      computeType: (json['computeType'] as String).toComputeType(),
+      computeType: ComputeType.fromString((json['computeType'] as String)),
       image: json['image'] as String,
-      type: (json['type'] as String).toEnvironmentType(),
+      type: EnvironmentType.fromString((json['type'] as String)),
       certificate: json['certificate'] as String?,
       environmentVariables: (json['environmentVariables'] as List?)
           ?.whereNotNull()
           .map((e) => EnvironmentVariable.fromJson(e as Map<String, dynamic>))
           .toList(),
       imagePullCredentialsType: (json['imagePullCredentialsType'] as String?)
-          ?.toImagePullCredentialsType(),
+          ?.let(ImagePullCredentialsType.fromString),
       privilegedMode: json['privilegedMode'] as bool?,
       registryCredential: json['registryCredential'] != null
           ? RegistryCredential.fromJson(
@@ -7677,14 +7297,14 @@ class ProjectEnvironment {
     final privilegedMode = this.privilegedMode;
     final registryCredential = this.registryCredential;
     return {
-      'computeType': computeType.toValue(),
+      'computeType': computeType.value,
       'image': image,
-      'type': type.toValue(),
+      'type': type.value,
       if (certificate != null) 'certificate': certificate,
       if (environmentVariables != null)
         'environmentVariables': environmentVariables,
       if (imagePullCredentialsType != null)
-        'imagePullCredentialsType': imagePullCredentialsType.toValue(),
+        'imagePullCredentialsType': imagePullCredentialsType.value,
       if (privilegedMode != null) 'privilegedMode': privilegedMode,
       if (registryCredential != null) 'registryCredential': registryCredential,
     };
@@ -7748,7 +7368,7 @@ class ProjectFileSystemLocation {
       location: json['location'] as String?,
       mountOptions: json['mountOptions'] as String?,
       mountPoint: json['mountPoint'] as String?,
-      type: (json['type'] as String?)?.toFileSystemType(),
+      type: (json['type'] as String?)?.let(FileSystemType.fromString),
     );
   }
 
@@ -7763,42 +7383,25 @@ class ProjectFileSystemLocation {
       if (location != null) 'location': location,
       if (mountOptions != null) 'mountOptions': mountOptions,
       if (mountPoint != null) 'mountPoint': mountPoint,
-      if (type != null) 'type': type.toValue(),
+      if (type != null) 'type': type.value,
     };
   }
 }
 
 enum ProjectSortByType {
-  name,
-  createdTime,
-  lastModifiedTime,
-}
+  name('NAME'),
+  createdTime('CREATED_TIME'),
+  lastModifiedTime('LAST_MODIFIED_TIME'),
+  ;
 
-extension ProjectSortByTypeValueExtension on ProjectSortByType {
-  String toValue() {
-    switch (this) {
-      case ProjectSortByType.name:
-        return 'NAME';
-      case ProjectSortByType.createdTime:
-        return 'CREATED_TIME';
-      case ProjectSortByType.lastModifiedTime:
-        return 'LAST_MODIFIED_TIME';
-    }
-  }
-}
+  final String value;
 
-extension ProjectSortByTypeFromString on String {
-  ProjectSortByType toProjectSortByType() {
-    switch (this) {
-      case 'NAME':
-        return ProjectSortByType.name;
-      case 'CREATED_TIME':
-        return ProjectSortByType.createdTime;
-      case 'LAST_MODIFIED_TIME':
-        return ProjectSortByType.lastModifiedTime;
-    }
-    throw Exception('$this is not known in enum ProjectSortByType');
-  }
+  const ProjectSortByType(this.value);
+
+  static ProjectSortByType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum ProjectSortByType'));
 }
 
 /// Information about the build input source code for the build project.
@@ -7972,7 +7575,7 @@ class ProjectSource {
 
   factory ProjectSource.fromJson(Map<String, dynamic> json) {
     return ProjectSource(
-      type: (json['type'] as String).toSourceType(),
+      type: SourceType.fromString((json['type'] as String)),
       auth: json['auth'] != null
           ? SourceAuth.fromJson(json['auth'] as Map<String, dynamic>)
           : null,
@@ -8005,7 +7608,7 @@ class ProjectSource {
     final reportBuildStatus = this.reportBuildStatus;
     final sourceIdentifier = this.sourceIdentifier;
     return {
-      'type': type.toValue(),
+      'type': type.value,
       if (auth != null) 'auth': auth,
       if (buildStatusConfig != null) 'buildStatusConfig': buildStatusConfig,
       if (buildspec != null) 'buildspec': buildspec,
@@ -8087,31 +7690,18 @@ class ProjectSourceVersion {
 /// The project builds are not visible to the public.
 /// </dd> </dl>
 enum ProjectVisibilityType {
-  publicRead,
-  private,
-}
+  publicRead('PUBLIC_READ'),
+  private('PRIVATE'),
+  ;
 
-extension ProjectVisibilityTypeValueExtension on ProjectVisibilityType {
-  String toValue() {
-    switch (this) {
-      case ProjectVisibilityType.publicRead:
-        return 'PUBLIC_READ';
-      case ProjectVisibilityType.private:
-        return 'PRIVATE';
-    }
-  }
-}
+  final String value;
 
-extension ProjectVisibilityTypeFromString on String {
-  ProjectVisibilityType toProjectVisibilityType() {
-    switch (this) {
-      case 'PUBLIC_READ':
-        return ProjectVisibilityType.publicRead;
-      case 'PRIVATE':
-        return ProjectVisibilityType.private;
-    }
-    throw Exception('$this is not known in enum ProjectVisibilityType');
-  }
+  const ProjectVisibilityType(this.value);
+
+  static ProjectVisibilityType fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum ProjectVisibilityType'));
 }
 
 class PutResourcePolicyOutput {
@@ -8173,8 +7763,8 @@ class RegistryCredential {
   factory RegistryCredential.fromJson(Map<String, dynamic> json) {
     return RegistryCredential(
       credential: json['credential'] as String,
-      credentialProvider:
-          (json['credentialProvider'] as String).toCredentialProviderType(),
+      credentialProvider: CredentialProviderType.fromString(
+          (json['credentialProvider'] as String)),
     );
   }
 
@@ -8183,7 +7773,7 @@ class RegistryCredential {
     final credentialProvider = this.credentialProvider;
     return {
       'credential': credential,
-      'credentialProvider': credentialProvider.toValue(),
+      'credentialProvider': credentialProvider.value,
     };
   }
 }
@@ -8271,13 +7861,13 @@ class Report {
           : null,
       name: json['name'] as String?,
       reportGroupArn: json['reportGroupArn'] as String?,
-      status: (json['status'] as String?)?.toReportStatusType(),
+      status: (json['status'] as String?)?.let(ReportStatusType.fromString),
       testSummary: json['testSummary'] != null
           ? TestReportSummary.fromJson(
               json['testSummary'] as Map<String, dynamic>)
           : null,
       truncated: json['truncated'] as bool?,
-      type: (json['type'] as String?)?.toReportType(),
+      type: (json['type'] as String?)?.let(ReportType.fromString),
     );
   }
 
@@ -8304,41 +7894,27 @@ class Report {
       if (exportConfig != null) 'exportConfig': exportConfig,
       if (name != null) 'name': name,
       if (reportGroupArn != null) 'reportGroupArn': reportGroupArn,
-      if (status != null) 'status': status.toValue(),
+      if (status != null) 'status': status.value,
       if (testSummary != null) 'testSummary': testSummary,
       if (truncated != null) 'truncated': truncated,
-      if (type != null) 'type': type.toValue(),
+      if (type != null) 'type': type.value,
     };
   }
 }
 
 enum ReportCodeCoverageSortByType {
-  lineCoveragePercentage,
-  filePath,
-}
+  lineCoveragePercentage('LINE_COVERAGE_PERCENTAGE'),
+  filePath('FILE_PATH'),
+  ;
 
-extension ReportCodeCoverageSortByTypeValueExtension
-    on ReportCodeCoverageSortByType {
-  String toValue() {
-    switch (this) {
-      case ReportCodeCoverageSortByType.lineCoveragePercentage:
-        return 'LINE_COVERAGE_PERCENTAGE';
-      case ReportCodeCoverageSortByType.filePath:
-        return 'FILE_PATH';
-    }
-  }
-}
+  final String value;
 
-extension ReportCodeCoverageSortByTypeFromString on String {
-  ReportCodeCoverageSortByType toReportCodeCoverageSortByType() {
-    switch (this) {
-      case 'LINE_COVERAGE_PERCENTAGE':
-        return ReportCodeCoverageSortByType.lineCoveragePercentage;
-      case 'FILE_PATH':
-        return ReportCodeCoverageSortByType.filePath;
-    }
-    throw Exception('$this is not known in enum ReportCodeCoverageSortByType');
-  }
+  const ReportCodeCoverageSortByType(this.value);
+
+  static ReportCodeCoverageSortByType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum ReportCodeCoverageSortByType'));
 }
 
 /// Information about the location where the run of a report is exported.
@@ -8366,8 +7942,8 @@ class ReportExportConfig {
 
   factory ReportExportConfig.fromJson(Map<String, dynamic> json) {
     return ReportExportConfig(
-      exportConfigType:
-          (json['exportConfigType'] as String?)?.toReportExportConfigType(),
+      exportConfigType: (json['exportConfigType'] as String?)
+          ?.let(ReportExportConfigType.fromString),
       s3Destination: json['s3Destination'] != null
           ? S3ReportExportConfig.fromJson(
               json['s3Destination'] as Map<String, dynamic>)
@@ -8379,39 +7955,25 @@ class ReportExportConfig {
     final exportConfigType = this.exportConfigType;
     final s3Destination = this.s3Destination;
     return {
-      if (exportConfigType != null)
-        'exportConfigType': exportConfigType.toValue(),
+      if (exportConfigType != null) 'exportConfigType': exportConfigType.value,
       if (s3Destination != null) 's3Destination': s3Destination,
     };
   }
 }
 
 enum ReportExportConfigType {
-  s3,
-  noExport,
-}
+  s3('S3'),
+  noExport('NO_EXPORT'),
+  ;
 
-extension ReportExportConfigTypeValueExtension on ReportExportConfigType {
-  String toValue() {
-    switch (this) {
-      case ReportExportConfigType.s3:
-        return 'S3';
-      case ReportExportConfigType.noExport:
-        return 'NO_EXPORT';
-    }
-  }
-}
+  final String value;
 
-extension ReportExportConfigTypeFromString on String {
-  ReportExportConfigType toReportExportConfigType() {
-    switch (this) {
-      case 'S3':
-        return ReportExportConfigType.s3;
-      case 'NO_EXPORT':
-        return ReportExportConfigType.noExport;
-    }
-    throw Exception('$this is not known in enum ReportExportConfigType');
-  }
+  const ReportExportConfigType(this.value);
+
+  static ReportExportConfigType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum ReportExportConfigType'));
 }
 
 /// A filter used to return reports with the status specified by the input
@@ -8427,7 +7989,7 @@ class ReportFilter {
   Map<String, dynamic> toJson() {
     final status = this.status;
     return {
-      if (status != null) 'status': status.toValue(),
+      if (status != null) 'status': status.value,
     };
   }
 }
@@ -8499,12 +8061,13 @@ class ReportGroup {
           : null,
       lastModified: timeStampFromJson(json['lastModified']),
       name: json['name'] as String?,
-      status: (json['status'] as String?)?.toReportGroupStatusType(),
+      status:
+          (json['status'] as String?)?.let(ReportGroupStatusType.fromString),
       tags: (json['tags'] as List?)
           ?.whereNotNull()
           .map((e) => Tag.fromJson(e as Map<String, dynamic>))
           .toList(),
-      type: (json['type'] as String?)?.toReportType(),
+      type: (json['type'] as String?)?.let(ReportType.fromString),
     );
   }
 
@@ -8524,135 +8087,64 @@ class ReportGroup {
       if (lastModified != null)
         'lastModified': unixTimestampToJson(lastModified),
       if (name != null) 'name': name,
-      if (status != null) 'status': status.toValue(),
+      if (status != null) 'status': status.value,
       if (tags != null) 'tags': tags,
-      if (type != null) 'type': type.toValue(),
+      if (type != null) 'type': type.value,
     };
   }
 }
 
 enum ReportGroupSortByType {
-  name,
-  createdTime,
-  lastModifiedTime,
-}
+  name('NAME'),
+  createdTime('CREATED_TIME'),
+  lastModifiedTime('LAST_MODIFIED_TIME'),
+  ;
 
-extension ReportGroupSortByTypeValueExtension on ReportGroupSortByType {
-  String toValue() {
-    switch (this) {
-      case ReportGroupSortByType.name:
-        return 'NAME';
-      case ReportGroupSortByType.createdTime:
-        return 'CREATED_TIME';
-      case ReportGroupSortByType.lastModifiedTime:
-        return 'LAST_MODIFIED_TIME';
-    }
-  }
-}
+  final String value;
 
-extension ReportGroupSortByTypeFromString on String {
-  ReportGroupSortByType toReportGroupSortByType() {
-    switch (this) {
-      case 'NAME':
-        return ReportGroupSortByType.name;
-      case 'CREATED_TIME':
-        return ReportGroupSortByType.createdTime;
-      case 'LAST_MODIFIED_TIME':
-        return ReportGroupSortByType.lastModifiedTime;
-    }
-    throw Exception('$this is not known in enum ReportGroupSortByType');
-  }
+  const ReportGroupSortByType(this.value);
+
+  static ReportGroupSortByType fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum ReportGroupSortByType'));
 }
 
 enum ReportGroupStatusType {
-  active,
-  deleting,
-}
+  active('ACTIVE'),
+  deleting('DELETING'),
+  ;
 
-extension ReportGroupStatusTypeValueExtension on ReportGroupStatusType {
-  String toValue() {
-    switch (this) {
-      case ReportGroupStatusType.active:
-        return 'ACTIVE';
-      case ReportGroupStatusType.deleting:
-        return 'DELETING';
-    }
-  }
-}
+  final String value;
 
-extension ReportGroupStatusTypeFromString on String {
-  ReportGroupStatusType toReportGroupStatusType() {
-    switch (this) {
-      case 'ACTIVE':
-        return ReportGroupStatusType.active;
-      case 'DELETING':
-        return ReportGroupStatusType.deleting;
-    }
-    throw Exception('$this is not known in enum ReportGroupStatusType');
-  }
+  const ReportGroupStatusType(this.value);
+
+  static ReportGroupStatusType fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum ReportGroupStatusType'));
 }
 
 enum ReportGroupTrendFieldType {
-  passRate,
-  duration,
-  total,
-  lineCoverage,
-  linesCovered,
-  linesMissed,
-  branchCoverage,
-  branchesCovered,
-  branchesMissed,
-}
+  passRate('PASS_RATE'),
+  duration('DURATION'),
+  total('TOTAL'),
+  lineCoverage('LINE_COVERAGE'),
+  linesCovered('LINES_COVERED'),
+  linesMissed('LINES_MISSED'),
+  branchCoverage('BRANCH_COVERAGE'),
+  branchesCovered('BRANCHES_COVERED'),
+  branchesMissed('BRANCHES_MISSED'),
+  ;
 
-extension ReportGroupTrendFieldTypeValueExtension on ReportGroupTrendFieldType {
-  String toValue() {
-    switch (this) {
-      case ReportGroupTrendFieldType.passRate:
-        return 'PASS_RATE';
-      case ReportGroupTrendFieldType.duration:
-        return 'DURATION';
-      case ReportGroupTrendFieldType.total:
-        return 'TOTAL';
-      case ReportGroupTrendFieldType.lineCoverage:
-        return 'LINE_COVERAGE';
-      case ReportGroupTrendFieldType.linesCovered:
-        return 'LINES_COVERED';
-      case ReportGroupTrendFieldType.linesMissed:
-        return 'LINES_MISSED';
-      case ReportGroupTrendFieldType.branchCoverage:
-        return 'BRANCH_COVERAGE';
-      case ReportGroupTrendFieldType.branchesCovered:
-        return 'BRANCHES_COVERED';
-      case ReportGroupTrendFieldType.branchesMissed:
-        return 'BRANCHES_MISSED';
-    }
-  }
-}
+  final String value;
 
-extension ReportGroupTrendFieldTypeFromString on String {
-  ReportGroupTrendFieldType toReportGroupTrendFieldType() {
-    switch (this) {
-      case 'PASS_RATE':
-        return ReportGroupTrendFieldType.passRate;
-      case 'DURATION':
-        return ReportGroupTrendFieldType.duration;
-      case 'TOTAL':
-        return ReportGroupTrendFieldType.total;
-      case 'LINE_COVERAGE':
-        return ReportGroupTrendFieldType.lineCoverage;
-      case 'LINES_COVERED':
-        return ReportGroupTrendFieldType.linesCovered;
-      case 'LINES_MISSED':
-        return ReportGroupTrendFieldType.linesMissed;
-      case 'BRANCH_COVERAGE':
-        return ReportGroupTrendFieldType.branchCoverage;
-      case 'BRANCHES_COVERED':
-        return ReportGroupTrendFieldType.branchesCovered;
-      case 'BRANCHES_MISSED':
-        return ReportGroupTrendFieldType.branchesMissed;
-    }
-    throw Exception('$this is not known in enum ReportGroupTrendFieldType');
-  }
+  const ReportGroupTrendFieldType(this.value);
+
+  static ReportGroupTrendFieldType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum ReportGroupTrendFieldType'));
 }
 
 /// Contains trend statistics for a set of reports. The actual values depend on
@@ -8694,102 +8186,50 @@ class ReportGroupTrendStats {
 }
 
 enum ReportPackagingType {
-  zip,
-  none,
-}
+  zip('ZIP'),
+  none('NONE'),
+  ;
 
-extension ReportPackagingTypeValueExtension on ReportPackagingType {
-  String toValue() {
-    switch (this) {
-      case ReportPackagingType.zip:
-        return 'ZIP';
-      case ReportPackagingType.none:
-        return 'NONE';
-    }
-  }
-}
+  final String value;
 
-extension ReportPackagingTypeFromString on String {
-  ReportPackagingType toReportPackagingType() {
-    switch (this) {
-      case 'ZIP':
-        return ReportPackagingType.zip;
-      case 'NONE':
-        return ReportPackagingType.none;
-    }
-    throw Exception('$this is not known in enum ReportPackagingType');
-  }
+  const ReportPackagingType(this.value);
+
+  static ReportPackagingType fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum ReportPackagingType'));
 }
 
 enum ReportStatusType {
-  generating,
-  succeeded,
-  failed,
-  incomplete,
-  deleting,
-}
+  generating('GENERATING'),
+  succeeded('SUCCEEDED'),
+  failed('FAILED'),
+  incomplete('INCOMPLETE'),
+  deleting('DELETING'),
+  ;
 
-extension ReportStatusTypeValueExtension on ReportStatusType {
-  String toValue() {
-    switch (this) {
-      case ReportStatusType.generating:
-        return 'GENERATING';
-      case ReportStatusType.succeeded:
-        return 'SUCCEEDED';
-      case ReportStatusType.failed:
-        return 'FAILED';
-      case ReportStatusType.incomplete:
-        return 'INCOMPLETE';
-      case ReportStatusType.deleting:
-        return 'DELETING';
-    }
-  }
-}
+  final String value;
 
-extension ReportStatusTypeFromString on String {
-  ReportStatusType toReportStatusType() {
-    switch (this) {
-      case 'GENERATING':
-        return ReportStatusType.generating;
-      case 'SUCCEEDED':
-        return ReportStatusType.succeeded;
-      case 'FAILED':
-        return ReportStatusType.failed;
-      case 'INCOMPLETE':
-        return ReportStatusType.incomplete;
-      case 'DELETING':
-        return ReportStatusType.deleting;
-    }
-    throw Exception('$this is not known in enum ReportStatusType');
-  }
+  const ReportStatusType(this.value);
+
+  static ReportStatusType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum ReportStatusType'));
 }
 
 enum ReportType {
-  test,
-  codeCoverage,
-}
+  test('TEST'),
+  codeCoverage('CODE_COVERAGE'),
+  ;
 
-extension ReportTypeValueExtension on ReportType {
-  String toValue() {
-    switch (this) {
-      case ReportType.test:
-        return 'TEST';
-      case ReportType.codeCoverage:
-        return 'CODE_COVERAGE';
-    }
-  }
-}
+  final String value;
 
-extension ReportTypeFromString on String {
-  ReportType toReportType() {
-    switch (this) {
-      case 'TEST':
-        return ReportType.test;
-      case 'CODE_COVERAGE':
-        return ReportType.codeCoverage;
-    }
-    throw Exception('$this is not known in enum ReportType');
-  }
+  const ReportType(this.value);
+
+  static ReportType fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum ReportType'));
 }
 
 /// Contains the unmodified data for the report. For more information, see .
@@ -8844,7 +8284,7 @@ class ResolvedArtifact {
     return ResolvedArtifact(
       identifier: json['identifier'] as String?,
       location: json['location'] as String?,
-      type: (json['type'] as String?)?.toArtifactsType(),
+      type: (json['type'] as String?)?.let(ArtifactsType.fromString),
     );
   }
 
@@ -8855,7 +8295,7 @@ class ResolvedArtifact {
     return {
       if (identifier != null) 'identifier': identifier,
       if (location != null) 'location': location,
-      if (type != null) 'type': type.toValue(),
+      if (type != null) 'type': type.value,
     };
   }
 }
@@ -8884,31 +8324,18 @@ class RetryBuildBatchOutput {
 }
 
 enum RetryBuildBatchType {
-  retryAllBuilds,
-  retryFailedBuilds,
-}
+  retryAllBuilds('RETRY_ALL_BUILDS'),
+  retryFailedBuilds('RETRY_FAILED_BUILDS'),
+  ;
 
-extension RetryBuildBatchTypeValueExtension on RetryBuildBatchType {
-  String toValue() {
-    switch (this) {
-      case RetryBuildBatchType.retryAllBuilds:
-        return 'RETRY_ALL_BUILDS';
-      case RetryBuildBatchType.retryFailedBuilds:
-        return 'RETRY_FAILED_BUILDS';
-    }
-  }
-}
+  final String value;
 
-extension RetryBuildBatchTypeFromString on String {
-  RetryBuildBatchType toRetryBuildBatchType() {
-    switch (this) {
-      case 'RETRY_ALL_BUILDS':
-        return RetryBuildBatchType.retryAllBuilds;
-      case 'RETRY_FAILED_BUILDS':
-        return RetryBuildBatchType.retryFailedBuilds;
-    }
-    throw Exception('$this is not known in enum RetryBuildBatchType');
-  }
+  const RetryBuildBatchType(this.value);
+
+  static RetryBuildBatchType fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum RetryBuildBatchType'));
 }
 
 class RetryBuildOutput {
@@ -8969,9 +8396,9 @@ class S3LogsConfig {
 
   factory S3LogsConfig.fromJson(Map<String, dynamic> json) {
     return S3LogsConfig(
-      status: (json['status'] as String).toLogsConfigStatusType(),
-      bucketOwnerAccess:
-          (json['bucketOwnerAccess'] as String?)?.toBucketOwnerAccess(),
+      status: LogsConfigStatusType.fromString((json['status'] as String)),
+      bucketOwnerAccess: (json['bucketOwnerAccess'] as String?)
+          ?.let(BucketOwnerAccess.fromString),
       encryptionDisabled: json['encryptionDisabled'] as bool?,
       location: json['location'] as String?,
     );
@@ -8983,9 +8410,9 @@ class S3LogsConfig {
     final encryptionDisabled = this.encryptionDisabled;
     final location = this.location;
     return {
-      'status': status.toValue(),
+      'status': status.value,
       if (bucketOwnerAccess != null)
-        'bucketOwnerAccess': bucketOwnerAccess.toValue(),
+        'bucketOwnerAccess': bucketOwnerAccess.value,
       if (encryptionDisabled != null) 'encryptionDisabled': encryptionDisabled,
       if (location != null) 'location': location,
     };
@@ -9040,7 +8467,8 @@ class S3ReportExportConfig {
       bucketOwner: json['bucketOwner'] as String?,
       encryptionDisabled: json['encryptionDisabled'] as bool?,
       encryptionKey: json['encryptionKey'] as String?,
-      packaging: (json['packaging'] as String?)?.toReportPackagingType(),
+      packaging:
+          (json['packaging'] as String?)?.let(ReportPackagingType.fromString),
       path: json['path'] as String?,
     );
   }
@@ -9057,99 +8485,55 @@ class S3ReportExportConfig {
       if (bucketOwner != null) 'bucketOwner': bucketOwner,
       if (encryptionDisabled != null) 'encryptionDisabled': encryptionDisabled,
       if (encryptionKey != null) 'encryptionKey': encryptionKey,
-      if (packaging != null) 'packaging': packaging.toValue(),
+      if (packaging != null) 'packaging': packaging.value,
       if (path != null) 'path': path,
     };
   }
 }
 
 enum ServerType {
-  github,
-  bitbucket,
-  githubEnterprise,
-}
+  github('GITHUB'),
+  bitbucket('BITBUCKET'),
+  githubEnterprise('GITHUB_ENTERPRISE'),
+  ;
 
-extension ServerTypeValueExtension on ServerType {
-  String toValue() {
-    switch (this) {
-      case ServerType.github:
-        return 'GITHUB';
-      case ServerType.bitbucket:
-        return 'BITBUCKET';
-      case ServerType.githubEnterprise:
-        return 'GITHUB_ENTERPRISE';
-    }
-  }
-}
+  final String value;
 
-extension ServerTypeFromString on String {
-  ServerType toServerType() {
-    switch (this) {
-      case 'GITHUB':
-        return ServerType.github;
-      case 'BITBUCKET':
-        return ServerType.bitbucket;
-      case 'GITHUB_ENTERPRISE':
-        return ServerType.githubEnterprise;
-    }
-    throw Exception('$this is not known in enum ServerType');
-  }
+  const ServerType(this.value);
+
+  static ServerType fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum ServerType'));
 }
 
 enum SharedResourceSortByType {
-  arn,
-  modifiedTime,
-}
+  arn('ARN'),
+  modifiedTime('MODIFIED_TIME'),
+  ;
 
-extension SharedResourceSortByTypeValueExtension on SharedResourceSortByType {
-  String toValue() {
-    switch (this) {
-      case SharedResourceSortByType.arn:
-        return 'ARN';
-      case SharedResourceSortByType.modifiedTime:
-        return 'MODIFIED_TIME';
-    }
-  }
-}
+  final String value;
 
-extension SharedResourceSortByTypeFromString on String {
-  SharedResourceSortByType toSharedResourceSortByType() {
-    switch (this) {
-      case 'ARN':
-        return SharedResourceSortByType.arn;
-      case 'MODIFIED_TIME':
-        return SharedResourceSortByType.modifiedTime;
-    }
-    throw Exception('$this is not known in enum SharedResourceSortByType');
-  }
+  const SharedResourceSortByType(this.value);
+
+  static SharedResourceSortByType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum SharedResourceSortByType'));
 }
 
 enum SortOrderType {
-  ascending,
-  descending,
-}
+  ascending('ASCENDING'),
+  descending('DESCENDING'),
+  ;
 
-extension SortOrderTypeValueExtension on SortOrderType {
-  String toValue() {
-    switch (this) {
-      case SortOrderType.ascending:
-        return 'ASCENDING';
-      case SortOrderType.descending:
-        return 'DESCENDING';
-    }
-  }
-}
+  final String value;
 
-extension SortOrderTypeFromString on String {
-  SortOrderType toSortOrderType() {
-    switch (this) {
-      case 'ASCENDING':
-        return SortOrderType.ascending;
-      case 'DESCENDING':
-        return SortOrderType.descending;
-    }
-    throw Exception('$this is not known in enum SortOrderType');
-  }
+  const SortOrderType(this.value);
+
+  static SortOrderType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum SortOrderType'));
 }
 
 /// Information about the authorization settings for CodeBuild to access the
@@ -9175,7 +8559,7 @@ class SourceAuth {
 
   factory SourceAuth.fromJson(Map<String, dynamic> json) {
     return SourceAuth(
-      type: (json['type'] as String).toSourceAuthType(),
+      type: SourceAuthType.fromString((json['type'] as String)),
       resource: json['resource'] as String?,
     );
   }
@@ -9184,33 +8568,24 @@ class SourceAuth {
     final type = this.type;
     final resource = this.resource;
     return {
-      'type': type.toValue(),
+      'type': type.value,
       if (resource != null) 'resource': resource,
     };
   }
 }
 
 enum SourceAuthType {
-  oauth,
-}
+  oauth('OAUTH'),
+  ;
 
-extension SourceAuthTypeValueExtension on SourceAuthType {
-  String toValue() {
-    switch (this) {
-      case SourceAuthType.oauth:
-        return 'OAUTH';
-    }
-  }
-}
+  final String value;
 
-extension SourceAuthTypeFromString on String {
-  SourceAuthType toSourceAuthType() {
-    switch (this) {
-      case 'OAUTH':
-        return SourceAuthType.oauth;
-    }
-    throw Exception('$this is not known in enum SourceAuthType');
-  }
+  const SourceAuthType(this.value);
+
+  static SourceAuthType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum SourceAuthType'));
 }
 
 /// Information about the credentials for a GitHub, GitHub Enterprise, or
@@ -9236,8 +8611,8 @@ class SourceCredentialsInfo {
   factory SourceCredentialsInfo.fromJson(Map<String, dynamic> json) {
     return SourceCredentialsInfo(
       arn: json['arn'] as String?,
-      authType: (json['authType'] as String?)?.toAuthType(),
-      serverType: (json['serverType'] as String?)?.toServerType(),
+      authType: (json['authType'] as String?)?.let(AuthType.fromString),
+      serverType: (json['serverType'] as String?)?.let(ServerType.fromString),
     );
   }
 
@@ -9247,63 +8622,29 @@ class SourceCredentialsInfo {
     final serverType = this.serverType;
     return {
       if (arn != null) 'arn': arn,
-      if (authType != null) 'authType': authType.toValue(),
-      if (serverType != null) 'serverType': serverType.toValue(),
+      if (authType != null) 'authType': authType.value,
+      if (serverType != null) 'serverType': serverType.value,
     };
   }
 }
 
 enum SourceType {
-  codecommit,
-  codepipeline,
-  github,
-  s3,
-  bitbucket,
-  githubEnterprise,
-  noSource,
-}
+  codecommit('CODECOMMIT'),
+  codepipeline('CODEPIPELINE'),
+  github('GITHUB'),
+  s3('S3'),
+  bitbucket('BITBUCKET'),
+  githubEnterprise('GITHUB_ENTERPRISE'),
+  noSource('NO_SOURCE'),
+  ;
 
-extension SourceTypeValueExtension on SourceType {
-  String toValue() {
-    switch (this) {
-      case SourceType.codecommit:
-        return 'CODECOMMIT';
-      case SourceType.codepipeline:
-        return 'CODEPIPELINE';
-      case SourceType.github:
-        return 'GITHUB';
-      case SourceType.s3:
-        return 'S3';
-      case SourceType.bitbucket:
-        return 'BITBUCKET';
-      case SourceType.githubEnterprise:
-        return 'GITHUB_ENTERPRISE';
-      case SourceType.noSource:
-        return 'NO_SOURCE';
-    }
-  }
-}
+  final String value;
 
-extension SourceTypeFromString on String {
-  SourceType toSourceType() {
-    switch (this) {
-      case 'CODECOMMIT':
-        return SourceType.codecommit;
-      case 'CODEPIPELINE':
-        return SourceType.codepipeline;
-      case 'GITHUB':
-        return SourceType.github;
-      case 'S3':
-        return SourceType.s3;
-      case 'BITBUCKET':
-        return SourceType.bitbucket;
-      case 'GITHUB_ENTERPRISE':
-        return SourceType.githubEnterprise;
-      case 'NO_SOURCE':
-        return SourceType.noSource;
-    }
-    throw Exception('$this is not known in enum SourceType');
-  }
+  const SourceType(this.value);
+
+  static SourceType fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum SourceType'));
 }
 
 class StartBuildBatchOutput {
@@ -9356,51 +8697,21 @@ class StartBuildOutput {
 }
 
 enum StatusType {
-  succeeded,
-  failed,
-  fault,
-  timedOut,
-  inProgress,
-  stopped,
-}
+  succeeded('SUCCEEDED'),
+  failed('FAILED'),
+  fault('FAULT'),
+  timedOut('TIMED_OUT'),
+  inProgress('IN_PROGRESS'),
+  stopped('STOPPED'),
+  ;
 
-extension StatusTypeValueExtension on StatusType {
-  String toValue() {
-    switch (this) {
-      case StatusType.succeeded:
-        return 'SUCCEEDED';
-      case StatusType.failed:
-        return 'FAILED';
-      case StatusType.fault:
-        return 'FAULT';
-      case StatusType.timedOut:
-        return 'TIMED_OUT';
-      case StatusType.inProgress:
-        return 'IN_PROGRESS';
-      case StatusType.stopped:
-        return 'STOPPED';
-    }
-  }
-}
+  final String value;
 
-extension StatusTypeFromString on String {
-  StatusType toStatusType() {
-    switch (this) {
-      case 'SUCCEEDED':
-        return StatusType.succeeded;
-      case 'FAILED':
-        return StatusType.failed;
-      case 'FAULT':
-        return StatusType.fault;
-      case 'TIMED_OUT':
-        return StatusType.timedOut;
-      case 'IN_PROGRESS':
-        return StatusType.inProgress;
-      case 'STOPPED':
-        return StatusType.stopped;
-    }
-    throw Exception('$this is not known in enum StatusType');
-  }
+  const StatusType(this.value);
+
+  static StatusType fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum StatusType'));
 }
 
 class StopBuildBatchOutput {
@@ -9691,8 +9002,8 @@ class UpdateProjectVisibilityOutput {
   factory UpdateProjectVisibilityOutput.fromJson(Map<String, dynamic> json) {
     return UpdateProjectVisibilityOutput(
       projectArn: json['projectArn'] as String?,
-      projectVisibility:
-          (json['projectVisibility'] as String?)?.toProjectVisibilityType(),
+      projectVisibility: (json['projectVisibility'] as String?)
+          ?.let(ProjectVisibilityType.fromString),
       publicProjectAlias: json['publicProjectAlias'] as String?,
     );
   }
@@ -9704,7 +9015,7 @@ class UpdateProjectVisibilityOutput {
     return {
       if (projectArn != null) 'projectArn': projectArn,
       if (projectVisibility != null)
-        'projectVisibility': projectVisibility.toValue(),
+        'projectVisibility': projectVisibility.value,
       if (publicProjectAlias != null) 'publicProjectAlias': publicProjectAlias,
     };
   }
@@ -9856,7 +9167,8 @@ class Webhook {
   factory Webhook.fromJson(Map<String, dynamic> json) {
     return Webhook(
       branchFilter: json['branchFilter'] as String?,
-      buildType: (json['buildType'] as String?)?.toWebhookBuildType(),
+      buildType:
+          (json['buildType'] as String?)?.let(WebhookBuildType.fromString),
       filterGroups: (json['filterGroups'] as List?)
           ?.whereNotNull()
           .map((e) => (e as List)
@@ -9881,7 +9193,7 @@ class Webhook {
     final url = this.url;
     return {
       if (branchFilter != null) 'branchFilter': branchFilter,
-      if (buildType != null) 'buildType': buildType.toValue(),
+      if (buildType != null) 'buildType': buildType.value,
       if (filterGroups != null) 'filterGroups': filterGroups,
       if (lastModifiedSecret != null)
         'lastModifiedSecret': unixTimestampToJson(lastModifiedSecret),
@@ -9893,31 +9205,18 @@ class Webhook {
 }
 
 enum WebhookBuildType {
-  build,
-  buildBatch,
-}
+  build('BUILD'),
+  buildBatch('BUILD_BATCH'),
+  ;
 
-extension WebhookBuildTypeValueExtension on WebhookBuildType {
-  String toValue() {
-    switch (this) {
-      case WebhookBuildType.build:
-        return 'BUILD';
-      case WebhookBuildType.buildBatch:
-        return 'BUILD_BATCH';
-    }
-  }
-}
+  final String value;
 
-extension WebhookBuildTypeFromString on String {
-  WebhookBuildType toWebhookBuildType() {
-    switch (this) {
-      case 'BUILD':
-        return WebhookBuildType.build;
-      case 'BUILD_BATCH':
-        return WebhookBuildType.buildBatch;
-    }
-    throw Exception('$this is not known in enum WebhookBuildType');
-  }
+  const WebhookBuildType(this.value);
+
+  static WebhookBuildType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum WebhookBuildType'));
 }
 
 /// A filter used to determine which webhooks trigger a build.
@@ -9998,7 +9297,7 @@ class WebhookFilter {
   factory WebhookFilter.fromJson(Map<String, dynamic> json) {
     return WebhookFilter(
       pattern: json['pattern'] as String,
-      type: (json['type'] as String).toWebhookFilterType(),
+      type: WebhookFilterType.fromString((json['type'] as String)),
       excludeMatchedPattern: json['excludeMatchedPattern'] as bool?,
     );
   }
@@ -10009,7 +9308,7 @@ class WebhookFilter {
     final excludeMatchedPattern = this.excludeMatchedPattern;
     return {
       'pattern': pattern,
-      'type': type.toValue(),
+      'type': type.value,
       if (excludeMatchedPattern != null)
         'excludeMatchedPattern': excludeMatchedPattern,
     };
@@ -10017,51 +9316,22 @@ class WebhookFilter {
 }
 
 enum WebhookFilterType {
-  event,
-  baseRef,
-  headRef,
-  actorAccountId,
-  filePath,
-  commitMessage,
-}
+  event('EVENT'),
+  baseRef('BASE_REF'),
+  headRef('HEAD_REF'),
+  actorAccountId('ACTOR_ACCOUNT_ID'),
+  filePath('FILE_PATH'),
+  commitMessage('COMMIT_MESSAGE'),
+  ;
 
-extension WebhookFilterTypeValueExtension on WebhookFilterType {
-  String toValue() {
-    switch (this) {
-      case WebhookFilterType.event:
-        return 'EVENT';
-      case WebhookFilterType.baseRef:
-        return 'BASE_REF';
-      case WebhookFilterType.headRef:
-        return 'HEAD_REF';
-      case WebhookFilterType.actorAccountId:
-        return 'ACTOR_ACCOUNT_ID';
-      case WebhookFilterType.filePath:
-        return 'FILE_PATH';
-      case WebhookFilterType.commitMessage:
-        return 'COMMIT_MESSAGE';
-    }
-  }
-}
+  final String value;
 
-extension WebhookFilterTypeFromString on String {
-  WebhookFilterType toWebhookFilterType() {
-    switch (this) {
-      case 'EVENT':
-        return WebhookFilterType.event;
-      case 'BASE_REF':
-        return WebhookFilterType.baseRef;
-      case 'HEAD_REF':
-        return WebhookFilterType.headRef;
-      case 'ACTOR_ACCOUNT_ID':
-        return WebhookFilterType.actorAccountId;
-      case 'FILE_PATH':
-        return WebhookFilterType.filePath;
-      case 'COMMIT_MESSAGE':
-        return WebhookFilterType.commitMessage;
-    }
-    throw Exception('$this is not known in enum WebhookFilterType');
-  }
+  const WebhookFilterType(this.value);
+
+  static WebhookFilterType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum WebhookFilterType'));
 }
 
 class AccountLimitExceededException extends _s.GenericAwsException {

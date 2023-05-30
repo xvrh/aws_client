@@ -898,7 +898,7 @@ class ElastiCache {
   }) async {
     final $request = <String, String>{
       'CacheClusterId': cacheClusterId,
-      if (aZMode != null) 'AZMode': aZMode.toValue(),
+      if (aZMode != null) 'AZMode': aZMode.value,
       if (authToken != null) 'AuthToken': authToken,
       if (autoMinorVersionUpgrade != null)
         'AutoMinorVersionUpgrade': autoMinorVersionUpgrade.toString(),
@@ -916,7 +916,7 @@ class ElastiCache {
         'CacheSubnetGroupName': cacheSubnetGroupName,
       if (engine != null) 'Engine': engine,
       if (engineVersion != null) 'EngineVersion': engineVersion,
-      if (ipDiscovery != null) 'IpDiscovery': ipDiscovery.toValue(),
+      if (ipDiscovery != null) 'IpDiscovery': ipDiscovery.value,
       if (logDeliveryConfigurations != null)
         if (logDeliveryConfigurations.isEmpty)
           'LogDeliveryConfigurations': ''
@@ -925,11 +925,11 @@ class ElastiCache {
             for (var e3 in logDeliveryConfigurations[i1].toQueryMap().entries)
               'LogDeliveryConfigurations.LogDeliveryConfigurationRequest.${i1 + 1}.${e3.key}':
                   e3.value,
-      if (networkType != null) 'NetworkType': networkType.toValue(),
+      if (networkType != null) 'NetworkType': networkType.value,
       if (notificationTopicArn != null)
         'NotificationTopicArn': notificationTopicArn,
       if (numCacheNodes != null) 'NumCacheNodes': numCacheNodes.toString(),
-      if (outpostMode != null) 'OutpostMode': outpostMode.toValue(),
+      if (outpostMode != null) 'OutpostMode': outpostMode.value,
       if (port != null) 'Port': port.toString(),
       if (preferredAvailabilityZone != null)
         'PreferredAvailabilityZone': preferredAvailabilityZone,
@@ -1902,14 +1902,14 @@ class ElastiCache {
                 cacheSecurityGroupNames[i1],
       if (cacheSubnetGroupName != null)
         'CacheSubnetGroupName': cacheSubnetGroupName,
-      if (clusterMode != null) 'ClusterMode': clusterMode.toValue(),
+      if (clusterMode != null) 'ClusterMode': clusterMode.value,
       if (dataTieringEnabled != null)
         'DataTieringEnabled': dataTieringEnabled.toString(),
       if (engine != null) 'Engine': engine,
       if (engineVersion != null) 'EngineVersion': engineVersion,
       if (globalReplicationGroupId != null)
         'GlobalReplicationGroupId': globalReplicationGroupId,
-      if (ipDiscovery != null) 'IpDiscovery': ipDiscovery.toValue(),
+      if (ipDiscovery != null) 'IpDiscovery': ipDiscovery.value,
       if (kmsKeyId != null) 'KmsKeyId': kmsKeyId,
       if (logDeliveryConfigurations != null)
         if (logDeliveryConfigurations.isEmpty)
@@ -1920,7 +1920,7 @@ class ElastiCache {
               'LogDeliveryConfigurations.LogDeliveryConfigurationRequest.${i1 + 1}.${e3.key}':
                   e3.value,
       if (multiAZEnabled != null) 'MultiAZEnabled': multiAZEnabled.toString(),
-      if (networkType != null) 'NetworkType': networkType.toValue(),
+      if (networkType != null) 'NetworkType': networkType.value,
       if (nodeGroupConfiguration != null)
         if (nodeGroupConfiguration.isEmpty)
           'NodeGroupConfiguration': ''
@@ -1973,7 +1973,7 @@ class ElastiCache {
       if (transitEncryptionEnabled != null)
         'TransitEncryptionEnabled': transitEncryptionEnabled.toString(),
       if (transitEncryptionMode != null)
-        'TransitEncryptionMode': transitEncryptionMode.toValue(),
+        'TransitEncryptionMode': transitEncryptionMode.value,
       if (userGroupIds != null)
         if (userGroupIds.isEmpty)
           'UserGroupIds': ''
@@ -3225,7 +3225,7 @@ class ElastiCache {
       if (marker != null) 'Marker': marker,
       if (maxRecords != null) 'MaxRecords': maxRecords.toString(),
       if (sourceIdentifier != null) 'SourceIdentifier': sourceIdentifier,
-      if (sourceType != null) 'SourceType': sourceType.toValue(),
+      if (sourceType != null) 'SourceType': sourceType.value,
       if (startTime != null) 'StartTime': _s.iso8601ToJson(startTime),
     };
     final $result = await _protocol.send(
@@ -3806,7 +3806,7 @@ class ElastiCache {
         else
           for (var i1 = 0; i1 < serviceUpdateStatus.length; i1++)
             'ServiceUpdateStatus.member.${i1 + 1}':
-                serviceUpdateStatus[i1].toValue(),
+                serviceUpdateStatus[i1].value,
     };
     final $result = await _protocol.send(
       $request,
@@ -3975,7 +3975,7 @@ class ElastiCache {
         else
           for (var i1 = 0; i1 < serviceUpdateStatus.length; i1++)
             'ServiceUpdateStatus.member.${i1 + 1}':
-                serviceUpdateStatus[i1].toValue(),
+                serviceUpdateStatus[i1].value,
       if (serviceUpdateTimeRange != null)
         for (var e1 in serviceUpdateTimeRange.toQueryMap().entries)
           'ServiceUpdateTimeRange.${e1.key}': e1.value,
@@ -3986,8 +3986,7 @@ class ElastiCache {
           'UpdateActionStatus': ''
         else
           for (var i1 = 0; i1 < updateActionStatus.length; i1++)
-            'UpdateActionStatus.member.${i1 + 1}':
-                updateActionStatus[i1].toValue(),
+            'UpdateActionStatus.member.${i1 + 1}': updateActionStatus[i1].value,
     };
     final $result = await _protocol.send(
       $request,
@@ -4790,12 +4789,12 @@ class ElastiCache {
   }) async {
     final $request = <String, String>{
       'CacheClusterId': cacheClusterId,
-      if (aZMode != null) 'AZMode': aZMode.toValue(),
+      if (aZMode != null) 'AZMode': aZMode.value,
       if (applyImmediately != null)
         'ApplyImmediately': applyImmediately.toString(),
       if (authToken != null) 'AuthToken': authToken,
       if (authTokenUpdateStrategy != null)
-        'AuthTokenUpdateStrategy': authTokenUpdateStrategy.toValue(),
+        'AuthTokenUpdateStrategy': authTokenUpdateStrategy.value,
       if (autoMinorVersionUpgrade != null)
         'AutoMinorVersionUpgrade': autoMinorVersionUpgrade.toString(),
       if (cacheNodeIdsToRemove != null)
@@ -4816,7 +4815,7 @@ class ElastiCache {
             'CacheSecurityGroupNames.CacheSecurityGroupName.${i1 + 1}':
                 cacheSecurityGroupNames[i1],
       if (engineVersion != null) 'EngineVersion': engineVersion,
-      if (ipDiscovery != null) 'IpDiscovery': ipDiscovery.toValue(),
+      if (ipDiscovery != null) 'IpDiscovery': ipDiscovery.value,
       if (logDeliveryConfigurations != null)
         if (logDeliveryConfigurations.isEmpty)
           'LogDeliveryConfigurations': ''
@@ -5327,7 +5326,7 @@ class ElastiCache {
         'ApplyImmediately': applyImmediately.toString(),
       if (authToken != null) 'AuthToken': authToken,
       if (authTokenUpdateStrategy != null)
-        'AuthTokenUpdateStrategy': authTokenUpdateStrategy.toValue(),
+        'AuthTokenUpdateStrategy': authTokenUpdateStrategy.value,
       if (autoMinorVersionUpgrade != null)
         'AutoMinorVersionUpgrade': autoMinorVersionUpgrade.toString(),
       if (automaticFailoverEnabled != null)
@@ -5342,9 +5341,9 @@ class ElastiCache {
           for (var i1 = 0; i1 < cacheSecurityGroupNames.length; i1++)
             'CacheSecurityGroupNames.CacheSecurityGroupName.${i1 + 1}':
                 cacheSecurityGroupNames[i1],
-      if (clusterMode != null) 'ClusterMode': clusterMode.toValue(),
+      if (clusterMode != null) 'ClusterMode': clusterMode.value,
       if (engineVersion != null) 'EngineVersion': engineVersion,
-      if (ipDiscovery != null) 'IpDiscovery': ipDiscovery.toValue(),
+      if (ipDiscovery != null) 'IpDiscovery': ipDiscovery.value,
       if (logDeliveryConfigurations != null)
         if (logDeliveryConfigurations.isEmpty)
           'LogDeliveryConfigurations': ''
@@ -5380,7 +5379,7 @@ class ElastiCache {
       if (transitEncryptionEnabled != null)
         'TransitEncryptionEnabled': transitEncryptionEnabled.toString(),
       if (transitEncryptionMode != null)
-        'TransitEncryptionMode': transitEncryptionMode.toValue(),
+        'TransitEncryptionMode': transitEncryptionMode.value,
       if (userGroupIdsToAdd != null)
         if (userGroupIdsToAdd.isEmpty)
           'UserGroupIdsToAdd': ''
@@ -6095,31 +6094,17 @@ class ElastiCache {
 }
 
 enum AZMode {
-  singleAz,
-  crossAz,
-}
+  singleAz('single-az'),
+  crossAz('cross-az'),
+  ;
 
-extension AZModeValueExtension on AZMode {
-  String toValue() {
-    switch (this) {
-      case AZMode.singleAz:
-        return 'single-az';
-      case AZMode.crossAz:
-        return 'cross-az';
-    }
-  }
-}
+  final String value;
 
-extension AZModeFromString on String {
-  AZMode toAZMode() {
-    switch (this) {
-      case 'single-az':
-        return AZMode.singleAz;
-      case 'cross-az':
-        return AZMode.crossAz;
-    }
-    throw Exception('$this is not known in enum AZMode');
-  }
+  const AZMode(this.value);
+
+  static AZMode fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception('$value is not known in enum AZMode'));
 }
 
 /// Represents the allowed node types you can use to modify your cluster or
@@ -6168,65 +6153,34 @@ class AllowedNodeTypeModificationsMessage {
 }
 
 enum AuthTokenUpdateStatus {
-  setting,
-  rotating,
-}
+  setting('SETTING'),
+  rotating('ROTATING'),
+  ;
 
-extension AuthTokenUpdateStatusValueExtension on AuthTokenUpdateStatus {
-  String toValue() {
-    switch (this) {
-      case AuthTokenUpdateStatus.setting:
-        return 'SETTING';
-      case AuthTokenUpdateStatus.rotating:
-        return 'ROTATING';
-    }
-  }
-}
+  final String value;
 
-extension AuthTokenUpdateStatusFromString on String {
-  AuthTokenUpdateStatus toAuthTokenUpdateStatus() {
-    switch (this) {
-      case 'SETTING':
-        return AuthTokenUpdateStatus.setting;
-      case 'ROTATING':
-        return AuthTokenUpdateStatus.rotating;
-    }
-    throw Exception('$this is not known in enum AuthTokenUpdateStatus');
-  }
+  const AuthTokenUpdateStatus(this.value);
+
+  static AuthTokenUpdateStatus fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum AuthTokenUpdateStatus'));
 }
 
 enum AuthTokenUpdateStrategyType {
-  set,
-  rotate,
-  delete,
-}
+  set('SET'),
+  rotate('ROTATE'),
+  delete('DELETE'),
+  ;
 
-extension AuthTokenUpdateStrategyTypeValueExtension
-    on AuthTokenUpdateStrategyType {
-  String toValue() {
-    switch (this) {
-      case AuthTokenUpdateStrategyType.set:
-        return 'SET';
-      case AuthTokenUpdateStrategyType.rotate:
-        return 'ROTATE';
-      case AuthTokenUpdateStrategyType.delete:
-        return 'DELETE';
-    }
-  }
-}
+  final String value;
 
-extension AuthTokenUpdateStrategyTypeFromString on String {
-  AuthTokenUpdateStrategyType toAuthTokenUpdateStrategyType() {
-    switch (this) {
-      case 'SET':
-        return AuthTokenUpdateStrategyType.set;
-      case 'ROTATE':
-        return AuthTokenUpdateStrategyType.rotate;
-      case 'DELETE':
-        return AuthTokenUpdateStrategyType.delete;
-    }
-    throw Exception('$this is not known in enum AuthTokenUpdateStrategyType');
-  }
+  const AuthTokenUpdateStrategyType(this.value);
+
+  static AuthTokenUpdateStrategyType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum AuthTokenUpdateStrategyType'));
 }
 
 /// Indicates whether the user requires a password to authenticate.
@@ -6244,7 +6198,8 @@ class Authentication {
   factory Authentication.fromXml(_s.XmlElement elem) {
     return Authentication(
       passwordCount: _s.extractXmlIntValue(elem, 'PasswordCount'),
-      type: _s.extractXmlStringValue(elem, 'Type')?.toAuthenticationType(),
+      type:
+          AuthenticationType.fromString(_s.extractXmlStringValue(elem, 'Type')),
     );
   }
 
@@ -6253,7 +6208,7 @@ class Authentication {
     final type = this.type;
     return {
       if (passwordCount != null) 'PasswordCount': passwordCount,
-      if (type != null) 'Type': type.toValue(),
+      if (type != null) 'Type': type.value,
     };
   }
 }
@@ -6278,7 +6233,7 @@ class AuthenticationMode {
     final type = this.type;
     return {
       if (passwords != null) 'Passwords': passwords,
-      if (type != null) 'Type': type.toValue(),
+      if (type != null) 'Type': type.value,
     };
   }
 
@@ -6292,42 +6247,25 @@ class AuthenticationMode {
         else
           for (var i1 = 0; i1 < passwords.length; i1++)
             'Passwords.member.${i1 + 1}': passwords[i1],
-      if (type != null) 'Type': type.toValue(),
+      if (type != null) 'Type': type.value,
     };
   }
 }
 
 enum AuthenticationType {
-  password,
-  noPassword,
-  iam,
-}
+  password('password'),
+  noPassword('no-password'),
+  iam('iam'),
+  ;
 
-extension AuthenticationTypeValueExtension on AuthenticationType {
-  String toValue() {
-    switch (this) {
-      case AuthenticationType.password:
-        return 'password';
-      case AuthenticationType.noPassword:
-        return 'no-password';
-      case AuthenticationType.iam:
-        return 'iam';
-    }
-  }
-}
+  final String value;
 
-extension AuthenticationTypeFromString on String {
-  AuthenticationType toAuthenticationType() {
-    switch (this) {
-      case 'password':
-        return AuthenticationType.password;
-      case 'no-password':
-        return AuthenticationType.noPassword;
-      case 'iam':
-        return AuthenticationType.iam;
-    }
-    throw Exception('$this is not known in enum AuthenticationType');
-  }
+  const AuthenticationType(this.value);
+
+  static AuthenticationType fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum AuthenticationType'));
 }
 
 class AuthorizeCacheSecurityGroupIngressResult {
@@ -6353,41 +6291,20 @@ class AuthorizeCacheSecurityGroupIngressResult {
 }
 
 enum AutomaticFailoverStatus {
-  enabled,
-  disabled,
-  enabling,
-  disabling,
-}
+  enabled('enabled'),
+  disabled('disabled'),
+  enabling('enabling'),
+  disabling('disabling'),
+  ;
 
-extension AutomaticFailoverStatusValueExtension on AutomaticFailoverStatus {
-  String toValue() {
-    switch (this) {
-      case AutomaticFailoverStatus.enabled:
-        return 'enabled';
-      case AutomaticFailoverStatus.disabled:
-        return 'disabled';
-      case AutomaticFailoverStatus.enabling:
-        return 'enabling';
-      case AutomaticFailoverStatus.disabling:
-        return 'disabling';
-    }
-  }
-}
+  final String value;
 
-extension AutomaticFailoverStatusFromString on String {
-  AutomaticFailoverStatus toAutomaticFailoverStatus() {
-    switch (this) {
-      case 'enabled':
-        return AutomaticFailoverStatus.enabled;
-      case 'disabled':
-        return AutomaticFailoverStatus.disabled;
-      case 'enabling':
-        return AutomaticFailoverStatus.enabling;
-      case 'disabling':
-        return AutomaticFailoverStatus.disabling;
-    }
-    throw Exception('$this is not known in enum AutomaticFailoverStatus');
-  }
+  const AutomaticFailoverStatus(this.value);
+
+  static AutomaticFailoverStatus fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum AutomaticFailoverStatus'));
 }
 
 /// Describes an Availability Zone in which the cluster is launched.
@@ -6799,7 +6716,7 @@ class CacheCluster {
       engine: _s.extractXmlStringValue(elem, 'Engine'),
       engineVersion: _s.extractXmlStringValue(elem, 'EngineVersion'),
       ipDiscovery:
-          _s.extractXmlStringValue(elem, 'IpDiscovery')?.toIpDiscovery(),
+          IpDiscovery.fromString(_s.extractXmlStringValue(elem, 'IpDiscovery')),
       logDeliveryConfigurations: _s
           .extractXmlChild(elem, 'LogDeliveryConfigurations')
           ?.let((elem) => elem
@@ -6807,7 +6724,7 @@ class CacheCluster {
               .map(LogDeliveryConfiguration.fromXml)
               .toList()),
       networkType:
-          _s.extractXmlStringValue(elem, 'NetworkType')?.toNetworkType(),
+          NetworkType.fromString(_s.extractXmlStringValue(elem, 'NetworkType')),
       notificationConfiguration: _s
           .extractXmlChild(elem, 'NotificationConfiguration')
           ?.let(NotificationConfiguration.fromXml),
@@ -6834,9 +6751,8 @@ class CacheCluster {
       snapshotWindow: _s.extractXmlStringValue(elem, 'SnapshotWindow'),
       transitEncryptionEnabled:
           _s.extractXmlBoolValue(elem, 'TransitEncryptionEnabled'),
-      transitEncryptionMode: _s
-          .extractXmlStringValue(elem, 'TransitEncryptionMode')
-          ?.toTransitEncryptionMode(),
+      transitEncryptionMode: TransitEncryptionMode.fromString(
+          _s.extractXmlStringValue(elem, 'TransitEncryptionMode')),
     );
   }
 
@@ -6902,10 +6818,10 @@ class CacheCluster {
         'ConfigurationEndpoint': configurationEndpoint,
       if (engine != null) 'Engine': engine,
       if (engineVersion != null) 'EngineVersion': engineVersion,
-      if (ipDiscovery != null) 'IpDiscovery': ipDiscovery.toValue(),
+      if (ipDiscovery != null) 'IpDiscovery': ipDiscovery.value,
       if (logDeliveryConfigurations != null)
         'LogDeliveryConfigurations': logDeliveryConfigurations,
-      if (networkType != null) 'NetworkType': networkType.toValue(),
+      if (networkType != null) 'NetworkType': networkType.value,
       if (notificationConfiguration != null)
         'NotificationConfiguration': notificationConfiguration,
       if (numCacheNodes != null) 'NumCacheNodes': numCacheNodes,
@@ -6928,7 +6844,7 @@ class CacheCluster {
       if (transitEncryptionEnabled != null)
         'TransitEncryptionEnabled': transitEncryptionEnabled,
       if (transitEncryptionMode != null)
-        'TransitEncryptionMode': transitEncryptionMode.toValue(),
+        'TransitEncryptionMode': transitEncryptionMode.value,
     };
   }
 }
@@ -7335,7 +7251,8 @@ class CacheNodeTypeSpecificParameter {
               .findElements('CacheNodeTypeSpecificValue')
               .map(CacheNodeTypeSpecificValue.fromXml)
               .toList()),
-      changeType: _s.extractXmlStringValue(elem, 'ChangeType')?.toChangeType(),
+      changeType:
+          ChangeType.fromString(_s.extractXmlStringValue(elem, 'ChangeType')),
       dataType: _s.extractXmlStringValue(elem, 'DataType'),
       description: _s.extractXmlStringValue(elem, 'Description'),
       isModifiable: _s.extractXmlBoolValue(elem, 'IsModifiable'),
@@ -7360,7 +7277,7 @@ class CacheNodeTypeSpecificParameter {
       if (allowedValues != null) 'AllowedValues': allowedValues,
       if (cacheNodeTypeSpecificValues != null)
         'CacheNodeTypeSpecificValues': cacheNodeTypeSpecificValues,
-      if (changeType != null) 'ChangeType': changeType.toValue(),
+      if (changeType != null) 'ChangeType': changeType.value,
       if (dataType != null) 'DataType': dataType,
       if (description != null) 'Description': description,
       if (isModifiable != null) 'IsModifiable': isModifiable,
@@ -7443,16 +7360,14 @@ class CacheNodeUpdateStatus {
       cacheNodeId: _s.extractXmlStringValue(elem, 'CacheNodeId'),
       nodeDeletionDate: _s.extractXmlDateTimeValue(elem, 'NodeDeletionDate'),
       nodeUpdateEndDate: _s.extractXmlDateTimeValue(elem, 'NodeUpdateEndDate'),
-      nodeUpdateInitiatedBy: _s
-          .extractXmlStringValue(elem, 'NodeUpdateInitiatedBy')
-          ?.toNodeUpdateInitiatedBy(),
+      nodeUpdateInitiatedBy: NodeUpdateInitiatedBy.fromString(
+          _s.extractXmlStringValue(elem, 'NodeUpdateInitiatedBy')),
       nodeUpdateInitiatedDate:
           _s.extractXmlDateTimeValue(elem, 'NodeUpdateInitiatedDate'),
       nodeUpdateStartDate:
           _s.extractXmlDateTimeValue(elem, 'NodeUpdateStartDate'),
-      nodeUpdateStatus: _s
-          .extractXmlStringValue(elem, 'NodeUpdateStatus')
-          ?.toNodeUpdateStatus(),
+      nodeUpdateStatus: NodeUpdateStatus.fromString(
+          _s.extractXmlStringValue(elem, 'NodeUpdateStatus')),
       nodeUpdateStatusModifiedDate:
           _s.extractXmlDateTimeValue(elem, 'NodeUpdateStatusModifiedDate'),
     );
@@ -7474,13 +7389,12 @@ class CacheNodeUpdateStatus {
       if (nodeUpdateEndDate != null)
         'NodeUpdateEndDate': iso8601ToJson(nodeUpdateEndDate),
       if (nodeUpdateInitiatedBy != null)
-        'NodeUpdateInitiatedBy': nodeUpdateInitiatedBy.toValue(),
+        'NodeUpdateInitiatedBy': nodeUpdateInitiatedBy.value,
       if (nodeUpdateInitiatedDate != null)
         'NodeUpdateInitiatedDate': iso8601ToJson(nodeUpdateInitiatedDate),
       if (nodeUpdateStartDate != null)
         'NodeUpdateStartDate': iso8601ToJson(nodeUpdateStartDate),
-      if (nodeUpdateStatus != null)
-        'NodeUpdateStatus': nodeUpdateStatus.toValue(),
+      if (nodeUpdateStatus != null) 'NodeUpdateStatus': nodeUpdateStatus.value,
       if (nodeUpdateStatusModifiedDate != null)
         'NodeUpdateStatusModifiedDate':
             iso8601ToJson(nodeUpdateStatusModifiedDate),
@@ -7921,7 +7835,7 @@ class CacheSubnetGroup {
       if (subnets != null) 'Subnets': subnets,
       if (supportedNetworkTypes != null)
         'SupportedNetworkTypes':
-            supportedNetworkTypes.map((e) => e.toValue()).toList(),
+            supportedNetworkTypes.map((e) => e.value).toList(),
       if (vpcId != null) 'VpcId': vpcId,
     };
   }
@@ -7962,31 +7876,17 @@ class CacheSubnetGroupMessage {
 }
 
 enum ChangeType {
-  immediate,
-  requiresReboot,
-}
+  immediate('immediate'),
+  requiresReboot('requires-reboot'),
+  ;
 
-extension ChangeTypeValueExtension on ChangeType {
-  String toValue() {
-    switch (this) {
-      case ChangeType.immediate:
-        return 'immediate';
-      case ChangeType.requiresReboot:
-        return 'requires-reboot';
-    }
-  }
-}
+  final String value;
 
-extension ChangeTypeFromString on String {
-  ChangeType toChangeType() {
-    switch (this) {
-      case 'immediate':
-        return ChangeType.immediate;
-      case 'requires-reboot':
-        return ChangeType.requiresReboot;
-    }
-    throw Exception('$this is not known in enum ChangeType');
-  }
+  const ChangeType(this.value);
+
+  static ChangeType fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum ChangeType'));
 }
 
 /// The configuration details of the CloudWatch Logs destination.
@@ -8019,36 +7919,18 @@ class CloudWatchLogsDestinationDetails {
 }
 
 enum ClusterMode {
-  enabled,
-  disabled,
-  compatible,
-}
+  enabled('enabled'),
+  disabled('disabled'),
+  compatible('compatible'),
+  ;
 
-extension ClusterModeValueExtension on ClusterMode {
-  String toValue() {
-    switch (this) {
-      case ClusterMode.enabled:
-        return 'enabled';
-      case ClusterMode.disabled:
-        return 'disabled';
-      case ClusterMode.compatible:
-        return 'compatible';
-    }
-  }
-}
+  final String value;
 
-extension ClusterModeFromString on String {
-  ClusterMode toClusterMode() {
-    switch (this) {
-      case 'enabled':
-        return ClusterMode.enabled;
-      case 'disabled':
-        return ClusterMode.disabled;
-      case 'compatible':
-        return ClusterMode.compatible;
-    }
-    throw Exception('$this is not known in enum ClusterMode');
-  }
+  const ClusterMode(this.value);
+
+  static ClusterMode fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum ClusterMode'));
 }
 
 class CompleteMigrationResponse {
@@ -8375,31 +8257,18 @@ class CustomerNodeEndpoint {
 }
 
 enum DataTieringStatus {
-  enabled,
-  disabled,
-}
+  enabled('enabled'),
+  disabled('disabled'),
+  ;
 
-extension DataTieringStatusValueExtension on DataTieringStatus {
-  String toValue() {
-    switch (this) {
-      case DataTieringStatus.enabled:
-        return 'enabled';
-      case DataTieringStatus.disabled:
-        return 'disabled';
-    }
-  }
-}
+  final String value;
 
-extension DataTieringStatusFromString on String {
-  DataTieringStatus toDataTieringStatus() {
-    switch (this) {
-      case 'enabled':
-        return DataTieringStatus.enabled;
-      case 'disabled':
-        return DataTieringStatus.disabled;
-    }
-    throw Exception('$this is not known in enum DataTieringStatus');
-  }
+  const DataTieringStatus(this.value);
+
+  static DataTieringStatus fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum DataTieringStatus'));
 }
 
 class DecreaseNodeGroupsInGlobalReplicationGroupResult {
@@ -8741,31 +8610,18 @@ class DestinationDetails {
 }
 
 enum DestinationType {
-  cloudwatchLogs,
-  kinesisFirehose,
-}
+  cloudwatchLogs('cloudwatch-logs'),
+  kinesisFirehose('kinesis-firehose'),
+  ;
 
-extension DestinationTypeValueExtension on DestinationType {
-  String toValue() {
-    switch (this) {
-      case DestinationType.cloudwatchLogs:
-        return 'cloudwatch-logs';
-      case DestinationType.kinesisFirehose:
-        return 'kinesis-firehose';
-    }
-  }
-}
+  final String value;
 
-extension DestinationTypeFromString on String {
-  DestinationType toDestinationType() {
-    switch (this) {
-      case 'cloudwatch-logs':
-        return DestinationType.cloudwatchLogs;
-      case 'kinesis-firehose':
-        return DestinationType.kinesisFirehose;
-    }
-    throw Exception('$this is not known in enum DestinationType');
-  }
+  const DestinationType(this.value);
+
+  static DestinationType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum DestinationType'));
 }
 
 class DisassociateGlobalReplicationGroupResult {
@@ -8952,7 +8808,8 @@ class Event {
       date: _s.extractXmlDateTimeValue(elem, 'Date'),
       message: _s.extractXmlStringValue(elem, 'Message'),
       sourceIdentifier: _s.extractXmlStringValue(elem, 'SourceIdentifier'),
-      sourceType: _s.extractXmlStringValue(elem, 'SourceType')?.toSourceType(),
+      sourceType:
+          SourceType.fromString(_s.extractXmlStringValue(elem, 'SourceType')),
     );
   }
 
@@ -8965,7 +8822,7 @@ class Event {
       if (date != null) 'Date': iso8601ToJson(date),
       if (message != null) 'Message': message,
       if (sourceIdentifier != null) 'SourceIdentifier': sourceIdentifier,
-      if (sourceType != null) 'SourceType': sourceType.toValue(),
+      if (sourceType != null) 'SourceType': sourceType.value,
     };
   }
 }
@@ -9300,9 +9157,8 @@ class GlobalReplicationGroupMember {
   });
   factory GlobalReplicationGroupMember.fromXml(_s.XmlElement elem) {
     return GlobalReplicationGroupMember(
-      automaticFailover: _s
-          .extractXmlStringValue(elem, 'AutomaticFailover')
-          ?.toAutomaticFailoverStatus(),
+      automaticFailover: AutomaticFailoverStatus.fromString(
+          _s.extractXmlStringValue(elem, 'AutomaticFailover')),
       replicationGroupId: _s.extractXmlStringValue(elem, 'ReplicationGroupId'),
       replicationGroupRegion:
           _s.extractXmlStringValue(elem, 'ReplicationGroupRegion'),
@@ -9319,7 +9175,7 @@ class GlobalReplicationGroupMember {
     final status = this.status;
     return {
       if (automaticFailover != null)
-        'AutomaticFailover': automaticFailover.toValue(),
+        'AutomaticFailover': automaticFailover.value,
       if (replicationGroupId != null) 'ReplicationGroupId': replicationGroupId,
       if (replicationGroupRegion != null)
         'ReplicationGroupRegion': replicationGroupRegion,
@@ -9376,64 +9232,33 @@ class IncreaseReplicaCountResult {
 }
 
 enum InputAuthenticationType {
-  password,
-  noPasswordRequired,
-  iam,
-}
+  password('password'),
+  noPasswordRequired('no-password-required'),
+  iam('iam'),
+  ;
 
-extension InputAuthenticationTypeValueExtension on InputAuthenticationType {
-  String toValue() {
-    switch (this) {
-      case InputAuthenticationType.password:
-        return 'password';
-      case InputAuthenticationType.noPasswordRequired:
-        return 'no-password-required';
-      case InputAuthenticationType.iam:
-        return 'iam';
-    }
-  }
-}
+  final String value;
 
-extension InputAuthenticationTypeFromString on String {
-  InputAuthenticationType toInputAuthenticationType() {
-    switch (this) {
-      case 'password':
-        return InputAuthenticationType.password;
-      case 'no-password-required':
-        return InputAuthenticationType.noPasswordRequired;
-      case 'iam':
-        return InputAuthenticationType.iam;
-    }
-    throw Exception('$this is not known in enum InputAuthenticationType');
-  }
+  const InputAuthenticationType(this.value);
+
+  static InputAuthenticationType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum InputAuthenticationType'));
 }
 
 enum IpDiscovery {
-  ipv4,
-  ipv6,
-}
+  ipv4('ipv4'),
+  ipv6('ipv6'),
+  ;
 
-extension IpDiscoveryValueExtension on IpDiscovery {
-  String toValue() {
-    switch (this) {
-      case IpDiscovery.ipv4:
-        return 'ipv4';
-      case IpDiscovery.ipv6:
-        return 'ipv6';
-    }
-  }
-}
+  final String value;
 
-extension IpDiscoveryFromString on String {
-  IpDiscovery toIpDiscovery() {
-    switch (this) {
-      case 'ipv4':
-        return IpDiscovery.ipv4;
-      case 'ipv6':
-        return IpDiscovery.ipv6;
-    }
-    throw Exception('$this is not known in enum IpDiscovery');
-  }
+  const IpDiscovery(this.value);
+
+  static IpDiscovery fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum IpDiscovery'));
 }
 
 /// The configuration details of the Kinesis Data Firehose destination.
@@ -9503,15 +9328,14 @@ class LogDeliveryConfiguration {
       destinationDetails: _s
           .extractXmlChild(elem, 'DestinationDetails')
           ?.let(DestinationDetails.fromXml),
-      destinationType: _s
-          .extractXmlStringValue(elem, 'DestinationType')
-          ?.toDestinationType(),
-      logFormat: _s.extractXmlStringValue(elem, 'LogFormat')?.toLogFormat(),
-      logType: _s.extractXmlStringValue(elem, 'LogType')?.toLogType(),
+      destinationType: DestinationType.fromString(
+          _s.extractXmlStringValue(elem, 'DestinationType')),
+      logFormat:
+          LogFormat.fromString(_s.extractXmlStringValue(elem, 'LogFormat')),
+      logType: LogType.fromString(_s.extractXmlStringValue(elem, 'LogType')),
       message: _s.extractXmlStringValue(elem, 'Message'),
-      status: _s
-          .extractXmlStringValue(elem, 'Status')
-          ?.toLogDeliveryConfigurationStatus(),
+      status: LogDeliveryConfigurationStatus.fromString(
+          _s.extractXmlStringValue(elem, 'Status')),
     );
   }
 
@@ -9524,11 +9348,11 @@ class LogDeliveryConfiguration {
     final status = this.status;
     return {
       if (destinationDetails != null) 'DestinationDetails': destinationDetails,
-      if (destinationType != null) 'DestinationType': destinationType.toValue(),
-      if (logFormat != null) 'LogFormat': logFormat.toValue(),
-      if (logType != null) 'LogType': logType.toValue(),
+      if (destinationType != null) 'DestinationType': destinationType.value,
+      if (logFormat != null) 'LogFormat': logFormat.value,
+      if (logType != null) 'LogType': logType.value,
       if (message != null) 'Message': message,
-      if (status != null) 'Status': status.toValue(),
+      if (status != null) 'Status': status.value,
     };
   }
 }
@@ -9569,10 +9393,10 @@ class LogDeliveryConfigurationRequest {
     final logType = this.logType;
     return {
       if (destinationDetails != null) 'DestinationDetails': destinationDetails,
-      if (destinationType != null) 'DestinationType': destinationType.toValue(),
+      if (destinationType != null) 'DestinationType': destinationType.value,
       if (enabled != null) 'Enabled': enabled,
-      if (logFormat != null) 'LogFormat': logFormat.toValue(),
-      if (logType != null) 'LogType': logType.toValue(),
+      if (logFormat != null) 'LogFormat': logFormat.value,
+      if (logType != null) 'LogType': logType.value,
     };
   }
 
@@ -9586,113 +9410,58 @@ class LogDeliveryConfigurationRequest {
       if (destinationDetails != null)
         for (var e1 in destinationDetails.toQueryMap().entries)
           'DestinationDetails.${e1.key}': e1.value,
-      if (destinationType != null) 'DestinationType': destinationType.toValue(),
+      if (destinationType != null) 'DestinationType': destinationType.value,
       if (enabled != null) 'Enabled': enabled.toString(),
-      if (logFormat != null) 'LogFormat': logFormat.toValue(),
-      if (logType != null) 'LogType': logType.toValue(),
+      if (logFormat != null) 'LogFormat': logFormat.value,
+      if (logType != null) 'LogType': logType.value,
     };
   }
 }
 
 enum LogDeliveryConfigurationStatus {
-  active,
-  enabling,
-  modifying,
-  disabling,
-  error,
-}
+  active('active'),
+  enabling('enabling'),
+  modifying('modifying'),
+  disabling('disabling'),
+  error('error'),
+  ;
 
-extension LogDeliveryConfigurationStatusValueExtension
-    on LogDeliveryConfigurationStatus {
-  String toValue() {
-    switch (this) {
-      case LogDeliveryConfigurationStatus.active:
-        return 'active';
-      case LogDeliveryConfigurationStatus.enabling:
-        return 'enabling';
-      case LogDeliveryConfigurationStatus.modifying:
-        return 'modifying';
-      case LogDeliveryConfigurationStatus.disabling:
-        return 'disabling';
-      case LogDeliveryConfigurationStatus.error:
-        return 'error';
-    }
-  }
-}
+  final String value;
 
-extension LogDeliveryConfigurationStatusFromString on String {
-  LogDeliveryConfigurationStatus toLogDeliveryConfigurationStatus() {
-    switch (this) {
-      case 'active':
-        return LogDeliveryConfigurationStatus.active;
-      case 'enabling':
-        return LogDeliveryConfigurationStatus.enabling;
-      case 'modifying':
-        return LogDeliveryConfigurationStatus.modifying;
-      case 'disabling':
-        return LogDeliveryConfigurationStatus.disabling;
-      case 'error':
-        return LogDeliveryConfigurationStatus.error;
-    }
-    throw Exception(
-        '$this is not known in enum LogDeliveryConfigurationStatus');
-  }
+  const LogDeliveryConfigurationStatus(this.value);
+
+  static LogDeliveryConfigurationStatus fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum LogDeliveryConfigurationStatus'));
 }
 
 enum LogFormat {
-  text,
-  json,
-}
+  text('text'),
+  json('json'),
+  ;
 
-extension LogFormatValueExtension on LogFormat {
-  String toValue() {
-    switch (this) {
-      case LogFormat.text:
-        return 'text';
-      case LogFormat.json:
-        return 'json';
-    }
-  }
-}
+  final String value;
 
-extension LogFormatFromString on String {
-  LogFormat toLogFormat() {
-    switch (this) {
-      case 'text':
-        return LogFormat.text;
-      case 'json':
-        return LogFormat.json;
-    }
-    throw Exception('$this is not known in enum LogFormat');
-  }
+  const LogFormat(this.value);
+
+  static LogFormat fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum LogFormat'));
 }
 
 enum LogType {
-  slowLog,
-  engineLog,
-}
+  slowLog('slow-log'),
+  engineLog('engine-log'),
+  ;
 
-extension LogTypeValueExtension on LogType {
-  String toValue() {
-    switch (this) {
-      case LogType.slowLog:
-        return 'slow-log';
-      case LogType.engineLog:
-        return 'engine-log';
-    }
-  }
-}
+  final String value;
 
-extension LogTypeFromString on String {
-  LogType toLogType() {
-    switch (this) {
-      case 'slow-log':
-        return LogType.slowLog;
-      case 'engine-log':
-        return LogType.engineLog;
-    }
-    throw Exception('$this is not known in enum LogType');
-  }
+  const LogType(this.value);
+
+  static LogType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception('$value is not known in enum LogType'));
 }
 
 class ModifyCacheClusterResult {
@@ -9807,64 +9576,33 @@ class ModifyReplicationGroupShardConfigurationResult {
 }
 
 enum MultiAZStatus {
-  enabled,
-  disabled,
-}
+  enabled('enabled'),
+  disabled('disabled'),
+  ;
 
-extension MultiAZStatusValueExtension on MultiAZStatus {
-  String toValue() {
-    switch (this) {
-      case MultiAZStatus.enabled:
-        return 'enabled';
-      case MultiAZStatus.disabled:
-        return 'disabled';
-    }
-  }
-}
+  final String value;
 
-extension MultiAZStatusFromString on String {
-  MultiAZStatus toMultiAZStatus() {
-    switch (this) {
-      case 'enabled':
-        return MultiAZStatus.enabled;
-      case 'disabled':
-        return MultiAZStatus.disabled;
-    }
-    throw Exception('$this is not known in enum MultiAZStatus');
-  }
+  const MultiAZStatus(this.value);
+
+  static MultiAZStatus fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum MultiAZStatus'));
 }
 
 enum NetworkType {
-  ipv4,
-  ipv6,
-  dualStack,
-}
+  ipv4('ipv4'),
+  ipv6('ipv6'),
+  dualStack('dual_stack'),
+  ;
 
-extension NetworkTypeValueExtension on NetworkType {
-  String toValue() {
-    switch (this) {
-      case NetworkType.ipv4:
-        return 'ipv4';
-      case NetworkType.ipv6:
-        return 'ipv6';
-      case NetworkType.dualStack:
-        return 'dual_stack';
-    }
-  }
-}
+  final String value;
 
-extension NetworkTypeFromString on String {
-  NetworkType toNetworkType() {
-    switch (this) {
-      case 'ipv4':
-        return NetworkType.ipv4;
-      case 'ipv6':
-        return NetworkType.ipv6;
-      case 'dual_stack':
-        return NetworkType.dualStack;
-    }
-    throw Exception('$this is not known in enum NetworkType');
-  }
+  const NetworkType(this.value);
+
+  static NetworkType fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum NetworkType'));
 }
 
 /// Represents a collection of cache nodes in a replication group. One node in
@@ -10167,16 +9905,14 @@ class NodeGroupMemberUpdateStatus {
       cacheNodeId: _s.extractXmlStringValue(elem, 'CacheNodeId'),
       nodeDeletionDate: _s.extractXmlDateTimeValue(elem, 'NodeDeletionDate'),
       nodeUpdateEndDate: _s.extractXmlDateTimeValue(elem, 'NodeUpdateEndDate'),
-      nodeUpdateInitiatedBy: _s
-          .extractXmlStringValue(elem, 'NodeUpdateInitiatedBy')
-          ?.toNodeUpdateInitiatedBy(),
+      nodeUpdateInitiatedBy: NodeUpdateInitiatedBy.fromString(
+          _s.extractXmlStringValue(elem, 'NodeUpdateInitiatedBy')),
       nodeUpdateInitiatedDate:
           _s.extractXmlDateTimeValue(elem, 'NodeUpdateInitiatedDate'),
       nodeUpdateStartDate:
           _s.extractXmlDateTimeValue(elem, 'NodeUpdateStartDate'),
-      nodeUpdateStatus: _s
-          .extractXmlStringValue(elem, 'NodeUpdateStatus')
-          ?.toNodeUpdateStatus(),
+      nodeUpdateStatus: NodeUpdateStatus.fromString(
+          _s.extractXmlStringValue(elem, 'NodeUpdateStatus')),
       nodeUpdateStatusModifiedDate:
           _s.extractXmlDateTimeValue(elem, 'NodeUpdateStatusModifiedDate'),
     );
@@ -10200,13 +9936,12 @@ class NodeGroupMemberUpdateStatus {
       if (nodeUpdateEndDate != null)
         'NodeUpdateEndDate': iso8601ToJson(nodeUpdateEndDate),
       if (nodeUpdateInitiatedBy != null)
-        'NodeUpdateInitiatedBy': nodeUpdateInitiatedBy.toValue(),
+        'NodeUpdateInitiatedBy': nodeUpdateInitiatedBy.value,
       if (nodeUpdateInitiatedDate != null)
         'NodeUpdateInitiatedDate': iso8601ToJson(nodeUpdateInitiatedDate),
       if (nodeUpdateStartDate != null)
         'NodeUpdateStartDate': iso8601ToJson(nodeUpdateStartDate),
-      if (nodeUpdateStatus != null)
-        'NodeUpdateStatus': nodeUpdateStatus.toValue(),
+      if (nodeUpdateStatus != null) 'NodeUpdateStatus': nodeUpdateStatus.value,
       if (nodeUpdateStatusModifiedDate != null)
         'NodeUpdateStatusModifiedDate':
             iso8601ToJson(nodeUpdateStatusModifiedDate),
@@ -10322,79 +10057,37 @@ class NodeSnapshot {
 }
 
 enum NodeUpdateInitiatedBy {
-  system,
-  customer,
-}
+  system('system'),
+  customer('customer'),
+  ;
 
-extension NodeUpdateInitiatedByValueExtension on NodeUpdateInitiatedBy {
-  String toValue() {
-    switch (this) {
-      case NodeUpdateInitiatedBy.system:
-        return 'system';
-      case NodeUpdateInitiatedBy.customer:
-        return 'customer';
-    }
-  }
-}
+  final String value;
 
-extension NodeUpdateInitiatedByFromString on String {
-  NodeUpdateInitiatedBy toNodeUpdateInitiatedBy() {
-    switch (this) {
-      case 'system':
-        return NodeUpdateInitiatedBy.system;
-      case 'customer':
-        return NodeUpdateInitiatedBy.customer;
-    }
-    throw Exception('$this is not known in enum NodeUpdateInitiatedBy');
-  }
+  const NodeUpdateInitiatedBy(this.value);
+
+  static NodeUpdateInitiatedBy fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum NodeUpdateInitiatedBy'));
 }
 
 enum NodeUpdateStatus {
-  notApplied,
-  waitingToStart,
-  inProgress,
-  stopping,
-  stopped,
-  complete,
-}
+  notApplied('not-applied'),
+  waitingToStart('waiting-to-start'),
+  inProgress('in-progress'),
+  stopping('stopping'),
+  stopped('stopped'),
+  complete('complete'),
+  ;
 
-extension NodeUpdateStatusValueExtension on NodeUpdateStatus {
-  String toValue() {
-    switch (this) {
-      case NodeUpdateStatus.notApplied:
-        return 'not-applied';
-      case NodeUpdateStatus.waitingToStart:
-        return 'waiting-to-start';
-      case NodeUpdateStatus.inProgress:
-        return 'in-progress';
-      case NodeUpdateStatus.stopping:
-        return 'stopping';
-      case NodeUpdateStatus.stopped:
-        return 'stopped';
-      case NodeUpdateStatus.complete:
-        return 'complete';
-    }
-  }
-}
+  final String value;
 
-extension NodeUpdateStatusFromString on String {
-  NodeUpdateStatus toNodeUpdateStatus() {
-    switch (this) {
-      case 'not-applied':
-        return NodeUpdateStatus.notApplied;
-      case 'waiting-to-start':
-        return NodeUpdateStatus.waitingToStart;
-      case 'in-progress':
-        return NodeUpdateStatus.inProgress;
-      case 'stopping':
-        return NodeUpdateStatus.stopping;
-      case 'stopped':
-        return NodeUpdateStatus.stopped;
-      case 'complete':
-        return NodeUpdateStatus.complete;
-    }
-    throw Exception('$this is not known in enum NodeUpdateStatus');
-  }
+  const NodeUpdateStatus(this.value);
+
+  static NodeUpdateStatus fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum NodeUpdateStatus'));
 }
 
 /// Describes a notification topic and its status. Notification topics are used
@@ -10429,31 +10122,17 @@ class NotificationConfiguration {
 }
 
 enum OutpostMode {
-  singleOutpost,
-  crossOutpost,
-}
+  singleOutpost('single-outpost'),
+  crossOutpost('cross-outpost'),
+  ;
 
-extension OutpostModeValueExtension on OutpostMode {
-  String toValue() {
-    switch (this) {
-      case OutpostMode.singleOutpost:
-        return 'single-outpost';
-      case OutpostMode.crossOutpost:
-        return 'cross-outpost';
-    }
-  }
-}
+  final String value;
 
-extension OutpostModeFromString on String {
-  OutpostMode toOutpostMode() {
-    switch (this) {
-      case 'single-outpost':
-        return OutpostMode.singleOutpost;
-      case 'cross-outpost':
-        return OutpostMode.crossOutpost;
-    }
-    throw Exception('$this is not known in enum OutpostMode');
-  }
+  const OutpostMode(this.value);
+
+  static OutpostMode fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum OutpostMode'));
 }
 
 /// Describes an individual setting that controls some aspect of ElastiCache
@@ -10507,7 +10186,8 @@ class Parameter {
   factory Parameter.fromXml(_s.XmlElement elem) {
     return Parameter(
       allowedValues: _s.extractXmlStringValue(elem, 'AllowedValues'),
-      changeType: _s.extractXmlStringValue(elem, 'ChangeType')?.toChangeType(),
+      changeType:
+          ChangeType.fromString(_s.extractXmlStringValue(elem, 'ChangeType')),
       dataType: _s.extractXmlStringValue(elem, 'DataType'),
       description: _s.extractXmlStringValue(elem, 'Description'),
       isModifiable: _s.extractXmlBoolValue(elem, 'IsModifiable'),
@@ -10531,7 +10211,7 @@ class Parameter {
     final source = this.source;
     return {
       if (allowedValues != null) 'AllowedValues': allowedValues,
-      if (changeType != null) 'ChangeType': changeType.toValue(),
+      if (changeType != null) 'ChangeType': changeType.value,
       if (dataType != null) 'DataType': dataType,
       if (description != null) 'Description': description,
       if (isModifiable != null) 'IsModifiable': isModifiable,
@@ -10577,33 +10257,18 @@ class ParameterNameValue {
 }
 
 enum PendingAutomaticFailoverStatus {
-  enabled,
-  disabled,
-}
+  enabled('enabled'),
+  disabled('disabled'),
+  ;
 
-extension PendingAutomaticFailoverStatusValueExtension
-    on PendingAutomaticFailoverStatus {
-  String toValue() {
-    switch (this) {
-      case PendingAutomaticFailoverStatus.enabled:
-        return 'enabled';
-      case PendingAutomaticFailoverStatus.disabled:
-        return 'disabled';
-    }
-  }
-}
+  final String value;
 
-extension PendingAutomaticFailoverStatusFromString on String {
-  PendingAutomaticFailoverStatus toPendingAutomaticFailoverStatus() {
-    switch (this) {
-      case 'enabled':
-        return PendingAutomaticFailoverStatus.enabled;
-      case 'disabled':
-        return PendingAutomaticFailoverStatus.disabled;
-    }
-    throw Exception(
-        '$this is not known in enum PendingAutomaticFailoverStatus');
-  }
+  const PendingAutomaticFailoverStatus(this.value);
+
+  static PendingAutomaticFailoverStatus fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum PendingAutomaticFailoverStatus'));
 }
 
 /// The log delivery configurations being modified
@@ -10634,11 +10299,11 @@ class PendingLogDeliveryConfiguration {
       destinationDetails: _s
           .extractXmlChild(elem, 'DestinationDetails')
           ?.let(DestinationDetails.fromXml),
-      destinationType: _s
-          .extractXmlStringValue(elem, 'DestinationType')
-          ?.toDestinationType(),
-      logFormat: _s.extractXmlStringValue(elem, 'LogFormat')?.toLogFormat(),
-      logType: _s.extractXmlStringValue(elem, 'LogType')?.toLogType(),
+      destinationType: DestinationType.fromString(
+          _s.extractXmlStringValue(elem, 'DestinationType')),
+      logFormat:
+          LogFormat.fromString(_s.extractXmlStringValue(elem, 'LogFormat')),
+      logType: LogType.fromString(_s.extractXmlStringValue(elem, 'LogType')),
     );
   }
 
@@ -10649,9 +10314,9 @@ class PendingLogDeliveryConfiguration {
     final logType = this.logType;
     return {
       if (destinationDetails != null) 'DestinationDetails': destinationDetails,
-      if (destinationType != null) 'DestinationType': destinationType.toValue(),
-      if (logFormat != null) 'LogFormat': logFormat.toValue(),
-      if (logType != null) 'LogType': logType.toValue(),
+      if (destinationType != null) 'DestinationType': destinationType.value,
+      if (logFormat != null) 'LogFormat': logFormat.value,
+      if (logType != null) 'LogType': logType.value,
     };
   }
 }
@@ -10700,9 +10365,8 @@ class PendingModifiedValues {
   });
   factory PendingModifiedValues.fromXml(_s.XmlElement elem) {
     return PendingModifiedValues(
-      authTokenStatus: _s
-          .extractXmlStringValue(elem, 'AuthTokenStatus')
-          ?.toAuthTokenUpdateStatus(),
+      authTokenStatus: AuthTokenUpdateStatus.fromString(
+          _s.extractXmlStringValue(elem, 'AuthTokenStatus')),
       cacheNodeIdsToRemove: _s
           .extractXmlChild(elem, 'CacheNodeIdsToRemove')
           ?.let((elem) => _s.extractXmlStringListValues(elem, 'CacheNodeId')),
@@ -10717,9 +10381,8 @@ class PendingModifiedValues {
       numCacheNodes: _s.extractXmlIntValue(elem, 'NumCacheNodes'),
       transitEncryptionEnabled:
           _s.extractXmlBoolValue(elem, 'TransitEncryptionEnabled'),
-      transitEncryptionMode: _s
-          .extractXmlStringValue(elem, 'TransitEncryptionMode')
-          ?.toTransitEncryptionMode(),
+      transitEncryptionMode: TransitEncryptionMode.fromString(
+          _s.extractXmlStringValue(elem, 'TransitEncryptionMode')),
     );
   }
 
@@ -10733,7 +10396,7 @@ class PendingModifiedValues {
     final transitEncryptionEnabled = this.transitEncryptionEnabled;
     final transitEncryptionMode = this.transitEncryptionMode;
     return {
-      if (authTokenStatus != null) 'AuthTokenStatus': authTokenStatus.toValue(),
+      if (authTokenStatus != null) 'AuthTokenStatus': authTokenStatus.value,
       if (cacheNodeIdsToRemove != null)
         'CacheNodeIdsToRemove': cacheNodeIdsToRemove,
       if (cacheNodeType != null) 'CacheNodeType': cacheNodeType,
@@ -10744,7 +10407,7 @@ class PendingModifiedValues {
       if (transitEncryptionEnabled != null)
         'TransitEncryptionEnabled': transitEncryptionEnabled,
       if (transitEncryptionMode != null)
-        'TransitEncryptionMode': transitEncryptionMode.toValue(),
+        'TransitEncryptionMode': transitEncryptionMode.value,
     };
   }
 }
@@ -10775,9 +10438,8 @@ class ProcessedUpdateAction {
       cacheClusterId: _s.extractXmlStringValue(elem, 'CacheClusterId'),
       replicationGroupId: _s.extractXmlStringValue(elem, 'ReplicationGroupId'),
       serviceUpdateName: _s.extractXmlStringValue(elem, 'ServiceUpdateName'),
-      updateActionStatus: _s
-          .extractXmlStringValue(elem, 'UpdateActionStatus')
-          ?.toUpdateActionStatus(),
+      updateActionStatus: UpdateActionStatus.fromString(
+          _s.extractXmlStringValue(elem, 'UpdateActionStatus')),
     );
   }
 
@@ -10791,7 +10453,7 @@ class ProcessedUpdateAction {
       if (replicationGroupId != null) 'ReplicationGroupId': replicationGroupId,
       if (serviceUpdateName != null) 'ServiceUpdateName': serviceUpdateName,
       if (updateActionStatus != null)
-        'UpdateActionStatus': updateActionStatus.toValue(),
+        'UpdateActionStatus': updateActionStatus.value,
     };
   }
 }
@@ -11155,24 +10817,23 @@ class ReplicationGroup {
           _s.extractXmlDateTimeValue(elem, 'AuthTokenLastModifiedDate'),
       autoMinorVersionUpgrade:
           _s.extractXmlBoolValue(elem, 'AutoMinorVersionUpgrade'),
-      automaticFailover: _s
-          .extractXmlStringValue(elem, 'AutomaticFailover')
-          ?.toAutomaticFailoverStatus(),
+      automaticFailover: AutomaticFailoverStatus.fromString(
+          _s.extractXmlStringValue(elem, 'AutomaticFailover')),
       cacheNodeType: _s.extractXmlStringValue(elem, 'CacheNodeType'),
       clusterEnabled: _s.extractXmlBoolValue(elem, 'ClusterEnabled'),
       clusterMode:
-          _s.extractXmlStringValue(elem, 'ClusterMode')?.toClusterMode(),
+          ClusterMode.fromString(_s.extractXmlStringValue(elem, 'ClusterMode')),
       configurationEndpoint: _s
           .extractXmlChild(elem, 'ConfigurationEndpoint')
           ?.let(Endpoint.fromXml),
-      dataTiering:
-          _s.extractXmlStringValue(elem, 'DataTiering')?.toDataTieringStatus(),
+      dataTiering: DataTieringStatus.fromString(
+          _s.extractXmlStringValue(elem, 'DataTiering')),
       description: _s.extractXmlStringValue(elem, 'Description'),
       globalReplicationGroupInfo: _s
           .extractXmlChild(elem, 'GlobalReplicationGroupInfo')
           ?.let(GlobalReplicationGroupInfo.fromXml),
       ipDiscovery:
-          _s.extractXmlStringValue(elem, 'IpDiscovery')?.toIpDiscovery(),
+          IpDiscovery.fromString(_s.extractXmlStringValue(elem, 'IpDiscovery')),
       kmsKeyId: _s.extractXmlStringValue(elem, 'KmsKeyId'),
       logDeliveryConfigurations: _s
           .extractXmlChild(elem, 'LogDeliveryConfigurations')
@@ -11187,9 +10848,10 @@ class ReplicationGroup {
           .extractXmlChild(elem, 'MemberClustersOutpostArns')
           ?.let((elem) => _s.extractXmlStringListValues(
               elem, 'ReplicationGroupOutpostArn')),
-      multiAZ: _s.extractXmlStringValue(elem, 'MultiAZ')?.toMultiAZStatus(),
+      multiAZ:
+          MultiAZStatus.fromString(_s.extractXmlStringValue(elem, 'MultiAZ')),
       networkType:
-          _s.extractXmlStringValue(elem, 'NetworkType')?.toNetworkType(),
+          NetworkType.fromString(_s.extractXmlStringValue(elem, 'NetworkType')),
       nodeGroups: _s.extractXmlChild(elem, 'NodeGroups')?.let((elem) =>
           elem.findElements('NodeGroup').map(NodeGroup.fromXml).toList()),
       pendingModifiedValues: _s
@@ -11206,9 +10868,8 @@ class ReplicationGroup {
       status: _s.extractXmlStringValue(elem, 'Status'),
       transitEncryptionEnabled:
           _s.extractXmlBoolValue(elem, 'TransitEncryptionEnabled'),
-      transitEncryptionMode: _s
-          .extractXmlStringValue(elem, 'TransitEncryptionMode')
-          ?.toTransitEncryptionMode(),
+      transitEncryptionMode: TransitEncryptionMode.fromString(
+          _s.extractXmlStringValue(elem, 'TransitEncryptionMode')),
       userGroupIds: _s
           .extractXmlChild(elem, 'UserGroupIds')
           ?.let((elem) => _s.extractXmlStringListValues(elem, 'member')),
@@ -11257,25 +10918,25 @@ class ReplicationGroup {
       if (autoMinorVersionUpgrade != null)
         'AutoMinorVersionUpgrade': autoMinorVersionUpgrade,
       if (automaticFailover != null)
-        'AutomaticFailover': automaticFailover.toValue(),
+        'AutomaticFailover': automaticFailover.value,
       if (cacheNodeType != null) 'CacheNodeType': cacheNodeType,
       if (clusterEnabled != null) 'ClusterEnabled': clusterEnabled,
-      if (clusterMode != null) 'ClusterMode': clusterMode.toValue(),
+      if (clusterMode != null) 'ClusterMode': clusterMode.value,
       if (configurationEndpoint != null)
         'ConfigurationEndpoint': configurationEndpoint,
-      if (dataTiering != null) 'DataTiering': dataTiering.toValue(),
+      if (dataTiering != null) 'DataTiering': dataTiering.value,
       if (description != null) 'Description': description,
       if (globalReplicationGroupInfo != null)
         'GlobalReplicationGroupInfo': globalReplicationGroupInfo,
-      if (ipDiscovery != null) 'IpDiscovery': ipDiscovery.toValue(),
+      if (ipDiscovery != null) 'IpDiscovery': ipDiscovery.value,
       if (kmsKeyId != null) 'KmsKeyId': kmsKeyId,
       if (logDeliveryConfigurations != null)
         'LogDeliveryConfigurations': logDeliveryConfigurations,
       if (memberClusters != null) 'MemberClusters': memberClusters,
       if (memberClustersOutpostArns != null)
         'MemberClustersOutpostArns': memberClustersOutpostArns,
-      if (multiAZ != null) 'MultiAZ': multiAZ.toValue(),
-      if (networkType != null) 'NetworkType': networkType.toValue(),
+      if (multiAZ != null) 'MultiAZ': multiAZ.value,
+      if (networkType != null) 'NetworkType': networkType.value,
       if (nodeGroups != null) 'NodeGroups': nodeGroups,
       if (pendingModifiedValues != null)
         'PendingModifiedValues': pendingModifiedValues,
@@ -11291,7 +10952,7 @@ class ReplicationGroup {
       if (transitEncryptionEnabled != null)
         'TransitEncryptionEnabled': transitEncryptionEnabled,
       if (transitEncryptionMode != null)
-        'TransitEncryptionMode': transitEncryptionMode.toValue(),
+        'TransitEncryptionMode': transitEncryptionMode.value,
       if (userGroupIds != null) 'UserGroupIds': userGroupIds,
     };
   }
@@ -11382,14 +11043,12 @@ class ReplicationGroupPendingModifiedValues {
   });
   factory ReplicationGroupPendingModifiedValues.fromXml(_s.XmlElement elem) {
     return ReplicationGroupPendingModifiedValues(
-      authTokenStatus: _s
-          .extractXmlStringValue(elem, 'AuthTokenStatus')
-          ?.toAuthTokenUpdateStatus(),
-      automaticFailoverStatus: _s
-          .extractXmlStringValue(elem, 'AutomaticFailoverStatus')
-          ?.toPendingAutomaticFailoverStatus(),
+      authTokenStatus: AuthTokenUpdateStatus.fromString(
+          _s.extractXmlStringValue(elem, 'AuthTokenStatus')),
+      automaticFailoverStatus: PendingAutomaticFailoverStatus.fromString(
+          _s.extractXmlStringValue(elem, 'AutomaticFailoverStatus')),
       clusterMode:
-          _s.extractXmlStringValue(elem, 'ClusterMode')?.toClusterMode(),
+          ClusterMode.fromString(_s.extractXmlStringValue(elem, 'ClusterMode')),
       logDeliveryConfigurations: _s
           .extractXmlChild(elem, 'PendingLogDeliveryConfiguration')
           ?.let((elem) => elem
@@ -11401,9 +11060,8 @@ class ReplicationGroupPendingModifiedValues {
           _s.extractXmlChild(elem, 'Resharding')?.let(ReshardingStatus.fromXml),
       transitEncryptionEnabled:
           _s.extractXmlBoolValue(elem, 'TransitEncryptionEnabled'),
-      transitEncryptionMode: _s
-          .extractXmlStringValue(elem, 'TransitEncryptionMode')
-          ?.toTransitEncryptionMode(),
+      transitEncryptionMode: TransitEncryptionMode.fromString(
+          _s.extractXmlStringValue(elem, 'TransitEncryptionMode')),
       userGroups: _s
           .extractXmlChild(elem, 'UserGroups')
           ?.let(UserGroupsUpdateStatus.fromXml),
@@ -11421,10 +11079,10 @@ class ReplicationGroupPendingModifiedValues {
     final transitEncryptionMode = this.transitEncryptionMode;
     final userGroups = this.userGroups;
     return {
-      if (authTokenStatus != null) 'AuthTokenStatus': authTokenStatus.toValue(),
+      if (authTokenStatus != null) 'AuthTokenStatus': authTokenStatus.value,
       if (automaticFailoverStatus != null)
-        'AutomaticFailoverStatus': automaticFailoverStatus.toValue(),
-      if (clusterMode != null) 'ClusterMode': clusterMode.toValue(),
+        'AutomaticFailoverStatus': automaticFailoverStatus.value,
+      if (clusterMode != null) 'ClusterMode': clusterMode.value,
       if (logDeliveryConfigurations != null)
         'PendingLogDeliveryConfiguration': logDeliveryConfigurations,
       if (primaryClusterId != null) 'PrimaryClusterId': primaryClusterId,
@@ -11432,7 +11090,7 @@ class ReplicationGroupPendingModifiedValues {
       if (transitEncryptionEnabled != null)
         'TransitEncryptionEnabled': transitEncryptionEnabled,
       if (transitEncryptionMode != null)
-        'TransitEncryptionMode': transitEncryptionMode.toValue(),
+        'TransitEncryptionMode': transitEncryptionMode.value,
       if (userGroups != null) 'UserGroups': userGroups,
     };
   }
@@ -12157,15 +11815,12 @@ class ServiceUpdate {
           elem, 'ServiceUpdateRecommendedApplyByDate'),
       serviceUpdateReleaseDate:
           _s.extractXmlDateTimeValue(elem, 'ServiceUpdateReleaseDate'),
-      serviceUpdateSeverity: _s
-          .extractXmlStringValue(elem, 'ServiceUpdateSeverity')
-          ?.toServiceUpdateSeverity(),
-      serviceUpdateStatus: _s
-          .extractXmlStringValue(elem, 'ServiceUpdateStatus')
-          ?.toServiceUpdateStatus(),
-      serviceUpdateType: _s
-          .extractXmlStringValue(elem, 'ServiceUpdateType')
-          ?.toServiceUpdateType(),
+      serviceUpdateSeverity: ServiceUpdateSeverity.fromString(
+          _s.extractXmlStringValue(elem, 'ServiceUpdateSeverity')),
+      serviceUpdateStatus: ServiceUpdateStatus.fromString(
+          _s.extractXmlStringValue(elem, 'ServiceUpdateStatus')),
+      serviceUpdateType: ServiceUpdateType.fromString(
+          _s.extractXmlStringValue(elem, 'ServiceUpdateType')),
     );
   }
 
@@ -12203,107 +11858,60 @@ class ServiceUpdate {
       if (serviceUpdateReleaseDate != null)
         'ServiceUpdateReleaseDate': iso8601ToJson(serviceUpdateReleaseDate),
       if (serviceUpdateSeverity != null)
-        'ServiceUpdateSeverity': serviceUpdateSeverity.toValue(),
+        'ServiceUpdateSeverity': serviceUpdateSeverity.value,
       if (serviceUpdateStatus != null)
-        'ServiceUpdateStatus': serviceUpdateStatus.toValue(),
+        'ServiceUpdateStatus': serviceUpdateStatus.value,
       if (serviceUpdateType != null)
-        'ServiceUpdateType': serviceUpdateType.toValue(),
+        'ServiceUpdateType': serviceUpdateType.value,
     };
   }
 }
 
 enum ServiceUpdateSeverity {
-  critical,
-  important,
-  medium,
-  low,
-}
+  critical('critical'),
+  important('important'),
+  medium('medium'),
+  low('low'),
+  ;
 
-extension ServiceUpdateSeverityValueExtension on ServiceUpdateSeverity {
-  String toValue() {
-    switch (this) {
-      case ServiceUpdateSeverity.critical:
-        return 'critical';
-      case ServiceUpdateSeverity.important:
-        return 'important';
-      case ServiceUpdateSeverity.medium:
-        return 'medium';
-      case ServiceUpdateSeverity.low:
-        return 'low';
-    }
-  }
-}
+  final String value;
 
-extension ServiceUpdateSeverityFromString on String {
-  ServiceUpdateSeverity toServiceUpdateSeverity() {
-    switch (this) {
-      case 'critical':
-        return ServiceUpdateSeverity.critical;
-      case 'important':
-        return ServiceUpdateSeverity.important;
-      case 'medium':
-        return ServiceUpdateSeverity.medium;
-      case 'low':
-        return ServiceUpdateSeverity.low;
-    }
-    throw Exception('$this is not known in enum ServiceUpdateSeverity');
-  }
+  const ServiceUpdateSeverity(this.value);
+
+  static ServiceUpdateSeverity fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum ServiceUpdateSeverity'));
 }
 
 enum ServiceUpdateStatus {
-  available,
-  cancelled,
-  expired,
-}
+  available('available'),
+  cancelled('cancelled'),
+  expired('expired'),
+  ;
 
-extension ServiceUpdateStatusValueExtension on ServiceUpdateStatus {
-  String toValue() {
-    switch (this) {
-      case ServiceUpdateStatus.available:
-        return 'available';
-      case ServiceUpdateStatus.cancelled:
-        return 'cancelled';
-      case ServiceUpdateStatus.expired:
-        return 'expired';
-    }
-  }
-}
+  final String value;
 
-extension ServiceUpdateStatusFromString on String {
-  ServiceUpdateStatus toServiceUpdateStatus() {
-    switch (this) {
-      case 'available':
-        return ServiceUpdateStatus.available;
-      case 'cancelled':
-        return ServiceUpdateStatus.cancelled;
-      case 'expired':
-        return ServiceUpdateStatus.expired;
-    }
-    throw Exception('$this is not known in enum ServiceUpdateStatus');
-  }
+  const ServiceUpdateStatus(this.value);
+
+  static ServiceUpdateStatus fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum ServiceUpdateStatus'));
 }
 
 enum ServiceUpdateType {
-  securityUpdate,
-}
+  securityUpdate('security-update'),
+  ;
 
-extension ServiceUpdateTypeValueExtension on ServiceUpdateType {
-  String toValue() {
-    switch (this) {
-      case ServiceUpdateType.securityUpdate:
-        return 'security-update';
-    }
-  }
-}
+  final String value;
 
-extension ServiceUpdateTypeFromString on String {
-  ServiceUpdateType toServiceUpdateType() {
-    switch (this) {
-      case 'security-update':
-        return ServiceUpdateType.securityUpdate;
-    }
-    throw Exception('$this is not known in enum ServiceUpdateType');
-  }
+  const ServiceUpdateType(this.value);
+
+  static ServiceUpdateType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum ServiceUpdateType'));
 }
 
 class ServiceUpdatesMessage {
@@ -12342,36 +11950,18 @@ class ServiceUpdatesMessage {
 }
 
 enum SlaMet {
-  yes,
-  no,
-  na,
-}
+  yes('yes'),
+  no('no'),
+  na('n/a'),
+  ;
 
-extension SlaMetValueExtension on SlaMet {
-  String toValue() {
-    switch (this) {
-      case SlaMet.yes:
-        return 'yes';
-      case SlaMet.no:
-        return 'no';
-      case SlaMet.na:
-        return 'n/a';
-    }
-  }
-}
+  final String value;
 
-extension SlaMetFromString on String {
-  SlaMet toSlaMet() {
-    switch (this) {
-      case 'yes':
-        return SlaMet.yes;
-      case 'no':
-        return SlaMet.no;
-      case 'n/a':
-        return SlaMet.na;
-    }
-    throw Exception('$this is not known in enum SlaMet');
-  }
+  const SlaMet(this.value);
+
+  static SlaMet fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception('$value is not known in enum SlaMet'));
 }
 
 /// Represents the progress of an online resharding operation.
@@ -12708,9 +12298,8 @@ class Snapshot {
       arn: _s.extractXmlStringValue(elem, 'ARN'),
       autoMinorVersionUpgrade:
           _s.extractXmlBoolValue(elem, 'AutoMinorVersionUpgrade'),
-      automaticFailover: _s
-          .extractXmlStringValue(elem, 'AutomaticFailover')
-          ?.toAutomaticFailoverStatus(),
+      automaticFailover: AutomaticFailoverStatus.fromString(
+          _s.extractXmlStringValue(elem, 'AutomaticFailover')),
       cacheClusterCreateTime:
           _s.extractXmlDateTimeValue(elem, 'CacheClusterCreateTime'),
       cacheClusterId: _s.extractXmlStringValue(elem, 'CacheClusterId'),
@@ -12719,8 +12308,8 @@ class Snapshot {
           _s.extractXmlStringValue(elem, 'CacheParameterGroupName'),
       cacheSubnetGroupName:
           _s.extractXmlStringValue(elem, 'CacheSubnetGroupName'),
-      dataTiering:
-          _s.extractXmlStringValue(elem, 'DataTiering')?.toDataTieringStatus(),
+      dataTiering: DataTieringStatus.fromString(
+          _s.extractXmlStringValue(elem, 'DataTiering')),
       engine: _s.extractXmlStringValue(elem, 'Engine'),
       engineVersion: _s.extractXmlStringValue(elem, 'EngineVersion'),
       kmsKeyId: _s.extractXmlStringValue(elem, 'KmsKeyId'),
@@ -12783,7 +12372,7 @@ class Snapshot {
       if (autoMinorVersionUpgrade != null)
         'AutoMinorVersionUpgrade': autoMinorVersionUpgrade,
       if (automaticFailover != null)
-        'AutomaticFailover': automaticFailover.toValue(),
+        'AutomaticFailover': automaticFailover.value,
       if (cacheClusterCreateTime != null)
         'CacheClusterCreateTime': iso8601ToJson(cacheClusterCreateTime),
       if (cacheClusterId != null) 'CacheClusterId': cacheClusterId,
@@ -12792,7 +12381,7 @@ class Snapshot {
         'CacheParameterGroupName': cacheParameterGroupName,
       if (cacheSubnetGroupName != null)
         'CacheSubnetGroupName': cacheSubnetGroupName,
-      if (dataTiering != null) 'DataTiering': dataTiering.toValue(),
+      if (dataTiering != null) 'DataTiering': dataTiering.value,
       if (engine != null) 'Engine': engine,
       if (engineVersion != null) 'EngineVersion': engineVersion,
       if (kmsKeyId != null) 'KmsKeyId': kmsKeyId,
@@ -12822,56 +12411,22 @@ class Snapshot {
 }
 
 enum SourceType {
-  cacheCluster,
-  cacheParameterGroup,
-  cacheSecurityGroup,
-  cacheSubnetGroup,
-  replicationGroup,
-  user,
-  userGroup,
-}
+  cacheCluster('cache-cluster'),
+  cacheParameterGroup('cache-parameter-group'),
+  cacheSecurityGroup('cache-security-group'),
+  cacheSubnetGroup('cache-subnet-group'),
+  replicationGroup('replication-group'),
+  user('user'),
+  userGroup('user-group'),
+  ;
 
-extension SourceTypeValueExtension on SourceType {
-  String toValue() {
-    switch (this) {
-      case SourceType.cacheCluster:
-        return 'cache-cluster';
-      case SourceType.cacheParameterGroup:
-        return 'cache-parameter-group';
-      case SourceType.cacheSecurityGroup:
-        return 'cache-security-group';
-      case SourceType.cacheSubnetGroup:
-        return 'cache-subnet-group';
-      case SourceType.replicationGroup:
-        return 'replication-group';
-      case SourceType.user:
-        return 'user';
-      case SourceType.userGroup:
-        return 'user-group';
-    }
-  }
-}
+  final String value;
 
-extension SourceTypeFromString on String {
-  SourceType toSourceType() {
-    switch (this) {
-      case 'cache-cluster':
-        return SourceType.cacheCluster;
-      case 'cache-parameter-group':
-        return SourceType.cacheParameterGroup;
-      case 'cache-security-group':
-        return SourceType.cacheSecurityGroup;
-      case 'cache-subnet-group':
-        return SourceType.cacheSubnetGroup;
-      case 'replication-group':
-        return SourceType.replicationGroup;
-      case 'user':
-        return SourceType.user;
-      case 'user-group':
-        return SourceType.userGroup;
-    }
-    throw Exception('$this is not known in enum SourceType');
-  }
+  const SourceType(this.value);
+
+  static SourceType fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum SourceType'));
 }
 
 class StartMigrationResponse {
@@ -12950,7 +12505,7 @@ class Subnet {
       if (subnetOutpost != null) 'SubnetOutpost': subnetOutpost,
       if (supportedNetworkTypes != null)
         'SupportedNetworkTypes':
-            supportedNetworkTypes.map((e) => e.toValue()).toList(),
+            supportedNetworkTypes.map((e) => e.value).toList(),
     };
   }
 }
@@ -13102,31 +12657,18 @@ class TimeRangeFilter {
 }
 
 enum TransitEncryptionMode {
-  preferred,
-  required,
-}
+  preferred('preferred'),
+  required('required'),
+  ;
 
-extension TransitEncryptionModeValueExtension on TransitEncryptionMode {
-  String toValue() {
-    switch (this) {
-      case TransitEncryptionMode.preferred:
-        return 'preferred';
-      case TransitEncryptionMode.required:
-        return 'required';
-    }
-  }
-}
+  final String value;
 
-extension TransitEncryptionModeFromString on String {
-  TransitEncryptionMode toTransitEncryptionMode() {
-    switch (this) {
-      case 'preferred':
-        return TransitEncryptionMode.preferred;
-      case 'required':
-        return TransitEncryptionMode.required;
-    }
-    throw Exception('$this is not known in enum TransitEncryptionMode');
-  }
+  const TransitEncryptionMode(this.value);
+
+  static TransitEncryptionMode fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum TransitEncryptionMode'));
 }
 
 /// Update action that has failed to be processed for the corresponding
@@ -13284,21 +12826,17 @@ class UpdateAction {
           elem, 'ServiceUpdateRecommendedApplyByDate'),
       serviceUpdateReleaseDate:
           _s.extractXmlDateTimeValue(elem, 'ServiceUpdateReleaseDate'),
-      serviceUpdateSeverity: _s
-          .extractXmlStringValue(elem, 'ServiceUpdateSeverity')
-          ?.toServiceUpdateSeverity(),
-      serviceUpdateStatus: _s
-          .extractXmlStringValue(elem, 'ServiceUpdateStatus')
-          ?.toServiceUpdateStatus(),
-      serviceUpdateType: _s
-          .extractXmlStringValue(elem, 'ServiceUpdateType')
-          ?.toServiceUpdateType(),
-      slaMet: _s.extractXmlStringValue(elem, 'SlaMet')?.toSlaMet(),
+      serviceUpdateSeverity: ServiceUpdateSeverity.fromString(
+          _s.extractXmlStringValue(elem, 'ServiceUpdateSeverity')),
+      serviceUpdateStatus: ServiceUpdateStatus.fromString(
+          _s.extractXmlStringValue(elem, 'ServiceUpdateStatus')),
+      serviceUpdateType: ServiceUpdateType.fromString(
+          _s.extractXmlStringValue(elem, 'ServiceUpdateType')),
+      slaMet: SlaMet.fromString(_s.extractXmlStringValue(elem, 'SlaMet')),
       updateActionAvailableDate:
           _s.extractXmlDateTimeValue(elem, 'UpdateActionAvailableDate'),
-      updateActionStatus: _s
-          .extractXmlStringValue(elem, 'UpdateActionStatus')
-          ?.toUpdateActionStatus(),
+      updateActionStatus: UpdateActionStatus.fromString(
+          _s.extractXmlStringValue(elem, 'UpdateActionStatus')),
       updateActionStatusModifiedDate:
           _s.extractXmlDateTimeValue(elem, 'UpdateActionStatusModifiedDate'),
     );
@@ -13341,16 +12879,16 @@ class UpdateAction {
       if (serviceUpdateReleaseDate != null)
         'ServiceUpdateReleaseDate': iso8601ToJson(serviceUpdateReleaseDate),
       if (serviceUpdateSeverity != null)
-        'ServiceUpdateSeverity': serviceUpdateSeverity.toValue(),
+        'ServiceUpdateSeverity': serviceUpdateSeverity.value,
       if (serviceUpdateStatus != null)
-        'ServiceUpdateStatus': serviceUpdateStatus.toValue(),
+        'ServiceUpdateStatus': serviceUpdateStatus.value,
       if (serviceUpdateType != null)
-        'ServiceUpdateType': serviceUpdateType.toValue(),
-      if (slaMet != null) 'SlaMet': slaMet.toValue(),
+        'ServiceUpdateType': serviceUpdateType.value,
+      if (slaMet != null) 'SlaMet': slaMet.value,
       if (updateActionAvailableDate != null)
         'UpdateActionAvailableDate': iso8601ToJson(updateActionAvailableDate),
       if (updateActionStatus != null)
-        'UpdateActionStatus': updateActionStatus.toValue(),
+        'UpdateActionStatus': updateActionStatus.value,
       if (updateActionStatusModifiedDate != null)
         'UpdateActionStatusModifiedDate':
             iso8601ToJson(updateActionStatusModifiedDate),
@@ -13399,66 +12937,25 @@ class UpdateActionResultsMessage {
 }
 
 enum UpdateActionStatus {
-  notApplied,
-  waitingToStart,
-  inProgress,
-  stopping,
-  stopped,
-  complete,
-  scheduling,
-  scheduled,
-  notApplicable,
-}
+  notApplied('not-applied'),
+  waitingToStart('waiting-to-start'),
+  inProgress('in-progress'),
+  stopping('stopping'),
+  stopped('stopped'),
+  complete('complete'),
+  scheduling('scheduling'),
+  scheduled('scheduled'),
+  notApplicable('not-applicable'),
+  ;
 
-extension UpdateActionStatusValueExtension on UpdateActionStatus {
-  String toValue() {
-    switch (this) {
-      case UpdateActionStatus.notApplied:
-        return 'not-applied';
-      case UpdateActionStatus.waitingToStart:
-        return 'waiting-to-start';
-      case UpdateActionStatus.inProgress:
-        return 'in-progress';
-      case UpdateActionStatus.stopping:
-        return 'stopping';
-      case UpdateActionStatus.stopped:
-        return 'stopped';
-      case UpdateActionStatus.complete:
-        return 'complete';
-      case UpdateActionStatus.scheduling:
-        return 'scheduling';
-      case UpdateActionStatus.scheduled:
-        return 'scheduled';
-      case UpdateActionStatus.notApplicable:
-        return 'not-applicable';
-    }
-  }
-}
+  final String value;
 
-extension UpdateActionStatusFromString on String {
-  UpdateActionStatus toUpdateActionStatus() {
-    switch (this) {
-      case 'not-applied':
-        return UpdateActionStatus.notApplied;
-      case 'waiting-to-start':
-        return UpdateActionStatus.waitingToStart;
-      case 'in-progress':
-        return UpdateActionStatus.inProgress;
-      case 'stopping':
-        return UpdateActionStatus.stopping;
-      case 'stopped':
-        return UpdateActionStatus.stopped;
-      case 'complete':
-        return UpdateActionStatus.complete;
-      case 'scheduling':
-        return UpdateActionStatus.scheduling;
-      case 'scheduled':
-        return UpdateActionStatus.scheduled;
-      case 'not-applicable':
-        return UpdateActionStatus.notApplicable;
-    }
-    throw Exception('$this is not known in enum UpdateActionStatus');
-  }
+  const UpdateActionStatus(this.value);
+
+  static UpdateActionStatus fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum UpdateActionStatus'));
 }
 
 class UpdateActionsMessage {

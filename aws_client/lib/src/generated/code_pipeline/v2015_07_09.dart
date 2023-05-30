@@ -199,7 +199,7 @@ class CodePipeline {
       // TODO queryParams
       headers: headers,
       payload: {
-        'category': category.toValue(),
+        'category': category.value,
         'inputArtifactDetails': inputArtifactDetails,
         'outputArtifactDetails': outputArtifactDetails,
         'provider': provider,
@@ -302,7 +302,7 @@ class CodePipeline {
       // TODO queryParams
       headers: headers,
       payload: {
-        'category': category.toValue(),
+        'category': category.value,
         'provider': provider,
         'version': version,
       },
@@ -438,7 +438,7 @@ class CodePipeline {
         'pipelineName': pipelineName,
         'reason': reason,
         'stageName': stageName,
-        'transitionType': transitionType.toValue(),
+        'transitionType': transitionType.value,
       },
     );
   }
@@ -481,7 +481,7 @@ class CodePipeline {
       payload: {
         'pipelineName': pipelineName,
         'stageName': stageName,
-        'transitionType': transitionType.toValue(),
+        'transitionType': transitionType.value,
       },
     );
   }
@@ -546,7 +546,7 @@ class CodePipeline {
       // TODO queryParams
       headers: headers,
       payload: {
-        'category': category.toValue(),
+        'category': category.value,
         'owner': owner,
         'provider': provider,
         'version': version,
@@ -843,7 +843,7 @@ class CodePipeline {
       headers: headers,
       payload: {
         if (actionOwnerFilter != null)
-          'actionOwnerFilter': actionOwnerFilter.toValue(),
+          'actionOwnerFilter': actionOwnerFilter.value,
         if (nextToken != null) 'nextToken': nextToken,
         if (regionFilter != null) 'regionFilter': regionFilter,
       },
@@ -1560,7 +1560,7 @@ class CodePipeline {
       payload: {
         'pipelineExecutionId': pipelineExecutionId,
         'pipelineName': pipelineName,
-        'retryMode': retryMode.toValue(),
+        'retryMode': retryMode.value,
         'stageName': stageName,
       },
     );
@@ -1850,14 +1850,14 @@ class AcknowledgeJobOutput {
 
   factory AcknowledgeJobOutput.fromJson(Map<String, dynamic> json) {
     return AcknowledgeJobOutput(
-      status: (json['status'] as String?)?.toJobStatus(),
+      status: (json['status'] as String?)?.let(JobStatus.fromString),
     );
   }
 
   Map<String, dynamic> toJson() {
     final status = this.status;
     return {
-      if (status != null) 'status': status.toValue(),
+      if (status != null) 'status': status.value,
     };
   }
 }
@@ -1873,64 +1873,35 @@ class AcknowledgeThirdPartyJobOutput {
 
   factory AcknowledgeThirdPartyJobOutput.fromJson(Map<String, dynamic> json) {
     return AcknowledgeThirdPartyJobOutput(
-      status: (json['status'] as String?)?.toJobStatus(),
+      status: (json['status'] as String?)?.let(JobStatus.fromString),
     );
   }
 
   Map<String, dynamic> toJson() {
     final status = this.status;
     return {
-      if (status != null) 'status': status.toValue(),
+      if (status != null) 'status': status.value,
     };
   }
 }
 
 enum ActionCategory {
-  source,
-  build,
-  deploy,
-  test,
-  invoke,
-  approval,
-}
+  source('Source'),
+  build('Build'),
+  deploy('Deploy'),
+  test('Test'),
+  invoke('Invoke'),
+  approval('Approval'),
+  ;
 
-extension ActionCategoryValueExtension on ActionCategory {
-  String toValue() {
-    switch (this) {
-      case ActionCategory.source:
-        return 'Source';
-      case ActionCategory.build:
-        return 'Build';
-      case ActionCategory.deploy:
-        return 'Deploy';
-      case ActionCategory.test:
-        return 'Test';
-      case ActionCategory.invoke:
-        return 'Invoke';
-      case ActionCategory.approval:
-        return 'Approval';
-    }
-  }
-}
+  final String value;
 
-extension ActionCategoryFromString on String {
-  ActionCategory toActionCategory() {
-    switch (this) {
-      case 'Source':
-        return ActionCategory.source;
-      case 'Build':
-        return ActionCategory.build;
-      case 'Deploy':
-        return ActionCategory.deploy;
-      case 'Test':
-        return ActionCategory.test;
-      case 'Invoke':
-        return ActionCategory.invoke;
-      case 'Approval':
-        return ActionCategory.approval;
-    }
-    throw Exception('$this is not known in enum ActionCategory');
-  }
+  const ActionCategory(this.value);
+
+  static ActionCategory fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum ActionCategory'));
 }
 
 /// Represents information about an action configuration.
@@ -2013,7 +1984,8 @@ class ActionConfigurationProperty {
       secret: json['secret'] as bool,
       description: json['description'] as String?,
       queryable: json['queryable'] as bool?,
-      type: (json['type'] as String?)?.toActionConfigurationPropertyType(),
+      type: (json['type'] as String?)
+          ?.let(ActionConfigurationPropertyType.fromString),
     );
   }
 
@@ -2032,44 +2004,25 @@ class ActionConfigurationProperty {
       'secret': secret,
       if (description != null) 'description': description,
       if (queryable != null) 'queryable': queryable,
-      if (type != null) 'type': type.toValue(),
+      if (type != null) 'type': type.value,
     };
   }
 }
 
 enum ActionConfigurationPropertyType {
-  string,
-  number,
-  boolean,
-}
+  string('String'),
+  number('Number'),
+  boolean('Boolean'),
+  ;
 
-extension ActionConfigurationPropertyTypeValueExtension
-    on ActionConfigurationPropertyType {
-  String toValue() {
-    switch (this) {
-      case ActionConfigurationPropertyType.string:
-        return 'String';
-      case ActionConfigurationPropertyType.number:
-        return 'Number';
-      case ActionConfigurationPropertyType.boolean:
-        return 'Boolean';
-    }
-  }
-}
+  final String value;
 
-extension ActionConfigurationPropertyTypeFromString on String {
-  ActionConfigurationPropertyType toActionConfigurationPropertyType() {
-    switch (this) {
-      case 'String':
-        return ActionConfigurationPropertyType.string;
-      case 'Number':
-        return ActionConfigurationPropertyType.number;
-      case 'Boolean':
-        return ActionConfigurationPropertyType.boolean;
-    }
-    throw Exception(
-        '$this is not known in enum ActionConfigurationPropertyType');
-  }
+  const ActionConfigurationPropertyType(this.value);
+
+  static ActionConfigurationPropertyType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum ActionConfigurationPropertyType'));
 }
 
 /// Represents the context of an action in the stage of a pipeline to a job
@@ -2278,7 +2231,8 @@ class ActionExecution {
       lastStatusChange: timeStampFromJson(json['lastStatusChange']),
       lastUpdatedBy: json['lastUpdatedBy'] as String?,
       percentComplete: json['percentComplete'] as int?,
-      status: (json['status'] as String?)?.toActionExecutionStatus(),
+      status:
+          (json['status'] as String?)?.let(ActionExecutionStatus.fromString),
       summary: json['summary'] as String?,
       token: json['token'] as String?,
     );
@@ -2306,7 +2260,7 @@ class ActionExecution {
         'lastStatusChange': unixTimestampToJson(lastStatusChange),
       if (lastUpdatedBy != null) 'lastUpdatedBy': lastUpdatedBy,
       if (percentComplete != null) 'percentComplete': percentComplete,
-      if (status != null) 'status': status.toValue(),
+      if (status != null) 'status': status.value,
       if (summary != null) 'summary': summary,
       if (token != null) 'token': token,
     };
@@ -2378,7 +2332,8 @@ class ActionExecutionDetail {
       pipelineVersion: json['pipelineVersion'] as int?,
       stageName: json['stageName'] as String?,
       startTime: timeStampFromJson(json['startTime']),
-      status: (json['status'] as String?)?.toActionExecutionStatus(),
+      status:
+          (json['status'] as String?)?.let(ActionExecutionStatus.fromString),
     );
   }
 
@@ -2405,7 +2360,7 @@ class ActionExecutionDetail {
       if (pipelineVersion != null) 'pipelineVersion': pipelineVersion,
       if (stageName != null) 'stageName': stageName,
       if (startTime != null) 'startTime': unixTimestampToJson(startTime),
-      if (status != null) 'status': status.toValue(),
+      if (status != null) 'status': status.value,
     };
   }
 }
@@ -2595,74 +2550,35 @@ class ActionExecutionResult {
 }
 
 enum ActionExecutionStatus {
-  inProgress,
-  abandoned,
-  succeeded,
-  failed,
-}
+  inProgress('InProgress'),
+  abandoned('Abandoned'),
+  succeeded('Succeeded'),
+  failed('Failed'),
+  ;
 
-extension ActionExecutionStatusValueExtension on ActionExecutionStatus {
-  String toValue() {
-    switch (this) {
-      case ActionExecutionStatus.inProgress:
-        return 'InProgress';
-      case ActionExecutionStatus.abandoned:
-        return 'Abandoned';
-      case ActionExecutionStatus.succeeded:
-        return 'Succeeded';
-      case ActionExecutionStatus.failed:
-        return 'Failed';
-    }
-  }
-}
+  final String value;
 
-extension ActionExecutionStatusFromString on String {
-  ActionExecutionStatus toActionExecutionStatus() {
-    switch (this) {
-      case 'InProgress':
-        return ActionExecutionStatus.inProgress;
-      case 'Abandoned':
-        return ActionExecutionStatus.abandoned;
-      case 'Succeeded':
-        return ActionExecutionStatus.succeeded;
-      case 'Failed':
-        return ActionExecutionStatus.failed;
-    }
-    throw Exception('$this is not known in enum ActionExecutionStatus');
-  }
+  const ActionExecutionStatus(this.value);
+
+  static ActionExecutionStatus fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum ActionExecutionStatus'));
 }
 
 enum ActionOwner {
-  aws,
-  thirdParty,
-  custom,
-}
+  aws('AWS'),
+  thirdParty('ThirdParty'),
+  custom('Custom'),
+  ;
 
-extension ActionOwnerValueExtension on ActionOwner {
-  String toValue() {
-    switch (this) {
-      case ActionOwner.aws:
-        return 'AWS';
-      case ActionOwner.thirdParty:
-        return 'ThirdParty';
-      case ActionOwner.custom:
-        return 'Custom';
-    }
-  }
-}
+  final String value;
 
-extension ActionOwnerFromString on String {
-  ActionOwner toActionOwner() {
-    switch (this) {
-      case 'AWS':
-        return ActionOwner.aws;
-      case 'ThirdParty':
-        return ActionOwner.thirdParty;
-      case 'Custom':
-        return ActionOwner.custom;
-    }
-    throw Exception('$this is not known in enum ActionOwner');
-  }
+  const ActionOwner(this.value);
+
+  static ActionOwner fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum ActionOwner'));
 }
 
 /// Represents information about the version (or revision) of an action.
@@ -2990,7 +2906,7 @@ class ActionTypeExecutor {
     return ActionTypeExecutor(
       configuration: ExecutorConfiguration.fromJson(
           json['configuration'] as Map<String, dynamic>),
-      type: (json['type'] as String).toExecutorType(),
+      type: ExecutorType.fromString((json['type'] as String)),
       jobTimeout: json['jobTimeout'] as int?,
       policyStatementsTemplate: json['policyStatementsTemplate'] as String?,
     );
@@ -3003,7 +2919,7 @@ class ActionTypeExecutor {
     final policyStatementsTemplate = this.policyStatementsTemplate;
     return {
       'configuration': configuration,
-      'type': type.toValue(),
+      'type': type.value,
       if (jobTimeout != null) 'jobTimeout': jobTimeout,
       if (policyStatementsTemplate != null)
         'policyStatementsTemplate': policyStatementsTemplate,
@@ -3067,8 +2983,8 @@ class ActionTypeId {
 
   factory ActionTypeId.fromJson(Map<String, dynamic> json) {
     return ActionTypeId(
-      category: (json['category'] as String).toActionCategory(),
-      owner: (json['owner'] as String).toActionOwner(),
+      category: ActionCategory.fromString((json['category'] as String)),
+      owner: ActionOwner.fromString((json['owner'] as String)),
       provider: json['provider'] as String,
       version: json['version'] as String,
     );
@@ -3080,8 +2996,8 @@ class ActionTypeId {
     final provider = this.provider;
     final version = this.version;
     return {
-      'category': category.toValue(),
-      'owner': owner.toValue(),
+      'category': category.value,
+      'owner': owner.value,
       'provider': provider,
       'version': version,
     };
@@ -3134,7 +3050,7 @@ class ActionTypeIdentifier {
 
   factory ActionTypeIdentifier.fromJson(Map<String, dynamic> json) {
     return ActionTypeIdentifier(
-      category: (json['category'] as String).toActionCategory(),
+      category: ActionCategory.fromString((json['category'] as String)),
       owner: json['owner'] as String,
       provider: json['provider'] as String,
       version: json['version'] as String,
@@ -3147,7 +3063,7 @@ class ActionTypeIdentifier {
     final provider = this.provider;
     final version = this.version;
     return {
-      'category': category.toValue(),
+      'category': category.value,
       'owner': owner,
       'provider': provider,
       'version': version,
@@ -3375,38 +3291,25 @@ class ApprovalResult {
     final status = this.status;
     final summary = this.summary;
     return {
-      'status': status.toValue(),
+      'status': status.value,
       'summary': summary,
     };
   }
 }
 
 enum ApprovalStatus {
-  approved,
-  rejected,
-}
+  approved('Approved'),
+  rejected('Rejected'),
+  ;
 
-extension ApprovalStatusValueExtension on ApprovalStatus {
-  String toValue() {
-    switch (this) {
-      case ApprovalStatus.approved:
-        return 'Approved';
-      case ApprovalStatus.rejected:
-        return 'Rejected';
-    }
-  }
-}
+  final String value;
 
-extension ApprovalStatusFromString on String {
-  ApprovalStatus toApprovalStatus() {
-    switch (this) {
-      case 'Approved':
-        return ApprovalStatus.approved;
-      case 'Rejected':
-        return ApprovalStatus.rejected;
-    }
-    throw Exception('$this is not known in enum ApprovalStatus');
-  }
+  const ApprovalStatus(this.value);
+
+  static ApprovalStatus fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum ApprovalStatus'));
 }
 
 /// Represents information about an artifact that is worked on by actions in the
@@ -3531,7 +3434,7 @@ class ArtifactLocation {
           ? S3ArtifactLocation.fromJson(
               json['s3Location'] as Map<String, dynamic>)
           : null,
-      type: (json['type'] as String?)?.toArtifactLocationType(),
+      type: (json['type'] as String?)?.let(ArtifactLocationType.fromString),
     );
   }
 
@@ -3540,32 +3443,23 @@ class ArtifactLocation {
     final type = this.type;
     return {
       if (s3Location != null) 's3Location': s3Location,
-      if (type != null) 'type': type.toValue(),
+      if (type != null) 'type': type.value,
     };
   }
 }
 
 enum ArtifactLocationType {
-  s3,
-}
+  s3('S3'),
+  ;
 
-extension ArtifactLocationTypeValueExtension on ArtifactLocationType {
-  String toValue() {
-    switch (this) {
-      case ArtifactLocationType.s3:
-        return 'S3';
-    }
-  }
-}
+  final String value;
 
-extension ArtifactLocationTypeFromString on String {
-  ArtifactLocationType toArtifactLocationType() {
-    switch (this) {
-      case 'S3':
-        return ArtifactLocationType.s3;
-    }
-    throw Exception('$this is not known in enum ArtifactLocationType');
-  }
+  const ArtifactLocationType(this.value);
+
+  static ArtifactLocationType fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum ArtifactLocationType'));
 }
 
 /// Represents revision details of an artifact.
@@ -3668,7 +3562,7 @@ class ArtifactStore {
   factory ArtifactStore.fromJson(Map<String, dynamic> json) {
     return ArtifactStore(
       location: json['location'] as String,
-      type: (json['type'] as String).toArtifactStoreType(),
+      type: ArtifactStoreType.fromString((json['type'] as String)),
       encryptionKey: json['encryptionKey'] != null
           ? EncryptionKey.fromJson(
               json['encryptionKey'] as Map<String, dynamic>)
@@ -3682,33 +3576,24 @@ class ArtifactStore {
     final encryptionKey = this.encryptionKey;
     return {
       'location': location,
-      'type': type.toValue(),
+      'type': type.value,
       if (encryptionKey != null) 'encryptionKey': encryptionKey,
     };
   }
 }
 
 enum ArtifactStoreType {
-  s3,
-}
+  s3('S3'),
+  ;
 
-extension ArtifactStoreTypeValueExtension on ArtifactStoreType {
-  String toValue() {
-    switch (this) {
-      case ArtifactStoreType.s3:
-        return 'S3';
-    }
-  }
-}
+  final String value;
 
-extension ArtifactStoreTypeFromString on String {
-  ArtifactStoreType toArtifactStoreType() {
-    switch (this) {
-      case 'S3':
-        return ArtifactStoreType.s3;
-    }
-    throw Exception('$this is not known in enum ArtifactStoreType');
-  }
+  const ArtifactStoreType(this.value);
+
+  static ArtifactStoreType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum ArtifactStoreType'));
 }
 
 /// Reserved for future use.
@@ -3727,7 +3612,7 @@ class BlockerDeclaration {
   factory BlockerDeclaration.fromJson(Map<String, dynamic> json) {
     return BlockerDeclaration(
       name: json['name'] as String,
-      type: (json['type'] as String).toBlockerType(),
+      type: BlockerType.fromString((json['type'] as String)),
     );
   }
 
@@ -3736,32 +3621,22 @@ class BlockerDeclaration {
     final type = this.type;
     return {
       'name': name,
-      'type': type.toValue(),
+      'type': type.value,
     };
   }
 }
 
 enum BlockerType {
-  schedule,
-}
+  schedule('Schedule'),
+  ;
 
-extension BlockerTypeValueExtension on BlockerType {
-  String toValue() {
-    switch (this) {
-      case BlockerType.schedule:
-        return 'Schedule';
-    }
-  }
-}
+  final String value;
 
-extension BlockerTypeFromString on String {
-  BlockerType toBlockerType() {
-    switch (this) {
-      case 'Schedule':
-        return BlockerType.schedule;
-    }
-    throw Exception('$this is not known in enum BlockerType');
-  }
+  const BlockerType(this.value);
+
+  static BlockerType fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum BlockerType'));
 }
 
 /// Represents the output of a <code>CreateCustomActionType</code> operation.
@@ -3920,7 +3795,7 @@ class EncryptionKey {
   factory EncryptionKey.fromJson(Map<String, dynamic> json) {
     return EncryptionKey(
       id: json['id'] as String,
-      type: (json['type'] as String).toEncryptionKeyType(),
+      type: EncryptionKeyType.fromString((json['type'] as String)),
     );
   }
 
@@ -3929,32 +3804,23 @@ class EncryptionKey {
     final type = this.type;
     return {
       'id': id,
-      'type': type.toValue(),
+      'type': type.value,
     };
   }
 }
 
 enum EncryptionKeyType {
-  kms,
-}
+  kms('KMS'),
+  ;
 
-extension EncryptionKeyTypeValueExtension on EncryptionKeyType {
-  String toValue() {
-    switch (this) {
-      case EncryptionKeyType.kms:
-        return 'KMS';
-    }
-  }
-}
+  final String value;
 
-extension EncryptionKeyTypeFromString on String {
-  EncryptionKeyType toEncryptionKeyType() {
-    switch (this) {
-      case 'KMS':
-        return EncryptionKeyType.kms;
-    }
-    throw Exception('$this is not known in enum EncryptionKeyType');
-  }
+  const EncryptionKeyType(this.value);
+
+  static EncryptionKeyType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum EncryptionKeyType'));
 }
 
 /// Represents information about an error in AWS CodePipeline.
@@ -4039,7 +3905,8 @@ class ExecutionTrigger {
   factory ExecutionTrigger.fromJson(Map<String, dynamic> json) {
     return ExecutionTrigger(
       triggerDetail: json['triggerDetail'] as String?,
-      triggerType: (json['triggerType'] as String?)?.toTriggerType(),
+      triggerType:
+          (json['triggerType'] as String?)?.let(TriggerType.fromString),
     );
   }
 
@@ -4048,7 +3915,7 @@ class ExecutionTrigger {
     final triggerType = this.triggerType;
     return {
       if (triggerDetail != null) 'triggerDetail': triggerDetail,
-      if (triggerType != null) 'triggerType': triggerType.toValue(),
+      if (triggerType != null) 'triggerType': triggerType.value,
     };
   }
 }
@@ -4095,31 +3962,18 @@ class ExecutorConfiguration {
 }
 
 enum ExecutorType {
-  jobWorker,
-  lambda,
-}
+  jobWorker('JobWorker'),
+  lambda('Lambda'),
+  ;
 
-extension ExecutorTypeValueExtension on ExecutorType {
-  String toValue() {
-    switch (this) {
-      case ExecutorType.jobWorker:
-        return 'JobWorker';
-      case ExecutorType.lambda:
-        return 'Lambda';
-    }
-  }
-}
+  final String value;
 
-extension ExecutorTypeFromString on String {
-  ExecutorType toExecutorType() {
-    switch (this) {
-      case 'JobWorker':
-        return ExecutorType.jobWorker;
-      case 'Lambda':
-        return ExecutorType.lambda;
-    }
-    throw Exception('$this is not known in enum ExecutorType');
-  }
+  const ExecutorType(this.value);
+
+  static ExecutorType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum ExecutorType'));
 }
 
 /// Represents information about failure details.
@@ -4145,7 +3999,7 @@ class FailureDetails {
     final externalExecutionId = this.externalExecutionId;
     return {
       'message': message,
-      'type': type.toValue(),
+      'type': type.value,
       if (externalExecutionId != null)
         'externalExecutionId': externalExecutionId,
     };
@@ -4153,51 +4007,21 @@ class FailureDetails {
 }
 
 enum FailureType {
-  jobFailed,
-  configurationError,
-  permissionError,
-  revisionOutOfSync,
-  revisionUnavailable,
-  systemUnavailable,
-}
+  jobFailed('JobFailed'),
+  configurationError('ConfigurationError'),
+  permissionError('PermissionError'),
+  revisionOutOfSync('RevisionOutOfSync'),
+  revisionUnavailable('RevisionUnavailable'),
+  systemUnavailable('SystemUnavailable'),
+  ;
 
-extension FailureTypeValueExtension on FailureType {
-  String toValue() {
-    switch (this) {
-      case FailureType.jobFailed:
-        return 'JobFailed';
-      case FailureType.configurationError:
-        return 'ConfigurationError';
-      case FailureType.permissionError:
-        return 'PermissionError';
-      case FailureType.revisionOutOfSync:
-        return 'RevisionOutOfSync';
-      case FailureType.revisionUnavailable:
-        return 'RevisionUnavailable';
-      case FailureType.systemUnavailable:
-        return 'SystemUnavailable';
-    }
-  }
-}
+  final String value;
 
-extension FailureTypeFromString on String {
-  FailureType toFailureType() {
-    switch (this) {
-      case 'JobFailed':
-        return FailureType.jobFailed;
-      case 'ConfigurationError':
-        return FailureType.configurationError;
-      case 'PermissionError':
-        return FailureType.permissionError;
-      case 'RevisionOutOfSync':
-        return FailureType.revisionOutOfSync;
-      case 'RevisionUnavailable':
-        return FailureType.revisionUnavailable;
-      case 'SystemUnavailable':
-        return FailureType.systemUnavailable;
-    }
-    throw Exception('$this is not known in enum FailureType');
-  }
+  const FailureType(this.value);
+
+  static FailureType fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum FailureType'));
 }
 
 class GetActionTypeOutput {
@@ -4627,56 +4451,22 @@ class JobDetails {
 }
 
 enum JobStatus {
-  created,
-  queued,
-  dispatched,
-  inProgress,
-  timedOut,
-  succeeded,
-  failed,
-}
+  created('Created'),
+  queued('Queued'),
+  dispatched('Dispatched'),
+  inProgress('InProgress'),
+  timedOut('TimedOut'),
+  succeeded('Succeeded'),
+  failed('Failed'),
+  ;
 
-extension JobStatusValueExtension on JobStatus {
-  String toValue() {
-    switch (this) {
-      case JobStatus.created:
-        return 'Created';
-      case JobStatus.queued:
-        return 'Queued';
-      case JobStatus.dispatched:
-        return 'Dispatched';
-      case JobStatus.inProgress:
-        return 'InProgress';
-      case JobStatus.timedOut:
-        return 'TimedOut';
-      case JobStatus.succeeded:
-        return 'Succeeded';
-      case JobStatus.failed:
-        return 'Failed';
-    }
-  }
-}
+  final String value;
 
-extension JobStatusFromString on String {
-  JobStatus toJobStatus() {
-    switch (this) {
-      case 'Created':
-        return JobStatus.created;
-      case 'Queued':
-        return JobStatus.queued;
-      case 'Dispatched':
-        return JobStatus.dispatched;
-      case 'InProgress':
-        return JobStatus.inProgress;
-      case 'TimedOut':
-        return JobStatus.timedOut;
-      case 'Succeeded':
-        return JobStatus.succeeded;
-      case 'Failed':
-        return JobStatus.failed;
-    }
-    throw Exception('$this is not known in enum JobStatus');
-  }
+  const JobStatus(this.value);
+
+  static JobStatus fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum JobStatus'));
 }
 
 /// Details about the polling configuration for the <code>JobWorker</code>
@@ -5287,7 +5077,8 @@ class PipelineExecution {
       pipelineExecutionId: json['pipelineExecutionId'] as String?,
       pipelineName: json['pipelineName'] as String?,
       pipelineVersion: json['pipelineVersion'] as int?,
-      status: (json['status'] as String?)?.toPipelineExecutionStatus(),
+      status:
+          (json['status'] as String?)?.let(PipelineExecutionStatus.fromString),
       statusSummary: json['statusSummary'] as String?,
     );
   }
@@ -5305,63 +5096,30 @@ class PipelineExecution {
         'pipelineExecutionId': pipelineExecutionId,
       if (pipelineName != null) 'pipelineName': pipelineName,
       if (pipelineVersion != null) 'pipelineVersion': pipelineVersion,
-      if (status != null) 'status': status.toValue(),
+      if (status != null) 'status': status.value,
       if (statusSummary != null) 'statusSummary': statusSummary,
     };
   }
 }
 
 enum PipelineExecutionStatus {
-  cancelled,
-  inProgress,
-  stopped,
-  stopping,
-  succeeded,
-  superseded,
-  failed,
-}
+  cancelled('Cancelled'),
+  inProgress('InProgress'),
+  stopped('Stopped'),
+  stopping('Stopping'),
+  succeeded('Succeeded'),
+  superseded('Superseded'),
+  failed('Failed'),
+  ;
 
-extension PipelineExecutionStatusValueExtension on PipelineExecutionStatus {
-  String toValue() {
-    switch (this) {
-      case PipelineExecutionStatus.cancelled:
-        return 'Cancelled';
-      case PipelineExecutionStatus.inProgress:
-        return 'InProgress';
-      case PipelineExecutionStatus.stopped:
-        return 'Stopped';
-      case PipelineExecutionStatus.stopping:
-        return 'Stopping';
-      case PipelineExecutionStatus.succeeded:
-        return 'Succeeded';
-      case PipelineExecutionStatus.superseded:
-        return 'Superseded';
-      case PipelineExecutionStatus.failed:
-        return 'Failed';
-    }
-  }
-}
+  final String value;
 
-extension PipelineExecutionStatusFromString on String {
-  PipelineExecutionStatus toPipelineExecutionStatus() {
-    switch (this) {
-      case 'Cancelled':
-        return PipelineExecutionStatus.cancelled;
-      case 'InProgress':
-        return PipelineExecutionStatus.inProgress;
-      case 'Stopped':
-        return PipelineExecutionStatus.stopped;
-      case 'Stopping':
-        return PipelineExecutionStatus.stopping;
-      case 'Succeeded':
-        return PipelineExecutionStatus.succeeded;
-      case 'Superseded':
-        return PipelineExecutionStatus.superseded;
-      case 'Failed':
-        return PipelineExecutionStatus.failed;
-    }
-    throw Exception('$this is not known in enum PipelineExecutionStatus');
-  }
+  const PipelineExecutionStatus(this.value);
+
+  static PipelineExecutionStatus fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum PipelineExecutionStatus'));
 }
 
 /// Summary information about a pipeline execution.
@@ -5441,7 +5199,8 @@ class PipelineExecutionSummary {
           .map((e) => SourceRevision.fromJson(e as Map<String, dynamic>))
           .toList(),
       startTime: timeStampFromJson(json['startTime']),
-      status: (json['status'] as String?)?.toPipelineExecutionStatus(),
+      status:
+          (json['status'] as String?)?.let(PipelineExecutionStatus.fromString),
       stopTrigger: json['stopTrigger'] != null
           ? StopExecutionTrigger.fromJson(
               json['stopTrigger'] as Map<String, dynamic>)
@@ -5467,7 +5226,7 @@ class PipelineExecutionSummary {
         'pipelineExecutionId': pipelineExecutionId,
       if (sourceRevisions != null) 'sourceRevisions': sourceRevisions,
       if (startTime != null) 'startTime': unixTimestampToJson(startTime),
-      if (status != null) 'status': status.toValue(),
+      if (status != null) 'status': status.value,
       if (stopTrigger != null) 'stopTrigger': stopTrigger,
       if (trigger != null) 'trigger': trigger,
     };
@@ -5923,7 +5682,7 @@ class StageExecution {
   factory StageExecution.fromJson(Map<String, dynamic> json) {
     return StageExecution(
       pipelineExecutionId: json['pipelineExecutionId'] as String,
-      status: (json['status'] as String).toStageExecutionStatus(),
+      status: StageExecutionStatus.fromString((json['status'] as String)),
     );
   }
 
@@ -5932,80 +5691,42 @@ class StageExecution {
     final status = this.status;
     return {
       'pipelineExecutionId': pipelineExecutionId,
-      'status': status.toValue(),
+      'status': status.value,
     };
   }
 }
 
 enum StageExecutionStatus {
-  cancelled,
-  inProgress,
-  failed,
-  stopped,
-  stopping,
-  succeeded,
-}
+  cancelled('Cancelled'),
+  inProgress('InProgress'),
+  failed('Failed'),
+  stopped('Stopped'),
+  stopping('Stopping'),
+  succeeded('Succeeded'),
+  ;
 
-extension StageExecutionStatusValueExtension on StageExecutionStatus {
-  String toValue() {
-    switch (this) {
-      case StageExecutionStatus.cancelled:
-        return 'Cancelled';
-      case StageExecutionStatus.inProgress:
-        return 'InProgress';
-      case StageExecutionStatus.failed:
-        return 'Failed';
-      case StageExecutionStatus.stopped:
-        return 'Stopped';
-      case StageExecutionStatus.stopping:
-        return 'Stopping';
-      case StageExecutionStatus.succeeded:
-        return 'Succeeded';
-    }
-  }
-}
+  final String value;
 
-extension StageExecutionStatusFromString on String {
-  StageExecutionStatus toStageExecutionStatus() {
-    switch (this) {
-      case 'Cancelled':
-        return StageExecutionStatus.cancelled;
-      case 'InProgress':
-        return StageExecutionStatus.inProgress;
-      case 'Failed':
-        return StageExecutionStatus.failed;
-      case 'Stopped':
-        return StageExecutionStatus.stopped;
-      case 'Stopping':
-        return StageExecutionStatus.stopping;
-      case 'Succeeded':
-        return StageExecutionStatus.succeeded;
-    }
-    throw Exception('$this is not known in enum StageExecutionStatus');
-  }
+  const StageExecutionStatus(this.value);
+
+  static StageExecutionStatus fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum StageExecutionStatus'));
 }
 
 enum StageRetryMode {
-  failedActions,
-}
+  failedActions('FAILED_ACTIONS'),
+  ;
 
-extension StageRetryModeValueExtension on StageRetryMode {
-  String toValue() {
-    switch (this) {
-      case StageRetryMode.failedActions:
-        return 'FAILED_ACTIONS';
-    }
-  }
-}
+  final String value;
 
-extension StageRetryModeFromString on String {
-  StageRetryMode toStageRetryMode() {
-    switch (this) {
-      case 'FAILED_ACTIONS':
-        return StageRetryMode.failedActions;
-    }
-    throw Exception('$this is not known in enum StageRetryMode');
-  }
+  const StageRetryMode(this.value);
+
+  static StageRetryMode fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum StageRetryMode'));
 }
 
 /// Represents information about the state of the stage.
@@ -6072,31 +5793,18 @@ class StageState {
 }
 
 enum StageTransitionType {
-  inbound,
-  outbound,
-}
+  inbound('Inbound'),
+  outbound('Outbound'),
+  ;
 
-extension StageTransitionTypeValueExtension on StageTransitionType {
-  String toValue() {
-    switch (this) {
-      case StageTransitionType.inbound:
-        return 'Inbound';
-      case StageTransitionType.outbound:
-        return 'Outbound';
-    }
-  }
-}
+  final String value;
 
-extension StageTransitionTypeFromString on String {
-  StageTransitionType toStageTransitionType() {
-    switch (this) {
-      case 'Inbound':
-        return StageTransitionType.inbound;
-      case 'Outbound':
-        return StageTransitionType.outbound;
-    }
-    throw Exception('$this is not known in enum StageTransitionType');
-  }
+  const StageTransitionType(this.value);
+
+  static StageTransitionType fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum StageTransitionType'));
 }
 
 /// Represents the output of a <code>StartPipelineExecution</code> action.
@@ -6444,51 +6152,21 @@ class TransitionState {
 }
 
 enum TriggerType {
-  createPipeline,
-  startPipelineExecution,
-  pollForSourceChanges,
-  webhook,
-  cloudWatchEvent,
-  putActionRevision,
-}
+  createPipeline('CreatePipeline'),
+  startPipelineExecution('StartPipelineExecution'),
+  pollForSourceChanges('PollForSourceChanges'),
+  webhook('Webhook'),
+  cloudWatchEvent('CloudWatchEvent'),
+  putActionRevision('PutActionRevision'),
+  ;
 
-extension TriggerTypeValueExtension on TriggerType {
-  String toValue() {
-    switch (this) {
-      case TriggerType.createPipeline:
-        return 'CreatePipeline';
-      case TriggerType.startPipelineExecution:
-        return 'StartPipelineExecution';
-      case TriggerType.pollForSourceChanges:
-        return 'PollForSourceChanges';
-      case TriggerType.webhook:
-        return 'Webhook';
-      case TriggerType.cloudWatchEvent:
-        return 'CloudWatchEvent';
-      case TriggerType.putActionRevision:
-        return 'PutActionRevision';
-    }
-  }
-}
+  final String value;
 
-extension TriggerTypeFromString on String {
-  TriggerType toTriggerType() {
-    switch (this) {
-      case 'CreatePipeline':
-        return TriggerType.createPipeline;
-      case 'StartPipelineExecution':
-        return TriggerType.startPipelineExecution;
-      case 'PollForSourceChanges':
-        return TriggerType.pollForSourceChanges;
-      case 'Webhook':
-        return TriggerType.webhook;
-      case 'CloudWatchEvent':
-        return TriggerType.cloudWatchEvent;
-      case 'PutActionRevision':
-        return TriggerType.putActionRevision;
-    }
-    throw Exception('$this is not known in enum TriggerType');
-  }
+  const TriggerType(this.value);
+
+  static TriggerType fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum TriggerType'));
 }
 
 class UntagResourceOutput {
@@ -6563,36 +6241,19 @@ class WebhookAuthConfiguration {
 }
 
 enum WebhookAuthenticationType {
-  githubHmac,
-  ip,
-  unauthenticated,
-}
+  githubHmac('GITHUB_HMAC'),
+  ip('IP'),
+  unauthenticated('UNAUTHENTICATED'),
+  ;
 
-extension WebhookAuthenticationTypeValueExtension on WebhookAuthenticationType {
-  String toValue() {
-    switch (this) {
-      case WebhookAuthenticationType.githubHmac:
-        return 'GITHUB_HMAC';
-      case WebhookAuthenticationType.ip:
-        return 'IP';
-      case WebhookAuthenticationType.unauthenticated:
-        return 'UNAUTHENTICATED';
-    }
-  }
-}
+  final String value;
 
-extension WebhookAuthenticationTypeFromString on String {
-  WebhookAuthenticationType toWebhookAuthenticationType() {
-    switch (this) {
-      case 'GITHUB_HMAC':
-        return WebhookAuthenticationType.githubHmac;
-      case 'IP':
-        return WebhookAuthenticationType.ip;
-      case 'UNAUTHENTICATED':
-        return WebhookAuthenticationType.unauthenticated;
-    }
-    throw Exception('$this is not known in enum WebhookAuthenticationType');
-  }
+  const WebhookAuthenticationType(this.value);
+
+  static WebhookAuthenticationType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum WebhookAuthenticationType'));
 }
 
 /// Represents information about a webhook and its definition.
@@ -6648,8 +6309,8 @@ class WebhookDefinition {
 
   factory WebhookDefinition.fromJson(Map<String, dynamic> json) {
     return WebhookDefinition(
-      authentication:
-          (json['authentication'] as String).toWebhookAuthenticationType(),
+      authentication: WebhookAuthenticationType.fromString(
+          (json['authentication'] as String)),
       authenticationConfiguration: WebhookAuthConfiguration.fromJson(
           json['authenticationConfiguration'] as Map<String, dynamic>),
       filters: (json['filters'] as List)
@@ -6670,7 +6331,7 @@ class WebhookDefinition {
     final targetAction = this.targetAction;
     final targetPipeline = this.targetPipeline;
     return {
-      'authentication': authentication.toValue(),
+      'authentication': authentication.value,
       'authenticationConfiguration': authenticationConfiguration,
       'filters': filters,
       'name': name,

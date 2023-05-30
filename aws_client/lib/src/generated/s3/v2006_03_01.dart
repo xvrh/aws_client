@@ -135,7 +135,7 @@ class S3 {
     final headers = <String, String>{
       if (expectedBucketOwner != null)
         'x-amz-expected-bucket-owner': expectedBucketOwner.toString(),
-      if (requestPayer != null) 'x-amz-request-payer': requestPayer.toValue(),
+      if (requestPayer != null) 'x-amz-request-payer': requestPayer.value,
     };
     final $query = <String, List<String>>{
       'uploadId': [uploadId],
@@ -399,7 +399,7 @@ class S3 {
         'x-amz-checksum-sha256': checksumSHA256.toString(),
       if (expectedBucketOwner != null)
         'x-amz-expected-bucket-owner': expectedBucketOwner.toString(),
-      if (requestPayer != null) 'x-amz-request-payer': requestPayer.toValue(),
+      if (requestPayer != null) 'x-amz-request-payer': requestPayer.value,
       if (sSECustomerAlgorithm != null)
         'x-amz-server-side-encryption-customer-algorithm':
             sSECustomerAlgorithm.toString(),
@@ -966,13 +966,13 @@ class S3 {
   }) async {
     final headers = <String, String>{
       'x-amz-copy-source': copySource.toString(),
-      if (acl != null) 'x-amz-acl': acl.toValue(),
+      if (acl != null) 'x-amz-acl': acl.value,
       if (bucketKeyEnabled != null)
         'x-amz-server-side-encryption-bucket-key-enabled':
             bucketKeyEnabled.toString(),
       if (cacheControl != null) 'Cache-Control': cacheControl.toString(),
       if (checksumAlgorithm != null)
-        'x-amz-checksum-algorithm': checksumAlgorithm.toValue(),
+        'x-amz-checksum-algorithm': checksumAlgorithm.value,
       if (contentDisposition != null)
         'Content-Disposition': contentDisposition.toString(),
       if (contentEncoding != null)
@@ -1014,15 +1014,15 @@ class S3 {
       if (metadata != null)
         ...metadata.map((key, value) => MapEntry('x-amz-meta-$key', value)),
       if (metadataDirective != null)
-        'x-amz-metadata-directive': metadataDirective.toValue(),
+        'x-amz-metadata-directive': metadataDirective.value,
       if (objectLockLegalHoldStatus != null)
-        'x-amz-object-lock-legal-hold': objectLockLegalHoldStatus.toValue(),
+        'x-amz-object-lock-legal-hold': objectLockLegalHoldStatus.value,
       if (objectLockMode != null)
-        'x-amz-object-lock-mode': objectLockMode.toValue(),
+        'x-amz-object-lock-mode': objectLockMode.value,
       if (objectLockRetainUntilDate != null)
         'x-amz-object-lock-retain-until-date':
             _s.iso8601ToJson(objectLockRetainUntilDate),
-      if (requestPayer != null) 'x-amz-request-payer': requestPayer.toValue(),
+      if (requestPayer != null) 'x-amz-request-payer': requestPayer.value,
       if (sSECustomerAlgorithm != null)
         'x-amz-server-side-encryption-customer-algorithm':
             sSECustomerAlgorithm.toString(),
@@ -1037,11 +1037,11 @@ class S3 {
       if (sSEKMSKeyId != null)
         'x-amz-server-side-encryption-aws-kms-key-id': sSEKMSKeyId.toString(),
       if (serverSideEncryption != null)
-        'x-amz-server-side-encryption': serverSideEncryption.toValue(),
-      if (storageClass != null) 'x-amz-storage-class': storageClass.toValue(),
+        'x-amz-server-side-encryption': serverSideEncryption.value,
+      if (storageClass != null) 'x-amz-storage-class': storageClass.value,
       if (tagging != null) 'x-amz-tagging': tagging.toString(),
       if (taggingDirective != null)
-        'x-amz-tagging-directive': taggingDirective.toValue(),
+        'x-amz-tagging-directive': taggingDirective.value,
       if (websiteRedirectLocation != null)
         'x-amz-website-redirect-location': websiteRedirectLocation.toString(),
     };
@@ -1293,7 +1293,7 @@ class S3 {
     ObjectOwnership? objectOwnership,
   }) async {
     final headers = <String, String>{
-      if (acl != null) 'x-amz-acl': acl.toValue(),
+      if (acl != null) 'x-amz-acl': acl.value,
       if (grantFullControl != null)
         'x-amz-grant-full-control': grantFullControl.toString(),
       if (grantRead != null) 'x-amz-grant-read': grantRead.toString(),
@@ -1305,7 +1305,7 @@ class S3 {
         'x-amz-bucket-object-lock-enabled':
             objectLockEnabledForBucket.toString(),
       if (objectOwnership != null)
-        'x-amz-object-ownership': objectOwnership.toValue(),
+        'x-amz-object-ownership': objectOwnership.value,
     };
     final $result = await _protocol.sendRaw(
       method: 'PUT',
@@ -1814,13 +1814,13 @@ class S3 {
     String? websiteRedirectLocation,
   }) async {
     final headers = <String, String>{
-      if (acl != null) 'x-amz-acl': acl.toValue(),
+      if (acl != null) 'x-amz-acl': acl.value,
       if (bucketKeyEnabled != null)
         'x-amz-server-side-encryption-bucket-key-enabled':
             bucketKeyEnabled.toString(),
       if (cacheControl != null) 'Cache-Control': cacheControl.toString(),
       if (checksumAlgorithm != null)
-        'x-amz-checksum-algorithm': checksumAlgorithm.toValue(),
+        'x-amz-checksum-algorithm': checksumAlgorithm.value,
       if (contentDisposition != null)
         'Content-Disposition': contentDisposition.toString(),
       if (contentEncoding != null)
@@ -1840,13 +1840,13 @@ class S3 {
       if (metadata != null)
         ...metadata.map((key, value) => MapEntry('x-amz-meta-$key', value)),
       if (objectLockLegalHoldStatus != null)
-        'x-amz-object-lock-legal-hold': objectLockLegalHoldStatus.toValue(),
+        'x-amz-object-lock-legal-hold': objectLockLegalHoldStatus.value,
       if (objectLockMode != null)
-        'x-amz-object-lock-mode': objectLockMode.toValue(),
+        'x-amz-object-lock-mode': objectLockMode.value,
       if (objectLockRetainUntilDate != null)
         'x-amz-object-lock-retain-until-date':
             _s.iso8601ToJson(objectLockRetainUntilDate),
-      if (requestPayer != null) 'x-amz-request-payer': requestPayer.toValue(),
+      if (requestPayer != null) 'x-amz-request-payer': requestPayer.value,
       if (sSECustomerAlgorithm != null)
         'x-amz-server-side-encryption-customer-algorithm':
             sSECustomerAlgorithm.toString(),
@@ -1861,8 +1861,8 @@ class S3 {
       if (sSEKMSKeyId != null)
         'x-amz-server-side-encryption-aws-kms-key-id': sSEKMSKeyId.toString(),
       if (serverSideEncryption != null)
-        'x-amz-server-side-encryption': serverSideEncryption.toValue(),
-      if (storageClass != null) 'x-amz-storage-class': storageClass.toValue(),
+        'x-amz-server-side-encryption': serverSideEncryption.value,
+      if (storageClass != null) 'x-amz-storage-class': storageClass.value,
       if (tagging != null) 'x-amz-tagging': tagging.toString(),
       if (websiteRedirectLocation != null)
         'x-amz-website-redirect-location': websiteRedirectLocation.toString(),
@@ -2724,7 +2724,7 @@ class S3 {
       if (expectedBucketOwner != null)
         'x-amz-expected-bucket-owner': expectedBucketOwner.toString(),
       if (mfa != null) 'x-amz-mfa': mfa.toString(),
-      if (requestPayer != null) 'x-amz-request-payer': requestPayer.toValue(),
+      if (requestPayer != null) 'x-amz-request-payer': requestPayer.value,
     };
     final $query = <String, List<String>>{
       if (versionId != null) 'versionId': [versionId],
@@ -2964,11 +2964,11 @@ class S3 {
         'x-amz-bypass-governance-retention':
             bypassGovernanceRetention.toString(),
       if (checksumAlgorithm != null)
-        'x-amz-sdk-checksum-algorithm': checksumAlgorithm.toValue(),
+        'x-amz-sdk-checksum-algorithm': checksumAlgorithm.value,
       if (expectedBucketOwner != null)
         'x-amz-expected-bucket-owner': expectedBucketOwner.toString(),
       if (mfa != null) 'x-amz-mfa': mfa.toString(),
-      if (requestPayer != null) 'x-amz-request-payer': requestPayer.toValue(),
+      if (requestPayer != null) 'x-amz-request-payer': requestPayer.value,
     };
     final $result = await _protocol.sendRaw(
       method: 'POST',
@@ -4744,7 +4744,7 @@ class S3 {
     String? versionId,
   }) async {
     final headers = <String, String>{
-      if (checksumMode != null) 'x-amz-checksum-mode': checksumMode.toValue(),
+      if (checksumMode != null) 'x-amz-checksum-mode': checksumMode.value,
       if (expectedBucketOwner != null)
         'x-amz-expected-bucket-owner': expectedBucketOwner.toString(),
       if (ifMatch != null) 'If-Match': ifMatch.toString(),
@@ -4754,7 +4754,7 @@ class S3 {
       if (ifUnmodifiedSince != null)
         'If-Unmodified-Since': _s.rfc822ToJson(ifUnmodifiedSince),
       if (range != null) 'Range': range.toString(),
-      if (requestPayer != null) 'x-amz-request-payer': requestPayer.toValue(),
+      if (requestPayer != null) 'x-amz-request-payer': requestPayer.value,
       if (sSECustomerAlgorithm != null)
         'x-amz-server-side-encryption-customer-algorithm':
             sSECustomerAlgorithm.toString(),
@@ -4944,7 +4944,7 @@ class S3 {
     final headers = <String, String>{
       if (expectedBucketOwner != null)
         'x-amz-expected-bucket-owner': expectedBucketOwner.toString(),
-      if (requestPayer != null) 'x-amz-request-payer': requestPayer.toValue(),
+      if (requestPayer != null) 'x-amz-request-payer': requestPayer.value,
     };
     final $query = <String, List<String>>{
       if (versionId != null) 'versionId': [versionId],
@@ -5192,7 +5192,7 @@ class S3 {
       if (maxParts != null) 'x-amz-max-parts': maxParts.toString(),
       if (partNumberMarker != null)
         'x-amz-part-number-marker': partNumberMarker.toString(),
-      if (requestPayer != null) 'x-amz-request-payer': requestPayer.toValue(),
+      if (requestPayer != null) 'x-amz-request-payer': requestPayer.value,
       if (sSECustomerAlgorithm != null)
         'x-amz-server-side-encryption-customer-algorithm':
             sSECustomerAlgorithm.toString(),
@@ -5221,8 +5221,8 @@ class S3 {
           .extractXmlChild($elem, 'ObjectParts')
           ?.let(GetObjectAttributesParts.fromXml),
       objectSize: _s.extractXmlIntValue($elem, 'ObjectSize'),
-      storageClass:
-          _s.extractXmlStringValue($elem, 'StorageClass')?.toStorageClass(),
+      storageClass: StorageClass.fromString(
+          _s.extractXmlStringValue($elem, 'StorageClass')),
       deleteMarker:
           _s.extractHeaderBoolValue($result.headers, 'x-amz-delete-marker'),
       lastModified:
@@ -5283,7 +5283,7 @@ class S3 {
     final headers = <String, String>{
       if (expectedBucketOwner != null)
         'x-amz-expected-bucket-owner': expectedBucketOwner.toString(),
-      if (requestPayer != null) 'x-amz-request-payer': requestPayer.toValue(),
+      if (requestPayer != null) 'x-amz-request-payer': requestPayer.value,
     };
     final $query = <String, List<String>>{
       if (versionId != null) 'versionId': [versionId],
@@ -5403,7 +5403,7 @@ class S3 {
     final headers = <String, String>{
       if (expectedBucketOwner != null)
         'x-amz-expected-bucket-owner': expectedBucketOwner.toString(),
-      if (requestPayer != null) 'x-amz-request-payer': requestPayer.toValue(),
+      if (requestPayer != null) 'x-amz-request-payer': requestPayer.value,
     };
     final $query = <String, List<String>>{
       if (versionId != null) 'versionId': [versionId],
@@ -5500,7 +5500,7 @@ class S3 {
     final headers = <String, String>{
       if (expectedBucketOwner != null)
         'x-amz-expected-bucket-owner': expectedBucketOwner.toString(),
-      if (requestPayer != null) 'x-amz-request-payer': requestPayer.toValue(),
+      if (requestPayer != null) 'x-amz-request-payer': requestPayer.value,
     };
     final $query = <String, List<String>>{
       if (versionId != null) 'versionId': [versionId],
@@ -5565,7 +5565,7 @@ class S3 {
     final headers = <String, String>{
       if (expectedBucketOwner != null)
         'x-amz-expected-bucket-owner': expectedBucketOwner.toString(),
-      if (requestPayer != null) 'x-amz-request-payer': requestPayer.toValue(),
+      if (requestPayer != null) 'x-amz-request-payer': requestPayer.value,
     };
     final $result = await _protocol.sendRaw(
       method: 'GET',
@@ -5965,7 +5965,7 @@ class S3 {
     String? versionId,
   }) async {
     final headers = <String, String>{
-      if (checksumMode != null) 'x-amz-checksum-mode': checksumMode.toValue(),
+      if (checksumMode != null) 'x-amz-checksum-mode': checksumMode.value,
       if (expectedBucketOwner != null)
         'x-amz-expected-bucket-owner': expectedBucketOwner.toString(),
       if (ifMatch != null) 'If-Match': ifMatch.toString(),
@@ -5975,7 +5975,7 @@ class S3 {
       if (ifUnmodifiedSince != null)
         'If-Unmodified-Since': _s.rfc822ToJson(ifUnmodifiedSince),
       if (range != null) 'Range': range.toString(),
-      if (requestPayer != null) 'x-amz-request-payer': requestPayer.toValue(),
+      if (requestPayer != null) 'x-amz-request-payer': requestPayer.value,
       if (sSECustomerAlgorithm != null)
         'x-amz-server-side-encryption-customer-algorithm':
             sSECustomerAlgorithm.toString(),
@@ -6535,7 +6535,7 @@ class S3 {
     };
     final $query = <String, List<String>>{
       if (delimiter != null) 'delimiter': [delimiter],
-      if (encodingType != null) 'encoding-type': [encodingType.toValue()],
+      if (encodingType != null) 'encoding-type': [encodingType.value],
       if (keyMarker != null) 'key-marker': [keyMarker],
       if (maxUploads != null) 'max-uploads': [maxUploads.toString()],
       if (prefix != null) 'prefix': [prefix],
@@ -6640,7 +6640,7 @@ class S3 {
     };
     final $query = <String, List<String>>{
       if (delimiter != null) 'delimiter': [delimiter],
-      if (encodingType != null) 'encoding-type': [encodingType.toValue()],
+      if (encodingType != null) 'encoding-type': [encodingType.value],
       if (keyMarker != null) 'key-marker': [keyMarker],
       if (maxKeys != null) 'max-keys': [maxKeys.toString()],
       if (prefix != null) 'prefix': [prefix],
@@ -6754,11 +6754,11 @@ class S3 {
     final headers = <String, String>{
       if (expectedBucketOwner != null)
         'x-amz-expected-bucket-owner': expectedBucketOwner.toString(),
-      if (requestPayer != null) 'x-amz-request-payer': requestPayer.toValue(),
+      if (requestPayer != null) 'x-amz-request-payer': requestPayer.value,
     };
     final $query = <String, List<String>>{
       if (delimiter != null) 'delimiter': [delimiter],
-      if (encodingType != null) 'encoding-type': [encodingType.toValue()],
+      if (encodingType != null) 'encoding-type': [encodingType.value],
       if (marker != null) 'marker': [marker],
       if (maxKeys != null) 'max-keys': [maxKeys.toString()],
       if (prefix != null) 'prefix': [prefix],
@@ -6897,12 +6897,12 @@ class S3 {
     final headers = <String, String>{
       if (expectedBucketOwner != null)
         'x-amz-expected-bucket-owner': expectedBucketOwner.toString(),
-      if (requestPayer != null) 'x-amz-request-payer': requestPayer.toValue(),
+      if (requestPayer != null) 'x-amz-request-payer': requestPayer.value,
     };
     final $query = <String, List<String>>{
       if (continuationToken != null) 'continuation-token': [continuationToken],
       if (delimiter != null) 'delimiter': [delimiter],
-      if (encodingType != null) 'encoding-type': [encodingType.toValue()],
+      if (encodingType != null) 'encoding-type': [encodingType.value],
       if (fetchOwner != null) 'fetch-owner': [fetchOwner.toString()],
       if (maxKeys != null) 'max-keys': [maxKeys.toString()],
       if (prefix != null) 'prefix': [prefix],
@@ -7049,7 +7049,7 @@ class S3 {
     final headers = <String, String>{
       if (expectedBucketOwner != null)
         'x-amz-expected-bucket-owner': expectedBucketOwner.toString(),
-      if (requestPayer != null) 'x-amz-request-payer': requestPayer.toValue(),
+      if (requestPayer != null) 'x-amz-request-payer': requestPayer.value,
       if (sSECustomerAlgorithm != null)
         'x-amz-server-side-encryption-customer-algorithm':
             sSECustomerAlgorithm.toString(),
@@ -7076,9 +7076,8 @@ class S3 {
     final $elem = await _s.xmlFromResponse($result);
     return ListPartsOutput(
       bucket: _s.extractXmlStringValue($elem, 'Bucket'),
-      checksumAlgorithm: _s
-          .extractXmlStringValue($elem, 'ChecksumAlgorithm')
-          ?.toChecksumAlgorithm(),
+      checksumAlgorithm: ChecksumAlgorithm.fromString(
+          _s.extractXmlStringValue($elem, 'ChecksumAlgorithm')),
       initiator: _s.extractXmlChild($elem, 'Initiator')?.let(Initiator.fromXml),
       isTruncated: _s.extractXmlBoolValue($elem, 'IsTruncated'),
       key: _s.extractXmlStringValue($elem, 'Key'),
@@ -7088,8 +7087,8 @@ class S3 {
       owner: _s.extractXmlChild($elem, 'Owner')?.let(Owner.fromXml),
       partNumberMarker: _s.extractXmlIntValue($elem, 'PartNumberMarker'),
       parts: $elem.findElements('Part').map(Part.fromXml).toList(),
-      storageClass:
-          _s.extractXmlStringValue($elem, 'StorageClass')?.toStorageClass(),
+      storageClass: StorageClass.fromString(
+          _s.extractXmlStringValue($elem, 'StorageClass')),
       uploadId: _s.extractXmlStringValue($elem, 'UploadId'),
       abortDate:
           _s.extractHeaderDateTimeValue($result.headers, 'x-amz-abort-date'),
@@ -7185,7 +7184,7 @@ class S3 {
   }) async {
     final headers = <String, String>{
       if (checksumAlgorithm != null)
-        'x-amz-sdk-checksum-algorithm': checksumAlgorithm.toValue(),
+        'x-amz-sdk-checksum-algorithm': checksumAlgorithm.value,
       if (expectedBucketOwner != null)
         'x-amz-expected-bucket-owner': expectedBucketOwner.toString(),
     };
@@ -7467,9 +7466,9 @@ class S3 {
     String? grantWriteACP,
   }) async {
     final headers = <String, String>{
-      if (acl != null) 'x-amz-acl': acl.toValue(),
+      if (acl != null) 'x-amz-acl': acl.value,
       if (checksumAlgorithm != null)
-        'x-amz-sdk-checksum-algorithm': checksumAlgorithm.toValue(),
+        'x-amz-sdk-checksum-algorithm': checksumAlgorithm.value,
       if (contentMD5 != null) 'Content-MD5': contentMD5.toString(),
       if (expectedBucketOwner != null)
         'x-amz-expected-bucket-owner': expectedBucketOwner.toString(),
@@ -7726,7 +7725,7 @@ class S3 {
   }) async {
     final headers = <String, String>{
       if (checksumAlgorithm != null)
-        'x-amz-sdk-checksum-algorithm': checksumAlgorithm.toValue(),
+        'x-amz-sdk-checksum-algorithm': checksumAlgorithm.value,
       if (contentMD5 != null) 'Content-MD5': contentMD5.toString(),
       if (expectedBucketOwner != null)
         'x-amz-expected-bucket-owner': expectedBucketOwner.toString(),
@@ -7829,7 +7828,7 @@ class S3 {
   }) async {
     final headers = <String, String>{
       if (checksumAlgorithm != null)
-        'x-amz-sdk-checksum-algorithm': checksumAlgorithm.toValue(),
+        'x-amz-sdk-checksum-algorithm': checksumAlgorithm.value,
       if (contentMD5 != null) 'Content-MD5': contentMD5.toString(),
       if (expectedBucketOwner != null)
         'x-amz-expected-bucket-owner': expectedBucketOwner.toString(),
@@ -8173,7 +8172,7 @@ class S3 {
   }) async {
     final headers = <String, String>{
       if (checksumAlgorithm != null)
-        'x-amz-sdk-checksum-algorithm': checksumAlgorithm.toValue(),
+        'x-amz-sdk-checksum-algorithm': checksumAlgorithm.value,
       if (contentMD5 != null) 'Content-MD5': contentMD5.toString(),
       if (expectedBucketOwner != null)
         'x-amz-expected-bucket-owner': expectedBucketOwner.toString(),
@@ -8310,7 +8309,7 @@ class S3 {
   }) async {
     final headers = <String, String>{
       if (checksumAlgorithm != null)
-        'x-amz-sdk-checksum-algorithm': checksumAlgorithm.toValue(),
+        'x-amz-sdk-checksum-algorithm': checksumAlgorithm.value,
       if (expectedBucketOwner != null)
         'x-amz-expected-bucket-owner': expectedBucketOwner.toString(),
     };
@@ -8445,7 +8444,7 @@ class S3 {
   }) async {
     final headers = <String, String>{
       if (checksumAlgorithm != null)
-        'x-amz-sdk-checksum-algorithm': checksumAlgorithm.toValue(),
+        'x-amz-sdk-checksum-algorithm': checksumAlgorithm.value,
       if (contentMD5 != null) 'Content-MD5': contentMD5.toString(),
       if (expectedBucketOwner != null)
         'x-amz-expected-bucket-owner': expectedBucketOwner.toString(),
@@ -8593,7 +8592,7 @@ class S3 {
   }) async {
     final headers = <String, String>{
       if (checksumAlgorithm != null)
-        'x-amz-sdk-checksum-algorithm': checksumAlgorithm.toValue(),
+        'x-amz-sdk-checksum-algorithm': checksumAlgorithm.value,
       if (contentMD5 != null) 'Content-MD5': contentMD5.toString(),
       if (expectedBucketOwner != null)
         'x-amz-expected-bucket-owner': expectedBucketOwner.toString(),
@@ -8851,7 +8850,7 @@ class S3 {
   }) async {
     final headers = <String, String>{
       if (checksumAlgorithm != null)
-        'x-amz-sdk-checksum-algorithm': checksumAlgorithm.toValue(),
+        'x-amz-sdk-checksum-algorithm': checksumAlgorithm.value,
       if (confirmRemoveSelfBucketAccess != null)
         'x-amz-confirm-remove-self-bucket-access':
             confirmRemoveSelfBucketAccess.toString(),
@@ -8988,7 +8987,7 @@ class S3 {
   }) async {
     final headers = <String, String>{
       if (checksumAlgorithm != null)
-        'x-amz-sdk-checksum-algorithm': checksumAlgorithm.toValue(),
+        'x-amz-sdk-checksum-algorithm': checksumAlgorithm.value,
       if (contentMD5 != null) 'Content-MD5': contentMD5.toString(),
       if (expectedBucketOwner != null)
         'x-amz-expected-bucket-owner': expectedBucketOwner.toString(),
@@ -9066,7 +9065,7 @@ class S3 {
   }) async {
     final headers = <String, String>{
       if (checksumAlgorithm != null)
-        'x-amz-sdk-checksum-algorithm': checksumAlgorithm.toValue(),
+        'x-amz-sdk-checksum-algorithm': checksumAlgorithm.value,
       if (contentMD5 != null) 'Content-MD5': contentMD5.toString(),
       if (expectedBucketOwner != null)
         'x-amz-expected-bucket-owner': expectedBucketOwner.toString(),
@@ -9206,7 +9205,7 @@ class S3 {
   }) async {
     final headers = <String, String>{
       if (checksumAlgorithm != null)
-        'x-amz-sdk-checksum-algorithm': checksumAlgorithm.toValue(),
+        'x-amz-sdk-checksum-algorithm': checksumAlgorithm.value,
       if (contentMD5 != null) 'Content-MD5': contentMD5.toString(),
       if (expectedBucketOwner != null)
         'x-amz-expected-bucket-owner': expectedBucketOwner.toString(),
@@ -9314,7 +9313,7 @@ class S3 {
   }) async {
     final headers = <String, String>{
       if (checksumAlgorithm != null)
-        'x-amz-sdk-checksum-algorithm': checksumAlgorithm.toValue(),
+        'x-amz-sdk-checksum-algorithm': checksumAlgorithm.value,
       if (contentMD5 != null) 'Content-MD5': contentMD5.toString(),
       if (expectedBucketOwner != null)
         'x-amz-expected-bucket-owner': expectedBucketOwner.toString(),
@@ -9465,7 +9464,7 @@ class S3 {
   }) async {
     final headers = <String, String>{
       if (checksumAlgorithm != null)
-        'x-amz-sdk-checksum-algorithm': checksumAlgorithm.toValue(),
+        'x-amz-sdk-checksum-algorithm': checksumAlgorithm.value,
       if (contentMD5 != null) 'Content-MD5': contentMD5.toString(),
       if (expectedBucketOwner != null)
         'x-amz-expected-bucket-owner': expectedBucketOwner.toString(),
@@ -9884,13 +9883,13 @@ class S3 {
     String? websiteRedirectLocation,
   }) async {
     final headers = <String, String>{
-      if (acl != null) 'x-amz-acl': acl.toValue(),
+      if (acl != null) 'x-amz-acl': acl.value,
       if (bucketKeyEnabled != null)
         'x-amz-server-side-encryption-bucket-key-enabled':
             bucketKeyEnabled.toString(),
       if (cacheControl != null) 'Cache-Control': cacheControl.toString(),
       if (checksumAlgorithm != null)
-        'x-amz-sdk-checksum-algorithm': checksumAlgorithm.toValue(),
+        'x-amz-sdk-checksum-algorithm': checksumAlgorithm.value,
       if (checksumCRC32 != null)
         'x-amz-checksum-crc32': checksumCRC32.toString(),
       if (checksumCRC32C != null)
@@ -9919,13 +9918,13 @@ class S3 {
       if (metadata != null)
         ...metadata.map((key, value) => MapEntry('x-amz-meta-$key', value)),
       if (objectLockLegalHoldStatus != null)
-        'x-amz-object-lock-legal-hold': objectLockLegalHoldStatus.toValue(),
+        'x-amz-object-lock-legal-hold': objectLockLegalHoldStatus.value,
       if (objectLockMode != null)
-        'x-amz-object-lock-mode': objectLockMode.toValue(),
+        'x-amz-object-lock-mode': objectLockMode.value,
       if (objectLockRetainUntilDate != null)
         'x-amz-object-lock-retain-until-date':
             _s.iso8601ToJson(objectLockRetainUntilDate),
-      if (requestPayer != null) 'x-amz-request-payer': requestPayer.toValue(),
+      if (requestPayer != null) 'x-amz-request-payer': requestPayer.value,
       if (sSECustomerAlgorithm != null)
         'x-amz-server-side-encryption-customer-algorithm':
             sSECustomerAlgorithm.toString(),
@@ -9940,8 +9939,8 @@ class S3 {
       if (sSEKMSKeyId != null)
         'x-amz-server-side-encryption-aws-kms-key-id': sSEKMSKeyId.toString(),
       if (serverSideEncryption != null)
-        'x-amz-server-side-encryption': serverSideEncryption.toValue(),
-      if (storageClass != null) 'x-amz-storage-class': storageClass.toValue(),
+        'x-amz-server-side-encryption': serverSideEncryption.value,
+      if (storageClass != null) 'x-amz-storage-class': storageClass.value,
       if (tagging != null) 'x-amz-tagging': tagging.toString(),
       if (websiteRedirectLocation != null)
         'x-amz-website-redirect-location': websiteRedirectLocation.toString(),
@@ -10298,9 +10297,9 @@ class S3 {
     String? versionId,
   }) async {
     final headers = <String, String>{
-      if (acl != null) 'x-amz-acl': acl.toValue(),
+      if (acl != null) 'x-amz-acl': acl.value,
       if (checksumAlgorithm != null)
-        'x-amz-sdk-checksum-algorithm': checksumAlgorithm.toValue(),
+        'x-amz-sdk-checksum-algorithm': checksumAlgorithm.value,
       if (contentMD5 != null) 'Content-MD5': contentMD5.toString(),
       if (expectedBucketOwner != null)
         'x-amz-expected-bucket-owner': expectedBucketOwner.toString(),
@@ -10311,7 +10310,7 @@ class S3 {
       if (grantWrite != null) 'x-amz-grant-write': grantWrite.toString(),
       if (grantWriteACP != null)
         'x-amz-grant-write-acp': grantWriteACP.toString(),
-      if (requestPayer != null) 'x-amz-request-payer': requestPayer.toValue(),
+      if (requestPayer != null) 'x-amz-request-payer': requestPayer.value,
     };
     final $query = <String, List<String>>{
       if (versionId != null) 'versionId': [versionId],
@@ -10398,11 +10397,11 @@ class S3 {
   }) async {
     final headers = <String, String>{
       if (checksumAlgorithm != null)
-        'x-amz-sdk-checksum-algorithm': checksumAlgorithm.toValue(),
+        'x-amz-sdk-checksum-algorithm': checksumAlgorithm.value,
       if (contentMD5 != null) 'Content-MD5': contentMD5.toString(),
       if (expectedBucketOwner != null)
         'x-amz-expected-bucket-owner': expectedBucketOwner.toString(),
-      if (requestPayer != null) 'x-amz-request-payer': requestPayer.toValue(),
+      if (requestPayer != null) 'x-amz-request-payer': requestPayer.value,
     };
     final $query = <String, List<String>>{
       if (versionId != null) 'versionId': [versionId],
@@ -10491,11 +10490,11 @@ class S3 {
   }) async {
     final headers = <String, String>{
       if (checksumAlgorithm != null)
-        'x-amz-sdk-checksum-algorithm': checksumAlgorithm.toValue(),
+        'x-amz-sdk-checksum-algorithm': checksumAlgorithm.value,
       if (contentMD5 != null) 'Content-MD5': contentMD5.toString(),
       if (expectedBucketOwner != null)
         'x-amz-expected-bucket-owner': expectedBucketOwner.toString(),
-      if (requestPayer != null) 'x-amz-request-payer': requestPayer.toValue(),
+      if (requestPayer != null) 'x-amz-request-payer': requestPayer.value,
       if (token != null) 'x-amz-bucket-object-lock-token': token.toString(),
     };
     final $result = await _protocol.sendRaw(
@@ -10590,11 +10589,11 @@ class S3 {
         'x-amz-bypass-governance-retention':
             bypassGovernanceRetention.toString(),
       if (checksumAlgorithm != null)
-        'x-amz-sdk-checksum-algorithm': checksumAlgorithm.toValue(),
+        'x-amz-sdk-checksum-algorithm': checksumAlgorithm.value,
       if (contentMD5 != null) 'Content-MD5': contentMD5.toString(),
       if (expectedBucketOwner != null)
         'x-amz-expected-bucket-owner': expectedBucketOwner.toString(),
-      if (requestPayer != null) 'x-amz-request-payer': requestPayer.toValue(),
+      if (requestPayer != null) 'x-amz-request-payer': requestPayer.value,
     };
     final $query = <String, List<String>>{
       if (versionId != null) 'versionId': [versionId],
@@ -10766,11 +10765,11 @@ class S3 {
   }) async {
     final headers = <String, String>{
       if (checksumAlgorithm != null)
-        'x-amz-sdk-checksum-algorithm': checksumAlgorithm.toValue(),
+        'x-amz-sdk-checksum-algorithm': checksumAlgorithm.value,
       if (contentMD5 != null) 'Content-MD5': contentMD5.toString(),
       if (expectedBucketOwner != null)
         'x-amz-expected-bucket-owner': expectedBucketOwner.toString(),
-      if (requestPayer != null) 'x-amz-request-payer': requestPayer.toValue(),
+      if (requestPayer != null) 'x-amz-request-payer': requestPayer.value,
     };
     final $query = <String, List<String>>{
       if (versionId != null) 'versionId': [versionId],
@@ -10877,7 +10876,7 @@ class S3 {
   }) async {
     final headers = <String, String>{
       if (checksumAlgorithm != null)
-        'x-amz-sdk-checksum-algorithm': checksumAlgorithm.toValue(),
+        'x-amz-sdk-checksum-algorithm': checksumAlgorithm.value,
       if (contentMD5 != null) 'Content-MD5': contentMD5.toString(),
       if (expectedBucketOwner != null)
         'x-amz-expected-bucket-owner': expectedBucketOwner.toString(),
@@ -11208,10 +11207,10 @@ class S3 {
   }) async {
     final headers = <String, String>{
       if (checksumAlgorithm != null)
-        'x-amz-sdk-checksum-algorithm': checksumAlgorithm.toValue(),
+        'x-amz-sdk-checksum-algorithm': checksumAlgorithm.value,
       if (expectedBucketOwner != null)
         'x-amz-expected-bucket-owner': expectedBucketOwner.toString(),
-      if (requestPayer != null) 'x-amz-request-payer': requestPayer.toValue(),
+      if (requestPayer != null) 'x-amz-request-payer': requestPayer.value,
     };
     final $query = <String, List<String>>{
       if (versionId != null) 'versionId': [versionId],
@@ -11750,7 +11749,7 @@ class S3 {
   }) async {
     final headers = <String, String>{
       if (checksumAlgorithm != null)
-        'x-amz-sdk-checksum-algorithm': checksumAlgorithm.toValue(),
+        'x-amz-sdk-checksum-algorithm': checksumAlgorithm.value,
       if (checksumCRC32 != null)
         'x-amz-checksum-crc32': checksumCRC32.toString(),
       if (checksumCRC32C != null)
@@ -11762,7 +11761,7 @@ class S3 {
       if (contentMD5 != null) 'Content-MD5': contentMD5.toString(),
       if (expectedBucketOwner != null)
         'x-amz-expected-bucket-owner': expectedBucketOwner.toString(),
-      if (requestPayer != null) 'x-amz-request-payer': requestPayer.toValue(),
+      if (requestPayer != null) 'x-amz-request-payer': requestPayer.value,
       if (sSECustomerAlgorithm != null)
         'x-amz-server-side-encryption-customer-algorithm':
             sSECustomerAlgorithm.toString(),
@@ -12163,7 +12162,7 @@ class S3 {
       if (expectedSourceBucketOwner != null)
         'x-amz-source-expected-bucket-owner':
             expectedSourceBucketOwner.toString(),
-      if (requestPayer != null) 'x-amz-request-payer': requestPayer.toValue(),
+      if (requestPayer != null) 'x-amz-request-payer': requestPayer.value,
       if (sSECustomerAlgorithm != null)
         'x-amz-server-side-encryption-customer-algorithm':
             sSECustomerAlgorithm.toString(),
@@ -12602,19 +12601,18 @@ class S3 {
         'x-amz-fwd-header-x-amz-missing-meta': missingMeta.toString(),
       if (objectLockLegalHoldStatus != null)
         'x-amz-fwd-header-x-amz-object-lock-legal-hold':
-            objectLockLegalHoldStatus.toValue(),
+            objectLockLegalHoldStatus.value,
       if (objectLockMode != null)
-        'x-amz-fwd-header-x-amz-object-lock-mode': objectLockMode.toValue(),
+        'x-amz-fwd-header-x-amz-object-lock-mode': objectLockMode.value,
       if (objectLockRetainUntilDate != null)
         'x-amz-fwd-header-x-amz-object-lock-retain-until-date':
             _s.iso8601ToJson(objectLockRetainUntilDate),
       if (partsCount != null)
         'x-amz-fwd-header-x-amz-mp-parts-count': partsCount.toString(),
       if (replicationStatus != null)
-        'x-amz-fwd-header-x-amz-replication-status':
-            replicationStatus.toValue(),
+        'x-amz-fwd-header-x-amz-replication-status': replicationStatus.value,
       if (requestCharged != null)
-        'x-amz-fwd-header-x-amz-request-charged': requestCharged.toValue(),
+        'x-amz-fwd-header-x-amz-request-charged': requestCharged.value,
       if (restore != null) 'x-amz-fwd-header-x-amz-restore': restore.toString(),
       if (sSECustomerAlgorithm != null)
         'x-amz-fwd-header-x-amz-server-side-encryption-customer-algorithm':
@@ -12627,10 +12625,10 @@ class S3 {
             sSEKMSKeyId.toString(),
       if (serverSideEncryption != null)
         'x-amz-fwd-header-x-amz-server-side-encryption':
-            serverSideEncryption.toValue(),
+            serverSideEncryption.value,
       if (statusCode != null) 'x-amz-fwd-status': statusCode.toString(),
       if (storageClass != null)
-        'x-amz-fwd-header-x-amz-storage-class': storageClass.toValue(),
+        'x-amz-fwd-header-x-amz-storage-class': storageClass.value,
       if (tagCount != null)
         'x-amz-fwd-header-x-amz-tagging-count': tagCount.toString(),
       if (versionId != null)
@@ -12719,14 +12717,14 @@ class AccelerateConfiguration {
   Map<String, dynamic> toJson() {
     final status = this.status;
     return {
-      if (status != null) 'Status': status.toValue(),
+      if (status != null) 'Status': status.value,
     };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final status = this.status;
     final $children = <_s.XmlNode>[
-      if (status != null) _s.encodeXmlStringValue('Status', status.toValue()),
+      if (status != null) _s.encodeXmlStringValue('Status', status.value),
     ];
     final $attributes = <_s.XmlAttribute>[
       ...?attributes,
@@ -12794,21 +12792,21 @@ class AccessControlTranslation {
   });
   factory AccessControlTranslation.fromXml(_s.XmlElement elem) {
     return AccessControlTranslation(
-      owner: _s.extractXmlStringValue(elem, 'Owner')!.toOwnerOverride(),
+      owner: OwnerOverride.fromString(_s.extractXmlStringValue(elem, 'Owner')!),
     );
   }
 
   Map<String, dynamic> toJson() {
     final owner = this.owner;
     return {
-      'Owner': owner.toValue(),
+      'Owner': owner.value,
     };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final owner = this.owner;
     final $children = <_s.XmlNode>[
-      _s.encodeXmlStringValue('Owner', owner.toValue()),
+      _s.encodeXmlStringValue('Owner', owner.value),
     ];
     final $attributes = <_s.XmlAttribute>[
       ...?attributes,
@@ -13056,9 +13054,8 @@ class AnalyticsS3BucketDestination {
   factory AnalyticsS3BucketDestination.fromXml(_s.XmlElement elem) {
     return AnalyticsS3BucketDestination(
       bucket: _s.extractXmlStringValue(elem, 'Bucket')!,
-      format: _s
-          .extractXmlStringValue(elem, 'Format')!
-          .toAnalyticsS3ExportFileFormat(),
+      format: AnalyticsS3ExportFileFormat.fromString(
+          _s.extractXmlStringValue(elem, 'Format')!),
       bucketAccountId: _s.extractXmlStringValue(elem, 'BucketAccountId'),
       prefix: _s.extractXmlStringValue(elem, 'Prefix'),
     );
@@ -13071,7 +13068,7 @@ class AnalyticsS3BucketDestination {
     final prefix = this.prefix;
     return {
       'Bucket': bucket,
-      'Format': format.toValue(),
+      'Format': format.value,
       if (bucketAccountId != null) 'BucketAccountId': bucketAccountId,
       if (prefix != null) 'Prefix': prefix,
     };
@@ -13083,7 +13080,7 @@ class AnalyticsS3BucketDestination {
     final bucketAccountId = this.bucketAccountId;
     final prefix = this.prefix;
     final $children = <_s.XmlNode>[
-      _s.encodeXmlStringValue('Format', format.toValue()),
+      _s.encodeXmlStringValue('Format', format.value),
       if (bucketAccountId != null)
         _s.encodeXmlStringValue('BucketAccountId', bucketAccountId),
       _s.encodeXmlStringValue('Bucket', bucket),
@@ -13101,55 +13098,32 @@ class AnalyticsS3BucketDestination {
 }
 
 enum AnalyticsS3ExportFileFormat {
-  csv,
-}
+  csv('CSV'),
+  ;
 
-extension AnalyticsS3ExportFileFormatValueExtension
-    on AnalyticsS3ExportFileFormat {
-  String toValue() {
-    switch (this) {
-      case AnalyticsS3ExportFileFormat.csv:
-        return 'CSV';
-    }
-  }
-}
+  final String value;
 
-extension AnalyticsS3ExportFileFormatFromString on String {
-  AnalyticsS3ExportFileFormat toAnalyticsS3ExportFileFormat() {
-    switch (this) {
-      case 'CSV':
-        return AnalyticsS3ExportFileFormat.csv;
-    }
-    throw Exception('$this is not known in enum AnalyticsS3ExportFileFormat');
-  }
+  const AnalyticsS3ExportFileFormat(this.value);
+
+  static AnalyticsS3ExportFileFormat fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum AnalyticsS3ExportFileFormat'));
 }
 
 enum ArchiveStatus {
-  archiveAccess,
-  deepArchiveAccess,
-}
+  archiveAccess('ARCHIVE_ACCESS'),
+  deepArchiveAccess('DEEP_ARCHIVE_ACCESS'),
+  ;
 
-extension ArchiveStatusValueExtension on ArchiveStatus {
-  String toValue() {
-    switch (this) {
-      case ArchiveStatus.archiveAccess:
-        return 'ARCHIVE_ACCESS';
-      case ArchiveStatus.deepArchiveAccess:
-        return 'DEEP_ARCHIVE_ACCESS';
-    }
-  }
-}
+  final String value;
 
-extension ArchiveStatusFromString on String {
-  ArchiveStatus toArchiveStatus() {
-    switch (this) {
-      case 'ARCHIVE_ACCESS':
-        return ArchiveStatus.archiveAccess;
-      case 'DEEP_ARCHIVE_ACCESS':
-        return ArchiveStatus.deepArchiveAccess;
-    }
-    throw Exception('$this is not known in enum ArchiveStatus');
-  }
+  const ArchiveStatus(this.value);
+
+  static ArchiveStatus fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum ArchiveStatus'));
 }
 
 /// In terms of implementation, a Bucket is a resource. An Amazon S3 bucket name
@@ -13185,69 +13159,35 @@ class Bucket {
 }
 
 enum BucketAccelerateStatus {
-  enabled,
-  suspended,
-}
+  enabled('Enabled'),
+  suspended('Suspended'),
+  ;
 
-extension BucketAccelerateStatusValueExtension on BucketAccelerateStatus {
-  String toValue() {
-    switch (this) {
-      case BucketAccelerateStatus.enabled:
-        return 'Enabled';
-      case BucketAccelerateStatus.suspended:
-        return 'Suspended';
-    }
-  }
-}
+  final String value;
 
-extension BucketAccelerateStatusFromString on String {
-  BucketAccelerateStatus toBucketAccelerateStatus() {
-    switch (this) {
-      case 'Enabled':
-        return BucketAccelerateStatus.enabled;
-      case 'Suspended':
-        return BucketAccelerateStatus.suspended;
-    }
-    throw Exception('$this is not known in enum BucketAccelerateStatus');
-  }
+  const BucketAccelerateStatus(this.value);
+
+  static BucketAccelerateStatus fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum BucketAccelerateStatus'));
 }
 
 enum BucketCannedACL {
-  private,
-  publicRead,
-  publicReadWrite,
-  authenticatedRead,
-}
+  private('private'),
+  publicRead('public-read'),
+  publicReadWrite('public-read-write'),
+  authenticatedRead('authenticated-read'),
+  ;
 
-extension BucketCannedACLValueExtension on BucketCannedACL {
-  String toValue() {
-    switch (this) {
-      case BucketCannedACL.private:
-        return 'private';
-      case BucketCannedACL.publicRead:
-        return 'public-read';
-      case BucketCannedACL.publicReadWrite:
-        return 'public-read-write';
-      case BucketCannedACL.authenticatedRead:
-        return 'authenticated-read';
-    }
-  }
-}
+  final String value;
 
-extension BucketCannedACLFromString on String {
-  BucketCannedACL toBucketCannedACL() {
-    switch (this) {
-      case 'private':
-        return BucketCannedACL.private;
-      case 'public-read':
-        return BucketCannedACL.publicRead;
-      case 'public-read-write':
-        return BucketCannedACL.publicReadWrite;
-      case 'authenticated-read':
-        return BucketCannedACL.authenticatedRead;
-    }
-    throw Exception('$this is not known in enum BucketCannedACL');
-  }
+  const BucketCannedACL(this.value);
+
+  static BucketCannedACL fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum BucketCannedACL'));
 }
 
 /// Specifies the lifecycle configuration for objects in an Amazon S3 bucket.
@@ -13286,151 +13226,42 @@ class BucketLifecycleConfiguration {
 }
 
 enum BucketLocationConstraint {
-  afSouth_1,
-  apEast_1,
-  apNortheast_1,
-  apNortheast_2,
-  apNortheast_3,
-  apSouth_1,
-  apSoutheast_1,
-  apSoutheast_2,
-  apSoutheast_3,
-  caCentral_1,
-  cnNorth_1,
-  cnNorthwest_1,
-  eu,
-  euCentral_1,
-  euNorth_1,
-  euSouth_1,
-  euWest_1,
-  euWest_2,
-  euWest_3,
-  meSouth_1,
-  saEast_1,
-  usEast_2,
-  usGovEast_1,
-  usGovWest_1,
-  usWest_1,
-  usWest_2,
-}
+  afSouth_1('af-south-1'),
+  apEast_1('ap-east-1'),
+  apNortheast_1('ap-northeast-1'),
+  apNortheast_2('ap-northeast-2'),
+  apNortheast_3('ap-northeast-3'),
+  apSouth_1('ap-south-1'),
+  apSoutheast_1('ap-southeast-1'),
+  apSoutheast_2('ap-southeast-2'),
+  apSoutheast_3('ap-southeast-3'),
+  caCentral_1('ca-central-1'),
+  cnNorth_1('cn-north-1'),
+  cnNorthwest_1('cn-northwest-1'),
+  eu('EU'),
+  euCentral_1('eu-central-1'),
+  euNorth_1('eu-north-1'),
+  euSouth_1('eu-south-1'),
+  euWest_1('eu-west-1'),
+  euWest_2('eu-west-2'),
+  euWest_3('eu-west-3'),
+  meSouth_1('me-south-1'),
+  saEast_1('sa-east-1'),
+  usEast_2('us-east-2'),
+  usGovEast_1('us-gov-east-1'),
+  usGovWest_1('us-gov-west-1'),
+  usWest_1('us-west-1'),
+  usWest_2('us-west-2'),
+  ;
 
-extension BucketLocationConstraintValueExtension on BucketLocationConstraint {
-  String toValue() {
-    switch (this) {
-      case BucketLocationConstraint.afSouth_1:
-        return 'af-south-1';
-      case BucketLocationConstraint.apEast_1:
-        return 'ap-east-1';
-      case BucketLocationConstraint.apNortheast_1:
-        return 'ap-northeast-1';
-      case BucketLocationConstraint.apNortheast_2:
-        return 'ap-northeast-2';
-      case BucketLocationConstraint.apNortheast_3:
-        return 'ap-northeast-3';
-      case BucketLocationConstraint.apSouth_1:
-        return 'ap-south-1';
-      case BucketLocationConstraint.apSoutheast_1:
-        return 'ap-southeast-1';
-      case BucketLocationConstraint.apSoutheast_2:
-        return 'ap-southeast-2';
-      case BucketLocationConstraint.apSoutheast_3:
-        return 'ap-southeast-3';
-      case BucketLocationConstraint.caCentral_1:
-        return 'ca-central-1';
-      case BucketLocationConstraint.cnNorth_1:
-        return 'cn-north-1';
-      case BucketLocationConstraint.cnNorthwest_1:
-        return 'cn-northwest-1';
-      case BucketLocationConstraint.eu:
-        return 'EU';
-      case BucketLocationConstraint.euCentral_1:
-        return 'eu-central-1';
-      case BucketLocationConstraint.euNorth_1:
-        return 'eu-north-1';
-      case BucketLocationConstraint.euSouth_1:
-        return 'eu-south-1';
-      case BucketLocationConstraint.euWest_1:
-        return 'eu-west-1';
-      case BucketLocationConstraint.euWest_2:
-        return 'eu-west-2';
-      case BucketLocationConstraint.euWest_3:
-        return 'eu-west-3';
-      case BucketLocationConstraint.meSouth_1:
-        return 'me-south-1';
-      case BucketLocationConstraint.saEast_1:
-        return 'sa-east-1';
-      case BucketLocationConstraint.usEast_2:
-        return 'us-east-2';
-      case BucketLocationConstraint.usGovEast_1:
-        return 'us-gov-east-1';
-      case BucketLocationConstraint.usGovWest_1:
-        return 'us-gov-west-1';
-      case BucketLocationConstraint.usWest_1:
-        return 'us-west-1';
-      case BucketLocationConstraint.usWest_2:
-        return 'us-west-2';
-    }
-  }
-}
+  final String value;
 
-extension BucketLocationConstraintFromString on String {
-  BucketLocationConstraint toBucketLocationConstraint() {
-    switch (this) {
-      case 'af-south-1':
-        return BucketLocationConstraint.afSouth_1;
-      case 'ap-east-1':
-        return BucketLocationConstraint.apEast_1;
-      case 'ap-northeast-1':
-        return BucketLocationConstraint.apNortheast_1;
-      case 'ap-northeast-2':
-        return BucketLocationConstraint.apNortheast_2;
-      case 'ap-northeast-3':
-        return BucketLocationConstraint.apNortheast_3;
-      case 'ap-south-1':
-        return BucketLocationConstraint.apSouth_1;
-      case 'ap-southeast-1':
-        return BucketLocationConstraint.apSoutheast_1;
-      case 'ap-southeast-2':
-        return BucketLocationConstraint.apSoutheast_2;
-      case 'ap-southeast-3':
-        return BucketLocationConstraint.apSoutheast_3;
-      case 'ca-central-1':
-        return BucketLocationConstraint.caCentral_1;
-      case 'cn-north-1':
-        return BucketLocationConstraint.cnNorth_1;
-      case 'cn-northwest-1':
-        return BucketLocationConstraint.cnNorthwest_1;
-      case 'EU':
-        return BucketLocationConstraint.eu;
-      case 'eu-central-1':
-        return BucketLocationConstraint.euCentral_1;
-      case 'eu-north-1':
-        return BucketLocationConstraint.euNorth_1;
-      case 'eu-south-1':
-        return BucketLocationConstraint.euSouth_1;
-      case 'eu-west-1':
-        return BucketLocationConstraint.euWest_1;
-      case 'eu-west-2':
-        return BucketLocationConstraint.euWest_2;
-      case 'eu-west-3':
-        return BucketLocationConstraint.euWest_3;
-      case 'me-south-1':
-        return BucketLocationConstraint.meSouth_1;
-      case 'sa-east-1':
-        return BucketLocationConstraint.saEast_1;
-      case 'us-east-2':
-        return BucketLocationConstraint.usEast_2;
-      case 'us-gov-east-1':
-        return BucketLocationConstraint.usGovEast_1;
-      case 'us-gov-west-1':
-        return BucketLocationConstraint.usGovWest_1;
-      case 'us-west-1':
-        return BucketLocationConstraint.usWest_1;
-      case 'us-west-2':
-        return BucketLocationConstraint.usWest_2;
-    }
-    throw Exception('$this is not known in enum BucketLocationConstraint');
-  }
+  const BucketLocationConstraint(this.value);
+
+  static BucketLocationConstraint fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum BucketLocationConstraint'));
 }
 
 /// Container for logging status information.
@@ -13465,64 +13296,34 @@ class BucketLoggingStatus {
 }
 
 enum BucketLogsPermission {
-  fullControl,
-  read,
-  write,
-}
+  fullControl('FULL_CONTROL'),
+  read('READ'),
+  write('WRITE'),
+  ;
 
-extension BucketLogsPermissionValueExtension on BucketLogsPermission {
-  String toValue() {
-    switch (this) {
-      case BucketLogsPermission.fullControl:
-        return 'FULL_CONTROL';
-      case BucketLogsPermission.read:
-        return 'READ';
-      case BucketLogsPermission.write:
-        return 'WRITE';
-    }
-  }
-}
+  final String value;
 
-extension BucketLogsPermissionFromString on String {
-  BucketLogsPermission toBucketLogsPermission() {
-    switch (this) {
-      case 'FULL_CONTROL':
-        return BucketLogsPermission.fullControl;
-      case 'READ':
-        return BucketLogsPermission.read;
-      case 'WRITE':
-        return BucketLogsPermission.write;
-    }
-    throw Exception('$this is not known in enum BucketLogsPermission');
-  }
+  const BucketLogsPermission(this.value);
+
+  static BucketLogsPermission fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum BucketLogsPermission'));
 }
 
 enum BucketVersioningStatus {
-  enabled,
-  suspended,
-}
+  enabled('Enabled'),
+  suspended('Suspended'),
+  ;
 
-extension BucketVersioningStatusValueExtension on BucketVersioningStatus {
-  String toValue() {
-    switch (this) {
-      case BucketVersioningStatus.enabled:
-        return 'Enabled';
-      case BucketVersioningStatus.suspended:
-        return 'Suspended';
-    }
-  }
-}
+  final String value;
 
-extension BucketVersioningStatusFromString on String {
-  BucketVersioningStatus toBucketVersioningStatus() {
-    switch (this) {
-      case 'Enabled':
-        return BucketVersioningStatus.enabled;
-      case 'Suspended':
-        return BucketVersioningStatus.suspended;
-    }
-    throw Exception('$this is not known in enum BucketVersioningStatus');
-  }
+  const BucketVersioningStatus(this.value);
+
+  static BucketVersioningStatus fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum BucketVersioningStatus'));
 }
 
 /// Describes the cross-origin access configuration for objects in an Amazon S3
@@ -13738,7 +13539,7 @@ class CSVInput {
         'AllowQuotedRecordDelimiter': allowQuotedRecordDelimiter,
       if (comments != null) 'Comments': comments,
       if (fieldDelimiter != null) 'FieldDelimiter': fieldDelimiter,
-      if (fileHeaderInfo != null) 'FileHeaderInfo': fileHeaderInfo.toValue(),
+      if (fileHeaderInfo != null) 'FileHeaderInfo': fileHeaderInfo.value,
       if (quoteCharacter != null) 'QuoteCharacter': quoteCharacter,
       if (quoteEscapeCharacter != null)
         'QuoteEscapeCharacter': quoteEscapeCharacter,
@@ -13756,7 +13557,7 @@ class CSVInput {
     final recordDelimiter = this.recordDelimiter;
     final $children = <_s.XmlNode>[
       if (fileHeaderInfo != null)
-        _s.encodeXmlStringValue('FileHeaderInfo', fileHeaderInfo.toValue()),
+        _s.encodeXmlStringValue('FileHeaderInfo', fileHeaderInfo.value),
       if (comments != null) _s.encodeXmlStringValue('Comments', comments),
       if (quoteEscapeCharacter != null)
         _s.encodeXmlStringValue('QuoteEscapeCharacter', quoteEscapeCharacter),
@@ -13832,7 +13633,7 @@ class CSVOutput {
       if (quoteCharacter != null) 'QuoteCharacter': quoteCharacter,
       if (quoteEscapeCharacter != null)
         'QuoteEscapeCharacter': quoteEscapeCharacter,
-      if (quoteFields != null) 'QuoteFields': quoteFields.toValue(),
+      if (quoteFields != null) 'QuoteFields': quoteFields.value,
       if (recordDelimiter != null) 'RecordDelimiter': recordDelimiter,
     };
   }
@@ -13845,7 +13646,7 @@ class CSVOutput {
     final recordDelimiter = this.recordDelimiter;
     final $children = <_s.XmlNode>[
       if (quoteFields != null)
-        _s.encodeXmlStringValue('QuoteFields', quoteFields.toValue()),
+        _s.encodeXmlStringValue('QuoteFields', quoteFields.value),
       if (quoteEscapeCharacter != null)
         _s.encodeXmlStringValue('QuoteEscapeCharacter', quoteEscapeCharacter),
       if (recordDelimiter != null)
@@ -13930,64 +13731,34 @@ class Checksum {
 }
 
 enum ChecksumAlgorithm {
-  crc32,
-  crc32c,
-  sha1,
-  sha256,
-}
+  crc32('CRC32'),
+  crc32c('CRC32C'),
+  sha1('SHA1'),
+  sha256('SHA256'),
+  ;
 
-extension ChecksumAlgorithmValueExtension on ChecksumAlgorithm {
-  String toValue() {
-    switch (this) {
-      case ChecksumAlgorithm.crc32:
-        return 'CRC32';
-      case ChecksumAlgorithm.crc32c:
-        return 'CRC32C';
-      case ChecksumAlgorithm.sha1:
-        return 'SHA1';
-      case ChecksumAlgorithm.sha256:
-        return 'SHA256';
-    }
-  }
-}
+  final String value;
 
-extension ChecksumAlgorithmFromString on String {
-  ChecksumAlgorithm toChecksumAlgorithm() {
-    switch (this) {
-      case 'CRC32':
-        return ChecksumAlgorithm.crc32;
-      case 'CRC32C':
-        return ChecksumAlgorithm.crc32c;
-      case 'SHA1':
-        return ChecksumAlgorithm.sha1;
-      case 'SHA256':
-        return ChecksumAlgorithm.sha256;
-    }
-    throw Exception('$this is not known in enum ChecksumAlgorithm');
-  }
+  const ChecksumAlgorithm(this.value);
+
+  static ChecksumAlgorithm fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum ChecksumAlgorithm'));
 }
 
 enum ChecksumMode {
-  enabled,
-}
+  enabled('ENABLED'),
+  ;
 
-extension ChecksumModeValueExtension on ChecksumMode {
-  String toValue() {
-    switch (this) {
-      case ChecksumMode.enabled:
-        return 'ENABLED';
-    }
-  }
-}
+  final String value;
 
-extension ChecksumModeFromString on String {
-  ChecksumMode toChecksumMode() {
-    switch (this) {
-      case 'ENABLED':
-        return ChecksumMode.enabled;
-    }
-    throw Exception('$this is not known in enum ChecksumMode');
-  }
+  const ChecksumMode(this.value);
+
+  static ChecksumMode fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum ChecksumMode'));
 }
 
 /// Container for specifying the Lambda notification configuration.
@@ -14014,7 +13785,7 @@ class CloudFunctionConfiguration {
   factory CloudFunctionConfiguration.fromXml(_s.XmlElement elem) {
     return CloudFunctionConfiguration(
       cloudFunction: _s.extractXmlStringValue(elem, 'CloudFunction'),
-      event: _s.extractXmlStringValue(elem, 'Event')?.toEvent(),
+      event: Event.fromString(_s.extractXmlStringValue(elem, 'Event')),
       events: _s
           .extractXmlStringListValues(elem, 'Event')
           .map((s) => s.toEvent())
@@ -14032,8 +13803,8 @@ class CloudFunctionConfiguration {
     final invocationRole = this.invocationRole;
     return {
       if (cloudFunction != null) 'CloudFunction': cloudFunction,
-      if (event != null) 'Event': event.toValue(),
-      if (events != null) 'Event': events.map((e) => e.toValue()).toList(),
+      if (event != null) 'Event': event.value,
+      if (events != null) 'Event': events.map((e) => e.value).toList(),
       if (id != null) 'Id': id,
       if (invocationRole != null) 'InvocationRole': invocationRole,
     };
@@ -14047,9 +13818,9 @@ class CloudFunctionConfiguration {
     final invocationRole = this.invocationRole;
     final $children = <_s.XmlNode>[
       if (id != null) _s.encodeXmlStringValue('Id', id),
-      if (event != null) _s.encodeXmlStringValue('Event', event.toValue()),
+      if (event != null) _s.encodeXmlStringValue('Event', event.value),
       if (events != null)
-        ...events.map((e) => _s.encodeXmlStringValue('Event', e.toValue())),
+        ...events.map((e) => _s.encodeXmlStringValue('Event', e.value)),
       if (cloudFunction != null)
         _s.encodeXmlStringValue('CloudFunction', cloudFunction),
       if (invocationRole != null)
@@ -14366,36 +14137,19 @@ class CompletedPart {
 }
 
 enum CompressionType {
-  none,
-  gzip,
-  bzip2,
-}
+  none('NONE'),
+  gzip('GZIP'),
+  bzip2('BZIP2'),
+  ;
 
-extension CompressionTypeValueExtension on CompressionType {
-  String toValue() {
-    switch (this) {
-      case CompressionType.none:
-        return 'NONE';
-      case CompressionType.gzip:
-        return 'GZIP';
-      case CompressionType.bzip2:
-        return 'BZIP2';
-    }
-  }
-}
+  final String value;
 
-extension CompressionTypeFromString on String {
-  CompressionType toCompressionType() {
-    switch (this) {
-      case 'NONE':
-        return CompressionType.none;
-      case 'GZIP':
-        return CompressionType.gzip;
-      case 'BZIP2':
-        return CompressionType.bzip2;
-    }
-    throw Exception('$this is not known in enum CompressionType');
-  }
+  const CompressionType(this.value);
+
+  static CompressionType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum CompressionType'));
 }
 
 /// A container for describing a condition that must be met for the specified
@@ -14728,7 +14482,7 @@ class CreateBucketConfiguration {
     final locationConstraint = this.locationConstraint;
     return {
       if (locationConstraint != null)
-        'LocationConstraint': locationConstraint.toValue(),
+        'LocationConstraint': locationConstraint.value,
     };
   }
 
@@ -14736,8 +14490,7 @@ class CreateBucketConfiguration {
     final locationConstraint = this.locationConstraint;
     final $children = <_s.XmlNode>[
       if (locationConstraint != null)
-        _s.encodeXmlStringValue(
-            'LocationConstraint', locationConstraint.toValue()),
+        _s.encodeXmlStringValue('LocationConstraint', locationConstraint.value),
     ];
     final $attributes = <_s.XmlAttribute>[
       ...?attributes,
@@ -14918,7 +14671,8 @@ class DefaultRetention {
   factory DefaultRetention.fromXml(_s.XmlElement elem) {
     return DefaultRetention(
       days: _s.extractXmlIntValue(elem, 'Days'),
-      mode: _s.extractXmlStringValue(elem, 'Mode')?.toObjectLockRetentionMode(),
+      mode: ObjectLockRetentionMode.fromString(
+          _s.extractXmlStringValue(elem, 'Mode')),
       years: _s.extractXmlIntValue(elem, 'Years'),
     );
   }
@@ -14929,7 +14683,7 @@ class DefaultRetention {
     final years = this.years;
     return {
       if (days != null) 'Days': days,
-      if (mode != null) 'Mode': mode.toValue(),
+      if (mode != null) 'Mode': mode.value,
       if (years != null) 'Years': years,
     };
   }
@@ -14939,7 +14693,7 @@ class DefaultRetention {
     final mode = this.mode;
     final years = this.years;
     final $children = <_s.XmlNode>[
-      if (mode != null) _s.encodeXmlStringValue('Mode', mode.toValue()),
+      if (mode != null) _s.encodeXmlStringValue('Mode', mode.value),
       if (days != null) _s.encodeXmlIntValue('Days', days),
       if (years != null) _s.encodeXmlIntValue('Years', years),
     ];
@@ -15078,23 +14832,22 @@ class DeleteMarkerReplication {
   });
   factory DeleteMarkerReplication.fromXml(_s.XmlElement elem) {
     return DeleteMarkerReplication(
-      status: _s
-          .extractXmlStringValue(elem, 'Status')
-          ?.toDeleteMarkerReplicationStatus(),
+      status: DeleteMarkerReplicationStatus.fromString(
+          _s.extractXmlStringValue(elem, 'Status')),
     );
   }
 
   Map<String, dynamic> toJson() {
     final status = this.status;
     return {
-      if (status != null) 'Status': status.toValue(),
+      if (status != null) 'Status': status.value,
     };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final status = this.status;
     final $children = <_s.XmlNode>[
-      if (status != null) _s.encodeXmlStringValue('Status', status.toValue()),
+      if (status != null) _s.encodeXmlStringValue('Status', status.value),
     ];
     final $attributes = <_s.XmlAttribute>[
       ...?attributes,
@@ -15108,32 +14861,18 @@ class DeleteMarkerReplication {
 }
 
 enum DeleteMarkerReplicationStatus {
-  enabled,
-  disabled,
-}
+  enabled('Enabled'),
+  disabled('Disabled'),
+  ;
 
-extension DeleteMarkerReplicationStatusValueExtension
-    on DeleteMarkerReplicationStatus {
-  String toValue() {
-    switch (this) {
-      case DeleteMarkerReplicationStatus.enabled:
-        return 'Enabled';
-      case DeleteMarkerReplicationStatus.disabled:
-        return 'Disabled';
-    }
-  }
-}
+  final String value;
 
-extension DeleteMarkerReplicationStatusFromString on String {
-  DeleteMarkerReplicationStatus toDeleteMarkerReplicationStatus() {
-    switch (this) {
-      case 'Enabled':
-        return DeleteMarkerReplicationStatus.enabled;
-      case 'Disabled':
-        return DeleteMarkerReplicationStatus.disabled;
-    }
-    throw Exception('$this is not known in enum DeleteMarkerReplicationStatus');
-  }
+  const DeleteMarkerReplicationStatus(this.value);
+
+  static DeleteMarkerReplicationStatus fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum DeleteMarkerReplicationStatus'));
 }
 
 class DeleteObjectOutput {
@@ -15321,8 +15060,8 @@ class Destination {
       replicationTime: _s
           .extractXmlChild(elem, 'ReplicationTime')
           ?.let(ReplicationTime.fromXml),
-      storageClass:
-          _s.extractXmlStringValue(elem, 'StorageClass')?.toStorageClass(),
+      storageClass: StorageClass.fromString(
+          _s.extractXmlStringValue(elem, 'StorageClass')),
     );
   }
 
@@ -15343,7 +15082,7 @@ class Destination {
         'EncryptionConfiguration': encryptionConfiguration,
       if (metrics != null) 'Metrics': metrics,
       if (replicationTime != null) 'ReplicationTime': replicationTime,
-      if (storageClass != null) 'StorageClass': storageClass.toValue(),
+      if (storageClass != null) 'StorageClass': storageClass.value,
     };
   }
 
@@ -15359,7 +15098,7 @@ class Destination {
       _s.encodeXmlStringValue('Bucket', bucket),
       if (account != null) _s.encodeXmlStringValue('Account', account),
       if (storageClass != null)
-        _s.encodeXmlStringValue('StorageClass', storageClass.toValue()),
+        _s.encodeXmlStringValue('StorageClass', storageClass.value),
       if (accessControlTranslation != null)
         accessControlTranslation.toXml('AccessControlTranslation'),
       if (encryptionConfiguration != null)
@@ -15385,26 +15124,17 @@ class Destination {
 /// XML 1.0, you can add this parameter to request that Amazon S3 encode the
 /// keys in the response.
 enum EncodingType {
-  url,
-}
+  url('url'),
+  ;
 
-extension EncodingTypeValueExtension on EncodingType {
-  String toValue() {
-    switch (this) {
-      case EncodingType.url:
-        return 'url';
-    }
-  }
-}
+  final String value;
 
-extension EncodingTypeFromString on String {
-  EncodingType toEncodingType() {
-    switch (this) {
-      case 'url':
-        return EncodingType.url;
-    }
-    throw Exception('$this is not known in enum EncodingType');
-  }
+  const EncodingType(this.value);
+
+  static EncodingType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum EncodingType'));
 }
 
 /// Contains the type of server-side encryption used.
@@ -15437,7 +15167,7 @@ class Encryption {
     final kMSContext = this.kMSContext;
     final kMSKeyId = this.kMSKeyId;
     return {
-      'EncryptionType': encryptionType.toValue(),
+      'EncryptionType': encryptionType.value,
       if (kMSContext != null) 'KMSContext': kMSContext,
       if (kMSKeyId != null) 'KMSKeyId': kMSKeyId,
     };
@@ -15448,7 +15178,7 @@ class Encryption {
     final kMSContext = this.kMSContext;
     final kMSKeyId = this.kMSKeyId;
     final $children = <_s.XmlNode>[
-      _s.encodeXmlStringValue('EncryptionType', encryptionType.toValue()),
+      _s.encodeXmlStringValue('EncryptionType', encryptionType.value),
       if (kMSKeyId != null) _s.encodeXmlStringValue('KMSKeyId', kMSKeyId),
       if (kMSContext != null) _s.encodeXmlStringValue('KMSContext', kMSContext),
     ];
@@ -17017,156 +16747,47 @@ class ErrorDocument {
 
 /// The bucket event for which to send notifications.
 enum Event {
-  s3ReducedRedundancyLostObject,
-  s3ObjectCreated,
-  s3ObjectCreatedPut,
-  s3ObjectCreatedPost,
-  s3ObjectCreatedCopy,
-  s3ObjectCreatedCompleteMultipartUpload,
-  s3ObjectRemoved,
-  s3ObjectRemovedDelete,
-  s3ObjectRemovedDeleteMarkerCreated,
-  s3ObjectRestore,
-  s3ObjectRestorePost,
-  s3ObjectRestoreCompleted,
-  s3Replication,
-  s3ReplicationOperationFailedReplication,
-  s3ReplicationOperationNotTracked,
-  s3ReplicationOperationMissedThreshold,
-  s3ReplicationOperationReplicatedAfterThreshold,
-  s3ObjectRestoreDelete,
-  s3LifecycleTransition,
-  s3IntelligentTiering,
-  s3ObjectAclPut,
-  s3LifecycleExpiration,
-  s3LifecycleExpirationDelete,
-  s3LifecycleExpirationDeleteMarkerCreated,
-  s3ObjectTagging,
-  s3ObjectTaggingPut,
-  s3ObjectTaggingDelete,
-}
+  s3ReducedRedundancyLostObject('s3:ReducedRedundancyLostObject'),
+  s3ObjectCreated('s3:ObjectCreated:*'),
+  s3ObjectCreatedPut('s3:ObjectCreated:Put'),
+  s3ObjectCreatedPost('s3:ObjectCreated:Post'),
+  s3ObjectCreatedCopy('s3:ObjectCreated:Copy'),
+  s3ObjectCreatedCompleteMultipartUpload(
+      's3:ObjectCreated:CompleteMultipartUpload'),
+  s3ObjectRemoved('s3:ObjectRemoved:*'),
+  s3ObjectRemovedDelete('s3:ObjectRemoved:Delete'),
+  s3ObjectRemovedDeleteMarkerCreated('s3:ObjectRemoved:DeleteMarkerCreated'),
+  s3ObjectRestore('s3:ObjectRestore:*'),
+  s3ObjectRestorePost('s3:ObjectRestore:Post'),
+  s3ObjectRestoreCompleted('s3:ObjectRestore:Completed'),
+  s3Replication('s3:Replication:*'),
+  s3ReplicationOperationFailedReplication(
+      's3:Replication:OperationFailedReplication'),
+  s3ReplicationOperationNotTracked('s3:Replication:OperationNotTracked'),
+  s3ReplicationOperationMissedThreshold(
+      's3:Replication:OperationMissedThreshold'),
+  s3ReplicationOperationReplicatedAfterThreshold(
+      's3:Replication:OperationReplicatedAfterThreshold'),
+  s3ObjectRestoreDelete('s3:ObjectRestore:Delete'),
+  s3LifecycleTransition('s3:LifecycleTransition'),
+  s3IntelligentTiering('s3:IntelligentTiering'),
+  s3ObjectAclPut('s3:ObjectAcl:Put'),
+  s3LifecycleExpiration('s3:LifecycleExpiration:*'),
+  s3LifecycleExpirationDelete('s3:LifecycleExpiration:Delete'),
+  s3LifecycleExpirationDeleteMarkerCreated(
+      's3:LifecycleExpiration:DeleteMarkerCreated'),
+  s3ObjectTagging('s3:ObjectTagging:*'),
+  s3ObjectTaggingPut('s3:ObjectTagging:Put'),
+  s3ObjectTaggingDelete('s3:ObjectTagging:Delete'),
+  ;
 
-extension EventValueExtension on Event {
-  String toValue() {
-    switch (this) {
-      case Event.s3ReducedRedundancyLostObject:
-        return 's3:ReducedRedundancyLostObject';
-      case Event.s3ObjectCreated:
-        return 's3:ObjectCreated:*';
-      case Event.s3ObjectCreatedPut:
-        return 's3:ObjectCreated:Put';
-      case Event.s3ObjectCreatedPost:
-        return 's3:ObjectCreated:Post';
-      case Event.s3ObjectCreatedCopy:
-        return 's3:ObjectCreated:Copy';
-      case Event.s3ObjectCreatedCompleteMultipartUpload:
-        return 's3:ObjectCreated:CompleteMultipartUpload';
-      case Event.s3ObjectRemoved:
-        return 's3:ObjectRemoved:*';
-      case Event.s3ObjectRemovedDelete:
-        return 's3:ObjectRemoved:Delete';
-      case Event.s3ObjectRemovedDeleteMarkerCreated:
-        return 's3:ObjectRemoved:DeleteMarkerCreated';
-      case Event.s3ObjectRestore:
-        return 's3:ObjectRestore:*';
-      case Event.s3ObjectRestorePost:
-        return 's3:ObjectRestore:Post';
-      case Event.s3ObjectRestoreCompleted:
-        return 's3:ObjectRestore:Completed';
-      case Event.s3Replication:
-        return 's3:Replication:*';
-      case Event.s3ReplicationOperationFailedReplication:
-        return 's3:Replication:OperationFailedReplication';
-      case Event.s3ReplicationOperationNotTracked:
-        return 's3:Replication:OperationNotTracked';
-      case Event.s3ReplicationOperationMissedThreshold:
-        return 's3:Replication:OperationMissedThreshold';
-      case Event.s3ReplicationOperationReplicatedAfterThreshold:
-        return 's3:Replication:OperationReplicatedAfterThreshold';
-      case Event.s3ObjectRestoreDelete:
-        return 's3:ObjectRestore:Delete';
-      case Event.s3LifecycleTransition:
-        return 's3:LifecycleTransition';
-      case Event.s3IntelligentTiering:
-        return 's3:IntelligentTiering';
-      case Event.s3ObjectAclPut:
-        return 's3:ObjectAcl:Put';
-      case Event.s3LifecycleExpiration:
-        return 's3:LifecycleExpiration:*';
-      case Event.s3LifecycleExpirationDelete:
-        return 's3:LifecycleExpiration:Delete';
-      case Event.s3LifecycleExpirationDeleteMarkerCreated:
-        return 's3:LifecycleExpiration:DeleteMarkerCreated';
-      case Event.s3ObjectTagging:
-        return 's3:ObjectTagging:*';
-      case Event.s3ObjectTaggingPut:
-        return 's3:ObjectTagging:Put';
-      case Event.s3ObjectTaggingDelete:
-        return 's3:ObjectTagging:Delete';
-    }
-  }
-}
+  final String value;
 
-extension EventFromString on String {
-  Event toEvent() {
-    switch (this) {
-      case 's3:ReducedRedundancyLostObject':
-        return Event.s3ReducedRedundancyLostObject;
-      case 's3:ObjectCreated:*':
-        return Event.s3ObjectCreated;
-      case 's3:ObjectCreated:Put':
-        return Event.s3ObjectCreatedPut;
-      case 's3:ObjectCreated:Post':
-        return Event.s3ObjectCreatedPost;
-      case 's3:ObjectCreated:Copy':
-        return Event.s3ObjectCreatedCopy;
-      case 's3:ObjectCreated:CompleteMultipartUpload':
-        return Event.s3ObjectCreatedCompleteMultipartUpload;
-      case 's3:ObjectRemoved:*':
-        return Event.s3ObjectRemoved;
-      case 's3:ObjectRemoved:Delete':
-        return Event.s3ObjectRemovedDelete;
-      case 's3:ObjectRemoved:DeleteMarkerCreated':
-        return Event.s3ObjectRemovedDeleteMarkerCreated;
-      case 's3:ObjectRestore:*':
-        return Event.s3ObjectRestore;
-      case 's3:ObjectRestore:Post':
-        return Event.s3ObjectRestorePost;
-      case 's3:ObjectRestore:Completed':
-        return Event.s3ObjectRestoreCompleted;
-      case 's3:Replication:*':
-        return Event.s3Replication;
-      case 's3:Replication:OperationFailedReplication':
-        return Event.s3ReplicationOperationFailedReplication;
-      case 's3:Replication:OperationNotTracked':
-        return Event.s3ReplicationOperationNotTracked;
-      case 's3:Replication:OperationMissedThreshold':
-        return Event.s3ReplicationOperationMissedThreshold;
-      case 's3:Replication:OperationReplicatedAfterThreshold':
-        return Event.s3ReplicationOperationReplicatedAfterThreshold;
-      case 's3:ObjectRestore:Delete':
-        return Event.s3ObjectRestoreDelete;
-      case 's3:LifecycleTransition':
-        return Event.s3LifecycleTransition;
-      case 's3:IntelligentTiering':
-        return Event.s3IntelligentTiering;
-      case 's3:ObjectAcl:Put':
-        return Event.s3ObjectAclPut;
-      case 's3:LifecycleExpiration:*':
-        return Event.s3LifecycleExpiration;
-      case 's3:LifecycleExpiration:Delete':
-        return Event.s3LifecycleExpirationDelete;
-      case 's3:LifecycleExpiration:DeleteMarkerCreated':
-        return Event.s3LifecycleExpirationDeleteMarkerCreated;
-      case 's3:ObjectTagging:*':
-        return Event.s3ObjectTagging;
-      case 's3:ObjectTagging:Put':
-        return Event.s3ObjectTaggingPut;
-      case 's3:ObjectTagging:Delete':
-        return Event.s3ObjectTaggingDelete;
-    }
-    throw Exception('$this is not known in enum Event');
-  }
+  const Event(this.value);
+
+  static Event fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception('$value is not known in enum Event'));
 }
 
 /// A container for specifying the configuration for Amazon EventBridge.
@@ -17208,23 +16829,22 @@ class ExistingObjectReplication {
   });
   factory ExistingObjectReplication.fromXml(_s.XmlElement elem) {
     return ExistingObjectReplication(
-      status: _s
-          .extractXmlStringValue(elem, 'Status')!
-          .toExistingObjectReplicationStatus(),
+      status: ExistingObjectReplicationStatus.fromString(
+          _s.extractXmlStringValue(elem, 'Status')!),
     );
   }
 
   Map<String, dynamic> toJson() {
     final status = this.status;
     return {
-      'Status': status.toValue(),
+      'Status': status.value,
     };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final status = this.status;
     final $children = <_s.XmlNode>[
-      _s.encodeXmlStringValue('Status', status.toValue()),
+      _s.encodeXmlStringValue('Status', status.value),
     ];
     final $attributes = <_s.XmlAttribute>[
       ...?attributes,
@@ -17238,117 +16858,63 @@ class ExistingObjectReplication {
 }
 
 enum ExistingObjectReplicationStatus {
-  enabled,
-  disabled,
-}
+  enabled('Enabled'),
+  disabled('Disabled'),
+  ;
 
-extension ExistingObjectReplicationStatusValueExtension
-    on ExistingObjectReplicationStatus {
-  String toValue() {
-    switch (this) {
-      case ExistingObjectReplicationStatus.enabled:
-        return 'Enabled';
-      case ExistingObjectReplicationStatus.disabled:
-        return 'Disabled';
-    }
-  }
-}
+  final String value;
 
-extension ExistingObjectReplicationStatusFromString on String {
-  ExistingObjectReplicationStatus toExistingObjectReplicationStatus() {
-    switch (this) {
-      case 'Enabled':
-        return ExistingObjectReplicationStatus.enabled;
-      case 'Disabled':
-        return ExistingObjectReplicationStatus.disabled;
-    }
-    throw Exception(
-        '$this is not known in enum ExistingObjectReplicationStatus');
-  }
+  const ExistingObjectReplicationStatus(this.value);
+
+  static ExistingObjectReplicationStatus fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum ExistingObjectReplicationStatus'));
 }
 
 enum ExpirationStatus {
-  enabled,
-  disabled,
-}
+  enabled('Enabled'),
+  disabled('Disabled'),
+  ;
 
-extension ExpirationStatusValueExtension on ExpirationStatus {
-  String toValue() {
-    switch (this) {
-      case ExpirationStatus.enabled:
-        return 'Enabled';
-      case ExpirationStatus.disabled:
-        return 'Disabled';
-    }
-  }
-}
+  final String value;
 
-extension ExpirationStatusFromString on String {
-  ExpirationStatus toExpirationStatus() {
-    switch (this) {
-      case 'Enabled':
-        return ExpirationStatus.enabled;
-      case 'Disabled':
-        return ExpirationStatus.disabled;
-    }
-    throw Exception('$this is not known in enum ExpirationStatus');
-  }
+  const ExpirationStatus(this.value);
+
+  static ExpirationStatus fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum ExpirationStatus'));
 }
 
 enum ExpressionType {
-  sql,
-}
+  sql('SQL'),
+  ;
 
-extension ExpressionTypeValueExtension on ExpressionType {
-  String toValue() {
-    switch (this) {
-      case ExpressionType.sql:
-        return 'SQL';
-    }
-  }
-}
+  final String value;
 
-extension ExpressionTypeFromString on String {
-  ExpressionType toExpressionType() {
-    switch (this) {
-      case 'SQL':
-        return ExpressionType.sql;
-    }
-    throw Exception('$this is not known in enum ExpressionType');
-  }
+  const ExpressionType(this.value);
+
+  static ExpressionType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum ExpressionType'));
 }
 
 enum FileHeaderInfo {
-  use,
-  ignore,
-  none,
-}
+  use('USE'),
+  ignore('IGNORE'),
+  none('NONE'),
+  ;
 
-extension FileHeaderInfoValueExtension on FileHeaderInfo {
-  String toValue() {
-    switch (this) {
-      case FileHeaderInfo.use:
-        return 'USE';
-      case FileHeaderInfo.ignore:
-        return 'IGNORE';
-      case FileHeaderInfo.none:
-        return 'NONE';
-    }
-  }
-}
+  final String value;
 
-extension FileHeaderInfoFromString on String {
-  FileHeaderInfo toFileHeaderInfo() {
-    switch (this) {
-      case 'USE':
-        return FileHeaderInfo.use;
-      case 'IGNORE':
-        return FileHeaderInfo.ignore;
-      case 'NONE':
-        return FileHeaderInfo.none;
-    }
-    throw Exception('$this is not known in enum FileHeaderInfo');
-  }
+  const FileHeaderInfo(this.value);
+
+  static FileHeaderInfo fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum FileHeaderInfo'));
 }
 
 /// Specifies the Amazon S3 object key name to filter on and whether to filter
@@ -17371,7 +16937,7 @@ class FilterRule {
   });
   factory FilterRule.fromXml(_s.XmlElement elem) {
     return FilterRule(
-      name: _s.extractXmlStringValue(elem, 'Name')?.toFilterRuleName(),
+      name: FilterRuleName.fromString(_s.extractXmlStringValue(elem, 'Name')),
       value: _s.extractXmlStringValue(elem, 'Value'),
     );
   }
@@ -17380,7 +16946,7 @@ class FilterRule {
     final name = this.name;
     final value = this.value;
     return {
-      if (name != null) 'Name': name.toValue(),
+      if (name != null) 'Name': name.value,
       if (value != null) 'Value': value,
     };
   }
@@ -17389,7 +16955,7 @@ class FilterRule {
     final name = this.name;
     final value = this.value;
     final $children = <_s.XmlNode>[
-      if (name != null) _s.encodeXmlStringValue('Name', name.toValue()),
+      if (name != null) _s.encodeXmlStringValue('Name', name.value),
       if (value != null) _s.encodeXmlStringValue('Value', value),
     ];
     final $attributes = <_s.XmlAttribute>[
@@ -17404,31 +16970,18 @@ class FilterRule {
 }
 
 enum FilterRuleName {
-  prefix,
-  suffix,
-}
+  prefix('prefix'),
+  suffix('suffix'),
+  ;
 
-extension FilterRuleNameValueExtension on FilterRuleName {
-  String toValue() {
-    switch (this) {
-      case FilterRuleName.prefix:
-        return 'prefix';
-      case FilterRuleName.suffix:
-        return 'suffix';
-    }
-  }
-}
+  final String value;
 
-extension FilterRuleNameFromString on String {
-  FilterRuleName toFilterRuleName() {
-    switch (this) {
-      case 'prefix':
-        return FilterRuleName.prefix;
-      case 'suffix':
-        return FilterRuleName.suffix;
-    }
-    throw Exception('$this is not known in enum FilterRuleName');
-  }
+  const FilterRuleName(this.value);
+
+  static FilterRuleName fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum FilterRuleName'));
 }
 
 class GetBucketAccelerateConfigurationOutput {
@@ -17440,15 +16993,15 @@ class GetBucketAccelerateConfigurationOutput {
   });
   factory GetBucketAccelerateConfigurationOutput.fromXml(_s.XmlElement elem) {
     return GetBucketAccelerateConfigurationOutput(
-      status:
-          _s.extractXmlStringValue(elem, 'Status')?.toBucketAccelerateStatus(),
+      status: BucketAccelerateStatus.fromString(
+          _s.extractXmlStringValue(elem, 'Status')),
     );
   }
 
   Map<String, dynamic> toJson() {
     final status = this.status;
     return {
-      if (status != null) 'Status': status.toValue(),
+      if (status != null) 'Status': status.value,
     };
   }
 }
@@ -17628,9 +17181,8 @@ class GetBucketLocationOutput {
   });
   factory GetBucketLocationOutput.fromXml(_s.XmlElement elem) {
     return GetBucketLocationOutput(
-      locationConstraint: _s
-          .extractXmlStringValue(elem, 'LocationConstraint')
-          ?.toBucketLocationConstraint(),
+      locationConstraint: BucketLocationConstraint.fromString(
+          _s.extractXmlStringValue(elem, 'LocationConstraint')),
     );
   }
 
@@ -17638,7 +17190,7 @@ class GetBucketLocationOutput {
     final locationConstraint = this.locationConstraint;
     return {
       if (locationConstraint != null)
-        'LocationConstraint': locationConstraint.toValue(),
+        'LocationConstraint': locationConstraint.value,
     };
   }
 }
@@ -17757,14 +17309,14 @@ class GetBucketRequestPaymentOutput {
   });
   factory GetBucketRequestPaymentOutput.fromXml(_s.XmlElement elem) {
     return GetBucketRequestPaymentOutput(
-      payer: _s.extractXmlStringValue(elem, 'Payer')?.toPayer(),
+      payer: Payer.fromString(_s.extractXmlStringValue(elem, 'Payer')),
     );
   }
 
   Map<String, dynamic> toJson() {
     final payer = this.payer;
     return {
-      if (payer != null) 'Payer': payer.toValue(),
+      if (payer != null) 'Payer': payer.value,
     };
   }
 }
@@ -17810,10 +17362,10 @@ class GetBucketVersioningOutput {
   });
   factory GetBucketVersioningOutput.fromXml(_s.XmlElement elem) {
     return GetBucketVersioningOutput(
-      mFADelete:
-          _s.extractXmlStringValue(elem, 'MfaDelete')?.toMFADeleteStatus(),
-      status:
-          _s.extractXmlStringValue(elem, 'Status')?.toBucketVersioningStatus(),
+      mFADelete: MFADeleteStatus.fromString(
+          _s.extractXmlStringValue(elem, 'MfaDelete')),
+      status: BucketVersioningStatus.fromString(
+          _s.extractXmlStringValue(elem, 'Status')),
     );
   }
 
@@ -17821,8 +17373,8 @@ class GetBucketVersioningOutput {
     final mFADelete = this.mFADelete;
     final status = this.status;
     return {
-      if (mFADelete != null) 'MfaDelete': mFADelete.toValue(),
-      if (status != null) 'Status': status.toValue(),
+      if (mFADelete != null) 'MfaDelete': mFADelete.value,
+      if (status != null) 'Status': status.value,
     };
   }
 }
@@ -17964,7 +17516,7 @@ class GetObjectAttributesOutput {
       if (eTag != null) 'ETag': eTag,
       if (objectParts != null) 'ObjectParts': objectParts,
       if (objectSize != null) 'ObjectSize': objectSize,
-      if (storageClass != null) 'StorageClass': storageClass.toValue(),
+      if (storageClass != null) 'StorageClass': storageClass.value,
     };
   }
 }
@@ -18389,14 +17941,14 @@ class GlacierJobParameters {
   Map<String, dynamic> toJson() {
     final tier = this.tier;
     return {
-      'Tier': tier.toValue(),
+      'Tier': tier.value,
     };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final tier = this.tier;
     final $children = <_s.XmlNode>[
-      _s.encodeXmlStringValue('Tier', tier.toValue()),
+      _s.encodeXmlStringValue('Tier', tier.value),
     ];
     final $attributes = <_s.XmlAttribute>[
       ...?attributes,
@@ -18424,7 +17976,8 @@ class Grant {
   factory Grant.fromXml(_s.XmlElement elem) {
     return Grant(
       grantee: _s.extractXmlChild(elem, 'Grantee')?.let(Grantee.fromXml),
-      permission: _s.extractXmlStringValue(elem, 'Permission')?.toPermission(),
+      permission:
+          Permission.fromString(_s.extractXmlStringValue(elem, 'Permission')),
     );
   }
 
@@ -18433,7 +17986,7 @@ class Grant {
     final permission = this.permission;
     return {
       if (grantee != null) 'Grantee': grantee,
-      if (permission != null) 'Permission': permission.toValue(),
+      if (permission != null) 'Permission': permission.value,
     };
   }
 
@@ -18443,7 +17996,7 @@ class Grant {
     final $children = <_s.XmlNode>[
       if (grantee != null) grantee.toXml('Grantee'),
       if (permission != null)
-        _s.encodeXmlStringValue('Permission', permission.toValue()),
+        _s.encodeXmlStringValue('Permission', permission.value),
     ];
     final $attributes = <_s.XmlAttribute>[
       ...?attributes,
@@ -18516,7 +18069,7 @@ class Grantee {
   });
   factory Grantee.fromXml(_s.XmlElement elem) {
     return Grantee(
-      type: _s.extractXmlStringAttribute(elem, 'xsi:type')!.toType(),
+      type: Type.fromString(_s.extractXmlStringAttribute(elem, 'xsi:type')!),
       displayName: _s.extractXmlStringValue(elem, 'DisplayName'),
       emailAddress: _s.extractXmlStringValue(elem, 'EmailAddress'),
       id: _s.extractXmlStringValue(elem, 'ID'),
@@ -18531,7 +18084,7 @@ class Grantee {
     final id = this.id;
     final uri = this.uri;
     return {
-      'xsi:type': type.toValue(),
+      'xsi:type': type.value,
       if (displayName != null) 'DisplayName': displayName,
       if (emailAddress != null) 'EmailAddress': emailAddress,
       if (id != null) 'ID': id,
@@ -18557,7 +18110,7 @@ class Grantee {
       ...?attributes,
       _s.XmlAttribute(_s.XmlName('xsi', 'xmlns'),
           'http://www.w3.org/2001/XMLSchema-instance'),
-      _s.XmlAttribute(_s.XmlName('xsi:type'), type.toValue()),
+      _s.XmlAttribute(_s.XmlName('xsi:type'), type.value),
     ];
     return _s.XmlElement(
       _s.XmlName(elemName),
@@ -18968,7 +18521,7 @@ class InputSerialization {
     final parquet = this.parquet;
     return {
       if (csv != null) 'CSV': csv,
-      if (compressionType != null) 'CompressionType': compressionType.toValue(),
+      if (compressionType != null) 'CompressionType': compressionType.value,
       if (json != null) 'JSON': json,
       if (parquet != null) 'Parquet': parquet,
     };
@@ -18982,7 +18535,7 @@ class InputSerialization {
     final $children = <_s.XmlNode>[
       if (csv != null) csv.toXml('CSV'),
       if (compressionType != null)
-        _s.encodeXmlStringValue('CompressionType', compressionType.toValue()),
+        _s.encodeXmlStringValue('CompressionType', compressionType.value),
       if (json != null) json.toXml('JSON'),
       if (parquet != null) parquet.toXml('Parquet'),
     ];
@@ -18998,32 +18551,18 @@ class InputSerialization {
 }
 
 enum IntelligentTieringAccessTier {
-  archiveAccess,
-  deepArchiveAccess,
-}
+  archiveAccess('ARCHIVE_ACCESS'),
+  deepArchiveAccess('DEEP_ARCHIVE_ACCESS'),
+  ;
 
-extension IntelligentTieringAccessTierValueExtension
-    on IntelligentTieringAccessTier {
-  String toValue() {
-    switch (this) {
-      case IntelligentTieringAccessTier.archiveAccess:
-        return 'ARCHIVE_ACCESS';
-      case IntelligentTieringAccessTier.deepArchiveAccess:
-        return 'DEEP_ARCHIVE_ACCESS';
-    }
-  }
-}
+  final String value;
 
-extension IntelligentTieringAccessTierFromString on String {
-  IntelligentTieringAccessTier toIntelligentTieringAccessTier() {
-    switch (this) {
-      case 'ARCHIVE_ACCESS':
-        return IntelligentTieringAccessTier.archiveAccess;
-      case 'DEEP_ARCHIVE_ACCESS':
-        return IntelligentTieringAccessTier.deepArchiveAccess;
-    }
-    throw Exception('$this is not known in enum IntelligentTieringAccessTier');
-  }
+  const IntelligentTieringAccessTier(this.value);
+
+  static IntelligentTieringAccessTier fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum IntelligentTieringAccessTier'));
 }
 
 /// A container for specifying S3 Intelligent-Tiering filters. The filters
@@ -19105,9 +18644,8 @@ class IntelligentTieringConfiguration {
   factory IntelligentTieringConfiguration.fromXml(_s.XmlElement elem) {
     return IntelligentTieringConfiguration(
       id: _s.extractXmlStringValue(elem, 'Id')!,
-      status: _s
-          .extractXmlStringValue(elem, 'Status')!
-          .toIntelligentTieringStatus(),
+      status: IntelligentTieringStatus.fromString(
+          _s.extractXmlStringValue(elem, 'Status')!),
       tierings: elem.findElements('Tiering').map(Tiering.fromXml).toList(),
       filter: _s
           .extractXmlChild(elem, 'Filter')
@@ -19122,7 +18660,7 @@ class IntelligentTieringConfiguration {
     final filter = this.filter;
     return {
       'Id': id,
-      'Status': status.toValue(),
+      'Status': status.value,
       'Tiering': tierings,
       if (filter != null) 'Filter': filter,
     };
@@ -19136,7 +18674,7 @@ class IntelligentTieringConfiguration {
     final $children = <_s.XmlNode>[
       _s.encodeXmlStringValue('Id', id),
       if (filter != null) filter.toXml('Filter'),
-      _s.encodeXmlStringValue('Status', status.toValue()),
+      _s.encodeXmlStringValue('Status', status.value),
       ...tierings.map((e) => e.toXml('Tiering')),
     ];
     final $attributes = <_s.XmlAttribute>[
@@ -19216,31 +18754,18 @@ class IntelligentTieringFilter {
 }
 
 enum IntelligentTieringStatus {
-  enabled,
-  disabled,
-}
+  enabled('Enabled'),
+  disabled('Disabled'),
+  ;
 
-extension IntelligentTieringStatusValueExtension on IntelligentTieringStatus {
-  String toValue() {
-    switch (this) {
-      case IntelligentTieringStatus.enabled:
-        return 'Enabled';
-      case IntelligentTieringStatus.disabled:
-        return 'Disabled';
-    }
-  }
-}
+  final String value;
 
-extension IntelligentTieringStatusFromString on String {
-  IntelligentTieringStatus toIntelligentTieringStatus() {
-    switch (this) {
-      case 'Enabled':
-        return IntelligentTieringStatus.enabled;
-      case 'Disabled':
-        return IntelligentTieringStatus.disabled;
-    }
-    throw Exception('$this is not known in enum IntelligentTieringStatus');
-  }
+  const IntelligentTieringStatus(this.value);
+
+  static IntelligentTieringStatus fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum IntelligentTieringStatus'));
 }
 
 /// Specifies the inventory configuration for an Amazon S3 bucket. For more
@@ -19290,9 +18815,8 @@ class InventoryConfiguration {
       destination: InventoryDestination.fromXml(
           _s.extractXmlChild(elem, 'Destination')!),
       id: _s.extractXmlStringValue(elem, 'Id')!,
-      includedObjectVersions: _s
-          .extractXmlStringValue(elem, 'IncludedObjectVersions')!
-          .toInventoryIncludedObjectVersions(),
+      includedObjectVersions: InventoryIncludedObjectVersions.fromString(
+          _s.extractXmlStringValue(elem, 'IncludedObjectVersions')!),
       isEnabled: _s.extractXmlBoolValue(elem, 'IsEnabled')!,
       schedule:
           InventorySchedule.fromXml(_s.extractXmlChild(elem, 'Schedule')!),
@@ -19316,12 +18840,12 @@ class InventoryConfiguration {
     return {
       'Destination': destination,
       'Id': id,
-      'IncludedObjectVersions': includedObjectVersions.toValue(),
+      'IncludedObjectVersions': includedObjectVersions.value,
       'IsEnabled': isEnabled,
       'Schedule': schedule,
       if (filter != null) 'Filter': filter,
       if (optionalFields != null)
-        'OptionalFields': optionalFields.map((e) => e.toValue()).toList(),
+        'OptionalFields': optionalFields.map((e) => e.value).toList(),
     };
   }
 
@@ -19339,13 +18863,13 @@ class InventoryConfiguration {
       if (filter != null) filter.toXml('Filter'),
       _s.encodeXmlStringValue('Id', id),
       _s.encodeXmlStringValue(
-          'IncludedObjectVersions', includedObjectVersions.toValue()),
+          'IncludedObjectVersions', includedObjectVersions.value),
       if (optionalFields != null)
         _s.XmlElement(
             _s.XmlName('OptionalFields'),
             [],
             optionalFields
-                .map((e) => _s.encodeXmlStringValue('Field', e.toValue()))),
+                .map((e) => _s.encodeXmlStringValue('Field', e.value))),
       schedule.toXml('Schedule'),
     ];
     final $attributes = <_s.XmlAttribute>[
@@ -19484,177 +19008,75 @@ class InventoryFilter {
 }
 
 enum InventoryFormat {
-  csv,
-  orc,
-  parquet,
-}
+  csv('CSV'),
+  orc('ORC'),
+  parquet('Parquet'),
+  ;
 
-extension InventoryFormatValueExtension on InventoryFormat {
-  String toValue() {
-    switch (this) {
-      case InventoryFormat.csv:
-        return 'CSV';
-      case InventoryFormat.orc:
-        return 'ORC';
-      case InventoryFormat.parquet:
-        return 'Parquet';
-    }
-  }
-}
+  final String value;
 
-extension InventoryFormatFromString on String {
-  InventoryFormat toInventoryFormat() {
-    switch (this) {
-      case 'CSV':
-        return InventoryFormat.csv;
-      case 'ORC':
-        return InventoryFormat.orc;
-      case 'Parquet':
-        return InventoryFormat.parquet;
-    }
-    throw Exception('$this is not known in enum InventoryFormat');
-  }
+  const InventoryFormat(this.value);
+
+  static InventoryFormat fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum InventoryFormat'));
 }
 
 enum InventoryFrequency {
-  daily,
-  weekly,
-}
+  daily('Daily'),
+  weekly('Weekly'),
+  ;
 
-extension InventoryFrequencyValueExtension on InventoryFrequency {
-  String toValue() {
-    switch (this) {
-      case InventoryFrequency.daily:
-        return 'Daily';
-      case InventoryFrequency.weekly:
-        return 'Weekly';
-    }
-  }
-}
+  final String value;
 
-extension InventoryFrequencyFromString on String {
-  InventoryFrequency toInventoryFrequency() {
-    switch (this) {
-      case 'Daily':
-        return InventoryFrequency.daily;
-      case 'Weekly':
-        return InventoryFrequency.weekly;
-    }
-    throw Exception('$this is not known in enum InventoryFrequency');
-  }
+  const InventoryFrequency(this.value);
+
+  static InventoryFrequency fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum InventoryFrequency'));
 }
 
 enum InventoryIncludedObjectVersions {
-  all,
-  current,
-}
+  all('All'),
+  current('Current'),
+  ;
 
-extension InventoryIncludedObjectVersionsValueExtension
-    on InventoryIncludedObjectVersions {
-  String toValue() {
-    switch (this) {
-      case InventoryIncludedObjectVersions.all:
-        return 'All';
-      case InventoryIncludedObjectVersions.current:
-        return 'Current';
-    }
-  }
-}
+  final String value;
 
-extension InventoryIncludedObjectVersionsFromString on String {
-  InventoryIncludedObjectVersions toInventoryIncludedObjectVersions() {
-    switch (this) {
-      case 'All':
-        return InventoryIncludedObjectVersions.all;
-      case 'Current':
-        return InventoryIncludedObjectVersions.current;
-    }
-    throw Exception(
-        '$this is not known in enum InventoryIncludedObjectVersions');
-  }
+  const InventoryIncludedObjectVersions(this.value);
+
+  static InventoryIncludedObjectVersions fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum InventoryIncludedObjectVersions'));
 }
 
 enum InventoryOptionalField {
-  size,
-  lastModifiedDate,
-  storageClass,
-  eTag,
-  isMultipartUploaded,
-  replicationStatus,
-  encryptionStatus,
-  objectLockRetainUntilDate,
-  objectLockMode,
-  objectLockLegalHoldStatus,
-  intelligentTieringAccessTier,
-  bucketKeyStatus,
-  checksumAlgorithm,
-}
+  size('Size'),
+  lastModifiedDate('LastModifiedDate'),
+  storageClass('StorageClass'),
+  eTag('ETag'),
+  isMultipartUploaded('IsMultipartUploaded'),
+  replicationStatus('ReplicationStatus'),
+  encryptionStatus('EncryptionStatus'),
+  objectLockRetainUntilDate('ObjectLockRetainUntilDate'),
+  objectLockMode('ObjectLockMode'),
+  objectLockLegalHoldStatus('ObjectLockLegalHoldStatus'),
+  intelligentTieringAccessTier('IntelligentTieringAccessTier'),
+  bucketKeyStatus('BucketKeyStatus'),
+  checksumAlgorithm('ChecksumAlgorithm'),
+  ;
 
-extension InventoryOptionalFieldValueExtension on InventoryOptionalField {
-  String toValue() {
-    switch (this) {
-      case InventoryOptionalField.size:
-        return 'Size';
-      case InventoryOptionalField.lastModifiedDate:
-        return 'LastModifiedDate';
-      case InventoryOptionalField.storageClass:
-        return 'StorageClass';
-      case InventoryOptionalField.eTag:
-        return 'ETag';
-      case InventoryOptionalField.isMultipartUploaded:
-        return 'IsMultipartUploaded';
-      case InventoryOptionalField.replicationStatus:
-        return 'ReplicationStatus';
-      case InventoryOptionalField.encryptionStatus:
-        return 'EncryptionStatus';
-      case InventoryOptionalField.objectLockRetainUntilDate:
-        return 'ObjectLockRetainUntilDate';
-      case InventoryOptionalField.objectLockMode:
-        return 'ObjectLockMode';
-      case InventoryOptionalField.objectLockLegalHoldStatus:
-        return 'ObjectLockLegalHoldStatus';
-      case InventoryOptionalField.intelligentTieringAccessTier:
-        return 'IntelligentTieringAccessTier';
-      case InventoryOptionalField.bucketKeyStatus:
-        return 'BucketKeyStatus';
-      case InventoryOptionalField.checksumAlgorithm:
-        return 'ChecksumAlgorithm';
-    }
-  }
-}
+  final String value;
 
-extension InventoryOptionalFieldFromString on String {
-  InventoryOptionalField toInventoryOptionalField() {
-    switch (this) {
-      case 'Size':
-        return InventoryOptionalField.size;
-      case 'LastModifiedDate':
-        return InventoryOptionalField.lastModifiedDate;
-      case 'StorageClass':
-        return InventoryOptionalField.storageClass;
-      case 'ETag':
-        return InventoryOptionalField.eTag;
-      case 'IsMultipartUploaded':
-        return InventoryOptionalField.isMultipartUploaded;
-      case 'ReplicationStatus':
-        return InventoryOptionalField.replicationStatus;
-      case 'EncryptionStatus':
-        return InventoryOptionalField.encryptionStatus;
-      case 'ObjectLockRetainUntilDate':
-        return InventoryOptionalField.objectLockRetainUntilDate;
-      case 'ObjectLockMode':
-        return InventoryOptionalField.objectLockMode;
-      case 'ObjectLockLegalHoldStatus':
-        return InventoryOptionalField.objectLockLegalHoldStatus;
-      case 'IntelligentTieringAccessTier':
-        return InventoryOptionalField.intelligentTieringAccessTier;
-      case 'BucketKeyStatus':
-        return InventoryOptionalField.bucketKeyStatus;
-      case 'ChecksumAlgorithm':
-        return InventoryOptionalField.checksumAlgorithm;
-    }
-    throw Exception('$this is not known in enum InventoryOptionalField');
-  }
+  const InventoryOptionalField(this.value);
+
+  static InventoryOptionalField fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum InventoryOptionalField'));
 }
 
 /// Contains the bucket name, file format, bucket owner (optional), and prefix
@@ -19692,7 +19114,8 @@ class InventoryS3BucketDestination {
   factory InventoryS3BucketDestination.fromXml(_s.XmlElement elem) {
     return InventoryS3BucketDestination(
       bucket: _s.extractXmlStringValue(elem, 'Bucket')!,
-      format: _s.extractXmlStringValue(elem, 'Format')!.toInventoryFormat(),
+      format:
+          InventoryFormat.fromString(_s.extractXmlStringValue(elem, 'Format')!),
       accountId: _s.extractXmlStringValue(elem, 'AccountId'),
       encryption: _s
           .extractXmlChild(elem, 'Encryption')
@@ -19709,7 +19132,7 @@ class InventoryS3BucketDestination {
     final prefix = this.prefix;
     return {
       'Bucket': bucket,
-      'Format': format.toValue(),
+      'Format': format.value,
       if (accountId != null) 'AccountId': accountId,
       if (encryption != null) 'Encryption': encryption,
       if (prefix != null) 'Prefix': prefix,
@@ -19725,7 +19148,7 @@ class InventoryS3BucketDestination {
     final $children = <_s.XmlNode>[
       if (accountId != null) _s.encodeXmlStringValue('AccountId', accountId),
       _s.encodeXmlStringValue('Bucket', bucket),
-      _s.encodeXmlStringValue('Format', format.toValue()),
+      _s.encodeXmlStringValue('Format', format.value),
       if (prefix != null) _s.encodeXmlStringValue('Prefix', prefix),
       if (encryption != null) encryption.toXml('Encryption'),
     ];
@@ -19750,22 +19173,22 @@ class InventorySchedule {
   });
   factory InventorySchedule.fromXml(_s.XmlElement elem) {
     return InventorySchedule(
-      frequency:
-          _s.extractXmlStringValue(elem, 'Frequency')!.toInventoryFrequency(),
+      frequency: InventoryFrequency.fromString(
+          _s.extractXmlStringValue(elem, 'Frequency')!),
     );
   }
 
   Map<String, dynamic> toJson() {
     final frequency = this.frequency;
     return {
-      'Frequency': frequency.toValue(),
+      'Frequency': frequency.value,
     };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final frequency = this.frequency;
     final $children = <_s.XmlNode>[
-      _s.encodeXmlStringValue('Frequency', frequency.toValue()),
+      _s.encodeXmlStringValue('Frequency', frequency.value),
     ];
     final $attributes = <_s.XmlAttribute>[
       ...?attributes,
@@ -19790,14 +19213,14 @@ class JSONInput {
   Map<String, dynamic> toJson() {
     final type = this.type;
     return {
-      if (type != null) 'Type': type.toValue(),
+      if (type != null) 'Type': type.value,
     };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final type = this.type;
     final $children = <_s.XmlNode>[
-      if (type != null) _s.encodeXmlStringValue('Type', type.toValue()),
+      if (type != null) _s.encodeXmlStringValue('Type', type.value),
     ];
     final $attributes = <_s.XmlAttribute>[
       ...?attributes,
@@ -19845,31 +19268,17 @@ class JSONOutput {
 }
 
 enum JSONType {
-  document,
-  lines,
-}
+  document('DOCUMENT'),
+  lines('LINES'),
+  ;
 
-extension JSONTypeValueExtension on JSONType {
-  String toValue() {
-    switch (this) {
-      case JSONType.document:
-        return 'DOCUMENT';
-      case JSONType.lines:
-        return 'LINES';
-    }
-  }
-}
+  final String value;
 
-extension JSONTypeFromString on String {
-  JSONType toJSONType() {
-    switch (this) {
-      case 'DOCUMENT':
-        return JSONType.document;
-      case 'LINES':
-        return JSONType.lines;
-    }
-    throw Exception('$this is not known in enum JSONType');
-  }
+  const JSONType(this.value);
+
+  static JSONType fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum JSONType'));
 }
 
 /// A container for specifying the configuration for Lambda notifications.
@@ -19912,7 +19321,7 @@ class LambdaFunctionConfiguration {
     final filter = this.filter;
     final id = this.id;
     return {
-      'Event': events.map((e) => e.toValue()).toList(),
+      'Event': events.map((e) => e.value).toList(),
       'CloudFunction': lambdaFunctionArn,
       if (filter != null) 'Filter': filter,
       if (id != null) 'Id': id,
@@ -19927,7 +19336,7 @@ class LambdaFunctionConfiguration {
     final $children = <_s.XmlNode>[
       if (id != null) _s.encodeXmlStringValue('Id', id),
       _s.encodeXmlStringValue('CloudFunction', lambdaFunctionArn),
-      ...events.map((e) => _s.encodeXmlStringValue('Event', e.toValue())),
+      ...events.map((e) => _s.encodeXmlStringValue('Event', e.value)),
       if (filter != null) filter.toXml('Filter'),
     ];
     final $attributes = <_s.XmlAttribute>[
@@ -20107,7 +19516,8 @@ class LifecycleRule {
   });
   factory LifecycleRule.fromXml(_s.XmlElement elem) {
     return LifecycleRule(
-      status: _s.extractXmlStringValue(elem, 'Status')!.toExpirationStatus(),
+      status: ExpirationStatus.fromString(
+          _s.extractXmlStringValue(elem, 'Status')!),
       abortIncompleteMultipartUpload: _s
           .extractXmlChild(elem, 'AbortIncompleteMultipartUpload')
           ?.let(AbortIncompleteMultipartUpload.fromXml),
@@ -20141,7 +19551,7 @@ class LifecycleRule {
     final prefix = this.prefix;
     final transitions = this.transitions;
     return {
-      'Status': status.toValue(),
+      'Status': status.value,
       if (abortIncompleteMultipartUpload != null)
         'AbortIncompleteMultipartUpload': abortIncompleteMultipartUpload,
       if (expiration != null) 'Expiration': expiration,
@@ -20171,7 +19581,7 @@ class LifecycleRule {
       if (id != null) _s.encodeXmlStringValue('ID', id),
       if (prefix != null) _s.encodeXmlStringValue('Prefix', prefix),
       if (filter != null) filter.toXml('Filter'),
-      _s.encodeXmlStringValue('Status', status.toValue()),
+      _s.encodeXmlStringValue('Status', status.value),
       if (transitions != null) ...transitions.map((e) => e.toXml('Transition')),
       if (noncurrentVersionTransitions != null)
         ...noncurrentVersionTransitions
@@ -20678,8 +20088,8 @@ class ListMultipartUploadsOutput {
           .map(CommonPrefix.fromXml)
           .toList(),
       delimiter: _s.extractXmlStringValue(elem, 'Delimiter'),
-      encodingType:
-          _s.extractXmlStringValue(elem, 'EncodingType')?.toEncodingType(),
+      encodingType: EncodingType.fromString(
+          _s.extractXmlStringValue(elem, 'EncodingType')),
       isTruncated: _s.extractXmlBoolValue(elem, 'IsTruncated'),
       keyMarker: _s.extractXmlStringValue(elem, 'KeyMarker'),
       maxUploads: _s.extractXmlIntValue(elem, 'MaxUploads'),
@@ -20709,7 +20119,7 @@ class ListMultipartUploadsOutput {
       if (bucket != null) 'Bucket': bucket,
       if (commonPrefixes != null) 'CommonPrefixes': commonPrefixes,
       if (delimiter != null) 'Delimiter': delimiter,
-      if (encodingType != null) 'EncodingType': encodingType.toValue(),
+      if (encodingType != null) 'EncodingType': encodingType.value,
       if (isTruncated != null) 'IsTruncated': isTruncated,
       if (keyMarker != null) 'KeyMarker': keyMarker,
       if (maxUploads != null) 'MaxUploads': maxUploads,
@@ -20812,8 +20222,8 @@ class ListObjectVersionsOutput {
           .map(DeleteMarkerEntry.fromXml)
           .toList(),
       delimiter: _s.extractXmlStringValue(elem, 'Delimiter'),
-      encodingType:
-          _s.extractXmlStringValue(elem, 'EncodingType')?.toEncodingType(),
+      encodingType: EncodingType.fromString(
+          _s.extractXmlStringValue(elem, 'EncodingType')),
       isTruncated: _s.extractXmlBoolValue(elem, 'IsTruncated'),
       keyMarker: _s.extractXmlStringValue(elem, 'KeyMarker'),
       maxKeys: _s.extractXmlIntValue(elem, 'MaxKeys'),
@@ -20846,7 +20256,7 @@ class ListObjectVersionsOutput {
       if (commonPrefixes != null) 'CommonPrefixes': commonPrefixes,
       if (deleteMarkers != null) 'DeleteMarker': deleteMarkers,
       if (delimiter != null) 'Delimiter': delimiter,
-      if (encodingType != null) 'EncodingType': encodingType.toValue(),
+      if (encodingType != null) 'EncodingType': encodingType.value,
       if (isTruncated != null) 'IsTruncated': isTruncated,
       if (keyMarker != null) 'KeyMarker': keyMarker,
       if (maxKeys != null) 'MaxKeys': maxKeys,
@@ -20938,8 +20348,8 @@ class ListObjectsOutput {
           .toList(),
       contents: elem.findElements('Contents').map(Object.fromXml).toList(),
       delimiter: _s.extractXmlStringValue(elem, 'Delimiter'),
-      encodingType:
-          _s.extractXmlStringValue(elem, 'EncodingType')?.toEncodingType(),
+      encodingType: EncodingType.fromString(
+          _s.extractXmlStringValue(elem, 'EncodingType')),
       isTruncated: _s.extractXmlBoolValue(elem, 'IsTruncated'),
       marker: _s.extractXmlStringValue(elem, 'Marker'),
       maxKeys: _s.extractXmlIntValue(elem, 'MaxKeys'),
@@ -20964,7 +20374,7 @@ class ListObjectsOutput {
       if (commonPrefixes != null) 'CommonPrefixes': commonPrefixes,
       if (contents != null) 'Contents': contents,
       if (delimiter != null) 'Delimiter': delimiter,
-      if (encodingType != null) 'EncodingType': encodingType.toValue(),
+      if (encodingType != null) 'EncodingType': encodingType.value,
       if (isTruncated != null) 'IsTruncated': isTruncated,
       if (marker != null) 'Marker': marker,
       if (maxKeys != null) 'MaxKeys': maxKeys,
@@ -21093,8 +20503,8 @@ class ListObjectsV2Output {
       contents: elem.findElements('Contents').map(Object.fromXml).toList(),
       continuationToken: _s.extractXmlStringValue(elem, 'ContinuationToken'),
       delimiter: _s.extractXmlStringValue(elem, 'Delimiter'),
-      encodingType:
-          _s.extractXmlStringValue(elem, 'EncodingType')?.toEncodingType(),
+      encodingType: EncodingType.fromString(
+          _s.extractXmlStringValue(elem, 'EncodingType')),
       isTruncated: _s.extractXmlBoolValue(elem, 'IsTruncated'),
       keyCount: _s.extractXmlIntValue(elem, 'KeyCount'),
       maxKeys: _s.extractXmlIntValue(elem, 'MaxKeys'),
@@ -21124,7 +20534,7 @@ class ListObjectsV2Output {
       if (contents != null) 'Contents': contents,
       if (continuationToken != null) 'ContinuationToken': continuationToken,
       if (delimiter != null) 'Delimiter': delimiter,
-      if (encodingType != null) 'EncodingType': encodingType.toValue(),
+      if (encodingType != null) 'EncodingType': encodingType.value,
       if (isTruncated != null) 'IsTruncated': isTruncated,
       if (keyCount != null) 'KeyCount': keyCount,
       if (maxKeys != null) 'MaxKeys': maxKeys,
@@ -21244,7 +20654,7 @@ class ListPartsOutput {
     return {
       if (bucket != null) 'Bucket': bucket,
       if (checksumAlgorithm != null)
-        'ChecksumAlgorithm': checksumAlgorithm.toValue(),
+        'ChecksumAlgorithm': checksumAlgorithm.value,
       if (initiator != null) 'Initiator': initiator,
       if (isTruncated != null) 'IsTruncated': isTruncated,
       if (key != null) 'Key': key,
@@ -21254,7 +20664,7 @@ class ListPartsOutput {
       if (owner != null) 'Owner': owner,
       if (partNumberMarker != null) 'PartNumberMarker': partNumberMarker,
       if (parts != null) 'Part': parts,
-      if (storageClass != null) 'StorageClass': storageClass.toValue(),
+      if (storageClass != null) 'StorageClass': storageClass.value,
       if (uploadId != null) 'UploadId': uploadId,
     };
   }
@@ -21334,87 +20744,47 @@ class LoggingEnabled {
 }
 
 enum MFADelete {
-  enabled,
-  disabled,
-}
+  enabled('Enabled'),
+  disabled('Disabled'),
+  ;
 
-extension MFADeleteValueExtension on MFADelete {
-  String toValue() {
-    switch (this) {
-      case MFADelete.enabled:
-        return 'Enabled';
-      case MFADelete.disabled:
-        return 'Disabled';
-    }
-  }
-}
+  final String value;
 
-extension MFADeleteFromString on String {
-  MFADelete toMFADelete() {
-    switch (this) {
-      case 'Enabled':
-        return MFADelete.enabled;
-      case 'Disabled':
-        return MFADelete.disabled;
-    }
-    throw Exception('$this is not known in enum MFADelete');
-  }
+  const MFADelete(this.value);
+
+  static MFADelete fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum MFADelete'));
 }
 
 enum MFADeleteStatus {
-  enabled,
-  disabled,
-}
+  enabled('Enabled'),
+  disabled('Disabled'),
+  ;
 
-extension MFADeleteStatusValueExtension on MFADeleteStatus {
-  String toValue() {
-    switch (this) {
-      case MFADeleteStatus.enabled:
-        return 'Enabled';
-      case MFADeleteStatus.disabled:
-        return 'Disabled';
-    }
-  }
-}
+  final String value;
 
-extension MFADeleteStatusFromString on String {
-  MFADeleteStatus toMFADeleteStatus() {
-    switch (this) {
-      case 'Enabled':
-        return MFADeleteStatus.enabled;
-      case 'Disabled':
-        return MFADeleteStatus.disabled;
-    }
-    throw Exception('$this is not known in enum MFADeleteStatus');
-  }
+  const MFADeleteStatus(this.value);
+
+  static MFADeleteStatus fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum MFADeleteStatus'));
 }
 
 enum MetadataDirective {
-  copy,
-  replace,
-}
+  copy('COPY'),
+  replace('REPLACE'),
+  ;
 
-extension MetadataDirectiveValueExtension on MetadataDirective {
-  String toValue() {
-    switch (this) {
-      case MetadataDirective.copy:
-        return 'COPY';
-      case MetadataDirective.replace:
-        return 'REPLACE';
-    }
-  }
-}
+  final String value;
 
-extension MetadataDirectiveFromString on String {
-  MetadataDirective toMetadataDirective() {
-    switch (this) {
-      case 'COPY':
-        return MetadataDirective.copy;
-      case 'REPLACE':
-        return MetadataDirective.replace;
-    }
-    throw Exception('$this is not known in enum MetadataDirective');
-  }
+  const MetadataDirective(this.value);
+
+  static MetadataDirective fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum MetadataDirective'));
 }
 
 /// A metadata key-value pair to store with an object.
@@ -21473,7 +20843,8 @@ class Metrics {
   });
   factory Metrics.fromXml(_s.XmlElement elem) {
     return Metrics(
-      status: _s.extractXmlStringValue(elem, 'Status')!.toMetricsStatus(),
+      status:
+          MetricsStatus.fromString(_s.extractXmlStringValue(elem, 'Status')!),
       eventThreshold: _s
           .extractXmlChild(elem, 'EventThreshold')
           ?.let(ReplicationTimeValue.fromXml),
@@ -21484,7 +20855,7 @@ class Metrics {
     final status = this.status;
     final eventThreshold = this.eventThreshold;
     return {
-      'Status': status.toValue(),
+      'Status': status.value,
       if (eventThreshold != null) 'EventThreshold': eventThreshold,
     };
   }
@@ -21493,7 +20864,7 @@ class Metrics {
     final status = this.status;
     final eventThreshold = this.eventThreshold;
     final $children = <_s.XmlNode>[
-      _s.encodeXmlStringValue('Status', status.toValue()),
+      _s.encodeXmlStringValue('Status', status.value),
       if (eventThreshold != null) eventThreshold.toXml('EventThreshold'),
     ];
     final $attributes = <_s.XmlAttribute>[
@@ -21693,31 +21064,18 @@ class MetricsFilter {
 }
 
 enum MetricsStatus {
-  enabled,
-  disabled,
-}
+  enabled('Enabled'),
+  disabled('Disabled'),
+  ;
 
-extension MetricsStatusValueExtension on MetricsStatus {
-  String toValue() {
-    switch (this) {
-      case MetricsStatus.enabled:
-        return 'Enabled';
-      case MetricsStatus.disabled:
-        return 'Disabled';
-    }
-  }
-}
+  final String value;
 
-extension MetricsStatusFromString on String {
-  MetricsStatus toMetricsStatus() {
-    switch (this) {
-      case 'Enabled':
-        return MetricsStatus.enabled;
-      case 'Disabled':
-        return MetricsStatus.disabled;
-    }
-    throw Exception('$this is not known in enum MetricsStatus');
-  }
+  const MetricsStatus(this.value);
+
+  static MetricsStatus fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum MetricsStatus'));
 }
 
 /// Container for the <code>MultipartUpload</code> for the Amazon S3 object.
@@ -21754,15 +21112,14 @@ class MultipartUpload {
   });
   factory MultipartUpload.fromXml(_s.XmlElement elem) {
     return MultipartUpload(
-      checksumAlgorithm: _s
-          .extractXmlStringValue(elem, 'ChecksumAlgorithm')
-          ?.toChecksumAlgorithm(),
+      checksumAlgorithm: ChecksumAlgorithm.fromString(
+          _s.extractXmlStringValue(elem, 'ChecksumAlgorithm')),
       initiated: _s.extractXmlDateTimeValue(elem, 'Initiated'),
       initiator: _s.extractXmlChild(elem, 'Initiator')?.let(Initiator.fromXml),
       key: _s.extractXmlStringValue(elem, 'Key'),
       owner: _s.extractXmlChild(elem, 'Owner')?.let(Owner.fromXml),
-      storageClass:
-          _s.extractXmlStringValue(elem, 'StorageClass')?.toStorageClass(),
+      storageClass: StorageClass.fromString(
+          _s.extractXmlStringValue(elem, 'StorageClass')),
       uploadId: _s.extractXmlStringValue(elem, 'UploadId'),
     );
   }
@@ -21777,12 +21134,12 @@ class MultipartUpload {
     final uploadId = this.uploadId;
     return {
       if (checksumAlgorithm != null)
-        'ChecksumAlgorithm': checksumAlgorithm.toValue(),
+        'ChecksumAlgorithm': checksumAlgorithm.value,
       if (initiated != null) 'Initiated': iso8601ToJson(initiated),
       if (initiator != null) 'Initiator': initiator,
       if (key != null) 'Key': key,
       if (owner != null) 'Owner': owner,
-      if (storageClass != null) 'StorageClass': storageClass.toValue(),
+      if (storageClass != null) 'StorageClass': storageClass.value,
       if (uploadId != null) 'UploadId': uploadId,
     };
   }
@@ -21891,9 +21248,8 @@ class NoncurrentVersionTransition {
       newerNoncurrentVersions:
           _s.extractXmlIntValue(elem, 'NewerNoncurrentVersions'),
       noncurrentDays: _s.extractXmlIntValue(elem, 'NoncurrentDays'),
-      storageClass: _s
-          .extractXmlStringValue(elem, 'StorageClass')
-          ?.toTransitionStorageClass(),
+      storageClass: TransitionStorageClass.fromString(
+          _s.extractXmlStringValue(elem, 'StorageClass')),
     );
   }
 
@@ -21905,7 +21261,7 @@ class NoncurrentVersionTransition {
       if (newerNoncurrentVersions != null)
         'NewerNoncurrentVersions': newerNoncurrentVersions,
       if (noncurrentDays != null) 'NoncurrentDays': noncurrentDays,
-      if (storageClass != null) 'StorageClass': storageClass.toValue(),
+      if (storageClass != null) 'StorageClass': storageClass.value,
     };
   }
 
@@ -21917,7 +21273,7 @@ class NoncurrentVersionTransition {
       if (noncurrentDays != null)
         _s.encodeXmlIntValue('NoncurrentDays', noncurrentDays),
       if (storageClass != null)
-        _s.encodeXmlStringValue('StorageClass', storageClass.toValue()),
+        _s.encodeXmlStringValue('StorageClass', storageClass.value),
       if (newerNoncurrentVersions != null)
         _s.encodeXmlIntValue(
             'NewerNoncurrentVersions', newerNoncurrentVersions),
@@ -22197,9 +21553,8 @@ class Object {
       lastModified: _s.extractXmlDateTimeValue(elem, 'LastModified'),
       owner: _s.extractXmlChild(elem, 'Owner')?.let(Owner.fromXml),
       size: _s.extractXmlIntValue(elem, 'Size'),
-      storageClass: _s
-          .extractXmlStringValue(elem, 'StorageClass')
-          ?.toObjectStorageClass(),
+      storageClass: ObjectStorageClass.fromString(
+          _s.extractXmlStringValue(elem, 'StorageClass')),
     );
   }
 
@@ -22213,111 +21568,53 @@ class Object {
     final storageClass = this.storageClass;
     return {
       if (checksumAlgorithm != null)
-        'ChecksumAlgorithm': checksumAlgorithm.map((e) => e.toValue()).toList(),
+        'ChecksumAlgorithm': checksumAlgorithm.map((e) => e.value).toList(),
       if (eTag != null) 'ETag': eTag,
       if (key != null) 'Key': key,
       if (lastModified != null) 'LastModified': iso8601ToJson(lastModified),
       if (owner != null) 'Owner': owner,
       if (size != null) 'Size': size,
-      if (storageClass != null) 'StorageClass': storageClass.toValue(),
+      if (storageClass != null) 'StorageClass': storageClass.value,
     };
   }
 }
 
 enum ObjectAttributes {
-  eTag,
-  checksum,
-  objectParts,
-  storageClass,
-  objectSize,
-}
+  eTag('ETag'),
+  checksum('Checksum'),
+  objectParts('ObjectParts'),
+  storageClass('StorageClass'),
+  objectSize('ObjectSize'),
+  ;
 
-extension ObjectAttributesValueExtension on ObjectAttributes {
-  String toValue() {
-    switch (this) {
-      case ObjectAttributes.eTag:
-        return 'ETag';
-      case ObjectAttributes.checksum:
-        return 'Checksum';
-      case ObjectAttributes.objectParts:
-        return 'ObjectParts';
-      case ObjectAttributes.storageClass:
-        return 'StorageClass';
-      case ObjectAttributes.objectSize:
-        return 'ObjectSize';
-    }
-  }
-}
+  final String value;
 
-extension ObjectAttributesFromString on String {
-  ObjectAttributes toObjectAttributes() {
-    switch (this) {
-      case 'ETag':
-        return ObjectAttributes.eTag;
-      case 'Checksum':
-        return ObjectAttributes.checksum;
-      case 'ObjectParts':
-        return ObjectAttributes.objectParts;
-      case 'StorageClass':
-        return ObjectAttributes.storageClass;
-      case 'ObjectSize':
-        return ObjectAttributes.objectSize;
-    }
-    throw Exception('$this is not known in enum ObjectAttributes');
-  }
+  const ObjectAttributes(this.value);
+
+  static ObjectAttributes fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum ObjectAttributes'));
 }
 
 enum ObjectCannedACL {
-  private,
-  publicRead,
-  publicReadWrite,
-  authenticatedRead,
-  awsExecRead,
-  bucketOwnerRead,
-  bucketOwnerFullControl,
-}
+  private('private'),
+  publicRead('public-read'),
+  publicReadWrite('public-read-write'),
+  authenticatedRead('authenticated-read'),
+  awsExecRead('aws-exec-read'),
+  bucketOwnerRead('bucket-owner-read'),
+  bucketOwnerFullControl('bucket-owner-full-control'),
+  ;
 
-extension ObjectCannedACLValueExtension on ObjectCannedACL {
-  String toValue() {
-    switch (this) {
-      case ObjectCannedACL.private:
-        return 'private';
-      case ObjectCannedACL.publicRead:
-        return 'public-read';
-      case ObjectCannedACL.publicReadWrite:
-        return 'public-read-write';
-      case ObjectCannedACL.authenticatedRead:
-        return 'authenticated-read';
-      case ObjectCannedACL.awsExecRead:
-        return 'aws-exec-read';
-      case ObjectCannedACL.bucketOwnerRead:
-        return 'bucket-owner-read';
-      case ObjectCannedACL.bucketOwnerFullControl:
-        return 'bucket-owner-full-control';
-    }
-  }
-}
+  final String value;
 
-extension ObjectCannedACLFromString on String {
-  ObjectCannedACL toObjectCannedACL() {
-    switch (this) {
-      case 'private':
-        return ObjectCannedACL.private;
-      case 'public-read':
-        return ObjectCannedACL.publicRead;
-      case 'public-read-write':
-        return ObjectCannedACL.publicReadWrite;
-      case 'authenticated-read':
-        return ObjectCannedACL.authenticatedRead;
-      case 'aws-exec-read':
-        return ObjectCannedACL.awsExecRead;
-      case 'bucket-owner-read':
-        return ObjectCannedACL.bucketOwnerRead;
-      case 'bucket-owner-full-control':
-        return ObjectCannedACL.bucketOwnerFullControl;
-    }
-    throw Exception('$this is not known in enum ObjectCannedACL');
-  }
+  const ObjectCannedACL(this.value);
+
+  static ObjectCannedACL fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum ObjectCannedACL'));
 }
 
 /// Object Identifier is unique value to identify objects.
@@ -22386,9 +21683,8 @@ class ObjectLockConfiguration {
   });
   factory ObjectLockConfiguration.fromXml(_s.XmlElement elem) {
     return ObjectLockConfiguration(
-      objectLockEnabled: _s
-          .extractXmlStringValue(elem, 'ObjectLockEnabled')
-          ?.toObjectLockEnabled(),
+      objectLockEnabled: ObjectLockEnabled.fromString(
+          _s.extractXmlStringValue(elem, 'ObjectLockEnabled')),
       rule: _s.extractXmlChild(elem, 'Rule')?.let(ObjectLockRule.fromXml),
     );
   }
@@ -22398,7 +21694,7 @@ class ObjectLockConfiguration {
     final rule = this.rule;
     return {
       if (objectLockEnabled != null)
-        'ObjectLockEnabled': objectLockEnabled.toValue(),
+        'ObjectLockEnabled': objectLockEnabled.value,
       if (rule != null) 'Rule': rule,
     };
   }
@@ -22408,8 +21704,7 @@ class ObjectLockConfiguration {
     final rule = this.rule;
     final $children = <_s.XmlNode>[
       if (objectLockEnabled != null)
-        _s.encodeXmlStringValue(
-            'ObjectLockEnabled', objectLockEnabled.toValue()),
+        _s.encodeXmlStringValue('ObjectLockEnabled', objectLockEnabled.value),
       if (rule != null) rule.toXml('Rule'),
     ];
     final $attributes = <_s.XmlAttribute>[
@@ -22424,26 +21719,17 @@ class ObjectLockConfiguration {
 }
 
 enum ObjectLockEnabled {
-  enabled,
-}
+  enabled('Enabled'),
+  ;
 
-extension ObjectLockEnabledValueExtension on ObjectLockEnabled {
-  String toValue() {
-    switch (this) {
-      case ObjectLockEnabled.enabled:
-        return 'Enabled';
-    }
-  }
-}
+  final String value;
 
-extension ObjectLockEnabledFromString on String {
-  ObjectLockEnabled toObjectLockEnabled() {
-    switch (this) {
-      case 'Enabled':
-        return ObjectLockEnabled.enabled;
-    }
-    throw Exception('$this is not known in enum ObjectLockEnabled');
-  }
+  const ObjectLockEnabled(this.value);
+
+  static ObjectLockEnabled fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum ObjectLockEnabled'));
 }
 
 /// A legal hold configuration for an object.
@@ -22456,23 +21742,22 @@ class ObjectLockLegalHold {
   });
   factory ObjectLockLegalHold.fromXml(_s.XmlElement elem) {
     return ObjectLockLegalHold(
-      status: _s
-          .extractXmlStringValue(elem, 'Status')
-          ?.toObjectLockLegalHoldStatus(),
+      status: ObjectLockLegalHoldStatus.fromString(
+          _s.extractXmlStringValue(elem, 'Status')),
     );
   }
 
   Map<String, dynamic> toJson() {
     final status = this.status;
     return {
-      if (status != null) 'Status': status.toValue(),
+      if (status != null) 'Status': status.value,
     };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final status = this.status;
     final $children = <_s.XmlNode>[
-      if (status != null) _s.encodeXmlStringValue('Status', status.toValue()),
+      if (status != null) _s.encodeXmlStringValue('Status', status.value),
     ];
     final $attributes = <_s.XmlAttribute>[
       ...?attributes,
@@ -22486,59 +21771,33 @@ class ObjectLockLegalHold {
 }
 
 enum ObjectLockLegalHoldStatus {
-  on,
-  off,
-}
+  on('ON'),
+  off('OFF'),
+  ;
 
-extension ObjectLockLegalHoldStatusValueExtension on ObjectLockLegalHoldStatus {
-  String toValue() {
-    switch (this) {
-      case ObjectLockLegalHoldStatus.on:
-        return 'ON';
-      case ObjectLockLegalHoldStatus.off:
-        return 'OFF';
-    }
-  }
-}
+  final String value;
 
-extension ObjectLockLegalHoldStatusFromString on String {
-  ObjectLockLegalHoldStatus toObjectLockLegalHoldStatus() {
-    switch (this) {
-      case 'ON':
-        return ObjectLockLegalHoldStatus.on;
-      case 'OFF':
-        return ObjectLockLegalHoldStatus.off;
-    }
-    throw Exception('$this is not known in enum ObjectLockLegalHoldStatus');
-  }
+  const ObjectLockLegalHoldStatus(this.value);
+
+  static ObjectLockLegalHoldStatus fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum ObjectLockLegalHoldStatus'));
 }
 
 enum ObjectLockMode {
-  governance,
-  compliance,
-}
+  governance('GOVERNANCE'),
+  compliance('COMPLIANCE'),
+  ;
 
-extension ObjectLockModeValueExtension on ObjectLockMode {
-  String toValue() {
-    switch (this) {
-      case ObjectLockMode.governance:
-        return 'GOVERNANCE';
-      case ObjectLockMode.compliance:
-        return 'COMPLIANCE';
-    }
-  }
-}
+  final String value;
 
-extension ObjectLockModeFromString on String {
-  ObjectLockMode toObjectLockMode() {
-    switch (this) {
-      case 'GOVERNANCE':
-        return ObjectLockMode.governance;
-      case 'COMPLIANCE':
-        return ObjectLockMode.compliance;
-    }
-    throw Exception('$this is not known in enum ObjectLockMode');
-  }
+  const ObjectLockMode(this.value);
+
+  static ObjectLockMode fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum ObjectLockMode'));
 }
 
 /// A Retention configuration for an object.
@@ -22555,7 +21814,8 @@ class ObjectLockRetention {
   });
   factory ObjectLockRetention.fromXml(_s.XmlElement elem) {
     return ObjectLockRetention(
-      mode: _s.extractXmlStringValue(elem, 'Mode')?.toObjectLockRetentionMode(),
+      mode: ObjectLockRetentionMode.fromString(
+          _s.extractXmlStringValue(elem, 'Mode')),
       retainUntilDate: _s.extractXmlDateTimeValue(elem, 'RetainUntilDate',
           parser: _s.timeStampFromJson),
     );
@@ -22565,7 +21825,7 @@ class ObjectLockRetention {
     final mode = this.mode;
     final retainUntilDate = this.retainUntilDate;
     return {
-      if (mode != null) 'Mode': mode.toValue(),
+      if (mode != null) 'Mode': mode.value,
       if (retainUntilDate != null)
         'RetainUntilDate': iso8601ToJson(retainUntilDate),
     };
@@ -22575,7 +21835,7 @@ class ObjectLockRetention {
     final mode = this.mode;
     final retainUntilDate = this.retainUntilDate;
     final $children = <_s.XmlNode>[
-      if (mode != null) _s.encodeXmlStringValue('Mode', mode.toValue()),
+      if (mode != null) _s.encodeXmlStringValue('Mode', mode.value),
       if (retainUntilDate != null)
         _s.encodeXmlDateTimeValue('RetainUntilDate', retainUntilDate,
             formatter: _s.iso8601ToJson),
@@ -22592,31 +21852,18 @@ class ObjectLockRetention {
 }
 
 enum ObjectLockRetentionMode {
-  governance,
-  compliance,
-}
+  governance('GOVERNANCE'),
+  compliance('COMPLIANCE'),
+  ;
 
-extension ObjectLockRetentionModeValueExtension on ObjectLockRetentionMode {
-  String toValue() {
-    switch (this) {
-      case ObjectLockRetentionMode.governance:
-        return 'GOVERNANCE';
-      case ObjectLockRetentionMode.compliance:
-        return 'COMPLIANCE';
-    }
-  }
-}
+  final String value;
 
-extension ObjectLockRetentionModeFromString on String {
-  ObjectLockRetentionMode toObjectLockRetentionMode() {
-    switch (this) {
-      case 'GOVERNANCE':
-        return ObjectLockRetentionMode.governance;
-      case 'COMPLIANCE':
-        return ObjectLockRetentionMode.compliance;
-    }
-    throw Exception('$this is not known in enum ObjectLockRetentionMode');
-  }
+  const ObjectLockRetentionMode(this.value);
+
+  static ObjectLockRetentionMode fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum ObjectLockRetentionMode'));
 }
 
 /// The container element for an Object Lock rule.
@@ -22679,36 +21926,19 @@ class ObjectLockRule {
 /// <code>bucket-owner-full-control</code> canned ACL or an equivalent form of
 /// this ACL expressed in the XML format.
 enum ObjectOwnership {
-  bucketOwnerPreferred,
-  objectWriter,
-  bucketOwnerEnforced,
-}
+  bucketOwnerPreferred('BucketOwnerPreferred'),
+  objectWriter('ObjectWriter'),
+  bucketOwnerEnforced('BucketOwnerEnforced'),
+  ;
 
-extension ObjectOwnershipValueExtension on ObjectOwnership {
-  String toValue() {
-    switch (this) {
-      case ObjectOwnership.bucketOwnerPreferred:
-        return 'BucketOwnerPreferred';
-      case ObjectOwnership.objectWriter:
-        return 'ObjectWriter';
-      case ObjectOwnership.bucketOwnerEnforced:
-        return 'BucketOwnerEnforced';
-    }
-  }
-}
+  final String value;
 
-extension ObjectOwnershipFromString on String {
-  ObjectOwnership toObjectOwnership() {
-    switch (this) {
-      case 'BucketOwnerPreferred':
-        return ObjectOwnership.bucketOwnerPreferred;
-      case 'ObjectWriter':
-        return ObjectOwnership.objectWriter;
-      case 'BucketOwnerEnforced':
-        return ObjectOwnership.bucketOwnerEnforced;
-    }
-    throw Exception('$this is not known in enum ObjectOwnership');
-  }
+  const ObjectOwnership(this.value);
+
+  static ObjectOwnership fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum ObjectOwnership'));
 }
 
 /// A container for elements related to an individual part.
@@ -22790,71 +22020,26 @@ class ObjectPart {
 }
 
 enum ObjectStorageClass {
-  standard,
-  reducedRedundancy,
-  glacier,
-  standardIa,
-  onezoneIa,
-  intelligentTiering,
-  deepArchive,
-  outposts,
-  glacierIr,
-  snow,
-}
+  standard('STANDARD'),
+  reducedRedundancy('REDUCED_REDUNDANCY'),
+  glacier('GLACIER'),
+  standardIa('STANDARD_IA'),
+  onezoneIa('ONEZONE_IA'),
+  intelligentTiering('INTELLIGENT_TIERING'),
+  deepArchive('DEEP_ARCHIVE'),
+  outposts('OUTPOSTS'),
+  glacierIr('GLACIER_IR'),
+  snow('SNOW'),
+  ;
 
-extension ObjectStorageClassValueExtension on ObjectStorageClass {
-  String toValue() {
-    switch (this) {
-      case ObjectStorageClass.standard:
-        return 'STANDARD';
-      case ObjectStorageClass.reducedRedundancy:
-        return 'REDUCED_REDUNDANCY';
-      case ObjectStorageClass.glacier:
-        return 'GLACIER';
-      case ObjectStorageClass.standardIa:
-        return 'STANDARD_IA';
-      case ObjectStorageClass.onezoneIa:
-        return 'ONEZONE_IA';
-      case ObjectStorageClass.intelligentTiering:
-        return 'INTELLIGENT_TIERING';
-      case ObjectStorageClass.deepArchive:
-        return 'DEEP_ARCHIVE';
-      case ObjectStorageClass.outposts:
-        return 'OUTPOSTS';
-      case ObjectStorageClass.glacierIr:
-        return 'GLACIER_IR';
-      case ObjectStorageClass.snow:
-        return 'SNOW';
-    }
-  }
-}
+  final String value;
 
-extension ObjectStorageClassFromString on String {
-  ObjectStorageClass toObjectStorageClass() {
-    switch (this) {
-      case 'STANDARD':
-        return ObjectStorageClass.standard;
-      case 'REDUCED_REDUNDANCY':
-        return ObjectStorageClass.reducedRedundancy;
-      case 'GLACIER':
-        return ObjectStorageClass.glacier;
-      case 'STANDARD_IA':
-        return ObjectStorageClass.standardIa;
-      case 'ONEZONE_IA':
-        return ObjectStorageClass.onezoneIa;
-      case 'INTELLIGENT_TIERING':
-        return ObjectStorageClass.intelligentTiering;
-      case 'DEEP_ARCHIVE':
-        return ObjectStorageClass.deepArchive;
-      case 'OUTPOSTS':
-        return ObjectStorageClass.outposts;
-      case 'GLACIER_IR':
-        return ObjectStorageClass.glacierIr;
-      case 'SNOW':
-        return ObjectStorageClass.snow;
-    }
-    throw Exception('$this is not known in enum ObjectStorageClass');
-  }
+  const ObjectStorageClass(this.value);
+
+  static ObjectStorageClass fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum ObjectStorageClass'));
 }
 
 /// The version of an object.
@@ -22910,9 +22095,8 @@ class ObjectVersion {
       lastModified: _s.extractXmlDateTimeValue(elem, 'LastModified'),
       owner: _s.extractXmlChild(elem, 'Owner')?.let(Owner.fromXml),
       size: _s.extractXmlIntValue(elem, 'Size'),
-      storageClass: _s
-          .extractXmlStringValue(elem, 'StorageClass')
-          ?.toObjectVersionStorageClass(),
+      storageClass: ObjectVersionStorageClass.fromString(
+          _s.extractXmlStringValue(elem, 'StorageClass')),
       versionId: _s.extractXmlStringValue(elem, 'VersionId'),
     );
   }
@@ -22929,40 +22113,31 @@ class ObjectVersion {
     final versionId = this.versionId;
     return {
       if (checksumAlgorithm != null)
-        'ChecksumAlgorithm': checksumAlgorithm.map((e) => e.toValue()).toList(),
+        'ChecksumAlgorithm': checksumAlgorithm.map((e) => e.value).toList(),
       if (eTag != null) 'ETag': eTag,
       if (isLatest != null) 'IsLatest': isLatest,
       if (key != null) 'Key': key,
       if (lastModified != null) 'LastModified': iso8601ToJson(lastModified),
       if (owner != null) 'Owner': owner,
       if (size != null) 'Size': size,
-      if (storageClass != null) 'StorageClass': storageClass.toValue(),
+      if (storageClass != null) 'StorageClass': storageClass.value,
       if (versionId != null) 'VersionId': versionId,
     };
   }
 }
 
 enum ObjectVersionStorageClass {
-  standard,
-}
+  standard('STANDARD'),
+  ;
 
-extension ObjectVersionStorageClassValueExtension on ObjectVersionStorageClass {
-  String toValue() {
-    switch (this) {
-      case ObjectVersionStorageClass.standard:
-        return 'STANDARD';
-    }
-  }
-}
+  final String value;
 
-extension ObjectVersionStorageClassFromString on String {
-  ObjectVersionStorageClass toObjectVersionStorageClass() {
-    switch (this) {
-      case 'STANDARD':
-        return ObjectVersionStorageClass.standard;
-    }
-    throw Exception('$this is not known in enum ObjectVersionStorageClass');
-  }
+  const ObjectVersionStorageClass(this.value);
+
+  static ObjectVersionStorageClass fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum ObjectVersionStorageClass'));
 }
 
 /// Describes the location where the restore job's output is stored.
@@ -23114,26 +22289,17 @@ class Owner {
 }
 
 enum OwnerOverride {
-  destination,
-}
+  destination('Destination'),
+  ;
 
-extension OwnerOverrideValueExtension on OwnerOverride {
-  String toValue() {
-    switch (this) {
-      case OwnerOverride.destination:
-        return 'Destination';
-    }
-  }
-}
+  final String value;
 
-extension OwnerOverrideFromString on String {
-  OwnerOverride toOwnerOverride() {
-    switch (this) {
-      case 'Destination':
-        return OwnerOverride.destination;
-    }
-    throw Exception('$this is not known in enum OwnerOverride');
-  }
+  const OwnerOverride(this.value);
+
+  static OwnerOverride fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum OwnerOverride'));
 }
 
 /// The container element for a bucket's ownership controls.
@@ -23183,23 +22349,22 @@ class OwnershipControlsRule {
   });
   factory OwnershipControlsRule.fromXml(_s.XmlElement elem) {
     return OwnershipControlsRule(
-      objectOwnership: _s
-          .extractXmlStringValue(elem, 'ObjectOwnership')!
-          .toObjectOwnership(),
+      objectOwnership: ObjectOwnership.fromString(
+          _s.extractXmlStringValue(elem, 'ObjectOwnership')!),
     );
   }
 
   Map<String, dynamic> toJson() {
     final objectOwnership = this.objectOwnership;
     return {
-      'ObjectOwnership': objectOwnership.toValue(),
+      'ObjectOwnership': objectOwnership.value,
     };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final objectOwnership = this.objectOwnership;
     final $children = <_s.XmlNode>[
-      _s.encodeXmlStringValue('ObjectOwnership', objectOwnership.toValue()),
+      _s.encodeXmlStringValue('ObjectOwnership', objectOwnership.value),
     ];
     final $attributes = <_s.XmlAttribute>[
       ...?attributes,
@@ -23326,74 +22491,34 @@ class Part {
 }
 
 enum Payer {
-  requester,
-  bucketOwner,
-}
+  requester('Requester'),
+  bucketOwner('BucketOwner'),
+  ;
 
-extension PayerValueExtension on Payer {
-  String toValue() {
-    switch (this) {
-      case Payer.requester:
-        return 'Requester';
-      case Payer.bucketOwner:
-        return 'BucketOwner';
-    }
-  }
-}
+  final String value;
 
-extension PayerFromString on String {
-  Payer toPayer() {
-    switch (this) {
-      case 'Requester':
-        return Payer.requester;
-      case 'BucketOwner':
-        return Payer.bucketOwner;
-    }
-    throw Exception('$this is not known in enum Payer');
-  }
+  const Payer(this.value);
+
+  static Payer fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception('$value is not known in enum Payer'));
 }
 
 enum Permission {
-  fullControl,
-  write,
-  writeAcp,
-  read,
-  readAcp,
-}
+  fullControl('FULL_CONTROL'),
+  write('WRITE'),
+  writeAcp('WRITE_ACP'),
+  read('READ'),
+  readAcp('READ_ACP'),
+  ;
 
-extension PermissionValueExtension on Permission {
-  String toValue() {
-    switch (this) {
-      case Permission.fullControl:
-        return 'FULL_CONTROL';
-      case Permission.write:
-        return 'WRITE';
-      case Permission.writeAcp:
-        return 'WRITE_ACP';
-      case Permission.read:
-        return 'READ';
-      case Permission.readAcp:
-        return 'READ_ACP';
-    }
-  }
-}
+  final String value;
 
-extension PermissionFromString on String {
-  Permission toPermission() {
-    switch (this) {
-      case 'FULL_CONTROL':
-        return Permission.fullControl;
-      case 'WRITE':
-        return Permission.write;
-      case 'WRITE_ACP':
-        return Permission.writeAcp;
-      case 'READ':
-        return Permission.read;
-      case 'READ_ACP':
-        return Permission.readAcp;
-    }
-    throw Exception('$this is not known in enum Permission');
-  }
+  const Permission(this.value);
+
+  static Permission fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum Permission'));
 }
 
 /// The container element for a bucket's policy status.
@@ -23480,31 +22605,17 @@ class ProgressEvent {
 }
 
 enum Protocol {
-  http,
-  https,
-}
+  http('http'),
+  https('https'),
+  ;
 
-extension ProtocolValueExtension on Protocol {
-  String toValue() {
-    switch (this) {
-      case Protocol.http:
-        return 'http';
-      case Protocol.https:
-        return 'https';
-    }
-  }
-}
+  final String value;
 
-extension ProtocolFromString on String {
-  Protocol toProtocol() {
-    switch (this) {
-      case 'http':
-        return Protocol.http;
-      case 'https':
-        return Protocol.https;
-    }
-    throw Exception('$this is not known in enum Protocol');
-  }
+  const Protocol(this.value);
+
+  static Protocol fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum Protocol'));
 }
 
 /// The PublicAccessBlock configuration that you want to apply to this Amazon S3
@@ -23834,7 +22945,7 @@ class QueueConfiguration {
     final filter = this.filter;
     final id = this.id;
     return {
-      'Event': events.map((e) => e.toValue()).toList(),
+      'Event': events.map((e) => e.value).toList(),
       'Queue': queueArn,
       if (filter != null) 'Filter': filter,
       if (id != null) 'Id': id,
@@ -23849,7 +22960,7 @@ class QueueConfiguration {
     final $children = <_s.XmlNode>[
       if (id != null) _s.encodeXmlStringValue('Id', id),
       _s.encodeXmlStringValue('Queue', queueArn),
-      ...events.map((e) => _s.encodeXmlStringValue('Event', e.toValue())),
+      ...events.map((e) => _s.encodeXmlStringValue('Event', e.value)),
       if (filter != null) filter.toXml('Filter'),
     ];
     final $attributes = <_s.XmlAttribute>[
@@ -23887,7 +22998,7 @@ class QueueConfigurationDeprecated {
   });
   factory QueueConfigurationDeprecated.fromXml(_s.XmlElement elem) {
     return QueueConfigurationDeprecated(
-      event: _s.extractXmlStringValue(elem, 'Event')?.toEvent(),
+      event: Event.fromString(_s.extractXmlStringValue(elem, 'Event')),
       events: _s
           .extractXmlStringListValues(elem, 'Event')
           .map((s) => s.toEvent())
@@ -23903,8 +23014,8 @@ class QueueConfigurationDeprecated {
     final id = this.id;
     final queue = this.queue;
     return {
-      if (event != null) 'Event': event.toValue(),
-      if (events != null) 'Event': events.map((e) => e.toValue()).toList(),
+      if (event != null) 'Event': event.value,
+      if (events != null) 'Event': events.map((e) => e.value).toList(),
       if (id != null) 'Id': id,
       if (queue != null) 'Queue': queue,
     };
@@ -23917,9 +23028,9 @@ class QueueConfigurationDeprecated {
     final queue = this.queue;
     final $children = <_s.XmlNode>[
       if (id != null) _s.encodeXmlStringValue('Id', id),
-      if (event != null) _s.encodeXmlStringValue('Event', event.toValue()),
+      if (event != null) _s.encodeXmlStringValue('Event', event.value),
       if (events != null)
-        ...events.map((e) => _s.encodeXmlStringValue('Event', e.toValue())),
+        ...events.map((e) => _s.encodeXmlStringValue('Event', e.value)),
       if (queue != null) _s.encodeXmlStringValue('Queue', queue),
     ];
     final $attributes = <_s.XmlAttribute>[
@@ -23934,31 +23045,17 @@ class QueueConfigurationDeprecated {
 }
 
 enum QuoteFields {
-  always,
-  asneeded,
-}
+  always('ALWAYS'),
+  asneeded('ASNEEDED'),
+  ;
 
-extension QuoteFieldsValueExtension on QuoteFields {
-  String toValue() {
-    switch (this) {
-      case QuoteFields.always:
-        return 'ALWAYS';
-      case QuoteFields.asneeded:
-        return 'ASNEEDED';
-    }
-  }
-}
+  final String value;
 
-extension QuoteFieldsFromString on String {
-  QuoteFields toQuoteFields() {
-    switch (this) {
-      case 'ALWAYS':
-        return QuoteFields.always;
-      case 'ASNEEDED':
-        return QuoteFields.asneeded;
-    }
-    throw Exception('$this is not known in enum QuoteFields');
-  }
+  const QuoteFields(this.value);
+
+  static QuoteFields fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum QuoteFields'));
 }
 
 /// The container for the records event.
@@ -24035,7 +23132,7 @@ class Redirect {
     return Redirect(
       hostName: _s.extractXmlStringValue(elem, 'HostName'),
       httpRedirectCode: _s.extractXmlStringValue(elem, 'HttpRedirectCode'),
-      protocol: _s.extractXmlStringValue(elem, 'Protocol')?.toProtocol(),
+      protocol: Protocol.fromString(_s.extractXmlStringValue(elem, 'Protocol')),
       replaceKeyPrefixWith:
           _s.extractXmlStringValue(elem, 'ReplaceKeyPrefixWith'),
       replaceKeyWith: _s.extractXmlStringValue(elem, 'ReplaceKeyWith'),
@@ -24051,7 +23148,7 @@ class Redirect {
     return {
       if (hostName != null) 'HostName': hostName,
       if (httpRedirectCode != null) 'HttpRedirectCode': httpRedirectCode,
-      if (protocol != null) 'Protocol': protocol.toValue(),
+      if (protocol != null) 'Protocol': protocol.value,
       if (replaceKeyPrefixWith != null)
         'ReplaceKeyPrefixWith': replaceKeyPrefixWith,
       if (replaceKeyWith != null) 'ReplaceKeyWith': replaceKeyWith,
@@ -24068,8 +23165,7 @@ class Redirect {
       if (hostName != null) _s.encodeXmlStringValue('HostName', hostName),
       if (httpRedirectCode != null)
         _s.encodeXmlStringValue('HttpRedirectCode', httpRedirectCode),
-      if (protocol != null)
-        _s.encodeXmlStringValue('Protocol', protocol.toValue()),
+      if (protocol != null) _s.encodeXmlStringValue('Protocol', protocol.value),
       if (replaceKeyPrefixWith != null)
         _s.encodeXmlStringValue('ReplaceKeyPrefixWith', replaceKeyPrefixWith),
       if (replaceKeyWith != null)
@@ -24103,7 +23199,7 @@ class RedirectAllRequestsTo {
   factory RedirectAllRequestsTo.fromXml(_s.XmlElement elem) {
     return RedirectAllRequestsTo(
       hostName: _s.extractXmlStringValue(elem, 'HostName')!,
-      protocol: _s.extractXmlStringValue(elem, 'Protocol')?.toProtocol(),
+      protocol: Protocol.fromString(_s.extractXmlStringValue(elem, 'Protocol')),
     );
   }
 
@@ -24112,7 +23208,7 @@ class RedirectAllRequestsTo {
     final protocol = this.protocol;
     return {
       'HostName': hostName,
-      if (protocol != null) 'Protocol': protocol.toValue(),
+      if (protocol != null) 'Protocol': protocol.value,
     };
   }
 
@@ -24121,8 +23217,7 @@ class RedirectAllRequestsTo {
     final protocol = this.protocol;
     final $children = <_s.XmlNode>[
       _s.encodeXmlStringValue('HostName', hostName),
-      if (protocol != null)
-        _s.encodeXmlStringValue('Protocol', protocol.toValue()),
+      if (protocol != null) _s.encodeXmlStringValue('Protocol', protocol.value),
     ];
     final $attributes = <_s.XmlAttribute>[
       ...?attributes,
@@ -24154,23 +23249,22 @@ class ReplicaModifications {
   });
   factory ReplicaModifications.fromXml(_s.XmlElement elem) {
     return ReplicaModifications(
-      status: _s
-          .extractXmlStringValue(elem, 'Status')!
-          .toReplicaModificationsStatus(),
+      status: ReplicaModificationsStatus.fromString(
+          _s.extractXmlStringValue(elem, 'Status')!),
     );
   }
 
   Map<String, dynamic> toJson() {
     final status = this.status;
     return {
-      'Status': status.toValue(),
+      'Status': status.value,
     };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final status = this.status;
     final $children = <_s.XmlNode>[
-      _s.encodeXmlStringValue('Status', status.toValue()),
+      _s.encodeXmlStringValue('Status', status.value),
     ];
     final $attributes = <_s.XmlAttribute>[
       ...?attributes,
@@ -24184,32 +23278,18 @@ class ReplicaModifications {
 }
 
 enum ReplicaModificationsStatus {
-  enabled,
-  disabled,
-}
+  enabled('Enabled'),
+  disabled('Disabled'),
+  ;
 
-extension ReplicaModificationsStatusValueExtension
-    on ReplicaModificationsStatus {
-  String toValue() {
-    switch (this) {
-      case ReplicaModificationsStatus.enabled:
-        return 'Enabled';
-      case ReplicaModificationsStatus.disabled:
-        return 'Disabled';
-    }
-  }
-}
+  final String value;
 
-extension ReplicaModificationsStatusFromString on String {
-  ReplicaModificationsStatus toReplicaModificationsStatus() {
-    switch (this) {
-      case 'Enabled':
-        return ReplicaModificationsStatus.enabled;
-      case 'Disabled':
-        return ReplicaModificationsStatus.disabled;
-    }
-    throw Exception('$this is not known in enum ReplicaModificationsStatus');
-  }
+  const ReplicaModificationsStatus(this.value);
+
+  static ReplicaModificationsStatus fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum ReplicaModificationsStatus'));
 }
 
 /// A container for replication rules. You can add up to 1,000 rules. The
@@ -24331,8 +23411,8 @@ class ReplicationRule {
     return ReplicationRule(
       destination:
           Destination.fromXml(_s.extractXmlChild(elem, 'Destination')!),
-      status:
-          _s.extractXmlStringValue(elem, 'Status')!.toReplicationRuleStatus(),
+      status: ReplicationRuleStatus.fromString(
+          _s.extractXmlStringValue(elem, 'Status')!),
       deleteMarkerReplication: _s
           .extractXmlChild(elem, 'DeleteMarkerReplication')
           ?.let(DeleteMarkerReplication.fromXml),
@@ -24363,7 +23443,7 @@ class ReplicationRule {
     final sourceSelectionCriteria = this.sourceSelectionCriteria;
     return {
       'Destination': destination,
-      'Status': status.toValue(),
+      'Status': status.value,
       if (deleteMarkerReplication != null)
         'DeleteMarkerReplication': deleteMarkerReplication,
       if (existingObjectReplication != null)
@@ -24392,7 +23472,7 @@ class ReplicationRule {
       if (priority != null) _s.encodeXmlIntValue('Priority', priority),
       if (prefix != null) _s.encodeXmlStringValue('Prefix', prefix),
       if (filter != null) filter.toXml('Filter'),
-      _s.encodeXmlStringValue('Status', status.toValue()),
+      _s.encodeXmlStringValue('Status', status.value),
       if (sourceSelectionCriteria != null)
         sourceSelectionCriteria.toXml('SourceSelectionCriteria'),
       if (existingObjectReplication != null)
@@ -24556,69 +23636,35 @@ class ReplicationRuleFilter {
 }
 
 enum ReplicationRuleStatus {
-  enabled,
-  disabled,
-}
+  enabled('Enabled'),
+  disabled('Disabled'),
+  ;
 
-extension ReplicationRuleStatusValueExtension on ReplicationRuleStatus {
-  String toValue() {
-    switch (this) {
-      case ReplicationRuleStatus.enabled:
-        return 'Enabled';
-      case ReplicationRuleStatus.disabled:
-        return 'Disabled';
-    }
-  }
-}
+  final String value;
 
-extension ReplicationRuleStatusFromString on String {
-  ReplicationRuleStatus toReplicationRuleStatus() {
-    switch (this) {
-      case 'Enabled':
-        return ReplicationRuleStatus.enabled;
-      case 'Disabled':
-        return ReplicationRuleStatus.disabled;
-    }
-    throw Exception('$this is not known in enum ReplicationRuleStatus');
-  }
+  const ReplicationRuleStatus(this.value);
+
+  static ReplicationRuleStatus fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum ReplicationRuleStatus'));
 }
 
 enum ReplicationStatus {
-  complete,
-  pending,
-  failed,
-  replica,
-}
+  complete('COMPLETE'),
+  pending('PENDING'),
+  failed('FAILED'),
+  replica('REPLICA'),
+  ;
 
-extension ReplicationStatusValueExtension on ReplicationStatus {
-  String toValue() {
-    switch (this) {
-      case ReplicationStatus.complete:
-        return 'COMPLETE';
-      case ReplicationStatus.pending:
-        return 'PENDING';
-      case ReplicationStatus.failed:
-        return 'FAILED';
-      case ReplicationStatus.replica:
-        return 'REPLICA';
-    }
-  }
-}
+  final String value;
 
-extension ReplicationStatusFromString on String {
-  ReplicationStatus toReplicationStatus() {
-    switch (this) {
-      case 'COMPLETE':
-        return ReplicationStatus.complete;
-      case 'PENDING':
-        return ReplicationStatus.pending;
-      case 'FAILED':
-        return ReplicationStatus.failed;
-      case 'REPLICA':
-        return ReplicationStatus.replica;
-    }
-    throw Exception('$this is not known in enum ReplicationStatus');
-  }
+  const ReplicationStatus(this.value);
+
+  static ReplicationStatus fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum ReplicationStatus'));
 }
 
 /// A container specifying S3 Replication Time Control (S3 RTC) related
@@ -24639,8 +23685,8 @@ class ReplicationTime {
   });
   factory ReplicationTime.fromXml(_s.XmlElement elem) {
     return ReplicationTime(
-      status:
-          _s.extractXmlStringValue(elem, 'Status')!.toReplicationTimeStatus(),
+      status: ReplicationTimeStatus.fromString(
+          _s.extractXmlStringValue(elem, 'Status')!),
       time: ReplicationTimeValue.fromXml(_s.extractXmlChild(elem, 'Time')!),
     );
   }
@@ -24649,7 +23695,7 @@ class ReplicationTime {
     final status = this.status;
     final time = this.time;
     return {
-      'Status': status.toValue(),
+      'Status': status.value,
       'Time': time,
     };
   }
@@ -24658,7 +23704,7 @@ class ReplicationTime {
     final status = this.status;
     final time = this.time;
     final $children = <_s.XmlNode>[
-      _s.encodeXmlStringValue('Status', status.toValue()),
+      _s.encodeXmlStringValue('Status', status.value),
       time.toXml('Time'),
     ];
     final $attributes = <_s.XmlAttribute>[
@@ -24673,31 +23719,18 @@ class ReplicationTime {
 }
 
 enum ReplicationTimeStatus {
-  enabled,
-  disabled,
-}
+  enabled('Enabled'),
+  disabled('Disabled'),
+  ;
 
-extension ReplicationTimeStatusValueExtension on ReplicationTimeStatus {
-  String toValue() {
-    switch (this) {
-      case ReplicationTimeStatus.enabled:
-        return 'Enabled';
-      case ReplicationTimeStatus.disabled:
-        return 'Disabled';
-    }
-  }
-}
+  final String value;
 
-extension ReplicationTimeStatusFromString on String {
-  ReplicationTimeStatus toReplicationTimeStatus() {
-    switch (this) {
-      case 'Enabled':
-        return ReplicationTimeStatus.enabled;
-      case 'Disabled':
-        return ReplicationTimeStatus.disabled;
-    }
-    throw Exception('$this is not known in enum ReplicationTimeStatus');
-  }
+  const ReplicationTimeStatus(this.value);
+
+  static ReplicationTimeStatus fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum ReplicationTimeStatus'));
 }
 
 /// A container specifying the time value for S3 Replication Time Control (S3
@@ -24743,26 +23776,17 @@ class ReplicationTimeValue {
 /// If present, indicates that the requester was successfully charged for the
 /// request.
 enum RequestCharged {
-  requester,
-}
+  requester('requester'),
+  ;
 
-extension RequestChargedValueExtension on RequestCharged {
-  String toValue() {
-    switch (this) {
-      case RequestCharged.requester:
-        return 'requester';
-    }
-  }
-}
+  final String value;
 
-extension RequestChargedFromString on String {
-  RequestCharged toRequestCharged() {
-    switch (this) {
-      case 'requester':
-        return RequestCharged.requester;
-    }
-    throw Exception('$this is not known in enum RequestCharged');
-  }
+  const RequestCharged(this.value);
+
+  static RequestCharged fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum RequestCharged'));
 }
 
 /// Confirms that the requester knows that they will be charged for the request.
@@ -24771,26 +23795,17 @@ extension RequestChargedFromString on String {
 /// href="https://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html">Downloading
 /// Objects in Requester Pays Buckets</a> in the <i>Amazon S3 User Guide</i>.
 enum RequestPayer {
-  requester,
-}
+  requester('requester'),
+  ;
 
-extension RequestPayerValueExtension on RequestPayer {
-  String toValue() {
-    switch (this) {
-      case RequestPayer.requester:
-        return 'requester';
-    }
-  }
-}
+  final String value;
 
-extension RequestPayerFromString on String {
-  RequestPayer toRequestPayer() {
-    switch (this) {
-      case 'requester':
-        return RequestPayer.requester;
-    }
-    throw Exception('$this is not known in enum RequestPayer');
-  }
+  const RequestPayer(this.value);
+
+  static RequestPayer fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum RequestPayer'));
 }
 
 /// Container for Payer.
@@ -24805,14 +23820,14 @@ class RequestPaymentConfiguration {
   Map<String, dynamic> toJson() {
     final payer = this.payer;
     return {
-      'Payer': payer.toValue(),
+      'Payer': payer.value,
     };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final payer = this.payer;
     final $children = <_s.XmlNode>[
-      _s.encodeXmlStringValue('Payer', payer.toValue()),
+      _s.encodeXmlStringValue('Payer', payer.value),
     ];
     final $attributes = <_s.XmlAttribute>[
       ...?attributes,
@@ -24931,8 +23946,8 @@ class RestoreRequest {
         'GlacierJobParameters': glacierJobParameters,
       if (outputLocation != null) 'OutputLocation': outputLocation,
       if (selectParameters != null) 'SelectParameters': selectParameters,
-      if (tier != null) 'Tier': tier.toValue(),
-      if (type != null) 'Type': type.toValue(),
+      if (tier != null) 'Tier': tier.value,
+      if (type != null) 'Type': type.value,
     };
   }
 
@@ -24948,8 +23963,8 @@ class RestoreRequest {
       if (days != null) _s.encodeXmlIntValue('Days', days),
       if (glacierJobParameters != null)
         glacierJobParameters.toXml('GlacierJobParameters'),
-      if (type != null) _s.encodeXmlStringValue('Type', type.toValue()),
-      if (tier != null) _s.encodeXmlStringValue('Tier', tier.toValue()),
+      if (type != null) _s.encodeXmlStringValue('Type', type.value),
+      if (tier != null) _s.encodeXmlStringValue('Tier', tier.value),
       if (description != null)
         _s.encodeXmlStringValue('Description', description),
       if (selectParameters != null) selectParameters.toXml('SelectParameters'),
@@ -24967,26 +23982,17 @@ class RestoreRequest {
 }
 
 enum RestoreRequestType {
-  select,
-}
+  select('SELECT'),
+  ;
 
-extension RestoreRequestTypeValueExtension on RestoreRequestType {
-  String toValue() {
-    switch (this) {
-      case RestoreRequestType.select:
-        return 'SELECT';
-    }
-  }
-}
+  final String value;
 
-extension RestoreRequestTypeFromString on String {
-  RestoreRequestType toRestoreRequestType() {
-    switch (this) {
-      case 'SELECT':
-        return RestoreRequestType.select;
-    }
-    throw Exception('$this is not known in enum RestoreRequestType');
-  }
+  const RestoreRequestType(this.value);
+
+  static RestoreRequestType fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum RestoreRequestType'));
 }
 
 /// Specifies the redirect behavior and when a redirect is applied. For more
@@ -25095,7 +24101,8 @@ class Rule {
   factory Rule.fromXml(_s.XmlElement elem) {
     return Rule(
       prefix: _s.extractXmlStringValue(elem, 'Prefix')!,
-      status: _s.extractXmlStringValue(elem, 'Status')!.toExpirationStatus(),
+      status: ExpirationStatus.fromString(
+          _s.extractXmlStringValue(elem, 'Status')!),
       abortIncompleteMultipartUpload: _s
           .extractXmlChild(elem, 'AbortIncompleteMultipartUpload')
           ?.let(AbortIncompleteMultipartUpload.fromXml),
@@ -25125,7 +24132,7 @@ class Rule {
     final transition = this.transition;
     return {
       'Prefix': prefix,
-      'Status': status.toValue(),
+      'Status': status.value,
       if (abortIncompleteMultipartUpload != null)
         'AbortIncompleteMultipartUpload': abortIncompleteMultipartUpload,
       if (expiration != null) 'Expiration': expiration,
@@ -25151,7 +24158,7 @@ class Rule {
       if (expiration != null) expiration.toXml('Expiration'),
       if (id != null) _s.encodeXmlStringValue('ID', id),
       _s.encodeXmlStringValue('Prefix', prefix),
-      _s.encodeXmlStringValue('Status', status.toValue()),
+      _s.encodeXmlStringValue('Status', status.value),
       if (transition != null) transition.toXml('Transition'),
       if (noncurrentVersionTransition != null)
         noncurrentVersionTransition.toXml('NoncurrentVersionTransition'),
@@ -25257,9 +24264,9 @@ class S3Location {
       'BucketName': bucketName,
       'Prefix': prefix,
       if (accessControlList != null) 'AccessControlList': accessControlList,
-      if (cannedACL != null) 'CannedACL': cannedACL.toValue(),
+      if (cannedACL != null) 'CannedACL': cannedACL.value,
       if (encryption != null) 'Encryption': encryption,
-      if (storageClass != null) 'StorageClass': storageClass.toValue(),
+      if (storageClass != null) 'StorageClass': storageClass.value,
       if (tagging != null) 'Tagging': tagging,
       if (userMetadata != null) 'UserMetadata': userMetadata,
     };
@@ -25279,7 +24286,7 @@ class S3Location {
       _s.encodeXmlStringValue('Prefix', prefix),
       if (encryption != null) encryption.toXml('Encryption'),
       if (cannedACL != null)
-        _s.encodeXmlStringValue('CannedACL', cannedACL.toValue()),
+        _s.encodeXmlStringValue('CannedACL', cannedACL.value),
       if (accessControlList != null)
         _s.XmlElement(_s.XmlName('AccessControlList'), [],
             accessControlList.map((e) => e.toXml('Grant'))),
@@ -25288,7 +24295,7 @@ class S3Location {
         _s.XmlElement(_s.XmlName('UserMetadata'), [],
             userMetadata.map((e) => e.toXml('MetadataEntry'))),
       if (storageClass != null)
-        _s.encodeXmlStringValue('StorageClass', storageClass.toValue()),
+        _s.encodeXmlStringValue('StorageClass', storageClass.value),
     ];
     final $attributes = <_s.XmlAttribute>[
       ...?attributes,
@@ -25598,7 +24605,7 @@ class SelectObjectContentRequest {
     final scanRange = this.scanRange;
     return {
       'Expression': expression,
-      'ExpressionType': expressionType.toValue(),
+      'ExpressionType': expressionType.value,
       'InputSerialization': inputSerialization,
       'OutputSerialization': outputSerialization,
       if (requestProgress != null) 'RequestProgress': requestProgress,
@@ -25621,7 +24628,7 @@ class SelectObjectContentRequest {
     final scanRange = this.scanRange;
     final $children = <_s.XmlNode>[
       _s.encodeXmlStringValue('Expression', expression),
-      _s.encodeXmlStringValue('ExpressionType', expressionType.toValue()),
+      _s.encodeXmlStringValue('ExpressionType', expressionType.value),
       if (requestProgress != null) requestProgress.toXml('RequestProgress'),
       inputSerialization.toXml('InputSerialization'),
       outputSerialization.toXml('OutputSerialization'),
@@ -25666,7 +24673,7 @@ class SelectParameters {
     final outputSerialization = this.outputSerialization;
     return {
       'Expression': expression,
-      'ExpressionType': expressionType.toValue(),
+      'ExpressionType': expressionType.value,
       'InputSerialization': inputSerialization,
       'OutputSerialization': outputSerialization,
     };
@@ -25679,7 +24686,7 @@ class SelectParameters {
     final outputSerialization = this.outputSerialization;
     final $children = <_s.XmlNode>[
       inputSerialization.toXml('InputSerialization'),
-      _s.encodeXmlStringValue('ExpressionType', expressionType.toValue()),
+      _s.encodeXmlStringValue('ExpressionType', expressionType.value),
       _s.encodeXmlStringValue('Expression', expression),
       outputSerialization.toXml('OutputSerialization'),
     ];
@@ -25695,31 +24702,18 @@ class SelectParameters {
 }
 
 enum ServerSideEncryption {
-  aes256,
-  awsKms,
-}
+  aes256('AES256'),
+  awsKms('aws:kms'),
+  ;
 
-extension ServerSideEncryptionValueExtension on ServerSideEncryption {
-  String toValue() {
-    switch (this) {
-      case ServerSideEncryption.aes256:
-        return 'AES256';
-      case ServerSideEncryption.awsKms:
-        return 'aws:kms';
-    }
-  }
-}
+  final String value;
 
-extension ServerSideEncryptionFromString on String {
-  ServerSideEncryption toServerSideEncryption() {
-    switch (this) {
-      case 'AES256':
-        return ServerSideEncryption.aes256;
-      case 'aws:kms':
-        return ServerSideEncryption.awsKms;
-    }
-    throw Exception('$this is not known in enum ServerSideEncryption');
-  }
+  const ServerSideEncryption(this.value);
+
+  static ServerSideEncryption fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum ServerSideEncryption'));
 }
 
 /// Describes the default server-side encryption to apply to new objects in the
@@ -25773,9 +24767,8 @@ class ServerSideEncryptionByDefault {
   });
   factory ServerSideEncryptionByDefault.fromXml(_s.XmlElement elem) {
     return ServerSideEncryptionByDefault(
-      sSEAlgorithm: _s
-          .extractXmlStringValue(elem, 'SSEAlgorithm')!
-          .toServerSideEncryption(),
+      sSEAlgorithm: ServerSideEncryption.fromString(
+          _s.extractXmlStringValue(elem, 'SSEAlgorithm')!),
       kMSMasterKeyID: _s.extractXmlStringValue(elem, 'KMSMasterKeyID'),
     );
   }
@@ -25784,7 +24777,7 @@ class ServerSideEncryptionByDefault {
     final sSEAlgorithm = this.sSEAlgorithm;
     final kMSMasterKeyID = this.kMSMasterKeyID;
     return {
-      'SSEAlgorithm': sSEAlgorithm.toValue(),
+      'SSEAlgorithm': sSEAlgorithm.value,
       if (kMSMasterKeyID != null) 'KMSMasterKeyID': kMSMasterKeyID,
     };
   }
@@ -25793,7 +24786,7 @@ class ServerSideEncryptionByDefault {
     final sSEAlgorithm = this.sSEAlgorithm;
     final kMSMasterKeyID = this.kMSMasterKeyID;
     final $children = <_s.XmlNode>[
-      _s.encodeXmlStringValue('SSEAlgorithm', sSEAlgorithm.toValue()),
+      _s.encodeXmlStringValue('SSEAlgorithm', sSEAlgorithm.value),
       if (kMSMasterKeyID != null)
         _s.encodeXmlStringValue('KMSMasterKeyID', kMSMasterKeyID),
     ];
@@ -25998,23 +24991,22 @@ class SseKmsEncryptedObjects {
   });
   factory SseKmsEncryptedObjects.fromXml(_s.XmlElement elem) {
     return SseKmsEncryptedObjects(
-      status: _s
-          .extractXmlStringValue(elem, 'Status')!
-          .toSseKmsEncryptedObjectsStatus(),
+      status: SseKmsEncryptedObjectsStatus.fromString(
+          _s.extractXmlStringValue(elem, 'Status')!),
     );
   }
 
   Map<String, dynamic> toJson() {
     final status = this.status;
     return {
-      'Status': status.toValue(),
+      'Status': status.value,
     };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final status = this.status;
     final $children = <_s.XmlNode>[
-      _s.encodeXmlStringValue('Status', status.toValue()),
+      _s.encodeXmlStringValue('Status', status.value),
     ];
     final $attributes = <_s.XmlAttribute>[
       ...?attributes,
@@ -26028,32 +25020,18 @@ class SseKmsEncryptedObjects {
 }
 
 enum SseKmsEncryptedObjectsStatus {
-  enabled,
-  disabled,
-}
+  enabled('Enabled'),
+  disabled('Disabled'),
+  ;
 
-extension SseKmsEncryptedObjectsStatusValueExtension
-    on SseKmsEncryptedObjectsStatus {
-  String toValue() {
-    switch (this) {
-      case SseKmsEncryptedObjectsStatus.enabled:
-        return 'Enabled';
-      case SseKmsEncryptedObjectsStatus.disabled:
-        return 'Disabled';
-    }
-  }
-}
+  final String value;
 
-extension SseKmsEncryptedObjectsStatusFromString on String {
-  SseKmsEncryptedObjectsStatus toSseKmsEncryptedObjectsStatus() {
-    switch (this) {
-      case 'Enabled':
-        return SseKmsEncryptedObjectsStatus.enabled;
-      case 'Disabled':
-        return SseKmsEncryptedObjectsStatus.disabled;
-    }
-    throw Exception('$this is not known in enum SseKmsEncryptedObjectsStatus');
-  }
+  const SseKmsEncryptedObjectsStatus(this.value);
+
+  static SseKmsEncryptedObjectsStatus fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum SseKmsEncryptedObjectsStatus'));
 }
 
 /// Container for the stats details.
@@ -26115,71 +25093,26 @@ class StatsEvent {
 }
 
 enum StorageClass {
-  standard,
-  reducedRedundancy,
-  standardIa,
-  onezoneIa,
-  intelligentTiering,
-  glacier,
-  deepArchive,
-  outposts,
-  glacierIr,
-  snow,
-}
+  standard('STANDARD'),
+  reducedRedundancy('REDUCED_REDUNDANCY'),
+  standardIa('STANDARD_IA'),
+  onezoneIa('ONEZONE_IA'),
+  intelligentTiering('INTELLIGENT_TIERING'),
+  glacier('GLACIER'),
+  deepArchive('DEEP_ARCHIVE'),
+  outposts('OUTPOSTS'),
+  glacierIr('GLACIER_IR'),
+  snow('SNOW'),
+  ;
 
-extension StorageClassValueExtension on StorageClass {
-  String toValue() {
-    switch (this) {
-      case StorageClass.standard:
-        return 'STANDARD';
-      case StorageClass.reducedRedundancy:
-        return 'REDUCED_REDUNDANCY';
-      case StorageClass.standardIa:
-        return 'STANDARD_IA';
-      case StorageClass.onezoneIa:
-        return 'ONEZONE_IA';
-      case StorageClass.intelligentTiering:
-        return 'INTELLIGENT_TIERING';
-      case StorageClass.glacier:
-        return 'GLACIER';
-      case StorageClass.deepArchive:
-        return 'DEEP_ARCHIVE';
-      case StorageClass.outposts:
-        return 'OUTPOSTS';
-      case StorageClass.glacierIr:
-        return 'GLACIER_IR';
-      case StorageClass.snow:
-        return 'SNOW';
-    }
-  }
-}
+  final String value;
 
-extension StorageClassFromString on String {
-  StorageClass toStorageClass() {
-    switch (this) {
-      case 'STANDARD':
-        return StorageClass.standard;
-      case 'REDUCED_REDUNDANCY':
-        return StorageClass.reducedRedundancy;
-      case 'STANDARD_IA':
-        return StorageClass.standardIa;
-      case 'ONEZONE_IA':
-        return StorageClass.onezoneIa;
-      case 'INTELLIGENT_TIERING':
-        return StorageClass.intelligentTiering;
-      case 'GLACIER':
-        return StorageClass.glacier;
-      case 'DEEP_ARCHIVE':
-        return StorageClass.deepArchive;
-      case 'OUTPOSTS':
-        return StorageClass.outposts;
-      case 'GLACIER_IR':
-        return StorageClass.glacierIr;
-      case 'SNOW':
-        return StorageClass.snow;
-    }
-    throw Exception('$this is not known in enum StorageClass');
-  }
+  const StorageClass(this.value);
+
+  static StorageClass fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum StorageClass'));
 }
 
 /// Specifies data related to access patterns to be collected and made available
@@ -26242,9 +25175,8 @@ class StorageClassAnalysisDataExport {
     return StorageClassAnalysisDataExport(
       destination: AnalyticsExportDestination.fromXml(
           _s.extractXmlChild(elem, 'Destination')!),
-      outputSchemaVersion: _s
-          .extractXmlStringValue(elem, 'OutputSchemaVersion')!
-          .toStorageClassAnalysisSchemaVersion(),
+      outputSchemaVersion: StorageClassAnalysisSchemaVersion.fromString(
+          _s.extractXmlStringValue(elem, 'OutputSchemaVersion')!),
     );
   }
 
@@ -26253,7 +25185,7 @@ class StorageClassAnalysisDataExport {
     final outputSchemaVersion = this.outputSchemaVersion;
     return {
       'Destination': destination,
-      'OutputSchemaVersion': outputSchemaVersion.toValue(),
+      'OutputSchemaVersion': outputSchemaVersion.value,
     };
   }
 
@@ -26261,8 +25193,7 @@ class StorageClassAnalysisDataExport {
     final destination = this.destination;
     final outputSchemaVersion = this.outputSchemaVersion;
     final $children = <_s.XmlNode>[
-      _s.encodeXmlStringValue(
-          'OutputSchemaVersion', outputSchemaVersion.toValue()),
+      _s.encodeXmlStringValue('OutputSchemaVersion', outputSchemaVersion.value),
       destination.toXml('Destination'),
     ];
     final $attributes = <_s.XmlAttribute>[
@@ -26277,28 +25208,17 @@ class StorageClassAnalysisDataExport {
 }
 
 enum StorageClassAnalysisSchemaVersion {
-  v_1,
-}
+  v_1('V_1'),
+  ;
 
-extension StorageClassAnalysisSchemaVersionValueExtension
-    on StorageClassAnalysisSchemaVersion {
-  String toValue() {
-    switch (this) {
-      case StorageClassAnalysisSchemaVersion.v_1:
-        return 'V_1';
-    }
-  }
-}
+  final String value;
 
-extension StorageClassAnalysisSchemaVersionFromString on String {
-  StorageClassAnalysisSchemaVersion toStorageClassAnalysisSchemaVersion() {
-    switch (this) {
-      case 'V_1':
-        return StorageClassAnalysisSchemaVersion.v_1;
-    }
-    throw Exception(
-        '$this is not known in enum StorageClassAnalysisSchemaVersion');
-  }
+  const StorageClassAnalysisSchemaVersion(this.value);
+
+  static StorageClassAnalysisSchemaVersion fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum StorageClassAnalysisSchemaVersion'));
 }
 
 /// A container of a key value name pair.
@@ -26381,31 +25301,18 @@ class Tagging {
 }
 
 enum TaggingDirective {
-  copy,
-  replace,
-}
+  copy('COPY'),
+  replace('REPLACE'),
+  ;
 
-extension TaggingDirectiveValueExtension on TaggingDirective {
-  String toValue() {
-    switch (this) {
-      case TaggingDirective.copy:
-        return 'COPY';
-      case TaggingDirective.replace:
-        return 'REPLACE';
-    }
-  }
-}
+  final String value;
 
-extension TaggingDirectiveFromString on String {
-  TaggingDirective toTaggingDirective() {
-    switch (this) {
-      case 'COPY':
-        return TaggingDirective.copy;
-      case 'REPLACE':
-        return TaggingDirective.replace;
-    }
-    throw Exception('$this is not known in enum TaggingDirective');
-  }
+  const TaggingDirective(this.value);
+
+  static TaggingDirective fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum TaggingDirective'));
 }
 
 /// Container for granting information.
@@ -26428,9 +25335,8 @@ class TargetGrant {
   factory TargetGrant.fromXml(_s.XmlElement elem) {
     return TargetGrant(
       grantee: _s.extractXmlChild(elem, 'Grantee')?.let(Grantee.fromXml),
-      permission: _s
-          .extractXmlStringValue(elem, 'Permission')
-          ?.toBucketLogsPermission(),
+      permission: BucketLogsPermission.fromString(
+          _s.extractXmlStringValue(elem, 'Permission')),
     );
   }
 
@@ -26439,7 +25345,7 @@ class TargetGrant {
     final permission = this.permission;
     return {
       if (grantee != null) 'Grantee': grantee,
-      if (permission != null) 'Permission': permission.toValue(),
+      if (permission != null) 'Permission': permission.value,
     };
   }
 
@@ -26449,7 +25355,7 @@ class TargetGrant {
     final $children = <_s.XmlNode>[
       if (grantee != null) grantee.toXml('Grantee'),
       if (permission != null)
-        _s.encodeXmlStringValue('Permission', permission.toValue()),
+        _s.encodeXmlStringValue('Permission', permission.value),
     ];
     final $attributes = <_s.XmlAttribute>[
       ...?attributes,
@@ -26463,36 +25369,18 @@ class TargetGrant {
 }
 
 enum Tier {
-  standard,
-  bulk,
-  expedited,
-}
+  standard('Standard'),
+  bulk('Bulk'),
+  expedited('Expedited'),
+  ;
 
-extension TierValueExtension on Tier {
-  String toValue() {
-    switch (this) {
-      case Tier.standard:
-        return 'Standard';
-      case Tier.bulk:
-        return 'Bulk';
-      case Tier.expedited:
-        return 'Expedited';
-    }
-  }
-}
+  final String value;
 
-extension TierFromString on String {
-  Tier toTier() {
-    switch (this) {
-      case 'Standard':
-        return Tier.standard;
-      case 'Bulk':
-        return Tier.bulk;
-      case 'Expedited':
-        return Tier.expedited;
-    }
-    throw Exception('$this is not known in enum Tier');
-  }
+  const Tier(this.value);
+
+  static Tier fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception('$value is not known in enum Tier'));
 }
 
 /// The S3 Intelligent-Tiering storage class is designed to optimize storage
@@ -26519,9 +25407,8 @@ class Tiering {
   });
   factory Tiering.fromXml(_s.XmlElement elem) {
     return Tiering(
-      accessTier: _s
-          .extractXmlStringValue(elem, 'AccessTier')!
-          .toIntelligentTieringAccessTier(),
+      accessTier: IntelligentTieringAccessTier.fromString(
+          _s.extractXmlStringValue(elem, 'AccessTier')!),
       days: _s.extractXmlIntValue(elem, 'Days')!,
     );
   }
@@ -26530,7 +25417,7 @@ class Tiering {
     final accessTier = this.accessTier;
     final days = this.days;
     return {
-      'AccessTier': accessTier.toValue(),
+      'AccessTier': accessTier.value,
       'Days': days,
     };
   }
@@ -26540,7 +25427,7 @@ class Tiering {
     final days = this.days;
     final $children = <_s.XmlNode>[
       _s.encodeXmlIntValue('Days', days),
-      _s.encodeXmlStringValue('AccessTier', accessTier.toValue()),
+      _s.encodeXmlStringValue('AccessTier', accessTier.value),
     ];
     final $attributes = <_s.XmlAttribute>[
       ...?attributes,
@@ -26595,7 +25482,7 @@ class TopicConfiguration {
     final filter = this.filter;
     final id = this.id;
     return {
-      'Event': events.map((e) => e.toValue()).toList(),
+      'Event': events.map((e) => e.value).toList(),
       'Topic': topicArn,
       if (filter != null) 'Filter': filter,
       if (id != null) 'Id': id,
@@ -26610,7 +25497,7 @@ class TopicConfiguration {
     final $children = <_s.XmlNode>[
       if (id != null) _s.encodeXmlStringValue('Id', id),
       _s.encodeXmlStringValue('Topic', topicArn),
-      ...events.map((e) => _s.encodeXmlStringValue('Event', e.toValue())),
+      ...events.map((e) => _s.encodeXmlStringValue('Event', e.value)),
       if (filter != null) filter.toXml('Filter'),
     ];
     final $attributes = <_s.XmlAttribute>[
@@ -26649,7 +25536,7 @@ class TopicConfigurationDeprecated {
   });
   factory TopicConfigurationDeprecated.fromXml(_s.XmlElement elem) {
     return TopicConfigurationDeprecated(
-      event: _s.extractXmlStringValue(elem, 'Event')?.toEvent(),
+      event: Event.fromString(_s.extractXmlStringValue(elem, 'Event')),
       events: _s
           .extractXmlStringListValues(elem, 'Event')
           .map((s) => s.toEvent())
@@ -26665,8 +25552,8 @@ class TopicConfigurationDeprecated {
     final id = this.id;
     final topic = this.topic;
     return {
-      if (event != null) 'Event': event.toValue(),
-      if (events != null) 'Event': events.map((e) => e.toValue()).toList(),
+      if (event != null) 'Event': event.value,
+      if (events != null) 'Event': events.map((e) => e.value).toList(),
       if (id != null) 'Id': id,
       if (topic != null) 'Topic': topic,
     };
@@ -26680,8 +25567,8 @@ class TopicConfigurationDeprecated {
     final $children = <_s.XmlNode>[
       if (id != null) _s.encodeXmlStringValue('Id', id),
       if (events != null)
-        ...events.map((e) => _s.encodeXmlStringValue('Event', e.toValue())),
-      if (event != null) _s.encodeXmlStringValue('Event', event.toValue()),
+        ...events.map((e) => _s.encodeXmlStringValue('Event', e.value)),
+      if (event != null) _s.encodeXmlStringValue('Event', event.value),
       if (topic != null) _s.encodeXmlStringValue('Topic', topic),
     ];
     final $attributes = <_s.XmlAttribute>[
@@ -26721,9 +25608,8 @@ class Transition {
       date: _s.extractXmlDateTimeValue(elem, 'Date',
           parser: _s.timeStampFromJson),
       days: _s.extractXmlIntValue(elem, 'Days'),
-      storageClass: _s
-          .extractXmlStringValue(elem, 'StorageClass')
-          ?.toTransitionStorageClass(),
+      storageClass: TransitionStorageClass.fromString(
+          _s.extractXmlStringValue(elem, 'StorageClass')),
     );
   }
 
@@ -26734,7 +25620,7 @@ class Transition {
     return {
       if (date != null) 'Date': iso8601ToJson(date),
       if (days != null) 'Days': days,
-      if (storageClass != null) 'StorageClass': storageClass.toValue(),
+      if (storageClass != null) 'StorageClass': storageClass.value,
     };
   }
 
@@ -26747,7 +25633,7 @@ class Transition {
         _s.encodeXmlDateTimeValue('Date', date, formatter: _s.iso8601ToJson),
       if (days != null) _s.encodeXmlIntValue('Days', days),
       if (storageClass != null)
-        _s.encodeXmlStringValue('StorageClass', storageClass.toValue()),
+        _s.encodeXmlStringValue('StorageClass', storageClass.value),
     ];
     final $attributes = <_s.XmlAttribute>[
       ...?attributes,
@@ -26761,84 +25647,37 @@ class Transition {
 }
 
 enum TransitionStorageClass {
-  glacier,
-  standardIa,
-  onezoneIa,
-  intelligentTiering,
-  deepArchive,
-  glacierIr,
-}
+  glacier('GLACIER'),
+  standardIa('STANDARD_IA'),
+  onezoneIa('ONEZONE_IA'),
+  intelligentTiering('INTELLIGENT_TIERING'),
+  deepArchive('DEEP_ARCHIVE'),
+  glacierIr('GLACIER_IR'),
+  ;
 
-extension TransitionStorageClassValueExtension on TransitionStorageClass {
-  String toValue() {
-    switch (this) {
-      case TransitionStorageClass.glacier:
-        return 'GLACIER';
-      case TransitionStorageClass.standardIa:
-        return 'STANDARD_IA';
-      case TransitionStorageClass.onezoneIa:
-        return 'ONEZONE_IA';
-      case TransitionStorageClass.intelligentTiering:
-        return 'INTELLIGENT_TIERING';
-      case TransitionStorageClass.deepArchive:
-        return 'DEEP_ARCHIVE';
-      case TransitionStorageClass.glacierIr:
-        return 'GLACIER_IR';
-    }
-  }
-}
+  final String value;
 
-extension TransitionStorageClassFromString on String {
-  TransitionStorageClass toTransitionStorageClass() {
-    switch (this) {
-      case 'GLACIER':
-        return TransitionStorageClass.glacier;
-      case 'STANDARD_IA':
-        return TransitionStorageClass.standardIa;
-      case 'ONEZONE_IA':
-        return TransitionStorageClass.onezoneIa;
-      case 'INTELLIGENT_TIERING':
-        return TransitionStorageClass.intelligentTiering;
-      case 'DEEP_ARCHIVE':
-        return TransitionStorageClass.deepArchive;
-      case 'GLACIER_IR':
-        return TransitionStorageClass.glacierIr;
-    }
-    throw Exception('$this is not known in enum TransitionStorageClass');
-  }
+  const TransitionStorageClass(this.value);
+
+  static TransitionStorageClass fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum TransitionStorageClass'));
 }
 
 enum Type {
-  canonicalUser,
-  amazonCustomerByEmail,
-  group,
-}
+  canonicalUser('CanonicalUser'),
+  amazonCustomerByEmail('AmazonCustomerByEmail'),
+  group('Group'),
+  ;
 
-extension TypeValueExtension on Type {
-  String toValue() {
-    switch (this) {
-      case Type.canonicalUser:
-        return 'CanonicalUser';
-      case Type.amazonCustomerByEmail:
-        return 'AmazonCustomerByEmail';
-      case Type.group:
-        return 'Group';
-    }
-  }
-}
+  final String value;
 
-extension TypeFromString on String {
-  Type toType() {
-    switch (this) {
-      case 'CanonicalUser':
-        return Type.canonicalUser;
-      case 'AmazonCustomerByEmail':
-        return Type.amazonCustomerByEmail;
-      case 'Group':
-        return Type.group;
-    }
-    throw Exception('$this is not known in enum Type');
-  }
+  const Type(this.value);
+
+  static Type fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception('$value is not known in enum Type'));
 }
 
 class UploadPartCopyOutput {
@@ -27012,8 +25851,8 @@ class VersioningConfiguration {
     final mFADelete = this.mFADelete;
     final status = this.status;
     return {
-      if (mFADelete != null) 'MfaDelete': mFADelete.toValue(),
-      if (status != null) 'Status': status.toValue(),
+      if (mFADelete != null) 'MfaDelete': mFADelete.value,
+      if (status != null) 'Status': status.value,
     };
   }
 
@@ -27022,8 +25861,8 @@ class VersioningConfiguration {
     final status = this.status;
     final $children = <_s.XmlNode>[
       if (mFADelete != null)
-        _s.encodeXmlStringValue('MfaDelete', mFADelete.toValue()),
-      if (status != null) _s.encodeXmlStringValue('Status', status.toValue()),
+        _s.encodeXmlStringValue('MfaDelete', mFADelete.value),
+      if (status != null) _s.encodeXmlStringValue('Status', status.value),
     ];
     final $attributes = <_s.XmlAttribute>[
       ...?attributes,

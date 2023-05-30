@@ -305,10 +305,11 @@ class ControlOperation {
   factory ControlOperation.fromJson(Map<String, dynamic> json) {
     return ControlOperation(
       endTime: timeStampFromJson(json['endTime']),
-      operationType:
-          (json['operationType'] as String?)?.toControlOperationType(),
+      operationType: (json['operationType'] as String?)
+          ?.let(ControlOperationType.fromString),
       startTime: timeStampFromJson(json['startTime']),
-      status: (json['status'] as String?)?.toControlOperationStatus(),
+      status:
+          (json['status'] as String?)?.let(ControlOperationStatus.fromString),
       statusMessage: json['statusMessage'] as String?,
     );
   }
@@ -321,73 +322,43 @@ class ControlOperation {
     final statusMessage = this.statusMessage;
     return {
       if (endTime != null) 'endTime': iso8601ToJson(endTime),
-      if (operationType != null) 'operationType': operationType.toValue(),
+      if (operationType != null) 'operationType': operationType.value,
       if (startTime != null) 'startTime': iso8601ToJson(startTime),
-      if (status != null) 'status': status.toValue(),
+      if (status != null) 'status': status.value,
       if (statusMessage != null) 'statusMessage': statusMessage,
     };
   }
 }
 
 enum ControlOperationStatus {
-  succeeded,
-  failed,
-  inProgress,
-}
+  succeeded('SUCCEEDED'),
+  failed('FAILED'),
+  inProgress('IN_PROGRESS'),
+  ;
 
-extension ControlOperationStatusValueExtension on ControlOperationStatus {
-  String toValue() {
-    switch (this) {
-      case ControlOperationStatus.succeeded:
-        return 'SUCCEEDED';
-      case ControlOperationStatus.failed:
-        return 'FAILED';
-      case ControlOperationStatus.inProgress:
-        return 'IN_PROGRESS';
-    }
-  }
-}
+  final String value;
 
-extension ControlOperationStatusFromString on String {
-  ControlOperationStatus toControlOperationStatus() {
-    switch (this) {
-      case 'SUCCEEDED':
-        return ControlOperationStatus.succeeded;
-      case 'FAILED':
-        return ControlOperationStatus.failed;
-      case 'IN_PROGRESS':
-        return ControlOperationStatus.inProgress;
-    }
-    throw Exception('$this is not known in enum ControlOperationStatus');
-  }
+  const ControlOperationStatus(this.value);
+
+  static ControlOperationStatus fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum ControlOperationStatus'));
 }
 
 enum ControlOperationType {
-  enableControl,
-  disableControl,
-}
+  enableControl('ENABLE_CONTROL'),
+  disableControl('DISABLE_CONTROL'),
+  ;
 
-extension ControlOperationTypeValueExtension on ControlOperationType {
-  String toValue() {
-    switch (this) {
-      case ControlOperationType.enableControl:
-        return 'ENABLE_CONTROL';
-      case ControlOperationType.disableControl:
-        return 'DISABLE_CONTROL';
-    }
-  }
-}
+  final String value;
 
-extension ControlOperationTypeFromString on String {
-  ControlOperationType toControlOperationType() {
-    switch (this) {
-      case 'ENABLE_CONTROL':
-        return ControlOperationType.enableControl;
-      case 'DISABLE_CONTROL':
-        return ControlOperationType.disableControl;
-    }
-    throw Exception('$this is not known in enum ControlOperationType');
-  }
+  const ControlOperationType(this.value);
+
+  static ControlOperationType fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum ControlOperationType'));
 }
 
 class DisableControlOutput {

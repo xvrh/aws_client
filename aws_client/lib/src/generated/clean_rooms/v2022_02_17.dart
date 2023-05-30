@@ -141,11 +141,11 @@ class CleanRooms {
     final $payload = <String, dynamic>{
       'creatorDisplayName': creatorDisplayName,
       'creatorMemberAbilities':
-          creatorMemberAbilities.map((e) => e.toValue()).toList(),
+          creatorMemberAbilities.map((e) => e.value).toList(),
       'description': description,
       'members': members,
       'name': name,
-      'queryLogStatus': queryLogStatus.toValue(),
+      'queryLogStatus': queryLogStatus.value,
       if (dataEncryptionMetadata != null)
         'dataEncryptionMetadata': dataEncryptionMetadata,
       if (tags != null) 'tags': tags,
@@ -201,7 +201,7 @@ class CleanRooms {
   }) async {
     final $payload = <String, dynamic>{
       'allowedColumns': allowedColumns,
-      'analysisMethod': analysisMethod.toValue(),
+      'analysisMethod': analysisMethod.value,
       'name': name,
       'tableReference': tableReference,
       if (description != null) 'description': description,
@@ -243,7 +243,7 @@ class CleanRooms {
   }) async {
     final $payload = <String, dynamic>{
       'analysisRulePolicy': analysisRulePolicy,
-      'analysisRuleType': analysisRuleType.toValue(),
+      'analysisRuleType': analysisRuleType.value,
     };
     final response = await _protocol.send(
       payload: $payload,
@@ -347,7 +347,7 @@ class CleanRooms {
   }) async {
     final $payload = <String, dynamic>{
       'collaborationIdentifier': collaborationIdentifier,
-      'queryLogStatus': queryLogStatus.toValue(),
+      'queryLogStatus': queryLogStatus.value,
       if (tags != null) 'tags': tags,
     };
     final response = await _protocol.send(
@@ -428,7 +428,7 @@ class CleanRooms {
       payload: null,
       method: 'DELETE',
       requestUri:
-          '/configuredTables/${Uri.encodeComponent(configuredTableIdentifier)}/analysisRule/${Uri.encodeComponent(analysisRuleType.toValue())}',
+          '/configuredTables/${Uri.encodeComponent(configuredTableIdentifier)}/analysisRule/${Uri.encodeComponent(analysisRuleType.value)}',
       exceptionFnMap: _exceptionFns,
     );
   }
@@ -584,7 +584,7 @@ class CleanRooms {
       payload: null,
       method: 'GET',
       requestUri:
-          '/configuredTables/${Uri.encodeComponent(configuredTableIdentifier)}/analysisRule/${Uri.encodeComponent(analysisRuleType.toValue())}',
+          '/configuredTables/${Uri.encodeComponent(configuredTableIdentifier)}/analysisRule/${Uri.encodeComponent(analysisRuleType.value)}',
       exceptionFnMap: _exceptionFns,
     );
     return GetConfiguredTableAnalysisRuleOutput.fromJson(response);
@@ -724,7 +724,7 @@ class CleanRooms {
       payload: null,
       method: 'GET',
       requestUri:
-          '/collaborations/${Uri.encodeComponent(collaborationIdentifier)}/schemas/${Uri.encodeComponent(name)}/analysisRule/${Uri.encodeComponent(type.toValue())}',
+          '/collaborations/${Uri.encodeComponent(collaborationIdentifier)}/schemas/${Uri.encodeComponent(name)}/analysisRule/${Uri.encodeComponent(type.value)}',
       exceptionFnMap: _exceptionFns,
     );
     return GetSchemaAnalysisRuleOutput.fromJson(response);
@@ -762,7 +762,7 @@ class CleanRooms {
     );
     final $query = <String, List<String>>{
       if (maxResults != null) 'maxResults': [maxResults.toString()],
-      if (memberStatus != null) 'memberStatus': [memberStatus.toValue()],
+      if (memberStatus != null) 'memberStatus': [memberStatus.value],
       if (nextToken != null) 'nextToken': [nextToken],
     };
     final response = await _protocol.send(
@@ -930,7 +930,7 @@ class CleanRooms {
     final $query = <String, List<String>>{
       if (maxResults != null) 'maxResults': [maxResults.toString()],
       if (nextToken != null) 'nextToken': [nextToken],
-      if (status != null) 'status': [status.toValue()],
+      if (status != null) 'status': [status.value],
     };
     final response = await _protocol.send(
       payload: null,
@@ -979,7 +979,7 @@ class CleanRooms {
     final $query = <String, List<String>>{
       if (maxResults != null) 'maxResults': [maxResults.toString()],
       if (nextToken != null) 'nextToken': [nextToken],
-      if (status != null) 'status': [status.toValue()],
+      if (status != null) 'status': [status.value],
     };
     final response = await _protocol.send(
       payload: null,
@@ -1029,7 +1029,7 @@ class CleanRooms {
     final $query = <String, List<String>>{
       if (maxResults != null) 'maxResults': [maxResults.toString()],
       if (nextToken != null) 'nextToken': [nextToken],
-      if (schemaType != null) 'schemaType': [schemaType.toValue()],
+      if (schemaType != null) 'schemaType': [schemaType.value],
     };
     final response = await _protocol.send(
       payload: null,
@@ -1092,7 +1092,7 @@ class CleanRooms {
     final $payload = <String, dynamic>{
       'resultConfiguration': resultConfiguration,
       'sqlParameters': sqlParameters,
-      'type': type.toValue(),
+      'type': type.value,
     };
     final response = await _protocol.send(
       payload: $payload,
@@ -1263,7 +1263,7 @@ class CleanRooms {
       payload: $payload,
       method: 'PATCH',
       requestUri:
-          '/configuredTables/${Uri.encodeComponent(configuredTableIdentifier)}/analysisRule/${Uri.encodeComponent(analysisRuleType.toValue())}',
+          '/configuredTables/${Uri.encodeComponent(configuredTableIdentifier)}/analysisRule/${Uri.encodeComponent(analysisRuleType.value)}',
       exceptionFnMap: _exceptionFns,
     );
     return UpdateConfiguredTableAnalysisRuleOutput.fromJson(response);
@@ -1333,7 +1333,7 @@ class CleanRooms {
     MembershipQueryLogStatus? queryLogStatus,
   }) async {
     final $payload = <String, dynamic>{
-      if (queryLogStatus != null) 'queryLogStatus': queryLogStatus.toValue(),
+      if (queryLogStatus != null) 'queryLogStatus': queryLogStatus.value,
     };
     final response = await _protocol.send(
       payload: $payload,
@@ -1368,7 +1368,7 @@ class CleanRooms {
     required TargetProtectedQueryStatus targetStatus,
   }) async {
     final $payload = <String, dynamic>{
-      'targetStatus': targetStatus.toValue(),
+      'targetStatus': targetStatus.value,
     };
     final response = await _protocol.send(
       payload: $payload,
@@ -1400,7 +1400,7 @@ class AggregateColumn {
           .whereNotNull()
           .map((e) => e as String)
           .toList(),
-      function: (json['function'] as String).toAggregateFunctionName(),
+      function: AggregateFunctionName.fromString((json['function'] as String)),
     );
   }
 
@@ -1409,52 +1409,27 @@ class AggregateColumn {
     final function = this.function;
     return {
       'columnNames': columnNames,
-      'function': function.toValue(),
+      'function': function.value,
     };
   }
 }
 
 enum AggregateFunctionName {
-  sum,
-  sumDistinct,
-  count,
-  countDistinct,
-  avg,
-}
+  sum('SUM'),
+  sumDistinct('SUM_DISTINCT'),
+  count('COUNT'),
+  countDistinct('COUNT_DISTINCT'),
+  avg('AVG'),
+  ;
 
-extension AggregateFunctionNameValueExtension on AggregateFunctionName {
-  String toValue() {
-    switch (this) {
-      case AggregateFunctionName.sum:
-        return 'SUM';
-      case AggregateFunctionName.sumDistinct:
-        return 'SUM_DISTINCT';
-      case AggregateFunctionName.count:
-        return 'COUNT';
-      case AggregateFunctionName.countDistinct:
-        return 'COUNT_DISTINCT';
-      case AggregateFunctionName.avg:
-        return 'AVG';
-    }
-  }
-}
+  final String value;
 
-extension AggregateFunctionNameFromString on String {
-  AggregateFunctionName toAggregateFunctionName() {
-    switch (this) {
-      case 'SUM':
-        return AggregateFunctionName.sum;
-      case 'SUM_DISTINCT':
-        return AggregateFunctionName.sumDistinct;
-      case 'COUNT':
-        return AggregateFunctionName.count;
-      case 'COUNT_DISTINCT':
-        return AggregateFunctionName.countDistinct;
-      case 'AVG':
-        return AggregateFunctionName.avg;
-    }
-    throw Exception('$this is not known in enum AggregateFunctionName');
-  }
+  const AggregateFunctionName(this.value);
+
+  static AggregateFunctionName fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum AggregateFunctionName'));
 }
 
 /// Constraint on query output removing output rows that do not meet a minimum
@@ -1483,7 +1458,7 @@ class AggregationConstraint {
     return AggregationConstraint(
       columnName: json['columnName'] as String,
       minimum: json['minimum'] as int,
-      type: (json['type'] as String).toAggregationType(),
+      type: AggregationType.fromString((json['type'] as String)),
     );
   }
 
@@ -1494,55 +1469,37 @@ class AggregationConstraint {
     return {
       'columnName': columnName,
       'minimum': minimum,
-      'type': type.toValue(),
+      'type': type.value,
     };
   }
 }
 
 enum AggregationType {
-  countDistinct,
-}
+  countDistinct('COUNT_DISTINCT'),
+  ;
 
-extension AggregationTypeValueExtension on AggregationType {
-  String toValue() {
-    switch (this) {
-      case AggregationType.countDistinct:
-        return 'COUNT_DISTINCT';
-    }
-  }
-}
+  final String value;
 
-extension AggregationTypeFromString on String {
-  AggregationType toAggregationType() {
-    switch (this) {
-      case 'COUNT_DISTINCT':
-        return AggregationType.countDistinct;
-    }
-    throw Exception('$this is not known in enum AggregationType');
-  }
+  const AggregationType(this.value);
+
+  static AggregationType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum AggregationType'));
 }
 
 enum AnalysisMethod {
-  directQuery,
-}
+  directQuery('DIRECT_QUERY'),
+  ;
 
-extension AnalysisMethodValueExtension on AnalysisMethod {
-  String toValue() {
-    switch (this) {
-      case AnalysisMethod.directQuery:
-        return 'DIRECT_QUERY';
-    }
-  }
-}
+  final String value;
 
-extension AnalysisMethodFromString on String {
-  AnalysisMethod toAnalysisMethod() {
-    switch (this) {
-      case 'DIRECT_QUERY':
-        return AnalysisMethod.directQuery;
-    }
-    throw Exception('$this is not known in enum AnalysisMethod');
-  }
+  const AnalysisMethod(this.value);
+
+  static AnalysisMethod fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum AnalysisMethod'));
 }
 
 /// A specification about how data from the configured table can be used in a
@@ -1582,7 +1539,7 @@ class AnalysisRule {
       name: json['name'] as String,
       policy:
           AnalysisRulePolicy.fromJson(json['policy'] as Map<String, dynamic>),
-      type: (json['type'] as String).toAnalysisRuleType(),
+      type: AnalysisRuleType.fromString((json['type'] as String)),
       updateTime: nonNullableTimeStampFromJson(json['updateTime'] as Object),
     );
   }
@@ -1599,7 +1556,7 @@ class AnalysisRule {
       'createTime': unixTimestampToJson(createTime),
       'name': name,
       'policy': policy,
-      'type': type.toValue(),
+      'type': type.value,
       'updateTime': unixTimestampToJson(updateTime),
     };
   }
@@ -1660,9 +1617,10 @@ class AnalysisRuleAggregation {
           .toList(),
       scalarFunctions: (json['scalarFunctions'] as List)
           .whereNotNull()
-          .map((e) => (e as String).toScalarFunctions())
+          .map((e) => ScalarFunctions.fromString((e as String)))
           .toList(),
-      joinRequired: (json['joinRequired'] as String?)?.toJoinRequiredOption(),
+      joinRequired:
+          (json['joinRequired'] as String?)?.let(JoinRequiredOption.fromString),
     );
   }
 
@@ -1678,8 +1636,8 @@ class AnalysisRuleAggregation {
       'dimensionColumns': dimensionColumns,
       'joinColumns': joinColumns,
       'outputConstraints': outputConstraints,
-      'scalarFunctions': scalarFunctions.map((e) => e.toValue()).toList(),
-      if (joinRequired != null) 'joinRequired': joinRequired.toValue(),
+      'scalarFunctions': scalarFunctions.map((e) => e.value).toList(),
+      if (joinRequired != null) 'joinRequired': joinRequired.value,
     };
   }
 }
@@ -1783,31 +1741,18 @@ class AnalysisRulePolicyV1 {
 }
 
 enum AnalysisRuleType {
-  aggregation,
-  list,
-}
+  aggregation('AGGREGATION'),
+  list('LIST'),
+  ;
 
-extension AnalysisRuleTypeValueExtension on AnalysisRuleType {
-  String toValue() {
-    switch (this) {
-      case AnalysisRuleType.aggregation:
-        return 'AGGREGATION';
-      case AnalysisRuleType.list:
-        return 'LIST';
-    }
-  }
-}
+  final String value;
 
-extension AnalysisRuleTypeFromString on String {
-  AnalysisRuleType toAnalysisRuleType() {
-    switch (this) {
-      case 'AGGREGATION':
-        return AnalysisRuleType.aggregation;
-      case 'LIST':
-        return AnalysisRuleType.list;
-    }
-    throw Exception('$this is not known in enum AnalysisRuleType');
-  }
+  const AnalysisRuleType(this.value);
+
+  static AnalysisRuleType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum AnalysisRuleType'));
 }
 
 /// An error describing why a schema could not be fetched.
@@ -1951,10 +1896,10 @@ class Collaboration {
       creatorAccountId: json['creatorAccountId'] as String,
       creatorDisplayName: json['creatorDisplayName'] as String,
       id: json['id'] as String,
-      memberStatus: (json['memberStatus'] as String).toMemberStatus(),
+      memberStatus: MemberStatus.fromString((json['memberStatus'] as String)),
       name: json['name'] as String,
-      queryLogStatus:
-          (json['queryLogStatus'] as String).toCollaborationQueryLogStatus(),
+      queryLogStatus: CollaborationQueryLogStatus.fromString(
+          (json['queryLogStatus'] as String)),
       updateTime: nonNullableTimeStampFromJson(json['updateTime'] as Object),
       dataEncryptionMetadata: json['dataEncryptionMetadata'] != null
           ? DataEncryptionMetadata.fromJson(
@@ -1986,9 +1931,9 @@ class Collaboration {
       'creatorAccountId': creatorAccountId,
       'creatorDisplayName': creatorDisplayName,
       'id': id,
-      'memberStatus': memberStatus.toValue(),
+      'memberStatus': memberStatus.value,
       'name': name,
-      'queryLogStatus': queryLogStatus.toValue(),
+      'queryLogStatus': queryLogStatus.value,
       'updateTime': unixTimestampToJson(updateTime),
       if (dataEncryptionMetadata != null)
         'dataEncryptionMetadata': dataEncryptionMetadata,
@@ -2000,32 +1945,18 @@ class Collaboration {
 }
 
 enum CollaborationQueryLogStatus {
-  enabled,
-  disabled,
-}
+  enabled('ENABLED'),
+  disabled('DISABLED'),
+  ;
 
-extension CollaborationQueryLogStatusValueExtension
-    on CollaborationQueryLogStatus {
-  String toValue() {
-    switch (this) {
-      case CollaborationQueryLogStatus.enabled:
-        return 'ENABLED';
-      case CollaborationQueryLogStatus.disabled:
-        return 'DISABLED';
-    }
-  }
-}
+  final String value;
 
-extension CollaborationQueryLogStatusFromString on String {
-  CollaborationQueryLogStatus toCollaborationQueryLogStatus() {
-    switch (this) {
-      case 'ENABLED':
-        return CollaborationQueryLogStatus.enabled;
-      case 'DISABLED':
-        return CollaborationQueryLogStatus.disabled;
-    }
-    throw Exception('$this is not known in enum CollaborationQueryLogStatus');
-  }
+  const CollaborationQueryLogStatus(this.value);
+
+  static CollaborationQueryLogStatus fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum CollaborationQueryLogStatus'));
 }
 
 /// The metadata of the collaboration.
@@ -2082,7 +2013,7 @@ class CollaborationSummary {
       creatorAccountId: json['creatorAccountId'] as String,
       creatorDisplayName: json['creatorDisplayName'] as String,
       id: json['id'] as String,
-      memberStatus: (json['memberStatus'] as String).toMemberStatus(),
+      memberStatus: MemberStatus.fromString((json['memberStatus'] as String)),
       name: json['name'] as String,
       updateTime: nonNullableTimeStampFromJson(json['updateTime'] as Object),
       membershipArn: json['membershipArn'] as String?,
@@ -2107,7 +2038,7 @@ class CollaborationSummary {
       'creatorAccountId': creatorAccountId,
       'creatorDisplayName': creatorDisplayName,
       'id': id,
-      'memberStatus': memberStatus.toValue(),
+      'memberStatus': memberStatus.value,
       'name': name,
       'updateTime': unixTimestampToJson(updateTime),
       if (membershipArn != null) 'membershipArn': membershipArn,
@@ -2202,10 +2133,11 @@ class ConfiguredTable {
           .whereNotNull()
           .map((e) => e as String)
           .toList(),
-      analysisMethod: (json['analysisMethod'] as String).toAnalysisMethod(),
+      analysisMethod:
+          AnalysisMethod.fromString((json['analysisMethod'] as String)),
       analysisRuleTypes: (json['analysisRuleTypes'] as List)
           .whereNotNull()
-          .map((e) => (e as String).toConfiguredTableAnalysisRuleType())
+          .map((e) => ConfiguredTableAnalysisRuleType.fromString((e as String)))
           .toList(),
       arn: json['arn'] as String,
       createTime: nonNullableTimeStampFromJson(json['createTime'] as Object),
@@ -2231,8 +2163,8 @@ class ConfiguredTable {
     final description = this.description;
     return {
       'allowedColumns': allowedColumns,
-      'analysisMethod': analysisMethod.toValue(),
-      'analysisRuleTypes': analysisRuleTypes.map((e) => e.toValue()).toList(),
+      'analysisMethod': analysisMethod.value,
+      'analysisRuleTypes': analysisRuleTypes.map((e) => e.value).toList(),
       'arn': arn,
       'createTime': unixTimestampToJson(createTime),
       'id': id,
@@ -2282,7 +2214,8 @@ class ConfiguredTableAnalysisRule {
       createTime: nonNullableTimeStampFromJson(json['createTime'] as Object),
       policy: ConfiguredTableAnalysisRulePolicy.fromJson(
           json['policy'] as Map<String, dynamic>),
-      type: (json['type'] as String).toConfiguredTableAnalysisRuleType(),
+      type:
+          ConfiguredTableAnalysisRuleType.fromString((json['type'] as String)),
       updateTime: nonNullableTimeStampFromJson(json['updateTime'] as Object),
     );
   }
@@ -2299,7 +2232,7 @@ class ConfiguredTableAnalysisRule {
       'configuredTableId': configuredTableId,
       'createTime': unixTimestampToJson(createTime),
       'policy': policy,
-      'type': type.toValue(),
+      'type': type.value,
       'updateTime': unixTimestampToJson(updateTime),
     };
   }
@@ -2370,33 +2303,18 @@ class ConfiguredTableAnalysisRulePolicyV1 {
 }
 
 enum ConfiguredTableAnalysisRuleType {
-  aggregation,
-  list,
-}
+  aggregation('AGGREGATION'),
+  list('LIST'),
+  ;
 
-extension ConfiguredTableAnalysisRuleTypeValueExtension
-    on ConfiguredTableAnalysisRuleType {
-  String toValue() {
-    switch (this) {
-      case ConfiguredTableAnalysisRuleType.aggregation:
-        return 'AGGREGATION';
-      case ConfiguredTableAnalysisRuleType.list:
-        return 'LIST';
-    }
-  }
-}
+  final String value;
 
-extension ConfiguredTableAnalysisRuleTypeFromString on String {
-  ConfiguredTableAnalysisRuleType toConfiguredTableAnalysisRuleType() {
-    switch (this) {
-      case 'AGGREGATION':
-        return ConfiguredTableAnalysisRuleType.aggregation;
-      case 'LIST':
-        return ConfiguredTableAnalysisRuleType.list;
-    }
-    throw Exception(
-        '$this is not known in enum ConfiguredTableAnalysisRuleType');
-  }
+  const ConfiguredTableAnalysisRuleType(this.value);
+
+  static ConfiguredTableAnalysisRuleType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum ConfiguredTableAnalysisRuleType'));
 }
 
 /// A configured table association links a configured table to a collaboration.
@@ -2611,10 +2529,11 @@ class ConfiguredTableSummary {
 
   factory ConfiguredTableSummary.fromJson(Map<String, dynamic> json) {
     return ConfiguredTableSummary(
-      analysisMethod: (json['analysisMethod'] as String).toAnalysisMethod(),
+      analysisMethod:
+          AnalysisMethod.fromString((json['analysisMethod'] as String)),
       analysisRuleTypes: (json['analysisRuleTypes'] as List)
           .whereNotNull()
-          .map((e) => (e as String).toConfiguredTableAnalysisRuleType())
+          .map((e) => ConfiguredTableAnalysisRuleType.fromString((e as String)))
           .toList(),
       arn: json['arn'] as String,
       createTime: nonNullableTimeStampFromJson(json['createTime'] as Object),
@@ -2633,8 +2552,8 @@ class ConfiguredTableSummary {
     final name = this.name;
     final updateTime = this.updateTime;
     return {
-      'analysisMethod': analysisMethod.toValue(),
-      'analysisRuleTypes': analysisRuleTypes.map((e) => e.toValue()).toList(),
+      'analysisMethod': analysisMethod.value,
+      'analysisRuleTypes': analysisRuleTypes.map((e) => e.value).toList(),
       'arn': arn,
       'createTime': unixTimestampToJson(createTime),
       'id': id,
@@ -2890,31 +2809,18 @@ class DeleteMembershipOutput {
 }
 
 enum FilterableMemberStatus {
-  invited,
-  active,
-}
+  invited('INVITED'),
+  active('ACTIVE'),
+  ;
 
-extension FilterableMemberStatusValueExtension on FilterableMemberStatus {
-  String toValue() {
-    switch (this) {
-      case FilterableMemberStatus.invited:
-        return 'INVITED';
-      case FilterableMemberStatus.active:
-        return 'ACTIVE';
-    }
-  }
-}
+  final String value;
 
-extension FilterableMemberStatusFromString on String {
-  FilterableMemberStatus toFilterableMemberStatus() {
-    switch (this) {
-      case 'INVITED':
-        return FilterableMemberStatus.invited;
-      case 'ACTIVE':
-        return FilterableMemberStatus.active;
-    }
-    throw Exception('$this is not known in enum FilterableMemberStatus');
-  }
+  const FilterableMemberStatus(this.value);
+
+  static FilterableMemberStatus fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum FilterableMemberStatus'));
 }
 
 class GetCollaborationOutput {
@@ -3133,26 +3039,17 @@ class GlueTableReference {
 }
 
 enum JoinRequiredOption {
-  queryRunner,
-}
+  queryRunner('QUERY_RUNNER'),
+  ;
 
-extension JoinRequiredOptionValueExtension on JoinRequiredOption {
-  String toValue() {
-    switch (this) {
-      case JoinRequiredOption.queryRunner:
-        return 'QUERY_RUNNER';
-    }
-  }
-}
+  final String value;
 
-extension JoinRequiredOptionFromString on String {
-  JoinRequiredOption toJoinRequiredOption() {
-    switch (this) {
-      case 'QUERY_RUNNER':
-        return JoinRequiredOption.queryRunner;
-    }
-    throw Exception('$this is not known in enum JoinRequiredOption');
-  }
+  const JoinRequiredOption(this.value);
+
+  static JoinRequiredOption fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum JoinRequiredOption'));
 }
 
 class ListCollaborationsOutput {
@@ -3417,31 +3314,18 @@ class ListTagsForResourceOutput {
 }
 
 enum MemberAbility {
-  canQuery,
-  canReceiveResults,
-}
+  canQuery('CAN_QUERY'),
+  canReceiveResults('CAN_RECEIVE_RESULTS'),
+  ;
 
-extension MemberAbilityValueExtension on MemberAbility {
-  String toValue() {
-    switch (this) {
-      case MemberAbility.canQuery:
-        return 'CAN_QUERY';
-      case MemberAbility.canReceiveResults:
-        return 'CAN_RECEIVE_RESULTS';
-    }
-  }
-}
+  final String value;
 
-extension MemberAbilityFromString on String {
-  MemberAbility toMemberAbility() {
-    switch (this) {
-      case 'CAN_QUERY':
-        return MemberAbility.canQuery;
-      case 'CAN_RECEIVE_RESULTS':
-        return MemberAbility.canReceiveResults;
-    }
-    throw Exception('$this is not known in enum MemberAbility');
-  }
+  const MemberAbility(this.value);
+
+  static MemberAbility fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum MemberAbility'));
 }
 
 /// Basic metadata used to construct a new member.
@@ -3469,47 +3353,26 @@ class MemberSpecification {
     return {
       'accountId': accountId,
       'displayName': displayName,
-      'memberAbilities': memberAbilities.map((e) => e.toValue()).toList(),
+      'memberAbilities': memberAbilities.map((e) => e.value).toList(),
     };
   }
 }
 
 enum MemberStatus {
-  invited,
-  active,
-  left,
-  removed,
-}
+  invited('INVITED'),
+  active('ACTIVE'),
+  left('LEFT'),
+  removed('REMOVED'),
+  ;
 
-extension MemberStatusValueExtension on MemberStatus {
-  String toValue() {
-    switch (this) {
-      case MemberStatus.invited:
-        return 'INVITED';
-      case MemberStatus.active:
-        return 'ACTIVE';
-      case MemberStatus.left:
-        return 'LEFT';
-      case MemberStatus.removed:
-        return 'REMOVED';
-    }
-  }
-}
+  final String value;
 
-extension MemberStatusFromString on String {
-  MemberStatus toMemberStatus() {
-    switch (this) {
-      case 'INVITED':
-        return MemberStatus.invited;
-      case 'ACTIVE':
-        return MemberStatus.active;
-      case 'LEFT':
-        return MemberStatus.left;
-      case 'REMOVED':
-        return MemberStatus.removed;
-    }
-    throw Exception('$this is not known in enum MemberStatus');
-  }
+  const MemberStatus(this.value);
+
+  static MemberStatus fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum MemberStatus'));
 }
 
 /// The member object listed by the request.
@@ -3555,12 +3418,12 @@ class MemberSummary {
     return MemberSummary(
       abilities: (json['abilities'] as List)
           .whereNotNull()
-          .map((e) => (e as String).toMemberAbility())
+          .map((e) => MemberAbility.fromString((e as String)))
           .toList(),
       accountId: json['accountId'] as String,
       createTime: nonNullableTimeStampFromJson(json['createTime'] as Object),
       displayName: json['displayName'] as String,
-      status: (json['status'] as String).toMemberStatus(),
+      status: MemberStatus.fromString((json['status'] as String)),
       updateTime: nonNullableTimeStampFromJson(json['updateTime'] as Object),
       membershipArn: json['membershipArn'] as String?,
       membershipId: json['membershipId'] as String?,
@@ -3577,11 +3440,11 @@ class MemberSummary {
     final membershipArn = this.membershipArn;
     final membershipId = this.membershipId;
     return {
-      'abilities': abilities.map((e) => e.toValue()).toList(),
+      'abilities': abilities.map((e) => e.value).toList(),
       'accountId': accountId,
       'createTime': unixTimestampToJson(createTime),
       'displayName': displayName,
-      'status': status.toValue(),
+      'status': status.value,
       'updateTime': unixTimestampToJson(updateTime),
       if (membershipArn != null) 'membershipArn': membershipArn,
       if (membershipId != null) 'membershipId': membershipId,
@@ -3659,11 +3522,11 @@ class Membership {
       id: json['id'] as String,
       memberAbilities: (json['memberAbilities'] as List)
           .whereNotNull()
-          .map((e) => (e as String).toMemberAbility())
+          .map((e) => MemberAbility.fromString((e as String)))
           .toList(),
-      queryLogStatus:
-          (json['queryLogStatus'] as String).toMembershipQueryLogStatus(),
-      status: (json['status'] as String).toMembershipStatus(),
+      queryLogStatus: MembershipQueryLogStatus.fromString(
+          (json['queryLogStatus'] as String)),
+      status: MembershipStatus.fromString((json['status'] as String)),
       updateTime: nonNullableTimeStampFromJson(json['updateTime'] as Object),
     );
   }
@@ -3691,73 +3554,43 @@ class Membership {
       'collaborationName': collaborationName,
       'createTime': unixTimestampToJson(createTime),
       'id': id,
-      'memberAbilities': memberAbilities.map((e) => e.toValue()).toList(),
-      'queryLogStatus': queryLogStatus.toValue(),
-      'status': status.toValue(),
+      'memberAbilities': memberAbilities.map((e) => e.value).toList(),
+      'queryLogStatus': queryLogStatus.value,
+      'status': status.value,
       'updateTime': unixTimestampToJson(updateTime),
     };
   }
 }
 
 enum MembershipQueryLogStatus {
-  enabled,
-  disabled,
-}
+  enabled('ENABLED'),
+  disabled('DISABLED'),
+  ;
 
-extension MembershipQueryLogStatusValueExtension on MembershipQueryLogStatus {
-  String toValue() {
-    switch (this) {
-      case MembershipQueryLogStatus.enabled:
-        return 'ENABLED';
-      case MembershipQueryLogStatus.disabled:
-        return 'DISABLED';
-    }
-  }
-}
+  final String value;
 
-extension MembershipQueryLogStatusFromString on String {
-  MembershipQueryLogStatus toMembershipQueryLogStatus() {
-    switch (this) {
-      case 'ENABLED':
-        return MembershipQueryLogStatus.enabled;
-      case 'DISABLED':
-        return MembershipQueryLogStatus.disabled;
-    }
-    throw Exception('$this is not known in enum MembershipQueryLogStatus');
-  }
+  const MembershipQueryLogStatus(this.value);
+
+  static MembershipQueryLogStatus fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum MembershipQueryLogStatus'));
 }
 
 enum MembershipStatus {
-  active,
-  removed,
-  collaborationDeleted,
-}
+  active('ACTIVE'),
+  removed('REMOVED'),
+  collaborationDeleted('COLLABORATION_DELETED'),
+  ;
 
-extension MembershipStatusValueExtension on MembershipStatus {
-  String toValue() {
-    switch (this) {
-      case MembershipStatus.active:
-        return 'ACTIVE';
-      case MembershipStatus.removed:
-        return 'REMOVED';
-      case MembershipStatus.collaborationDeleted:
-        return 'COLLABORATION_DELETED';
-    }
-  }
-}
+  final String value;
 
-extension MembershipStatusFromString on String {
-  MembershipStatus toMembershipStatus() {
-    switch (this) {
-      case 'ACTIVE':
-        return MembershipStatus.active;
-      case 'REMOVED':
-        return MembershipStatus.removed;
-      case 'COLLABORATION_DELETED':
-        return MembershipStatus.collaborationDeleted;
-    }
-    throw Exception('$this is not known in enum MembershipStatus');
-  }
+  const MembershipStatus(this.value);
+
+  static MembershipStatus fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum MembershipStatus'));
 }
 
 /// The membership object listed by the request.
@@ -3825,9 +3658,9 @@ class MembershipSummary {
       id: json['id'] as String,
       memberAbilities: (json['memberAbilities'] as List)
           .whereNotNull()
-          .map((e) => (e as String).toMemberAbility())
+          .map((e) => MemberAbility.fromString((e as String)))
           .toList(),
-      status: (json['status'] as String).toMembershipStatus(),
+      status: MembershipStatus.fromString((json['status'] as String)),
       updateTime: nonNullableTimeStampFromJson(json['updateTime'] as Object),
     );
   }
@@ -3854,8 +3687,8 @@ class MembershipSummary {
       'collaborationName': collaborationName,
       'createTime': unixTimestampToJson(createTime),
       'id': id,
-      'memberAbilities': memberAbilities.map((e) => e.toValue()).toList(),
-      'status': status.toValue(),
+      'memberAbilities': memberAbilities.map((e) => e.value).toList(),
+      'status': status.value,
       'updateTime': unixTimestampToJson(updateTime),
     };
   }
@@ -3916,7 +3749,7 @@ class ProtectedQuery {
           json['resultConfiguration'] as Map<String, dynamic>),
       sqlParameters: ProtectedQuerySQLParameters.fromJson(
           json['sqlParameters'] as Map<String, dynamic>),
-      status: (json['status'] as String).toProtectedQueryStatus(),
+      status: ProtectedQueryStatus.fromString((json['status'] as String)),
       error: json['error'] != null
           ? ProtectedQueryError.fromJson(json['error'] as Map<String, dynamic>)
           : null,
@@ -3949,7 +3782,7 @@ class ProtectedQuery {
       'membershipId': membershipId,
       'resultConfiguration': resultConfiguration,
       'sqlParameters': sqlParameters,
-      'status': status.toValue(),
+      'status': status.value,
       if (error != null) 'error': error,
       if (result != null) 'result': result,
       if (statistics != null) 'statistics': statistics,
@@ -4132,7 +3965,7 @@ class ProtectedQueryS3OutputConfiguration {
       Map<String, dynamic> json) {
     return ProtectedQueryS3OutputConfiguration(
       bucket: json['bucket'] as String,
-      resultFormat: (json['resultFormat'] as String).toResultFormat(),
+      resultFormat: ResultFormat.fromString((json['resultFormat'] as String)),
       keyPrefix: json['keyPrefix'] as String?,
     );
   }
@@ -4143,7 +3976,7 @@ class ProtectedQueryS3OutputConfiguration {
     final keyPrefix = this.keyPrefix;
     return {
       'bucket': bucket,
-      'resultFormat': resultFormat.toValue(),
+      'resultFormat': resultFormat.value,
       if (keyPrefix != null) 'keyPrefix': keyPrefix,
     };
   }
@@ -4197,56 +4030,23 @@ class ProtectedQueryStatistics {
 }
 
 enum ProtectedQueryStatus {
-  submitted,
-  started,
-  cancelled,
-  cancelling,
-  failed,
-  success,
-  timedOut,
-}
+  submitted('SUBMITTED'),
+  started('STARTED'),
+  cancelled('CANCELLED'),
+  cancelling('CANCELLING'),
+  failed('FAILED'),
+  success('SUCCESS'),
+  timedOut('TIMED_OUT'),
+  ;
 
-extension ProtectedQueryStatusValueExtension on ProtectedQueryStatus {
-  String toValue() {
-    switch (this) {
-      case ProtectedQueryStatus.submitted:
-        return 'SUBMITTED';
-      case ProtectedQueryStatus.started:
-        return 'STARTED';
-      case ProtectedQueryStatus.cancelled:
-        return 'CANCELLED';
-      case ProtectedQueryStatus.cancelling:
-        return 'CANCELLING';
-      case ProtectedQueryStatus.failed:
-        return 'FAILED';
-      case ProtectedQueryStatus.success:
-        return 'SUCCESS';
-      case ProtectedQueryStatus.timedOut:
-        return 'TIMED_OUT';
-    }
-  }
-}
+  final String value;
 
-extension ProtectedQueryStatusFromString on String {
-  ProtectedQueryStatus toProtectedQueryStatus() {
-    switch (this) {
-      case 'SUBMITTED':
-        return ProtectedQueryStatus.submitted;
-      case 'STARTED':
-        return ProtectedQueryStatus.started;
-      case 'CANCELLED':
-        return ProtectedQueryStatus.cancelled;
-      case 'CANCELLING':
-        return ProtectedQueryStatus.cancelling;
-      case 'FAILED':
-        return ProtectedQueryStatus.failed;
-      case 'SUCCESS':
-        return ProtectedQueryStatus.success;
-      case 'TIMED_OUT':
-        return ProtectedQueryStatus.timedOut;
-    }
-    throw Exception('$this is not known in enum ProtectedQueryStatus');
-  }
+  const ProtectedQueryStatus(this.value);
+
+  static ProtectedQueryStatus fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum ProtectedQueryStatus'));
 }
 
 /// The protected query summary for the objects listed by the request.
@@ -4281,7 +4081,7 @@ class ProtectedQuerySummary {
       id: json['id'] as String,
       membershipArn: json['membershipArn'] as String,
       membershipId: json['membershipId'] as String,
-      status: (json['status'] as String).toProtectedQueryStatus(),
+      status: ProtectedQueryStatus.fromString((json['status'] as String)),
     );
   }
 
@@ -4296,143 +4096,64 @@ class ProtectedQuerySummary {
       'id': id,
       'membershipArn': membershipArn,
       'membershipId': membershipId,
-      'status': status.toValue(),
+      'status': status.value,
     };
   }
 }
 
 enum ProtectedQueryType {
-  sql,
-}
+  sql('SQL'),
+  ;
 
-extension ProtectedQueryTypeValueExtension on ProtectedQueryType {
-  String toValue() {
-    switch (this) {
-      case ProtectedQueryType.sql:
-        return 'SQL';
-    }
-  }
-}
+  final String value;
 
-extension ProtectedQueryTypeFromString on String {
-  ProtectedQueryType toProtectedQueryType() {
-    switch (this) {
-      case 'SQL':
-        return ProtectedQueryType.sql;
-    }
-    throw Exception('$this is not known in enum ProtectedQueryType');
-  }
+  const ProtectedQueryType(this.value);
+
+  static ProtectedQueryType fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum ProtectedQueryType'));
 }
 
 enum ResultFormat {
-  csv,
-  parquet,
-}
+  csv('CSV'),
+  parquet('PARQUET'),
+  ;
 
-extension ResultFormatValueExtension on ResultFormat {
-  String toValue() {
-    switch (this) {
-      case ResultFormat.csv:
-        return 'CSV';
-      case ResultFormat.parquet:
-        return 'PARQUET';
-    }
-  }
-}
+  final String value;
 
-extension ResultFormatFromString on String {
-  ResultFormat toResultFormat() {
-    switch (this) {
-      case 'CSV':
-        return ResultFormat.csv;
-      case 'PARQUET':
-        return ResultFormat.parquet;
-    }
-    throw Exception('$this is not known in enum ResultFormat');
-  }
+  const ResultFormat(this.value);
+
+  static ResultFormat fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum ResultFormat'));
 }
 
 enum ScalarFunctions {
-  trunc,
-  abs,
-  ceiling,
-  floor,
-  ln,
-  log,
-  round,
-  sqrt,
-  cast,
-  lower,
-  rtrim,
-  upper,
-  coalesce,
-}
+  trunc('TRUNC'),
+  abs('ABS'),
+  ceiling('CEILING'),
+  floor('FLOOR'),
+  ln('LN'),
+  log('LOG'),
+  round('ROUND'),
+  sqrt('SQRT'),
+  cast('CAST'),
+  lower('LOWER'),
+  rtrim('RTRIM'),
+  upper('UPPER'),
+  coalesce('COALESCE'),
+  ;
 
-extension ScalarFunctionsValueExtension on ScalarFunctions {
-  String toValue() {
-    switch (this) {
-      case ScalarFunctions.trunc:
-        return 'TRUNC';
-      case ScalarFunctions.abs:
-        return 'ABS';
-      case ScalarFunctions.ceiling:
-        return 'CEILING';
-      case ScalarFunctions.floor:
-        return 'FLOOR';
-      case ScalarFunctions.ln:
-        return 'LN';
-      case ScalarFunctions.log:
-        return 'LOG';
-      case ScalarFunctions.round:
-        return 'ROUND';
-      case ScalarFunctions.sqrt:
-        return 'SQRT';
-      case ScalarFunctions.cast:
-        return 'CAST';
-      case ScalarFunctions.lower:
-        return 'LOWER';
-      case ScalarFunctions.rtrim:
-        return 'RTRIM';
-      case ScalarFunctions.upper:
-        return 'UPPER';
-      case ScalarFunctions.coalesce:
-        return 'COALESCE';
-    }
-  }
-}
+  final String value;
 
-extension ScalarFunctionsFromString on String {
-  ScalarFunctions toScalarFunctions() {
-    switch (this) {
-      case 'TRUNC':
-        return ScalarFunctions.trunc;
-      case 'ABS':
-        return ScalarFunctions.abs;
-      case 'CEILING':
-        return ScalarFunctions.ceiling;
-      case 'FLOOR':
-        return ScalarFunctions.floor;
-      case 'LN':
-        return ScalarFunctions.ln;
-      case 'LOG':
-        return ScalarFunctions.log;
-      case 'ROUND':
-        return ScalarFunctions.round;
-      case 'SQRT':
-        return ScalarFunctions.sqrt;
-      case 'CAST':
-        return ScalarFunctions.cast;
-      case 'LOWER':
-        return ScalarFunctions.lower;
-      case 'RTRIM':
-        return ScalarFunctions.rtrim;
-      case 'UPPER':
-        return ScalarFunctions.upper;
-      case 'COALESCE':
-        return ScalarFunctions.coalesce;
-    }
-    throw Exception('$this is not known in enum ScalarFunctions');
-  }
+  const ScalarFunctions(this.value);
+
+  static ScalarFunctions fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum ScalarFunctions'));
 }
 
 /// A schema is a relation within a collaboration.
@@ -4495,7 +4216,7 @@ class Schema {
     return Schema(
       analysisRuleTypes: (json['analysisRuleTypes'] as List)
           .whereNotNull()
-          .map((e) => (e as String).toAnalysisRuleType())
+          .map((e) => AnalysisRuleType.fromString((e as String)))
           .toList(),
       collaborationArn: json['collaborationArn'] as String,
       collaborationId: json['collaborationId'] as String,
@@ -4511,9 +4232,10 @@ class Schema {
           .whereNotNull()
           .map((e) => Column.fromJson(e as Map<String, dynamic>))
           .toList(),
-      type: (json['type'] as String).toSchemaType(),
+      type: SchemaType.fromString((json['type'] as String)),
       updateTime: nonNullableTimeStampFromJson(json['updateTime'] as Object),
-      analysisMethod: (json['analysisMethod'] as String?)?.toAnalysisMethod(),
+      analysisMethod:
+          (json['analysisMethod'] as String?)?.let(AnalysisMethod.fromString),
     );
   }
 
@@ -4531,7 +4253,7 @@ class Schema {
     final updateTime = this.updateTime;
     final analysisMethod = this.analysisMethod;
     return {
-      'analysisRuleTypes': analysisRuleTypes.map((e) => e.toValue()).toList(),
+      'analysisRuleTypes': analysisRuleTypes.map((e) => e.value).toList(),
       'collaborationArn': collaborationArn,
       'collaborationId': collaborationId,
       'columns': columns,
@@ -4540,9 +4262,9 @@ class Schema {
       'description': description,
       'name': name,
       'partitionKeys': partitionKeys,
-      'type': type.toValue(),
+      'type': type.value,
       'updateTime': unixTimestampToJson(updateTime),
-      if (analysisMethod != null) 'analysisMethod': analysisMethod.toValue(),
+      if (analysisMethod != null) 'analysisMethod': analysisMethod.value,
     };
   }
 }
@@ -4593,16 +4315,17 @@ class SchemaSummary {
     return SchemaSummary(
       analysisRuleTypes: (json['analysisRuleTypes'] as List)
           .whereNotNull()
-          .map((e) => (e as String).toAnalysisRuleType())
+          .map((e) => AnalysisRuleType.fromString((e as String)))
           .toList(),
       collaborationArn: json['collaborationArn'] as String,
       collaborationId: json['collaborationId'] as String,
       createTime: nonNullableTimeStampFromJson(json['createTime'] as Object),
       creatorAccountId: json['creatorAccountId'] as String,
       name: json['name'] as String,
-      type: (json['type'] as String).toSchemaType(),
+      type: SchemaType.fromString((json['type'] as String)),
       updateTime: nonNullableTimeStampFromJson(json['updateTime'] as Object),
-      analysisMethod: (json['analysisMethod'] as String?)?.toAnalysisMethod(),
+      analysisMethod:
+          (json['analysisMethod'] as String?)?.let(AnalysisMethod.fromString),
     );
   }
 
@@ -4617,40 +4340,30 @@ class SchemaSummary {
     final updateTime = this.updateTime;
     final analysisMethod = this.analysisMethod;
     return {
-      'analysisRuleTypes': analysisRuleTypes.map((e) => e.toValue()).toList(),
+      'analysisRuleTypes': analysisRuleTypes.map((e) => e.value).toList(),
       'collaborationArn': collaborationArn,
       'collaborationId': collaborationId,
       'createTime': unixTimestampToJson(createTime),
       'creatorAccountId': creatorAccountId,
       'name': name,
-      'type': type.toValue(),
+      'type': type.value,
       'updateTime': unixTimestampToJson(updateTime),
-      if (analysisMethod != null) 'analysisMethod': analysisMethod.toValue(),
+      if (analysisMethod != null) 'analysisMethod': analysisMethod.value,
     };
   }
 }
 
 enum SchemaType {
-  table,
-}
+  table('TABLE'),
+  ;
 
-extension SchemaTypeValueExtension on SchemaType {
-  String toValue() {
-    switch (this) {
-      case SchemaType.table:
-        return 'TABLE';
-    }
-  }
-}
+  final String value;
 
-extension SchemaTypeFromString on String {
-  SchemaType toSchemaType() {
-    switch (this) {
-      case 'TABLE':
-        return SchemaType.table;
-    }
-    throw Exception('$this is not known in enum SchemaType');
-  }
+  const SchemaType(this.value);
+
+  static SchemaType fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum SchemaType'));
 }
 
 class StartProtectedQueryOutput {
@@ -4716,27 +4429,17 @@ class TagResourceOutput {
 }
 
 enum TargetProtectedQueryStatus {
-  cancelled,
-}
+  cancelled('CANCELLED'),
+  ;
 
-extension TargetProtectedQueryStatusValueExtension
-    on TargetProtectedQueryStatus {
-  String toValue() {
-    switch (this) {
-      case TargetProtectedQueryStatus.cancelled:
-        return 'CANCELLED';
-    }
-  }
-}
+  final String value;
 
-extension TargetProtectedQueryStatusFromString on String {
-  TargetProtectedQueryStatus toTargetProtectedQueryStatus() {
-    switch (this) {
-      case 'CANCELLED':
-        return TargetProtectedQueryStatus.cancelled;
-    }
-    throw Exception('$this is not known in enum TargetProtectedQueryStatus');
-  }
+  const TargetProtectedQueryStatus(this.value);
+
+  static TargetProtectedQueryStatus fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum TargetProtectedQueryStatus'));
 }
 
 class UntagResourceOutput {

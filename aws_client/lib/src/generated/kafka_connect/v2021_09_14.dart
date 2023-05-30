@@ -170,7 +170,7 @@ class KafkaConnect {
     String? description,
   }) async {
     final $payload = <String, dynamic>{
-      'contentType': contentType.toValue(),
+      'contentType': contentType.value,
       'location': location,
       'name': name,
       if (description != null) 'description': description,
@@ -869,46 +869,21 @@ class CloudWatchLogsLogDeliveryDescription {
 }
 
 enum ConnectorState {
-  running,
-  creating,
-  updating,
-  deleting,
-  failed,
-}
+  running('RUNNING'),
+  creating('CREATING'),
+  updating('UPDATING'),
+  deleting('DELETING'),
+  failed('FAILED'),
+  ;
 
-extension ConnectorStateValueExtension on ConnectorState {
-  String toValue() {
-    switch (this) {
-      case ConnectorState.running:
-        return 'RUNNING';
-      case ConnectorState.creating:
-        return 'CREATING';
-      case ConnectorState.updating:
-        return 'UPDATING';
-      case ConnectorState.deleting:
-        return 'DELETING';
-      case ConnectorState.failed:
-        return 'FAILED';
-    }
-  }
-}
+  final String value;
 
-extension ConnectorStateFromString on String {
-  ConnectorState toConnectorState() {
-    switch (this) {
-      case 'RUNNING':
-        return ConnectorState.running;
-      case 'CREATING':
-        return ConnectorState.creating;
-      case 'UPDATING':
-        return ConnectorState.updating;
-      case 'DELETING':
-        return ConnectorState.deleting;
-      case 'FAILED':
-        return ConnectorState.failed;
-    }
-    throw Exception('$this is not known in enum ConnectorState');
-  }
+  const ConnectorState(this.value);
+
+  static ConnectorState fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum ConnectorState'));
 }
 
 /// Summary of a connector.
@@ -990,7 +965,8 @@ class ConnectorSummary {
       connectorArn: json['connectorArn'] as String?,
       connectorDescription: json['connectorDescription'] as String?,
       connectorName: json['connectorName'] as String?,
-      connectorState: (json['connectorState'] as String?)?.toConnectorState(),
+      connectorState:
+          (json['connectorState'] as String?)?.let(ConnectorState.fromString),
       creationTime: timeStampFromJson(json['creationTime']),
       currentVersion: json['currentVersion'] as String?,
       kafkaCluster: json['kafkaCluster'] != null
@@ -1050,7 +1026,7 @@ class ConnectorSummary {
       if (connectorDescription != null)
         'connectorDescription': connectorDescription,
       if (connectorName != null) 'connectorName': connectorName,
-      if (connectorState != null) 'connectorState': connectorState.toValue(),
+      if (connectorState != null) 'connectorState': connectorState.value,
       if (creationTime != null) 'creationTime': iso8601ToJson(creationTime),
       if (currentVersion != null) 'currentVersion': currentVersion,
       if (kafkaCluster != null) 'kafkaCluster': kafkaCluster,
@@ -1090,7 +1066,8 @@ class CreateConnectorResponse {
     return CreateConnectorResponse(
       connectorArn: json['connectorArn'] as String?,
       connectorName: json['connectorName'] as String?,
-      connectorState: (json['connectorState'] as String?)?.toConnectorState(),
+      connectorState:
+          (json['connectorState'] as String?)?.let(ConnectorState.fromString),
     );
   }
 
@@ -1101,7 +1078,7 @@ class CreateConnectorResponse {
     return {
       if (connectorArn != null) 'connectorArn': connectorArn,
       if (connectorName != null) 'connectorName': connectorName,
-      if (connectorState != null) 'connectorState': connectorState.toValue(),
+      if (connectorState != null) 'connectorState': connectorState.value,
     };
   }
 }
@@ -1129,8 +1106,8 @@ class CreateCustomPluginResponse {
   factory CreateCustomPluginResponse.fromJson(Map<String, dynamic> json) {
     return CreateCustomPluginResponse(
       customPluginArn: json['customPluginArn'] as String?,
-      customPluginState:
-          (json['customPluginState'] as String?)?.toCustomPluginState(),
+      customPluginState: (json['customPluginState'] as String?)
+          ?.let(CustomPluginState.fromString),
       name: json['name'] as String?,
       revision: json['revision'] as int?,
     );
@@ -1144,7 +1121,7 @@ class CreateCustomPluginResponse {
     return {
       if (customPluginArn != null) 'customPluginArn': customPluginArn,
       if (customPluginState != null)
-        'customPluginState': customPluginState.toValue(),
+        'customPluginState': customPluginState.value,
       if (name != null) 'name': name,
       if (revision != null) 'revision': revision,
     };
@@ -1225,31 +1202,18 @@ class CustomPlugin {
 }
 
 enum CustomPluginContentType {
-  jar,
-  zip,
-}
+  jar('JAR'),
+  zip('ZIP'),
+  ;
 
-extension CustomPluginContentTypeValueExtension on CustomPluginContentType {
-  String toValue() {
-    switch (this) {
-      case CustomPluginContentType.jar:
-        return 'JAR';
-      case CustomPluginContentType.zip:
-        return 'ZIP';
-    }
-  }
-}
+  final String value;
 
-extension CustomPluginContentTypeFromString on String {
-  CustomPluginContentType toCustomPluginContentType() {
-    switch (this) {
-      case 'JAR':
-        return CustomPluginContentType.jar;
-      case 'ZIP':
-        return CustomPluginContentType.zip;
-    }
-    throw Exception('$this is not known in enum CustomPluginContentType');
-  }
+  const CustomPluginContentType(this.value);
+
+  static CustomPluginContentType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum CustomPluginContentType'));
 }
 
 /// Details about a custom plugin.
@@ -1390,8 +1354,8 @@ class CustomPluginRevisionSummary {
 
   factory CustomPluginRevisionSummary.fromJson(Map<String, dynamic> json) {
     return CustomPluginRevisionSummary(
-      contentType:
-          (json['contentType'] as String?)?.toCustomPluginContentType(),
+      contentType: (json['contentType'] as String?)
+          ?.let(CustomPluginContentType.fromString),
       creationTime: timeStampFromJson(json['creationTime']),
       description: json['description'] as String?,
       fileDescription: json['fileDescription'] != null
@@ -1414,7 +1378,7 @@ class CustomPluginRevisionSummary {
     final location = this.location;
     final revision = this.revision;
     return {
-      if (contentType != null) 'contentType': contentType.toValue(),
+      if (contentType != null) 'contentType': contentType.value,
       if (creationTime != null) 'creationTime': iso8601ToJson(creationTime),
       if (description != null) 'description': description,
       if (fileDescription != null) 'fileDescription': fileDescription,
@@ -1425,51 +1389,22 @@ class CustomPluginRevisionSummary {
 }
 
 enum CustomPluginState {
-  creating,
-  createFailed,
-  active,
-  updating,
-  updateFailed,
-  deleting,
-}
+  creating('CREATING'),
+  createFailed('CREATE_FAILED'),
+  active('ACTIVE'),
+  updating('UPDATING'),
+  updateFailed('UPDATE_FAILED'),
+  deleting('DELETING'),
+  ;
 
-extension CustomPluginStateValueExtension on CustomPluginState {
-  String toValue() {
-    switch (this) {
-      case CustomPluginState.creating:
-        return 'CREATING';
-      case CustomPluginState.createFailed:
-        return 'CREATE_FAILED';
-      case CustomPluginState.active:
-        return 'ACTIVE';
-      case CustomPluginState.updating:
-        return 'UPDATING';
-      case CustomPluginState.updateFailed:
-        return 'UPDATE_FAILED';
-      case CustomPluginState.deleting:
-        return 'DELETING';
-    }
-  }
-}
+  final String value;
 
-extension CustomPluginStateFromString on String {
-  CustomPluginState toCustomPluginState() {
-    switch (this) {
-      case 'CREATING':
-        return CustomPluginState.creating;
-      case 'CREATE_FAILED':
-        return CustomPluginState.createFailed;
-      case 'ACTIVE':
-        return CustomPluginState.active;
-      case 'UPDATING':
-        return CustomPluginState.updating;
-      case 'UPDATE_FAILED':
-        return CustomPluginState.updateFailed;
-      case 'DELETING':
-        return CustomPluginState.deleting;
-    }
-    throw Exception('$this is not known in enum CustomPluginState');
-  }
+  const CustomPluginState(this.value);
+
+  static CustomPluginState fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum CustomPluginState'));
 }
 
 /// A summary of the custom plugin.
@@ -1505,8 +1440,8 @@ class CustomPluginSummary {
     return CustomPluginSummary(
       creationTime: timeStampFromJson(json['creationTime']),
       customPluginArn: json['customPluginArn'] as String?,
-      customPluginState:
-          (json['customPluginState'] as String?)?.toCustomPluginState(),
+      customPluginState: (json['customPluginState'] as String?)
+          ?.let(CustomPluginState.fromString),
       description: json['description'] as String?,
       latestRevision: json['latestRevision'] != null
           ? CustomPluginRevisionSummary.fromJson(
@@ -1527,7 +1462,7 @@ class CustomPluginSummary {
       if (creationTime != null) 'creationTime': iso8601ToJson(creationTime),
       if (customPluginArn != null) 'customPluginArn': customPluginArn,
       if (customPluginState != null)
-        'customPluginState': customPluginState.toValue(),
+        'customPluginState': customPluginState.value,
       if (description != null) 'description': description,
       if (latestRevision != null) 'latestRevision': latestRevision,
       if (name != null) 'name': name,
@@ -1551,7 +1486,8 @@ class DeleteConnectorResponse {
   factory DeleteConnectorResponse.fromJson(Map<String, dynamic> json) {
     return DeleteConnectorResponse(
       connectorArn: json['connectorArn'] as String?,
-      connectorState: (json['connectorState'] as String?)?.toConnectorState(),
+      connectorState:
+          (json['connectorState'] as String?)?.let(ConnectorState.fromString),
     );
   }
 
@@ -1560,7 +1496,7 @@ class DeleteConnectorResponse {
     final connectorState = this.connectorState;
     return {
       if (connectorArn != null) 'connectorArn': connectorArn,
-      if (connectorState != null) 'connectorState': connectorState.toValue(),
+      if (connectorState != null) 'connectorState': connectorState.value,
     };
   }
 }
@@ -1581,8 +1517,8 @@ class DeleteCustomPluginResponse {
   factory DeleteCustomPluginResponse.fromJson(Map<String, dynamic> json) {
     return DeleteCustomPluginResponse(
       customPluginArn: json['customPluginArn'] as String?,
-      customPluginState:
-          (json['customPluginState'] as String?)?.toCustomPluginState(),
+      customPluginState: (json['customPluginState'] as String?)
+          ?.let(CustomPluginState.fromString),
     );
   }
 
@@ -1592,7 +1528,7 @@ class DeleteCustomPluginResponse {
     return {
       if (customPluginArn != null) 'customPluginArn': customPluginArn,
       if (customPluginState != null)
-        'customPluginState': customPluginState.toValue(),
+        'customPluginState': customPluginState.value,
     };
   }
 }
@@ -1687,7 +1623,8 @@ class DescribeConnectorResponse {
               ?.map((k, e) => MapEntry(k, e as String)),
       connectorDescription: json['connectorDescription'] as String?,
       connectorName: json['connectorName'] as String?,
-      connectorState: (json['connectorState'] as String?)?.toConnectorState(),
+      connectorState:
+          (json['connectorState'] as String?)?.let(ConnectorState.fromString),
       creationTime: timeStampFromJson(json['creationTime']),
       currentVersion: json['currentVersion'] as String?,
       kafkaCluster: json['kafkaCluster'] != null
@@ -1755,7 +1692,7 @@ class DescribeConnectorResponse {
       if (connectorDescription != null)
         'connectorDescription': connectorDescription,
       if (connectorName != null) 'connectorName': connectorName,
-      if (connectorState != null) 'connectorState': connectorState.toValue(),
+      if (connectorState != null) 'connectorState': connectorState.value,
       if (creationTime != null) 'creationTime': iso8601ToJson(creationTime),
       if (currentVersion != null) 'currentVersion': currentVersion,
       if (kafkaCluster != null) 'kafkaCluster': kafkaCluster,
@@ -1813,8 +1750,8 @@ class DescribeCustomPluginResponse {
     return DescribeCustomPluginResponse(
       creationTime: timeStampFromJson(json['creationTime']),
       customPluginArn: json['customPluginArn'] as String?,
-      customPluginState:
-          (json['customPluginState'] as String?)?.toCustomPluginState(),
+      customPluginState: (json['customPluginState'] as String?)
+          ?.let(CustomPluginState.fromString),
       description: json['description'] as String?,
       latestRevision: json['latestRevision'] != null
           ? CustomPluginRevisionSummary.fromJson(
@@ -1840,7 +1777,7 @@ class DescribeCustomPluginResponse {
       if (creationTime != null) 'creationTime': iso8601ToJson(creationTime),
       if (customPluginArn != null) 'customPluginArn': customPluginArn,
       if (customPluginState != null)
-        'customPluginState': customPluginState.toValue(),
+        'customPluginState': customPluginState.value,
       if (description != null) 'description': description,
       if (latestRevision != null) 'latestRevision': latestRevision,
       if (name != null) 'name': name,
@@ -1993,7 +1930,7 @@ class KafkaClusterClientAuthentication {
   Map<String, dynamic> toJson() {
     final authenticationType = this.authenticationType;
     return {
-      'authenticationType': authenticationType.toValue(),
+      'authenticationType': authenticationType.value,
     };
   }
 }
@@ -2013,7 +1950,7 @@ class KafkaClusterClientAuthenticationDescription {
       Map<String, dynamic> json) {
     return KafkaClusterClientAuthenticationDescription(
       authenticationType: (json['authenticationType'] as String?)
-          ?.toKafkaClusterClientAuthenticationType(),
+          ?.let(KafkaClusterClientAuthenticationType.fromString),
     );
   }
 
@@ -2021,40 +1958,24 @@ class KafkaClusterClientAuthenticationDescription {
     final authenticationType = this.authenticationType;
     return {
       if (authenticationType != null)
-        'authenticationType': authenticationType.toValue(),
+        'authenticationType': authenticationType.value,
     };
   }
 }
 
 enum KafkaClusterClientAuthenticationType {
-  none,
-  iam,
-}
+  none('NONE'),
+  iam('IAM'),
+  ;
 
-extension KafkaClusterClientAuthenticationTypeValueExtension
-    on KafkaClusterClientAuthenticationType {
-  String toValue() {
-    switch (this) {
-      case KafkaClusterClientAuthenticationType.none:
-        return 'NONE';
-      case KafkaClusterClientAuthenticationType.iam:
-        return 'IAM';
-    }
-  }
-}
+  final String value;
 
-extension KafkaClusterClientAuthenticationTypeFromString on String {
-  KafkaClusterClientAuthenticationType
-      toKafkaClusterClientAuthenticationType() {
-    switch (this) {
-      case 'NONE':
-        return KafkaClusterClientAuthenticationType.none;
-      case 'IAM':
-        return KafkaClusterClientAuthenticationType.iam;
-    }
-    throw Exception(
-        '$this is not known in enum KafkaClusterClientAuthenticationType');
-  }
+  const KafkaClusterClientAuthenticationType(this.value);
+
+  static KafkaClusterClientAuthenticationType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum KafkaClusterClientAuthenticationType'));
 }
 
 /// Details of how to connect to the Apache Kafka cluster.
@@ -2095,7 +2016,7 @@ class KafkaClusterEncryptionInTransit {
   Map<String, dynamic> toJson() {
     final encryptionType = this.encryptionType;
     return {
-      'encryptionType': encryptionType.toValue(),
+      'encryptionType': encryptionType.value,
     };
   }
 }
@@ -2113,46 +2034,31 @@ class KafkaClusterEncryptionInTransitDescription {
       Map<String, dynamic> json) {
     return KafkaClusterEncryptionInTransitDescription(
       encryptionType: (json['encryptionType'] as String?)
-          ?.toKafkaClusterEncryptionInTransitType(),
+          ?.let(KafkaClusterEncryptionInTransitType.fromString),
     );
   }
 
   Map<String, dynamic> toJson() {
     final encryptionType = this.encryptionType;
     return {
-      if (encryptionType != null) 'encryptionType': encryptionType.toValue(),
+      if (encryptionType != null) 'encryptionType': encryptionType.value,
     };
   }
 }
 
 enum KafkaClusterEncryptionInTransitType {
-  plaintext,
-  tls,
-}
+  plaintext('PLAINTEXT'),
+  tls('TLS'),
+  ;
 
-extension KafkaClusterEncryptionInTransitTypeValueExtension
-    on KafkaClusterEncryptionInTransitType {
-  String toValue() {
-    switch (this) {
-      case KafkaClusterEncryptionInTransitType.plaintext:
-        return 'PLAINTEXT';
-      case KafkaClusterEncryptionInTransitType.tls:
-        return 'TLS';
-    }
-  }
-}
+  final String value;
 
-extension KafkaClusterEncryptionInTransitTypeFromString on String {
-  KafkaClusterEncryptionInTransitType toKafkaClusterEncryptionInTransitType() {
-    switch (this) {
-      case 'PLAINTEXT':
-        return KafkaClusterEncryptionInTransitType.plaintext;
-      case 'TLS':
-        return KafkaClusterEncryptionInTransitType.tls;
-    }
-    throw Exception(
-        '$this is not known in enum KafkaClusterEncryptionInTransitType');
-  }
+  const KafkaClusterEncryptionInTransitType(this.value);
+
+  static KafkaClusterEncryptionInTransitType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum KafkaClusterEncryptionInTransitType'));
 }
 
 class ListConnectorsResponse {
@@ -2728,7 +2634,8 @@ class UpdateConnectorResponse {
   factory UpdateConnectorResponse.fromJson(Map<String, dynamic> json) {
     return UpdateConnectorResponse(
       connectorArn: json['connectorArn'] as String?,
-      connectorState: (json['connectorState'] as String?)?.toConnectorState(),
+      connectorState:
+          (json['connectorState'] as String?)?.let(ConnectorState.fromString),
     );
   }
 
@@ -2737,7 +2644,7 @@ class UpdateConnectorResponse {
     final connectorState = this.connectorState;
     return {
       if (connectorArn != null) 'connectorArn': connectorArn,
-      if (connectorState != null) 'connectorState': connectorState.toValue(),
+      if (connectorState != null) 'connectorState': connectorState.value,
     };
   }
 }

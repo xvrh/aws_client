@@ -1006,7 +1006,7 @@ class Detective {
     required String graphArn,
   }) async {
     final $payload = <String, dynamic>{
-      'DatasourcePackages': datasourcePackages.map((e) => e.toValue()).toList(),
+      'DatasourcePackages': datasourcePackages.map((e) => e.value).toList(),
       'GraphArn': graphArn,
     };
     await _protocol.send(
@@ -1256,36 +1256,19 @@ class CreateMembersResponse {
 }
 
 enum DatasourcePackage {
-  detectiveCore,
-  eksAudit,
-  asffSecurityhubFinding,
-}
+  detectiveCore('DETECTIVE_CORE'),
+  eksAudit('EKS_AUDIT'),
+  asffSecurityhubFinding('ASFF_SECURITYHUB_FINDING'),
+  ;
 
-extension DatasourcePackageValueExtension on DatasourcePackage {
-  String toValue() {
-    switch (this) {
-      case DatasourcePackage.detectiveCore:
-        return 'DETECTIVE_CORE';
-      case DatasourcePackage.eksAudit:
-        return 'EKS_AUDIT';
-      case DatasourcePackage.asffSecurityhubFinding:
-        return 'ASFF_SECURITYHUB_FINDING';
-    }
-  }
-}
+  final String value;
 
-extension DatasourcePackageFromString on String {
-  DatasourcePackage toDatasourcePackage() {
-    switch (this) {
-      case 'DETECTIVE_CORE':
-        return DatasourcePackage.detectiveCore;
-      case 'EKS_AUDIT':
-        return DatasourcePackage.eksAudit;
-      case 'ASFF_SECURITYHUB_FINDING':
-        return DatasourcePackage.asffSecurityhubFinding;
-    }
-    throw Exception('$this is not known in enum DatasourcePackage');
-  }
+  const DatasourcePackage(this.value);
+
+  static DatasourcePackage fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum DatasourcePackage'));
 }
 
 /// Details about the data source packages ingested by your behavior graph.
@@ -1306,10 +1289,10 @@ class DatasourcePackageIngestDetail {
     return DatasourcePackageIngestDetail(
       datasourcePackageIngestState:
           (json['DatasourcePackageIngestState'] as String?)
-              ?.toDatasourcePackageIngestState(),
+              ?.let(DatasourcePackageIngestState.fromString),
       lastIngestStateChange:
           (json['LastIngestStateChange'] as Map<String, dynamic>?)?.map(
-              (k, e) => MapEntry(k.toDatasourcePackageIngestState(),
+              (k, e) => MapEntry(DatasourcePackageIngestState.fromString(k),
                   TimestampForCollection.fromJson(e as Map<String, dynamic>))),
     );
   }
@@ -1319,46 +1302,28 @@ class DatasourcePackageIngestDetail {
     final lastIngestStateChange = this.lastIngestStateChange;
     return {
       if (datasourcePackageIngestState != null)
-        'DatasourcePackageIngestState': datasourcePackageIngestState.toValue(),
+        'DatasourcePackageIngestState': datasourcePackageIngestState.value,
       if (lastIngestStateChange != null)
         'LastIngestStateChange':
-            lastIngestStateChange.map((k, e) => MapEntry(k.toValue(), e)),
+            lastIngestStateChange.map((k, e) => MapEntry(k.value, e)),
     };
   }
 }
 
 enum DatasourcePackageIngestState {
-  started,
-  stopped,
-  disabled,
-}
+  started('STARTED'),
+  stopped('STOPPED'),
+  disabled('DISABLED'),
+  ;
 
-extension DatasourcePackageIngestStateValueExtension
-    on DatasourcePackageIngestState {
-  String toValue() {
-    switch (this) {
-      case DatasourcePackageIngestState.started:
-        return 'STARTED';
-      case DatasourcePackageIngestState.stopped:
-        return 'STOPPED';
-      case DatasourcePackageIngestState.disabled:
-        return 'DISABLED';
-    }
-  }
-}
+  final String value;
 
-extension DatasourcePackageIngestStateFromString on String {
-  DatasourcePackageIngestState toDatasourcePackageIngestState() {
-    switch (this) {
-      case 'STARTED':
-        return DatasourcePackageIngestState.started;
-      case 'STOPPED':
-        return DatasourcePackageIngestState.stopped;
-      case 'DISABLED':
-        return DatasourcePackageIngestState.disabled;
-    }
-    throw Exception('$this is not known in enum DatasourcePackageIngestState');
-  }
+  const DatasourcePackageIngestState(this.value);
+
+  static DatasourcePackageIngestState fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum DatasourcePackageIngestState'));
 }
 
 /// Information on the usage of a data source package in the behavior graph.
@@ -1532,31 +1497,18 @@ class Graph {
 }
 
 enum InvitationType {
-  invitation,
-  organization,
-}
+  invitation('INVITATION'),
+  organization('ORGANIZATION'),
+  ;
 
-extension InvitationTypeValueExtension on InvitationType {
-  String toValue() {
-    switch (this) {
-      case InvitationType.invitation:
-        return 'INVITATION';
-      case InvitationType.organization:
-        return 'ORGANIZATION';
-    }
-  }
-}
+  final String value;
 
-extension InvitationTypeFromString on String {
-  InvitationType toInvitationType() {
-    switch (this) {
-      case 'INVITATION':
-        return InvitationType.invitation;
-      case 'ORGANIZATION':
-        return InvitationType.organization;
-    }
-    throw Exception('$this is not known in enum InvitationType');
-  }
+  const InvitationType(this.value);
+
+  static InvitationType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum InvitationType'));
 }
 
 class ListDatasourcePackagesResponse {
@@ -1578,7 +1530,7 @@ class ListDatasourcePackagesResponse {
     return ListDatasourcePackagesResponse(
       datasourcePackages: (json['DatasourcePackages'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(
-              k.toDatasourcePackage(),
+              DatasourcePackage.fromString(k),
               DatasourcePackageIngestDetail.fromJson(
                   e as Map<String, dynamic>))),
       nextToken: json['NextToken'] as String?,
@@ -1591,7 +1543,7 @@ class ListDatasourcePackagesResponse {
     return {
       if (datasourcePackages != null)
         'DatasourcePackages':
-            datasourcePackages.map((k, e) => MapEntry(k.toValue(), e)),
+            datasourcePackages.map((k, e) => MapEntry(k.value, e)),
       if (nextToken != null) 'NextToken': nextToken,
     };
   }
@@ -1922,23 +1874,24 @@ class MemberDetail {
       administratorId: json['AdministratorId'] as String?,
       datasourcePackageIngestStates:
           (json['DatasourcePackageIngestStates'] as Map<String, dynamic>?)?.map(
-              (k, e) => MapEntry(k.toDatasourcePackage(),
-                  (e as String).toDatasourcePackageIngestState())),
-      disabledReason:
-          (json['DisabledReason'] as String?)?.toMemberDisabledReason(),
+              (k, e) => MapEntry(DatasourcePackage.fromString(k),
+                  DatasourcePackageIngestState.fromString((e as String)))),
+      disabledReason: (json['DisabledReason'] as String?)
+          ?.let(MemberDisabledReason.fromString),
       emailAddress: json['EmailAddress'] as String?,
       graphArn: json['GraphArn'] as String?,
-      invitationType: (json['InvitationType'] as String?)?.toInvitationType(),
+      invitationType:
+          (json['InvitationType'] as String?)?.let(InvitationType.fromString),
       invitedTime: timeStampFromJson(json['InvitedTime']),
       masterId: json['MasterId'] as String?,
       percentOfGraphUtilization: json['PercentOfGraphUtilization'] as double?,
       percentOfGraphUtilizationUpdatedTime:
           timeStampFromJson(json['PercentOfGraphUtilizationUpdatedTime']),
-      status: (json['Status'] as String?)?.toMemberStatus(),
+      status: (json['Status'] as String?)?.let(MemberStatus.fromString),
       updatedTime: timeStampFromJson(json['UpdatedTime']),
       volumeUsageByDatasourcePackage: (json['VolumeUsageByDatasourcePackage']
               as Map<String, dynamic>?)
-          ?.map((k, e) => MapEntry(k.toDatasourcePackage(),
+          ?.map((k, e) => MapEntry(DatasourcePackage.fromString(k),
               DatasourcePackageUsageInfo.fromJson(e as Map<String, dynamic>))),
       volumeUsageInBytes: json['VolumeUsageInBytes'] as int?,
       volumeUsageUpdatedTime: timeStampFromJson(json['VolumeUsageUpdatedTime']),
@@ -1968,11 +1921,11 @@ class MemberDetail {
       if (administratorId != null) 'AdministratorId': administratorId,
       if (datasourcePackageIngestStates != null)
         'DatasourcePackageIngestStates': datasourcePackageIngestStates
-            .map((k, e) => MapEntry(k.toValue(), e.toValue())),
-      if (disabledReason != null) 'DisabledReason': disabledReason.toValue(),
+            .map((k, e) => MapEntry(k.value, e.value)),
+      if (disabledReason != null) 'DisabledReason': disabledReason.value,
       if (emailAddress != null) 'EmailAddress': emailAddress,
       if (graphArn != null) 'GraphArn': graphArn,
-      if (invitationType != null) 'InvitationType': invitationType.toValue(),
+      if (invitationType != null) 'InvitationType': invitationType.value,
       if (invitedTime != null) 'InvitedTime': iso8601ToJson(invitedTime),
       if (masterId != null) 'MasterId': masterId,
       if (percentOfGraphUtilization != null)
@@ -1980,11 +1933,11 @@ class MemberDetail {
       if (percentOfGraphUtilizationUpdatedTime != null)
         'PercentOfGraphUtilizationUpdatedTime':
             iso8601ToJson(percentOfGraphUtilizationUpdatedTime),
-      if (status != null) 'Status': status.toValue(),
+      if (status != null) 'Status': status.value,
       if (updatedTime != null) 'UpdatedTime': iso8601ToJson(updatedTime),
       if (volumeUsageByDatasourcePackage != null)
-        'VolumeUsageByDatasourcePackage': volumeUsageByDatasourcePackage
-            .map((k, e) => MapEntry(k.toValue(), e)),
+        'VolumeUsageByDatasourcePackage':
+            volumeUsageByDatasourcePackage.map((k, e) => MapEntry(k.value, e)),
       if (volumeUsageInBytes != null) 'VolumeUsageInBytes': volumeUsageInBytes,
       if (volumeUsageUpdatedTime != null)
         'VolumeUsageUpdatedTime': iso8601ToJson(volumeUsageUpdatedTime),
@@ -1993,74 +1946,36 @@ class MemberDetail {
 }
 
 enum MemberDisabledReason {
-  volumeTooHigh,
-  volumeUnknown,
-}
+  volumeTooHigh('VOLUME_TOO_HIGH'),
+  volumeUnknown('VOLUME_UNKNOWN'),
+  ;
 
-extension MemberDisabledReasonValueExtension on MemberDisabledReason {
-  String toValue() {
-    switch (this) {
-      case MemberDisabledReason.volumeTooHigh:
-        return 'VOLUME_TOO_HIGH';
-      case MemberDisabledReason.volumeUnknown:
-        return 'VOLUME_UNKNOWN';
-    }
-  }
-}
+  final String value;
 
-extension MemberDisabledReasonFromString on String {
-  MemberDisabledReason toMemberDisabledReason() {
-    switch (this) {
-      case 'VOLUME_TOO_HIGH':
-        return MemberDisabledReason.volumeTooHigh;
-      case 'VOLUME_UNKNOWN':
-        return MemberDisabledReason.volumeUnknown;
-    }
-    throw Exception('$this is not known in enum MemberDisabledReason');
-  }
+  const MemberDisabledReason(this.value);
+
+  static MemberDisabledReason fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum MemberDisabledReason'));
 }
 
 enum MemberStatus {
-  invited,
-  verificationInProgress,
-  verificationFailed,
-  enabled,
-  acceptedButDisabled,
-}
+  invited('INVITED'),
+  verificationInProgress('VERIFICATION_IN_PROGRESS'),
+  verificationFailed('VERIFICATION_FAILED'),
+  enabled('ENABLED'),
+  acceptedButDisabled('ACCEPTED_BUT_DISABLED'),
+  ;
 
-extension MemberStatusValueExtension on MemberStatus {
-  String toValue() {
-    switch (this) {
-      case MemberStatus.invited:
-        return 'INVITED';
-      case MemberStatus.verificationInProgress:
-        return 'VERIFICATION_IN_PROGRESS';
-      case MemberStatus.verificationFailed:
-        return 'VERIFICATION_FAILED';
-      case MemberStatus.enabled:
-        return 'ENABLED';
-      case MemberStatus.acceptedButDisabled:
-        return 'ACCEPTED_BUT_DISABLED';
-    }
-  }
-}
+  final String value;
 
-extension MemberStatusFromString on String {
-  MemberStatus toMemberStatus() {
-    switch (this) {
-      case 'INVITED':
-        return MemberStatus.invited;
-      case 'VERIFICATION_IN_PROGRESS':
-        return MemberStatus.verificationInProgress;
-      case 'VERIFICATION_FAILED':
-        return MemberStatus.verificationFailed;
-      case 'ENABLED':
-        return MemberStatus.enabled;
-      case 'ACCEPTED_BUT_DISABLED':
-        return MemberStatus.acceptedButDisabled;
-    }
-    throw Exception('$this is not known in enum MemberStatus');
-  }
+  const MemberStatus(this.value);
+
+  static MemberStatus fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum MemberStatus'));
 }
 
 /// Details on data source packages for members of the behavior graph.
@@ -2088,9 +2003,9 @@ class MembershipDatasources {
       datasourcePackageIngestHistory:
           (json['DatasourcePackageIngestHistory'] as Map<String, dynamic>?)
               ?.map((k, e) => MapEntry(
-                  k.toDatasourcePackage(),
+                  DatasourcePackage.fromString(k),
                   (e as Map<String, dynamic>).map((k, e) => MapEntry(
-                      k.toDatasourcePackageIngestState(),
+                      DatasourcePackageIngestState.fromString(k),
                       TimestampForCollection.fromJson(
                           e as Map<String, dynamic>))))),
       graphArn: json['GraphArn'] as String?,
@@ -2104,9 +2019,8 @@ class MembershipDatasources {
     return {
       if (accountId != null) 'AccountId': accountId,
       if (datasourcePackageIngestHistory != null)
-        'DatasourcePackageIngestHistory': datasourcePackageIngestHistory.map((k,
-                e) =>
-            MapEntry(k.toValue(), e.map((k, e) => MapEntry(k.toValue(), e)))),
+        'DatasourcePackageIngestHistory': datasourcePackageIngestHistory.map(
+            (k, e) => MapEntry(k.value, e.map((k, e) => MapEntry(k.value, e)))),
       if (graphArn != null) 'GraphArn': graphArn,
     };
   }

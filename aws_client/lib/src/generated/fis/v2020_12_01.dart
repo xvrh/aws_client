@@ -1134,7 +1134,8 @@ class ExperimentActionState {
   factory ExperimentActionState.fromJson(Map<String, dynamic> json) {
     return ExperimentActionState(
       reason: json['reason'] as String?,
-      status: (json['status'] as String?)?.toExperimentActionStatus(),
+      status:
+          (json['status'] as String?)?.let(ExperimentActionStatus.fromString),
     );
   }
 
@@ -1143,67 +1144,30 @@ class ExperimentActionState {
     final status = this.status;
     return {
       if (reason != null) 'reason': reason,
-      if (status != null) 'status': status.toValue(),
+      if (status != null) 'status': status.value,
     };
   }
 }
 
 enum ExperimentActionStatus {
-  pending,
-  initiating,
-  running,
-  completed,
-  cancelled,
-  stopping,
-  stopped,
-  failed,
-}
+  pending('pending'),
+  initiating('initiating'),
+  running('running'),
+  completed('completed'),
+  cancelled('cancelled'),
+  stopping('stopping'),
+  stopped('stopped'),
+  failed('failed'),
+  ;
 
-extension ExperimentActionStatusValueExtension on ExperimentActionStatus {
-  String toValue() {
-    switch (this) {
-      case ExperimentActionStatus.pending:
-        return 'pending';
-      case ExperimentActionStatus.initiating:
-        return 'initiating';
-      case ExperimentActionStatus.running:
-        return 'running';
-      case ExperimentActionStatus.completed:
-        return 'completed';
-      case ExperimentActionStatus.cancelled:
-        return 'cancelled';
-      case ExperimentActionStatus.stopping:
-        return 'stopping';
-      case ExperimentActionStatus.stopped:
-        return 'stopped';
-      case ExperimentActionStatus.failed:
-        return 'failed';
-    }
-  }
-}
+  final String value;
 
-extension ExperimentActionStatusFromString on String {
-  ExperimentActionStatus toExperimentActionStatus() {
-    switch (this) {
-      case 'pending':
-        return ExperimentActionStatus.pending;
-      case 'initiating':
-        return ExperimentActionStatus.initiating;
-      case 'running':
-        return ExperimentActionStatus.running;
-      case 'completed':
-        return ExperimentActionStatus.completed;
-      case 'cancelled':
-        return ExperimentActionStatus.cancelled;
-      case 'stopping':
-        return ExperimentActionStatus.stopping;
-      case 'stopped':
-        return ExperimentActionStatus.stopped;
-      case 'failed':
-        return ExperimentActionStatus.failed;
-    }
-    throw Exception('$this is not known in enum ExperimentActionStatus');
-  }
+  const ExperimentActionStatus(this.value);
+
+  static ExperimentActionStatus fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum ExperimentActionStatus'));
 }
 
 /// Describes the configuration for experiment logging to Amazon CloudWatch
@@ -1322,7 +1286,7 @@ class ExperimentState {
   factory ExperimentState.fromJson(Map<String, dynamic> json) {
     return ExperimentState(
       reason: json['reason'] as String?,
-      status: (json['status'] as String?)?.toExperimentStatus(),
+      status: (json['status'] as String?)?.let(ExperimentStatus.fromString),
     );
   }
 
@@ -1331,62 +1295,29 @@ class ExperimentState {
     final status = this.status;
     return {
       if (reason != null) 'reason': reason,
-      if (status != null) 'status': status.toValue(),
+      if (status != null) 'status': status.value,
     };
   }
 }
 
 enum ExperimentStatus {
-  pending,
-  initiating,
-  running,
-  completed,
-  stopping,
-  stopped,
-  failed,
-}
+  pending('pending'),
+  initiating('initiating'),
+  running('running'),
+  completed('completed'),
+  stopping('stopping'),
+  stopped('stopped'),
+  failed('failed'),
+  ;
 
-extension ExperimentStatusValueExtension on ExperimentStatus {
-  String toValue() {
-    switch (this) {
-      case ExperimentStatus.pending:
-        return 'pending';
-      case ExperimentStatus.initiating:
-        return 'initiating';
-      case ExperimentStatus.running:
-        return 'running';
-      case ExperimentStatus.completed:
-        return 'completed';
-      case ExperimentStatus.stopping:
-        return 'stopping';
-      case ExperimentStatus.stopped:
-        return 'stopped';
-      case ExperimentStatus.failed:
-        return 'failed';
-    }
-  }
-}
+  final String value;
 
-extension ExperimentStatusFromString on String {
-  ExperimentStatus toExperimentStatus() {
-    switch (this) {
-      case 'pending':
-        return ExperimentStatus.pending;
-      case 'initiating':
-        return ExperimentStatus.initiating;
-      case 'running':
-        return ExperimentStatus.running;
-      case 'completed':
-        return ExperimentStatus.completed;
-      case 'stopping':
-        return ExperimentStatus.stopping;
-      case 'stopped':
-        return ExperimentStatus.stopped;
-      case 'failed':
-        return ExperimentStatus.failed;
-    }
-    throw Exception('$this is not known in enum ExperimentStatus');
-  }
+  const ExperimentStatus(this.value);
+
+  static ExperimentStatus fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum ExperimentStatus'));
 }
 
 /// Describes the stop condition for an experiment.

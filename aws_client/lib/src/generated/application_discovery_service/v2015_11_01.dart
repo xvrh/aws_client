@@ -834,7 +834,7 @@ class ApplicationDiscovery {
       // TODO queryParams
       headers: headers,
       payload: {
-        'configurationType': configurationType.toValue(),
+        'configurationType': configurationType.value,
         if (filters != null) 'filters': filters,
         if (maxResults != null) 'maxResults': maxResults,
         if (nextToken != null) 'nextToken': nextToken,
@@ -1033,7 +1033,7 @@ class ApplicationDiscovery {
       payload: {
         if (endTime != null) 'endTime': unixTimestampToJson(endTime),
         if (exportDataFormat != null)
-          'exportDataFormat': exportDataFormat.map((e) => e.toValue()).toList(),
+          'exportDataFormat': exportDataFormat.map((e) => e.value).toList(),
         if (filters != null) 'filters': filters,
         if (startTime != null) 'startTime': unixTimestampToJson(startTime),
       },
@@ -1342,7 +1342,7 @@ class AgentInfo {
       agentType: json['agentType'] as String?,
       collectionStatus: json['collectionStatus'] as String?,
       connectorId: json['connectorId'] as String?,
-      health: (json['health'] as String?)?.toAgentStatus(),
+      health: (json['health'] as String?)?.let(AgentStatus.fromString),
       hostName: json['hostName'] as String?,
       lastHealthPingTime: json['lastHealthPingTime'] as String?,
       registeredTime: json['registeredTime'] as String?,
@@ -1368,7 +1368,7 @@ class AgentInfo {
       if (agentType != null) 'agentType': agentType,
       if (collectionStatus != null) 'collectionStatus': collectionStatus,
       if (connectorId != null) 'connectorId': connectorId,
-      if (health != null) 'health': health.toValue(),
+      if (health != null) 'health': health.value,
       if (hostName != null) 'hostName': hostName,
       if (lastHealthPingTime != null) 'lastHealthPingTime': lastHealthPingTime,
       if (registeredTime != null) 'registeredTime': registeredTime,
@@ -1408,51 +1408,21 @@ class AgentNetworkInfo {
 }
 
 enum AgentStatus {
-  healthy,
-  unhealthy,
-  running,
-  unknown,
-  blacklisted,
-  shutdown,
-}
+  healthy('HEALTHY'),
+  unhealthy('UNHEALTHY'),
+  running('RUNNING'),
+  unknown('UNKNOWN'),
+  blacklisted('BLACKLISTED'),
+  shutdown('SHUTDOWN'),
+  ;
 
-extension AgentStatusValueExtension on AgentStatus {
-  String toValue() {
-    switch (this) {
-      case AgentStatus.healthy:
-        return 'HEALTHY';
-      case AgentStatus.unhealthy:
-        return 'UNHEALTHY';
-      case AgentStatus.running:
-        return 'RUNNING';
-      case AgentStatus.unknown:
-        return 'UNKNOWN';
-      case AgentStatus.blacklisted:
-        return 'BLACKLISTED';
-      case AgentStatus.shutdown:
-        return 'SHUTDOWN';
-    }
-  }
-}
+  final String value;
 
-extension AgentStatusFromString on String {
-  AgentStatus toAgentStatus() {
-    switch (this) {
-      case 'HEALTHY':
-        return AgentStatus.healthy;
-      case 'UNHEALTHY':
-        return AgentStatus.unhealthy;
-      case 'RUNNING':
-        return AgentStatus.running;
-      case 'UNKNOWN':
-        return AgentStatus.unknown;
-      case 'BLACKLISTED':
-        return AgentStatus.blacklisted;
-      case 'SHUTDOWN':
-        return AgentStatus.shutdown;
-    }
-    throw Exception('$this is not known in enum AgentStatus');
-  }
+  const AgentStatus(this.value);
+
+  static AgentStatus fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum AgentStatus'));
 }
 
 class AssociateConfigurationItemsToApplicationResponse {
@@ -1488,8 +1458,8 @@ class BatchDeleteImportDataError {
 
   factory BatchDeleteImportDataError.fromJson(Map<String, dynamic> json) {
     return BatchDeleteImportDataError(
-      errorCode:
-          (json['errorCode'] as String?)?.toBatchDeleteImportDataErrorCode(),
+      errorCode: (json['errorCode'] as String?)
+          ?.let(BatchDeleteImportDataErrorCode.fromString),
       errorDescription: json['errorDescription'] as String?,
       importTaskId: json['importTaskId'] as String?,
     );
@@ -1500,7 +1470,7 @@ class BatchDeleteImportDataError {
     final errorDescription = this.errorDescription;
     final importTaskId = this.importTaskId;
     return {
-      if (errorCode != null) 'errorCode': errorCode.toValue(),
+      if (errorCode != null) 'errorCode': errorCode.value,
       if (errorDescription != null) 'errorDescription': errorDescription,
       if (importTaskId != null) 'importTaskId': importTaskId,
     };
@@ -1508,38 +1478,19 @@ class BatchDeleteImportDataError {
 }
 
 enum BatchDeleteImportDataErrorCode {
-  notFound,
-  internalServerError,
-  overLimit,
-}
+  notFound('NOT_FOUND'),
+  internalServerError('INTERNAL_SERVER_ERROR'),
+  overLimit('OVER_LIMIT'),
+  ;
 
-extension BatchDeleteImportDataErrorCodeValueExtension
-    on BatchDeleteImportDataErrorCode {
-  String toValue() {
-    switch (this) {
-      case BatchDeleteImportDataErrorCode.notFound:
-        return 'NOT_FOUND';
-      case BatchDeleteImportDataErrorCode.internalServerError:
-        return 'INTERNAL_SERVER_ERROR';
-      case BatchDeleteImportDataErrorCode.overLimit:
-        return 'OVER_LIMIT';
-    }
-  }
-}
+  final String value;
 
-extension BatchDeleteImportDataErrorCodeFromString on String {
-  BatchDeleteImportDataErrorCode toBatchDeleteImportDataErrorCode() {
-    switch (this) {
-      case 'NOT_FOUND':
-        return BatchDeleteImportDataErrorCode.notFound;
-      case 'INTERNAL_SERVER_ERROR':
-        return BatchDeleteImportDataErrorCode.internalServerError;
-      case 'OVER_LIMIT':
-        return BatchDeleteImportDataErrorCode.overLimit;
-    }
-    throw Exception(
-        '$this is not known in enum BatchDeleteImportDataErrorCode');
-  }
+  const BatchDeleteImportDataErrorCode(this.value);
+
+  static BatchDeleteImportDataErrorCode fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum BatchDeleteImportDataErrorCode'));
 }
 
 class BatchDeleteImportDataResponse {
@@ -1570,41 +1521,20 @@ class BatchDeleteImportDataResponse {
 }
 
 enum ConfigurationItemType {
-  server,
-  process,
-  connection,
-  application,
-}
+  server('SERVER'),
+  process('PROCESS'),
+  connection('CONNECTION'),
+  application('APPLICATION'),
+  ;
 
-extension ConfigurationItemTypeValueExtension on ConfigurationItemType {
-  String toValue() {
-    switch (this) {
-      case ConfigurationItemType.server:
-        return 'SERVER';
-      case ConfigurationItemType.process:
-        return 'PROCESS';
-      case ConfigurationItemType.connection:
-        return 'CONNECTION';
-      case ConfigurationItemType.application:
-        return 'APPLICATION';
-    }
-  }
-}
+  final String value;
 
-extension ConfigurationItemTypeFromString on String {
-  ConfigurationItemType toConfigurationItemType() {
-    switch (this) {
-      case 'SERVER':
-        return ConfigurationItemType.server;
-      case 'PROCESS':
-        return ConfigurationItemType.process;
-      case 'CONNECTION':
-        return ConfigurationItemType.connection;
-      case 'APPLICATION':
-        return ConfigurationItemType.application;
-    }
-    throw Exception('$this is not known in enum ConfigurationItemType');
-  }
+  const ConfigurationItemType(this.value);
+
+  static ConfigurationItemType fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum ConfigurationItemType'));
 }
 
 /// Tags for a configuration item. Tags are metadata that help you categorize IT
@@ -1639,8 +1569,8 @@ class ConfigurationTag {
   factory ConfigurationTag.fromJson(Map<String, dynamic> json) {
     return ConfigurationTag(
       configurationId: json['configurationId'] as String?,
-      configurationType:
-          (json['configurationType'] as String?)?.toConfigurationItemType(),
+      configurationType: (json['configurationType'] as String?)
+          ?.let(ConfigurationItemType.fromString),
       key: json['key'] as String?,
       timeOfCreation: timeStampFromJson(json['timeOfCreation']),
       value: json['value'] as String?,
@@ -1656,7 +1586,7 @@ class ConfigurationTag {
     return {
       if (configurationId != null) 'configurationId': configurationId,
       if (configurationType != null)
-        'configurationType': configurationType.toValue(),
+        'configurationType': configurationType.value,
       if (key != null) 'key': key,
       if (timeOfCreation != null)
         'timeOfCreation': unixTimestampToJson(timeOfCreation),
@@ -1832,14 +1762,15 @@ class ContinuousExportDescription {
 
   factory ContinuousExportDescription.fromJson(Map<String, dynamic> json) {
     return ContinuousExportDescription(
-      dataSource: (json['dataSource'] as String?)?.toDataSource(),
+      dataSource: (json['dataSource'] as String?)?.let(DataSource.fromString),
       exportId: json['exportId'] as String?,
       s3Bucket: json['s3Bucket'] as String?,
       schemaStorageConfig:
           (json['schemaStorageConfig'] as Map<String, dynamic>?)
               ?.map((k, e) => MapEntry(k, e as String)),
       startTime: timeStampFromJson(json['startTime']),
-      status: (json['status'] as String?)?.toContinuousExportStatus(),
+      status:
+          (json['status'] as String?)?.let(ContinuousExportStatus.fromString),
       statusDetail: json['statusDetail'] as String?,
       stopTime: timeStampFromJson(json['stopTime']),
     );
@@ -1855,13 +1786,13 @@ class ContinuousExportDescription {
     final statusDetail = this.statusDetail;
     final stopTime = this.stopTime;
     return {
-      if (dataSource != null) 'dataSource': dataSource.toValue(),
+      if (dataSource != null) 'dataSource': dataSource.value,
       if (exportId != null) 'exportId': exportId,
       if (s3Bucket != null) 's3Bucket': s3Bucket,
       if (schemaStorageConfig != null)
         'schemaStorageConfig': schemaStorageConfig,
       if (startTime != null) 'startTime': unixTimestampToJson(startTime),
-      if (status != null) 'status': status.toValue(),
+      if (status != null) 'status': status.value,
       if (statusDetail != null) 'statusDetail': statusDetail,
       if (stopTime != null) 'stopTime': unixTimestampToJson(stopTime),
     };
@@ -1869,56 +1800,23 @@ class ContinuousExportDescription {
 }
 
 enum ContinuousExportStatus {
-  startInProgress,
-  startFailed,
-  active,
-  error,
-  stopInProgress,
-  stopFailed,
-  inactive,
-}
+  startInProgress('START_IN_PROGRESS'),
+  startFailed('START_FAILED'),
+  active('ACTIVE'),
+  error('ERROR'),
+  stopInProgress('STOP_IN_PROGRESS'),
+  stopFailed('STOP_FAILED'),
+  inactive('INACTIVE'),
+  ;
 
-extension ContinuousExportStatusValueExtension on ContinuousExportStatus {
-  String toValue() {
-    switch (this) {
-      case ContinuousExportStatus.startInProgress:
-        return 'START_IN_PROGRESS';
-      case ContinuousExportStatus.startFailed:
-        return 'START_FAILED';
-      case ContinuousExportStatus.active:
-        return 'ACTIVE';
-      case ContinuousExportStatus.error:
-        return 'ERROR';
-      case ContinuousExportStatus.stopInProgress:
-        return 'STOP_IN_PROGRESS';
-      case ContinuousExportStatus.stopFailed:
-        return 'STOP_FAILED';
-      case ContinuousExportStatus.inactive:
-        return 'INACTIVE';
-    }
-  }
-}
+  final String value;
 
-extension ContinuousExportStatusFromString on String {
-  ContinuousExportStatus toContinuousExportStatus() {
-    switch (this) {
-      case 'START_IN_PROGRESS':
-        return ContinuousExportStatus.startInProgress;
-      case 'START_FAILED':
-        return ContinuousExportStatus.startFailed;
-      case 'ACTIVE':
-        return ContinuousExportStatus.active;
-      case 'ERROR':
-        return ContinuousExportStatus.error;
-      case 'STOP_IN_PROGRESS':
-        return ContinuousExportStatus.stopInProgress;
-      case 'STOP_FAILED':
-        return ContinuousExportStatus.stopFailed;
-      case 'INACTIVE':
-        return ContinuousExportStatus.inactive;
-    }
-    throw Exception('$this is not known in enum ContinuousExportStatus');
-  }
+  const ContinuousExportStatus(this.value);
+
+  static ContinuousExportStatus fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum ContinuousExportStatus'));
 }
 
 class CreateApplicationResponse {
@@ -2204,26 +2102,16 @@ class CustomerMeCollectorInfo {
 }
 
 enum DataSource {
-  agent,
-}
+  agent('AGENT'),
+  ;
 
-extension DataSourceValueExtension on DataSource {
-  String toValue() {
-    switch (this) {
-      case DataSource.agent:
-        return 'AGENT';
-    }
-  }
-}
+  final String value;
 
-extension DataSourceFromString on String {
-  DataSource toDataSource() {
-    switch (this) {
-      case 'AGENT':
-        return DataSource.agent;
-    }
-    throw Exception('$this is not known in enum DataSource');
-  }
+  const DataSource(this.value);
+
+  static DataSource fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum DataSource'));
 }
 
 class DeleteApplicationsResponse {
@@ -2523,31 +2411,18 @@ class ExportConfigurationsResponse {
 }
 
 enum ExportDataFormat {
-  csv,
-  graphml,
-}
+  csv('CSV'),
+  graphml('GRAPHML'),
+  ;
 
-extension ExportDataFormatValueExtension on ExportDataFormat {
-  String toValue() {
-    switch (this) {
-      case ExportDataFormat.csv:
-        return 'CSV';
-      case ExportDataFormat.graphml:
-        return 'GRAPHML';
-    }
-  }
-}
+  final String value;
 
-extension ExportDataFormatFromString on String {
-  ExportDataFormat toExportDataFormat() {
-    switch (this) {
-      case 'CSV':
-        return ExportDataFormat.csv;
-      case 'GRAPHML':
-        return ExportDataFormat.graphml;
-    }
-    throw Exception('$this is not known in enum ExportDataFormat');
-  }
+  const ExportDataFormat(this.value);
+
+  static ExportDataFormat fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum ExportDataFormat'));
 }
 
 /// Used to select which agent's data is to be exported. A single agent ID may
@@ -2638,7 +2513,7 @@ class ExportInfo {
       exportId: json['exportId'] as String,
       exportRequestTime:
           nonNullableTimeStampFromJson(json['exportRequestTime'] as Object),
-      exportStatus: (json['exportStatus'] as String).toExportStatus(),
+      exportStatus: ExportStatus.fromString((json['exportStatus'] as String)),
       statusMessage: json['statusMessage'] as String,
       configurationsDownloadUrl: json['configurationsDownloadUrl'] as String?,
       isTruncated: json['isTruncated'] as bool?,
@@ -2659,7 +2534,7 @@ class ExportInfo {
     return {
       'exportId': exportId,
       'exportRequestTime': unixTimestampToJson(exportRequestTime),
-      'exportStatus': exportStatus.toValue(),
+      'exportStatus': exportStatus.value,
       'statusMessage': statusMessage,
       if (configurationsDownloadUrl != null)
         'configurationsDownloadUrl': configurationsDownloadUrl,
@@ -2673,36 +2548,19 @@ class ExportInfo {
 }
 
 enum ExportStatus {
-  failed,
-  succeeded,
-  inProgress,
-}
+  failed('FAILED'),
+  succeeded('SUCCEEDED'),
+  inProgress('IN_PROGRESS'),
+  ;
 
-extension ExportStatusValueExtension on ExportStatus {
-  String toValue() {
-    switch (this) {
-      case ExportStatus.failed:
-        return 'FAILED';
-      case ExportStatus.succeeded:
-        return 'SUCCEEDED';
-      case ExportStatus.inProgress:
-        return 'IN_PROGRESS';
-    }
-  }
-}
+  final String value;
 
-extension ExportStatusFromString on String {
-  ExportStatus toExportStatus() {
-    switch (this) {
-      case 'FAILED':
-        return ExportStatus.failed;
-      case 'SUCCEEDED':
-        return ExportStatus.succeeded;
-      case 'IN_PROGRESS':
-        return ExportStatus.inProgress;
-    }
-    throw Exception('$this is not known in enum ExportStatus');
-  }
+  const ExportStatus(this.value);
+
+  static ExportStatus fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum ExportStatus'));
 }
 
 /// A filter that can use conditional operators.
@@ -2833,76 +2691,27 @@ class GetDiscoverySummaryResponse {
 }
 
 enum ImportStatus {
-  importInProgress,
-  importComplete,
-  importCompleteWithErrors,
-  importFailed,
-  importFailedServerLimitExceeded,
-  importFailedRecordLimitExceeded,
-  deleteInProgress,
-  deleteComplete,
-  deleteFailed,
-  deleteFailedLimitExceeded,
-  internalError,
-}
+  importInProgress('IMPORT_IN_PROGRESS'),
+  importComplete('IMPORT_COMPLETE'),
+  importCompleteWithErrors('IMPORT_COMPLETE_WITH_ERRORS'),
+  importFailed('IMPORT_FAILED'),
+  importFailedServerLimitExceeded('IMPORT_FAILED_SERVER_LIMIT_EXCEEDED'),
+  importFailedRecordLimitExceeded('IMPORT_FAILED_RECORD_LIMIT_EXCEEDED'),
+  deleteInProgress('DELETE_IN_PROGRESS'),
+  deleteComplete('DELETE_COMPLETE'),
+  deleteFailed('DELETE_FAILED'),
+  deleteFailedLimitExceeded('DELETE_FAILED_LIMIT_EXCEEDED'),
+  internalError('INTERNAL_ERROR'),
+  ;
 
-extension ImportStatusValueExtension on ImportStatus {
-  String toValue() {
-    switch (this) {
-      case ImportStatus.importInProgress:
-        return 'IMPORT_IN_PROGRESS';
-      case ImportStatus.importComplete:
-        return 'IMPORT_COMPLETE';
-      case ImportStatus.importCompleteWithErrors:
-        return 'IMPORT_COMPLETE_WITH_ERRORS';
-      case ImportStatus.importFailed:
-        return 'IMPORT_FAILED';
-      case ImportStatus.importFailedServerLimitExceeded:
-        return 'IMPORT_FAILED_SERVER_LIMIT_EXCEEDED';
-      case ImportStatus.importFailedRecordLimitExceeded:
-        return 'IMPORT_FAILED_RECORD_LIMIT_EXCEEDED';
-      case ImportStatus.deleteInProgress:
-        return 'DELETE_IN_PROGRESS';
-      case ImportStatus.deleteComplete:
-        return 'DELETE_COMPLETE';
-      case ImportStatus.deleteFailed:
-        return 'DELETE_FAILED';
-      case ImportStatus.deleteFailedLimitExceeded:
-        return 'DELETE_FAILED_LIMIT_EXCEEDED';
-      case ImportStatus.internalError:
-        return 'INTERNAL_ERROR';
-    }
-  }
-}
+  final String value;
 
-extension ImportStatusFromString on String {
-  ImportStatus toImportStatus() {
-    switch (this) {
-      case 'IMPORT_IN_PROGRESS':
-        return ImportStatus.importInProgress;
-      case 'IMPORT_COMPLETE':
-        return ImportStatus.importComplete;
-      case 'IMPORT_COMPLETE_WITH_ERRORS':
-        return ImportStatus.importCompleteWithErrors;
-      case 'IMPORT_FAILED':
-        return ImportStatus.importFailed;
-      case 'IMPORT_FAILED_SERVER_LIMIT_EXCEEDED':
-        return ImportStatus.importFailedServerLimitExceeded;
-      case 'IMPORT_FAILED_RECORD_LIMIT_EXCEEDED':
-        return ImportStatus.importFailedRecordLimitExceeded;
-      case 'DELETE_IN_PROGRESS':
-        return ImportStatus.deleteInProgress;
-      case 'DELETE_COMPLETE':
-        return ImportStatus.deleteComplete;
-      case 'DELETE_FAILED':
-        return ImportStatus.deleteFailed;
-      case 'DELETE_FAILED_LIMIT_EXCEEDED':
-        return ImportStatus.deleteFailedLimitExceeded;
-      case 'INTERNAL_ERROR':
-        return ImportStatus.internalError;
-    }
-    throw Exception('$this is not known in enum ImportStatus');
-  }
+  const ImportStatus(this.value);
+
+  static ImportStatus fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum ImportStatus'));
 }
 
 /// An array of information related to the import task request that includes
@@ -3007,7 +2816,7 @@ class ImportTask {
       name: json['name'] as String?,
       serverImportFailure: json['serverImportFailure'] as int?,
       serverImportSuccess: json['serverImportSuccess'] as int?,
-      status: (json['status'] as String?)?.toImportStatus(),
+      status: (json['status'] as String?)?.let(ImportStatus.fromString),
     );
   }
 
@@ -3046,7 +2855,7 @@ class ImportTask {
         'serverImportFailure': serverImportFailure,
       if (serverImportSuccess != null)
         'serverImportSuccess': serverImportSuccess,
-      if (status != null) 'status': status.toValue(),
+      if (status != null) 'status': status.value,
     };
   }
 }
@@ -3075,43 +2884,26 @@ class ImportTaskFilter {
     final name = this.name;
     final values = this.values;
     return {
-      if (name != null) 'name': name.toValue(),
+      if (name != null) 'name': name.value,
       if (values != null) 'values': values,
     };
   }
 }
 
 enum ImportTaskFilterName {
-  importTaskId,
-  status,
-  name,
-}
+  importTaskId('IMPORT_TASK_ID'),
+  status('STATUS'),
+  name('NAME'),
+  ;
 
-extension ImportTaskFilterNameValueExtension on ImportTaskFilterName {
-  String toValue() {
-    switch (this) {
-      case ImportTaskFilterName.importTaskId:
-        return 'IMPORT_TASK_ID';
-      case ImportTaskFilterName.status:
-        return 'STATUS';
-      case ImportTaskFilterName.name:
-        return 'NAME';
-    }
-  }
-}
+  final String value;
 
-extension ImportTaskFilterNameFromString on String {
-  ImportTaskFilterName toImportTaskFilterName() {
-    switch (this) {
-      case 'IMPORT_TASK_ID':
-        return ImportTaskFilterName.importTaskId;
-      case 'STATUS':
-        return ImportTaskFilterName.status;
-      case 'NAME':
-        return ImportTaskFilterName.name;
-    }
-    throw Exception('$this is not known in enum ImportTaskFilterName');
-  }
+  const ImportTaskFilterName(this.value);
+
+  static ImportTaskFilterName fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum ImportTaskFilterName'));
 }
 
 class ListConfigurationsResponse {
@@ -3266,7 +3058,7 @@ class OrderByElement {
     final sortOrder = this.sortOrder;
     return {
       'fieldName': fieldName,
-      if (sortOrder != null) 'sortOrder': sortOrder.toValue(),
+      if (sortOrder != null) 'sortOrder': sortOrder.value,
     };
   }
 }
@@ -3305,7 +3097,7 @@ class StartContinuousExportResponse {
 
   factory StartContinuousExportResponse.fromJson(Map<String, dynamic> json) {
     return StartContinuousExportResponse(
-      dataSource: (json['dataSource'] as String?)?.toDataSource(),
+      dataSource: (json['dataSource'] as String?)?.let(DataSource.fromString),
       exportId: json['exportId'] as String?,
       s3Bucket: json['s3Bucket'] as String?,
       schemaStorageConfig:
@@ -3322,7 +3114,7 @@ class StartContinuousExportResponse {
     final schemaStorageConfig = this.schemaStorageConfig;
     final startTime = this.startTime;
     return {
-      if (dataSource != null) 'dataSource': dataSource.toValue(),
+      if (dataSource != null) 'dataSource': dataSource.value,
       if (exportId != null) 'exportId': exportId,
       if (s3Bucket != null) 's3Bucket': s3Bucket,
       if (schemaStorageConfig != null)
@@ -3535,31 +3327,17 @@ class UpdateApplicationResponse {
 }
 
 enum OrderString {
-  asc,
-  desc,
-}
+  asc('ASC'),
+  desc('DESC'),
+  ;
 
-extension OrderStringValueExtension on OrderString {
-  String toValue() {
-    switch (this) {
-      case OrderString.asc:
-        return 'ASC';
-      case OrderString.desc:
-        return 'DESC';
-    }
-  }
-}
+  final String value;
 
-extension OrderStringFromString on String {
-  OrderString toOrderString() {
-    switch (this) {
-      case 'ASC':
-        return OrderString.asc;
-      case 'DESC':
-        return OrderString.desc;
-    }
-    throw Exception('$this is not known in enum OrderString');
-  }
+  const OrderString(this.value);
+
+  static OrderString fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum OrderString'));
 }
 
 class AuthorizationErrorException extends _s.GenericAwsException {

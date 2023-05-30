@@ -511,7 +511,7 @@ class DatabaseMigration {
       headers: headers,
       payload: {
         'EndpointIdentifier': endpointIdentifier,
-        'EndpointType': endpointType.toValue(),
+        'EndpointType': endpointType.value,
         'EngineName': engineName,
         if (certificateArn != null) 'CertificateArn': certificateArn,
         if (databaseName != null) 'DatabaseName': databaseName,
@@ -548,7 +548,7 @@ class DatabaseMigration {
         if (serverName != null) 'ServerName': serverName,
         if (serviceAccessRoleArn != null)
           'ServiceAccessRoleArn': serviceAccessRoleArn,
-        if (sslMode != null) 'SslMode': sslMode.toValue(),
+        if (sslMode != null) 'SslMode': sslMode.value,
         if (sybaseSettings != null) 'SybaseSettings': sybaseSettings,
         if (tags != null) 'Tags': tags,
         if (username != null) 'Username': username,
@@ -1126,7 +1126,7 @@ class DatabaseMigration {
       // TODO queryParams
       headers: headers,
       payload: {
-        'MigrationType': migrationType.toValue(),
+        'MigrationType': migrationType.value,
         'ReplicationInstanceArn': replicationInstanceArn,
         'ReplicationTaskIdentifier': replicationTaskIdentifier,
         'SourceEndpointArn': sourceEndpointArn,
@@ -1555,7 +1555,7 @@ class DatabaseMigration {
       payload: {
         if (marker != null) 'Marker': marker,
         if (maxRecords != null) 'MaxRecords': maxRecords,
-        if (migrationType != null) 'MigrationType': migrationType.toValue(),
+        if (migrationType != null) 'MigrationType': migrationType.value,
         if (replicationInstanceArn != null)
           'ReplicationInstanceArn': replicationInstanceArn,
         if (replicationTaskArn != null)
@@ -1972,7 +1972,7 @@ class DatabaseMigration {
         if (marker != null) 'Marker': marker,
         if (maxRecords != null) 'MaxRecords': maxRecords,
         if (sourceIdentifier != null) 'SourceIdentifier': sourceIdentifier,
-        if (sourceType != null) 'SourceType': sourceType.toValue(),
+        if (sourceType != null) 'SourceType': sourceType.value,
         if (startTime != null) 'StartTime': unixTimestampToJson(startTime),
       },
     );
@@ -3376,7 +3376,7 @@ class DatabaseMigration {
           'ElasticsearchSettings': elasticsearchSettings,
         if (endpointIdentifier != null)
           'EndpointIdentifier': endpointIdentifier,
-        if (endpointType != null) 'EndpointType': endpointType.toValue(),
+        if (endpointType != null) 'EndpointType': endpointType.value,
         if (engineName != null) 'EngineName': engineName,
         if (exactSettings != null) 'ExactSettings': exactSettings,
         if (externalTableDefinition != null)
@@ -3403,7 +3403,7 @@ class DatabaseMigration {
         if (serverName != null) 'ServerName': serverName,
         if (serviceAccessRoleArn != null)
           'ServiceAccessRoleArn': serviceAccessRoleArn,
-        if (sslMode != null) 'SslMode': sslMode.toValue(),
+        if (sslMode != null) 'SslMode': sslMode.value,
         if (sybaseSettings != null) 'SybaseSettings': sybaseSettings,
         if (username != null) 'Username': username,
       },
@@ -3803,7 +3803,7 @@ class DatabaseMigration {
         if (cdcStartTime != null)
           'CdcStartTime': unixTimestampToJson(cdcStartTime),
         if (cdcStopPosition != null) 'CdcStopPosition': cdcStopPosition,
-        if (migrationType != null) 'MigrationType': migrationType.toValue(),
+        if (migrationType != null) 'MigrationType': migrationType.value,
         if (replicationTaskIdentifier != null)
           'ReplicationTaskIdentifier': replicationTaskIdentifier,
         if (replicationTaskSettings != null)
@@ -3983,7 +3983,7 @@ class DatabaseMigration {
       payload: {
         'ReplicationTaskArn': replicationTaskArn,
         'TablesToReload': tablesToReload,
-        if (reloadOption != null) 'ReloadOption': reloadOption.toValue(),
+        if (reloadOption != null) 'ReloadOption': reloadOption.value,
       },
     );
 
@@ -4182,7 +4182,7 @@ class DatabaseMigration {
       headers: headers,
       payload: {
         'ReplicationTaskArn': replicationTaskArn,
-        'StartReplicationTaskType': startReplicationTaskType.toValue(),
+        'StartReplicationTaskType': startReplicationTaskType.value,
         if (cdcStartPosition != null) 'CdcStartPosition': cdcStartPosition,
         if (cdcStartTime != null)
           'CdcStartTime': unixTimestampToJson(cdcStartTime),
@@ -4571,64 +4571,34 @@ class ApplyPendingMaintenanceActionResponse {
 }
 
 enum AuthMechanismValue {
-  $default,
-  mongodbCr,
-  scramSha_1,
-}
+  $default('default'),
+  mongodbCr('mongodb_cr'),
+  scramSha_1('scram_sha_1'),
+  ;
 
-extension AuthMechanismValueValueExtension on AuthMechanismValue {
-  String toValue() {
-    switch (this) {
-      case AuthMechanismValue.$default:
-        return 'default';
-      case AuthMechanismValue.mongodbCr:
-        return 'mongodb_cr';
-      case AuthMechanismValue.scramSha_1:
-        return 'scram_sha_1';
-    }
-  }
-}
+  final String value;
 
-extension AuthMechanismValueFromString on String {
-  AuthMechanismValue toAuthMechanismValue() {
-    switch (this) {
-      case 'default':
-        return AuthMechanismValue.$default;
-      case 'mongodb_cr':
-        return AuthMechanismValue.mongodbCr;
-      case 'scram_sha_1':
-        return AuthMechanismValue.scramSha_1;
-    }
-    throw Exception('$this is not known in enum AuthMechanismValue');
-  }
+  const AuthMechanismValue(this.value);
+
+  static AuthMechanismValue fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum AuthMechanismValue'));
 }
 
 enum AuthTypeValue {
-  no,
-  password,
-}
+  no('no'),
+  password('password'),
+  ;
 
-extension AuthTypeValueValueExtension on AuthTypeValue {
-  String toValue() {
-    switch (this) {
-      case AuthTypeValue.no:
-        return 'no';
-      case AuthTypeValue.password:
-        return 'password';
-    }
-  }
-}
+  final String value;
 
-extension AuthTypeValueFromString on String {
-  AuthTypeValue toAuthTypeValue() {
-    switch (this) {
-      case 'no':
-        return AuthTypeValue.no;
-      case 'password':
-        return AuthTypeValue.password;
-    }
-    throw Exception('$this is not known in enum AuthTypeValue');
-  }
+  const AuthTypeValue(this.value);
+
+  static AuthTypeValue fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum AuthTypeValue'));
 }
 
 /// The name of an Availability Zone for use during database migration.
@@ -4757,61 +4727,24 @@ class CancelReplicationTaskAssessmentRunResponse {
 }
 
 enum CannedAclForObjectsValue {
-  none,
-  private,
-  publicRead,
-  publicReadWrite,
-  authenticatedRead,
-  awsExecRead,
-  bucketOwnerRead,
-  bucketOwnerFullControl,
-}
+  none('none'),
+  private('private'),
+  publicRead('public-read'),
+  publicReadWrite('public-read-write'),
+  authenticatedRead('authenticated-read'),
+  awsExecRead('aws-exec-read'),
+  bucketOwnerRead('bucket-owner-read'),
+  bucketOwnerFullControl('bucket-owner-full-control'),
+  ;
 
-extension CannedAclForObjectsValueValueExtension on CannedAclForObjectsValue {
-  String toValue() {
-    switch (this) {
-      case CannedAclForObjectsValue.none:
-        return 'none';
-      case CannedAclForObjectsValue.private:
-        return 'private';
-      case CannedAclForObjectsValue.publicRead:
-        return 'public-read';
-      case CannedAclForObjectsValue.publicReadWrite:
-        return 'public-read-write';
-      case CannedAclForObjectsValue.authenticatedRead:
-        return 'authenticated-read';
-      case CannedAclForObjectsValue.awsExecRead:
-        return 'aws-exec-read';
-      case CannedAclForObjectsValue.bucketOwnerRead:
-        return 'bucket-owner-read';
-      case CannedAclForObjectsValue.bucketOwnerFullControl:
-        return 'bucket-owner-full-control';
-    }
-  }
-}
+  final String value;
 
-extension CannedAclForObjectsValueFromString on String {
-  CannedAclForObjectsValue toCannedAclForObjectsValue() {
-    switch (this) {
-      case 'none':
-        return CannedAclForObjectsValue.none;
-      case 'private':
-        return CannedAclForObjectsValue.private;
-      case 'public-read':
-        return CannedAclForObjectsValue.publicRead;
-      case 'public-read-write':
-        return CannedAclForObjectsValue.publicReadWrite;
-      case 'authenticated-read':
-        return CannedAclForObjectsValue.authenticatedRead;
-      case 'aws-exec-read':
-        return CannedAclForObjectsValue.awsExecRead;
-      case 'bucket-owner-read':
-        return CannedAclForObjectsValue.bucketOwnerRead;
-      case 'bucket-owner-full-control':
-        return CannedAclForObjectsValue.bucketOwnerFullControl;
-    }
-    throw Exception('$this is not known in enum CannedAclForObjectsValue');
-  }
+  const CannedAclForObjectsValue(this.value);
+
+  static CannedAclForObjectsValue fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum CannedAclForObjectsValue'));
 }
 
 /// The SSL certificate that can be used to encrypt connections between the
@@ -4912,36 +4845,19 @@ class Certificate {
 }
 
 enum CharLengthSemantics {
-  $default,
-  char,
-  byte,
-}
+  $default('default'),
+  char('char'),
+  byte('byte'),
+  ;
 
-extension CharLengthSemanticsValueExtension on CharLengthSemantics {
-  String toValue() {
-    switch (this) {
-      case CharLengthSemantics.$default:
-        return 'default';
-      case CharLengthSemantics.char:
-        return 'char';
-      case CharLengthSemantics.byte:
-        return 'byte';
-    }
-  }
-}
+  final String value;
 
-extension CharLengthSemanticsFromString on String {
-  CharLengthSemantics toCharLengthSemantics() {
-    switch (this) {
-      case 'default':
-        return CharLengthSemantics.$default;
-      case 'char':
-        return CharLengthSemantics.char;
-      case 'byte':
-        return CharLengthSemantics.byte;
-    }
-    throw Exception('$this is not known in enum CharLengthSemantics');
-  }
+  const CharLengthSemantics(this.value);
+
+  static CharLengthSemantics fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum CharLengthSemantics'));
 }
 
 /// Describes the last Fleet Advisor collector health check.
@@ -4969,7 +4885,7 @@ class CollectorHealthCheck {
   factory CollectorHealthCheck.fromJson(Map<String, dynamic> json) {
     return CollectorHealthCheck(
       collectorStatus:
-          (json['CollectorStatus'] as String?)?.toCollectorStatus(),
+          (json['CollectorStatus'] as String?)?.let(CollectorStatus.fromString),
       localCollectorS3Access: json['LocalCollectorS3Access'] as bool?,
       webCollectorGrantedRoleBasedAccess:
           json['WebCollectorGrantedRoleBasedAccess'] as bool?,
@@ -4984,7 +4900,7 @@ class CollectorHealthCheck {
         this.webCollectorGrantedRoleBasedAccess;
     final webCollectorS3Access = this.webCollectorS3Access;
     return {
-      if (collectorStatus != null) 'CollectorStatus': collectorStatus.toValue(),
+      if (collectorStatus != null) 'CollectorStatus': collectorStatus.value,
       if (localCollectorS3Access != null)
         'LocalCollectorS3Access': localCollectorS3Access,
       if (webCollectorGrantedRoleBasedAccess != null)
@@ -5077,7 +4993,8 @@ class CollectorResponse {
       registeredDate: json['RegisteredDate'] as String?,
       s3BucketName: json['S3BucketName'] as String?,
       serviceAccessRoleArn: json['ServiceAccessRoleArn'] as String?,
-      versionStatus: (json['VersionStatus'] as String?)?.toVersionStatus(),
+      versionStatus:
+          (json['VersionStatus'] as String?)?.let(VersionStatus.fromString),
     );
   }
 
@@ -5111,7 +5028,7 @@ class CollectorResponse {
       if (s3BucketName != null) 'S3BucketName': s3BucketName,
       if (serviceAccessRoleArn != null)
         'ServiceAccessRoleArn': serviceAccessRoleArn,
-      if (versionStatus != null) 'VersionStatus': versionStatus.toValue(),
+      if (versionStatus != null) 'VersionStatus': versionStatus.value,
     };
   }
 }
@@ -5148,59 +5065,33 @@ class CollectorShortInfoResponse {
 }
 
 enum CollectorStatus {
-  unregistered,
-  active,
-}
+  unregistered('UNREGISTERED'),
+  active('ACTIVE'),
+  ;
 
-extension CollectorStatusValueExtension on CollectorStatus {
-  String toValue() {
-    switch (this) {
-      case CollectorStatus.unregistered:
-        return 'UNREGISTERED';
-      case CollectorStatus.active:
-        return 'ACTIVE';
-    }
-  }
-}
+  final String value;
 
-extension CollectorStatusFromString on String {
-  CollectorStatus toCollectorStatus() {
-    switch (this) {
-      case 'UNREGISTERED':
-        return CollectorStatus.unregistered;
-      case 'ACTIVE':
-        return CollectorStatus.active;
-    }
-    throw Exception('$this is not known in enum CollectorStatus');
-  }
+  const CollectorStatus(this.value);
+
+  static CollectorStatus fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum CollectorStatus'));
 }
 
 enum CompressionTypeValue {
-  none,
-  gzip,
-}
+  none('none'),
+  gzip('gzip'),
+  ;
 
-extension CompressionTypeValueValueExtension on CompressionTypeValue {
-  String toValue() {
-    switch (this) {
-      case CompressionTypeValue.none:
-        return 'none';
-      case CompressionTypeValue.gzip:
-        return 'gzip';
-    }
-  }
-}
+  final String value;
 
-extension CompressionTypeValueFromString on String {
-  CompressionTypeValue toCompressionTypeValue() {
-    switch (this) {
-      case 'none':
-        return CompressionTypeValue.none;
-      case 'gzip':
-        return CompressionTypeValue.gzip;
-    }
-    throw Exception('$this is not known in enum CompressionTypeValue');
-  }
+  const CompressionTypeValue(this.value);
+
+  static CompressionTypeValue fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum CompressionTypeValue'));
 }
 
 /// Status of the connection between an endpoint and a replication instance,
@@ -5473,31 +5364,18 @@ class CreateReplicationTaskResponse {
 }
 
 enum DataFormatValue {
-  csv,
-  parquet,
-}
+  csv('csv'),
+  parquet('parquet'),
+  ;
 
-extension DataFormatValueValueExtension on DataFormatValue {
-  String toValue() {
-    switch (this) {
-      case DataFormatValue.csv:
-        return 'csv';
-      case DataFormatValue.parquet:
-        return 'parquet';
-    }
-  }
-}
+  final String value;
 
-extension DataFormatValueFromString on String {
-  DataFormatValue toDataFormatValue() {
-    switch (this) {
-      case 'csv':
-        return DataFormatValue.csv;
-      case 'parquet':
-        return DataFormatValue.parquet;
-    }
-    throw Exception('$this is not known in enum DataFormatValue');
-  }
+  const DataFormatValue(this.value);
+
+  static DataFormatValue fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum DataFormatValue'));
 }
 
 /// Describes an inventory database instance for a Fleet Advisor collector.
@@ -5693,86 +5571,38 @@ class DatabaseShortInfoResponse {
 }
 
 enum DatePartitionDelimiterValue {
-  slash,
-  underscore,
-  dash,
-  none,
-}
+  slash('SLASH'),
+  underscore('UNDERSCORE'),
+  dash('DASH'),
+  none('NONE'),
+  ;
 
-extension DatePartitionDelimiterValueValueExtension
-    on DatePartitionDelimiterValue {
-  String toValue() {
-    switch (this) {
-      case DatePartitionDelimiterValue.slash:
-        return 'SLASH';
-      case DatePartitionDelimiterValue.underscore:
-        return 'UNDERSCORE';
-      case DatePartitionDelimiterValue.dash:
-        return 'DASH';
-      case DatePartitionDelimiterValue.none:
-        return 'NONE';
-    }
-  }
-}
+  final String value;
 
-extension DatePartitionDelimiterValueFromString on String {
-  DatePartitionDelimiterValue toDatePartitionDelimiterValue() {
-    switch (this) {
-      case 'SLASH':
-        return DatePartitionDelimiterValue.slash;
-      case 'UNDERSCORE':
-        return DatePartitionDelimiterValue.underscore;
-      case 'DASH':
-        return DatePartitionDelimiterValue.dash;
-      case 'NONE':
-        return DatePartitionDelimiterValue.none;
-    }
-    throw Exception('$this is not known in enum DatePartitionDelimiterValue');
-  }
+  const DatePartitionDelimiterValue(this.value);
+
+  static DatePartitionDelimiterValue fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum DatePartitionDelimiterValue'));
 }
 
 enum DatePartitionSequenceValue {
-  yyyymmdd,
-  yyyymmddhh,
-  yyyymm,
-  mmyyyydd,
-  ddmmyyyy,
-}
+  yyyymmdd('YYYYMMDD'),
+  yyyymmddhh('YYYYMMDDHH'),
+  yyyymm('YYYYMM'),
+  mmyyyydd('MMYYYYDD'),
+  ddmmyyyy('DDMMYYYY'),
+  ;
 
-extension DatePartitionSequenceValueValueExtension
-    on DatePartitionSequenceValue {
-  String toValue() {
-    switch (this) {
-      case DatePartitionSequenceValue.yyyymmdd:
-        return 'YYYYMMDD';
-      case DatePartitionSequenceValue.yyyymmddhh:
-        return 'YYYYMMDDHH';
-      case DatePartitionSequenceValue.yyyymm:
-        return 'YYYYMM';
-      case DatePartitionSequenceValue.mmyyyydd:
-        return 'MMYYYYDD';
-      case DatePartitionSequenceValue.ddmmyyyy:
-        return 'DDMMYYYY';
-    }
-  }
-}
+  final String value;
 
-extension DatePartitionSequenceValueFromString on String {
-  DatePartitionSequenceValue toDatePartitionSequenceValue() {
-    switch (this) {
-      case 'YYYYMMDD':
-        return DatePartitionSequenceValue.yyyymmdd;
-      case 'YYYYMMDDHH':
-        return DatePartitionSequenceValue.yyyymmddhh;
-      case 'YYYYMM':
-        return DatePartitionSequenceValue.yyyymm;
-      case 'MMYYYYDD':
-        return DatePartitionSequenceValue.mmyyyydd;
-      case 'DDMMYYYY':
-        return DatePartitionSequenceValue.ddmmyyyy;
-    }
-    throw Exception('$this is not known in enum DatePartitionSequenceValue');
-  }
+  const DatePartitionSequenceValue(this.value);
+
+  static DatePartitionSequenceValue fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum DatePartitionSequenceValue'));
 }
 
 class DeleteCertificateResponse {
@@ -7094,41 +6924,20 @@ class DescribeTableStatisticsResponse {
 }
 
 enum DmsSslModeValue {
-  none,
-  require,
-  verifyCa,
-  verifyFull,
-}
+  none('none'),
+  require('require'),
+  verifyCa('verify-ca'),
+  verifyFull('verify-full'),
+  ;
 
-extension DmsSslModeValueValueExtension on DmsSslModeValue {
-  String toValue() {
-    switch (this) {
-      case DmsSslModeValue.none:
-        return 'none';
-      case DmsSslModeValue.require:
-        return 'require';
-      case DmsSslModeValue.verifyCa:
-        return 'verify-ca';
-      case DmsSslModeValue.verifyFull:
-        return 'verify-full';
-    }
-  }
-}
+  final String value;
 
-extension DmsSslModeValueFromString on String {
-  DmsSslModeValue toDmsSslModeValue() {
-    switch (this) {
-      case 'none':
-        return DmsSslModeValue.none;
-      case 'require':
-        return DmsSslModeValue.require;
-      case 'verify-ca':
-        return DmsSslModeValue.verifyCa;
-      case 'verify-full':
-        return DmsSslModeValue.verifyFull;
-    }
-    throw Exception('$this is not known in enum DmsSslModeValue');
-  }
+  const DmsSslModeValue(this.value);
+
+  static DmsSslModeValue fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum DmsSslModeValue'));
 }
 
 /// The settings in JSON format for the DMS Transfer type source endpoint.
@@ -7255,7 +7064,8 @@ class DocDbSettings {
       docsToInvestigate: json['DocsToInvestigate'] as int?,
       extractDocId: json['ExtractDocId'] as bool?,
       kmsKeyId: json['KmsKeyId'] as String?,
-      nestingLevel: (json['NestingLevel'] as String?)?.toNestingLevelValue(),
+      nestingLevel:
+          (json['NestingLevel'] as String?)?.let(NestingLevelValue.fromString),
       password: json['Password'] as String?,
       port: json['Port'] as int?,
       secretsManagerAccessRoleArn:
@@ -7283,7 +7093,7 @@ class DocDbSettings {
       if (docsToInvestigate != null) 'DocsToInvestigate': docsToInvestigate,
       if (extractDocId != null) 'ExtractDocId': extractDocId,
       if (kmsKeyId != null) 'KmsKeyId': kmsKeyId,
-      if (nestingLevel != null) 'NestingLevel': nestingLevel.toValue(),
+      if (nestingLevel != null) 'NestingLevel': nestingLevel.value,
       if (password != null) 'Password': password,
       if (port != null) 'Port': port,
       if (secretsManagerAccessRoleArn != null)
@@ -7386,64 +7196,34 @@ class ElasticsearchSettings {
 }
 
 enum EncodingTypeValue {
-  plain,
-  plainDictionary,
-  rleDictionary,
-}
+  plain('plain'),
+  plainDictionary('plain-dictionary'),
+  rleDictionary('rle-dictionary'),
+  ;
 
-extension EncodingTypeValueValueExtension on EncodingTypeValue {
-  String toValue() {
-    switch (this) {
-      case EncodingTypeValue.plain:
-        return 'plain';
-      case EncodingTypeValue.plainDictionary:
-        return 'plain-dictionary';
-      case EncodingTypeValue.rleDictionary:
-        return 'rle-dictionary';
-    }
-  }
-}
+  final String value;
 
-extension EncodingTypeValueFromString on String {
-  EncodingTypeValue toEncodingTypeValue() {
-    switch (this) {
-      case 'plain':
-        return EncodingTypeValue.plain;
-      case 'plain-dictionary':
-        return EncodingTypeValue.plainDictionary;
-      case 'rle-dictionary':
-        return EncodingTypeValue.rleDictionary;
-    }
-    throw Exception('$this is not known in enum EncodingTypeValue');
-  }
+  const EncodingTypeValue(this.value);
+
+  static EncodingTypeValue fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum EncodingTypeValue'));
 }
 
 enum EncryptionModeValue {
-  sseS3,
-  sseKms,
-}
+  sseS3('sse-s3'),
+  sseKms('sse-kms'),
+  ;
 
-extension EncryptionModeValueValueExtension on EncryptionModeValue {
-  String toValue() {
-    switch (this) {
-      case EncryptionModeValue.sseS3:
-        return 'sse-s3';
-      case EncryptionModeValue.sseKms:
-        return 'sse-kms';
-    }
-  }
-}
+  final String value;
 
-extension EncryptionModeValueFromString on String {
-  EncryptionModeValue toEncryptionModeValue() {
-    switch (this) {
-      case 'sse-s3':
-        return EncryptionModeValue.sseS3;
-      case 'sse-kms':
-        return EncryptionModeValue.sseKms;
-    }
-    throw Exception('$this is not known in enum EncryptionModeValue');
-  }
+  const EncryptionModeValue(this.value);
+
+  static EncryptionModeValue fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum EncryptionModeValue'));
 }
 
 /// Describes an endpoint of a database instance in response to operations such
@@ -7665,8 +7445,8 @@ class Endpoint {
           : null,
       endpointArn: json['EndpointArn'] as String?,
       endpointIdentifier: json['EndpointIdentifier'] as String?,
-      endpointType:
-          (json['EndpointType'] as String?)?.toReplicationEndpointTypeValue(),
+      endpointType: (json['EndpointType'] as String?)
+          ?.let(ReplicationEndpointTypeValue.fromString),
       engineDisplayName: json['EngineDisplayName'] as String?,
       engineName: json['EngineName'] as String?,
       externalId: json['ExternalId'] as String?,
@@ -7727,7 +7507,7 @@ class Endpoint {
           : null,
       serverName: json['ServerName'] as String?,
       serviceAccessRoleArn: json['ServiceAccessRoleArn'] as String?,
-      sslMode: (json['SslMode'] as String?)?.toDmsSslModeValue(),
+      sslMode: (json['SslMode'] as String?)?.let(DmsSslModeValue.fromString),
       status: json['Status'] as String?,
       sybaseSettings: json['SybaseSettings'] != null
           ? SybaseSettings.fromJson(
@@ -7784,7 +7564,7 @@ class Endpoint {
         'ElasticsearchSettings': elasticsearchSettings,
       if (endpointArn != null) 'EndpointArn': endpointArn,
       if (endpointIdentifier != null) 'EndpointIdentifier': endpointIdentifier,
-      if (endpointType != null) 'EndpointType': endpointType.toValue(),
+      if (endpointType != null) 'EndpointType': endpointType.value,
       if (engineDisplayName != null) 'EngineDisplayName': engineDisplayName,
       if (engineName != null) 'EngineName': engineName,
       if (externalId != null) 'ExternalId': externalId,
@@ -7811,7 +7591,7 @@ class Endpoint {
       if (serverName != null) 'ServerName': serverName,
       if (serviceAccessRoleArn != null)
         'ServiceAccessRoleArn': serviceAccessRoleArn,
-      if (sslMode != null) 'SslMode': sslMode.toValue(),
+      if (sslMode != null) 'SslMode': sslMode.value,
       if (status != null) 'Status': status,
       if (sybaseSettings != null) 'SybaseSettings': sybaseSettings,
       if (username != null) 'Username': username,
@@ -7875,7 +7655,7 @@ class EndpointSetting {
       intValueMin: json['IntValueMin'] as int?,
       name: json['Name'] as String?,
       sensitive: json['Sensitive'] as bool?,
-      type: (json['Type'] as String?)?.toEndpointSettingTypeValue(),
+      type: (json['Type'] as String?)?.let(EndpointSettingTypeValue.fromString),
       units: json['Units'] as String?,
     );
   }
@@ -7898,48 +7678,27 @@ class EndpointSetting {
       if (intValueMin != null) 'IntValueMin': intValueMin,
       if (name != null) 'Name': name,
       if (sensitive != null) 'Sensitive': sensitive,
-      if (type != null) 'Type': type.toValue(),
+      if (type != null) 'Type': type.value,
       if (units != null) 'Units': units,
     };
   }
 }
 
 enum EndpointSettingTypeValue {
-  string,
-  boolean,
-  integer,
-  $enum,
-}
+  string('string'),
+  boolean('boolean'),
+  integer('integer'),
+  $enum('enum'),
+  ;
 
-extension EndpointSettingTypeValueValueExtension on EndpointSettingTypeValue {
-  String toValue() {
-    switch (this) {
-      case EndpointSettingTypeValue.string:
-        return 'string';
-      case EndpointSettingTypeValue.boolean:
-        return 'boolean';
-      case EndpointSettingTypeValue.integer:
-        return 'integer';
-      case EndpointSettingTypeValue.$enum:
-        return 'enum';
-    }
-  }
-}
+  final String value;
 
-extension EndpointSettingTypeValueFromString on String {
-  EndpointSettingTypeValue toEndpointSettingTypeValue() {
-    switch (this) {
-      case 'string':
-        return EndpointSettingTypeValue.string;
-      case 'boolean':
-        return EndpointSettingTypeValue.boolean;
-      case 'integer':
-        return EndpointSettingTypeValue.integer;
-      case 'enum':
-        return EndpointSettingTypeValue.$enum;
-    }
-    throw Exception('$this is not known in enum EndpointSettingTypeValue');
-  }
+  const EndpointSettingTypeValue(this.value);
+
+  static EndpointSettingTypeValue fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum EndpointSettingTypeValue'));
 }
 
 /// Describes an identifiable significant activity that affects a replication
@@ -7980,7 +7739,7 @@ class Event {
           .toList(),
       message: json['Message'] as String?,
       sourceIdentifier: json['SourceIdentifier'] as String?,
-      sourceType: (json['SourceType'] as String?)?.toSourceType(),
+      sourceType: (json['SourceType'] as String?)?.let(SourceType.fromString),
     );
   }
 
@@ -7995,7 +7754,7 @@ class Event {
       if (eventCategories != null) 'EventCategories': eventCategories,
       if (message != null) 'Message': message,
       if (sourceIdentifier != null) 'SourceIdentifier': sourceIdentifier,
-      if (sourceType != null) 'SourceType': sourceType.toValue(),
+      if (sourceType != null) 'SourceType': sourceType.value,
     };
   }
 }
@@ -8402,7 +8161,8 @@ class GcpMySQLSettings {
       secretsManagerSecretId: json['SecretsManagerSecretId'] as String?,
       serverName: json['ServerName'] as String?,
       serverTimezone: json['ServerTimezone'] as String?,
-      targetDbType: (json['TargetDbType'] as String?)?.toTargetDbType(),
+      targetDbType:
+          (json['TargetDbType'] as String?)?.let(TargetDbType.fromString),
       username: json['Username'] as String?,
     );
   }
@@ -8439,7 +8199,7 @@ class GcpMySQLSettings {
         'SecretsManagerSecretId': secretsManagerSecretId,
       if (serverName != null) 'ServerName': serverName,
       if (serverTimezone != null) 'ServerTimezone': serverTimezone,
-      if (targetDbType != null) 'TargetDbType': targetDbType.toValue(),
+      if (targetDbType != null) 'TargetDbType': targetDbType.value,
       if (username != null) 'Username': username,
     };
   }
@@ -8611,69 +8371,35 @@ class InventoryData {
 }
 
 enum KafkaSaslMechanism {
-  scramSha_512,
-  plain,
-}
+  scramSha_512('scram-sha-512'),
+  plain('plain'),
+  ;
 
-extension KafkaSaslMechanismValueExtension on KafkaSaslMechanism {
-  String toValue() {
-    switch (this) {
-      case KafkaSaslMechanism.scramSha_512:
-        return 'scram-sha-512';
-      case KafkaSaslMechanism.plain:
-        return 'plain';
-    }
-  }
-}
+  final String value;
 
-extension KafkaSaslMechanismFromString on String {
-  KafkaSaslMechanism toKafkaSaslMechanism() {
-    switch (this) {
-      case 'scram-sha-512':
-        return KafkaSaslMechanism.scramSha_512;
-      case 'plain':
-        return KafkaSaslMechanism.plain;
-    }
-    throw Exception('$this is not known in enum KafkaSaslMechanism');
-  }
+  const KafkaSaslMechanism(this.value);
+
+  static KafkaSaslMechanism fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum KafkaSaslMechanism'));
 }
 
 enum KafkaSecurityProtocol {
-  plaintext,
-  sslAuthentication,
-  sslEncryption,
-  saslSsl,
-}
+  plaintext('plaintext'),
+  sslAuthentication('ssl-authentication'),
+  sslEncryption('ssl-encryption'),
+  saslSsl('sasl-ssl'),
+  ;
 
-extension KafkaSecurityProtocolValueExtension on KafkaSecurityProtocol {
-  String toValue() {
-    switch (this) {
-      case KafkaSecurityProtocol.plaintext:
-        return 'plaintext';
-      case KafkaSecurityProtocol.sslAuthentication:
-        return 'ssl-authentication';
-      case KafkaSecurityProtocol.sslEncryption:
-        return 'ssl-encryption';
-      case KafkaSecurityProtocol.saslSsl:
-        return 'sasl-ssl';
-    }
-  }
-}
+  final String value;
 
-extension KafkaSecurityProtocolFromString on String {
-  KafkaSecurityProtocol toKafkaSecurityProtocol() {
-    switch (this) {
-      case 'plaintext':
-        return KafkaSecurityProtocol.plaintext;
-      case 'ssl-authentication':
-        return KafkaSecurityProtocol.sslAuthentication;
-      case 'ssl-encryption':
-        return KafkaSecurityProtocol.sslEncryption;
-      case 'sasl-ssl':
-        return KafkaSecurityProtocol.saslSsl;
-    }
-    throw Exception('$this is not known in enum KafkaSecurityProtocol');
-  }
+  const KafkaSecurityProtocol(this.value);
+
+  static KafkaSecurityProtocol fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum KafkaSecurityProtocol'));
 }
 
 /// Provides information that describes an Apache Kafka endpoint. This
@@ -8815,15 +8541,17 @@ class KafkaSettings {
       includePartitionValue: json['IncludePartitionValue'] as bool?,
       includeTableAlterOperations: json['IncludeTableAlterOperations'] as bool?,
       includeTransactionDetails: json['IncludeTransactionDetails'] as bool?,
-      messageFormat: (json['MessageFormat'] as String?)?.toMessageFormatValue(),
+      messageFormat: (json['MessageFormat'] as String?)
+          ?.let(MessageFormatValue.fromString),
       messageMaxBytes: json['MessageMaxBytes'] as int?,
       noHexPrefix: json['NoHexPrefix'] as bool?,
       partitionIncludeSchemaTable: json['PartitionIncludeSchemaTable'] as bool?,
-      saslMechanism: (json['SaslMechanism'] as String?)?.toKafkaSaslMechanism(),
+      saslMechanism: (json['SaslMechanism'] as String?)
+          ?.let(KafkaSaslMechanism.fromString),
       saslPassword: json['SaslPassword'] as String?,
       saslUsername: json['SaslUsername'] as String?,
-      securityProtocol:
-          (json['SecurityProtocol'] as String?)?.toKafkaSecurityProtocol(),
+      securityProtocol: (json['SecurityProtocol'] as String?)
+          ?.let(KafkaSecurityProtocol.fromString),
       sslCaCertificateArn: json['SslCaCertificateArn'] as String?,
       sslClientCertificateArn: json['SslClientCertificateArn'] as String?,
       sslClientKeyArn: json['SslClientKeyArn'] as String?,
@@ -8864,16 +8592,15 @@ class KafkaSettings {
         'IncludeTableAlterOperations': includeTableAlterOperations,
       if (includeTransactionDetails != null)
         'IncludeTransactionDetails': includeTransactionDetails,
-      if (messageFormat != null) 'MessageFormat': messageFormat.toValue(),
+      if (messageFormat != null) 'MessageFormat': messageFormat.value,
       if (messageMaxBytes != null) 'MessageMaxBytes': messageMaxBytes,
       if (noHexPrefix != null) 'NoHexPrefix': noHexPrefix,
       if (partitionIncludeSchemaTable != null)
         'PartitionIncludeSchemaTable': partitionIncludeSchemaTable,
-      if (saslMechanism != null) 'SaslMechanism': saslMechanism.toValue(),
+      if (saslMechanism != null) 'SaslMechanism': saslMechanism.value,
       if (saslPassword != null) 'SaslPassword': saslPassword,
       if (saslUsername != null) 'SaslUsername': saslUsername,
-      if (securityProtocol != null)
-        'SecurityProtocol': securityProtocol.toValue(),
+      if (securityProtocol != null) 'SecurityProtocol': securityProtocol.value,
       if (sslCaCertificateArn != null)
         'SslCaCertificateArn': sslCaCertificateArn,
       if (sslClientCertificateArn != null)
@@ -8966,7 +8693,8 @@ class KinesisSettings {
       includePartitionValue: json['IncludePartitionValue'] as bool?,
       includeTableAlterOperations: json['IncludeTableAlterOperations'] as bool?,
       includeTransactionDetails: json['IncludeTransactionDetails'] as bool?,
-      messageFormat: (json['MessageFormat'] as String?)?.toMessageFormatValue(),
+      messageFormat: (json['MessageFormat'] as String?)
+          ?.let(MessageFormatValue.fromString),
       noHexPrefix: json['NoHexPrefix'] as bool?,
       partitionIncludeSchemaTable: json['PartitionIncludeSchemaTable'] as bool?,
       serviceAccessRoleArn: json['ServiceAccessRoleArn'] as String?,
@@ -8996,7 +8724,7 @@ class KinesisSettings {
         'IncludeTableAlterOperations': includeTableAlterOperations,
       if (includeTransactionDetails != null)
         'IncludeTransactionDetails': includeTransactionDetails,
-      if (messageFormat != null) 'MessageFormat': messageFormat.toValue(),
+      if (messageFormat != null) 'MessageFormat': messageFormat.value,
       if (noHexPrefix != null) 'NoHexPrefix': noHexPrefix,
       if (partitionIncludeSchemaTable != null)
         'PartitionIncludeSchemaTable': partitionIncludeSchemaTable,
@@ -9110,31 +8838,18 @@ class ListTagsForResourceResponse {
 }
 
 enum MessageFormatValue {
-  json,
-  jsonUnformatted,
-}
+  json('json'),
+  jsonUnformatted('json-unformatted'),
+  ;
 
-extension MessageFormatValueValueExtension on MessageFormatValue {
-  String toValue() {
-    switch (this) {
-      case MessageFormatValue.json:
-        return 'json';
-      case MessageFormatValue.jsonUnformatted:
-        return 'json-unformatted';
-    }
-  }
-}
+  final String value;
 
-extension MessageFormatValueFromString on String {
-  MessageFormatValue toMessageFormatValue() {
-    switch (this) {
-      case 'json':
-        return MessageFormatValue.json;
-      case 'json-unformatted':
-        return MessageFormatValue.jsonUnformatted;
-    }
-    throw Exception('$this is not known in enum MessageFormatValue');
-  }
+  const MessageFormatValue(this.value);
+
+  static MessageFormatValue fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum MessageFormatValue'));
 }
 
 /// Provides information that defines a Microsoft SQL Server endpoint.
@@ -9277,12 +8992,13 @@ class MicrosoftSQLServerSettings {
       querySingleAlwaysOnNode: json['QuerySingleAlwaysOnNode'] as bool?,
       readBackupOnly: json['ReadBackupOnly'] as bool?,
       safeguardPolicy:
-          (json['SafeguardPolicy'] as String?)?.toSafeguardPolicy(),
+          (json['SafeguardPolicy'] as String?)?.let(SafeguardPolicy.fromString),
       secretsManagerAccessRoleArn:
           json['SecretsManagerAccessRoleArn'] as String?,
       secretsManagerSecretId: json['SecretsManagerSecretId'] as String?,
       serverName: json['ServerName'] as String?,
-      tlogAccessMode: (json['TlogAccessMode'] as String?)?.toTlogAccessMode(),
+      tlogAccessMode:
+          (json['TlogAccessMode'] as String?)?.let(TlogAccessMode.fromString),
       trimSpaceInChar: json['TrimSpaceInChar'] as bool?,
       useBcpFullLoad: json['UseBcpFullLoad'] as bool?,
       useThirdPartyBackupDevice: json['UseThirdPartyBackupDevice'] as bool?,
@@ -9319,13 +9035,13 @@ class MicrosoftSQLServerSettings {
       if (querySingleAlwaysOnNode != null)
         'QuerySingleAlwaysOnNode': querySingleAlwaysOnNode,
       if (readBackupOnly != null) 'ReadBackupOnly': readBackupOnly,
-      if (safeguardPolicy != null) 'SafeguardPolicy': safeguardPolicy.toValue(),
+      if (safeguardPolicy != null) 'SafeguardPolicy': safeguardPolicy.value,
       if (secretsManagerAccessRoleArn != null)
         'SecretsManagerAccessRoleArn': secretsManagerAccessRoleArn,
       if (secretsManagerSecretId != null)
         'SecretsManagerSecretId': secretsManagerSecretId,
       if (serverName != null) 'ServerName': serverName,
-      if (tlogAccessMode != null) 'TlogAccessMode': tlogAccessMode.toValue(),
+      if (tlogAccessMode != null) 'TlogAccessMode': tlogAccessMode.value,
       if (trimSpaceInChar != null) 'TrimSpaceInChar': trimSpaceInChar,
       if (useBcpFullLoad != null) 'UseBcpFullLoad': useBcpFullLoad,
       if (useThirdPartyBackupDevice != null)
@@ -9336,36 +9052,19 @@ class MicrosoftSQLServerSettings {
 }
 
 enum MigrationTypeValue {
-  fullLoad,
-  cdc,
-  fullLoadAndCdc,
-}
+  fullLoad('full-load'),
+  cdc('cdc'),
+  fullLoadAndCdc('full-load-and-cdc'),
+  ;
 
-extension MigrationTypeValueValueExtension on MigrationTypeValue {
-  String toValue() {
-    switch (this) {
-      case MigrationTypeValue.fullLoad:
-        return 'full-load';
-      case MigrationTypeValue.cdc:
-        return 'cdc';
-      case MigrationTypeValue.fullLoadAndCdc:
-        return 'full-load-and-cdc';
-    }
-  }
-}
+  final String value;
 
-extension MigrationTypeValueFromString on String {
-  MigrationTypeValue toMigrationTypeValue() {
-    switch (this) {
-      case 'full-load':
-        return MigrationTypeValue.fullLoad;
-      case 'cdc':
-        return MigrationTypeValue.cdc;
-      case 'full-load-and-cdc':
-        return MigrationTypeValue.fullLoadAndCdc;
-    }
-    throw Exception('$this is not known in enum MigrationTypeValue');
-  }
+  const MigrationTypeValue(this.value);
+
+  static MigrationTypeValue fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum MigrationTypeValue'));
 }
 
 /// <p/>
@@ -9612,14 +9311,16 @@ class MongoDbSettings {
 
   factory MongoDbSettings.fromJson(Map<String, dynamic> json) {
     return MongoDbSettings(
-      authMechanism: (json['AuthMechanism'] as String?)?.toAuthMechanismValue(),
+      authMechanism: (json['AuthMechanism'] as String?)
+          ?.let(AuthMechanismValue.fromString),
       authSource: json['AuthSource'] as String?,
-      authType: (json['AuthType'] as String?)?.toAuthTypeValue(),
+      authType: (json['AuthType'] as String?)?.let(AuthTypeValue.fromString),
       databaseName: json['DatabaseName'] as String?,
       docsToInvestigate: json['DocsToInvestigate'] as String?,
       extractDocId: json['ExtractDocId'] as String?,
       kmsKeyId: json['KmsKeyId'] as String?,
-      nestingLevel: (json['NestingLevel'] as String?)?.toNestingLevelValue(),
+      nestingLevel:
+          (json['NestingLevel'] as String?)?.let(NestingLevelValue.fromString),
       password: json['Password'] as String?,
       port: json['Port'] as int?,
       secretsManagerAccessRoleArn:
@@ -9646,14 +9347,14 @@ class MongoDbSettings {
     final serverName = this.serverName;
     final username = this.username;
     return {
-      if (authMechanism != null) 'AuthMechanism': authMechanism.toValue(),
+      if (authMechanism != null) 'AuthMechanism': authMechanism.value,
       if (authSource != null) 'AuthSource': authSource,
-      if (authType != null) 'AuthType': authType.toValue(),
+      if (authType != null) 'AuthType': authType.value,
       if (databaseName != null) 'DatabaseName': databaseName,
       if (docsToInvestigate != null) 'DocsToInvestigate': docsToInvestigate,
       if (extractDocId != null) 'ExtractDocId': extractDocId,
       if (kmsKeyId != null) 'KmsKeyId': kmsKeyId,
-      if (nestingLevel != null) 'NestingLevel': nestingLevel.toValue(),
+      if (nestingLevel != null) 'NestingLevel': nestingLevel.value,
       if (password != null) 'Password': password,
       if (port != null) 'Port': port,
       if (secretsManagerAccessRoleArn != null)
@@ -9837,7 +9538,8 @@ class MySQLSettings {
       secretsManagerSecretId: json['SecretsManagerSecretId'] as String?,
       serverName: json['ServerName'] as String?,
       serverTimezone: json['ServerTimezone'] as String?,
-      targetDbType: (json['TargetDbType'] as String?)?.toTargetDbType(),
+      targetDbType:
+          (json['TargetDbType'] as String?)?.let(TargetDbType.fromString),
       username: json['Username'] as String?,
     );
   }
@@ -9874,7 +9576,7 @@ class MySQLSettings {
         'SecretsManagerSecretId': secretsManagerSecretId,
       if (serverName != null) 'ServerName': serverName,
       if (serverTimezone != null) 'ServerTimezone': serverTimezone,
-      if (targetDbType != null) 'TargetDbType': targetDbType.toValue(),
+      if (targetDbType != null) 'TargetDbType': targetDbType.value,
       if (username != null) 'Username': username,
     };
   }
@@ -9965,31 +9667,18 @@ class NeptuneSettings {
 }
 
 enum NestingLevelValue {
-  none,
-  one,
-}
+  none('none'),
+  one('one'),
+  ;
 
-extension NestingLevelValueValueExtension on NestingLevelValue {
-  String toValue() {
-    switch (this) {
-      case NestingLevelValue.none:
-        return 'none';
-      case NestingLevelValue.one:
-        return 'one';
-    }
-  }
-}
+  final String value;
 
-extension NestingLevelValueFromString on String {
-  NestingLevelValue toNestingLevelValue() {
-    switch (this) {
-      case 'none':
-        return NestingLevelValue.none;
-      case 'one':
-        return NestingLevelValue.one;
-    }
-    throw Exception('$this is not known in enum NestingLevelValue');
-  }
+  const NestingLevelValue(this.value);
+
+  static NestingLevelValue fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum NestingLevelValue'));
 }
 
 /// Provides information that defines an Oracle endpoint.
@@ -10386,8 +10075,8 @@ class OracleSettings {
       asmPassword: json['AsmPassword'] as String?,
       asmServer: json['AsmServer'] as String?,
       asmUser: json['AsmUser'] as String?,
-      charLengthSemantics:
-          (json['CharLengthSemantics'] as String?)?.toCharLengthSemantics(),
+      charLengthSemantics: (json['CharLengthSemantics'] as String?)
+          ?.let(CharLengthSemantics.fromString),
       convertTimestampWithZoneToUTC:
           json['ConvertTimestampWithZoneToUTC'] as bool?,
       databaseName: json['DatabaseName'] as String?,
@@ -10492,7 +10181,7 @@ class OracleSettings {
       if (asmServer != null) 'AsmServer': asmServer,
       if (asmUser != null) 'AsmUser': asmUser,
       if (charLengthSemantics != null)
-        'CharLengthSemantics': charLengthSemantics.toValue(),
+        'CharLengthSemantics': charLengthSemantics.value,
       if (convertTimestampWithZoneToUTC != null)
         'ConvertTimestampWithZoneToUTC': convertTimestampWithZoneToUTC,
       if (databaseName != null) 'DatabaseName': databaseName,
@@ -10620,8 +10309,8 @@ class OrderableReplicationInstance {
       includedAllocatedStorage: json['IncludedAllocatedStorage'] as int?,
       maxAllocatedStorage: json['MaxAllocatedStorage'] as int?,
       minAllocatedStorage: json['MinAllocatedStorage'] as int?,
-      releaseStatus:
-          (json['ReleaseStatus'] as String?)?.toReleaseStatusValues(),
+      releaseStatus: (json['ReleaseStatus'] as String?)
+          ?.let(ReleaseStatusValues.fromString),
       replicationInstanceClass: json['ReplicationInstanceClass'] as String?,
       storageType: json['StorageType'] as String?,
     );
@@ -10648,7 +10337,7 @@ class OrderableReplicationInstance {
         'MaxAllocatedStorage': maxAllocatedStorage,
       if (minAllocatedStorage != null)
         'MinAllocatedStorage': minAllocatedStorage,
-      if (releaseStatus != null) 'ReleaseStatus': releaseStatus.toValue(),
+      if (releaseStatus != null) 'ReleaseStatus': releaseStatus.value,
       if (replicationInstanceClass != null)
         'ReplicationInstanceClass': replicationInstanceClass,
       if (storageType != null) 'StorageType': storageType,
@@ -10657,31 +10346,18 @@ class OrderableReplicationInstance {
 }
 
 enum ParquetVersionValue {
-  parquet_1_0,
-  parquet_2_0,
-}
+  parquet_1_0('parquet-1-0'),
+  parquet_2_0('parquet-2-0'),
+  ;
 
-extension ParquetVersionValueValueExtension on ParquetVersionValue {
-  String toValue() {
-    switch (this) {
-      case ParquetVersionValue.parquet_1_0:
-        return 'parquet-1-0';
-      case ParquetVersionValue.parquet_2_0:
-        return 'parquet-2-0';
-    }
-  }
-}
+  final String value;
 
-extension ParquetVersionValueFromString on String {
-  ParquetVersionValue toParquetVersionValue() {
-    switch (this) {
-      case 'parquet-1-0':
-        return ParquetVersionValue.parquet_1_0;
-      case 'parquet-2-0':
-        return ParquetVersionValue.parquet_2_0;
-    }
-    throw Exception('$this is not known in enum ParquetVersionValue');
-  }
+  const ParquetVersionValue(this.value);
+
+  static ParquetVersionValue fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum ParquetVersionValue'));
 }
 
 /// Describes a maintenance action pending for an DMS resource, including when
@@ -10760,36 +10436,19 @@ class PendingMaintenanceAction {
 }
 
 enum PluginNameValue {
-  noPreference,
-  testDecoding,
-  pglogical,
-}
+  noPreference('no-preference'),
+  testDecoding('test-decoding'),
+  pglogical('pglogical'),
+  ;
 
-extension PluginNameValueValueExtension on PluginNameValue {
-  String toValue() {
-    switch (this) {
-      case PluginNameValue.noPreference:
-        return 'no-preference';
-      case PluginNameValue.testDecoding:
-        return 'test-decoding';
-      case PluginNameValue.pglogical:
-        return 'pglogical';
-    }
-  }
-}
+  final String value;
 
-extension PluginNameValueFromString on String {
-  PluginNameValue toPluginNameValue() {
-    switch (this) {
-      case 'no-preference':
-        return PluginNameValue.noPreference;
-      case 'test-decoding':
-        return PluginNameValue.testDecoding;
-      case 'pglogical':
-        return PluginNameValue.pglogical;
-    }
-    throw Exception('$this is not known in enum PluginNameValue');
-  }
+  const PluginNameValue(this.value);
+
+  static PluginNameValue fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum PluginNameValue'));
 }
 
 /// Provides information that defines a PostgreSQL endpoint.
@@ -10971,7 +10630,8 @@ class PostgreSQLSettings {
       mapBooleanAsBoolean: json['MapBooleanAsBoolean'] as bool?,
       maxFileSize: json['MaxFileSize'] as int?,
       password: json['Password'] as String?,
-      pluginName: (json['PluginName'] as String?)?.toPluginNameValue(),
+      pluginName:
+          (json['PluginName'] as String?)?.let(PluginNameValue.fromString),
       port: json['Port'] as int?,
       secretsManagerAccessRoleArn:
           json['SecretsManagerAccessRoleArn'] as String?,
@@ -11019,7 +10679,7 @@ class PostgreSQLSettings {
         'MapBooleanAsBoolean': mapBooleanAsBoolean,
       if (maxFileSize != null) 'MaxFileSize': maxFileSize,
       if (password != null) 'Password': password,
-      if (pluginName != null) 'PluginName': pluginName.toValue(),
+      if (pluginName != null) 'PluginName': pluginName.value,
       if (port != null) 'Port': port,
       if (secretsManagerAccessRoleArn != null)
         'SecretsManagerAccessRoleArn': secretsManagerAccessRoleArn,
@@ -11401,36 +11061,19 @@ class RecommendationSettings {
 }
 
 enum RedisAuthTypeValue {
-  none,
-  authRole,
-  authToken,
-}
+  none('none'),
+  authRole('auth-role'),
+  authToken('auth-token'),
+  ;
 
-extension RedisAuthTypeValueValueExtension on RedisAuthTypeValue {
-  String toValue() {
-    switch (this) {
-      case RedisAuthTypeValue.none:
-        return 'none';
-      case RedisAuthTypeValue.authRole:
-        return 'auth-role';
-      case RedisAuthTypeValue.authToken:
-        return 'auth-token';
-    }
-  }
-}
+  final String value;
 
-extension RedisAuthTypeValueFromString on String {
-  RedisAuthTypeValue toRedisAuthTypeValue() {
-    switch (this) {
-      case 'none':
-        return RedisAuthTypeValue.none;
-      case 'auth-role':
-        return RedisAuthTypeValue.authRole;
-      case 'auth-token':
-        return RedisAuthTypeValue.authToken;
-    }
-    throw Exception('$this is not known in enum RedisAuthTypeValue');
-  }
+  const RedisAuthTypeValue(this.value);
+
+  static RedisAuthTypeValue fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum RedisAuthTypeValue'));
 }
 
 /// Provides information that defines a Redis target endpoint.
@@ -11489,11 +11132,12 @@ class RedisSettings {
       port: json['Port'] as int,
       serverName: json['ServerName'] as String,
       authPassword: json['AuthPassword'] as String?,
-      authType: (json['AuthType'] as String?)?.toRedisAuthTypeValue(),
+      authType:
+          (json['AuthType'] as String?)?.let(RedisAuthTypeValue.fromString),
       authUserName: json['AuthUserName'] as String?,
       sslCaCertificateArn: json['SslCaCertificateArn'] as String?,
       sslSecurityProtocol: (json['SslSecurityProtocol'] as String?)
-          ?.toSslSecurityProtocolValue(),
+          ?.let(SslSecurityProtocolValue.fromString),
     );
   }
 
@@ -11509,12 +11153,12 @@ class RedisSettings {
       'Port': port,
       'ServerName': serverName,
       if (authPassword != null) 'AuthPassword': authPassword,
-      if (authType != null) 'AuthType': authType.toValue(),
+      if (authType != null) 'AuthType': authType.value,
       if (authUserName != null) 'AuthUserName': authUserName,
       if (sslCaCertificateArn != null)
         'SslCaCertificateArn': sslCaCertificateArn,
       if (sslSecurityProtocol != null)
-        'SslSecurityProtocol': sslSecurityProtocol.toValue(),
+        'SslSecurityProtocol': sslSecurityProtocol.value,
     };
   }
 }
@@ -11774,8 +11418,8 @@ class RedshiftSettings {
       databaseName: json['DatabaseName'] as String?,
       dateFormat: json['DateFormat'] as String?,
       emptyAsNull: json['EmptyAsNull'] as bool?,
-      encryptionMode:
-          (json['EncryptionMode'] as String?)?.toEncryptionModeValue(),
+      encryptionMode: (json['EncryptionMode'] as String?)
+          ?.let(EncryptionModeValue.fromString),
       explicitIds: json['ExplicitIds'] as bool?,
       fileTransferUploadStreams: json['FileTransferUploadStreams'] as int?,
       loadTimeout: json['LoadTimeout'] as int?,
@@ -11844,7 +11488,7 @@ class RedshiftSettings {
       if (databaseName != null) 'DatabaseName': databaseName,
       if (dateFormat != null) 'DateFormat': dateFormat,
       if (emptyAsNull != null) 'EmptyAsNull': emptyAsNull,
-      if (encryptionMode != null) 'EncryptionMode': encryptionMode.toValue(),
+      if (encryptionMode != null) 'EncryptionMode': encryptionMode.value,
       if (explicitIds != null) 'ExplicitIds': explicitIds,
       if (fileTransferUploadStreams != null)
         'FileTransferUploadStreams': fileTransferUploadStreams,
@@ -11935,7 +11579,8 @@ class RefreshSchemasStatus {
       lastFailureMessage: json['LastFailureMessage'] as String?,
       lastRefreshDate: timeStampFromJson(json['LastRefreshDate']),
       replicationInstanceArn: json['ReplicationInstanceArn'] as String?,
-      status: (json['Status'] as String?)?.toRefreshSchemasStatusTypeValue(),
+      status: (json['Status'] as String?)
+          ?.let(RefreshSchemasStatusTypeValue.fromString),
     );
   }
 
@@ -11952,99 +11597,55 @@ class RefreshSchemasStatus {
         'LastRefreshDate': unixTimestampToJson(lastRefreshDate),
       if (replicationInstanceArn != null)
         'ReplicationInstanceArn': replicationInstanceArn,
-      if (status != null) 'Status': status.toValue(),
+      if (status != null) 'Status': status.value,
     };
   }
 }
 
 enum RefreshSchemasStatusTypeValue {
-  successful,
-  failed,
-  refreshing,
-}
+  successful('successful'),
+  failed('failed'),
+  refreshing('refreshing'),
+  ;
 
-extension RefreshSchemasStatusTypeValueValueExtension
-    on RefreshSchemasStatusTypeValue {
-  String toValue() {
-    switch (this) {
-      case RefreshSchemasStatusTypeValue.successful:
-        return 'successful';
-      case RefreshSchemasStatusTypeValue.failed:
-        return 'failed';
-      case RefreshSchemasStatusTypeValue.refreshing:
-        return 'refreshing';
-    }
-  }
-}
+  final String value;
 
-extension RefreshSchemasStatusTypeValueFromString on String {
-  RefreshSchemasStatusTypeValue toRefreshSchemasStatusTypeValue() {
-    switch (this) {
-      case 'successful':
-        return RefreshSchemasStatusTypeValue.successful;
-      case 'failed':
-        return RefreshSchemasStatusTypeValue.failed;
-      case 'refreshing':
-        return RefreshSchemasStatusTypeValue.refreshing;
-    }
-    throw Exception('$this is not known in enum RefreshSchemasStatusTypeValue');
-  }
+  const RefreshSchemasStatusTypeValue(this.value);
+
+  static RefreshSchemasStatusTypeValue fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum RefreshSchemasStatusTypeValue'));
 }
 
 enum ReleaseStatusValues {
-  beta,
-  prod,
-}
+  beta('beta'),
+  prod('prod'),
+  ;
 
-extension ReleaseStatusValuesValueExtension on ReleaseStatusValues {
-  String toValue() {
-    switch (this) {
-      case ReleaseStatusValues.beta:
-        return 'beta';
-      case ReleaseStatusValues.prod:
-        return 'prod';
-    }
-  }
-}
+  final String value;
 
-extension ReleaseStatusValuesFromString on String {
-  ReleaseStatusValues toReleaseStatusValues() {
-    switch (this) {
-      case 'beta':
-        return ReleaseStatusValues.beta;
-      case 'prod':
-        return ReleaseStatusValues.prod;
-    }
-    throw Exception('$this is not known in enum ReleaseStatusValues');
-  }
+  const ReleaseStatusValues(this.value);
+
+  static ReleaseStatusValues fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum ReleaseStatusValues'));
 }
 
 enum ReloadOptionValue {
-  dataReload,
-  validateOnly,
-}
+  dataReload('data-reload'),
+  validateOnly('validate-only'),
+  ;
 
-extension ReloadOptionValueValueExtension on ReloadOptionValue {
-  String toValue() {
-    switch (this) {
-      case ReloadOptionValue.dataReload:
-        return 'data-reload';
-      case ReloadOptionValue.validateOnly:
-        return 'validate-only';
-    }
-  }
-}
+  final String value;
 
-extension ReloadOptionValueFromString on String {
-  ReloadOptionValue toReloadOptionValue() {
-    switch (this) {
-      case 'data-reload':
-        return ReloadOptionValue.dataReload;
-      case 'validate-only':
-        return ReloadOptionValue.validateOnly;
-    }
-    throw Exception('$this is not known in enum ReloadOptionValue');
-  }
+  const ReloadOptionValue(this.value);
+
+  static ReloadOptionValue fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum ReloadOptionValue'));
 }
 
 class ReloadTablesResponse {
@@ -12083,32 +11684,18 @@ class RemoveTagsFromResourceResponse {
 }
 
 enum ReplicationEndpointTypeValue {
-  source,
-  target,
-}
+  source('source'),
+  target('target'),
+  ;
 
-extension ReplicationEndpointTypeValueValueExtension
-    on ReplicationEndpointTypeValue {
-  String toValue() {
-    switch (this) {
-      case ReplicationEndpointTypeValue.source:
-        return 'source';
-      case ReplicationEndpointTypeValue.target:
-        return 'target';
-    }
-  }
-}
+  final String value;
 
-extension ReplicationEndpointTypeValueFromString on String {
-  ReplicationEndpointTypeValue toReplicationEndpointTypeValue() {
-    switch (this) {
-      case 'source':
-        return ReplicationEndpointTypeValue.source;
-      case 'target':
-        return ReplicationEndpointTypeValue.target;
-    }
-    throw Exception('$this is not known in enum ReplicationEndpointTypeValue');
-  }
+  const ReplicationEndpointTypeValue(this.value);
+
+  static ReplicationEndpointTypeValue fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum ReplicationEndpointTypeValue'));
 }
 
 /// Provides information that defines a replication instance.
@@ -12898,7 +12485,8 @@ class ReplicationTask {
       cdcStartPosition: json['CdcStartPosition'] as String?,
       cdcStopPosition: json['CdcStopPosition'] as String?,
       lastFailureMessage: json['LastFailureMessage'] as String?,
-      migrationType: (json['MigrationType'] as String?)?.toMigrationTypeValue(),
+      migrationType: (json['MigrationType'] as String?)
+          ?.let(MigrationTypeValue.fromString),
       recoveryCheckpoint: json['RecoveryCheckpoint'] as String?,
       replicationInstanceArn: json['ReplicationInstanceArn'] as String?,
       replicationTaskArn: json['ReplicationTaskArn'] as String?,
@@ -12947,7 +12535,7 @@ class ReplicationTask {
       if (cdcStartPosition != null) 'CdcStartPosition': cdcStartPosition,
       if (cdcStopPosition != null) 'CdcStopPosition': cdcStopPosition,
       if (lastFailureMessage != null) 'LastFailureMessage': lastFailureMessage,
-      if (migrationType != null) 'MigrationType': migrationType.toValue(),
+      if (migrationType != null) 'MigrationType': migrationType.value,
       if (recoveryCheckpoint != null) 'RecoveryCheckpoint': recoveryCheckpoint,
       if (replicationInstanceArn != null)
         'ReplicationInstanceArn': replicationInstanceArn,
@@ -14089,31 +13677,33 @@ class S3Settings {
       bucketFolder: json['BucketFolder'] as String?,
       bucketName: json['BucketName'] as String?,
       cannedAclForObjects: (json['CannedAclForObjects'] as String?)
-          ?.toCannedAclForObjectsValue(),
+          ?.let(CannedAclForObjectsValue.fromString),
       cdcInsertsAndUpdates: json['CdcInsertsAndUpdates'] as bool?,
       cdcInsertsOnly: json['CdcInsertsOnly'] as bool?,
       cdcMaxBatchInterval: json['CdcMaxBatchInterval'] as int?,
       cdcMinFileSize: json['CdcMinFileSize'] as int?,
       cdcPath: json['CdcPath'] as String?,
-      compressionType:
-          (json['CompressionType'] as String?)?.toCompressionTypeValue(),
+      compressionType: (json['CompressionType'] as String?)
+          ?.let(CompressionTypeValue.fromString),
       csvDelimiter: json['CsvDelimiter'] as String?,
       csvNoSupValue: json['CsvNoSupValue'] as String?,
       csvNullValue: json['CsvNullValue'] as String?,
       csvRowDelimiter: json['CsvRowDelimiter'] as String?,
-      dataFormat: (json['DataFormat'] as String?)?.toDataFormatValue(),
+      dataFormat:
+          (json['DataFormat'] as String?)?.let(DataFormatValue.fromString),
       dataPageSize: json['DataPageSize'] as int?,
       datePartitionDelimiter: (json['DatePartitionDelimiter'] as String?)
-          ?.toDatePartitionDelimiterValue(),
+          ?.let(DatePartitionDelimiterValue.fromString),
       datePartitionEnabled: json['DatePartitionEnabled'] as bool?,
       datePartitionSequence: (json['DatePartitionSequence'] as String?)
-          ?.toDatePartitionSequenceValue(),
+          ?.let(DatePartitionSequenceValue.fromString),
       datePartitionTimezone: json['DatePartitionTimezone'] as String?,
       dictPageSizeLimit: json['DictPageSizeLimit'] as int?,
       enableStatistics: json['EnableStatistics'] as bool?,
-      encodingType: (json['EncodingType'] as String?)?.toEncodingTypeValue(),
-      encryptionMode:
-          (json['EncryptionMode'] as String?)?.toEncryptionModeValue(),
+      encodingType:
+          (json['EncodingType'] as String?)?.let(EncodingTypeValue.fromString),
+      encryptionMode: (json['EncryptionMode'] as String?)
+          ?.let(EncryptionModeValue.fromString),
       expectedBucketOwner: json['ExpectedBucketOwner'] as String?,
       externalTableDefinition: json['ExternalTableDefinition'] as String?,
       glueCatalogGeneration: json['GlueCatalogGeneration'] as bool?,
@@ -14122,8 +13712,8 @@ class S3Settings {
       maxFileSize: json['MaxFileSize'] as int?,
       parquetTimestampInMillisecond:
           json['ParquetTimestampInMillisecond'] as bool?,
-      parquetVersion:
-          (json['ParquetVersion'] as String?)?.toParquetVersionValue(),
+      parquetVersion: (json['ParquetVersion'] as String?)
+          ?.let(ParquetVersionValue.fromString),
       preserveTransactions: json['PreserveTransactions'] as bool?,
       rfc4180: json['Rfc4180'] as bool?,
       rowGroupLength: json['RowGroupLength'] as int?,
@@ -14187,7 +13777,7 @@ class S3Settings {
       if (bucketFolder != null) 'BucketFolder': bucketFolder,
       if (bucketName != null) 'BucketName': bucketName,
       if (cannedAclForObjects != null)
-        'CannedAclForObjects': cannedAclForObjects.toValue(),
+        'CannedAclForObjects': cannedAclForObjects.value,
       if (cdcInsertsAndUpdates != null)
         'CdcInsertsAndUpdates': cdcInsertsAndUpdates,
       if (cdcInsertsOnly != null) 'CdcInsertsOnly': cdcInsertsOnly,
@@ -14195,25 +13785,25 @@ class S3Settings {
         'CdcMaxBatchInterval': cdcMaxBatchInterval,
       if (cdcMinFileSize != null) 'CdcMinFileSize': cdcMinFileSize,
       if (cdcPath != null) 'CdcPath': cdcPath,
-      if (compressionType != null) 'CompressionType': compressionType.toValue(),
+      if (compressionType != null) 'CompressionType': compressionType.value,
       if (csvDelimiter != null) 'CsvDelimiter': csvDelimiter,
       if (csvNoSupValue != null) 'CsvNoSupValue': csvNoSupValue,
       if (csvNullValue != null) 'CsvNullValue': csvNullValue,
       if (csvRowDelimiter != null) 'CsvRowDelimiter': csvRowDelimiter,
-      if (dataFormat != null) 'DataFormat': dataFormat.toValue(),
+      if (dataFormat != null) 'DataFormat': dataFormat.value,
       if (dataPageSize != null) 'DataPageSize': dataPageSize,
       if (datePartitionDelimiter != null)
-        'DatePartitionDelimiter': datePartitionDelimiter.toValue(),
+        'DatePartitionDelimiter': datePartitionDelimiter.value,
       if (datePartitionEnabled != null)
         'DatePartitionEnabled': datePartitionEnabled,
       if (datePartitionSequence != null)
-        'DatePartitionSequence': datePartitionSequence.toValue(),
+        'DatePartitionSequence': datePartitionSequence.value,
       if (datePartitionTimezone != null)
         'DatePartitionTimezone': datePartitionTimezone,
       if (dictPageSizeLimit != null) 'DictPageSizeLimit': dictPageSizeLimit,
       if (enableStatistics != null) 'EnableStatistics': enableStatistics,
-      if (encodingType != null) 'EncodingType': encodingType.toValue(),
-      if (encryptionMode != null) 'EncryptionMode': encryptionMode.toValue(),
+      if (encodingType != null) 'EncodingType': encodingType.value,
+      if (encryptionMode != null) 'EncryptionMode': encryptionMode.value,
       if (expectedBucketOwner != null)
         'ExpectedBucketOwner': expectedBucketOwner,
       if (externalTableDefinition != null)
@@ -14226,7 +13816,7 @@ class S3Settings {
       if (maxFileSize != null) 'MaxFileSize': maxFileSize,
       if (parquetTimestampInMillisecond != null)
         'ParquetTimestampInMillisecond': parquetTimestampInMillisecond,
-      if (parquetVersion != null) 'ParquetVersion': parquetVersion.toValue(),
+      if (parquetVersion != null) 'ParquetVersion': parquetVersion.value,
       if (preserveTransactions != null)
         'PreserveTransactions': preserveTransactions,
       if (rfc4180 != null) 'Rfc4180': rfc4180,
@@ -14246,36 +13836,19 @@ class S3Settings {
 }
 
 enum SafeguardPolicy {
-  relyOnSqlServerReplicationAgent,
-  exclusiveAutomaticTruncation,
-  sharedAutomaticTruncation,
-}
+  relyOnSqlServerReplicationAgent('rely-on-sql-server-replication-agent'),
+  exclusiveAutomaticTruncation('exclusive-automatic-truncation'),
+  sharedAutomaticTruncation('shared-automatic-truncation'),
+  ;
 
-extension SafeguardPolicyValueExtension on SafeguardPolicy {
-  String toValue() {
-    switch (this) {
-      case SafeguardPolicy.relyOnSqlServerReplicationAgent:
-        return 'rely-on-sql-server-replication-agent';
-      case SafeguardPolicy.exclusiveAutomaticTruncation:
-        return 'exclusive-automatic-truncation';
-      case SafeguardPolicy.sharedAutomaticTruncation:
-        return 'shared-automatic-truncation';
-    }
-  }
-}
+  final String value;
 
-extension SafeguardPolicyFromString on String {
-  SafeguardPolicy toSafeguardPolicy() {
-    switch (this) {
-      case 'rely-on-sql-server-replication-agent':
-        return SafeguardPolicy.relyOnSqlServerReplicationAgent;
-      case 'exclusive-automatic-truncation':
-        return SafeguardPolicy.exclusiveAutomaticTruncation;
-      case 'shared-automatic-truncation':
-        return SafeguardPolicy.sharedAutomaticTruncation;
-    }
-    throw Exception('$this is not known in enum SafeguardPolicy');
-  }
+  const SafeguardPolicy(this.value);
+
+  static SafeguardPolicy fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum SafeguardPolicy'));
 }
 
 /// Describes a schema in a Fleet Advisor collector inventory.
@@ -14457,54 +14030,31 @@ class ServerShortInfoResponse {
 }
 
 enum SourceType {
-  replicationInstance,
-}
+  replicationInstance('replication-instance'),
+  ;
 
-extension SourceTypeValueExtension on SourceType {
-  String toValue() {
-    switch (this) {
-      case SourceType.replicationInstance:
-        return 'replication-instance';
-    }
-  }
-}
+  final String value;
 
-extension SourceTypeFromString on String {
-  SourceType toSourceType() {
-    switch (this) {
-      case 'replication-instance':
-        return SourceType.replicationInstance;
-    }
-    throw Exception('$this is not known in enum SourceType');
-  }
+  const SourceType(this.value);
+
+  static SourceType fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum SourceType'));
 }
 
 enum SslSecurityProtocolValue {
-  plaintext,
-  sslEncryption,
-}
+  plaintext('plaintext'),
+  sslEncryption('ssl-encryption'),
+  ;
 
-extension SslSecurityProtocolValueValueExtension on SslSecurityProtocolValue {
-  String toValue() {
-    switch (this) {
-      case SslSecurityProtocolValue.plaintext:
-        return 'plaintext';
-      case SslSecurityProtocolValue.sslEncryption:
-        return 'ssl-encryption';
-    }
-  }
-}
+  final String value;
 
-extension SslSecurityProtocolValueFromString on String {
-  SslSecurityProtocolValue toSslSecurityProtocolValue() {
-    switch (this) {
-      case 'plaintext':
-        return SslSecurityProtocolValue.plaintext;
-      case 'ssl-encryption':
-        return SslSecurityProtocolValue.sslEncryption;
-    }
-    throw Exception('$this is not known in enum SslSecurityProtocolValue');
-  }
+  const SslSecurityProtocolValue(this.value);
+
+  static SslSecurityProtocolValue fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum SslSecurityProtocolValue'));
 }
 
 /// Provides information about the source database to analyze and provide target
@@ -14613,37 +14163,19 @@ class StartReplicationTaskResponse {
 }
 
 enum StartReplicationTaskTypeValue {
-  startReplication,
-  resumeProcessing,
-  reloadTarget,
-}
+  startReplication('start-replication'),
+  resumeProcessing('resume-processing'),
+  reloadTarget('reload-target'),
+  ;
 
-extension StartReplicationTaskTypeValueValueExtension
-    on StartReplicationTaskTypeValue {
-  String toValue() {
-    switch (this) {
-      case StartReplicationTaskTypeValue.startReplication:
-        return 'start-replication';
-      case StartReplicationTaskTypeValue.resumeProcessing:
-        return 'resume-processing';
-      case StartReplicationTaskTypeValue.reloadTarget:
-        return 'reload-target';
-    }
-  }
-}
+  final String value;
 
-extension StartReplicationTaskTypeValueFromString on String {
-  StartReplicationTaskTypeValue toStartReplicationTaskTypeValue() {
-    switch (this) {
-      case 'start-replication':
-        return StartReplicationTaskTypeValue.startReplication;
-      case 'resume-processing':
-        return StartReplicationTaskTypeValue.resumeProcessing;
-      case 'reload-target':
-        return StartReplicationTaskTypeValue.reloadTarget;
-    }
-    throw Exception('$this is not known in enum StartReplicationTaskTypeValue');
-  }
+  const StartReplicationTaskTypeValue(this.value);
+
+  static StartReplicationTaskTypeValue fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum StartReplicationTaskTypeValue'));
 }
 
 /// <p/>
@@ -14759,8 +14291,8 @@ class SupportedEndpointType {
 
   factory SupportedEndpointType.fromJson(Map<String, dynamic> json) {
     return SupportedEndpointType(
-      endpointType:
-          (json['EndpointType'] as String?)?.toReplicationEndpointTypeValue(),
+      endpointType: (json['EndpointType'] as String?)
+          ?.let(ReplicationEndpointTypeValue.fromString),
       engineDisplayName: json['EngineDisplayName'] as String?,
       engineName: json['EngineName'] as String?,
       replicationInstanceEngineMinimumVersion:
@@ -14777,7 +14309,7 @@ class SupportedEndpointType {
         this.replicationInstanceEngineMinimumVersion;
     final supportsCDC = this.supportsCDC;
     return {
-      if (endpointType != null) 'EndpointType': endpointType.toValue(),
+      if (endpointType != null) 'EndpointType': endpointType.value,
       if (engineDisplayName != null) 'EngineDisplayName': engineDisplayName,
       if (engineName != null) 'EngineName': engineName,
       if (replicationInstanceEngineMinimumVersion != null)
@@ -15198,31 +14730,18 @@ class Tag {
 }
 
 enum TargetDbType {
-  specificDatabase,
-  multipleDatabases,
-}
+  specificDatabase('specific-database'),
+  multipleDatabases('multiple-databases'),
+  ;
 
-extension TargetDbTypeValueExtension on TargetDbType {
-  String toValue() {
-    switch (this) {
-      case TargetDbType.specificDatabase:
-        return 'specific-database';
-      case TargetDbType.multipleDatabases:
-        return 'multiple-databases';
-    }
-  }
-}
+  final String value;
 
-extension TargetDbTypeFromString on String {
-  TargetDbType toTargetDbType() {
-    switch (this) {
-      case 'specific-database':
-        return TargetDbType.specificDatabase;
-      case 'multiple-databases':
-        return TargetDbType.multipleDatabases;
-    }
-    throw Exception('$this is not known in enum TargetDbType');
-  }
+  const TargetDbType(this.value);
+
+  static TargetDbType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum TargetDbType'));
 }
 
 /// <p/>
@@ -15251,41 +14770,20 @@ class TestConnectionResponse {
 }
 
 enum TlogAccessMode {
-  backupOnly,
-  preferBackup,
-  preferTlog,
-  tlogOnly,
-}
+  backupOnly('BackupOnly'),
+  preferBackup('PreferBackup'),
+  preferTlog('PreferTlog'),
+  tlogOnly('TlogOnly'),
+  ;
 
-extension TlogAccessModeValueExtension on TlogAccessMode {
-  String toValue() {
-    switch (this) {
-      case TlogAccessMode.backupOnly:
-        return 'BackupOnly';
-      case TlogAccessMode.preferBackup:
-        return 'PreferBackup';
-      case TlogAccessMode.preferTlog:
-        return 'PreferTlog';
-      case TlogAccessMode.tlogOnly:
-        return 'TlogOnly';
-    }
-  }
-}
+  final String value;
 
-extension TlogAccessModeFromString on String {
-  TlogAccessMode toTlogAccessMode() {
-    switch (this) {
-      case 'BackupOnly':
-        return TlogAccessMode.backupOnly;
-      case 'PreferBackup':
-        return TlogAccessMode.preferBackup;
-      case 'PreferTlog':
-        return TlogAccessMode.preferTlog;
-      case 'TlogOnly':
-        return TlogAccessMode.tlogOnly;
-    }
-    throw Exception('$this is not known in enum TlogAccessMode');
-  }
+  const TlogAccessMode(this.value);
+
+  static TlogAccessMode fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum TlogAccessMode'));
 }
 
 /// <p/>
@@ -15314,36 +14812,19 @@ class UpdateSubscriptionsToEventBridgeResponse {
 }
 
 enum VersionStatus {
-  upToDate,
-  outdated,
-  unsupported,
-}
+  upToDate('UP_TO_DATE'),
+  outdated('OUTDATED'),
+  unsupported('UNSUPPORTED'),
+  ;
 
-extension VersionStatusValueExtension on VersionStatus {
-  String toValue() {
-    switch (this) {
-      case VersionStatus.upToDate:
-        return 'UP_TO_DATE';
-      case VersionStatus.outdated:
-        return 'OUTDATED';
-      case VersionStatus.unsupported:
-        return 'UNSUPPORTED';
-    }
-  }
-}
+  final String value;
 
-extension VersionStatusFromString on String {
-  VersionStatus toVersionStatus() {
-    switch (this) {
-      case 'UP_TO_DATE':
-        return VersionStatus.upToDate;
-      case 'OUTDATED':
-        return VersionStatus.outdated;
-      case 'UNSUPPORTED':
-        return VersionStatus.unsupported;
-    }
-    throw Exception('$this is not known in enum VersionStatus');
-  }
+  const VersionStatus(this.value);
+
+  static VersionStatus fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum VersionStatus'));
 }
 
 /// Describes the status of a security group associated with the virtual private

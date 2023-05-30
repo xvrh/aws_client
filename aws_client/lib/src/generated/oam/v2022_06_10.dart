@@ -140,7 +140,7 @@ class CloudWatchObservabilityAccessManager {
   }) async {
     final $payload = <String, dynamic>{
       'LabelTemplate': labelTemplate,
-      'ResourceTypes': resourceTypes.map((e) => e.toValue()).toList(),
+      'ResourceTypes': resourceTypes.map((e) => e.value).toList(),
       'SinkIdentifier': sinkIdentifier,
       if (tags != null) 'Tags': tags,
     };
@@ -681,7 +681,7 @@ class CloudWatchObservabilityAccessManager {
   }) async {
     final $payload = <String, dynamic>{
       'Identifier': identifier,
-      'ResourceTypes': resourceTypes.map((e) => e.toValue()).toList(),
+      'ResourceTypes': resourceTypes.map((e) => e.value).toList(),
     };
     final response = await _protocol.send(
       payload: $payload,
@@ -1285,36 +1285,19 @@ class PutSinkPolicyOutput {
 }
 
 enum ResourceType {
-  awsCloudWatchMetric,
-  awsLogsLogGroup,
-  awsXRayTrace,
-}
+  awsCloudWatchMetric('AWS::CloudWatch::Metric'),
+  awsLogsLogGroup('AWS::Logs::LogGroup'),
+  awsXRayTrace('AWS::XRay::Trace'),
+  ;
 
-extension ResourceTypeValueExtension on ResourceType {
-  String toValue() {
-    switch (this) {
-      case ResourceType.awsCloudWatchMetric:
-        return 'AWS::CloudWatch::Metric';
-      case ResourceType.awsLogsLogGroup:
-        return 'AWS::Logs::LogGroup';
-      case ResourceType.awsXRayTrace:
-        return 'AWS::XRay::Trace';
-    }
-  }
-}
+  final String value;
 
-extension ResourceTypeFromString on String {
-  ResourceType toResourceType() {
-    switch (this) {
-      case 'AWS::CloudWatch::Metric':
-        return ResourceType.awsCloudWatchMetric;
-      case 'AWS::Logs::LogGroup':
-        return ResourceType.awsLogsLogGroup;
-      case 'AWS::XRay::Trace':
-        return ResourceType.awsXRayTrace;
-    }
-    throw Exception('$this is not known in enum ResourceType');
-  }
+  const ResourceType(this.value);
+
+  static ResourceType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum ResourceType'));
 }
 
 class TagResourceOutput {

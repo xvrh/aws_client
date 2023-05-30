@@ -440,7 +440,7 @@ class WorkMail {
         'Name': name,
         'OrganizationId': organizationId,
         'Rules': rules,
-        'Type': type.toValue(),
+        'Type': type.value,
         'ClientToken': clientToken ?? _s.generateIdempotencyToken(),
         if (description != null) 'Description': description,
       },
@@ -526,7 +526,7 @@ class WorkMail {
       // TODO queryParams
       headers: headers,
       payload: {
-        'Effect': effect.toValue(),
+        'Effect': effect.value,
         'Name': name,
         'OrganizationId': organizationId,
         'ClientToken': clientToken ?? _s.generateIdempotencyToken(),
@@ -666,7 +666,7 @@ class WorkMail {
       payload: {
         'Name': name,
         'OrganizationId': organizationId,
-        'Type': type.toValue(),
+        'Type': type.value,
       },
     );
 
@@ -2794,7 +2794,7 @@ class WorkMail {
       headers: headers,
       payload: {
         'Description': description,
-        'Effect': effect.toValue(),
+        'Effect': effect.value,
         'Name': name,
         'OrganizationId': organizationId,
         if (actions != null) 'Actions': actions,
@@ -2933,7 +2933,7 @@ class WorkMail {
         'EntityId': entityId,
         'GranteeId': granteeId,
         'OrganizationId': organizationId,
-        'PermissionValues': permissionValues.map((e) => e.toValue()).toList(),
+        'PermissionValues': permissionValues.map((e) => e.value).toList(),
       },
     );
   }
@@ -2995,7 +2995,7 @@ class WorkMail {
       headers: headers,
       payload: {
         'DeviceId': deviceId,
-        'Effect': effect.toValue(),
+        'Effect': effect.value,
         'OrganizationId': organizationId,
         'UserId': userId,
         if (description != null) 'Description': description,
@@ -3518,7 +3518,7 @@ class WorkMail {
         'Name': name,
         'OrganizationId': organizationId,
         'Rules': rules,
-        'Type': type.toValue(),
+        'Type': type.value,
         if (description != null) 'Description': description,
       },
     );
@@ -3649,7 +3649,7 @@ class WorkMail {
       // TODO queryParams
       headers: headers,
       payload: {
-        'Effect': effect.toValue(),
+        'Effect': effect.value,
         'MobileDeviceAccessRuleId': mobileDeviceAccessRuleId,
         'Name': name,
         'OrganizationId': organizationId,
@@ -3844,7 +3844,8 @@ class AccessControlRule {
       dateCreated: timeStampFromJson(json['DateCreated']),
       dateModified: timeStampFromJson(json['DateModified']),
       description: json['Description'] as String?,
-      effect: (json['Effect'] as String?)?.toAccessControlRuleEffect(),
+      effect:
+          (json['Effect'] as String?)?.let(AccessControlRuleEffect.fromString),
       impersonationRoleIds: (json['ImpersonationRoleIds'] as List?)
           ?.whereNotNull()
           .map((e) => e as String)
@@ -3897,7 +3898,7 @@ class AccessControlRule {
       if (dateModified != null)
         'DateModified': unixTimestampToJson(dateModified),
       if (description != null) 'Description': description,
-      if (effect != null) 'Effect': effect.toValue(),
+      if (effect != null) 'Effect': effect.value,
       if (impersonationRoleIds != null)
         'ImpersonationRoleIds': impersonationRoleIds,
       if (ipRanges != null) 'IpRanges': ipRanges,
@@ -3913,59 +3914,33 @@ class AccessControlRule {
 }
 
 enum AccessControlRuleEffect {
-  allow,
-  deny,
-}
+  allow('ALLOW'),
+  deny('DENY'),
+  ;
 
-extension AccessControlRuleEffectValueExtension on AccessControlRuleEffect {
-  String toValue() {
-    switch (this) {
-      case AccessControlRuleEffect.allow:
-        return 'ALLOW';
-      case AccessControlRuleEffect.deny:
-        return 'DENY';
-    }
-  }
-}
+  final String value;
 
-extension AccessControlRuleEffectFromString on String {
-  AccessControlRuleEffect toAccessControlRuleEffect() {
-    switch (this) {
-      case 'ALLOW':
-        return AccessControlRuleEffect.allow;
-      case 'DENY':
-        return AccessControlRuleEffect.deny;
-    }
-    throw Exception('$this is not known in enum AccessControlRuleEffect');
-  }
+  const AccessControlRuleEffect(this.value);
+
+  static AccessControlRuleEffect fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum AccessControlRuleEffect'));
 }
 
 enum AccessEffect {
-  allow,
-  deny,
-}
+  allow('ALLOW'),
+  deny('DENY'),
+  ;
 
-extension AccessEffectValueExtension on AccessEffect {
-  String toValue() {
-    switch (this) {
-      case AccessEffect.allow:
-        return 'ALLOW';
-      case AccessEffect.deny:
-        return 'DENY';
-    }
-  }
-}
+  final String value;
 
-extension AccessEffectFromString on String {
-  AccessEffect toAccessEffect() {
-    switch (this) {
-      case 'ALLOW':
-        return AccessEffect.allow;
-      case 'DENY':
-        return AccessEffect.deny;
-    }
-    throw Exception('$this is not known in enum AccessEffect');
-  }
+  const AccessEffect(this.value);
+
+  static AccessEffect fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum AccessEffect'));
 }
 
 class AssociateDelegateToResourceResponse {
@@ -4066,8 +4041,8 @@ class AvailabilityConfiguration {
           ? LambdaAvailabilityProvider.fromJson(
               json['LambdaProvider'] as Map<String, dynamic>)
           : null,
-      providerType:
-          (json['ProviderType'] as String?)?.toAvailabilityProviderType(),
+      providerType: (json['ProviderType'] as String?)
+          ?.let(AvailabilityProviderType.fromString),
     );
   }
 
@@ -4085,37 +4060,24 @@ class AvailabilityConfiguration {
       if (domainName != null) 'DomainName': domainName,
       if (ewsProvider != null) 'EwsProvider': ewsProvider,
       if (lambdaProvider != null) 'LambdaProvider': lambdaProvider,
-      if (providerType != null) 'ProviderType': providerType.toValue(),
+      if (providerType != null) 'ProviderType': providerType.value,
     };
   }
 }
 
 enum AvailabilityProviderType {
-  ews,
-  lambda,
-}
+  ews('EWS'),
+  lambda('LAMBDA'),
+  ;
 
-extension AvailabilityProviderTypeValueExtension on AvailabilityProviderType {
-  String toValue() {
-    switch (this) {
-      case AvailabilityProviderType.ews:
-        return 'EWS';
-      case AvailabilityProviderType.lambda:
-        return 'LAMBDA';
-    }
-  }
-}
+  final String value;
 
-extension AvailabilityProviderTypeFromString on String {
-  AvailabilityProviderType toAvailabilityProviderType() {
-    switch (this) {
-      case 'EWS':
-        return AvailabilityProviderType.ews;
-      case 'LAMBDA':
-        return AvailabilityProviderType.lambda;
-    }
-    throw Exception('$this is not known in enum AvailabilityProviderType');
-  }
+  const AvailabilityProviderType(this.value);
+
+  static AvailabilityProviderType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum AvailabilityProviderType'));
 }
 
 /// At least one delegate must be associated to the resource to disable
@@ -4350,7 +4312,7 @@ class Delegate {
   factory Delegate.fromJson(Map<String, dynamic> json) {
     return Delegate(
       id: json['Id'] as String,
-      type: (json['Type'] as String).toMemberType(),
+      type: MemberType.fromString((json['Type'] as String)),
     );
   }
 
@@ -4359,7 +4321,7 @@ class Delegate {
     final type = this.type;
     return {
       'Id': id,
-      'Type': type.toValue(),
+      'Type': type.value,
     };
   }
 }
@@ -4635,7 +4597,7 @@ class DescribeGroupResponse {
       enabledDate: timeStampFromJson(json['EnabledDate']),
       groupId: json['GroupId'] as String?,
       name: json['Name'] as String?,
-      state: (json['State'] as String?)?.toEntityState(),
+      state: (json['State'] as String?)?.let(EntityState.fromString),
     );
   }
 
@@ -4653,7 +4615,7 @@ class DescribeGroupResponse {
       if (enabledDate != null) 'EnabledDate': unixTimestampToJson(enabledDate),
       if (groupId != null) 'GroupId': groupId,
       if (name != null) 'Name': name,
-      if (state != null) 'State': state.toValue(),
+      if (state != null) 'State': state.value,
     };
   }
 }
@@ -4749,7 +4711,7 @@ class DescribeMailboxExportJobResponse {
       s3Path: json['S3Path'] as String?,
       s3Prefix: json['S3Prefix'] as String?,
       startTime: timeStampFromJson(json['StartTime']),
-      state: (json['State'] as String?)?.toMailboxExportJobState(),
+      state: (json['State'] as String?)?.let(MailboxExportJobState.fromString),
     );
   }
 
@@ -4778,7 +4740,7 @@ class DescribeMailboxExportJobResponse {
       if (s3Path != null) 'S3Path': s3Path,
       if (s3Prefix != null) 'S3Prefix': s3Prefix,
       if (startTime != null) 'StartTime': unixTimestampToJson(startTime),
-      if (state != null) 'State': state.toValue(),
+      if (state != null) 'State': state.value,
     };
   }
 }
@@ -4914,8 +4876,8 @@ class DescribeResourceResponse {
       enabledDate: timeStampFromJson(json['EnabledDate']),
       name: json['Name'] as String?,
       resourceId: json['ResourceId'] as String?,
-      state: (json['State'] as String?)?.toEntityState(),
-      type: (json['Type'] as String?)?.toResourceType(),
+      state: (json['State'] as String?)?.let(EntityState.fromString),
+      type: (json['Type'] as String?)?.let(ResourceType.fromString),
     );
   }
 
@@ -4936,8 +4898,8 @@ class DescribeResourceResponse {
       if (enabledDate != null) 'EnabledDate': unixTimestampToJson(enabledDate),
       if (name != null) 'Name': name,
       if (resourceId != null) 'ResourceId': resourceId,
-      if (state != null) 'State': state.toValue(),
-      if (type != null) 'Type': type.toValue(),
+      if (state != null) 'State': state.value,
+      if (type != null) 'Type': type.value,
     };
   }
 }
@@ -4993,9 +4955,9 @@ class DescribeUserResponse {
       email: json['Email'] as String?,
       enabledDate: timeStampFromJson(json['EnabledDate']),
       name: json['Name'] as String?,
-      state: (json['State'] as String?)?.toEntityState(),
+      state: (json['State'] as String?)?.let(EntityState.fromString),
       userId: json['UserId'] as String?,
-      userRole: (json['UserRole'] as String?)?.toUserRole(),
+      userRole: (json['UserRole'] as String?)?.let(UserRole.fromString),
     );
   }
 
@@ -5015,9 +4977,9 @@ class DescribeUserResponse {
       if (email != null) 'Email': email,
       if (enabledDate != null) 'EnabledDate': unixTimestampToJson(enabledDate),
       if (name != null) 'Name': name,
-      if (state != null) 'State': state.toValue(),
+      if (state != null) 'State': state.value,
       if (userId != null) 'UserId': userId,
-      if (userRole != null) 'UserRole': userRole.toValue(),
+      if (userRole != null) 'UserRole': userRole.value,
     };
   }
 }
@@ -5086,37 +5048,19 @@ class DnsRecord {
 }
 
 enum DnsRecordVerificationStatus {
-  pending,
-  verified,
-  failed,
-}
+  pending('PENDING'),
+  verified('VERIFIED'),
+  failed('FAILED'),
+  ;
 
-extension DnsRecordVerificationStatusValueExtension
-    on DnsRecordVerificationStatus {
-  String toValue() {
-    switch (this) {
-      case DnsRecordVerificationStatus.pending:
-        return 'PENDING';
-      case DnsRecordVerificationStatus.verified:
-        return 'VERIFIED';
-      case DnsRecordVerificationStatus.failed:
-        return 'FAILED';
-    }
-  }
-}
+  final String value;
 
-extension DnsRecordVerificationStatusFromString on String {
-  DnsRecordVerificationStatus toDnsRecordVerificationStatus() {
-    switch (this) {
-      case 'PENDING':
-        return DnsRecordVerificationStatus.pending;
-      case 'VERIFIED':
-        return DnsRecordVerificationStatus.verified;
-      case 'FAILED':
-        return DnsRecordVerificationStatus.failed;
-    }
-    throw Exception('$this is not known in enum DnsRecordVerificationStatus');
-  }
+  const DnsRecordVerificationStatus(this.value);
+
+  static DnsRecordVerificationStatus fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum DnsRecordVerificationStatus'));
 }
 
 /// The domain to associate with an WorkMail organization.
@@ -5150,36 +5094,18 @@ class Domain {
 }
 
 enum EntityState {
-  enabled,
-  disabled,
-  deleted,
-}
+  enabled('ENABLED'),
+  disabled('DISABLED'),
+  deleted('DELETED'),
+  ;
 
-extension EntityStateValueExtension on EntityState {
-  String toValue() {
-    switch (this) {
-      case EntityState.enabled:
-        return 'ENABLED';
-      case EntityState.disabled:
-        return 'DISABLED';
-      case EntityState.deleted:
-        return 'DELETED';
-    }
-  }
-}
+  final String value;
 
-extension EntityStateFromString on String {
-  EntityState toEntityState() {
-    switch (this) {
-      case 'ENABLED':
-        return EntityState.enabled;
-      case 'DISABLED':
-        return EntityState.disabled;
-      case 'DELETED':
-        return EntityState.deleted;
-    }
-    throw Exception('$this is not known in enum EntityState');
-  }
+  const EntityState(this.value);
+
+  static EntityState fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum EntityState'));
 }
 
 /// Describes an EWS based availability provider. This is only used as input to
@@ -5233,8 +5159,8 @@ class FolderConfiguration {
 
   factory FolderConfiguration.fromJson(Map<String, dynamic> json) {
     return FolderConfiguration(
-      action: (json['Action'] as String).toRetentionAction(),
-      name: (json['Name'] as String).toFolderName(),
+      action: RetentionAction.fromString((json['Action'] as String)),
+      name: FolderName.fromString((json['Name'] as String)),
       period: json['Period'] as int?,
     );
   }
@@ -5244,54 +5170,28 @@ class FolderConfiguration {
     final name = this.name;
     final period = this.period;
     return {
-      'Action': action.toValue(),
-      'Name': name.toValue(),
+      'Action': action.value,
+      'Name': name.value,
       if (period != null) 'Period': period,
     };
   }
 }
 
 enum FolderName {
-  inbox,
-  deletedItems,
-  sentItems,
-  drafts,
-  junkEmail,
-}
+  inbox('INBOX'),
+  deletedItems('DELETED_ITEMS'),
+  sentItems('SENT_ITEMS'),
+  drafts('DRAFTS'),
+  junkEmail('JUNK_EMAIL'),
+  ;
 
-extension FolderNameValueExtension on FolderName {
-  String toValue() {
-    switch (this) {
-      case FolderName.inbox:
-        return 'INBOX';
-      case FolderName.deletedItems:
-        return 'DELETED_ITEMS';
-      case FolderName.sentItems:
-        return 'SENT_ITEMS';
-      case FolderName.drafts:
-        return 'DRAFTS';
-      case FolderName.junkEmail:
-        return 'JUNK_EMAIL';
-    }
-  }
-}
+  final String value;
 
-extension FolderNameFromString on String {
-  FolderName toFolderName() {
-    switch (this) {
-      case 'INBOX':
-        return FolderName.inbox;
-      case 'DELETED_ITEMS':
-        return FolderName.deletedItems;
-      case 'SENT_ITEMS':
-        return FolderName.sentItems;
-      case 'DRAFTS':
-        return FolderName.drafts;
-      case 'JUNK_EMAIL':
-        return FolderName.junkEmail;
-    }
-    throw Exception('$this is not known in enum FolderName');
-  }
+  const FolderName(this.value);
+
+  static FolderName fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum FolderName'));
 }
 
 class GetAccessControlEffectResponse {
@@ -5308,7 +5208,8 @@ class GetAccessControlEffectResponse {
 
   factory GetAccessControlEffectResponse.fromJson(Map<String, dynamic> json) {
     return GetAccessControlEffectResponse(
-      effect: (json['Effect'] as String?)?.toAccessControlRuleEffect(),
+      effect:
+          (json['Effect'] as String?)?.let(AccessControlRuleEffect.fromString),
       matchedRules: (json['MatchedRules'] as List?)
           ?.whereNotNull()
           .map((e) => e as String)
@@ -5320,7 +5221,7 @@ class GetAccessControlEffectResponse {
     final effect = this.effect;
     final matchedRules = this.matchedRules;
     return {
-      if (effect != null) 'Effect': effect.toValue(),
+      if (effect != null) 'Effect': effect.value,
       if (matchedRules != null) 'MatchedRules': matchedRules,
     };
   }
@@ -5394,13 +5295,13 @@ class GetImpersonationRoleEffectResponse {
   factory GetImpersonationRoleEffectResponse.fromJson(
       Map<String, dynamic> json) {
     return GetImpersonationRoleEffectResponse(
-      effect: (json['Effect'] as String?)?.toAccessEffect(),
+      effect: (json['Effect'] as String?)?.let(AccessEffect.fromString),
       matchedRules: (json['MatchedRules'] as List?)
           ?.whereNotNull()
           .map((e) =>
               ImpersonationMatchedRule.fromJson(e as Map<String, dynamic>))
           .toList(),
-      type: (json['Type'] as String?)?.toImpersonationRoleType(),
+      type: (json['Type'] as String?)?.let(ImpersonationRoleType.fromString),
     );
   }
 
@@ -5409,9 +5310,9 @@ class GetImpersonationRoleEffectResponse {
     final matchedRules = this.matchedRules;
     final type = this.type;
     return {
-      if (effect != null) 'Effect': effect.toValue(),
+      if (effect != null) 'Effect': effect.value,
       if (matchedRules != null) 'MatchedRules': matchedRules,
-      if (type != null) 'Type': type.toValue(),
+      if (type != null) 'Type': type.value,
     };
   }
 }
@@ -5459,7 +5360,7 @@ class GetImpersonationRoleResponse {
           ?.whereNotNull()
           .map((e) => ImpersonationRule.fromJson(e as Map<String, dynamic>))
           .toList(),
-      type: (json['Type'] as String?)?.toImpersonationRoleType(),
+      type: (json['Type'] as String?)?.let(ImpersonationRoleType.fromString),
     );
   }
 
@@ -5480,7 +5381,7 @@ class GetImpersonationRoleResponse {
         'ImpersonationRoleId': impersonationRoleId,
       if (name != null) 'Name': name,
       if (rules != null) 'Rules': rules,
-      if (type != null) 'Type': type.toValue(),
+      if (type != null) 'Type': type.value,
     };
   }
 }
@@ -5516,12 +5417,12 @@ class GetMailDomainResponse {
   factory GetMailDomainResponse.fromJson(Map<String, dynamic> json) {
     return GetMailDomainResponse(
       dkimVerificationStatus: (json['DkimVerificationStatus'] as String?)
-          ?.toDnsRecordVerificationStatus(),
+          ?.let(DnsRecordVerificationStatus.fromString),
       isDefault: json['IsDefault'] as bool?,
       isTestDomain: json['IsTestDomain'] as bool?,
       ownershipVerificationStatus:
           (json['OwnershipVerificationStatus'] as String?)
-              ?.toDnsRecordVerificationStatus(),
+              ?.let(DnsRecordVerificationStatus.fromString),
       records: (json['Records'] as List?)
           ?.whereNotNull()
           .map((e) => DnsRecord.fromJson(e as Map<String, dynamic>))
@@ -5537,11 +5438,11 @@ class GetMailDomainResponse {
     final records = this.records;
     return {
       if (dkimVerificationStatus != null)
-        'DkimVerificationStatus': dkimVerificationStatus.toValue(),
+        'DkimVerificationStatus': dkimVerificationStatus.value,
       if (isDefault != null) 'IsDefault': isDefault,
       if (isTestDomain != null) 'IsTestDomain': isTestDomain,
       if (ownershipVerificationStatus != null)
-        'OwnershipVerificationStatus': ownershipVerificationStatus.toValue(),
+        'OwnershipVerificationStatus': ownershipVerificationStatus.value,
       if (records != null) 'Records': records,
     };
   }
@@ -5594,7 +5495,8 @@ class GetMobileDeviceAccessEffectResponse {
   factory GetMobileDeviceAccessEffectResponse.fromJson(
       Map<String, dynamic> json) {
     return GetMobileDeviceAccessEffectResponse(
-      effect: (json['Effect'] as String?)?.toMobileDeviceAccessRuleEffect(),
+      effect: (json['Effect'] as String?)
+          ?.let(MobileDeviceAccessRuleEffect.fromString),
       matchedRules: (json['MatchedRules'] as List?)
           ?.whereNotNull()
           .map((e) =>
@@ -5607,7 +5509,7 @@ class GetMobileDeviceAccessEffectResponse {
     final effect = this.effect;
     final matchedRules = this.matchedRules;
     return {
-      if (effect != null) 'Effect': effect.toValue(),
+      if (effect != null) 'Effect': effect.value,
       if (matchedRules != null) 'MatchedRules': matchedRules,
     };
   }
@@ -5648,7 +5550,8 @@ class GetMobileDeviceAccessOverrideResponse {
       dateModified: timeStampFromJson(json['DateModified']),
       description: json['Description'] as String?,
       deviceId: json['DeviceId'] as String?,
-      effect: (json['Effect'] as String?)?.toMobileDeviceAccessRuleEffect(),
+      effect: (json['Effect'] as String?)
+          ?.let(MobileDeviceAccessRuleEffect.fromString),
       userId: json['UserId'] as String?,
     );
   }
@@ -5666,7 +5569,7 @@ class GetMobileDeviceAccessOverrideResponse {
         'DateModified': unixTimestampToJson(dateModified),
       if (description != null) 'Description': description,
       if (deviceId != null) 'DeviceId': deviceId,
-      if (effect != null) 'Effect': effect.toValue(),
+      if (effect != null) 'Effect': effect.value,
       if (userId != null) 'UserId': userId,
     };
   }
@@ -5708,7 +5611,7 @@ class Group {
       enabledDate: timeStampFromJson(json['EnabledDate']),
       id: json['Id'] as String?,
       name: json['Name'] as String?,
-      state: (json['State'] as String?)?.toEntityState(),
+      state: (json['State'] as String?)?.let(EntityState.fromString),
     );
   }
 
@@ -5726,7 +5629,7 @@ class Group {
       if (enabledDate != null) 'EnabledDate': unixTimestampToJson(enabledDate),
       if (id != null) 'Id': id,
       if (name != null) 'Name': name,
-      if (state != null) 'State': state.toValue(),
+      if (state != null) 'State': state.value,
     };
   }
 }
@@ -5793,7 +5696,7 @@ class ImpersonationRole {
       dateModified: timeStampFromJson(json['DateModified']),
       impersonationRoleId: json['ImpersonationRoleId'] as String?,
       name: json['Name'] as String?,
-      type: (json['Type'] as String?)?.toImpersonationRoleType(),
+      type: (json['Type'] as String?)?.let(ImpersonationRoleType.fromString),
     );
   }
 
@@ -5810,37 +5713,24 @@ class ImpersonationRole {
       if (impersonationRoleId != null)
         'ImpersonationRoleId': impersonationRoleId,
       if (name != null) 'Name': name,
-      if (type != null) 'Type': type.toValue(),
+      if (type != null) 'Type': type.value,
     };
   }
 }
 
 enum ImpersonationRoleType {
-  fullAccess,
-  readOnly,
-}
+  fullAccess('FULL_ACCESS'),
+  readOnly('READ_ONLY'),
+  ;
 
-extension ImpersonationRoleTypeValueExtension on ImpersonationRoleType {
-  String toValue() {
-    switch (this) {
-      case ImpersonationRoleType.fullAccess:
-        return 'FULL_ACCESS';
-      case ImpersonationRoleType.readOnly:
-        return 'READ_ONLY';
-    }
-  }
-}
+  final String value;
 
-extension ImpersonationRoleTypeFromString on String {
-  ImpersonationRoleType toImpersonationRoleType() {
-    switch (this) {
-      case 'FULL_ACCESS':
-        return ImpersonationRoleType.fullAccess;
-      case 'READ_ONLY':
-        return ImpersonationRoleType.readOnly;
-    }
-    throw Exception('$this is not known in enum ImpersonationRoleType');
-  }
+  const ImpersonationRoleType(this.value);
+
+  static ImpersonationRoleType fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum ImpersonationRoleType'));
 }
 
 /// The rules for the given impersonation role.
@@ -5875,7 +5765,7 @@ class ImpersonationRule {
 
   factory ImpersonationRule.fromJson(Map<String, dynamic> json) {
     return ImpersonationRule(
-      effect: (json['Effect'] as String).toAccessEffect(),
+      effect: AccessEffect.fromString((json['Effect'] as String)),
       impersonationRuleId: json['ImpersonationRuleId'] as String,
       description: json['Description'] as String?,
       name: json['Name'] as String?,
@@ -5898,7 +5788,7 @@ class ImpersonationRule {
     final notTargetUsers = this.notTargetUsers;
     final targetUsers = this.targetUsers;
     return {
-      'Effect': effect.toValue(),
+      'Effect': effect.value,
       'ImpersonationRuleId': impersonationRuleId,
       if (description != null) 'Description': description,
       if (name != null) 'Name': name,
@@ -6534,7 +6424,7 @@ class MailboxExportJob {
       s3BucketName: json['S3BucketName'] as String?,
       s3Path: json['S3Path'] as String?,
       startTime: timeStampFromJson(json['StartTime']),
-      state: (json['State'] as String?)?.toMailboxExportJobState(),
+      state: (json['State'] as String?)?.let(MailboxExportJobState.fromString),
     );
   }
 
@@ -6557,47 +6447,26 @@ class MailboxExportJob {
       if (s3BucketName != null) 'S3BucketName': s3BucketName,
       if (s3Path != null) 'S3Path': s3Path,
       if (startTime != null) 'StartTime': unixTimestampToJson(startTime),
-      if (state != null) 'State': state.toValue(),
+      if (state != null) 'State': state.value,
     };
   }
 }
 
 enum MailboxExportJobState {
-  running,
-  completed,
-  failed,
-  cancelled,
-}
+  running('RUNNING'),
+  completed('COMPLETED'),
+  failed('FAILED'),
+  cancelled('CANCELLED'),
+  ;
 
-extension MailboxExportJobStateValueExtension on MailboxExportJobState {
-  String toValue() {
-    switch (this) {
-      case MailboxExportJobState.running:
-        return 'RUNNING';
-      case MailboxExportJobState.completed:
-        return 'COMPLETED';
-      case MailboxExportJobState.failed:
-        return 'FAILED';
-      case MailboxExportJobState.cancelled:
-        return 'CANCELLED';
-    }
-  }
-}
+  final String value;
 
-extension MailboxExportJobStateFromString on String {
-  MailboxExportJobState toMailboxExportJobState() {
-    switch (this) {
-      case 'RUNNING':
-        return MailboxExportJobState.running;
-      case 'COMPLETED':
-        return MailboxExportJobState.completed;
-      case 'FAILED':
-        return MailboxExportJobState.failed;
-      case 'CANCELLED':
-        return MailboxExportJobState.cancelled;
-    }
-    throw Exception('$this is not known in enum MailboxExportJobState');
-  }
+  const MailboxExportJobState(this.value);
+
+  static MailboxExportJobState fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum MailboxExportJobState'));
 }
 
 /// The representation of a user or group.
@@ -6635,8 +6504,8 @@ class Member {
       enabledDate: timeStampFromJson(json['EnabledDate']),
       id: json['Id'] as String?,
       name: json['Name'] as String?,
-      state: (json['State'] as String?)?.toEntityState(),
-      type: (json['Type'] as String?)?.toMemberType(),
+      state: (json['State'] as String?)?.let(EntityState.fromString),
+      type: (json['Type'] as String?)?.let(MemberType.fromString),
     );
   }
 
@@ -6653,38 +6522,24 @@ class Member {
       if (enabledDate != null) 'EnabledDate': unixTimestampToJson(enabledDate),
       if (id != null) 'Id': id,
       if (name != null) 'Name': name,
-      if (state != null) 'State': state.toValue(),
-      if (type != null) 'Type': type.toValue(),
+      if (state != null) 'State': state.value,
+      if (type != null) 'Type': type.value,
     };
   }
 }
 
 enum MemberType {
-  group,
-  user,
-}
+  group('GROUP'),
+  user('USER'),
+  ;
 
-extension MemberTypeValueExtension on MemberType {
-  String toValue() {
-    switch (this) {
-      case MemberType.group:
-        return 'GROUP';
-      case MemberType.user:
-        return 'USER';
-    }
-  }
-}
+  final String value;
 
-extension MemberTypeFromString on String {
-  MemberType toMemberType() {
-    switch (this) {
-      case 'GROUP':
-        return MemberType.group;
-      case 'USER':
-        return MemberType.user;
-    }
-    throw Exception('$this is not known in enum MemberType');
-  }
+  const MemberType(this.value);
+
+  static MemberType fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum MemberType'));
 }
 
 /// The rule that a simulated user matches.
@@ -6753,7 +6608,8 @@ class MobileDeviceAccessOverride {
       dateModified: timeStampFromJson(json['DateModified']),
       description: json['Description'] as String?,
       deviceId: json['DeviceId'] as String?,
-      effect: (json['Effect'] as String?)?.toMobileDeviceAccessRuleEffect(),
+      effect: (json['Effect'] as String?)
+          ?.let(MobileDeviceAccessRuleEffect.fromString),
       userId: json['UserId'] as String?,
     );
   }
@@ -6771,7 +6627,7 @@ class MobileDeviceAccessOverride {
         'DateModified': unixTimestampToJson(dateModified),
       if (description != null) 'Description': description,
       if (deviceId != null) 'DeviceId': deviceId,
-      if (effect != null) 'Effect': effect.toValue(),
+      if (effect != null) 'Effect': effect.value,
       if (userId != null) 'UserId': userId,
     };
   }
@@ -6864,7 +6720,8 @@ class MobileDeviceAccessRule {
           ?.whereNotNull()
           .map((e) => e as String)
           .toList(),
-      effect: (json['Effect'] as String?)?.toMobileDeviceAccessRuleEffect(),
+      effect: (json['Effect'] as String?)
+          ?.let(MobileDeviceAccessRuleEffect.fromString),
       mobileDeviceAccessRuleId: json['MobileDeviceAccessRuleId'] as String?,
       name: json['Name'] as String?,
       notDeviceModels: (json['NotDeviceModels'] as List?)
@@ -6911,7 +6768,7 @@ class MobileDeviceAccessRule {
         'DeviceOperatingSystems': deviceOperatingSystems,
       if (deviceTypes != null) 'DeviceTypes': deviceTypes,
       if (deviceUserAgents != null) 'DeviceUserAgents': deviceUserAgents,
-      if (effect != null) 'Effect': effect.toValue(),
+      if (effect != null) 'Effect': effect.value,
       if (mobileDeviceAccessRuleId != null)
         'MobileDeviceAccessRuleId': mobileDeviceAccessRuleId,
       if (name != null) 'Name': name,
@@ -6926,32 +6783,18 @@ class MobileDeviceAccessRule {
 }
 
 enum MobileDeviceAccessRuleEffect {
-  allow,
-  deny,
-}
+  allow('ALLOW'),
+  deny('DENY'),
+  ;
 
-extension MobileDeviceAccessRuleEffectValueExtension
-    on MobileDeviceAccessRuleEffect {
-  String toValue() {
-    switch (this) {
-      case MobileDeviceAccessRuleEffect.allow:
-        return 'ALLOW';
-      case MobileDeviceAccessRuleEffect.deny:
-        return 'DENY';
-    }
-  }
-}
+  final String value;
 
-extension MobileDeviceAccessRuleEffectFromString on String {
-  MobileDeviceAccessRuleEffect toMobileDeviceAccessRuleEffect() {
-    switch (this) {
-      case 'ALLOW':
-        return MobileDeviceAccessRuleEffect.allow;
-      case 'DENY':
-        return MobileDeviceAccessRuleEffect.deny;
-    }
-    throw Exception('$this is not known in enum MobileDeviceAccessRuleEffect');
-  }
+  const MobileDeviceAccessRuleEffect(this.value);
+
+  static MobileDeviceAccessRuleEffect fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum MobileDeviceAccessRuleEffect'));
 }
 
 /// The representation of an organization.
@@ -7034,10 +6877,10 @@ class Permission {
   factory Permission.fromJson(Map<String, dynamic> json) {
     return Permission(
       granteeId: json['GranteeId'] as String,
-      granteeType: (json['GranteeType'] as String).toMemberType(),
+      granteeType: MemberType.fromString((json['GranteeType'] as String)),
       permissionValues: (json['PermissionValues'] as List)
           .whereNotNull()
-          .map((e) => (e as String).toPermissionType())
+          .map((e) => PermissionType.fromString((e as String)))
           .toList(),
     );
   }
@@ -7048,43 +6891,26 @@ class Permission {
     final permissionValues = this.permissionValues;
     return {
       'GranteeId': granteeId,
-      'GranteeType': granteeType.toValue(),
-      'PermissionValues': permissionValues.map((e) => e.toValue()).toList(),
+      'GranteeType': granteeType.value,
+      'PermissionValues': permissionValues.map((e) => e.value).toList(),
     };
   }
 }
 
 enum PermissionType {
-  fullAccess,
-  sendAs,
-  sendOnBehalf,
-}
+  fullAccess('FULL_ACCESS'),
+  sendAs('SEND_AS'),
+  sendOnBehalf('SEND_ON_BEHALF'),
+  ;
 
-extension PermissionTypeValueExtension on PermissionType {
-  String toValue() {
-    switch (this) {
-      case PermissionType.fullAccess:
-        return 'FULL_ACCESS';
-      case PermissionType.sendAs:
-        return 'SEND_AS';
-      case PermissionType.sendOnBehalf:
-        return 'SEND_ON_BEHALF';
-    }
-  }
-}
+  final String value;
 
-extension PermissionTypeFromString on String {
-  PermissionType toPermissionType() {
-    switch (this) {
-      case 'FULL_ACCESS':
-        return PermissionType.fullAccess;
-      case 'SEND_AS':
-        return PermissionType.sendAs;
-      case 'SEND_ON_BEHALF':
-        return PermissionType.sendOnBehalf;
-    }
-    throw Exception('$this is not known in enum PermissionType');
-  }
+  const PermissionType(this.value);
+
+  static PermissionType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum PermissionType'));
 }
 
 class PutAccessControlRuleResponse {
@@ -7268,8 +7094,8 @@ class Resource {
       enabledDate: timeStampFromJson(json['EnabledDate']),
       id: json['Id'] as String?,
       name: json['Name'] as String?,
-      state: (json['State'] as String?)?.toEntityState(),
-      type: (json['Type'] as String?)?.toResourceType(),
+      state: (json['State'] as String?)?.let(EntityState.fromString),
+      type: (json['Type'] as String?)?.let(ResourceType.fromString),
     );
   }
 
@@ -7288,71 +7114,41 @@ class Resource {
       if (enabledDate != null) 'EnabledDate': unixTimestampToJson(enabledDate),
       if (id != null) 'Id': id,
       if (name != null) 'Name': name,
-      if (state != null) 'State': state.toValue(),
-      if (type != null) 'Type': type.toValue(),
+      if (state != null) 'State': state.value,
+      if (type != null) 'Type': type.value,
     };
   }
 }
 
 enum ResourceType {
-  room,
-  equipment,
-}
+  room('ROOM'),
+  equipment('EQUIPMENT'),
+  ;
 
-extension ResourceTypeValueExtension on ResourceType {
-  String toValue() {
-    switch (this) {
-      case ResourceType.room:
-        return 'ROOM';
-      case ResourceType.equipment:
-        return 'EQUIPMENT';
-    }
-  }
-}
+  final String value;
 
-extension ResourceTypeFromString on String {
-  ResourceType toResourceType() {
-    switch (this) {
-      case 'ROOM':
-        return ResourceType.room;
-      case 'EQUIPMENT':
-        return ResourceType.equipment;
-    }
-    throw Exception('$this is not known in enum ResourceType');
-  }
+  const ResourceType(this.value);
+
+  static ResourceType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum ResourceType'));
 }
 
 enum RetentionAction {
-  none,
-  delete,
-  permanentlyDelete,
-}
+  none('NONE'),
+  delete('DELETE'),
+  permanentlyDelete('PERMANENTLY_DELETE'),
+  ;
 
-extension RetentionActionValueExtension on RetentionAction {
-  String toValue() {
-    switch (this) {
-      case RetentionAction.none:
-        return 'NONE';
-      case RetentionAction.delete:
-        return 'DELETE';
-      case RetentionAction.permanentlyDelete:
-        return 'PERMANENTLY_DELETE';
-    }
-  }
-}
+  final String value;
 
-extension RetentionActionFromString on String {
-  RetentionAction toRetentionAction() {
-    switch (this) {
-      case 'NONE':
-        return RetentionAction.none;
-      case 'DELETE':
-        return RetentionAction.delete;
-      case 'PERMANENTLY_DELETE':
-        return RetentionAction.permanentlyDelete;
-    }
-    throw Exception('$this is not known in enum RetentionAction');
-  }
+  const RetentionAction(this.value);
+
+  static RetentionAction fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum RetentionAction'));
 }
 
 class StartMailboxExportJobResponse {
@@ -7593,8 +7389,8 @@ class User {
       enabledDate: timeStampFromJson(json['EnabledDate']),
       id: json['Id'] as String?,
       name: json['Name'] as String?,
-      state: (json['State'] as String?)?.toEntityState(),
-      userRole: (json['UserRole'] as String?)?.toUserRole(),
+      state: (json['State'] as String?)?.let(EntityState.fromString),
+      userRole: (json['UserRole'] as String?)?.let(UserRole.fromString),
     );
   }
 
@@ -7615,43 +7411,25 @@ class User {
       if (enabledDate != null) 'EnabledDate': unixTimestampToJson(enabledDate),
       if (id != null) 'Id': id,
       if (name != null) 'Name': name,
-      if (state != null) 'State': state.toValue(),
-      if (userRole != null) 'UserRole': userRole.toValue(),
+      if (state != null) 'State': state.value,
+      if (userRole != null) 'UserRole': userRole.value,
     };
   }
 }
 
 enum UserRole {
-  user,
-  resource,
-  systemUser,
-}
+  user('USER'),
+  resource('RESOURCE'),
+  systemUser('SYSTEM_USER'),
+  ;
 
-extension UserRoleValueExtension on UserRole {
-  String toValue() {
-    switch (this) {
-      case UserRole.user:
-        return 'USER';
-      case UserRole.resource:
-        return 'RESOURCE';
-      case UserRole.systemUser:
-        return 'SYSTEM_USER';
-    }
-  }
-}
+  final String value;
 
-extension UserRoleFromString on String {
-  UserRole toUserRole() {
-    switch (this) {
-      case 'USER':
-        return UserRole.user;
-      case 'RESOURCE':
-        return UserRole.resource;
-      case 'SYSTEM_USER':
-        return UserRole.systemUser;
-    }
-    throw Exception('$this is not known in enum UserRole');
-  }
+  const UserRole(this.value);
+
+  static UserRole fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum UserRole'));
 }
 
 class DirectoryInUseException extends _s.GenericAwsException {

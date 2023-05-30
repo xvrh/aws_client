@@ -549,7 +549,7 @@ class ResourceExplorer {
       if (maxResults != null) 'MaxResults': maxResults,
       if (nextToken != null) 'NextToken': nextToken,
       if (regions != null) 'Regions': regions,
-      if (type != null) 'Type': type.toValue(),
+      if (type != null) 'Type': type.value,
     };
     final response = await _protocol.send(
       payload: $payload,
@@ -955,7 +955,7 @@ class ResourceExplorer {
   }) async {
     final $payload = <String, dynamic>{
       'Arn': arn,
-      'Type': type.toValue(),
+      'Type': type.value,
     };
     final response = await _protocol.send(
       payload: $payload,
@@ -1157,7 +1157,7 @@ class CreateIndexOutput {
     return CreateIndexOutput(
       arn: json['Arn'] as String?,
       createdAt: timeStampFromJson(json['CreatedAt']),
-      state: (json['State'] as String?)?.toIndexState(),
+      state: (json['State'] as String?)?.let(IndexState.fromString),
     );
   }
 
@@ -1168,7 +1168,7 @@ class CreateIndexOutput {
     return {
       if (arn != null) 'Arn': arn,
       if (createdAt != null) 'CreatedAt': iso8601ToJson(createdAt),
-      if (state != null) 'State': state.toValue(),
+      if (state != null) 'State': state.value,
     };
   }
 }
@@ -1224,7 +1224,7 @@ class DeleteIndexOutput {
     return DeleteIndexOutput(
       arn: json['Arn'] as String?,
       lastUpdatedAt: timeStampFromJson(json['LastUpdatedAt']),
-      state: (json['State'] as String?)?.toIndexState(),
+      state: (json['State'] as String?)?.let(IndexState.fromString),
     );
   }
 
@@ -1235,7 +1235,7 @@ class DeleteIndexOutput {
     return {
       if (arn != null) 'Arn': arn,
       if (lastUpdatedAt != null) 'LastUpdatedAt': iso8601ToJson(lastUpdatedAt),
-      if (state != null) 'State': state.toValue(),
+      if (state != null) 'State': state.value,
     };
   }
 }
@@ -1365,10 +1365,10 @@ class GetIndexOutput {
           ?.whereNotNull()
           .map((e) => e as String)
           .toList(),
-      state: (json['State'] as String?)?.toIndexState(),
+      state: (json['State'] as String?)?.let(IndexState.fromString),
       tags: (json['Tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
-      type: (json['Type'] as String?)?.toIndexType(),
+      type: (json['Type'] as String?)?.let(IndexType.fromString),
     );
   }
 
@@ -1387,9 +1387,9 @@ class GetIndexOutput {
       if (lastUpdatedAt != null) 'LastUpdatedAt': iso8601ToJson(lastUpdatedAt),
       if (replicatingFrom != null) 'ReplicatingFrom': replicatingFrom,
       if (replicatingTo != null) 'ReplicatingTo': replicatingTo,
-      if (state != null) 'State': state.toValue(),
+      if (state != null) 'State': state.value,
       if (tags != null) 'Tags': tags,
-      if (type != null) 'Type': type.toValue(),
+      if (type != null) 'Type': type.value,
     };
   }
 }
@@ -1508,7 +1508,7 @@ class Index {
     return Index(
       arn: json['Arn'] as String?,
       region: json['Region'] as String?,
-      type: (json['Type'] as String?)?.toIndexType(),
+      type: (json['Type'] as String?)?.let(IndexType.fromString),
     );
   }
 
@@ -1519,80 +1519,40 @@ class Index {
     return {
       if (arn != null) 'Arn': arn,
       if (region != null) 'Region': region,
-      if (type != null) 'Type': type.toValue(),
+      if (type != null) 'Type': type.value,
     };
   }
 }
 
 enum IndexState {
-  creating,
-  active,
-  deleting,
-  deleted,
-  updating,
-}
+  creating('CREATING'),
+  active('ACTIVE'),
+  deleting('DELETING'),
+  deleted('DELETED'),
+  updating('UPDATING'),
+  ;
 
-extension IndexStateValueExtension on IndexState {
-  String toValue() {
-    switch (this) {
-      case IndexState.creating:
-        return 'CREATING';
-      case IndexState.active:
-        return 'ACTIVE';
-      case IndexState.deleting:
-        return 'DELETING';
-      case IndexState.deleted:
-        return 'DELETED';
-      case IndexState.updating:
-        return 'UPDATING';
-    }
-  }
-}
+  final String value;
 
-extension IndexStateFromString on String {
-  IndexState toIndexState() {
-    switch (this) {
-      case 'CREATING':
-        return IndexState.creating;
-      case 'ACTIVE':
-        return IndexState.active;
-      case 'DELETING':
-        return IndexState.deleting;
-      case 'DELETED':
-        return IndexState.deleted;
-      case 'UPDATING':
-        return IndexState.updating;
-    }
-    throw Exception('$this is not known in enum IndexState');
-  }
+  const IndexState(this.value);
+
+  static IndexState fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum IndexState'));
 }
 
 enum IndexType {
-  local,
-  aggregator,
-}
+  local('LOCAL'),
+  aggregator('AGGREGATOR'),
+  ;
 
-extension IndexTypeValueExtension on IndexType {
-  String toValue() {
-    switch (this) {
-      case IndexType.local:
-        return 'LOCAL';
-      case IndexType.aggregator:
-        return 'AGGREGATOR';
-    }
-  }
-}
+  final String value;
 
-extension IndexTypeFromString on String {
-  IndexType toIndexType() {
-    switch (this) {
-      case 'LOCAL':
-        return IndexType.local;
-      case 'AGGREGATOR':
-        return IndexType.aggregator;
-    }
-    throw Exception('$this is not known in enum IndexType');
-  }
+  const IndexType(this.value);
+
+  static IndexType fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum IndexType'));
 }
 
 class ListIndexesOutput {
@@ -2065,8 +2025,8 @@ class UpdateIndexTypeOutput {
     return UpdateIndexTypeOutput(
       arn: json['Arn'] as String?,
       lastUpdatedAt: timeStampFromJson(json['LastUpdatedAt']),
-      state: (json['State'] as String?)?.toIndexState(),
-      type: (json['Type'] as String?)?.toIndexType(),
+      state: (json['State'] as String?)?.let(IndexState.fromString),
+      type: (json['Type'] as String?)?.let(IndexType.fromString),
     );
   }
 
@@ -2078,8 +2038,8 @@ class UpdateIndexTypeOutput {
     return {
       if (arn != null) 'Arn': arn,
       if (lastUpdatedAt != null) 'LastUpdatedAt': iso8601ToJson(lastUpdatedAt),
-      if (state != null) 'State': state.toValue(),
-      if (type != null) 'Type': type.toValue(),
+      if (state != null) 'State': state.value,
+      if (type != null) 'Type': type.value,
     };
   }
 }

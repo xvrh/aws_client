@@ -228,7 +228,7 @@ class PI {
         'GroupBy': groupBy,
         'Identifier': identifier,
         'Metric': metric,
-        'ServiceType': serviceType.toValue(),
+        'ServiceType': serviceType.value,
         'StartTime': unixTimestampToJson(startTime),
         if (additionalMetrics != null) 'AdditionalMetrics': additionalMetrics,
         if (filter != null) 'Filter': filter,
@@ -333,7 +333,7 @@ class PI {
         'Group': group,
         'GroupIdentifier': groupIdentifier,
         'Identifier': identifier,
-        'ServiceType': serviceType.toValue(),
+        'ServiceType': serviceType.value,
         if (requestedDimensions != null)
           'RequestedDimensions': requestedDimensions,
       },
@@ -376,7 +376,7 @@ class PI {
       headers: headers,
       payload: {
         'Identifier': identifier,
-        'ServiceType': serviceType.toValue(),
+        'ServiceType': serviceType.value,
       },
     );
 
@@ -513,12 +513,11 @@ class PI {
         'EndTime': unixTimestampToJson(endTime),
         'Identifier': identifier,
         'MetricQueries': metricQueries,
-        'ServiceType': serviceType.toValue(),
+        'ServiceType': serviceType.value,
         'StartTime': unixTimestampToJson(startTime),
         if (maxResults != null) 'MaxResults': maxResults,
         if (nextToken != null) 'NextToken': nextToken,
-        if (periodAlignment != null)
-          'PeriodAlignment': periodAlignment.toValue(),
+        if (periodAlignment != null) 'PeriodAlignment': periodAlignment.value,
         if (periodInSeconds != null) 'PeriodInSeconds': periodInSeconds,
       },
     );
@@ -585,7 +584,7 @@ class PI {
       payload: {
         'Identifier': identifier,
         'Metrics': metrics,
-        'ServiceType': serviceType.toValue(),
+        'ServiceType': serviceType.value,
         if (maxResults != null) 'MaxResults': maxResults,
         if (nextToken != null) 'NextToken': nextToken,
       },
@@ -670,7 +669,7 @@ class PI {
       payload: {
         'Identifier': identifier,
         'MetricTypes': metricTypes,
-        'ServiceType': serviceType.toValue(),
+        'ServiceType': serviceType.value,
         if (maxResults != null) 'MaxResults': maxResults,
         if (nextToken != null) 'NextToken': nextToken,
       },
@@ -782,36 +781,19 @@ class DescribeDimensionKeysResponse {
 }
 
 enum DetailStatus {
-  available,
-  processing,
-  unavailable,
-}
+  available('AVAILABLE'),
+  processing('PROCESSING'),
+  unavailable('UNAVAILABLE'),
+  ;
 
-extension DetailStatusValueExtension on DetailStatus {
-  String toValue() {
-    switch (this) {
-      case DetailStatus.available:
-        return 'AVAILABLE';
-      case DetailStatus.processing:
-        return 'PROCESSING';
-      case DetailStatus.unavailable:
-        return 'UNAVAILABLE';
-    }
-  }
-}
+  final String value;
 
-extension DetailStatusFromString on String {
-  DetailStatus toDetailStatus() {
-    switch (this) {
-      case 'AVAILABLE':
-        return DetailStatus.available;
-      case 'PROCESSING':
-        return DetailStatus.processing;
-      case 'UNAVAILABLE':
-        return DetailStatus.unavailable;
-    }
-    throw Exception('$this is not known in enum DetailStatus');
-  }
+  const DetailStatus(this.value);
+
+  static DetailStatus fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum DetailStatus'));
 }
 
 /// The information about a dimension.
@@ -1257,7 +1239,7 @@ class DimensionKeyDetail {
   factory DimensionKeyDetail.fromJson(Map<String, dynamic> json) {
     return DimensionKeyDetail(
       dimension: json['Dimension'] as String?,
-      status: (json['Status'] as String?)?.toDetailStatus(),
+      status: (json['Status'] as String?)?.let(DetailStatus.fromString),
       value: json['Value'] as String?,
     );
   }
@@ -1268,7 +1250,7 @@ class DimensionKeyDetail {
     final value = this.value;
     return {
       if (dimension != null) 'Dimension': dimension,
-      if (status != null) 'Status': status.toValue(),
+      if (status != null) 'Status': status.value,
       if (value != null) 'Value': value,
     };
   }
@@ -1310,64 +1292,35 @@ class FeatureMetadata {
 
   factory FeatureMetadata.fromJson(Map<String, dynamic> json) {
     return FeatureMetadata(
-      status: (json['Status'] as String?)?.toFeatureStatus(),
+      status: (json['Status'] as String?)?.let(FeatureStatus.fromString),
     );
   }
 
   Map<String, dynamic> toJson() {
     final status = this.status;
     return {
-      if (status != null) 'Status': status.toValue(),
+      if (status != null) 'Status': status.value,
     };
   }
 }
 
 enum FeatureStatus {
-  enabled,
-  disabled,
-  unsupported,
-  enabledPendingReboot,
-  disabledPendingReboot,
-  unknown,
-}
+  enabled('ENABLED'),
+  disabled('DISABLED'),
+  unsupported('UNSUPPORTED'),
+  enabledPendingReboot('ENABLED_PENDING_REBOOT'),
+  disabledPendingReboot('DISABLED_PENDING_REBOOT'),
+  unknown('UNKNOWN'),
+  ;
 
-extension FeatureStatusValueExtension on FeatureStatus {
-  String toValue() {
-    switch (this) {
-      case FeatureStatus.enabled:
-        return 'ENABLED';
-      case FeatureStatus.disabled:
-        return 'DISABLED';
-      case FeatureStatus.unsupported:
-        return 'UNSUPPORTED';
-      case FeatureStatus.enabledPendingReboot:
-        return 'ENABLED_PENDING_REBOOT';
-      case FeatureStatus.disabledPendingReboot:
-        return 'DISABLED_PENDING_REBOOT';
-      case FeatureStatus.unknown:
-        return 'UNKNOWN';
-    }
-  }
-}
+  final String value;
 
-extension FeatureStatusFromString on String {
-  FeatureStatus toFeatureStatus() {
-    switch (this) {
-      case 'ENABLED':
-        return FeatureStatus.enabled;
-      case 'DISABLED':
-        return FeatureStatus.disabled;
-      case 'UNSUPPORTED':
-        return FeatureStatus.unsupported;
-      case 'ENABLED_PENDING_REBOOT':
-        return FeatureStatus.enabledPendingReboot;
-      case 'DISABLED_PENDING_REBOOT':
-        return FeatureStatus.disabledPendingReboot;
-      case 'UNKNOWN':
-        return FeatureStatus.unknown;
-    }
-    throw Exception('$this is not known in enum FeatureStatus');
-  }
+  const FeatureStatus(this.value);
+
+  static FeatureStatus fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum FeatureStatus'));
 }
 
 class GetDimensionKeyDetailsResponse {
@@ -1717,31 +1670,18 @@ class MetricQuery {
 }
 
 enum PeriodAlignment {
-  endTime,
-  startTime,
-}
+  endTime('END_TIME'),
+  startTime('START_TIME'),
+  ;
 
-extension PeriodAlignmentValueExtension on PeriodAlignment {
-  String toValue() {
-    switch (this) {
-      case PeriodAlignment.endTime:
-        return 'END_TIME';
-      case PeriodAlignment.startTime:
-        return 'START_TIME';
-    }
-  }
-}
+  final String value;
 
-extension PeriodAlignmentFromString on String {
-  PeriodAlignment toPeriodAlignment() {
-    switch (this) {
-      case 'END_TIME':
-        return PeriodAlignment.endTime;
-      case 'START_TIME':
-        return PeriodAlignment.startTime;
-    }
-    throw Exception('$this is not known in enum PeriodAlignment');
-  }
+  const PeriodAlignment(this.value);
+
+  static PeriodAlignment fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum PeriodAlignment'));
 }
 
 /// If <code>PartitionBy</code> was specified in a
@@ -1867,31 +1807,17 @@ class ResponseResourceMetricKey {
 }
 
 enum ServiceType {
-  rds,
-  docdb,
-}
+  rds('RDS'),
+  docdb('DOCDB'),
+  ;
 
-extension ServiceTypeValueExtension on ServiceType {
-  String toValue() {
-    switch (this) {
-      case ServiceType.rds:
-        return 'RDS';
-      case ServiceType.docdb:
-        return 'DOCDB';
-    }
-  }
-}
+  final String value;
 
-extension ServiceTypeFromString on String {
-  ServiceType toServiceType() {
-    switch (this) {
-      case 'RDS':
-        return ServiceType.rds;
-      case 'DOCDB':
-        return ServiceType.docdb;
-    }
-    throw Exception('$this is not known in enum ServiceType');
-  }
+  const ServiceType(this.value);
+
+  static ServiceType fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum ServiceType'));
 }
 
 class InternalServiceError extends _s.GenericAwsException {

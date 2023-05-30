@@ -121,7 +121,7 @@ class Finspace {
       'name': name,
       if (dataBundles != null) 'dataBundles': dataBundles,
       if (description != null) 'description': description,
-      if (federationMode != null) 'federationMode': federationMode.toValue(),
+      if (federationMode != null) 'federationMode': federationMode.value,
       if (federationParameters != null)
         'federationParameters': federationParameters,
       if (kmsKeyId != null) 'kmsKeyId': kmsKeyId,
@@ -329,7 +329,7 @@ class Finspace {
   }) async {
     final $payload = <String, dynamic>{
       if (description != null) 'description': description,
-      if (federationMode != null) 'federationMode': federationMode.toValue(),
+      if (federationMode != null) 'federationMode': federationMode.value,
       if (federationParameters != null)
         'federationParameters': federationParameters,
       if (name != null) 'name': name,
@@ -456,7 +456,8 @@ class Environment {
       environmentArn: json['environmentArn'] as String?,
       environmentId: json['environmentId'] as String?,
       environmentUrl: json['environmentUrl'] as String?,
-      federationMode: (json['federationMode'] as String?)?.toFederationMode(),
+      federationMode:
+          (json['federationMode'] as String?)?.let(FederationMode.fromString),
       federationParameters: json['federationParameters'] != null
           ? FederationParameters.fromJson(
               json['federationParameters'] as Map<String, dynamic>)
@@ -464,7 +465,7 @@ class Environment {
       kmsKeyId: json['kmsKeyId'] as String?,
       name: json['name'] as String?,
       sageMakerStudioDomainUrl: json['sageMakerStudioDomainUrl'] as String?,
-      status: (json['status'] as String?)?.toEnvironmentStatus(),
+      status: (json['status'] as String?)?.let(EnvironmentStatus.fromString),
     );
   }
 
@@ -489,112 +490,54 @@ class Environment {
       if (environmentArn != null) 'environmentArn': environmentArn,
       if (environmentId != null) 'environmentId': environmentId,
       if (environmentUrl != null) 'environmentUrl': environmentUrl,
-      if (federationMode != null) 'federationMode': federationMode.toValue(),
+      if (federationMode != null) 'federationMode': federationMode.value,
       if (federationParameters != null)
         'federationParameters': federationParameters,
       if (kmsKeyId != null) 'kmsKeyId': kmsKeyId,
       if (name != null) 'name': name,
       if (sageMakerStudioDomainUrl != null)
         'sageMakerStudioDomainUrl': sageMakerStudioDomainUrl,
-      if (status != null) 'status': status.toValue(),
+      if (status != null) 'status': status.value,
     };
   }
 }
 
 enum EnvironmentStatus {
-  createRequested,
-  creating,
-  created,
-  deleteRequested,
-  deleting,
-  deleted,
-  failedCreation,
-  retryDeletion,
-  failedDeletion,
-  suspended,
-}
+  createRequested('CREATE_REQUESTED'),
+  creating('CREATING'),
+  created('CREATED'),
+  deleteRequested('DELETE_REQUESTED'),
+  deleting('DELETING'),
+  deleted('DELETED'),
+  failedCreation('FAILED_CREATION'),
+  retryDeletion('RETRY_DELETION'),
+  failedDeletion('FAILED_DELETION'),
+  suspended('SUSPENDED'),
+  ;
 
-extension EnvironmentStatusValueExtension on EnvironmentStatus {
-  String toValue() {
-    switch (this) {
-      case EnvironmentStatus.createRequested:
-        return 'CREATE_REQUESTED';
-      case EnvironmentStatus.creating:
-        return 'CREATING';
-      case EnvironmentStatus.created:
-        return 'CREATED';
-      case EnvironmentStatus.deleteRequested:
-        return 'DELETE_REQUESTED';
-      case EnvironmentStatus.deleting:
-        return 'DELETING';
-      case EnvironmentStatus.deleted:
-        return 'DELETED';
-      case EnvironmentStatus.failedCreation:
-        return 'FAILED_CREATION';
-      case EnvironmentStatus.retryDeletion:
-        return 'RETRY_DELETION';
-      case EnvironmentStatus.failedDeletion:
-        return 'FAILED_DELETION';
-      case EnvironmentStatus.suspended:
-        return 'SUSPENDED';
-    }
-  }
-}
+  final String value;
 
-extension EnvironmentStatusFromString on String {
-  EnvironmentStatus toEnvironmentStatus() {
-    switch (this) {
-      case 'CREATE_REQUESTED':
-        return EnvironmentStatus.createRequested;
-      case 'CREATING':
-        return EnvironmentStatus.creating;
-      case 'CREATED':
-        return EnvironmentStatus.created;
-      case 'DELETE_REQUESTED':
-        return EnvironmentStatus.deleteRequested;
-      case 'DELETING':
-        return EnvironmentStatus.deleting;
-      case 'DELETED':
-        return EnvironmentStatus.deleted;
-      case 'FAILED_CREATION':
-        return EnvironmentStatus.failedCreation;
-      case 'RETRY_DELETION':
-        return EnvironmentStatus.retryDeletion;
-      case 'FAILED_DELETION':
-        return EnvironmentStatus.failedDeletion;
-      case 'SUSPENDED':
-        return EnvironmentStatus.suspended;
-    }
-    throw Exception('$this is not known in enum EnvironmentStatus');
-  }
+  const EnvironmentStatus(this.value);
+
+  static EnvironmentStatus fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum EnvironmentStatus'));
 }
 
 enum FederationMode {
-  federated,
-  local,
-}
+  federated('FEDERATED'),
+  local('LOCAL'),
+  ;
 
-extension FederationModeValueExtension on FederationMode {
-  String toValue() {
-    switch (this) {
-      case FederationMode.federated:
-        return 'FEDERATED';
-      case FederationMode.local:
-        return 'LOCAL';
-    }
-  }
-}
+  final String value;
 
-extension FederationModeFromString on String {
-  FederationMode toFederationMode() {
-    switch (this) {
-      case 'FEDERATED':
-        return FederationMode.federated;
-      case 'LOCAL':
-        return FederationMode.local;
-    }
-    throw Exception('$this is not known in enum FederationMode');
-  }
+  const FederationMode(this.value);
+
+  static FederationMode fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum FederationMode'));
 }
 
 /// Configuration information when authentication mode is FEDERATED.

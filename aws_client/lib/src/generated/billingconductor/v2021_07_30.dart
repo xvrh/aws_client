@@ -490,8 +490,8 @@ class BillingConductor {
     };
     final $payload = <String, dynamic>{
       'Name': name,
-      'Scope': scope.toValue(),
-      'Type': type.toValue(),
+      'Scope': scope.value,
+      'Type': type.value,
       if (billingEntity != null) 'BillingEntity': billingEntity,
       if (description != null) 'Description': description,
       if (modifierPercentage != null) 'ModifierPercentage': modifierPercentage,
@@ -1291,7 +1291,7 @@ class BillingConductor {
         'ComputationPreference': computationPreference,
       if (description != null) 'Description': description,
       if (name != null) 'Name': name,
-      if (status != null) 'Status': status.toValue(),
+      if (status != null) 'Status': status.value,
     };
     final response = await _protocol.send(
       payload: $payload,
@@ -1430,7 +1430,7 @@ class BillingConductor {
       if (modifierPercentage != null) 'ModifierPercentage': modifierPercentage,
       if (name != null) 'Name': name,
       if (tiering != null) 'Tiering': tiering,
-      if (type != null) 'Type': type.toValue(),
+      if (type != null) 'Type': type.value,
     };
     final response = await _protocol.send(
       payload: $payload,
@@ -1568,7 +1568,8 @@ class AssociateResourceError {
   factory AssociateResourceError.fromJson(Map<String, dynamic> json) {
     return AssociateResourceError(
       message: json['Message'] as String?,
-      reason: (json['Reason'] as String?)?.toAssociateResourceErrorReason(),
+      reason: (json['Reason'] as String?)
+          ?.let(AssociateResourceErrorReason.fromString),
     );
   }
 
@@ -1577,53 +1578,27 @@ class AssociateResourceError {
     final reason = this.reason;
     return {
       if (message != null) 'Message': message,
-      if (reason != null) 'Reason': reason.toValue(),
+      if (reason != null) 'Reason': reason.value,
     };
   }
 }
 
 enum AssociateResourceErrorReason {
-  invalidArn,
-  serviceLimitExceeded,
-  illegalCustomlineitem,
-  internalServerException,
-  invalidBillingPeriodRange,
-}
+  invalidArn('INVALID_ARN'),
+  serviceLimitExceeded('SERVICE_LIMIT_EXCEEDED'),
+  illegalCustomlineitem('ILLEGAL_CUSTOMLINEITEM'),
+  internalServerException('INTERNAL_SERVER_EXCEPTION'),
+  invalidBillingPeriodRange('INVALID_BILLING_PERIOD_RANGE'),
+  ;
 
-extension AssociateResourceErrorReasonValueExtension
-    on AssociateResourceErrorReason {
-  String toValue() {
-    switch (this) {
-      case AssociateResourceErrorReason.invalidArn:
-        return 'INVALID_ARN';
-      case AssociateResourceErrorReason.serviceLimitExceeded:
-        return 'SERVICE_LIMIT_EXCEEDED';
-      case AssociateResourceErrorReason.illegalCustomlineitem:
-        return 'ILLEGAL_CUSTOMLINEITEM';
-      case AssociateResourceErrorReason.internalServerException:
-        return 'INTERNAL_SERVER_EXCEPTION';
-      case AssociateResourceErrorReason.invalidBillingPeriodRange:
-        return 'INVALID_BILLING_PERIOD_RANGE';
-    }
-  }
-}
+  final String value;
 
-extension AssociateResourceErrorReasonFromString on String {
-  AssociateResourceErrorReason toAssociateResourceErrorReason() {
-    switch (this) {
-      case 'INVALID_ARN':
-        return AssociateResourceErrorReason.invalidArn;
-      case 'SERVICE_LIMIT_EXCEEDED':
-        return AssociateResourceErrorReason.serviceLimitExceeded;
-      case 'ILLEGAL_CUSTOMLINEITEM':
-        return AssociateResourceErrorReason.illegalCustomlineitem;
-      case 'INTERNAL_SERVER_EXCEPTION':
-        return AssociateResourceErrorReason.internalServerException;
-      case 'INVALID_BILLING_PERIOD_RANGE':
-        return AssociateResourceErrorReason.invalidBillingPeriodRange;
-    }
-    throw Exception('$this is not known in enum AssociateResourceErrorReason');
-  }
+  const AssociateResourceErrorReason(this.value);
+
+  static AssociateResourceErrorReason fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum AssociateResourceErrorReason'));
 }
 
 /// A resource association result for a percentage custom line item.
@@ -1869,7 +1844,7 @@ class BillingGroupListElement {
       name: json['Name'] as String?,
       primaryAccountId: json['PrimaryAccountId'] as String?,
       size: json['Size'] as int?,
-      status: (json['Status'] as String?)?.toBillingGroupStatus(),
+      status: (json['Status'] as String?)?.let(BillingGroupStatus.fromString),
       statusReason: json['StatusReason'] as String?,
     );
   }
@@ -1895,38 +1870,25 @@ class BillingGroupListElement {
       if (name != null) 'Name': name,
       if (primaryAccountId != null) 'PrimaryAccountId': primaryAccountId,
       if (size != null) 'Size': size,
-      if (status != null) 'Status': status.toValue(),
+      if (status != null) 'Status': status.value,
       if (statusReason != null) 'StatusReason': statusReason,
     };
   }
 }
 
 enum BillingGroupStatus {
-  active,
-  primaryAccountMissing,
-}
+  active('ACTIVE'),
+  primaryAccountMissing('PRIMARY_ACCOUNT_MISSING'),
+  ;
 
-extension BillingGroupStatusValueExtension on BillingGroupStatus {
-  String toValue() {
-    switch (this) {
-      case BillingGroupStatus.active:
-        return 'ACTIVE';
-      case BillingGroupStatus.primaryAccountMissing:
-        return 'PRIMARY_ACCOUNT_MISSING';
-    }
-  }
-}
+  final String value;
 
-extension BillingGroupStatusFromString on String {
-  BillingGroupStatus toBillingGroupStatus() {
-    switch (this) {
-      case 'ACTIVE':
-        return BillingGroupStatus.active;
-      case 'PRIMARY_ACCOUNT_MISSING':
-        return BillingGroupStatus.primaryAccountMissing;
-    }
-    throw Exception('$this is not known in enum BillingGroupStatus');
-  }
+  const BillingGroupStatus(this.value);
+
+  static BillingGroupStatus fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum BillingGroupStatus'));
 }
 
 /// The preferences and settings that will be used to compute the Amazon Web
@@ -2077,31 +2039,18 @@ class CreateTieringInput {
 }
 
 enum CurrencyCode {
-  usd,
-  cny,
-}
+  usd('USD'),
+  cny('CNY'),
+  ;
 
-extension CurrencyCodeValueExtension on CurrencyCode {
-  String toValue() {
-    switch (this) {
-      case CurrencyCode.usd:
-        return 'USD';
-      case CurrencyCode.cny:
-        return 'CNY';
-    }
-  }
-}
+  final String value;
 
-extension CurrencyCodeFromString on String {
-  CurrencyCode toCurrencyCode() {
-    switch (this) {
-      case 'USD':
-        return CurrencyCode.usd;
-      case 'CNY':
-        return CurrencyCode.cny;
-    }
-    throw Exception('$this is not known in enum CurrencyCode');
-  }
+  const CurrencyCode(this.value);
+
+  static CurrencyCode fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum CurrencyCode'));
 }
 
 /// The billing period range in which the custom line item request will be
@@ -2157,7 +2106,7 @@ class CustomLineItemChargeDetails {
     final flat = this.flat;
     final percentage = this.percentage;
     return {
-      'Type': type.toValue(),
+      'Type': type.value,
       if (flat != null) 'Flat': flat,
       if (percentage != null) 'Percentage': percentage,
     };
@@ -2241,7 +2190,8 @@ class CustomLineItemListElement {
               json['ChargeDetails'] as Map<String, dynamic>)
           : null,
       creationTime: json['CreationTime'] as int?,
-      currencyCode: (json['CurrencyCode'] as String?)?.toCurrencyCode(),
+      currencyCode:
+          (json['CurrencyCode'] as String?)?.let(CurrencyCode.fromString),
       description: json['Description'] as String?,
       lastModifiedTime: json['LastModifiedTime'] as int?,
       name: json['Name'] as String?,
@@ -2266,7 +2216,7 @@ class CustomLineItemListElement {
       if (billingGroupArn != null) 'BillingGroupArn': billingGroupArn,
       if (chargeDetails != null) 'ChargeDetails': chargeDetails,
       if (creationTime != null) 'CreationTime': creationTime,
-      if (currencyCode != null) 'CurrencyCode': currencyCode.toValue(),
+      if (currencyCode != null) 'CurrencyCode': currencyCode.value,
       if (description != null) 'Description': description,
       if (lastModifiedTime != null) 'LastModifiedTime': lastModifiedTime,
       if (name != null) 'Name': name,
@@ -2301,60 +2251,33 @@ class CustomLineItemPercentageChargeDetails {
 }
 
 enum CustomLineItemRelationship {
-  parent,
-  child,
-}
+  parent('PARENT'),
+  child('CHILD'),
+  ;
 
-extension CustomLineItemRelationshipValueExtension
-    on CustomLineItemRelationship {
-  String toValue() {
-    switch (this) {
-      case CustomLineItemRelationship.parent:
-        return 'PARENT';
-      case CustomLineItemRelationship.child:
-        return 'CHILD';
-    }
-  }
-}
+  final String value;
 
-extension CustomLineItemRelationshipFromString on String {
-  CustomLineItemRelationship toCustomLineItemRelationship() {
-    switch (this) {
-      case 'PARENT':
-        return CustomLineItemRelationship.parent;
-      case 'CHILD':
-        return CustomLineItemRelationship.child;
-    }
-    throw Exception('$this is not known in enum CustomLineItemRelationship');
-  }
+  const CustomLineItemRelationship(this.value);
+
+  static CustomLineItemRelationship fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum CustomLineItemRelationship'));
 }
 
 enum CustomLineItemType {
-  credit,
-  fee,
-}
+  credit('CREDIT'),
+  fee('FEE'),
+  ;
 
-extension CustomLineItemTypeValueExtension on CustomLineItemType {
-  String toValue() {
-    switch (this) {
-      case CustomLineItemType.credit:
-        return 'CREDIT';
-      case CustomLineItemType.fee:
-        return 'FEE';
-    }
-  }
-}
+  final String value;
 
-extension CustomLineItemTypeFromString on String {
-  CustomLineItemType toCustomLineItemType() {
-    switch (this) {
-      case 'CREDIT':
-        return CustomLineItemType.credit;
-      case 'FEE':
-        return CustomLineItemType.fee;
-    }
-    throw Exception('$this is not known in enum CustomLineItemType');
-  }
+  const CustomLineItemType(this.value);
+
+  static CustomLineItemType fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum CustomLineItemType'));
 }
 
 /// A representation of a custom line item version.
@@ -2424,7 +2347,8 @@ class CustomLineItemVersionListElement {
               json['ChargeDetails'] as Map<String, dynamic>)
           : null,
       creationTime: json['CreationTime'] as int?,
-      currencyCode: (json['CurrencyCode'] as String?)?.toCurrencyCode(),
+      currencyCode:
+          (json['CurrencyCode'] as String?)?.let(CurrencyCode.fromString),
       description: json['Description'] as String?,
       endBillingPeriod: json['EndBillingPeriod'] as String?,
       lastModifiedTime: json['LastModifiedTime'] as int?,
@@ -2455,7 +2379,7 @@ class CustomLineItemVersionListElement {
       if (billingGroupArn != null) 'BillingGroupArn': billingGroupArn,
       if (chargeDetails != null) 'ChargeDetails': chargeDetails,
       if (creationTime != null) 'CreationTime': creationTime,
-      if (currencyCode != null) 'CurrencyCode': currencyCode.toValue(),
+      if (currencyCode != null) 'CurrencyCode': currencyCode.value,
       if (description != null) 'Description': description,
       if (endBillingPeriod != null) 'EndBillingPeriod': endBillingPeriod,
       if (lastModifiedTime != null) 'LastModifiedTime': lastModifiedTime,
@@ -2819,8 +2743,7 @@ class ListBillingGroupsFilter {
     return {
       if (arns != null) 'Arns': arns,
       if (pricingPlan != null) 'PricingPlan': pricingPlan,
-      if (statuses != null)
-        'Statuses': statuses.map((e) => e.toValue()).toList(),
+      if (statuses != null) 'Statuses': statuses.map((e) => e.value).toList(),
     };
   }
 }
@@ -2880,7 +2803,7 @@ class ListCustomLineItemChargeDetails {
 
   factory ListCustomLineItemChargeDetails.fromJson(Map<String, dynamic> json) {
     return ListCustomLineItemChargeDetails(
-      type: (json['Type'] as String).toCustomLineItemType(),
+      type: CustomLineItemType.fromString((json['Type'] as String)),
       flat: json['Flat'] != null
           ? ListCustomLineItemFlatChargeDetails.fromJson(
               json['Flat'] as Map<String, dynamic>)
@@ -2897,7 +2820,7 @@ class ListCustomLineItemChargeDetails {
     final flat = this.flat;
     final percentage = this.percentage;
     return {
-      'Type': type.toValue(),
+      'Type': type.value,
       if (flat != null) 'Flat': flat,
       if (percentage != null) 'Percentage': percentage,
     };
@@ -3327,7 +3250,7 @@ class ListResourcesAssociatedToCustomLineItemFilter {
   Map<String, dynamic> toJson() {
     final relationship = this.relationship;
     return {
-      if (relationship != null) 'Relationship': relationship.toValue(),
+      if (relationship != null) 'Relationship': relationship.value,
     };
   }
 }
@@ -3402,8 +3325,8 @@ class ListResourcesAssociatedToCustomLineItemResponseElement {
     return ListResourcesAssociatedToCustomLineItemResponseElement(
       arn: json['Arn'] as String?,
       endBillingPeriod: json['EndBillingPeriod'] as String?,
-      relationship:
-          (json['Relationship'] as String?)?.toCustomLineItemRelationship(),
+      relationship: (json['Relationship'] as String?)
+          ?.let(CustomLineItemRelationship.fromString),
     );
   }
 
@@ -3414,7 +3337,7 @@ class ListResourcesAssociatedToCustomLineItemResponseElement {
     return {
       if (arn != null) 'Arn': arn,
       if (endBillingPeriod != null) 'EndBillingPeriod': endBillingPeriod,
-      if (relationship != null) 'Relationship': relationship.toValue(),
+      if (relationship != null) 'Relationship': relationship.value,
     };
   }
 }
@@ -3590,12 +3513,12 @@ class PricingRuleListElement {
       modifierPercentage: json['ModifierPercentage'] as double?,
       name: json['Name'] as String?,
       operation: json['Operation'] as String?,
-      scope: (json['Scope'] as String?)?.toPricingRuleScope(),
+      scope: (json['Scope'] as String?)?.let(PricingRuleScope.fromString),
       service: json['Service'] as String?,
       tiering: json['Tiering'] != null
           ? Tiering.fromJson(json['Tiering'] as Map<String, dynamic>)
           : null,
-      type: (json['Type'] as String?)?.toPricingRuleType(),
+      type: (json['Type'] as String?)?.let(PricingRuleType.fromString),
       usageType: json['UsageType'] as String?,
     );
   }
@@ -3626,84 +3549,46 @@ class PricingRuleListElement {
       if (modifierPercentage != null) 'ModifierPercentage': modifierPercentage,
       if (name != null) 'Name': name,
       if (operation != null) 'Operation': operation,
-      if (scope != null) 'Scope': scope.toValue(),
+      if (scope != null) 'Scope': scope.value,
       if (service != null) 'Service': service,
       if (tiering != null) 'Tiering': tiering,
-      if (type != null) 'Type': type.toValue(),
+      if (type != null) 'Type': type.value,
       if (usageType != null) 'UsageType': usageType,
     };
   }
 }
 
 enum PricingRuleScope {
-  global,
-  service,
-  billingEntity,
-  sku,
-}
+  global('GLOBAL'),
+  service('SERVICE'),
+  billingEntity('BILLING_ENTITY'),
+  sku('SKU'),
+  ;
 
-extension PricingRuleScopeValueExtension on PricingRuleScope {
-  String toValue() {
-    switch (this) {
-      case PricingRuleScope.global:
-        return 'GLOBAL';
-      case PricingRuleScope.service:
-        return 'SERVICE';
-      case PricingRuleScope.billingEntity:
-        return 'BILLING_ENTITY';
-      case PricingRuleScope.sku:
-        return 'SKU';
-    }
-  }
-}
+  final String value;
 
-extension PricingRuleScopeFromString on String {
-  PricingRuleScope toPricingRuleScope() {
-    switch (this) {
-      case 'GLOBAL':
-        return PricingRuleScope.global;
-      case 'SERVICE':
-        return PricingRuleScope.service;
-      case 'BILLING_ENTITY':
-        return PricingRuleScope.billingEntity;
-      case 'SKU':
-        return PricingRuleScope.sku;
-    }
-    throw Exception('$this is not known in enum PricingRuleScope');
-  }
+  const PricingRuleScope(this.value);
+
+  static PricingRuleScope fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum PricingRuleScope'));
 }
 
 enum PricingRuleType {
-  markup,
-  discount,
-  tiering,
-}
+  markup('MARKUP'),
+  discount('DISCOUNT'),
+  tiering('TIERING'),
+  ;
 
-extension PricingRuleTypeValueExtension on PricingRuleType {
-  String toValue() {
-    switch (this) {
-      case PricingRuleType.markup:
-        return 'MARKUP';
-      case PricingRuleType.discount:
-        return 'DISCOUNT';
-      case PricingRuleType.tiering:
-        return 'TIERING';
-    }
-  }
-}
+  final String value;
 
-extension PricingRuleTypeFromString on String {
-  PricingRuleType toPricingRuleType() {
-    switch (this) {
-      case 'MARKUP':
-        return PricingRuleType.markup;
-      case 'DISCOUNT':
-        return PricingRuleType.discount;
-      case 'TIERING':
-        return PricingRuleType.tiering;
-    }
-    throw Exception('$this is not known in enum PricingRuleType');
-  }
+  const PricingRuleType(this.value);
+
+  static PricingRuleType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum PricingRuleType'));
 }
 
 class TagResourceResponse {
@@ -3805,7 +3690,7 @@ class UpdateBillingGroupOutput {
       pricingPlanArn: json['PricingPlanArn'] as String?,
       primaryAccountId: json['PrimaryAccountId'] as String?,
       size: json['Size'] as int?,
-      status: (json['Status'] as String?)?.toBillingGroupStatus(),
+      status: (json['Status'] as String?)?.let(BillingGroupStatus.fromString),
       statusReason: json['StatusReason'] as String?,
     );
   }
@@ -3828,7 +3713,7 @@ class UpdateBillingGroupOutput {
       if (pricingPlanArn != null) 'PricingPlanArn': pricingPlanArn,
       if (primaryAccountId != null) 'PrimaryAccountId': primaryAccountId,
       if (size != null) 'Size': size,
-      if (status != null) 'Status': status.toValue(),
+      if (status != null) 'Status': status.value,
       if (statusReason != null) 'StatusReason': statusReason,
     };
   }
@@ -4124,12 +4009,12 @@ class UpdatePricingRuleOutput {
       modifierPercentage: json['ModifierPercentage'] as double?,
       name: json['Name'] as String?,
       operation: json['Operation'] as String?,
-      scope: (json['Scope'] as String?)?.toPricingRuleScope(),
+      scope: (json['Scope'] as String?)?.let(PricingRuleScope.fromString),
       service: json['Service'] as String?,
       tiering: json['Tiering'] != null
           ? UpdateTieringInput.fromJson(json['Tiering'] as Map<String, dynamic>)
           : null,
-      type: (json['Type'] as String?)?.toPricingRuleType(),
+      type: (json['Type'] as String?)?.let(PricingRuleType.fromString),
       usageType: json['UsageType'] as String?,
     );
   }
@@ -4158,10 +4043,10 @@ class UpdatePricingRuleOutput {
       if (modifierPercentage != null) 'ModifierPercentage': modifierPercentage,
       if (name != null) 'Name': name,
       if (operation != null) 'Operation': operation,
-      if (scope != null) 'Scope': scope.toValue(),
+      if (scope != null) 'Scope': scope.value,
       if (service != null) 'Service': service,
       if (tiering != null) 'Tiering': tiering,
-      if (type != null) 'Type': type.toValue(),
+      if (type != null) 'Type': type.value,
       if (usageType != null) 'UsageType': usageType,
     };
   }

@@ -813,7 +813,7 @@ class CloudWatchLogs {
       payload: {
         if (limit != null) 'limit': limit,
         if (nextToken != null) 'nextToken': nextToken,
-        if (statusCode != null) 'statusCode': statusCode.toValue(),
+        if (statusCode != null) 'statusCode': statusCode.value,
         if (taskId != null) 'taskId': taskId,
       },
     );
@@ -1034,7 +1034,7 @@ class CloudWatchLogs {
         if (logStreamNamePrefix != null)
           'logStreamNamePrefix': logStreamNamePrefix,
         if (nextToken != null) 'nextToken': nextToken,
-        if (orderBy != null) 'orderBy': orderBy.toValue(),
+        if (orderBy != null) 'orderBy': orderBy.value,
       },
     );
 
@@ -1156,7 +1156,7 @@ class CloudWatchLogs {
         if (logGroupName != null) 'logGroupName': logGroupName,
         if (maxResults != null) 'maxResults': maxResults,
         if (nextToken != null) 'nextToken': nextToken,
-        if (status != null) 'status': status.toValue(),
+        if (status != null) 'status': status.value,
       },
     );
 
@@ -2622,7 +2622,7 @@ class CloudWatchLogs {
         'filterName': filterName,
         'filterPattern': filterPattern,
         'logGroupName': logGroupName,
-        if (distribution != null) 'distribution': distribution.toValue(),
+        if (distribution != null) 'distribution': distribution.value,
         if (roleArn != null) 'roleArn': roleArn,
       },
     );
@@ -3056,41 +3056,20 @@ class CreateExportTaskResponse {
 }
 
 enum DataProtectionStatus {
-  activated,
-  deleted,
-  archived,
-  disabled,
-}
+  activated('ACTIVATED'),
+  deleted('DELETED'),
+  archived('ARCHIVED'),
+  disabled('DISABLED'),
+  ;
 
-extension DataProtectionStatusValueExtension on DataProtectionStatus {
-  String toValue() {
-    switch (this) {
-      case DataProtectionStatus.activated:
-        return 'ACTIVATED';
-      case DataProtectionStatus.deleted:
-        return 'DELETED';
-      case DataProtectionStatus.archived:
-        return 'ARCHIVED';
-      case DataProtectionStatus.disabled:
-        return 'DISABLED';
-    }
-  }
-}
+  final String value;
 
-extension DataProtectionStatusFromString on String {
-  DataProtectionStatus toDataProtectionStatus() {
-    switch (this) {
-      case 'ACTIVATED':
-        return DataProtectionStatus.activated;
-      case 'DELETED':
-        return DataProtectionStatus.deleted;
-      case 'ARCHIVED':
-        return DataProtectionStatus.archived;
-      case 'DISABLED':
-        return DataProtectionStatus.disabled;
-    }
-    throw Exception('$this is not known in enum DataProtectionStatus');
-  }
+  const DataProtectionStatus(this.value);
+
+  static DataProtectionStatus fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum DataProtectionStatus'));
 }
 
 class DeleteQueryDefinitionResponse {
@@ -3460,31 +3439,18 @@ class Destination {
 /// The method used to distribute log data to the destination, which can be
 /// either random or grouped by log stream.
 enum Distribution {
-  random,
-  byLogStream,
-}
+  random('Random'),
+  byLogStream('ByLogStream'),
+  ;
 
-extension DistributionValueExtension on Distribution {
-  String toValue() {
-    switch (this) {
-      case Distribution.random:
-        return 'Random';
-      case Distribution.byLogStream:
-        return 'ByLogStream';
-    }
-  }
-}
+  final String value;
 
-extension DistributionFromString on String {
-  Distribution toDistribution() {
-    switch (this) {
-      case 'Random':
-        return Distribution.random;
-      case 'ByLogStream':
-        return Distribution.byLogStream;
-    }
-    throw Exception('$this is not known in enum Distribution');
-  }
+  const Distribution(this.value);
+
+  static Distribution fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum Distribution'));
 }
 
 /// Represents an export task.
@@ -3623,7 +3589,7 @@ class ExportTaskStatus {
 
   factory ExportTaskStatus.fromJson(Map<String, dynamic> json) {
     return ExportTaskStatus(
-      code: (json['code'] as String?)?.toExportTaskStatusCode(),
+      code: (json['code'] as String?)?.let(ExportTaskStatusCode.fromString),
       message: json['message'] as String?,
     );
   }
@@ -3632,58 +3598,29 @@ class ExportTaskStatus {
     final code = this.code;
     final message = this.message;
     return {
-      if (code != null) 'code': code.toValue(),
+      if (code != null) 'code': code.value,
       if (message != null) 'message': message,
     };
   }
 }
 
 enum ExportTaskStatusCode {
-  cancelled,
-  completed,
-  failed,
-  pending,
-  pendingCancel,
-  running,
-}
+  cancelled('CANCELLED'),
+  completed('COMPLETED'),
+  failed('FAILED'),
+  pending('PENDING'),
+  pendingCancel('PENDING_CANCEL'),
+  running('RUNNING'),
+  ;
 
-extension ExportTaskStatusCodeValueExtension on ExportTaskStatusCode {
-  String toValue() {
-    switch (this) {
-      case ExportTaskStatusCode.cancelled:
-        return 'CANCELLED';
-      case ExportTaskStatusCode.completed:
-        return 'COMPLETED';
-      case ExportTaskStatusCode.failed:
-        return 'FAILED';
-      case ExportTaskStatusCode.pending:
-        return 'PENDING';
-      case ExportTaskStatusCode.pendingCancel:
-        return 'PENDING_CANCEL';
-      case ExportTaskStatusCode.running:
-        return 'RUNNING';
-    }
-  }
-}
+  final String value;
 
-extension ExportTaskStatusCodeFromString on String {
-  ExportTaskStatusCode toExportTaskStatusCode() {
-    switch (this) {
-      case 'CANCELLED':
-        return ExportTaskStatusCode.cancelled;
-      case 'COMPLETED':
-        return ExportTaskStatusCode.completed;
-      case 'FAILED':
-        return ExportTaskStatusCode.failed;
-      case 'PENDING':
-        return ExportTaskStatusCode.pending;
-      case 'PENDING_CANCEL':
-        return ExportTaskStatusCode.pendingCancel;
-      case 'RUNNING':
-        return ExportTaskStatusCode.running;
-    }
-    throw Exception('$this is not known in enum ExportTaskStatusCode');
-  }
+  const ExportTaskStatusCode(this.value);
+
+  static ExportTaskStatusCode fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum ExportTaskStatusCode'));
 }
 
 class FilterLogEventsResponse {
@@ -3958,7 +3895,7 @@ class GetQueryResultsResponse {
       statistics: json['statistics'] != null
           ? QueryStatistics.fromJson(json['statistics'] as Map<String, dynamic>)
           : null,
-      status: (json['status'] as String?)?.toQueryStatus(),
+      status: (json['status'] as String?)?.let(QueryStatus.fromString),
     );
   }
 
@@ -3969,7 +3906,7 @@ class GetQueryResultsResponse {
     return {
       if (results != null) 'results': results,
       if (statistics != null) 'statistics': statistics,
-      if (status != null) 'status': status.toValue(),
+      if (status != null) 'status': status.value,
     };
   }
 }
@@ -4090,8 +4027,8 @@ class LogGroup {
     return LogGroup(
       arn: json['arn'] as String?,
       creationTime: json['creationTime'] as int?,
-      dataProtectionStatus:
-          (json['dataProtectionStatus'] as String?)?.toDataProtectionStatus(),
+      dataProtectionStatus: (json['dataProtectionStatus'] as String?)
+          ?.let(DataProtectionStatus.fromString),
       kmsKeyId: json['kmsKeyId'] as String?,
       logGroupName: json['logGroupName'] as String?,
       metricFilterCount: json['metricFilterCount'] as int?,
@@ -4113,7 +4050,7 @@ class LogGroup {
       if (arn != null) 'arn': arn,
       if (creationTime != null) 'creationTime': creationTime,
       if (dataProtectionStatus != null)
-        'dataProtectionStatus': dataProtectionStatus.toValue(),
+        'dataProtectionStatus': dataProtectionStatus.value,
       if (kmsKeyId != null) 'kmsKeyId': kmsKeyId,
       if (logGroupName != null) 'logGroupName': logGroupName,
       if (metricFilterCount != null) 'metricFilterCount': metricFilterCount,
@@ -4405,7 +4342,7 @@ class MetricTransformation {
       defaultValue: json['defaultValue'] as double?,
       dimensions: (json['dimensions'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
-      unit: (json['unit'] as String?)?.toStandardUnit(),
+      unit: (json['unit'] as String?)?.let(StandardUnit.fromString),
     );
   }
 
@@ -4422,37 +4359,23 @@ class MetricTransformation {
       'metricValue': metricValue,
       if (defaultValue != null) 'defaultValue': defaultValue,
       if (dimensions != null) 'dimensions': dimensions,
-      if (unit != null) 'unit': unit.toValue(),
+      if (unit != null) 'unit': unit.value,
     };
   }
 }
 
 enum OrderBy {
-  logStreamName,
-  lastEventTime,
-}
+  logStreamName('LogStreamName'),
+  lastEventTime('LastEventTime'),
+  ;
 
-extension OrderByValueExtension on OrderBy {
-  String toValue() {
-    switch (this) {
-      case OrderBy.logStreamName:
-        return 'LogStreamName';
-      case OrderBy.lastEventTime:
-        return 'LastEventTime';
-    }
-  }
-}
+  final String value;
 
-extension OrderByFromString on String {
-  OrderBy toOrderBy() {
-    switch (this) {
-      case 'LogStreamName':
-        return OrderBy.logStreamName;
-      case 'LastEventTime':
-        return OrderBy.lastEventTime;
-    }
-    throw Exception('$this is not known in enum OrderBy');
-  }
+  const OrderBy(this.value);
+
+  static OrderBy fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception('$value is not known in enum OrderBy'));
 }
 
 /// Represents a log event.
@@ -4736,7 +4659,7 @@ class QueryInfo {
       logGroupName: json['logGroupName'] as String?,
       queryId: json['queryId'] as String?,
       queryString: json['queryString'] as String?,
-      status: (json['status'] as String?)?.toQueryStatus(),
+      status: (json['status'] as String?)?.let(QueryStatus.fromString),
     );
   }
 
@@ -4751,7 +4674,7 @@ class QueryInfo {
       if (logGroupName != null) 'logGroupName': logGroupName,
       if (queryId != null) 'queryId': queryId,
       if (queryString != null) 'queryString': queryString,
-      if (status != null) 'status': status.toValue(),
+      if (status != null) 'status': status.value,
     };
   }
 }
@@ -4796,56 +4719,22 @@ class QueryStatistics {
 }
 
 enum QueryStatus {
-  scheduled,
-  running,
-  complete,
-  failed,
-  cancelled,
-  timeout,
-  unknown,
-}
+  scheduled('Scheduled'),
+  running('Running'),
+  complete('Complete'),
+  failed('Failed'),
+  cancelled('Cancelled'),
+  timeout('Timeout'),
+  unknown('Unknown'),
+  ;
 
-extension QueryStatusValueExtension on QueryStatus {
-  String toValue() {
-    switch (this) {
-      case QueryStatus.scheduled:
-        return 'Scheduled';
-      case QueryStatus.running:
-        return 'Running';
-      case QueryStatus.complete:
-        return 'Complete';
-      case QueryStatus.failed:
-        return 'Failed';
-      case QueryStatus.cancelled:
-        return 'Cancelled';
-      case QueryStatus.timeout:
-        return 'Timeout';
-      case QueryStatus.unknown:
-        return 'Unknown';
-    }
-  }
-}
+  final String value;
 
-extension QueryStatusFromString on String {
-  QueryStatus toQueryStatus() {
-    switch (this) {
-      case 'Scheduled':
-        return QueryStatus.scheduled;
-      case 'Running':
-        return QueryStatus.running;
-      case 'Complete':
-        return QueryStatus.complete;
-      case 'Failed':
-        return QueryStatus.failed;
-      case 'Cancelled':
-        return QueryStatus.cancelled;
-      case 'Timeout':
-        return QueryStatus.timeout;
-      case 'Unknown':
-        return QueryStatus.unknown;
-    }
-    throw Exception('$this is not known in enum QueryStatus');
-  }
+  const QueryStatus(this.value);
+
+  static QueryStatus fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum QueryStatus'));
 }
 
 /// Represents the rejected events.
@@ -4994,156 +4883,43 @@ class SearchedLogStream {
 }
 
 enum StandardUnit {
-  seconds,
-  microseconds,
-  milliseconds,
-  bytes,
-  kilobytes,
-  megabytes,
-  gigabytes,
-  terabytes,
-  bits,
-  kilobits,
-  megabits,
-  gigabits,
-  terabits,
-  percent,
-  count,
-  bytesSecond,
-  kilobytesSecond,
-  megabytesSecond,
-  gigabytesSecond,
-  terabytesSecond,
-  bitsSecond,
-  kilobitsSecond,
-  megabitsSecond,
-  gigabitsSecond,
-  terabitsSecond,
-  countSecond,
-  none,
-}
+  seconds('Seconds'),
+  microseconds('Microseconds'),
+  milliseconds('Milliseconds'),
+  bytes('Bytes'),
+  kilobytes('Kilobytes'),
+  megabytes('Megabytes'),
+  gigabytes('Gigabytes'),
+  terabytes('Terabytes'),
+  bits('Bits'),
+  kilobits('Kilobits'),
+  megabits('Megabits'),
+  gigabits('Gigabits'),
+  terabits('Terabits'),
+  percent('Percent'),
+  count('Count'),
+  bytesSecond('Bytes/Second'),
+  kilobytesSecond('Kilobytes/Second'),
+  megabytesSecond('Megabytes/Second'),
+  gigabytesSecond('Gigabytes/Second'),
+  terabytesSecond('Terabytes/Second'),
+  bitsSecond('Bits/Second'),
+  kilobitsSecond('Kilobits/Second'),
+  megabitsSecond('Megabits/Second'),
+  gigabitsSecond('Gigabits/Second'),
+  terabitsSecond('Terabits/Second'),
+  countSecond('Count/Second'),
+  none('None'),
+  ;
 
-extension StandardUnitValueExtension on StandardUnit {
-  String toValue() {
-    switch (this) {
-      case StandardUnit.seconds:
-        return 'Seconds';
-      case StandardUnit.microseconds:
-        return 'Microseconds';
-      case StandardUnit.milliseconds:
-        return 'Milliseconds';
-      case StandardUnit.bytes:
-        return 'Bytes';
-      case StandardUnit.kilobytes:
-        return 'Kilobytes';
-      case StandardUnit.megabytes:
-        return 'Megabytes';
-      case StandardUnit.gigabytes:
-        return 'Gigabytes';
-      case StandardUnit.terabytes:
-        return 'Terabytes';
-      case StandardUnit.bits:
-        return 'Bits';
-      case StandardUnit.kilobits:
-        return 'Kilobits';
-      case StandardUnit.megabits:
-        return 'Megabits';
-      case StandardUnit.gigabits:
-        return 'Gigabits';
-      case StandardUnit.terabits:
-        return 'Terabits';
-      case StandardUnit.percent:
-        return 'Percent';
-      case StandardUnit.count:
-        return 'Count';
-      case StandardUnit.bytesSecond:
-        return 'Bytes/Second';
-      case StandardUnit.kilobytesSecond:
-        return 'Kilobytes/Second';
-      case StandardUnit.megabytesSecond:
-        return 'Megabytes/Second';
-      case StandardUnit.gigabytesSecond:
-        return 'Gigabytes/Second';
-      case StandardUnit.terabytesSecond:
-        return 'Terabytes/Second';
-      case StandardUnit.bitsSecond:
-        return 'Bits/Second';
-      case StandardUnit.kilobitsSecond:
-        return 'Kilobits/Second';
-      case StandardUnit.megabitsSecond:
-        return 'Megabits/Second';
-      case StandardUnit.gigabitsSecond:
-        return 'Gigabits/Second';
-      case StandardUnit.terabitsSecond:
-        return 'Terabits/Second';
-      case StandardUnit.countSecond:
-        return 'Count/Second';
-      case StandardUnit.none:
-        return 'None';
-    }
-  }
-}
+  final String value;
 
-extension StandardUnitFromString on String {
-  StandardUnit toStandardUnit() {
-    switch (this) {
-      case 'Seconds':
-        return StandardUnit.seconds;
-      case 'Microseconds':
-        return StandardUnit.microseconds;
-      case 'Milliseconds':
-        return StandardUnit.milliseconds;
-      case 'Bytes':
-        return StandardUnit.bytes;
-      case 'Kilobytes':
-        return StandardUnit.kilobytes;
-      case 'Megabytes':
-        return StandardUnit.megabytes;
-      case 'Gigabytes':
-        return StandardUnit.gigabytes;
-      case 'Terabytes':
-        return StandardUnit.terabytes;
-      case 'Bits':
-        return StandardUnit.bits;
-      case 'Kilobits':
-        return StandardUnit.kilobits;
-      case 'Megabits':
-        return StandardUnit.megabits;
-      case 'Gigabits':
-        return StandardUnit.gigabits;
-      case 'Terabits':
-        return StandardUnit.terabits;
-      case 'Percent':
-        return StandardUnit.percent;
-      case 'Count':
-        return StandardUnit.count;
-      case 'Bytes/Second':
-        return StandardUnit.bytesSecond;
-      case 'Kilobytes/Second':
-        return StandardUnit.kilobytesSecond;
-      case 'Megabytes/Second':
-        return StandardUnit.megabytesSecond;
-      case 'Gigabytes/Second':
-        return StandardUnit.gigabytesSecond;
-      case 'Terabytes/Second':
-        return StandardUnit.terabytesSecond;
-      case 'Bits/Second':
-        return StandardUnit.bitsSecond;
-      case 'Kilobits/Second':
-        return StandardUnit.kilobitsSecond;
-      case 'Megabits/Second':
-        return StandardUnit.megabitsSecond;
-      case 'Gigabits/Second':
-        return StandardUnit.gigabitsSecond;
-      case 'Terabits/Second':
-        return StandardUnit.terabitsSecond;
-      case 'Count/Second':
-        return StandardUnit.countSecond;
-      case 'None':
-        return StandardUnit.none;
-    }
-    throw Exception('$this is not known in enum StandardUnit');
-  }
+  const StandardUnit(this.value);
+
+  static StandardUnit fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum StandardUnit'));
 }
 
 class StartQueryResponse {
@@ -5225,7 +5001,8 @@ class SubscriptionFilter {
     return SubscriptionFilter(
       creationTime: json['creationTime'] as int?,
       destinationArn: json['destinationArn'] as String?,
-      distribution: (json['distribution'] as String?)?.toDistribution(),
+      distribution:
+          (json['distribution'] as String?)?.let(Distribution.fromString),
       filterName: json['filterName'] as String?,
       filterPattern: json['filterPattern'] as String?,
       logGroupName: json['logGroupName'] as String?,
@@ -5244,7 +5021,7 @@ class SubscriptionFilter {
     return {
       if (creationTime != null) 'creationTime': creationTime,
       if (destinationArn != null) 'destinationArn': destinationArn,
-      if (distribution != null) 'distribution': distribution.toValue(),
+      if (distribution != null) 'distribution': distribution.value,
       if (filterName != null) 'filterName': filterName,
       if (filterPattern != null) 'filterPattern': filterPattern,
       if (logGroupName != null) 'logGroupName': logGroupName,

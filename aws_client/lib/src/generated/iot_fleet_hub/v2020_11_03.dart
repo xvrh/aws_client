@@ -334,46 +334,21 @@ class IoTFleetHub {
 }
 
 enum ApplicationState {
-  creating,
-  deleting,
-  active,
-  createFailed,
-  deleteFailed,
-}
+  creating('CREATING'),
+  deleting('DELETING'),
+  active('ACTIVE'),
+  createFailed('CREATE_FAILED'),
+  deleteFailed('DELETE_FAILED'),
+  ;
 
-extension ApplicationStateValueExtension on ApplicationState {
-  String toValue() {
-    switch (this) {
-      case ApplicationState.creating:
-        return 'CREATING';
-      case ApplicationState.deleting:
-        return 'DELETING';
-      case ApplicationState.active:
-        return 'ACTIVE';
-      case ApplicationState.createFailed:
-        return 'CREATE_FAILED';
-      case ApplicationState.deleteFailed:
-        return 'DELETE_FAILED';
-    }
-  }
-}
+  final String value;
 
-extension ApplicationStateFromString on String {
-  ApplicationState toApplicationState() {
-    switch (this) {
-      case 'CREATING':
-        return ApplicationState.creating;
-      case 'DELETING':
-        return ApplicationState.deleting;
-      case 'ACTIVE':
-        return ApplicationState.active;
-      case 'CREATE_FAILED':
-        return ApplicationState.createFailed;
-      case 'DELETE_FAILED':
-        return ApplicationState.deleteFailed;
-    }
-    throw Exception('$this is not known in enum ApplicationState');
-  }
+  const ApplicationState(this.value);
+
+  static ApplicationState fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum ApplicationState'));
 }
 
 /// A summary of information about a AWS IoT Device Management web application.
@@ -421,8 +396,8 @@ class ApplicationSummary {
       applicationCreationDate: json['applicationCreationDate'] as int?,
       applicationDescription: json['applicationDescription'] as String?,
       applicationLastUpdateDate: json['applicationLastUpdateDate'] as int?,
-      applicationState:
-          (json['applicationState'] as String?)?.toApplicationState(),
+      applicationState: (json['applicationState'] as String?)
+          ?.let(ApplicationState.fromString),
     );
   }
 
@@ -444,8 +419,7 @@ class ApplicationSummary {
         'applicationDescription': applicationDescription,
       if (applicationLastUpdateDate != null)
         'applicationLastUpdateDate': applicationLastUpdateDate,
-      if (applicationState != null)
-        'applicationState': applicationState.toValue(),
+      if (applicationState != null) 'applicationState': applicationState.value,
     };
   }
 }
@@ -554,7 +528,7 @@ class DescribeApplicationResponse {
       applicationLastUpdateDate: json['applicationLastUpdateDate'] as int,
       applicationName: json['applicationName'] as String,
       applicationState:
-          (json['applicationState'] as String).toApplicationState(),
+          ApplicationState.fromString((json['applicationState'] as String)),
       applicationUrl: json['applicationUrl'] as String,
       roleArn: json['roleArn'] as String,
       applicationDescription: json['applicationDescription'] as String?,
@@ -584,7 +558,7 @@ class DescribeApplicationResponse {
       'applicationId': applicationId,
       'applicationLastUpdateDate': applicationLastUpdateDate,
       'applicationName': applicationName,
-      'applicationState': applicationState.toValue(),
+      'applicationState': applicationState.value,
       'applicationUrl': applicationUrl,
       'roleArn': roleArn,
       if (applicationDescription != null)

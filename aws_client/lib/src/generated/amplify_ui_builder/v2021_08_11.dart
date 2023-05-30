@@ -288,7 +288,7 @@ class AmplifyUIBuilder {
     final response = await _protocol.send(
       payload: request,
       method: 'POST',
-      requestUri: '/tokens/${Uri.encodeComponent(provider.toValue())}',
+      requestUri: '/tokens/${Uri.encodeComponent(provider.value)}',
       exceptionFnMap: _exceptionFns,
     );
     return ExchangeCodeForTokenResponse.fromJson(response);
@@ -693,7 +693,7 @@ class AmplifyUIBuilder {
     final response = await _protocol.send(
       payload: refreshTokenBody,
       method: 'POST',
-      requestUri: '/tokens/${Uri.encodeComponent(provider.toValue())}/refresh',
+      requestUri: '/tokens/${Uri.encodeComponent(provider.value)}/refresh',
       exceptionFnMap: _exceptionFns,
     );
     return RefreshTokenResponse.fromJson(response);
@@ -1900,13 +1900,13 @@ class CreateFormData {
     return {
       'dataType': dataType,
       'fields': fields,
-      'formActionType': formActionType.toValue(),
+      'formActionType': formActionType.value,
       'name': name,
       'schemaVersion': schemaVersion,
       'sectionalElements': sectionalElements,
       'style': style,
       if (cta != null) 'cta': cta,
-      if (labelDecorator != null) 'labelDecorator': labelDecorator.toValue(),
+      if (labelDecorator != null) 'labelDecorator': labelDecorator.value,
       if (tags != null) 'tags': tags,
     };
   }
@@ -2359,7 +2359,7 @@ class FieldPosition {
   factory FieldPosition.fromJson(Map<String, dynamic> json) {
     return FieldPosition(
       below: json['below'] as String?,
-      fixed: (json['fixed'] as String?)?.toFixedPosition(),
+      fixed: (json['fixed'] as String?)?.let(FixedPosition.fromString),
       rightOf: json['rightOf'] as String?,
     );
   }
@@ -2370,7 +2370,7 @@ class FieldPosition {
     final rightOf = this.rightOf;
     return {
       if (below != null) 'below': below,
-      if (fixed != null) 'fixed': fixed.toValue(),
+      if (fixed != null) 'fixed': fixed.value,
       if (rightOf != null) 'rightOf': rightOf,
     };
   }
@@ -2479,7 +2479,8 @@ class FileUploaderFieldConfig {
           .whereNotNull()
           .map((e) => e as String)
           .toList(),
-      accessLevel: (json['accessLevel'] as String).toStorageAccessLevel(),
+      accessLevel:
+          StorageAccessLevel.fromString((json['accessLevel'] as String)),
       isResumable: json['isResumable'] as bool?,
       maxFileCount: json['maxFileCount'] as int?,
       maxSize: json['maxSize'] as int?,
@@ -2496,7 +2497,7 @@ class FileUploaderFieldConfig {
     final showThumbnails = this.showThumbnails;
     return {
       'acceptedFileTypes': acceptedFileTypes,
-      'accessLevel': accessLevel.toValue(),
+      'accessLevel': accessLevel.value,
       if (isResumable != null) 'isResumable': isResumable,
       if (maxFileCount != null) 'maxFileCount': maxFileCount,
       if (maxSize != null) 'maxSize': maxSize,
@@ -2506,26 +2507,17 @@ class FileUploaderFieldConfig {
 }
 
 enum FixedPosition {
-  first,
-}
+  first('first'),
+  ;
 
-extension FixedPositionValueExtension on FixedPosition {
-  String toValue() {
-    switch (this) {
-      case FixedPosition.first:
-        return 'first';
-    }
-  }
-}
+  final String value;
 
-extension FixedPositionFromString on String {
-  FixedPosition toFixedPosition() {
-    switch (this) {
-      case 'first':
-        return FixedPosition.first;
-    }
-    throw Exception('$this is not known in enum FixedPosition');
-  }
+  const FixedPosition(this.value);
+
+  static FixedPosition fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum FixedPosition'));
 }
 
 /// Contains the configuration settings for a <code>Form</code> user interface
@@ -2597,7 +2589,8 @@ class Form {
       environmentName: json['environmentName'] as String,
       fields: (json['fields'] as Map<String, dynamic>).map((k, e) =>
           MapEntry(k, FieldConfig.fromJson(e as Map<String, dynamic>))),
-      formActionType: (json['formActionType'] as String).toFormActionType(),
+      formActionType:
+          FormActionType.fromString((json['formActionType'] as String)),
       id: json['id'] as String,
       name: json['name'] as String,
       schemaVersion: json['schemaVersion'] as String,
@@ -2608,7 +2601,8 @@ class Form {
       cta: json['cta'] != null
           ? FormCTA.fromJson(json['cta'] as Map<String, dynamic>)
           : null,
-      labelDecorator: (json['labelDecorator'] as String?)?.toLabelDecorator(),
+      labelDecorator:
+          (json['labelDecorator'] as String?)?.let(LabelDecorator.fromString),
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
@@ -2633,45 +2627,32 @@ class Form {
       'dataType': dataType,
       'environmentName': environmentName,
       'fields': fields,
-      'formActionType': formActionType.toValue(),
+      'formActionType': formActionType.value,
       'id': id,
       'name': name,
       'schemaVersion': schemaVersion,
       'sectionalElements': sectionalElements,
       'style': style,
       if (cta != null) 'cta': cta,
-      if (labelDecorator != null) 'labelDecorator': labelDecorator.toValue(),
+      if (labelDecorator != null) 'labelDecorator': labelDecorator.value,
       if (tags != null) 'tags': tags,
     };
   }
 }
 
 enum FormActionType {
-  create,
-  update,
-}
+  create('create'),
+  update('update'),
+  ;
 
-extension FormActionTypeValueExtension on FormActionType {
-  String toValue() {
-    switch (this) {
-      case FormActionType.create:
-        return 'create';
-      case FormActionType.update:
-        return 'update';
-    }
-  }
-}
+  final String value;
 
-extension FormActionTypeFromString on String {
-  FormActionType toFormActionType() {
-    switch (this) {
-      case 'create':
-        return FormActionType.create;
-      case 'update':
-        return FormActionType.update;
-    }
-    throw Exception('$this is not known in enum FormActionType');
-  }
+  const FormActionType(this.value);
+
+  static FormActionType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum FormActionType'));
 }
 
 /// Describes how to bind a component property to form data.
@@ -2745,36 +2726,19 @@ class FormButton {
 }
 
 enum FormButtonsPosition {
-  top,
-  bottom,
-  topAndBottom,
-}
+  top('top'),
+  bottom('bottom'),
+  topAndBottom('top_and_bottom'),
+  ;
 
-extension FormButtonsPositionValueExtension on FormButtonsPosition {
-  String toValue() {
-    switch (this) {
-      case FormButtonsPosition.top:
-        return 'top';
-      case FormButtonsPosition.bottom:
-        return 'bottom';
-      case FormButtonsPosition.topAndBottom:
-        return 'top_and_bottom';
-    }
-  }
-}
+  final String value;
 
-extension FormButtonsPositionFromString on String {
-  FormButtonsPosition toFormButtonsPosition() {
-    switch (this) {
-      case 'top':
-        return FormButtonsPosition.top;
-      case 'bottom':
-        return FormButtonsPosition.bottom;
-      case 'top_and_bottom':
-        return FormButtonsPosition.topAndBottom;
-    }
-    throw Exception('$this is not known in enum FormButtonsPosition');
-  }
+  const FormButtonsPosition(this.value);
+
+  static FormButtonsPosition fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum FormButtonsPosition'));
 }
 
 /// Describes the call to action button configuration for the form.
@@ -2806,7 +2770,8 @@ class FormCTA {
       clear: json['clear'] != null
           ? FormButton.fromJson(json['clear'] as Map<String, dynamic>)
           : null,
-      position: (json['position'] as String?)?.toFormButtonsPosition(),
+      position:
+          (json['position'] as String?)?.let(FormButtonsPosition.fromString),
       submit: json['submit'] != null
           ? FormButton.fromJson(json['submit'] as Map<String, dynamic>)
           : null,
@@ -2821,38 +2786,25 @@ class FormCTA {
     return {
       if (cancel != null) 'cancel': cancel,
       if (clear != null) 'clear': clear,
-      if (position != null) 'position': position.toValue(),
+      if (position != null) 'position': position.value,
       if (submit != null) 'submit': submit,
     };
   }
 }
 
 enum FormDataSourceType {
-  dataStore,
-  custom,
-}
+  dataStore('DataStore'),
+  custom('Custom'),
+  ;
 
-extension FormDataSourceTypeValueExtension on FormDataSourceType {
-  String toValue() {
-    switch (this) {
-      case FormDataSourceType.dataStore:
-        return 'DataStore';
-      case FormDataSourceType.custom:
-        return 'Custom';
-    }
-  }
-}
+  final String value;
 
-extension FormDataSourceTypeFromString on String {
-  FormDataSourceType toFormDataSourceType() {
-    switch (this) {
-      case 'DataStore':
-        return FormDataSourceType.dataStore;
-      case 'Custom':
-        return FormDataSourceType.custom;
-    }
-    throw Exception('$this is not known in enum FormDataSourceType');
-  }
+  const FormDataSourceType(this.value);
+
+  static FormDataSourceType fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum FormDataSourceType'));
 }
 
 /// Describes the data type configuration for the data source associated with a
@@ -2873,7 +2825,8 @@ class FormDataTypeConfig {
 
   factory FormDataTypeConfig.fromJson(Map<String, dynamic> json) {
     return FormDataTypeConfig(
-      dataSourceType: (json['dataSourceType'] as String).toFormDataSourceType(),
+      dataSourceType:
+          FormDataSourceType.fromString((json['dataSourceType'] as String)),
       dataTypeName: json['dataTypeName'] as String,
     );
   }
@@ -2882,7 +2835,7 @@ class FormDataTypeConfig {
     final dataSourceType = this.dataSourceType;
     final dataTypeName = this.dataTypeName;
     return {
-      'dataSourceType': dataSourceType.toValue(),
+      'dataSourceType': dataSourceType.value,
       'dataTypeName': dataTypeName,
     };
   }
@@ -3142,7 +3095,8 @@ class FormSummary {
       dataType:
           FormDataTypeConfig.fromJson(json['dataType'] as Map<String, dynamic>),
       environmentName: json['environmentName'] as String,
-      formActionType: (json['formActionType'] as String).toFormActionType(),
+      formActionType:
+          FormActionType.fromString((json['formActionType'] as String)),
       id: json['id'] as String,
       name: json['name'] as String,
     );
@@ -3159,7 +3113,7 @@ class FormSummary {
       'appId': appId,
       'dataType': dataType,
       'environmentName': environmentName,
-      'formActionType': formActionType.toValue(),
+      'formActionType': formActionType.value,
       'id': id,
       'name': name,
     };
@@ -3238,36 +3192,19 @@ class GetThemeResponse {
 }
 
 enum LabelDecorator {
-  required,
-  optional,
-  none,
-}
+  required('required'),
+  optional('optional'),
+  none('none'),
+  ;
 
-extension LabelDecoratorValueExtension on LabelDecorator {
-  String toValue() {
-    switch (this) {
-      case LabelDecorator.required:
-        return 'required';
-      case LabelDecorator.optional:
-        return 'optional';
-      case LabelDecorator.none:
-        return 'none';
-    }
-  }
-}
+  final String value;
 
-extension LabelDecoratorFromString on String {
-  LabelDecorator toLabelDecorator() {
-    switch (this) {
-      case 'required':
-        return LabelDecorator.required;
-      case 'optional':
-        return LabelDecorator.optional;
-      case 'none':
-        return LabelDecorator.none;
-    }
-    throw Exception('$this is not known in enum LabelDecorator');
-  }
+  const LabelDecorator(this.value);
+
+  static LabelDecorator fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum LabelDecorator'));
 }
 
 class ListComponentsResponse {
@@ -3607,31 +3544,18 @@ class SectionalElement {
 }
 
 enum SortDirection {
-  asc,
-  desc,
-}
+  asc('ASC'),
+  desc('DESC'),
+  ;
 
-extension SortDirectionValueExtension on SortDirection {
-  String toValue() {
-    switch (this) {
-      case SortDirection.asc:
-        return 'ASC';
-      case SortDirection.desc:
-        return 'DESC';
-    }
-  }
-}
+  final String value;
 
-extension SortDirectionFromString on String {
-  SortDirection toSortDirection() {
-    switch (this) {
-      case 'ASC':
-        return SortDirection.asc;
-      case 'DESC':
-        return SortDirection.desc;
-    }
-    throw Exception('$this is not known in enum SortDirection');
-  }
+  const SortDirection(this.value);
+
+  static SortDirection fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum SortDirection'));
 }
 
 /// Describes how to sort the data that you bind to a component.
@@ -3649,7 +3573,7 @@ class SortProperty {
 
   factory SortProperty.fromJson(Map<String, dynamic> json) {
     return SortProperty(
-      direction: (json['direction'] as String).toSortDirection(),
+      direction: SortDirection.fromString((json['direction'] as String)),
       field: json['field'] as String,
     );
   }
@@ -3658,43 +3582,26 @@ class SortProperty {
     final direction = this.direction;
     final field = this.field;
     return {
-      'direction': direction.toValue(),
+      'direction': direction.value,
       'field': field,
     };
   }
 }
 
 enum StorageAccessLevel {
-  public,
-  protected,
-  private,
-}
+  public('public'),
+  protected('protected'),
+  private('private'),
+  ;
 
-extension StorageAccessLevelValueExtension on StorageAccessLevel {
-  String toValue() {
-    switch (this) {
-      case StorageAccessLevel.public:
-        return 'public';
-      case StorageAccessLevel.protected:
-        return 'protected';
-      case StorageAccessLevel.private:
-        return 'private';
-    }
-  }
-}
+  final String value;
 
-extension StorageAccessLevelFromString on String {
-  StorageAccessLevel toStorageAccessLevel() {
-    switch (this) {
-      case 'public':
-        return StorageAccessLevel.public;
-      case 'protected':
-        return StorageAccessLevel.protected;
-      case 'private':
-        return StorageAccessLevel.private;
-    }
-    throw Exception('$this is not known in enum StorageAccessLevel');
-  }
+  const StorageAccessLevel(this.value);
+
+  static StorageAccessLevel fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum StorageAccessLevel'));
 }
 
 /// A theme is a collection of style settings that apply globally to the
@@ -3894,26 +3801,17 @@ class ThemeValues {
 }
 
 enum TokenProviders {
-  figma,
-}
+  figma('figma'),
+  ;
 
-extension TokenProvidersValueExtension on TokenProviders {
-  String toValue() {
-    switch (this) {
-      case TokenProviders.figma:
-        return 'figma';
-    }
-  }
-}
+  final String value;
 
-extension TokenProvidersFromString on String {
-  TokenProviders toTokenProviders() {
-    switch (this) {
-      case 'figma':
-        return TokenProviders.figma;
-    }
-    throw Exception('$this is not known in enum TokenProviders');
-  }
+  const TokenProviders(this.value);
+
+  static TokenProviders fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum TokenProviders'));
 }
 
 /// Updates and saves all of the information about a component, based on
@@ -4077,8 +3975,8 @@ class UpdateFormData {
       if (cta != null) 'cta': cta,
       if (dataType != null) 'dataType': dataType,
       if (fields != null) 'fields': fields,
-      if (formActionType != null) 'formActionType': formActionType.toValue(),
-      if (labelDecorator != null) 'labelDecorator': labelDecorator.toValue(),
+      if (formActionType != null) 'formActionType': formActionType.value,
+      if (labelDecorator != null) 'labelDecorator': labelDecorator.value,
       if (name != null) 'name': name,
       if (schemaVersion != null) 'schemaVersion': schemaVersion,
       if (sectionalElements != null) 'sectionalElements': sectionalElements,

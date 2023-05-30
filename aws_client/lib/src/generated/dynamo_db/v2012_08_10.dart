@@ -90,7 +90,7 @@ class DynamoDB {
       payload: {
         'Statements': statements,
         if (returnConsumedCapacity != null)
-          'ReturnConsumedCapacity': returnConsumedCapacity.toValue(),
+          'ReturnConsumedCapacity': returnConsumedCapacity.value,
       },
     );
 
@@ -276,7 +276,7 @@ class DynamoDB {
       payload: {
         'RequestItems': requestItems,
         if (returnConsumedCapacity != null)
-          'ReturnConsumedCapacity': returnConsumedCapacity.toValue(),
+          'ReturnConsumedCapacity': returnConsumedCapacity.value,
       },
     );
 
@@ -455,9 +455,9 @@ class DynamoDB {
       payload: {
         'RequestItems': requestItems,
         if (returnConsumedCapacity != null)
-          'ReturnConsumedCapacity': returnConsumedCapacity.toValue(),
+          'ReturnConsumedCapacity': returnConsumedCapacity.value,
         if (returnItemCollectionMetrics != null)
-          'ReturnItemCollectionMetrics': returnItemCollectionMetrics.toValue(),
+          'ReturnItemCollectionMetrics': returnItemCollectionMetrics.value,
       },
     );
 
@@ -941,7 +941,7 @@ class DynamoDB {
         'AttributeDefinitions': attributeDefinitions,
         'KeySchema': keySchema,
         'TableName': tableName,
-        if (billingMode != null) 'BillingMode': billingMode.toValue(),
+        if (billingMode != null) 'BillingMode': billingMode.value,
         if (deletionProtectionEnabled != null)
           'DeletionProtectionEnabled': deletionProtectionEnabled,
         if (globalSecondaryIndexes != null)
@@ -953,7 +953,7 @@ class DynamoDB {
         if (sSESpecification != null) 'SSESpecification': sSESpecification,
         if (streamSpecification != null)
           'StreamSpecification': streamSpecification,
-        if (tableClass != null) 'TableClass': tableClass.toValue(),
+        if (tableClass != null) 'TableClass': tableClass.value,
         if (tags != null) 'Tags': tags,
       },
     );
@@ -1201,17 +1201,17 @@ class DynamoDB {
         if (conditionExpression != null)
           'ConditionExpression': conditionExpression,
         if (conditionalOperator != null)
-          'ConditionalOperator': conditionalOperator.toValue(),
+          'ConditionalOperator': conditionalOperator.value,
         if (expected != null) 'Expected': expected,
         if (expressionAttributeNames != null)
           'ExpressionAttributeNames': expressionAttributeNames,
         if (expressionAttributeValues != null)
           'ExpressionAttributeValues': expressionAttributeValues,
         if (returnConsumedCapacity != null)
-          'ReturnConsumedCapacity': returnConsumedCapacity.toValue(),
+          'ReturnConsumedCapacity': returnConsumedCapacity.value,
         if (returnItemCollectionMetrics != null)
-          'ReturnItemCollectionMetrics': returnItemCollectionMetrics.toValue(),
-        if (returnValues != null) 'ReturnValues': returnValues.toValue(),
+          'ReturnItemCollectionMetrics': returnItemCollectionMetrics.value,
+        if (returnValues != null) 'ReturnValues': returnValues.value,
       },
     );
 
@@ -1931,7 +1931,7 @@ class DynamoDB {
         if (nextToken != null) 'NextToken': nextToken,
         if (parameters != null) 'Parameters': parameters,
         if (returnConsumedCapacity != null)
-          'ReturnConsumedCapacity': returnConsumedCapacity.toValue(),
+          'ReturnConsumedCapacity': returnConsumedCapacity.value,
       },
     );
 
@@ -1991,7 +1991,7 @@ class DynamoDB {
         'ClientRequestToken':
             clientRequestToken ?? _s.generateIdempotencyToken(),
         if (returnConsumedCapacity != null)
-          'ReturnConsumedCapacity': returnConsumedCapacity.toValue(),
+          'ReturnConsumedCapacity': returnConsumedCapacity.value,
       },
     );
 
@@ -2088,11 +2088,11 @@ class DynamoDB {
         'S3Bucket': s3Bucket,
         'TableArn': tableArn,
         'ClientToken': clientToken ?? _s.generateIdempotencyToken(),
-        if (exportFormat != null) 'ExportFormat': exportFormat.toValue(),
+        if (exportFormat != null) 'ExportFormat': exportFormat.value,
         if (exportTime != null) 'ExportTime': unixTimestampToJson(exportTime),
         if (s3BucketOwner != null) 'S3BucketOwner': s3BucketOwner,
         if (s3Prefix != null) 'S3Prefix': s3Prefix,
-        if (s3SseAlgorithm != null) 'S3SseAlgorithm': s3SseAlgorithm.toValue(),
+        if (s3SseAlgorithm != null) 'S3SseAlgorithm': s3SseAlgorithm.value,
         if (s3SseKmsKeyId != null) 'S3SseKmsKeyId': s3SseKmsKeyId,
       },
     );
@@ -2233,7 +2233,7 @@ class DynamoDB {
         if (projectionExpression != null)
           'ProjectionExpression': projectionExpression,
         if (returnConsumedCapacity != null)
-          'ReturnConsumedCapacity': returnConsumedCapacity.toValue(),
+          'ReturnConsumedCapacity': returnConsumedCapacity.value,
       },
     );
 
@@ -2295,12 +2295,12 @@ class DynamoDB {
       // TODO queryParams
       headers: headers,
       payload: {
-        'InputFormat': inputFormat.toValue(),
+        'InputFormat': inputFormat.value,
         'S3BucketSource': s3BucketSource,
         'TableCreationParameters': tableCreationParameters,
         'ClientToken': clientToken ?? _s.generateIdempotencyToken(),
         if (inputCompressionType != null)
-          'InputCompressionType': inputCompressionType.toValue(),
+          'InputCompressionType': inputCompressionType.value,
         if (inputFormatOptions != null)
           'InputFormatOptions': inputFormatOptions,
       },
@@ -2387,7 +2387,7 @@ class DynamoDB {
       // TODO queryParams
       headers: headers,
       payload: {
-        if (backupType != null) 'BackupType': backupType.toValue(),
+        if (backupType != null) 'BackupType': backupType.value,
         if (exclusiveStartBackupArn != null)
           'ExclusiveStartBackupArn': exclusiveStartBackupArn,
         if (limit != null) 'Limit': limit,
@@ -2930,17 +2930,17 @@ class DynamoDB {
         if (conditionExpression != null)
           'ConditionExpression': conditionExpression,
         if (conditionalOperator != null)
-          'ConditionalOperator': conditionalOperator.toValue(),
+          'ConditionalOperator': conditionalOperator.value,
         if (expected != null) 'Expected': expected,
         if (expressionAttributeNames != null)
           'ExpressionAttributeNames': expressionAttributeNames,
         if (expressionAttributeValues != null)
           'ExpressionAttributeValues': expressionAttributeValues,
         if (returnConsumedCapacity != null)
-          'ReturnConsumedCapacity': returnConsumedCapacity.toValue(),
+          'ReturnConsumedCapacity': returnConsumedCapacity.value,
         if (returnItemCollectionMetrics != null)
-          'ReturnItemCollectionMetrics': returnItemCollectionMetrics.toValue(),
-        if (returnValues != null) 'ReturnValues': returnValues.toValue(),
+          'ReturnItemCollectionMetrics': returnItemCollectionMetrics.value,
+        if (returnValues != null) 'ReturnValues': returnValues.value,
       },
     );
 
@@ -3396,7 +3396,7 @@ class DynamoDB {
         'TableName': tableName,
         if (attributesToGet != null) 'AttributesToGet': attributesToGet,
         if (conditionalOperator != null)
-          'ConditionalOperator': conditionalOperator.toValue(),
+          'ConditionalOperator': conditionalOperator.value,
         if (consistentRead != null) 'ConsistentRead': consistentRead,
         if (exclusiveStartKey != null) 'ExclusiveStartKey': exclusiveStartKey,
         if (expressionAttributeNames != null)
@@ -3413,9 +3413,9 @@ class DynamoDB {
           'ProjectionExpression': projectionExpression,
         if (queryFilter != null) 'QueryFilter': queryFilter,
         if (returnConsumedCapacity != null)
-          'ReturnConsumedCapacity': returnConsumedCapacity.toValue(),
+          'ReturnConsumedCapacity': returnConsumedCapacity.value,
         if (scanIndexForward != null) 'ScanIndexForward': scanIndexForward,
-        if (select != null) 'Select': select.toValue(),
+        if (select != null) 'Select': select.value,
       },
     );
 
@@ -3506,7 +3506,7 @@ class DynamoDB {
         'BackupArn': backupArn,
         'TargetTableName': targetTableName,
         if (billingModeOverride != null)
-          'BillingModeOverride': billingModeOverride.toValue(),
+          'BillingModeOverride': billingModeOverride.value,
         if (globalSecondaryIndexOverride != null)
           'GlobalSecondaryIndexOverride': globalSecondaryIndexOverride,
         if (localSecondaryIndexOverride != null)
@@ -3646,7 +3646,7 @@ class DynamoDB {
       payload: {
         'TargetTableName': targetTableName,
         if (billingModeOverride != null)
-          'BillingModeOverride': billingModeOverride.toValue(),
+          'BillingModeOverride': billingModeOverride.value,
         if (globalSecondaryIndexOverride != null)
           'GlobalSecondaryIndexOverride': globalSecondaryIndexOverride,
         if (localSecondaryIndexOverride != null)
@@ -4034,7 +4034,7 @@ class DynamoDB {
         'TableName': tableName,
         if (attributesToGet != null) 'AttributesToGet': attributesToGet,
         if (conditionalOperator != null)
-          'ConditionalOperator': conditionalOperator.toValue(),
+          'ConditionalOperator': conditionalOperator.value,
         if (consistentRead != null) 'ConsistentRead': consistentRead,
         if (exclusiveStartKey != null) 'ExclusiveStartKey': exclusiveStartKey,
         if (expressionAttributeNames != null)
@@ -4047,10 +4047,10 @@ class DynamoDB {
         if (projectionExpression != null)
           'ProjectionExpression': projectionExpression,
         if (returnConsumedCapacity != null)
-          'ReturnConsumedCapacity': returnConsumedCapacity.toValue(),
+          'ReturnConsumedCapacity': returnConsumedCapacity.value,
         if (scanFilter != null) 'ScanFilter': scanFilter,
         if (segment != null) 'Segment': segment,
-        if (select != null) 'Select': select.toValue(),
+        if (select != null) 'Select': select.value,
         if (totalSegments != null) 'TotalSegments': totalSegments,
       },
     );
@@ -4159,7 +4159,7 @@ class DynamoDB {
       payload: {
         'TransactItems': transactItems,
         if (returnConsumedCapacity != null)
-          'ReturnConsumedCapacity': returnConsumedCapacity.toValue(),
+          'ReturnConsumedCapacity': returnConsumedCapacity.value,
       },
     );
 
@@ -4306,9 +4306,9 @@ class DynamoDB {
         'ClientRequestToken':
             clientRequestToken ?? _s.generateIdempotencyToken(),
         if (returnConsumedCapacity != null)
-          'ReturnConsumedCapacity': returnConsumedCapacity.toValue(),
+          'ReturnConsumedCapacity': returnConsumedCapacity.value,
         if (returnItemCollectionMetrics != null)
-          'ReturnItemCollectionMetrics': returnItemCollectionMetrics.toValue(),
+          'ReturnItemCollectionMetrics': returnItemCollectionMetrics.value,
       },
     );
 
@@ -4440,7 +4440,7 @@ class DynamoDB {
       // TODO queryParams
       headers: headers,
       payload: {
-        'ContributorInsightsAction': contributorInsightsAction.toValue(),
+        'ContributorInsightsAction': contributorInsightsAction.value,
         'TableName': tableName,
         if (indexName != null) 'IndexName': indexName,
       },
@@ -4623,7 +4623,7 @@ class DynamoDB {
       payload: {
         'GlobalTableName': globalTableName,
         if (globalTableBillingMode != null)
-          'GlobalTableBillingMode': globalTableBillingMode.toValue(),
+          'GlobalTableBillingMode': globalTableBillingMode.value,
         if (globalTableGlobalSecondaryIndexSettingsUpdate != null)
           'GlobalTableGlobalSecondaryIndexSettingsUpdate':
               globalTableGlobalSecondaryIndexSettingsUpdate,
@@ -4965,17 +4965,17 @@ class DynamoDB {
         if (conditionExpression != null)
           'ConditionExpression': conditionExpression,
         if (conditionalOperator != null)
-          'ConditionalOperator': conditionalOperator.toValue(),
+          'ConditionalOperator': conditionalOperator.value,
         if (expected != null) 'Expected': expected,
         if (expressionAttributeNames != null)
           'ExpressionAttributeNames': expressionAttributeNames,
         if (expressionAttributeValues != null)
           'ExpressionAttributeValues': expressionAttributeValues,
         if (returnConsumedCapacity != null)
-          'ReturnConsumedCapacity': returnConsumedCapacity.toValue(),
+          'ReturnConsumedCapacity': returnConsumedCapacity.value,
         if (returnItemCollectionMetrics != null)
-          'ReturnItemCollectionMetrics': returnItemCollectionMetrics.toValue(),
-        if (returnValues != null) 'ReturnValues': returnValues.toValue(),
+          'ReturnItemCollectionMetrics': returnItemCollectionMetrics.value,
+        if (returnValues != null) 'ReturnValues': returnValues.value,
         if (updateExpression != null) 'UpdateExpression': updateExpression,
       },
     );
@@ -5131,7 +5131,7 @@ class DynamoDB {
         'TableName': tableName,
         if (attributeDefinitions != null)
           'AttributeDefinitions': attributeDefinitions,
-        if (billingMode != null) 'BillingMode': billingMode.toValue(),
+        if (billingMode != null) 'BillingMode': billingMode.value,
         if (deletionProtectionEnabled != null)
           'DeletionProtectionEnabled': deletionProtectionEnabled,
         if (globalSecondaryIndexUpdates != null)
@@ -5142,7 +5142,7 @@ class DynamoDB {
         if (sSESpecification != null) 'SSESpecification': sSESpecification,
         if (streamSpecification != null)
           'StreamSpecification': streamSpecification,
-        if (tableClass != null) 'TableClass': tableClass.toValue(),
+        if (tableClass != null) 'TableClass': tableClass.value,
       },
     );
 
@@ -5318,36 +5318,19 @@ class ArchivalSummary {
 }
 
 enum AttributeAction {
-  add,
-  put,
-  delete,
-}
+  add('ADD'),
+  put('PUT'),
+  delete('DELETE'),
+  ;
 
-extension AttributeActionValueExtension on AttributeAction {
-  String toValue() {
-    switch (this) {
-      case AttributeAction.add:
-        return 'ADD';
-      case AttributeAction.put:
-        return 'PUT';
-      case AttributeAction.delete:
-        return 'DELETE';
-    }
-  }
-}
+  final String value;
 
-extension AttributeActionFromString on String {
-  AttributeAction toAttributeAction() {
-    switch (this) {
-      case 'ADD':
-        return AttributeAction.add;
-      case 'PUT':
-        return AttributeAction.put;
-      case 'DELETE':
-        return AttributeAction.delete;
-    }
-    throw Exception('$this is not known in enum AttributeAction');
-  }
+  const AttributeAction(this.value);
+
+  static AttributeAction fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum AttributeAction'));
 }
 
 /// Represents an attribute for describing the key schema for the table and
@@ -5379,7 +5362,8 @@ class AttributeDefinition {
   factory AttributeDefinition.fromJson(Map<String, dynamic> json) {
     return AttributeDefinition(
       attributeName: json['AttributeName'] as String,
-      attributeType: (json['AttributeType'] as String).toScalarAttributeType(),
+      attributeType:
+          ScalarAttributeType.fromString((json['AttributeType'] as String)),
     );
   }
 
@@ -5388,7 +5372,7 @@ class AttributeDefinition {
     final attributeType = this.attributeType;
     return {
       'AttributeName': attributeName,
-      'AttributeType': attributeType.toValue(),
+      'AttributeType': attributeType.value,
     };
   }
 }
@@ -5645,7 +5629,7 @@ class AttributeValueUpdate {
     final action = this.action;
     final value = this.value;
     return {
-      if (action != null) 'Action': action.toValue(),
+      if (action != null) 'Action': action.value,
       if (value != null) 'Value': value,
     };
   }
@@ -6044,8 +6028,8 @@ class BackupDetails {
       backupCreationDateTime: nonNullableTimeStampFromJson(
           json['BackupCreationDateTime'] as Object),
       backupName: json['BackupName'] as String,
-      backupStatus: (json['BackupStatus'] as String).toBackupStatus(),
-      backupType: (json['BackupType'] as String).toBackupType(),
+      backupStatus: BackupStatus.fromString((json['BackupStatus'] as String)),
+      backupType: BackupType.fromString((json['BackupType'] as String)),
       backupExpiryDateTime: timeStampFromJson(json['BackupExpiryDateTime']),
       backupSizeBytes: json['BackupSizeBytes'] as int?,
     );
@@ -6063,8 +6047,8 @@ class BackupDetails {
       'BackupArn': backupArn,
       'BackupCreationDateTime': unixTimestampToJson(backupCreationDateTime),
       'BackupName': backupName,
-      'BackupStatus': backupStatus.toValue(),
-      'BackupType': backupType.toValue(),
+      'BackupStatus': backupStatus.value,
+      'BackupType': backupType.value,
       if (backupExpiryDateTime != null)
         'BackupExpiryDateTime': unixTimestampToJson(backupExpiryDateTime),
       if (backupSizeBytes != null) 'BackupSizeBytes': backupSizeBytes,
@@ -6073,36 +6057,19 @@ class BackupDetails {
 }
 
 enum BackupStatus {
-  creating,
-  deleted,
-  available,
-}
+  creating('CREATING'),
+  deleted('DELETED'),
+  available('AVAILABLE'),
+  ;
 
-extension BackupStatusValueExtension on BackupStatus {
-  String toValue() {
-    switch (this) {
-      case BackupStatus.creating:
-        return 'CREATING';
-      case BackupStatus.deleted:
-        return 'DELETED';
-      case BackupStatus.available:
-        return 'AVAILABLE';
-    }
-  }
-}
+  final String value;
 
-extension BackupStatusFromString on String {
-  BackupStatus toBackupStatus() {
-    switch (this) {
-      case 'CREATING':
-        return BackupStatus.creating;
-      case 'DELETED':
-        return BackupStatus.deleted;
-      case 'AVAILABLE':
-        return BackupStatus.available;
-    }
-    throw Exception('$this is not known in enum BackupStatus');
-  }
+  const BackupStatus(this.value);
+
+  static BackupStatus fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum BackupStatus'));
 }
 
 /// Contains details for the backup.
@@ -6177,8 +6144,9 @@ class BackupSummary {
       backupExpiryDateTime: timeStampFromJson(json['BackupExpiryDateTime']),
       backupName: json['BackupName'] as String?,
       backupSizeBytes: json['BackupSizeBytes'] as int?,
-      backupStatus: (json['BackupStatus'] as String?)?.toBackupStatus(),
-      backupType: (json['BackupType'] as String?)?.toBackupType(),
+      backupStatus:
+          (json['BackupStatus'] as String?)?.let(BackupStatus.fromString),
+      backupType: (json['BackupType'] as String?)?.let(BackupType.fromString),
       tableArn: json['TableArn'] as String?,
       tableId: json['TableId'] as String?,
       tableName: json['TableName'] as String?,
@@ -6204,8 +6172,8 @@ class BackupSummary {
         'BackupExpiryDateTime': unixTimestampToJson(backupExpiryDateTime),
       if (backupName != null) 'BackupName': backupName,
       if (backupSizeBytes != null) 'BackupSizeBytes': backupSizeBytes,
-      if (backupStatus != null) 'BackupStatus': backupStatus.toValue(),
-      if (backupType != null) 'BackupType': backupType.toValue(),
+      if (backupStatus != null) 'BackupStatus': backupStatus.value,
+      if (backupType != null) 'BackupType': backupType.value,
       if (tableArn != null) 'TableArn': tableArn,
       if (tableId != null) 'TableId': tableId,
       if (tableName != null) 'TableName': tableName,
@@ -6214,74 +6182,35 @@ class BackupSummary {
 }
 
 enum BackupType {
-  user,
-  system,
-  awsBackup,
-}
+  user('USER'),
+  system('SYSTEM'),
+  awsBackup('AWS_BACKUP'),
+  ;
 
-extension BackupTypeValueExtension on BackupType {
-  String toValue() {
-    switch (this) {
-      case BackupType.user:
-        return 'USER';
-      case BackupType.system:
-        return 'SYSTEM';
-      case BackupType.awsBackup:
-        return 'AWS_BACKUP';
-    }
-  }
-}
+  final String value;
 
-extension BackupTypeFromString on String {
-  BackupType toBackupType() {
-    switch (this) {
-      case 'USER':
-        return BackupType.user;
-      case 'SYSTEM':
-        return BackupType.system;
-      case 'AWS_BACKUP':
-        return BackupType.awsBackup;
-    }
-    throw Exception('$this is not known in enum BackupType');
-  }
+  const BackupType(this.value);
+
+  static BackupType fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum BackupType'));
 }
 
 enum BackupTypeFilter {
-  user,
-  system,
-  awsBackup,
-  all,
-}
+  user('USER'),
+  system('SYSTEM'),
+  awsBackup('AWS_BACKUP'),
+  all('ALL'),
+  ;
 
-extension BackupTypeFilterValueExtension on BackupTypeFilter {
-  String toValue() {
-    switch (this) {
-      case BackupTypeFilter.user:
-        return 'USER';
-      case BackupTypeFilter.system:
-        return 'SYSTEM';
-      case BackupTypeFilter.awsBackup:
-        return 'AWS_BACKUP';
-      case BackupTypeFilter.all:
-        return 'ALL';
-    }
-  }
-}
+  final String value;
 
-extension BackupTypeFilterFromString on String {
-  BackupTypeFilter toBackupTypeFilter() {
-    switch (this) {
-      case 'USER':
-        return BackupTypeFilter.user;
-      case 'SYSTEM':
-        return BackupTypeFilter.system;
-      case 'AWS_BACKUP':
-        return BackupTypeFilter.awsBackup;
-      case 'ALL':
-        return BackupTypeFilter.all;
-    }
-    throw Exception('$this is not known in enum BackupTypeFilter');
-  }
+  const BackupTypeFilter(this.value);
+
+  static BackupTypeFilter fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum BackupTypeFilter'));
 }
 
 class BatchExecuteStatementOutput {
@@ -6425,7 +6354,8 @@ class BatchStatementError {
 
   factory BatchStatementError.fromJson(Map<String, dynamic> json) {
     return BatchStatementError(
-      code: (json['Code'] as String?)?.toBatchStatementErrorCodeEnum(),
+      code: (json['Code'] as String?)
+          ?.let(BatchStatementErrorCodeEnum.fromString),
       message: json['Message'] as String?,
     );
   }
@@ -6434,84 +6364,34 @@ class BatchStatementError {
     final code = this.code;
     final message = this.message;
     return {
-      if (code != null) 'Code': code.toValue(),
+      if (code != null) 'Code': code.value,
       if (message != null) 'Message': message,
     };
   }
 }
 
 enum BatchStatementErrorCodeEnum {
-  conditionalCheckFailed,
-  itemCollectionSizeLimitExceeded,
-  requestLimitExceeded,
-  validationError,
-  provisionedThroughputExceeded,
-  transactionConflict,
-  throttlingError,
-  internalServerError,
-  resourceNotFound,
-  accessDenied,
-  duplicateItem,
-}
+  conditionalCheckFailed('ConditionalCheckFailed'),
+  itemCollectionSizeLimitExceeded('ItemCollectionSizeLimitExceeded'),
+  requestLimitExceeded('RequestLimitExceeded'),
+  validationError('ValidationError'),
+  provisionedThroughputExceeded('ProvisionedThroughputExceeded'),
+  transactionConflict('TransactionConflict'),
+  throttlingError('ThrottlingError'),
+  internalServerError('InternalServerError'),
+  resourceNotFound('ResourceNotFound'),
+  accessDenied('AccessDenied'),
+  duplicateItem('DuplicateItem'),
+  ;
 
-extension BatchStatementErrorCodeEnumValueExtension
-    on BatchStatementErrorCodeEnum {
-  String toValue() {
-    switch (this) {
-      case BatchStatementErrorCodeEnum.conditionalCheckFailed:
-        return 'ConditionalCheckFailed';
-      case BatchStatementErrorCodeEnum.itemCollectionSizeLimitExceeded:
-        return 'ItemCollectionSizeLimitExceeded';
-      case BatchStatementErrorCodeEnum.requestLimitExceeded:
-        return 'RequestLimitExceeded';
-      case BatchStatementErrorCodeEnum.validationError:
-        return 'ValidationError';
-      case BatchStatementErrorCodeEnum.provisionedThroughputExceeded:
-        return 'ProvisionedThroughputExceeded';
-      case BatchStatementErrorCodeEnum.transactionConflict:
-        return 'TransactionConflict';
-      case BatchStatementErrorCodeEnum.throttlingError:
-        return 'ThrottlingError';
-      case BatchStatementErrorCodeEnum.internalServerError:
-        return 'InternalServerError';
-      case BatchStatementErrorCodeEnum.resourceNotFound:
-        return 'ResourceNotFound';
-      case BatchStatementErrorCodeEnum.accessDenied:
-        return 'AccessDenied';
-      case BatchStatementErrorCodeEnum.duplicateItem:
-        return 'DuplicateItem';
-    }
-  }
-}
+  final String value;
 
-extension BatchStatementErrorCodeEnumFromString on String {
-  BatchStatementErrorCodeEnum toBatchStatementErrorCodeEnum() {
-    switch (this) {
-      case 'ConditionalCheckFailed':
-        return BatchStatementErrorCodeEnum.conditionalCheckFailed;
-      case 'ItemCollectionSizeLimitExceeded':
-        return BatchStatementErrorCodeEnum.itemCollectionSizeLimitExceeded;
-      case 'RequestLimitExceeded':
-        return BatchStatementErrorCodeEnum.requestLimitExceeded;
-      case 'ValidationError':
-        return BatchStatementErrorCodeEnum.validationError;
-      case 'ProvisionedThroughputExceeded':
-        return BatchStatementErrorCodeEnum.provisionedThroughputExceeded;
-      case 'TransactionConflict':
-        return BatchStatementErrorCodeEnum.transactionConflict;
-      case 'ThrottlingError':
-        return BatchStatementErrorCodeEnum.throttlingError;
-      case 'InternalServerError':
-        return BatchStatementErrorCodeEnum.internalServerError;
-      case 'ResourceNotFound':
-        return BatchStatementErrorCodeEnum.resourceNotFound;
-      case 'AccessDenied':
-        return BatchStatementErrorCodeEnum.accessDenied;
-      case 'DuplicateItem':
-        return BatchStatementErrorCodeEnum.duplicateItem;
-    }
-    throw Exception('$this is not known in enum BatchStatementErrorCodeEnum');
-  }
+  const BatchStatementErrorCodeEnum(this.value);
+
+  static BatchStatementErrorCodeEnum fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum BatchStatementErrorCodeEnum'));
 }
 
 /// A PartiQL batch statement request.
@@ -6717,31 +6597,17 @@ class BatchWriteItemOutput {
 }
 
 enum BillingMode {
-  provisioned,
-  payPerRequest,
-}
+  provisioned('PROVISIONED'),
+  payPerRequest('PAY_PER_REQUEST'),
+  ;
 
-extension BillingModeValueExtension on BillingMode {
-  String toValue() {
-    switch (this) {
-      case BillingMode.provisioned:
-        return 'PROVISIONED';
-      case BillingMode.payPerRequest:
-        return 'PAY_PER_REQUEST';
-    }
-  }
-}
+  final String value;
 
-extension BillingModeFromString on String {
-  BillingMode toBillingMode() {
-    switch (this) {
-      case 'PROVISIONED':
-        return BillingMode.provisioned;
-      case 'PAY_PER_REQUEST':
-        return BillingMode.payPerRequest;
-    }
-    throw Exception('$this is not known in enum BillingMode');
-  }
+  const BillingMode(this.value);
+
+  static BillingMode fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum BillingMode'));
 }
 
 /// Contains the details for the read/write capacity mode. This page talks about
@@ -6782,7 +6648,8 @@ class BillingModeSummary {
 
   factory BillingModeSummary.fromJson(Map<String, dynamic> json) {
     return BillingModeSummary(
-      billingMode: (json['BillingMode'] as String?)?.toBillingMode(),
+      billingMode:
+          (json['BillingMode'] as String?)?.let(BillingMode.fromString),
       lastUpdateToPayPerRequestDateTime:
           timeStampFromJson(json['LastUpdateToPayPerRequestDateTime']),
     );
@@ -6793,7 +6660,7 @@ class BillingModeSummary {
     final lastUpdateToPayPerRequestDateTime =
         this.lastUpdateToPayPerRequestDateTime;
     return {
-      if (billingMode != null) 'BillingMode': billingMode.toValue(),
+      if (billingMode != null) 'BillingMode': billingMode.value,
       if (lastUpdateToPayPerRequestDateTime != null)
         'LastUpdateToPayPerRequestDateTime':
             unixTimestampToJson(lastUpdateToPayPerRequestDateTime),
@@ -6840,86 +6707,29 @@ class Capacity {
 }
 
 enum ComparisonOperator {
-  eq,
-  ne,
-  $in,
-  le,
-  lt,
-  ge,
-  gt,
-  between,
-  notNull,
-  $null,
-  contains,
-  notContains,
-  beginsWith,
-}
+  eq('EQ'),
+  ne('NE'),
+  $in('IN'),
+  le('LE'),
+  lt('LT'),
+  ge('GE'),
+  gt('GT'),
+  between('BETWEEN'),
+  notNull('NOT_NULL'),
+  $null('NULL'),
+  contains('CONTAINS'),
+  notContains('NOT_CONTAINS'),
+  beginsWith('BEGINS_WITH'),
+  ;
 
-extension ComparisonOperatorValueExtension on ComparisonOperator {
-  String toValue() {
-    switch (this) {
-      case ComparisonOperator.eq:
-        return 'EQ';
-      case ComparisonOperator.ne:
-        return 'NE';
-      case ComparisonOperator.$in:
-        return 'IN';
-      case ComparisonOperator.le:
-        return 'LE';
-      case ComparisonOperator.lt:
-        return 'LT';
-      case ComparisonOperator.ge:
-        return 'GE';
-      case ComparisonOperator.gt:
-        return 'GT';
-      case ComparisonOperator.between:
-        return 'BETWEEN';
-      case ComparisonOperator.notNull:
-        return 'NOT_NULL';
-      case ComparisonOperator.$null:
-        return 'NULL';
-      case ComparisonOperator.contains:
-        return 'CONTAINS';
-      case ComparisonOperator.notContains:
-        return 'NOT_CONTAINS';
-      case ComparisonOperator.beginsWith:
-        return 'BEGINS_WITH';
-    }
-  }
-}
+  final String value;
 
-extension ComparisonOperatorFromString on String {
-  ComparisonOperator toComparisonOperator() {
-    switch (this) {
-      case 'EQ':
-        return ComparisonOperator.eq;
-      case 'NE':
-        return ComparisonOperator.ne;
-      case 'IN':
-        return ComparisonOperator.$in;
-      case 'LE':
-        return ComparisonOperator.le;
-      case 'LT':
-        return ComparisonOperator.lt;
-      case 'GE':
-        return ComparisonOperator.ge;
-      case 'GT':
-        return ComparisonOperator.gt;
-      case 'BETWEEN':
-        return ComparisonOperator.between;
-      case 'NOT_NULL':
-        return ComparisonOperator.notNull;
-      case 'NULL':
-        return ComparisonOperator.$null;
-      case 'CONTAINS':
-        return ComparisonOperator.contains;
-      case 'NOT_CONTAINS':
-        return ComparisonOperator.notContains;
-      case 'BEGINS_WITH':
-        return ComparisonOperator.beginsWith;
-    }
-    throw Exception('$this is not known in enum ComparisonOperator');
-  }
+  const ComparisonOperator(this.value);
+
+  static ComparisonOperator fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum ComparisonOperator'));
 }
 
 /// Represents the selection criteria for a <code>Query</code> or
@@ -7141,7 +6951,7 @@ class Condition {
     final comparisonOperator = this.comparisonOperator;
     final attributeValueList = this.attributeValueList;
     return {
-      'ComparisonOperator': comparisonOperator.toValue(),
+      'ComparisonOperator': comparisonOperator.value,
       if (attributeValueList != null) 'AttributeValueList': attributeValueList,
     };
   }
@@ -7209,37 +7019,24 @@ class ConditionCheck {
         'ExpressionAttributeValues': expressionAttributeValues,
       if (returnValuesOnConditionCheckFailure != null)
         'ReturnValuesOnConditionCheckFailure':
-            returnValuesOnConditionCheckFailure.toValue(),
+            returnValuesOnConditionCheckFailure.value,
     };
   }
 }
 
 enum ConditionalOperator {
-  and,
-  or,
-}
+  and('AND'),
+  or('OR'),
+  ;
 
-extension ConditionalOperatorValueExtension on ConditionalOperator {
-  String toValue() {
-    switch (this) {
-      case ConditionalOperator.and:
-        return 'AND';
-      case ConditionalOperator.or:
-        return 'OR';
-    }
-  }
-}
+  final String value;
 
-extension ConditionalOperatorFromString on String {
-  ConditionalOperator toConditionalOperator() {
-    switch (this) {
-      case 'AND':
-        return ConditionalOperator.and;
-      case 'OR':
-        return ConditionalOperator.or;
-    }
-    throw Exception('$this is not known in enum ConditionalOperator');
-  }
+  const ConditionalOperator(this.value);
+
+  static ConditionalOperator fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum ConditionalOperator'));
 }
 
 /// The capacity units consumed by an operation. The data returned includes the
@@ -7341,8 +7138,8 @@ class ContinuousBackupsDescription {
 
   factory ContinuousBackupsDescription.fromJson(Map<String, dynamic> json) {
     return ContinuousBackupsDescription(
-      continuousBackupsStatus: (json['ContinuousBackupsStatus'] as String)
-          .toContinuousBackupsStatus(),
+      continuousBackupsStatus: ContinuousBackupsStatus.fromString(
+          (json['ContinuousBackupsStatus'] as String)),
       pointInTimeRecoveryDescription: json['PointInTimeRecoveryDescription'] !=
               null
           ? PointInTimeRecoveryDescription.fromJson(
@@ -7355,7 +7152,7 @@ class ContinuousBackupsDescription {
     final continuousBackupsStatus = this.continuousBackupsStatus;
     final pointInTimeRecoveryDescription = this.pointInTimeRecoveryDescription;
     return {
-      'ContinuousBackupsStatus': continuousBackupsStatus.toValue(),
+      'ContinuousBackupsStatus': continuousBackupsStatus.value,
       if (pointInTimeRecoveryDescription != null)
         'PointInTimeRecoveryDescription': pointInTimeRecoveryDescription,
     };
@@ -7363,102 +7160,51 @@ class ContinuousBackupsDescription {
 }
 
 enum ContinuousBackupsStatus {
-  enabled,
-  disabled,
-}
+  enabled('ENABLED'),
+  disabled('DISABLED'),
+  ;
 
-extension ContinuousBackupsStatusValueExtension on ContinuousBackupsStatus {
-  String toValue() {
-    switch (this) {
-      case ContinuousBackupsStatus.enabled:
-        return 'ENABLED';
-      case ContinuousBackupsStatus.disabled:
-        return 'DISABLED';
-    }
-  }
-}
+  final String value;
 
-extension ContinuousBackupsStatusFromString on String {
-  ContinuousBackupsStatus toContinuousBackupsStatus() {
-    switch (this) {
-      case 'ENABLED':
-        return ContinuousBackupsStatus.enabled;
-      case 'DISABLED':
-        return ContinuousBackupsStatus.disabled;
-    }
-    throw Exception('$this is not known in enum ContinuousBackupsStatus');
-  }
+  const ContinuousBackupsStatus(this.value);
+
+  static ContinuousBackupsStatus fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum ContinuousBackupsStatus'));
 }
 
 enum ContributorInsightsAction {
-  enable,
-  disable,
-}
+  enable('ENABLE'),
+  disable('DISABLE'),
+  ;
 
-extension ContributorInsightsActionValueExtension on ContributorInsightsAction {
-  String toValue() {
-    switch (this) {
-      case ContributorInsightsAction.enable:
-        return 'ENABLE';
-      case ContributorInsightsAction.disable:
-        return 'DISABLE';
-    }
-  }
-}
+  final String value;
 
-extension ContributorInsightsActionFromString on String {
-  ContributorInsightsAction toContributorInsightsAction() {
-    switch (this) {
-      case 'ENABLE':
-        return ContributorInsightsAction.enable;
-      case 'DISABLE':
-        return ContributorInsightsAction.disable;
-    }
-    throw Exception('$this is not known in enum ContributorInsightsAction');
-  }
+  const ContributorInsightsAction(this.value);
+
+  static ContributorInsightsAction fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum ContributorInsightsAction'));
 }
 
 enum ContributorInsightsStatus {
-  enabling,
-  enabled,
-  disabling,
-  disabled,
-  failed,
-}
+  enabling('ENABLING'),
+  enabled('ENABLED'),
+  disabling('DISABLING'),
+  disabled('DISABLED'),
+  failed('FAILED'),
+  ;
 
-extension ContributorInsightsStatusValueExtension on ContributorInsightsStatus {
-  String toValue() {
-    switch (this) {
-      case ContributorInsightsStatus.enabling:
-        return 'ENABLING';
-      case ContributorInsightsStatus.enabled:
-        return 'ENABLED';
-      case ContributorInsightsStatus.disabling:
-        return 'DISABLING';
-      case ContributorInsightsStatus.disabled:
-        return 'DISABLED';
-      case ContributorInsightsStatus.failed:
-        return 'FAILED';
-    }
-  }
-}
+  final String value;
 
-extension ContributorInsightsStatusFromString on String {
-  ContributorInsightsStatus toContributorInsightsStatus() {
-    switch (this) {
-      case 'ENABLING':
-        return ContributorInsightsStatus.enabling;
-      case 'ENABLED':
-        return ContributorInsightsStatus.enabled;
-      case 'DISABLING':
-        return ContributorInsightsStatus.disabling;
-      case 'DISABLED':
-        return ContributorInsightsStatus.disabled;
-      case 'FAILED':
-        return ContributorInsightsStatus.failed;
-    }
-    throw Exception('$this is not known in enum ContributorInsightsStatus');
-  }
+  const ContributorInsightsStatus(this.value);
+
+  static ContributorInsightsStatus fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum ContributorInsightsStatus'));
 }
 
 /// Represents a Contributor Insights summary entry.
@@ -7482,7 +7228,7 @@ class ContributorInsightsSummary {
   factory ContributorInsightsSummary.fromJson(Map<String, dynamic> json) {
     return ContributorInsightsSummary(
       contributorInsightsStatus: (json['ContributorInsightsStatus'] as String?)
-          ?.toContributorInsightsStatus(),
+          ?.let(ContributorInsightsStatus.fromString),
       indexName: json['IndexName'] as String?,
       tableName: json['TableName'] as String?,
     );
@@ -7494,7 +7240,7 @@ class ContributorInsightsSummary {
     final tableName = this.tableName;
     return {
       if (contributorInsightsStatus != null)
-        'ContributorInsightsStatus': contributorInsightsStatus.toValue(),
+        'ContributorInsightsStatus': contributorInsightsStatus.value,
       if (indexName != null) 'IndexName': indexName,
       if (tableName != null) 'TableName': tableName,
     };
@@ -7656,7 +7402,7 @@ class CreateReplicationGroupMemberAction {
       if (provisionedThroughputOverride != null)
         'ProvisionedThroughputOverride': provisionedThroughputOverride,
       if (tableClassOverride != null)
-        'TableClassOverride': tableClassOverride.toValue(),
+        'TableClassOverride': tableClassOverride.value,
     };
   }
 }
@@ -7777,7 +7523,7 @@ class Delete {
         'ExpressionAttributeValues': expressionAttributeValues,
       if (returnValuesOnConditionCheckFailure != null)
         'ReturnValuesOnConditionCheckFailure':
-            returnValuesOnConditionCheckFailure.toValue(),
+            returnValuesOnConditionCheckFailure.value,
     };
   }
 }
@@ -8102,7 +7848,7 @@ class DescribeContributorInsightsOutput {
               .map((e) => e as String)
               .toList(),
       contributorInsightsStatus: (json['ContributorInsightsStatus'] as String?)
-          ?.toContributorInsightsStatus(),
+          ?.let(ContributorInsightsStatus.fromString),
       failureException: json['FailureException'] != null
           ? FailureException.fromJson(
               json['FailureException'] as Map<String, dynamic>)
@@ -8124,7 +7870,7 @@ class DescribeContributorInsightsOutput {
       if (contributorInsightsRuleList != null)
         'ContributorInsightsRuleList': contributorInsightsRuleList,
       if (contributorInsightsStatus != null)
-        'ContributorInsightsStatus': contributorInsightsStatus.toValue(),
+        'ContributorInsightsStatus': contributorInsightsStatus.value,
       if (failureException != null) 'FailureException': failureException,
       if (indexName != null) 'IndexName': indexName,
       if (lastUpdateDateTime != null)
@@ -8439,46 +8185,21 @@ class DescribeTimeToLiveOutput {
 }
 
 enum DestinationStatus {
-  enabling,
-  active,
-  disabling,
-  disabled,
-  enableFailed,
-}
+  enabling('ENABLING'),
+  active('ACTIVE'),
+  disabling('DISABLING'),
+  disabled('DISABLED'),
+  enableFailed('ENABLE_FAILED'),
+  ;
 
-extension DestinationStatusValueExtension on DestinationStatus {
-  String toValue() {
-    switch (this) {
-      case DestinationStatus.enabling:
-        return 'ENABLING';
-      case DestinationStatus.active:
-        return 'ACTIVE';
-      case DestinationStatus.disabling:
-        return 'DISABLING';
-      case DestinationStatus.disabled:
-        return 'DISABLED';
-      case DestinationStatus.enableFailed:
-        return 'ENABLE_FAILED';
-    }
-  }
-}
+  final String value;
 
-extension DestinationStatusFromString on String {
-  DestinationStatus toDestinationStatus() {
-    switch (this) {
-      case 'ENABLING':
-        return DestinationStatus.enabling;
-      case 'ACTIVE':
-        return DestinationStatus.active;
-      case 'DISABLING':
-        return DestinationStatus.disabling;
-      case 'DISABLED':
-        return DestinationStatus.disabled;
-      case 'ENABLE_FAILED':
-        return DestinationStatus.enableFailed;
-    }
-    throw Exception('$this is not known in enum DestinationStatus');
-  }
+  const DestinationStatus(this.value);
+
+  static DestinationStatus fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum DestinationStatus'));
 }
 
 /// An endpoint information details.
@@ -8889,7 +8610,7 @@ class ExpectedAttributeValue {
     return {
       if (attributeValueList != null) 'AttributeValueList': attributeValueList,
       if (comparisonOperator != null)
-        'ComparisonOperator': comparisonOperator.toValue(),
+        'ComparisonOperator': comparisonOperator.value,
       if (exists != null) 'Exists': exists,
       if (value != null) 'Value': value,
     };
@@ -9000,9 +8721,11 @@ class ExportDescription {
       clientToken: json['ClientToken'] as String?,
       endTime: timeStampFromJson(json['EndTime']),
       exportArn: json['ExportArn'] as String?,
-      exportFormat: (json['ExportFormat'] as String?)?.toExportFormat(),
+      exportFormat:
+          (json['ExportFormat'] as String?)?.let(ExportFormat.fromString),
       exportManifest: json['ExportManifest'] as String?,
-      exportStatus: (json['ExportStatus'] as String?)?.toExportStatus(),
+      exportStatus:
+          (json['ExportStatus'] as String?)?.let(ExportStatus.fromString),
       exportTime: timeStampFromJson(json['ExportTime']),
       failureCode: json['FailureCode'] as String?,
       failureMessage: json['FailureMessage'] as String?,
@@ -9010,7 +8733,8 @@ class ExportDescription {
       s3Bucket: json['S3Bucket'] as String?,
       s3BucketOwner: json['S3BucketOwner'] as String?,
       s3Prefix: json['S3Prefix'] as String?,
-      s3SseAlgorithm: (json['S3SseAlgorithm'] as String?)?.toS3SseAlgorithm(),
+      s3SseAlgorithm:
+          (json['S3SseAlgorithm'] as String?)?.let(S3SseAlgorithm.fromString),
       s3SseKmsKeyId: json['S3SseKmsKeyId'] as String?,
       startTime: timeStampFromJson(json['StartTime']),
       tableArn: json['TableArn'] as String?,
@@ -9043,9 +8767,9 @@ class ExportDescription {
       if (clientToken != null) 'ClientToken': clientToken,
       if (endTime != null) 'EndTime': unixTimestampToJson(endTime),
       if (exportArn != null) 'ExportArn': exportArn,
-      if (exportFormat != null) 'ExportFormat': exportFormat.toValue(),
+      if (exportFormat != null) 'ExportFormat': exportFormat.value,
       if (exportManifest != null) 'ExportManifest': exportManifest,
-      if (exportStatus != null) 'ExportStatus': exportStatus.toValue(),
+      if (exportStatus != null) 'ExportStatus': exportStatus.value,
       if (exportTime != null) 'ExportTime': unixTimestampToJson(exportTime),
       if (failureCode != null) 'FailureCode': failureCode,
       if (failureMessage != null) 'FailureMessage': failureMessage,
@@ -9053,7 +8777,7 @@ class ExportDescription {
       if (s3Bucket != null) 'S3Bucket': s3Bucket,
       if (s3BucketOwner != null) 'S3BucketOwner': s3BucketOwner,
       if (s3Prefix != null) 'S3Prefix': s3Prefix,
-      if (s3SseAlgorithm != null) 'S3SseAlgorithm': s3SseAlgorithm.toValue(),
+      if (s3SseAlgorithm != null) 'S3SseAlgorithm': s3SseAlgorithm.value,
       if (s3SseKmsKeyId != null) 'S3SseKmsKeyId': s3SseKmsKeyId,
       if (startTime != null) 'StartTime': unixTimestampToJson(startTime),
       if (tableArn != null) 'TableArn': tableArn,
@@ -9063,64 +8787,34 @@ class ExportDescription {
 }
 
 enum ExportFormat {
-  dynamodbJson,
-  ion,
-}
+  dynamodbJson('DYNAMODB_JSON'),
+  ion('ION'),
+  ;
 
-extension ExportFormatValueExtension on ExportFormat {
-  String toValue() {
-    switch (this) {
-      case ExportFormat.dynamodbJson:
-        return 'DYNAMODB_JSON';
-      case ExportFormat.ion:
-        return 'ION';
-    }
-  }
-}
+  final String value;
 
-extension ExportFormatFromString on String {
-  ExportFormat toExportFormat() {
-    switch (this) {
-      case 'DYNAMODB_JSON':
-        return ExportFormat.dynamodbJson;
-      case 'ION':
-        return ExportFormat.ion;
-    }
-    throw Exception('$this is not known in enum ExportFormat');
-  }
+  const ExportFormat(this.value);
+
+  static ExportFormat fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum ExportFormat'));
 }
 
 enum ExportStatus {
-  inProgress,
-  completed,
-  failed,
-}
+  inProgress('IN_PROGRESS'),
+  completed('COMPLETED'),
+  failed('FAILED'),
+  ;
 
-extension ExportStatusValueExtension on ExportStatus {
-  String toValue() {
-    switch (this) {
-      case ExportStatus.inProgress:
-        return 'IN_PROGRESS';
-      case ExportStatus.completed:
-        return 'COMPLETED';
-      case ExportStatus.failed:
-        return 'FAILED';
-    }
-  }
-}
+  final String value;
 
-extension ExportStatusFromString on String {
-  ExportStatus toExportStatus() {
-    switch (this) {
-      case 'IN_PROGRESS':
-        return ExportStatus.inProgress;
-      case 'COMPLETED':
-        return ExportStatus.completed;
-      case 'FAILED':
-        return ExportStatus.failed;
-    }
-    throw Exception('$this is not known in enum ExportStatus');
-  }
+  const ExportStatus(this.value);
+
+  static ExportStatus fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum ExportStatus'));
 }
 
 /// Summary information about an export task.
@@ -9140,7 +8834,8 @@ class ExportSummary {
   factory ExportSummary.fromJson(Map<String, dynamic> json) {
     return ExportSummary(
       exportArn: json['ExportArn'] as String?,
-      exportStatus: (json['ExportStatus'] as String?)?.toExportStatus(),
+      exportStatus:
+          (json['ExportStatus'] as String?)?.let(ExportStatus.fromString),
     );
   }
 
@@ -9149,7 +8844,7 @@ class ExportSummary {
     final exportStatus = this.exportStatus;
     return {
       if (exportArn != null) 'ExportArn': exportArn,
-      if (exportStatus != null) 'ExportStatus': exportStatus.toValue(),
+      if (exportStatus != null) 'ExportStatus': exportStatus.value,
     };
   }
 }
@@ -9510,7 +9205,8 @@ class GlobalSecondaryIndexDescription {
       indexArn: json['IndexArn'] as String?,
       indexName: json['IndexName'] as String?,
       indexSizeBytes: json['IndexSizeBytes'] as int?,
-      indexStatus: (json['IndexStatus'] as String?)?.toIndexStatus(),
+      indexStatus:
+          (json['IndexStatus'] as String?)?.let(IndexStatus.fromString),
       itemCount: json['ItemCount'] as int?,
       keySchema: (json['KeySchema'] as List?)
           ?.whereNotNull()
@@ -9541,7 +9237,7 @@ class GlobalSecondaryIndexDescription {
       if (indexArn != null) 'IndexArn': indexArn,
       if (indexName != null) 'IndexName': indexName,
       if (indexSizeBytes != null) 'IndexSizeBytes': indexSizeBytes,
-      if (indexStatus != null) 'IndexStatus': indexStatus.toValue(),
+      if (indexStatus != null) 'IndexStatus': indexStatus.value,
       if (itemCount != null) 'ItemCount': itemCount,
       if (keySchema != null) 'KeySchema': keySchema,
       if (projection != null) 'Projection': projection,
@@ -9768,8 +9464,8 @@ class GlobalTableDescription {
       creationDateTime: timeStampFromJson(json['CreationDateTime']),
       globalTableArn: json['GlobalTableArn'] as String?,
       globalTableName: json['GlobalTableName'] as String?,
-      globalTableStatus:
-          (json['GlobalTableStatus'] as String?)?.toGlobalTableStatus(),
+      globalTableStatus: (json['GlobalTableStatus'] as String?)
+          ?.let(GlobalTableStatus.fromString),
       replicationGroup: (json['ReplicationGroup'] as List?)
           ?.whereNotNull()
           .map((e) => ReplicaDescription.fromJson(e as Map<String, dynamic>))
@@ -9789,7 +9485,7 @@ class GlobalTableDescription {
       if (globalTableArn != null) 'GlobalTableArn': globalTableArn,
       if (globalTableName != null) 'GlobalTableName': globalTableName,
       if (globalTableStatus != null)
-        'GlobalTableStatus': globalTableStatus.toValue(),
+        'GlobalTableStatus': globalTableStatus.value,
       if (replicationGroup != null) 'ReplicationGroup': replicationGroup,
     };
   }
@@ -9834,84 +9530,38 @@ class GlobalTableGlobalSecondaryIndexSettingsUpdate {
 }
 
 enum GlobalTableStatus {
-  creating,
-  active,
-  deleting,
-  updating,
-}
+  creating('CREATING'),
+  active('ACTIVE'),
+  deleting('DELETING'),
+  updating('UPDATING'),
+  ;
 
-extension GlobalTableStatusValueExtension on GlobalTableStatus {
-  String toValue() {
-    switch (this) {
-      case GlobalTableStatus.creating:
-        return 'CREATING';
-      case GlobalTableStatus.active:
-        return 'ACTIVE';
-      case GlobalTableStatus.deleting:
-        return 'DELETING';
-      case GlobalTableStatus.updating:
-        return 'UPDATING';
-    }
-  }
-}
+  final String value;
 
-extension GlobalTableStatusFromString on String {
-  GlobalTableStatus toGlobalTableStatus() {
-    switch (this) {
-      case 'CREATING':
-        return GlobalTableStatus.creating;
-      case 'ACTIVE':
-        return GlobalTableStatus.active;
-      case 'DELETING':
-        return GlobalTableStatus.deleting;
-      case 'UPDATING':
-        return GlobalTableStatus.updating;
-    }
-    throw Exception('$this is not known in enum GlobalTableStatus');
-  }
+  const GlobalTableStatus(this.value);
+
+  static GlobalTableStatus fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum GlobalTableStatus'));
 }
 
 enum ImportStatus {
-  inProgress,
-  completed,
-  cancelling,
-  cancelled,
-  failed,
-}
+  inProgress('IN_PROGRESS'),
+  completed('COMPLETED'),
+  cancelling('CANCELLING'),
+  cancelled('CANCELLED'),
+  failed('FAILED'),
+  ;
 
-extension ImportStatusValueExtension on ImportStatus {
-  String toValue() {
-    switch (this) {
-      case ImportStatus.inProgress:
-        return 'IN_PROGRESS';
-      case ImportStatus.completed:
-        return 'COMPLETED';
-      case ImportStatus.cancelling:
-        return 'CANCELLING';
-      case ImportStatus.cancelled:
-        return 'CANCELLED';
-      case ImportStatus.failed:
-        return 'FAILED';
-    }
-  }
-}
+  final String value;
 
-extension ImportStatusFromString on String {
-  ImportStatus toImportStatus() {
-    switch (this) {
-      case 'IN_PROGRESS':
-        return ImportStatus.inProgress;
-      case 'COMPLETED':
-        return ImportStatus.completed;
-      case 'CANCELLING':
-        return ImportStatus.cancelling;
-      case 'CANCELLED':
-        return ImportStatus.cancelled;
-      case 'FAILED':
-        return ImportStatus.failed;
-    }
-    throw Exception('$this is not known in enum ImportStatus');
-  }
+  const ImportStatus(this.value);
+
+  static ImportStatus fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum ImportStatus'));
 }
 
 /// Summary information about the source file for the import.
@@ -9961,8 +9611,10 @@ class ImportSummary {
       cloudWatchLogGroupArn: json['CloudWatchLogGroupArn'] as String?,
       endTime: timeStampFromJson(json['EndTime']),
       importArn: json['ImportArn'] as String?,
-      importStatus: (json['ImportStatus'] as String?)?.toImportStatus(),
-      inputFormat: (json['InputFormat'] as String?)?.toInputFormat(),
+      importStatus:
+          (json['ImportStatus'] as String?)?.let(ImportStatus.fromString),
+      inputFormat:
+          (json['InputFormat'] as String?)?.let(InputFormat.fromString),
       s3BucketSource: json['S3BucketSource'] != null
           ? S3BucketSource.fromJson(
               json['S3BucketSource'] as Map<String, dynamic>)
@@ -9986,8 +9638,8 @@ class ImportSummary {
         'CloudWatchLogGroupArn': cloudWatchLogGroupArn,
       if (endTime != null) 'EndTime': unixTimestampToJson(endTime),
       if (importArn != null) 'ImportArn': importArn,
-      if (importStatus != null) 'ImportStatus': importStatus.toValue(),
-      if (inputFormat != null) 'InputFormat': inputFormat.toValue(),
+      if (importStatus != null) 'ImportStatus': importStatus.value,
+      if (inputFormat != null) 'InputFormat': inputFormat.value,
       if (s3BucketSource != null) 'S3BucketSource': s3BucketSource,
       if (startTime != null) 'StartTime': unixTimestampToJson(startTime),
       if (tableArn != null) 'TableArn': tableArn,
@@ -10095,11 +9747,13 @@ class ImportTableDescription {
       failureCode: json['FailureCode'] as String?,
       failureMessage: json['FailureMessage'] as String?,
       importArn: json['ImportArn'] as String?,
-      importStatus: (json['ImportStatus'] as String?)?.toImportStatus(),
+      importStatus:
+          (json['ImportStatus'] as String?)?.let(ImportStatus.fromString),
       importedItemCount: json['ImportedItemCount'] as int?,
-      inputCompressionType:
-          (json['InputCompressionType'] as String?)?.toInputCompressionType(),
-      inputFormat: (json['InputFormat'] as String?)?.toInputFormat(),
+      inputCompressionType: (json['InputCompressionType'] as String?)
+          ?.let(InputCompressionType.fromString),
+      inputFormat:
+          (json['InputFormat'] as String?)?.let(InputFormat.fromString),
       inputFormatOptions: json['InputFormatOptions'] != null
           ? InputFormatOptions.fromJson(
               json['InputFormatOptions'] as Map<String, dynamic>)
@@ -10149,11 +9803,11 @@ class ImportTableDescription {
       if (failureCode != null) 'FailureCode': failureCode,
       if (failureMessage != null) 'FailureMessage': failureMessage,
       if (importArn != null) 'ImportArn': importArn,
-      if (importStatus != null) 'ImportStatus': importStatus.toValue(),
+      if (importStatus != null) 'ImportStatus': importStatus.value,
       if (importedItemCount != null) 'ImportedItemCount': importedItemCount,
       if (inputCompressionType != null)
-        'InputCompressionType': inputCompressionType.toValue(),
-      if (inputFormat != null) 'InputFormat': inputFormat.toValue(),
+        'InputCompressionType': inputCompressionType.value,
+      if (inputFormat != null) 'InputFormat': inputFormat.value,
       if (inputFormatOptions != null) 'InputFormatOptions': inputFormatOptions,
       if (processedItemCount != null) 'ProcessedItemCount': processedItemCount,
       if (processedSizeBytes != null) 'ProcessedSizeBytes': processedSizeBytes,
@@ -10193,107 +9847,50 @@ class ImportTableOutput {
 }
 
 enum IndexStatus {
-  creating,
-  updating,
-  deleting,
-  active,
-}
+  creating('CREATING'),
+  updating('UPDATING'),
+  deleting('DELETING'),
+  active('ACTIVE'),
+  ;
 
-extension IndexStatusValueExtension on IndexStatus {
-  String toValue() {
-    switch (this) {
-      case IndexStatus.creating:
-        return 'CREATING';
-      case IndexStatus.updating:
-        return 'UPDATING';
-      case IndexStatus.deleting:
-        return 'DELETING';
-      case IndexStatus.active:
-        return 'ACTIVE';
-    }
-  }
-}
+  final String value;
 
-extension IndexStatusFromString on String {
-  IndexStatus toIndexStatus() {
-    switch (this) {
-      case 'CREATING':
-        return IndexStatus.creating;
-      case 'UPDATING':
-        return IndexStatus.updating;
-      case 'DELETING':
-        return IndexStatus.deleting;
-      case 'ACTIVE':
-        return IndexStatus.active;
-    }
-    throw Exception('$this is not known in enum IndexStatus');
-  }
+  const IndexStatus(this.value);
+
+  static IndexStatus fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum IndexStatus'));
 }
 
 enum InputCompressionType {
-  gzip,
-  zstd,
-  none,
-}
+  gzip('GZIP'),
+  zstd('ZSTD'),
+  none('NONE'),
+  ;
 
-extension InputCompressionTypeValueExtension on InputCompressionType {
-  String toValue() {
-    switch (this) {
-      case InputCompressionType.gzip:
-        return 'GZIP';
-      case InputCompressionType.zstd:
-        return 'ZSTD';
-      case InputCompressionType.none:
-        return 'NONE';
-    }
-  }
-}
+  final String value;
 
-extension InputCompressionTypeFromString on String {
-  InputCompressionType toInputCompressionType() {
-    switch (this) {
-      case 'GZIP':
-        return InputCompressionType.gzip;
-      case 'ZSTD':
-        return InputCompressionType.zstd;
-      case 'NONE':
-        return InputCompressionType.none;
-    }
-    throw Exception('$this is not known in enum InputCompressionType');
-  }
+  const InputCompressionType(this.value);
+
+  static InputCompressionType fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum InputCompressionType'));
 }
 
 enum InputFormat {
-  dynamodbJson,
-  ion,
-  csv,
-}
+  dynamodbJson('DYNAMODB_JSON'),
+  ion('ION'),
+  csv('CSV'),
+  ;
 
-extension InputFormatValueExtension on InputFormat {
-  String toValue() {
-    switch (this) {
-      case InputFormat.dynamodbJson:
-        return 'DYNAMODB_JSON';
-      case InputFormat.ion:
-        return 'ION';
-      case InputFormat.csv:
-        return 'CSV';
-    }
-  }
-}
+  final String value;
 
-extension InputFormatFromString on String {
-  InputFormat toInputFormat() {
-    switch (this) {
-      case 'DYNAMODB_JSON':
-        return InputFormat.dynamodbJson;
-      case 'ION':
-        return InputFormat.ion;
-      case 'CSV':
-        return InputFormat.csv;
-    }
-    throw Exception('$this is not known in enum InputFormat');
-  }
+  const InputFormat(this.value);
+
+  static InputFormat fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum InputFormat'));
 }
 
 /// The format options for the data that was imported into the target table.
@@ -10442,7 +10039,7 @@ class KeySchemaElement {
   factory KeySchemaElement.fromJson(Map<String, dynamic> json) {
     return KeySchemaElement(
       attributeName: json['AttributeName'] as String,
-      keyType: (json['KeyType'] as String).toKeyType(),
+      keyType: KeyType.fromString((json['KeyType'] as String)),
     );
   }
 
@@ -10451,37 +10048,23 @@ class KeySchemaElement {
     final keyType = this.keyType;
     return {
       'AttributeName': attributeName,
-      'KeyType': keyType.toValue(),
+      'KeyType': keyType.value,
     };
   }
 }
 
 enum KeyType {
-  hash,
-  range,
-}
+  hash('HASH'),
+  range('RANGE'),
+  ;
 
-extension KeyTypeValueExtension on KeyType {
-  String toValue() {
-    switch (this) {
-      case KeyType.hash:
-        return 'HASH';
-      case KeyType.range:
-        return 'RANGE';
-    }
-  }
-}
+  final String value;
 
-extension KeyTypeFromString on String {
-  KeyType toKeyType() {
-    switch (this) {
-      case 'HASH':
-        return KeyType.hash;
-      case 'RANGE':
-        return KeyType.range;
-    }
-    throw Exception('$this is not known in enum KeyType');
-  }
+  const KeyType(this.value);
+
+  static KeyType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception('$value is not known in enum KeyType'));
 }
 
 /// Represents a set of primary keys and, for each key, the attributes to
@@ -10638,8 +10221,8 @@ class KinesisDataStreamDestination {
 
   factory KinesisDataStreamDestination.fromJson(Map<String, dynamic> json) {
     return KinesisDataStreamDestination(
-      destinationStatus:
-          (json['DestinationStatus'] as String?)?.toDestinationStatus(),
+      destinationStatus: (json['DestinationStatus'] as String?)
+          ?.let(DestinationStatus.fromString),
       destinationStatusDescription:
           json['DestinationStatusDescription'] as String?,
       streamArn: json['StreamArn'] as String?,
@@ -10652,7 +10235,7 @@ class KinesisDataStreamDestination {
     final streamArn = this.streamArn;
     return {
       if (destinationStatus != null)
-        'DestinationStatus': destinationStatus.toValue(),
+        'DestinationStatus': destinationStatus.value,
       if (destinationStatusDescription != null)
         'DestinationStatusDescription': destinationStatusDescription,
       if (streamArn != null) 'StreamArn': streamArn,
@@ -10679,8 +10262,8 @@ class KinesisStreamingDestinationOutput {
   factory KinesisStreamingDestinationOutput.fromJson(
       Map<String, dynamic> json) {
     return KinesisStreamingDestinationOutput(
-      destinationStatus:
-          (json['DestinationStatus'] as String?)?.toDestinationStatus(),
+      destinationStatus: (json['DestinationStatus'] as String?)
+          ?.let(DestinationStatus.fromString),
       streamArn: json['StreamArn'] as String?,
       tableName: json['TableName'] as String?,
     );
@@ -10692,7 +10275,7 @@ class KinesisStreamingDestinationOutput {
     final tableName = this.tableName;
     return {
       if (destinationStatus != null)
-        'DestinationStatus': destinationStatus.toValue(),
+        'DestinationStatus': destinationStatus.value,
       if (streamArn != null) 'StreamArn': streamArn,
       if (tableName != null) 'TableName': tableName,
     };
@@ -11224,7 +10807,7 @@ class PointInTimeRecoveryDescription {
       latestRestorableDateTime:
           timeStampFromJson(json['LatestRestorableDateTime']),
       pointInTimeRecoveryStatus: (json['PointInTimeRecoveryStatus'] as String?)
-          ?.toPointInTimeRecoveryStatus(),
+          ?.let(PointInTimeRecoveryStatus.fromString),
     );
   }
 
@@ -11240,7 +10823,7 @@ class PointInTimeRecoveryDescription {
         'LatestRestorableDateTime':
             unixTimestampToJson(latestRestorableDateTime),
       if (pointInTimeRecoveryStatus != null)
-        'PointInTimeRecoveryStatus': pointInTimeRecoveryStatus.toValue(),
+        'PointInTimeRecoveryStatus': pointInTimeRecoveryStatus.value,
     };
   }
 }
@@ -11264,31 +10847,18 @@ class PointInTimeRecoverySpecification {
 }
 
 enum PointInTimeRecoveryStatus {
-  enabled,
-  disabled,
-}
+  enabled('ENABLED'),
+  disabled('DISABLED'),
+  ;
 
-extension PointInTimeRecoveryStatusValueExtension on PointInTimeRecoveryStatus {
-  String toValue() {
-    switch (this) {
-      case PointInTimeRecoveryStatus.enabled:
-        return 'ENABLED';
-      case PointInTimeRecoveryStatus.disabled:
-        return 'DISABLED';
-    }
-  }
-}
+  final String value;
 
-extension PointInTimeRecoveryStatusFromString on String {
-  PointInTimeRecoveryStatus toPointInTimeRecoveryStatus() {
-    switch (this) {
-      case 'ENABLED':
-        return PointInTimeRecoveryStatus.enabled;
-      case 'DISABLED':
-        return PointInTimeRecoveryStatus.disabled;
-    }
-    throw Exception('$this is not known in enum PointInTimeRecoveryStatus');
-  }
+  const PointInTimeRecoveryStatus(this.value);
+
+  static PointInTimeRecoveryStatus fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum PointInTimeRecoveryStatus'));
 }
 
 /// Represents attributes that are copied (projected) from the table into an
@@ -11334,7 +10904,8 @@ class Projection {
           ?.whereNotNull()
           .map((e) => e as String)
           .toList(),
-      projectionType: (json['ProjectionType'] as String?)?.toProjectionType(),
+      projectionType:
+          (json['ProjectionType'] as String?)?.let(ProjectionType.fromString),
     );
   }
 
@@ -11343,42 +10914,25 @@ class Projection {
     final projectionType = this.projectionType;
     return {
       if (nonKeyAttributes != null) 'NonKeyAttributes': nonKeyAttributes,
-      if (projectionType != null) 'ProjectionType': projectionType.toValue(),
+      if (projectionType != null) 'ProjectionType': projectionType.value,
     };
   }
 }
 
 enum ProjectionType {
-  all,
-  keysOnly,
-  include,
-}
+  all('ALL'),
+  keysOnly('KEYS_ONLY'),
+  include('INCLUDE'),
+  ;
 
-extension ProjectionTypeValueExtension on ProjectionType {
-  String toValue() {
-    switch (this) {
-      case ProjectionType.all:
-        return 'ALL';
-      case ProjectionType.keysOnly:
-        return 'KEYS_ONLY';
-      case ProjectionType.include:
-        return 'INCLUDE';
-    }
-  }
-}
+  final String value;
 
-extension ProjectionTypeFromString on String {
-  ProjectionType toProjectionType() {
-    switch (this) {
-      case 'ALL':
-        return ProjectionType.all;
-      case 'KEYS_ONLY':
-        return ProjectionType.keysOnly;
-      case 'INCLUDE':
-        return ProjectionType.include;
-    }
-    throw Exception('$this is not known in enum ProjectionType');
-  }
+  const ProjectionType(this.value);
+
+  static ProjectionType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum ProjectionType'));
 }
 
 /// Represents the provisioned throughput settings for a specified table or
@@ -11582,7 +11136,7 @@ class Put {
         'ExpressionAttributeValues': expressionAttributeValues,
       if (returnValuesOnConditionCheckFailure != null)
         'ReturnValuesOnConditionCheckFailure':
-            returnValuesOnConditionCheckFailure.toValue(),
+            returnValuesOnConditionCheckFailure.value,
     };
   }
 }
@@ -11872,7 +11426,8 @@ class ReplicaAutoScalingDescription {
                   json['ReplicaProvisionedWriteCapacityAutoScalingSettings']
                       as Map<String, dynamic>)
               : null,
-      replicaStatus: (json['ReplicaStatus'] as String?)?.toReplicaStatus(),
+      replicaStatus:
+          (json['ReplicaStatus'] as String?)?.let(ReplicaStatus.fromString),
     );
   }
 
@@ -11894,7 +11449,7 @@ class ReplicaAutoScalingDescription {
       if (replicaProvisionedWriteCapacityAutoScalingSettings != null)
         'ReplicaProvisionedWriteCapacityAutoScalingSettings':
             replicaProvisionedWriteCapacityAutoScalingSettings,
-      if (replicaStatus != null) 'ReplicaStatus': replicaStatus.toValue(),
+      if (replicaStatus != null) 'ReplicaStatus': replicaStatus.value,
     };
   }
 }
@@ -12026,7 +11581,8 @@ class ReplicaDescription {
       regionName: json['RegionName'] as String?,
       replicaInaccessibleDateTime:
           timeStampFromJson(json['ReplicaInaccessibleDateTime']),
-      replicaStatus: (json['ReplicaStatus'] as String?)?.toReplicaStatus(),
+      replicaStatus:
+          (json['ReplicaStatus'] as String?)?.let(ReplicaStatus.fromString),
       replicaStatusDescription: json['ReplicaStatusDescription'] as String?,
       replicaStatusPercentProgress:
           json['ReplicaStatusPercentProgress'] as String?,
@@ -12057,7 +11613,7 @@ class ReplicaDescription {
       if (replicaInaccessibleDateTime != null)
         'ReplicaInaccessibleDateTime':
             unixTimestampToJson(replicaInaccessibleDateTime),
-      if (replicaStatus != null) 'ReplicaStatus': replicaStatus.toValue(),
+      if (replicaStatus != null) 'ReplicaStatus': replicaStatus.value,
       if (replicaStatusDescription != null)
         'ReplicaStatusDescription': replicaStatusDescription,
       if (replicaStatusPercentProgress != null)
@@ -12133,7 +11689,8 @@ class ReplicaGlobalSecondaryIndexAutoScalingDescription {
       Map<String, dynamic> json) {
     return ReplicaGlobalSecondaryIndexAutoScalingDescription(
       indexName: json['IndexName'] as String?,
-      indexStatus: (json['IndexStatus'] as String?)?.toIndexStatus(),
+      indexStatus:
+          (json['IndexStatus'] as String?)?.let(IndexStatus.fromString),
       provisionedReadCapacityAutoScalingSettings:
           json['ProvisionedReadCapacityAutoScalingSettings'] != null
               ? AutoScalingSettingsDescription.fromJson(
@@ -12158,7 +11715,7 @@ class ReplicaGlobalSecondaryIndexAutoScalingDescription {
         this.provisionedWriteCapacityAutoScalingSettings;
     return {
       if (indexName != null) 'IndexName': indexName,
-      if (indexStatus != null) 'IndexStatus': indexStatus.toValue(),
+      if (indexStatus != null) 'IndexStatus': indexStatus.value,
       if (provisionedReadCapacityAutoScalingSettings != null)
         'ProvisionedReadCapacityAutoScalingSettings':
             provisionedReadCapacityAutoScalingSettings,
@@ -12285,7 +11842,8 @@ class ReplicaGlobalSecondaryIndexSettingsDescription {
       Map<String, dynamic> json) {
     return ReplicaGlobalSecondaryIndexSettingsDescription(
       indexName: json['IndexName'] as String,
-      indexStatus: (json['IndexStatus'] as String?)?.toIndexStatus(),
+      indexStatus:
+          (json['IndexStatus'] as String?)?.let(IndexStatus.fromString),
       provisionedReadCapacityAutoScalingSettings:
           json['ProvisionedReadCapacityAutoScalingSettings'] != null
               ? AutoScalingSettingsDescription.fromJson(
@@ -12316,7 +11874,7 @@ class ReplicaGlobalSecondaryIndexSettingsDescription {
     final provisionedWriteCapacityUnits = this.provisionedWriteCapacityUnits;
     return {
       'IndexName': indexName,
-      if (indexStatus != null) 'IndexStatus': indexStatus.toValue(),
+      if (indexStatus != null) 'IndexStatus': indexStatus.value,
       if (provisionedReadCapacityAutoScalingSettings != null)
         'ProvisionedReadCapacityAutoScalingSettings':
             provisionedReadCapacityAutoScalingSettings,
@@ -12465,7 +12023,8 @@ class ReplicaSettingsDescription {
               : null,
       replicaProvisionedWriteCapacityUnits:
           json['ReplicaProvisionedWriteCapacityUnits'] as int?,
-      replicaStatus: (json['ReplicaStatus'] as String?)?.toReplicaStatus(),
+      replicaStatus:
+          (json['ReplicaStatus'] as String?)?.let(ReplicaStatus.fromString),
       replicaTableClassSummary: json['ReplicaTableClassSummary'] != null
           ? TableClassSummary.fromJson(
               json['ReplicaTableClassSummary'] as Map<String, dynamic>)
@@ -12507,7 +12066,7 @@ class ReplicaSettingsDescription {
       if (replicaProvisionedWriteCapacityUnits != null)
         'ReplicaProvisionedWriteCapacityUnits':
             replicaProvisionedWriteCapacityUnits,
-      if (replicaStatus != null) 'ReplicaStatus': replicaStatus.toValue(),
+      if (replicaStatus != null) 'ReplicaStatus': replicaStatus.value,
       if (replicaTableClassSummary != null)
         'ReplicaTableClassSummary': replicaTableClassSummary,
     };
@@ -12571,62 +12130,29 @@ class ReplicaSettingsUpdate {
         'ReplicaProvisionedReadCapacityUnits':
             replicaProvisionedReadCapacityUnits,
       if (replicaTableClass != null)
-        'ReplicaTableClass': replicaTableClass.toValue(),
+        'ReplicaTableClass': replicaTableClass.value,
     };
   }
 }
 
 enum ReplicaStatus {
-  creating,
-  creationFailed,
-  updating,
-  deleting,
-  active,
-  regionDisabled,
-  inaccessibleEncryptionCredentials,
-}
+  creating('CREATING'),
+  creationFailed('CREATION_FAILED'),
+  updating('UPDATING'),
+  deleting('DELETING'),
+  active('ACTIVE'),
+  regionDisabled('REGION_DISABLED'),
+  inaccessibleEncryptionCredentials('INACCESSIBLE_ENCRYPTION_CREDENTIALS'),
+  ;
 
-extension ReplicaStatusValueExtension on ReplicaStatus {
-  String toValue() {
-    switch (this) {
-      case ReplicaStatus.creating:
-        return 'CREATING';
-      case ReplicaStatus.creationFailed:
-        return 'CREATION_FAILED';
-      case ReplicaStatus.updating:
-        return 'UPDATING';
-      case ReplicaStatus.deleting:
-        return 'DELETING';
-      case ReplicaStatus.active:
-        return 'ACTIVE';
-      case ReplicaStatus.regionDisabled:
-        return 'REGION_DISABLED';
-      case ReplicaStatus.inaccessibleEncryptionCredentials:
-        return 'INACCESSIBLE_ENCRYPTION_CREDENTIALS';
-    }
-  }
-}
+  final String value;
 
-extension ReplicaStatusFromString on String {
-  ReplicaStatus toReplicaStatus() {
-    switch (this) {
-      case 'CREATING':
-        return ReplicaStatus.creating;
-      case 'CREATION_FAILED':
-        return ReplicaStatus.creationFailed;
-      case 'UPDATING':
-        return ReplicaStatus.updating;
-      case 'DELETING':
-        return ReplicaStatus.deleting;
-      case 'ACTIVE':
-        return ReplicaStatus.active;
-      case 'REGION_DISABLED':
-        return ReplicaStatus.regionDisabled;
-      case 'INACCESSIBLE_ENCRYPTION_CREDENTIALS':
-        return ReplicaStatus.inaccessibleEncryptionCredentials;
-    }
-    throw Exception('$this is not known in enum ReplicaStatus');
-  }
+  const ReplicaStatus(this.value);
+
+  static ReplicaStatus fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum ReplicaStatus'));
 }
 
 /// Represents one of the following:
@@ -12835,138 +12361,66 @@ class RestoreTableToPointInTimeOutput {
 /// </li>
 /// </ul>
 enum ReturnConsumedCapacity {
-  indexes,
-  total,
-  none,
-}
+  indexes('INDEXES'),
+  total('TOTAL'),
+  none('NONE'),
+  ;
 
-extension ReturnConsumedCapacityValueExtension on ReturnConsumedCapacity {
-  String toValue() {
-    switch (this) {
-      case ReturnConsumedCapacity.indexes:
-        return 'INDEXES';
-      case ReturnConsumedCapacity.total:
-        return 'TOTAL';
-      case ReturnConsumedCapacity.none:
-        return 'NONE';
-    }
-  }
-}
+  final String value;
 
-extension ReturnConsumedCapacityFromString on String {
-  ReturnConsumedCapacity toReturnConsumedCapacity() {
-    switch (this) {
-      case 'INDEXES':
-        return ReturnConsumedCapacity.indexes;
-      case 'TOTAL':
-        return ReturnConsumedCapacity.total;
-      case 'NONE':
-        return ReturnConsumedCapacity.none;
-    }
-    throw Exception('$this is not known in enum ReturnConsumedCapacity');
-  }
+  const ReturnConsumedCapacity(this.value);
+
+  static ReturnConsumedCapacity fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum ReturnConsumedCapacity'));
 }
 
 enum ReturnItemCollectionMetrics {
-  size,
-  none,
-}
+  size('SIZE'),
+  none('NONE'),
+  ;
 
-extension ReturnItemCollectionMetricsValueExtension
-    on ReturnItemCollectionMetrics {
-  String toValue() {
-    switch (this) {
-      case ReturnItemCollectionMetrics.size:
-        return 'SIZE';
-      case ReturnItemCollectionMetrics.none:
-        return 'NONE';
-    }
-  }
-}
+  final String value;
 
-extension ReturnItemCollectionMetricsFromString on String {
-  ReturnItemCollectionMetrics toReturnItemCollectionMetrics() {
-    switch (this) {
-      case 'SIZE':
-        return ReturnItemCollectionMetrics.size;
-      case 'NONE':
-        return ReturnItemCollectionMetrics.none;
-    }
-    throw Exception('$this is not known in enum ReturnItemCollectionMetrics');
-  }
+  const ReturnItemCollectionMetrics(this.value);
+
+  static ReturnItemCollectionMetrics fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum ReturnItemCollectionMetrics'));
 }
 
 enum ReturnValue {
-  none,
-  allOld,
-  updatedOld,
-  allNew,
-  updatedNew,
-}
+  none('NONE'),
+  allOld('ALL_OLD'),
+  updatedOld('UPDATED_OLD'),
+  allNew('ALL_NEW'),
+  updatedNew('UPDATED_NEW'),
+  ;
 
-extension ReturnValueValueExtension on ReturnValue {
-  String toValue() {
-    switch (this) {
-      case ReturnValue.none:
-        return 'NONE';
-      case ReturnValue.allOld:
-        return 'ALL_OLD';
-      case ReturnValue.updatedOld:
-        return 'UPDATED_OLD';
-      case ReturnValue.allNew:
-        return 'ALL_NEW';
-      case ReturnValue.updatedNew:
-        return 'UPDATED_NEW';
-    }
-  }
-}
+  final String value;
 
-extension ReturnValueFromString on String {
-  ReturnValue toReturnValue() {
-    switch (this) {
-      case 'NONE':
-        return ReturnValue.none;
-      case 'ALL_OLD':
-        return ReturnValue.allOld;
-      case 'UPDATED_OLD':
-        return ReturnValue.updatedOld;
-      case 'ALL_NEW':
-        return ReturnValue.allNew;
-      case 'UPDATED_NEW':
-        return ReturnValue.updatedNew;
-    }
-    throw Exception('$this is not known in enum ReturnValue');
-  }
+  const ReturnValue(this.value);
+
+  static ReturnValue fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum ReturnValue'));
 }
 
 enum ReturnValuesOnConditionCheckFailure {
-  allOld,
-  none,
-}
+  allOld('ALL_OLD'),
+  none('NONE'),
+  ;
 
-extension ReturnValuesOnConditionCheckFailureValueExtension
-    on ReturnValuesOnConditionCheckFailure {
-  String toValue() {
-    switch (this) {
-      case ReturnValuesOnConditionCheckFailure.allOld:
-        return 'ALL_OLD';
-      case ReturnValuesOnConditionCheckFailure.none:
-        return 'NONE';
-    }
-  }
-}
+  final String value;
 
-extension ReturnValuesOnConditionCheckFailureFromString on String {
-  ReturnValuesOnConditionCheckFailure toReturnValuesOnConditionCheckFailure() {
-    switch (this) {
-      case 'ALL_OLD':
-        return ReturnValuesOnConditionCheckFailure.allOld;
-      case 'NONE':
-        return ReturnValuesOnConditionCheckFailure.none;
-    }
-    throw Exception(
-        '$this is not known in enum ReturnValuesOnConditionCheckFailure');
-  }
+  const ReturnValuesOnConditionCheckFailure(this.value);
+
+  static ReturnValuesOnConditionCheckFailure fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum ReturnValuesOnConditionCheckFailure'));
 }
 
 /// The S3 bucket that is being imported from.
@@ -13008,31 +12462,18 @@ class S3BucketSource {
 }
 
 enum S3SseAlgorithm {
-  aes256,
-  kms,
-}
+  aes256('AES256'),
+  kms('KMS'),
+  ;
 
-extension S3SseAlgorithmValueExtension on S3SseAlgorithm {
-  String toValue() {
-    switch (this) {
-      case S3SseAlgorithm.aes256:
-        return 'AES256';
-      case S3SseAlgorithm.kms:
-        return 'KMS';
-    }
-  }
-}
+  final String value;
 
-extension S3SseAlgorithmFromString on String {
-  S3SseAlgorithm toS3SseAlgorithm() {
-    switch (this) {
-      case 'AES256':
-        return S3SseAlgorithm.aes256;
-      case 'KMS':
-        return S3SseAlgorithm.kms;
-    }
-    throw Exception('$this is not known in enum S3SseAlgorithm');
-  }
+  const S3SseAlgorithm(this.value);
+
+  static S3SseAlgorithm fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum S3SseAlgorithm'));
 }
 
 /// The description of the server-side encryption status on the specified table.
@@ -13082,8 +12523,8 @@ class SSEDescription {
       inaccessibleEncryptionDateTime:
           timeStampFromJson(json['InaccessibleEncryptionDateTime']),
       kMSMasterKeyArn: json['KMSMasterKeyArn'] as String?,
-      sSEType: (json['SSEType'] as String?)?.toSSEType(),
-      status: (json['Status'] as String?)?.toSSEStatus(),
+      sSEType: (json['SSEType'] as String?)?.let(SSEType.fromString),
+      status: (json['Status'] as String?)?.let(SSEStatus.fromString),
     );
   }
 
@@ -13097,8 +12538,8 @@ class SSEDescription {
         'InaccessibleEncryptionDateTime':
             unixTimestampToJson(inaccessibleEncryptionDateTime),
       if (kMSMasterKeyArn != null) 'KMSMasterKeyArn': kMSMasterKeyArn,
-      if (sSEType != null) 'SSEType': sSEType.toValue(),
-      if (status != null) 'Status': status.toValue(),
+      if (sSEType != null) 'SSEType': sSEType.value,
+      if (status != null) 'Status': status.value,
     };
   }
 }
@@ -13138,7 +12579,7 @@ class SSESpecification {
     return SSESpecification(
       enabled: json['Enabled'] as bool?,
       kMSMasterKeyId: json['KMSMasterKeyId'] as String?,
-      sSEType: (json['SSEType'] as String?)?.toSSEType(),
+      sSEType: (json['SSEType'] as String?)?.let(SSEType.fromString),
     );
   }
 
@@ -13149,113 +12590,56 @@ class SSESpecification {
     return {
       if (enabled != null) 'Enabled': enabled,
       if (kMSMasterKeyId != null) 'KMSMasterKeyId': kMSMasterKeyId,
-      if (sSEType != null) 'SSEType': sSEType.toValue(),
+      if (sSEType != null) 'SSEType': sSEType.value,
     };
   }
 }
 
 enum SSEStatus {
-  enabling,
-  enabled,
-  disabling,
-  disabled,
-  updating,
-}
+  enabling('ENABLING'),
+  enabled('ENABLED'),
+  disabling('DISABLING'),
+  disabled('DISABLED'),
+  updating('UPDATING'),
+  ;
 
-extension SSEStatusValueExtension on SSEStatus {
-  String toValue() {
-    switch (this) {
-      case SSEStatus.enabling:
-        return 'ENABLING';
-      case SSEStatus.enabled:
-        return 'ENABLED';
-      case SSEStatus.disabling:
-        return 'DISABLING';
-      case SSEStatus.disabled:
-        return 'DISABLED';
-      case SSEStatus.updating:
-        return 'UPDATING';
-    }
-  }
-}
+  final String value;
 
-extension SSEStatusFromString on String {
-  SSEStatus toSSEStatus() {
-    switch (this) {
-      case 'ENABLING':
-        return SSEStatus.enabling;
-      case 'ENABLED':
-        return SSEStatus.enabled;
-      case 'DISABLING':
-        return SSEStatus.disabling;
-      case 'DISABLED':
-        return SSEStatus.disabled;
-      case 'UPDATING':
-        return SSEStatus.updating;
-    }
-    throw Exception('$this is not known in enum SSEStatus');
-  }
+  const SSEStatus(this.value);
+
+  static SSEStatus fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum SSEStatus'));
 }
 
 enum SSEType {
-  aes256,
-  kms,
-}
+  aes256('AES256'),
+  kms('KMS'),
+  ;
 
-extension SSETypeValueExtension on SSEType {
-  String toValue() {
-    switch (this) {
-      case SSEType.aes256:
-        return 'AES256';
-      case SSEType.kms:
-        return 'KMS';
-    }
-  }
-}
+  final String value;
 
-extension SSETypeFromString on String {
-  SSEType toSSEType() {
-    switch (this) {
-      case 'AES256':
-        return SSEType.aes256;
-      case 'KMS':
-        return SSEType.kms;
-    }
-    throw Exception('$this is not known in enum SSEType');
-  }
+  const SSEType(this.value);
+
+  static SSEType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception('$value is not known in enum SSEType'));
 }
 
 enum ScalarAttributeType {
-  s,
-  n,
-  b,
-}
+  s('S'),
+  n('N'),
+  b('B'),
+  ;
 
-extension ScalarAttributeTypeValueExtension on ScalarAttributeType {
-  String toValue() {
-    switch (this) {
-      case ScalarAttributeType.s:
-        return 'S';
-      case ScalarAttributeType.n:
-        return 'N';
-      case ScalarAttributeType.b:
-        return 'B';
-    }
-  }
-}
+  final String value;
 
-extension ScalarAttributeTypeFromString on String {
-  ScalarAttributeType toScalarAttributeType() {
-    switch (this) {
-      case 'S':
-        return ScalarAttributeType.s;
-      case 'N':
-        return ScalarAttributeType.n;
-      case 'B':
-        return ScalarAttributeType.b;
-    }
-    throw Exception('$this is not known in enum ScalarAttributeType');
-  }
+  const ScalarAttributeType(this.value);
+
+  static ScalarAttributeType fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum ScalarAttributeType'));
 }
 
 /// Represents the output of a <code>Scan</code> operation.
@@ -13353,41 +12737,19 @@ class ScanOutput {
 }
 
 enum Select {
-  allAttributes,
-  allProjectedAttributes,
-  specificAttributes,
-  count,
-}
+  allAttributes('ALL_ATTRIBUTES'),
+  allProjectedAttributes('ALL_PROJECTED_ATTRIBUTES'),
+  specificAttributes('SPECIFIC_ATTRIBUTES'),
+  count('COUNT'),
+  ;
 
-extension SelectValueExtension on Select {
-  String toValue() {
-    switch (this) {
-      case Select.allAttributes:
-        return 'ALL_ATTRIBUTES';
-      case Select.allProjectedAttributes:
-        return 'ALL_PROJECTED_ATTRIBUTES';
-      case Select.specificAttributes:
-        return 'SPECIFIC_ATTRIBUTES';
-      case Select.count:
-        return 'COUNT';
-    }
-  }
-}
+  final String value;
 
-extension SelectFromString on String {
-  Select toSelect() {
-    switch (this) {
-      case 'ALL_ATTRIBUTES':
-        return Select.allAttributes;
-      case 'ALL_PROJECTED_ATTRIBUTES':
-        return Select.allProjectedAttributes;
-      case 'SPECIFIC_ATTRIBUTES':
-        return Select.specificAttributes;
-      case 'COUNT':
-        return Select.count;
-    }
-    throw Exception('$this is not known in enum Select');
-  }
+  const Select(this.value);
+
+  static Select fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception('$value is not known in enum Select'));
 }
 
 /// Contains the details of the table when the backup was created.
@@ -13457,7 +12819,8 @@ class SourceTableDetails {
           nonNullableTimeStampFromJson(json['TableCreationDateTime'] as Object),
       tableId: json['TableId'] as String,
       tableName: json['TableName'] as String,
-      billingMode: (json['BillingMode'] as String?)?.toBillingMode(),
+      billingMode:
+          (json['BillingMode'] as String?)?.let(BillingMode.fromString),
       itemCount: json['ItemCount'] as int?,
       tableArn: json['TableArn'] as String?,
       tableSizeBytes: json['TableSizeBytes'] as int?,
@@ -13480,7 +12843,7 @@ class SourceTableDetails {
       'TableCreationDateTime': unixTimestampToJson(tableCreationDateTime),
       'TableId': tableId,
       'TableName': tableName,
-      if (billingMode != null) 'BillingMode': billingMode.toValue(),
+      if (billingMode != null) 'BillingMode': billingMode.value,
       if (itemCount != null) 'ItemCount': itemCount,
       if (tableArn != null) 'TableArn': tableArn,
       if (tableSizeBytes != null) 'TableSizeBytes': tableSizeBytes,
@@ -13603,7 +12966,8 @@ class StreamSpecification {
   factory StreamSpecification.fromJson(Map<String, dynamic> json) {
     return StreamSpecification(
       streamEnabled: json['StreamEnabled'] as bool,
-      streamViewType: (json['StreamViewType'] as String?)?.toStreamViewType(),
+      streamViewType:
+          (json['StreamViewType'] as String?)?.let(StreamViewType.fromString),
     );
   }
 
@@ -13612,47 +12976,26 @@ class StreamSpecification {
     final streamViewType = this.streamViewType;
     return {
       'StreamEnabled': streamEnabled,
-      if (streamViewType != null) 'StreamViewType': streamViewType.toValue(),
+      if (streamViewType != null) 'StreamViewType': streamViewType.value,
     };
   }
 }
 
 enum StreamViewType {
-  newImage,
-  oldImage,
-  newAndOldImages,
-  keysOnly,
-}
+  newImage('NEW_IMAGE'),
+  oldImage('OLD_IMAGE'),
+  newAndOldImages('NEW_AND_OLD_IMAGES'),
+  keysOnly('KEYS_ONLY'),
+  ;
 
-extension StreamViewTypeValueExtension on StreamViewType {
-  String toValue() {
-    switch (this) {
-      case StreamViewType.newImage:
-        return 'NEW_IMAGE';
-      case StreamViewType.oldImage:
-        return 'OLD_IMAGE';
-      case StreamViewType.newAndOldImages:
-        return 'NEW_AND_OLD_IMAGES';
-      case StreamViewType.keysOnly:
-        return 'KEYS_ONLY';
-    }
-  }
-}
+  final String value;
 
-extension StreamViewTypeFromString on String {
-  StreamViewType toStreamViewType() {
-    switch (this) {
-      case 'NEW_IMAGE':
-        return StreamViewType.newImage;
-      case 'OLD_IMAGE':
-        return StreamViewType.oldImage;
-      case 'NEW_AND_OLD_IMAGES':
-        return StreamViewType.newAndOldImages;
-      case 'KEYS_ONLY':
-        return StreamViewType.keysOnly;
-    }
-    throw Exception('$this is not known in enum StreamViewType');
-  }
+  const StreamViewType(this.value);
+
+  static StreamViewType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum StreamViewType'));
 }
 
 /// Represents the auto scaling configuration for a global table.
@@ -13695,7 +13038,8 @@ class TableAutoScalingDescription {
               ReplicaAutoScalingDescription.fromJson(e as Map<String, dynamic>))
           .toList(),
       tableName: json['TableName'] as String?,
-      tableStatus: (json['TableStatus'] as String?)?.toTableStatus(),
+      tableStatus:
+          (json['TableStatus'] as String?)?.let(TableStatus.fromString),
     );
   }
 
@@ -13706,37 +13050,23 @@ class TableAutoScalingDescription {
     return {
       if (replicas != null) 'Replicas': replicas,
       if (tableName != null) 'TableName': tableName,
-      if (tableStatus != null) 'TableStatus': tableStatus.toValue(),
+      if (tableStatus != null) 'TableStatus': tableStatus.value,
     };
   }
 }
 
 enum TableClass {
-  standard,
-  standardInfrequentAccess,
-}
+  standard('STANDARD'),
+  standardInfrequentAccess('STANDARD_INFREQUENT_ACCESS'),
+  ;
 
-extension TableClassValueExtension on TableClass {
-  String toValue() {
-    switch (this) {
-      case TableClass.standard:
-        return 'STANDARD';
-      case TableClass.standardInfrequentAccess:
-        return 'STANDARD_INFREQUENT_ACCESS';
-    }
-  }
-}
+  final String value;
 
-extension TableClassFromString on String {
-  TableClass toTableClass() {
-    switch (this) {
-      case 'STANDARD':
-        return TableClass.standard;
-      case 'STANDARD_INFREQUENT_ACCESS':
-        return TableClass.standardInfrequentAccess;
-    }
-    throw Exception('$this is not known in enum TableClass');
-  }
+  const TableClass(this.value);
+
+  static TableClass fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum TableClass'));
 }
 
 /// Contains details of the table class.
@@ -13756,7 +13086,7 @@ class TableClassSummary {
   factory TableClassSummary.fromJson(Map<String, dynamic> json) {
     return TableClassSummary(
       lastUpdateDateTime: timeStampFromJson(json['LastUpdateDateTime']),
-      tableClass: (json['TableClass'] as String?)?.toTableClass(),
+      tableClass: (json['TableClass'] as String?)?.let(TableClass.fromString),
     );
   }
 
@@ -13766,7 +13096,7 @@ class TableClassSummary {
     return {
       if (lastUpdateDateTime != null)
         'LastUpdateDateTime': unixTimestampToJson(lastUpdateDateTime),
-      if (tableClass != null) 'TableClass': tableClass.toValue(),
+      if (tableClass != null) 'TableClass': tableClass.value,
     };
   }
 }
@@ -13814,7 +13144,8 @@ class TableCreationParameters {
           .map((e) => KeySchemaElement.fromJson(e as Map<String, dynamic>))
           .toList(),
       tableName: json['TableName'] as String,
-      billingMode: (json['BillingMode'] as String?)?.toBillingMode(),
+      billingMode:
+          (json['BillingMode'] as String?)?.let(BillingMode.fromString),
       globalSecondaryIndexes: (json['GlobalSecondaryIndexes'] as List?)
           ?.whereNotNull()
           .map((e) => GlobalSecondaryIndex.fromJson(e as Map<String, dynamic>))
@@ -13842,7 +13173,7 @@ class TableCreationParameters {
       'AttributeDefinitions': attributeDefinitions,
       'KeySchema': keySchema,
       'TableName': tableName,
-      if (billingMode != null) 'BillingMode': billingMode.toValue(),
+      if (billingMode != null) 'BillingMode': billingMode.value,
       if (globalSecondaryIndexes != null)
         'GlobalSecondaryIndexes': globalSecondaryIndexes,
       if (provisionedThroughput != null)
@@ -14268,7 +13599,8 @@ class TableDescription {
       tableId: json['TableId'] as String?,
       tableName: json['TableName'] as String?,
       tableSizeBytes: json['TableSizeBytes'] as int?,
-      tableStatus: (json['TableStatus'] as String?)?.toTableStatus(),
+      tableStatus:
+          (json['TableStatus'] as String?)?.let(TableStatus.fromString),
     );
   }
 
@@ -14326,62 +13658,28 @@ class TableDescription {
       if (tableId != null) 'TableId': tableId,
       if (tableName != null) 'TableName': tableName,
       if (tableSizeBytes != null) 'TableSizeBytes': tableSizeBytes,
-      if (tableStatus != null) 'TableStatus': tableStatus.toValue(),
+      if (tableStatus != null) 'TableStatus': tableStatus.value,
     };
   }
 }
 
 enum TableStatus {
-  creating,
-  updating,
-  deleting,
-  active,
-  inaccessibleEncryptionCredentials,
-  archiving,
-  archived,
-}
+  creating('CREATING'),
+  updating('UPDATING'),
+  deleting('DELETING'),
+  active('ACTIVE'),
+  inaccessibleEncryptionCredentials('INACCESSIBLE_ENCRYPTION_CREDENTIALS'),
+  archiving('ARCHIVING'),
+  archived('ARCHIVED'),
+  ;
 
-extension TableStatusValueExtension on TableStatus {
-  String toValue() {
-    switch (this) {
-      case TableStatus.creating:
-        return 'CREATING';
-      case TableStatus.updating:
-        return 'UPDATING';
-      case TableStatus.deleting:
-        return 'DELETING';
-      case TableStatus.active:
-        return 'ACTIVE';
-      case TableStatus.inaccessibleEncryptionCredentials:
-        return 'INACCESSIBLE_ENCRYPTION_CREDENTIALS';
-      case TableStatus.archiving:
-        return 'ARCHIVING';
-      case TableStatus.archived:
-        return 'ARCHIVED';
-    }
-  }
-}
+  final String value;
 
-extension TableStatusFromString on String {
-  TableStatus toTableStatus() {
-    switch (this) {
-      case 'CREATING':
-        return TableStatus.creating;
-      case 'UPDATING':
-        return TableStatus.updating;
-      case 'DELETING':
-        return TableStatus.deleting;
-      case 'ACTIVE':
-        return TableStatus.active;
-      case 'INACCESSIBLE_ENCRYPTION_CREDENTIALS':
-        return TableStatus.inaccessibleEncryptionCredentials;
-      case 'ARCHIVING':
-        return TableStatus.archiving;
-      case 'ARCHIVED':
-        return TableStatus.archived;
-    }
-    throw Exception('$this is not known in enum TableStatus');
-  }
+  const TableStatus(this.value);
+
+  static TableStatus fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum TableStatus'));
 }
 
 /// Describes a tag. A tag is a key-value pair. You can add up to 50 tags to a
@@ -14443,8 +13741,8 @@ class TimeToLiveDescription {
   factory TimeToLiveDescription.fromJson(Map<String, dynamic> json) {
     return TimeToLiveDescription(
       attributeName: json['AttributeName'] as String?,
-      timeToLiveStatus:
-          (json['TimeToLiveStatus'] as String?)?.toTimeToLiveStatus(),
+      timeToLiveStatus: (json['TimeToLiveStatus'] as String?)
+          ?.let(TimeToLiveStatus.fromString),
     );
   }
 
@@ -14453,8 +13751,7 @@ class TimeToLiveDescription {
     final timeToLiveStatus = this.timeToLiveStatus;
     return {
       if (attributeName != null) 'AttributeName': attributeName,
-      if (timeToLiveStatus != null)
-        'TimeToLiveStatus': timeToLiveStatus.toValue(),
+      if (timeToLiveStatus != null) 'TimeToLiveStatus': timeToLiveStatus.value,
     };
   }
 }
@@ -14493,41 +13790,20 @@ class TimeToLiveSpecification {
 }
 
 enum TimeToLiveStatus {
-  enabling,
-  disabling,
-  enabled,
-  disabled,
-}
+  enabling('ENABLING'),
+  disabling('DISABLING'),
+  enabled('ENABLED'),
+  disabled('DISABLED'),
+  ;
 
-extension TimeToLiveStatusValueExtension on TimeToLiveStatus {
-  String toValue() {
-    switch (this) {
-      case TimeToLiveStatus.enabling:
-        return 'ENABLING';
-      case TimeToLiveStatus.disabling:
-        return 'DISABLING';
-      case TimeToLiveStatus.enabled:
-        return 'ENABLED';
-      case TimeToLiveStatus.disabled:
-        return 'DISABLED';
-    }
-  }
-}
+  final String value;
 
-extension TimeToLiveStatusFromString on String {
-  TimeToLiveStatus toTimeToLiveStatus() {
-    switch (this) {
-      case 'ENABLING':
-        return TimeToLiveStatus.enabling;
-      case 'DISABLING':
-        return TimeToLiveStatus.disabling;
-      case 'ENABLED':
-        return TimeToLiveStatus.enabled;
-      case 'DISABLED':
-        return TimeToLiveStatus.disabled;
-    }
-    throw Exception('$this is not known in enum TimeToLiveStatus');
-  }
+  const TimeToLiveStatus(this.value);
+
+  static TimeToLiveStatus fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum TimeToLiveStatus'));
 }
 
 /// Specifies an item to be retrieved as part of the transaction.
@@ -14741,7 +14017,7 @@ class Update {
         'ExpressionAttributeValues': expressionAttributeValues,
       if (returnValuesOnConditionCheckFailure != null)
         'ReturnValuesOnConditionCheckFailure':
-            returnValuesOnConditionCheckFailure.toValue(),
+            returnValuesOnConditionCheckFailure.value,
     };
   }
 }
@@ -14792,7 +14068,7 @@ class UpdateContributorInsightsOutput {
   factory UpdateContributorInsightsOutput.fromJson(Map<String, dynamic> json) {
     return UpdateContributorInsightsOutput(
       contributorInsightsStatus: (json['ContributorInsightsStatus'] as String?)
-          ?.toContributorInsightsStatus(),
+          ?.let(ContributorInsightsStatus.fromString),
       indexName: json['IndexName'] as String?,
       tableName: json['TableName'] as String?,
     );
@@ -14804,7 +14080,7 @@ class UpdateContributorInsightsOutput {
     final tableName = this.tableName;
     return {
       if (contributorInsightsStatus != null)
-        'ContributorInsightsStatus': contributorInsightsStatus.toValue(),
+        'ContributorInsightsStatus': contributorInsightsStatus.value,
       if (indexName != null) 'IndexName': indexName,
       if (tableName != null) 'TableName': tableName,
     };
@@ -15025,7 +14301,7 @@ class UpdateReplicationGroupMemberAction {
       if (provisionedThroughputOverride != null)
         'ProvisionedThroughputOverride': provisionedThroughputOverride,
       if (tableClassOverride != null)
-        'TableClassOverride': tableClassOverride.toValue(),
+        'TableClassOverride': tableClassOverride.value,
     };
   }
 }

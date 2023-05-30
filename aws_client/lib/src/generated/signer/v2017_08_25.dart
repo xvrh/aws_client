@@ -337,7 +337,7 @@ class Signer {
         'signatureExpiresBefore': [
           _s.iso8601ToJson(signatureExpiresBefore).toString()
         ],
-      if (status != null) 'status': [status.toValue()],
+      if (status != null) 'status': [status.value],
     };
     final response = await _protocol.send(
       payload: null,
@@ -464,8 +464,7 @@ class Signer {
       if (maxResults != null) 'maxResults': [maxResults.toString()],
       if (nextToken != null) 'nextToken': [nextToken],
       if (platformId != null) 'platformId': [platformId],
-      if (statuses != null)
-        'statuses': statuses.map((e) => e.toValue()).toList(),
+      if (statuses != null) 'statuses': statuses.map((e) => e.value).toList(),
     };
     final response = await _protocol.send(
       payload: null,
@@ -838,26 +837,16 @@ class AddProfilePermissionResponse {
 }
 
 enum Category {
-  awsIoT,
-}
+  awsIoT('AWSIoT'),
+  ;
 
-extension CategoryValueExtension on Category {
-  String toValue() {
-    switch (this) {
-      case Category.awsIoT:
-        return 'AWSIoT';
-    }
-  }
-}
+  final String value;
 
-extension CategoryFromString on String {
-  Category toCategory() {
-    switch (this) {
-      case 'AWSIoT':
-        return Category.awsIoT;
-    }
-    throw Exception('$this is not known in enum Category');
-  }
+  const Category(this.value);
+
+  static Category fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum Category'));
 }
 
 class DescribeSigningJobResponse {
@@ -978,7 +967,7 @@ class DescribeSigningJobResponse {
       source: json['source'] != null
           ? Source.fromJson(json['source'] as Map<String, dynamic>)
           : null,
-      status: (json['status'] as String?)?.toSigningStatus(),
+      status: (json['status'] as String?)?.let(SigningStatus.fromString),
       statusReason: json['statusReason'] as String?,
     );
   }
@@ -1023,7 +1012,7 @@ class DescribeSigningJobResponse {
       if (signingMaterial != null) 'signingMaterial': signingMaterial,
       if (signingParameters != null) 'signingParameters': signingParameters,
       if (source != null) 'source': source,
-      if (status != null) 'status': status.toValue(),
+      if (status != null) 'status': status.value,
       if (statusReason != null) 'statusReason': statusReason,
     };
   }
@@ -1048,31 +1037,18 @@ class Destination {
 }
 
 enum EncryptionAlgorithm {
-  rsa,
-  ecdsa,
-}
+  rsa('RSA'),
+  ecdsa('ECDSA'),
+  ;
 
-extension EncryptionAlgorithmValueExtension on EncryptionAlgorithm {
-  String toValue() {
-    switch (this) {
-      case EncryptionAlgorithm.rsa:
-        return 'RSA';
-      case EncryptionAlgorithm.ecdsa:
-        return 'ECDSA';
-    }
-  }
-}
+  final String value;
 
-extension EncryptionAlgorithmFromString on String {
-  EncryptionAlgorithm toEncryptionAlgorithm() {
-    switch (this) {
-      case 'RSA':
-        return EncryptionAlgorithm.rsa;
-      case 'ECDSA':
-        return EncryptionAlgorithm.ecdsa;
-    }
-    throw Exception('$this is not known in enum EncryptionAlgorithm');
-  }
+  const EncryptionAlgorithm(this.value);
+
+  static EncryptionAlgorithm fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum EncryptionAlgorithm'));
 }
 
 /// The encryption algorithm options that are available to a code signing job.
@@ -1093,9 +1069,10 @@ class EncryptionAlgorithmOptions {
     return EncryptionAlgorithmOptions(
       allowedValues: (json['allowedValues'] as List)
           .whereNotNull()
-          .map((e) => (e as String).toEncryptionAlgorithm())
+          .map((e) => EncryptionAlgorithm.fromString((e as String)))
           .toList(),
-      defaultValue: (json['defaultValue'] as String).toEncryptionAlgorithm(),
+      defaultValue:
+          EncryptionAlgorithm.fromString((json['defaultValue'] as String)),
     );
   }
 
@@ -1103,8 +1080,8 @@ class EncryptionAlgorithmOptions {
     final allowedValues = this.allowedValues;
     final defaultValue = this.defaultValue;
     return {
-      'allowedValues': allowedValues.map((e) => e.toValue()).toList(),
-      'defaultValue': defaultValue.toValue(),
+      'allowedValues': allowedValues.map((e) => e.value).toList(),
+      'defaultValue': defaultValue.value,
     };
   }
 }
@@ -1153,7 +1130,7 @@ class GetSigningPlatformResponse {
 
   factory GetSigningPlatformResponse.fromJson(Map<String, dynamic> json) {
     return GetSigningPlatformResponse(
-      category: (json['category'] as String?)?.toCategory(),
+      category: (json['category'] as String?)?.let(Category.fromString),
       displayName: json['displayName'] as String?,
       maxSizeInMB: json['maxSizeInMB'] as int?,
       partner: json['partner'] as String?,
@@ -1182,7 +1159,7 @@ class GetSigningPlatformResponse {
     final signingImageFormat = this.signingImageFormat;
     final target = this.target;
     return {
-      if (category != null) 'category': category.toValue(),
+      if (category != null) 'category': category.value,
       if (displayName != null) 'displayName': displayName,
       if (maxSizeInMB != null) 'maxSizeInMB': maxSizeInMB,
       if (partner != null) 'partner': partner,
@@ -1283,7 +1260,7 @@ class GetSigningProfileResponse {
           : null,
       signingParameters: (json['signingParameters'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
-      status: (json['status'] as String?)?.toSigningProfileStatus(),
+      status: (json['status'] as String?)?.let(SigningProfileStatus.fromString),
       statusReason: json['statusReason'] as String?,
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
@@ -1319,7 +1296,7 @@ class GetSigningProfileResponse {
         'signatureValidityPeriod': signatureValidityPeriod,
       if (signingMaterial != null) 'signingMaterial': signingMaterial,
       if (signingParameters != null) 'signingParameters': signingParameters,
-      if (status != null) 'status': status.toValue(),
+      if (status != null) 'status': status.value,
       if (statusReason != null) 'statusReason': statusReason,
       if (tags != null) 'tags': tags,
     };
@@ -1327,31 +1304,18 @@ class GetSigningProfileResponse {
 }
 
 enum HashAlgorithm {
-  sha1,
-  sha256,
-}
+  sha1('SHA1'),
+  sha256('SHA256'),
+  ;
 
-extension HashAlgorithmValueExtension on HashAlgorithm {
-  String toValue() {
-    switch (this) {
-      case HashAlgorithm.sha1:
-        return 'SHA1';
-      case HashAlgorithm.sha256:
-        return 'SHA256';
-    }
-  }
-}
+  final String value;
 
-extension HashAlgorithmFromString on String {
-  HashAlgorithm toHashAlgorithm() {
-    switch (this) {
-      case 'SHA1':
-        return HashAlgorithm.sha1;
-      case 'SHA256':
-        return HashAlgorithm.sha256;
-    }
-    throw Exception('$this is not known in enum HashAlgorithm');
-  }
+  const HashAlgorithm(this.value);
+
+  static HashAlgorithm fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum HashAlgorithm'));
 }
 
 /// The hash algorithms that are available to a code signing job.
@@ -1371,9 +1335,9 @@ class HashAlgorithmOptions {
     return HashAlgorithmOptions(
       allowedValues: (json['allowedValues'] as List)
           .whereNotNull()
-          .map((e) => (e as String).toHashAlgorithm())
+          .map((e) => HashAlgorithm.fromString((e as String)))
           .toList(),
-      defaultValue: (json['defaultValue'] as String).toHashAlgorithm(),
+      defaultValue: HashAlgorithm.fromString((json['defaultValue'] as String)),
     );
   }
 
@@ -1381,43 +1345,25 @@ class HashAlgorithmOptions {
     final allowedValues = this.allowedValues;
     final defaultValue = this.defaultValue;
     return {
-      'allowedValues': allowedValues.map((e) => e.toValue()).toList(),
-      'defaultValue': defaultValue.toValue(),
+      'allowedValues': allowedValues.map((e) => e.value).toList(),
+      'defaultValue': defaultValue.value,
     };
   }
 }
 
 enum ImageFormat {
-  json,
-  jSONEmbedded,
-  jSONDetached,
-}
+  json('JSON'),
+  jSONEmbedded('JSONEmbedded'),
+  jSONDetached('JSONDetached'),
+  ;
 
-extension ImageFormatValueExtension on ImageFormat {
-  String toValue() {
-    switch (this) {
-      case ImageFormat.json:
-        return 'JSON';
-      case ImageFormat.jSONEmbedded:
-        return 'JSONEmbedded';
-      case ImageFormat.jSONDetached:
-        return 'JSONDetached';
-    }
-  }
-}
+  final String value;
 
-extension ImageFormatFromString on String {
-  ImageFormat toImageFormat() {
-    switch (this) {
-      case 'JSON':
-        return ImageFormat.json;
-      case 'JSONEmbedded':
-        return ImageFormat.jSONEmbedded;
-      case 'JSONDetached':
-        return ImageFormat.jSONDetached;
-    }
-    throw Exception('$this is not known in enum ImageFormat');
-  }
+  const ImageFormat(this.value);
+
+  static ImageFormat fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum ImageFormat'));
 }
 
 class ListProfilePermissionsResponse {
@@ -1796,7 +1742,7 @@ class SignatureValidityPeriod {
 
   factory SignatureValidityPeriod.fromJson(Map<String, dynamic> json) {
     return SignatureValidityPeriod(
-      type: (json['type'] as String?)?.toValidityType(),
+      type: (json['type'] as String?)?.let(ValidityType.fromString),
       value: json['value'] as int?,
     );
   }
@@ -1805,7 +1751,7 @@ class SignatureValidityPeriod {
     final type = this.type;
     final value = this.value;
     return {
-      if (type != null) 'type': type.toValue(),
+      if (type != null) 'type': type.value,
       if (value != null) 'value': value,
     };
   }
@@ -1887,9 +1833,10 @@ class SigningConfigurationOverrides {
 
   factory SigningConfigurationOverrides.fromJson(Map<String, dynamic> json) {
     return SigningConfigurationOverrides(
-      encryptionAlgorithm:
-          (json['encryptionAlgorithm'] as String?)?.toEncryptionAlgorithm(),
-      hashAlgorithm: (json['hashAlgorithm'] as String?)?.toHashAlgorithm(),
+      encryptionAlgorithm: (json['encryptionAlgorithm'] as String?)
+          ?.let(EncryptionAlgorithm.fromString),
+      hashAlgorithm:
+          (json['hashAlgorithm'] as String?)?.let(HashAlgorithm.fromString),
     );
   }
 
@@ -1898,8 +1845,8 @@ class SigningConfigurationOverrides {
     final hashAlgorithm = this.hashAlgorithm;
     return {
       if (encryptionAlgorithm != null)
-        'encryptionAlgorithm': encryptionAlgorithm.toValue(),
-      if (hashAlgorithm != null) 'hashAlgorithm': hashAlgorithm.toValue(),
+        'encryptionAlgorithm': encryptionAlgorithm.value,
+      if (hashAlgorithm != null) 'hashAlgorithm': hashAlgorithm.value,
     };
   }
 }
@@ -1919,10 +1866,10 @@ class SigningImageFormat {
 
   factory SigningImageFormat.fromJson(Map<String, dynamic> json) {
     return SigningImageFormat(
-      defaultFormat: (json['defaultFormat'] as String).toImageFormat(),
+      defaultFormat: ImageFormat.fromString((json['defaultFormat'] as String)),
       supportedFormats: (json['supportedFormats'] as List)
           .whereNotNull()
-          .map((e) => (e as String).toImageFormat())
+          .map((e) => ImageFormat.fromString((e as String)))
           .toList(),
     );
   }
@@ -1931,8 +1878,8 @@ class SigningImageFormat {
     final defaultFormat = this.defaultFormat;
     final supportedFormats = this.supportedFormats;
     return {
-      'defaultFormat': defaultFormat.toValue(),
-      'supportedFormats': supportedFormats.map((e) => e.toValue()).toList(),
+      'defaultFormat': defaultFormat.value,
+      'supportedFormats': supportedFormats.map((e) => e.value).toList(),
     };
   }
 }
@@ -2023,7 +1970,7 @@ class SigningJob {
       source: json['source'] != null
           ? Source.fromJson(json['source'] as Map<String, dynamic>)
           : null,
-      status: (json['status'] as String?)?.toSigningStatus(),
+      status: (json['status'] as String?)?.let(SigningStatus.fromString),
     );
   }
 
@@ -2058,7 +2005,7 @@ class SigningJob {
       if (signedObject != null) 'signedObject': signedObject,
       if (signingMaterial != null) 'signingMaterial': signingMaterial,
       if (source != null) 'source': source,
-      if (status != null) 'status': status.toValue(),
+      if (status != null) 'status': status.value,
     };
   }
 }
@@ -2168,7 +2115,7 @@ class SigningPlatform {
 
   factory SigningPlatform.fromJson(Map<String, dynamic> json) {
     return SigningPlatform(
-      category: (json['category'] as String?)?.toCategory(),
+      category: (json['category'] as String?)?.let(Category.fromString),
       displayName: json['displayName'] as String?,
       maxSizeInMB: json['maxSizeInMB'] as int?,
       partner: json['partner'] as String?,
@@ -2197,7 +2144,7 @@ class SigningPlatform {
     final signingImageFormat = this.signingImageFormat;
     final target = this.target;
     return {
-      if (category != null) 'category': category.toValue(),
+      if (category != null) 'category': category.value,
       if (displayName != null) 'displayName': displayName,
       if (maxSizeInMB != null) 'maxSizeInMB': maxSizeInMB,
       if (partner != null) 'partner': partner,
@@ -2240,7 +2187,7 @@ class SigningPlatformOverrides {
               json['signingConfiguration'] as Map<String, dynamic>)
           : null,
       signingImageFormat:
-          (json['signingImageFormat'] as String?)?.toImageFormat(),
+          (json['signingImageFormat'] as String?)?.let(ImageFormat.fromString),
     );
   }
 
@@ -2251,7 +2198,7 @@ class SigningPlatformOverrides {
       if (signingConfiguration != null)
         'signingConfiguration': signingConfiguration,
       if (signingImageFormat != null)
-        'signingImageFormat': signingImageFormat.toValue(),
+        'signingImageFormat': signingImageFormat.value,
     };
   }
 }
@@ -2324,7 +2271,7 @@ class SigningProfile {
           : null,
       signingParameters: (json['signingParameters'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
-      status: (json['status'] as String?)?.toSigningProfileStatus(),
+      status: (json['status'] as String?)?.let(SigningProfileStatus.fromString),
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
@@ -2354,7 +2301,7 @@ class SigningProfile {
         'signatureValidityPeriod': signatureValidityPeriod,
       if (signingMaterial != null) 'signingMaterial': signingMaterial,
       if (signingParameters != null) 'signingParameters': signingParameters,
-      if (status != null) 'status': status.toValue(),
+      if (status != null) 'status': status.value,
       if (tags != null) 'tags': tags,
     };
   }
@@ -2400,69 +2347,35 @@ class SigningProfileRevocationRecord {
 }
 
 enum SigningProfileStatus {
-  active,
-  canceled,
-  revoked,
-}
+  active('Active'),
+  canceled('Canceled'),
+  revoked('Revoked'),
+  ;
 
-extension SigningProfileStatusValueExtension on SigningProfileStatus {
-  String toValue() {
-    switch (this) {
-      case SigningProfileStatus.active:
-        return 'Active';
-      case SigningProfileStatus.canceled:
-        return 'Canceled';
-      case SigningProfileStatus.revoked:
-        return 'Revoked';
-    }
-  }
-}
+  final String value;
 
-extension SigningProfileStatusFromString on String {
-  SigningProfileStatus toSigningProfileStatus() {
-    switch (this) {
-      case 'Active':
-        return SigningProfileStatus.active;
-      case 'Canceled':
-        return SigningProfileStatus.canceled;
-      case 'Revoked':
-        return SigningProfileStatus.revoked;
-    }
-    throw Exception('$this is not known in enum SigningProfileStatus');
-  }
+  const SigningProfileStatus(this.value);
+
+  static SigningProfileStatus fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum SigningProfileStatus'));
 }
 
 enum SigningStatus {
-  inProgress,
-  failed,
-  succeeded,
-}
+  inProgress('InProgress'),
+  failed('Failed'),
+  succeeded('Succeeded'),
+  ;
 
-extension SigningStatusValueExtension on SigningStatus {
-  String toValue() {
-    switch (this) {
-      case SigningStatus.inProgress:
-        return 'InProgress';
-      case SigningStatus.failed:
-        return 'Failed';
-      case SigningStatus.succeeded:
-        return 'Succeeded';
-    }
-  }
-}
+  final String value;
 
-extension SigningStatusFromString on String {
-  SigningStatus toSigningStatus() {
-    switch (this) {
-      case 'InProgress':
-        return SigningStatus.inProgress;
-      case 'Failed':
-        return SigningStatus.failed;
-      case 'Succeeded':
-        return SigningStatus.succeeded;
-    }
-    throw Exception('$this is not known in enum SigningStatus');
-  }
+  const SigningStatus(this.value);
+
+  static SigningStatus fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum SigningStatus'));
 }
 
 /// An <code>S3Source</code> object that contains information about the S3
@@ -2545,36 +2458,19 @@ class UntagResourceResponse {
 }
 
 enum ValidityType {
-  days,
-  months,
-  years,
-}
+  days('DAYS'),
+  months('MONTHS'),
+  years('YEARS'),
+  ;
 
-extension ValidityTypeValueExtension on ValidityType {
-  String toValue() {
-    switch (this) {
-      case ValidityType.days:
-        return 'DAYS';
-      case ValidityType.months:
-        return 'MONTHS';
-      case ValidityType.years:
-        return 'YEARS';
-    }
-  }
-}
+  final String value;
 
-extension ValidityTypeFromString on String {
-  ValidityType toValidityType() {
-    switch (this) {
-      case 'DAYS':
-        return ValidityType.days;
-      case 'MONTHS':
-        return ValidityType.months;
-      case 'YEARS':
-        return ValidityType.years;
-    }
-    throw Exception('$this is not known in enum ValidityType');
-  }
+  const ValidityType(this.value);
+
+  static ValidityType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum ValidityType'));
 }
 
 class AccessDeniedException extends _s.GenericAwsException {

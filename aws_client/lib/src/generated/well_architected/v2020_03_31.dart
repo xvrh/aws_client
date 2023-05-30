@@ -269,7 +269,7 @@ class WellArchitected {
   }) async {
     final $payload = <String, dynamic>{
       'Description': description,
-      'Environment': environment.toValue(),
+      'Environment': environment.value,
       'Lenses': lenses,
       'WorkloadName': workloadName,
       if (accountIds != null) 'AccountIds': accountIds,
@@ -323,7 +323,7 @@ class WellArchitected {
     String? clientRequestToken,
   }) async {
     final $payload = <String, dynamic>{
-      'PermissionType': permissionType.toValue(),
+      'PermissionType': permissionType.value,
       'SharedWith': sharedWith,
       'ClientRequestToken': clientRequestToken ?? _s.generateIdempotencyToken(),
     };
@@ -367,7 +367,7 @@ class WellArchitected {
     String? clientRequestToken,
   }) async {
     final $query = <String, List<String>>{
-      'LensStatus': [lensStatus.toValue()],
+      'LensStatus': [lensStatus.value],
       if (clientRequestToken != null)
         'ClientRequestToken': [clientRequestToken],
     };
@@ -619,7 +619,7 @@ class WellArchitected {
       15,
     );
     final $query = <String, List<String>>{
-      'Format': [format.toValue()],
+      'Format': [format.value],
       if (includeSharedResources != null)
         'IncludeSharedResources': [includeSharedResources.toString()],
       if (maxResults != null) 'MaxResults': [maxResults.toString()],
@@ -1122,7 +1122,7 @@ class WellArchitected {
       if (maxResults != null) 'MaxResults': [maxResults.toString()],
       if (nextToken != null) 'NextToken': [nextToken],
       if (sharedWithPrefix != null) 'SharedWithPrefix': [sharedWithPrefix],
-      if (status != null) 'Status': [status.toValue()],
+      if (status != null) 'Status': [status.value],
     };
     final response = await _protocol.send(
       payload: null,
@@ -1161,8 +1161,8 @@ class WellArchitected {
     );
     final $query = <String, List<String>>{
       if (lensName != null) 'LensName': [lensName],
-      if (lensStatus != null) 'LensStatus': [lensStatus.toValue()],
-      if (lensType != null) 'LensType': [lensType.toValue()],
+      if (lensStatus != null) 'LensStatus': [lensStatus.value],
+      if (lensType != null) 'LensType': [lensType.value],
       if (maxResults != null) 'MaxResults': [maxResults.toString()],
       if (nextToken != null) 'NextToken': [nextToken],
     };
@@ -1276,7 +1276,7 @@ class WellArchitected {
       if (maxResults != null) 'MaxResults': [maxResults.toString()],
       if (nextToken != null) 'NextToken': [nextToken],
       if (shareResourceType != null)
-        'ShareResourceType': [shareResourceType.toValue()],
+        'ShareResourceType': [shareResourceType.value],
       if (workloadNamePrefix != null)
         'WorkloadNamePrefix': [workloadNamePrefix],
     };
@@ -1341,7 +1341,7 @@ class WellArchitected {
       if (maxResults != null) 'MaxResults': [maxResults.toString()],
       if (nextToken != null) 'NextToken': [nextToken],
       if (sharedWithPrefix != null) 'SharedWithPrefix': [sharedWithPrefix],
-      if (status != null) 'Status': [status.toValue()],
+      if (status != null) 'Status': [status.value],
     };
     final response = await _protocol.send(
       payload: null,
@@ -1474,7 +1474,7 @@ class WellArchitected {
       if (choiceUpdates != null) 'ChoiceUpdates': choiceUpdates,
       if (isApplicable != null) 'IsApplicable': isApplicable,
       if (notes != null) 'Notes': notes,
-      if (reason != null) 'Reason': reason.toValue(),
+      if (reason != null) 'Reason': reason.value,
       if (selectedChoices != null) 'SelectedChoices': selectedChoices,
     };
     final response = await _protocol.send(
@@ -1507,9 +1507,9 @@ class WellArchitected {
   }) async {
     final $payload = <String, dynamic>{
       if (discoveryIntegrationStatus != null)
-        'DiscoveryIntegrationStatus': discoveryIntegrationStatus.toValue(),
+        'DiscoveryIntegrationStatus': discoveryIntegrationStatus.value,
       if (organizationSharingStatus != null)
-        'OrganizationSharingStatus': organizationSharingStatus.toValue(),
+        'OrganizationSharingStatus': organizationSharingStatus.value,
     };
     await _protocol.send(
       payload: $payload,
@@ -1567,7 +1567,7 @@ class WellArchitected {
     required String shareInvitationId,
   }) async {
     final $payload = <String, dynamic>{
-      'ShareInvitationAction': shareInvitationAction.toValue(),
+      'ShareInvitationAction': shareInvitationAction.value,
     };
     final response = await _protocol.send(
       payload: $payload,
@@ -1628,9 +1628,9 @@ class WellArchitected {
       if (awsRegions != null) 'AwsRegions': awsRegions,
       if (description != null) 'Description': description,
       if (discoveryConfig != null) 'DiscoveryConfig': discoveryConfig,
-      if (environment != null) 'Environment': environment.toValue(),
+      if (environment != null) 'Environment': environment.value,
       if (improvementStatus != null)
-        'ImprovementStatus': improvementStatus.toValue(),
+        'ImprovementStatus': improvementStatus.value,
       if (industry != null) 'Industry': industry,
       if (industryType != null) 'IndustryType': industryType,
       if (isReviewOwnerUpdateAcknowledged != null)
@@ -1664,7 +1664,7 @@ class WellArchitected {
     required String workloadId,
   }) async {
     final $payload = <String, dynamic>{
-      'PermissionType': permissionType.toValue(),
+      'PermissionType': permissionType.value,
     };
     final response = await _protocol.send(
       payload: $payload,
@@ -1705,31 +1705,18 @@ class WellArchitected {
 }
 
 enum AdditionalResourceType {
-  helpfulResource,
-  improvementPlan,
-}
+  helpfulResource('HELPFUL_RESOURCE'),
+  improvementPlan('IMPROVEMENT_PLAN'),
+  ;
 
-extension AdditionalResourceTypeValueExtension on AdditionalResourceType {
-  String toValue() {
-    switch (this) {
-      case AdditionalResourceType.helpfulResource:
-        return 'HELPFUL_RESOURCE';
-      case AdditionalResourceType.improvementPlan:
-        return 'IMPROVEMENT_PLAN';
-    }
-  }
-}
+  final String value;
 
-extension AdditionalResourceTypeFromString on String {
-  AdditionalResourceType toAdditionalResourceType() {
-    switch (this) {
-      case 'HELPFUL_RESOURCE':
-        return AdditionalResourceType.helpfulResource;
-      case 'IMPROVEMENT_PLAN':
-        return AdditionalResourceType.improvementPlan;
-    }
-    throw Exception('$this is not known in enum AdditionalResourceType');
-  }
+  const AdditionalResourceType(this.value);
+
+  static AdditionalResourceType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum AdditionalResourceType'));
 }
 
 /// The choice level additional resources for a custom lens.
@@ -1754,7 +1741,7 @@ class AdditionalResources {
           ?.whereNotNull()
           .map((e) => ChoiceContent.fromJson(e as Map<String, dynamic>))
           .toList(),
-      type: (json['Type'] as String?)?.toAdditionalResourceType(),
+      type: (json['Type'] as String?)?.let(AdditionalResourceType.fromString),
     );
   }
 
@@ -1763,7 +1750,7 @@ class AdditionalResources {
     final type = this.type;
     return {
       if (content != null) 'Content': content,
-      if (type != null) 'Type': type.toValue(),
+      if (type != null) 'Type': type.value,
     };
   }
 }
@@ -1828,8 +1815,8 @@ class Answer {
       questionDescription: json['QuestionDescription'] as String?,
       questionId: json['QuestionId'] as String?,
       questionTitle: json['QuestionTitle'] as String?,
-      reason: (json['Reason'] as String?)?.toAnswerReason(),
-      risk: (json['Risk'] as String?)?.toRisk(),
+      reason: (json['Reason'] as String?)?.let(AnswerReason.fromString),
+      risk: (json['Risk'] as String?)?.let(Risk.fromString),
       selectedChoices: (json['SelectedChoices'] as List?)
           ?.whereNotNull()
           .map((e) => e as String)
@@ -1866,54 +1853,29 @@ class Answer {
         'QuestionDescription': questionDescription,
       if (questionId != null) 'QuestionId': questionId,
       if (questionTitle != null) 'QuestionTitle': questionTitle,
-      if (reason != null) 'Reason': reason.toValue(),
-      if (risk != null) 'Risk': risk.toValue(),
+      if (reason != null) 'Reason': reason.value,
+      if (risk != null) 'Risk': risk.value,
       if (selectedChoices != null) 'SelectedChoices': selectedChoices,
     };
   }
 }
 
 enum AnswerReason {
-  outOfScope,
-  businessPriorities,
-  architectureConstraints,
-  other,
-  none,
-}
+  outOfScope('OUT_OF_SCOPE'),
+  businessPriorities('BUSINESS_PRIORITIES'),
+  architectureConstraints('ARCHITECTURE_CONSTRAINTS'),
+  other('OTHER'),
+  none('NONE'),
+  ;
 
-extension AnswerReasonValueExtension on AnswerReason {
-  String toValue() {
-    switch (this) {
-      case AnswerReason.outOfScope:
-        return 'OUT_OF_SCOPE';
-      case AnswerReason.businessPriorities:
-        return 'BUSINESS_PRIORITIES';
-      case AnswerReason.architectureConstraints:
-        return 'ARCHITECTURE_CONSTRAINTS';
-      case AnswerReason.other:
-        return 'OTHER';
-      case AnswerReason.none:
-        return 'NONE';
-    }
-  }
-}
+  final String value;
 
-extension AnswerReasonFromString on String {
-  AnswerReason toAnswerReason() {
-    switch (this) {
-      case 'OUT_OF_SCOPE':
-        return AnswerReason.outOfScope;
-      case 'BUSINESS_PRIORITIES':
-        return AnswerReason.businessPriorities;
-      case 'ARCHITECTURE_CONSTRAINTS':
-        return AnswerReason.architectureConstraints;
-      case 'OTHER':
-        return AnswerReason.other;
-      case 'NONE':
-        return AnswerReason.none;
-    }
-    throw Exception('$this is not known in enum AnswerReason');
-  }
+  const AnswerReason(this.value);
+
+  static AnswerReason fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum AnswerReason'));
 }
 
 /// An answer summary of a lens review in a workload.
@@ -1957,8 +1919,8 @@ class AnswerSummary {
       pillarId: json['PillarId'] as String?,
       questionId: json['QuestionId'] as String?,
       questionTitle: json['QuestionTitle'] as String?,
-      reason: (json['Reason'] as String?)?.toAnswerReason(),
-      risk: (json['Risk'] as String?)?.toRisk(),
+      reason: (json['Reason'] as String?)?.let(AnswerReason.fromString),
+      risk: (json['Risk'] as String?)?.let(Risk.fromString),
       selectedChoices: (json['SelectedChoices'] as List?)
           ?.whereNotNull()
           .map((e) => e as String)
@@ -1984,8 +1946,8 @@ class AnswerSummary {
       if (pillarId != null) 'PillarId': pillarId,
       if (questionId != null) 'QuestionId': questionId,
       if (questionTitle != null) 'QuestionTitle': questionTitle,
-      if (reason != null) 'Reason': reason.toValue(),
-      if (risk != null) 'Risk': risk.toValue(),
+      if (reason != null) 'Reason': reason.value,
+      if (risk != null) 'Risk': risk.value,
       if (selectedChoices != null) 'SelectedChoices': selectedChoices,
     };
   }
@@ -2078,10 +2040,10 @@ class CheckDetail {
       lensArn: json['LensArn'] as String?,
       name: json['Name'] as String?,
       pillarId: json['PillarId'] as String?,
-      provider: (json['Provider'] as String?)?.toCheckProvider(),
+      provider: (json['Provider'] as String?)?.let(CheckProvider.fromString),
       questionId: json['QuestionId'] as String?,
-      reason: (json['Reason'] as String?)?.toCheckFailureReason(),
-      status: (json['Status'] as String?)?.toCheckStatus(),
+      reason: (json['Reason'] as String?)?.let(CheckFailureReason.fromString),
+      status: (json['Status'] as String?)?.let(CheckStatus.fromString),
       updatedAt: timeStampFromJson(json['UpdatedAt']),
     );
   }
@@ -2109,117 +2071,61 @@ class CheckDetail {
       if (lensArn != null) 'LensArn': lensArn,
       if (name != null) 'Name': name,
       if (pillarId != null) 'PillarId': pillarId,
-      if (provider != null) 'Provider': provider.toValue(),
+      if (provider != null) 'Provider': provider.value,
       if (questionId != null) 'QuestionId': questionId,
-      if (reason != null) 'Reason': reason.toValue(),
-      if (status != null) 'Status': status.toValue(),
+      if (reason != null) 'Reason': reason.value,
+      if (status != null) 'Status': status.value,
       if (updatedAt != null) 'UpdatedAt': unixTimestampToJson(updatedAt),
     };
   }
 }
 
 enum CheckFailureReason {
-  assumeRoleError,
-  accessDenied,
-  unknownError,
-  premiumSupportRequired,
-}
+  assumeRoleError('ASSUME_ROLE_ERROR'),
+  accessDenied('ACCESS_DENIED'),
+  unknownError('UNKNOWN_ERROR'),
+  premiumSupportRequired('PREMIUM_SUPPORT_REQUIRED'),
+  ;
 
-extension CheckFailureReasonValueExtension on CheckFailureReason {
-  String toValue() {
-    switch (this) {
-      case CheckFailureReason.assumeRoleError:
-        return 'ASSUME_ROLE_ERROR';
-      case CheckFailureReason.accessDenied:
-        return 'ACCESS_DENIED';
-      case CheckFailureReason.unknownError:
-        return 'UNKNOWN_ERROR';
-      case CheckFailureReason.premiumSupportRequired:
-        return 'PREMIUM_SUPPORT_REQUIRED';
-    }
-  }
-}
+  final String value;
 
-extension CheckFailureReasonFromString on String {
-  CheckFailureReason toCheckFailureReason() {
-    switch (this) {
-      case 'ASSUME_ROLE_ERROR':
-        return CheckFailureReason.assumeRoleError;
-      case 'ACCESS_DENIED':
-        return CheckFailureReason.accessDenied;
-      case 'UNKNOWN_ERROR':
-        return CheckFailureReason.unknownError;
-      case 'PREMIUM_SUPPORT_REQUIRED':
-        return CheckFailureReason.premiumSupportRequired;
-    }
-    throw Exception('$this is not known in enum CheckFailureReason');
-  }
+  const CheckFailureReason(this.value);
+
+  static CheckFailureReason fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum CheckFailureReason'));
 }
 
 enum CheckProvider {
-  trustedAdvisor,
-}
+  trustedAdvisor('TRUSTED_ADVISOR'),
+  ;
 
-extension CheckProviderValueExtension on CheckProvider {
-  String toValue() {
-    switch (this) {
-      case CheckProvider.trustedAdvisor:
-        return 'TRUSTED_ADVISOR';
-    }
-  }
-}
+  final String value;
 
-extension CheckProviderFromString on String {
-  CheckProvider toCheckProvider() {
-    switch (this) {
-      case 'TRUSTED_ADVISOR':
-        return CheckProvider.trustedAdvisor;
-    }
-    throw Exception('$this is not known in enum CheckProvider');
-  }
+  const CheckProvider(this.value);
+
+  static CheckProvider fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum CheckProvider'));
 }
 
 enum CheckStatus {
-  okay,
-  warning,
-  error,
-  notAvailable,
-  fetchFailed,
-}
+  okay('OKAY'),
+  warning('WARNING'),
+  error('ERROR'),
+  notAvailable('NOT_AVAILABLE'),
+  fetchFailed('FETCH_FAILED'),
+  ;
 
-extension CheckStatusValueExtension on CheckStatus {
-  String toValue() {
-    switch (this) {
-      case CheckStatus.okay:
-        return 'OKAY';
-      case CheckStatus.warning:
-        return 'WARNING';
-      case CheckStatus.error:
-        return 'ERROR';
-      case CheckStatus.notAvailable:
-        return 'NOT_AVAILABLE';
-      case CheckStatus.fetchFailed:
-        return 'FETCH_FAILED';
-    }
-  }
-}
+  final String value;
 
-extension CheckStatusFromString on String {
-  CheckStatus toCheckStatus() {
-    switch (this) {
-      case 'OKAY':
-        return CheckStatus.okay;
-      case 'WARNING':
-        return CheckStatus.warning;
-      case 'ERROR':
-        return CheckStatus.error;
-      case 'NOT_AVAILABLE':
-        return CheckStatus.notAvailable;
-      case 'FETCH_FAILED':
-        return CheckStatus.fetchFailed;
-    }
-    throw Exception('$this is not known in enum CheckStatus');
-  }
+  const CheckStatus(this.value);
+
+  static CheckStatus fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum CheckStatus'));
 }
 
 /// Trusted Advisor check summary.
@@ -2266,16 +2172,16 @@ class CheckSummary {
   factory CheckSummary.fromJson(Map<String, dynamic> json) {
     return CheckSummary(
       accountSummary: (json['AccountSummary'] as Map<String, dynamic>?)
-          ?.map((k, e) => MapEntry(k.toCheckStatus(), e as int)),
+          ?.map((k, e) => MapEntry(CheckStatus.fromString(k), e as int)),
       choiceId: json['ChoiceId'] as String?,
       description: json['Description'] as String?,
       id: json['Id'] as String?,
       lensArn: json['LensArn'] as String?,
       name: json['Name'] as String?,
       pillarId: json['PillarId'] as String?,
-      provider: (json['Provider'] as String?)?.toCheckProvider(),
+      provider: (json['Provider'] as String?)?.let(CheckProvider.fromString),
       questionId: json['QuestionId'] as String?,
-      status: (json['Status'] as String?)?.toCheckStatus(),
+      status: (json['Status'] as String?)?.let(CheckStatus.fromString),
       updatedAt: timeStampFromJson(json['UpdatedAt']),
     );
   }
@@ -2294,17 +2200,16 @@ class CheckSummary {
     final updatedAt = this.updatedAt;
     return {
       if (accountSummary != null)
-        'AccountSummary':
-            accountSummary.map((k, e) => MapEntry(k.toValue(), e)),
+        'AccountSummary': accountSummary.map((k, e) => MapEntry(k.value, e)),
       if (choiceId != null) 'ChoiceId': choiceId,
       if (description != null) 'Description': description,
       if (id != null) 'Id': id,
       if (lensArn != null) 'LensArn': lensArn,
       if (name != null) 'Name': name,
       if (pillarId != null) 'PillarId': pillarId,
-      if (provider != null) 'Provider': provider.toValue(),
+      if (provider != null) 'Provider': provider.value,
       if (questionId != null) 'QuestionId': questionId,
-      if (status != null) 'Status': status.toValue(),
+      if (status != null) 'Status': status.value,
       if (updatedAt != null) 'UpdatedAt': unixTimestampToJson(updatedAt),
     };
   }
@@ -2406,8 +2311,8 @@ class ChoiceAnswer {
     return ChoiceAnswer(
       choiceId: json['ChoiceId'] as String?,
       notes: json['Notes'] as String?,
-      reason: (json['Reason'] as String?)?.toChoiceReason(),
-      status: (json['Status'] as String?)?.toChoiceStatus(),
+      reason: (json['Reason'] as String?)?.let(ChoiceReason.fromString),
+      status: (json['Status'] as String?)?.let(ChoiceStatus.fromString),
     );
   }
 
@@ -2419,8 +2324,8 @@ class ChoiceAnswer {
     return {
       if (choiceId != null) 'ChoiceId': choiceId,
       if (notes != null) 'Notes': notes,
-      if (reason != null) 'Reason': reason.toValue(),
-      if (status != null) 'Status': status.toValue(),
+      if (reason != null) 'Reason': reason.value,
+      if (status != null) 'Status': status.value,
     };
   }
 }
@@ -2444,8 +2349,8 @@ class ChoiceAnswerSummary {
   factory ChoiceAnswerSummary.fromJson(Map<String, dynamic> json) {
     return ChoiceAnswerSummary(
       choiceId: json['ChoiceId'] as String?,
-      reason: (json['Reason'] as String?)?.toChoiceReason(),
-      status: (json['Status'] as String?)?.toChoiceStatus(),
+      reason: (json['Reason'] as String?)?.let(ChoiceReason.fromString),
+      status: (json['Status'] as String?)?.let(ChoiceStatus.fromString),
     );
   }
 
@@ -2455,8 +2360,8 @@ class ChoiceAnswerSummary {
     final status = this.status;
     return {
       if (choiceId != null) 'ChoiceId': choiceId,
-      if (reason != null) 'Reason': reason.toValue(),
-      if (status != null) 'Status': status.toValue(),
+      if (reason != null) 'Reason': reason.value,
+      if (status != null) 'Status': status.value,
     };
   }
 }
@@ -2526,79 +2431,37 @@ class ChoiceImprovementPlan {
 }
 
 enum ChoiceReason {
-  outOfScope,
-  businessPriorities,
-  architectureConstraints,
-  other,
-  none,
-}
+  outOfScope('OUT_OF_SCOPE'),
+  businessPriorities('BUSINESS_PRIORITIES'),
+  architectureConstraints('ARCHITECTURE_CONSTRAINTS'),
+  other('OTHER'),
+  none('NONE'),
+  ;
 
-extension ChoiceReasonValueExtension on ChoiceReason {
-  String toValue() {
-    switch (this) {
-      case ChoiceReason.outOfScope:
-        return 'OUT_OF_SCOPE';
-      case ChoiceReason.businessPriorities:
-        return 'BUSINESS_PRIORITIES';
-      case ChoiceReason.architectureConstraints:
-        return 'ARCHITECTURE_CONSTRAINTS';
-      case ChoiceReason.other:
-        return 'OTHER';
-      case ChoiceReason.none:
-        return 'NONE';
-    }
-  }
-}
+  final String value;
 
-extension ChoiceReasonFromString on String {
-  ChoiceReason toChoiceReason() {
-    switch (this) {
-      case 'OUT_OF_SCOPE':
-        return ChoiceReason.outOfScope;
-      case 'BUSINESS_PRIORITIES':
-        return ChoiceReason.businessPriorities;
-      case 'ARCHITECTURE_CONSTRAINTS':
-        return ChoiceReason.architectureConstraints;
-      case 'OTHER':
-        return ChoiceReason.other;
-      case 'NONE':
-        return ChoiceReason.none;
-    }
-    throw Exception('$this is not known in enum ChoiceReason');
-  }
+  const ChoiceReason(this.value);
+
+  static ChoiceReason fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum ChoiceReason'));
 }
 
 enum ChoiceStatus {
-  selected,
-  notApplicable,
-  unselected,
-}
+  selected('SELECTED'),
+  notApplicable('NOT_APPLICABLE'),
+  unselected('UNSELECTED'),
+  ;
 
-extension ChoiceStatusValueExtension on ChoiceStatus {
-  String toValue() {
-    switch (this) {
-      case ChoiceStatus.selected:
-        return 'SELECTED';
-      case ChoiceStatus.notApplicable:
-        return 'NOT_APPLICABLE';
-      case ChoiceStatus.unselected:
-        return 'UNSELECTED';
-    }
-  }
-}
+  final String value;
 
-extension ChoiceStatusFromString on String {
-  ChoiceStatus toChoiceStatus() {
-    switch (this) {
-      case 'SELECTED':
-        return ChoiceStatus.selected;
-      case 'NOT_APPLICABLE':
-        return ChoiceStatus.notApplicable;
-      case 'UNSELECTED':
-        return ChoiceStatus.unselected;
-    }
-    throw Exception('$this is not known in enum ChoiceStatus');
-  }
+  const ChoiceStatus(this.value);
+
+  static ChoiceStatus fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum ChoiceStatus'));
 }
 
 /// A list of choices to be updated.
@@ -2623,9 +2486,9 @@ class ChoiceUpdate {
     final notes = this.notes;
     final reason = this.reason;
     return {
-      'Status': status.toValue(),
+      'Status': status.value,
       if (notes != null) 'Notes': notes,
-      if (reason != null) 'Reason': reason.toValue(),
+      if (reason != null) 'Reason': reason.value,
     };
   }
 }
@@ -2665,9 +2528,9 @@ class ConsolidatedReportMetric {
           .map((e) => LensMetric.fromJson(e as Map<String, dynamic>))
           .toList(),
       lensesAppliedCount: json['LensesAppliedCount'] as int?,
-      metricType: (json['MetricType'] as String?)?.toMetricType(),
+      metricType: (json['MetricType'] as String?)?.let(MetricType.fromString),
       riskCounts: (json['RiskCounts'] as Map<String, dynamic>?)
-          ?.map((k, e) => MapEntry(k.toRisk(), e as int)),
+          ?.map((k, e) => MapEntry(Risk.fromString(k), e as int)),
       updatedAt: timeStampFromJson(json['UpdatedAt']),
       workloadArn: json['WorkloadArn'] as String?,
       workloadId: json['WorkloadId'] as String?,
@@ -2687,9 +2550,9 @@ class ConsolidatedReportMetric {
     return {
       if (lenses != null) 'Lenses': lenses,
       if (lensesAppliedCount != null) 'LensesAppliedCount': lensesAppliedCount,
-      if (metricType != null) 'MetricType': metricType.toValue(),
+      if (metricType != null) 'MetricType': metricType.value,
       if (riskCounts != null)
-        'RiskCounts': riskCounts.map((k, e) => MapEntry(k.toValue(), e)),
+        'RiskCounts': riskCounts.map((k, e) => MapEntry(k.value, e)),
       if (updatedAt != null) 'UpdatedAt': unixTimestampToJson(updatedAt),
       if (workloadArn != null) 'WorkloadArn': workloadArn,
       if (workloadId != null) 'WorkloadId': workloadId,
@@ -2830,93 +2693,49 @@ class CreateWorkloadShareOutput {
 }
 
 enum DefinitionType {
-  workloadMetadata,
-  appRegistry,
-}
+  workloadMetadata('WORKLOAD_METADATA'),
+  appRegistry('APP_REGISTRY'),
+  ;
 
-extension DefinitionTypeValueExtension on DefinitionType {
-  String toValue() {
-    switch (this) {
-      case DefinitionType.workloadMetadata:
-        return 'WORKLOAD_METADATA';
-      case DefinitionType.appRegistry:
-        return 'APP_REGISTRY';
-    }
-  }
-}
+  final String value;
 
-extension DefinitionTypeFromString on String {
-  DefinitionType toDefinitionType() {
-    switch (this) {
-      case 'WORKLOAD_METADATA':
-        return DefinitionType.workloadMetadata;
-      case 'APP_REGISTRY':
-        return DefinitionType.appRegistry;
-    }
-    throw Exception('$this is not known in enum DefinitionType');
-  }
+  const DefinitionType(this.value);
+
+  static DefinitionType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum DefinitionType'));
 }
 
 enum DifferenceStatus {
-  updated,
-  $new,
-  deleted,
-}
+  updated('UPDATED'),
+  $new('NEW'),
+  deleted('DELETED'),
+  ;
 
-extension DifferenceStatusValueExtension on DifferenceStatus {
-  String toValue() {
-    switch (this) {
-      case DifferenceStatus.updated:
-        return 'UPDATED';
-      case DifferenceStatus.$new:
-        return 'NEW';
-      case DifferenceStatus.deleted:
-        return 'DELETED';
-    }
-  }
-}
+  final String value;
 
-extension DifferenceStatusFromString on String {
-  DifferenceStatus toDifferenceStatus() {
-    switch (this) {
-      case 'UPDATED':
-        return DifferenceStatus.updated;
-      case 'NEW':
-        return DifferenceStatus.$new;
-      case 'DELETED':
-        return DifferenceStatus.deleted;
-    }
-    throw Exception('$this is not known in enum DifferenceStatus');
-  }
+  const DifferenceStatus(this.value);
+
+  static DifferenceStatus fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum DifferenceStatus'));
 }
 
 enum DiscoveryIntegrationStatus {
-  enabled,
-  disabled,
-}
+  enabled('ENABLED'),
+  disabled('DISABLED'),
+  ;
 
-extension DiscoveryIntegrationStatusValueExtension
-    on DiscoveryIntegrationStatus {
-  String toValue() {
-    switch (this) {
-      case DiscoveryIntegrationStatus.enabled:
-        return 'ENABLED';
-      case DiscoveryIntegrationStatus.disabled:
-        return 'DISABLED';
-    }
-  }
-}
+  final String value;
 
-extension DiscoveryIntegrationStatusFromString on String {
-  DiscoveryIntegrationStatus toDiscoveryIntegrationStatus() {
-    switch (this) {
-      case 'ENABLED':
-        return DiscoveryIntegrationStatus.enabled;
-      case 'DISABLED':
-        return DiscoveryIntegrationStatus.disabled;
-    }
-    throw Exception('$this is not known in enum DiscoveryIntegrationStatus');
-  }
+  const DiscoveryIntegrationStatus(this.value);
+
+  static DiscoveryIntegrationStatus fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum DiscoveryIntegrationStatus'));
 }
 
 class ExportLensOutput {
@@ -3243,7 +3062,7 @@ class ImportLensOutput {
   factory ImportLensOutput.fromJson(Map<String, dynamic> json) {
     return ImportLensOutput(
       lensArn: json['LensArn'] as String?,
-      status: (json['Status'] as String?)?.toImportLensStatus(),
+      status: (json['Status'] as String?)?.let(ImportLensStatus.fromString),
     );
   }
 
@@ -3252,42 +3071,25 @@ class ImportLensOutput {
     final status = this.status;
     return {
       if (lensArn != null) 'LensArn': lensArn,
-      if (status != null) 'Status': status.toValue(),
+      if (status != null) 'Status': status.value,
     };
   }
 }
 
 enum ImportLensStatus {
-  inProgress,
-  complete,
-  error,
-}
+  inProgress('IN_PROGRESS'),
+  complete('COMPLETE'),
+  error('ERROR'),
+  ;
 
-extension ImportLensStatusValueExtension on ImportLensStatus {
-  String toValue() {
-    switch (this) {
-      case ImportLensStatus.inProgress:
-        return 'IN_PROGRESS';
-      case ImportLensStatus.complete:
-        return 'COMPLETE';
-      case ImportLensStatus.error:
-        return 'ERROR';
-    }
-  }
-}
+  final String value;
 
-extension ImportLensStatusFromString on String {
-  ImportLensStatus toImportLensStatus() {
-    switch (this) {
-      case 'IN_PROGRESS':
-        return ImportLensStatus.inProgress;
-      case 'COMPLETE':
-        return ImportLensStatus.complete;
-      case 'ERROR':
-        return ImportLensStatus.error;
-    }
-    throw Exception('$this is not known in enum ImportLensStatus');
-  }
+  const ImportLensStatus(this.value);
+
+  static ImportLensStatus fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum ImportLensStatus'));
 }
 
 /// An improvement summary of a lens review in a workload.
@@ -3320,7 +3122,7 @@ class ImprovementSummary {
       pillarId: json['PillarId'] as String?,
       questionId: json['QuestionId'] as String?,
       questionTitle: json['QuestionTitle'] as String?,
-      risk: (json['Risk'] as String?)?.toRisk(),
+      risk: (json['Risk'] as String?)?.let(Risk.fromString),
     );
   }
 
@@ -3337,7 +3139,7 @@ class ImprovementSummary {
       if (pillarId != null) 'PillarId': pillarId,
       if (questionId != null) 'QuestionId': questionId,
       if (questionTitle != null) 'QuestionTitle': questionTitle,
-      if (risk != null) 'Risk': risk.toValue(),
+      if (risk != null) 'Risk': risk.value,
     };
   }
 }
@@ -3428,7 +3230,7 @@ class LensMetric {
           .map((e) => PillarMetric.fromJson(e as Map<String, dynamic>))
           .toList(),
       riskCounts: (json['RiskCounts'] as Map<String, dynamic>?)
-          ?.map((k, e) => MapEntry(k.toRisk(), e as int)),
+          ?.map((k, e) => MapEntry(Risk.fromString(k), e as int)),
     );
   }
 
@@ -3440,7 +3242,7 @@ class LensMetric {
       if (lensArn != null) 'LensArn': lensArn,
       if (pillars != null) 'Pillars': pillars,
       if (riskCounts != null)
-        'RiskCounts': riskCounts.map((k, e) => MapEntry(k.toValue(), e)),
+        'RiskCounts': riskCounts.map((k, e) => MapEntry(k.value, e)),
     };
   }
 }
@@ -3482,7 +3284,7 @@ class LensReview {
       lensAlias: json['LensAlias'] as String?,
       lensArn: json['LensArn'] as String?,
       lensName: json['LensName'] as String?,
-      lensStatus: (json['LensStatus'] as String?)?.toLensStatus(),
+      lensStatus: (json['LensStatus'] as String?)?.let(LensStatus.fromString),
       lensVersion: json['LensVersion'] as String?,
       nextToken: json['NextToken'] as String?,
       notes: json['Notes'] as String?,
@@ -3491,7 +3293,7 @@ class LensReview {
           .map((e) => PillarReviewSummary.fromJson(e as Map<String, dynamic>))
           .toList(),
       riskCounts: (json['RiskCounts'] as Map<String, dynamic>?)
-          ?.map((k, e) => MapEntry(k.toRisk(), e as int)),
+          ?.map((k, e) => MapEntry(Risk.fromString(k), e as int)),
       updatedAt: timeStampFromJson(json['UpdatedAt']),
     );
   }
@@ -3511,14 +3313,14 @@ class LensReview {
       if (lensAlias != null) 'LensAlias': lensAlias,
       if (lensArn != null) 'LensArn': lensArn,
       if (lensName != null) 'LensName': lensName,
-      if (lensStatus != null) 'LensStatus': lensStatus.toValue(),
+      if (lensStatus != null) 'LensStatus': lensStatus.value,
       if (lensVersion != null) 'LensVersion': lensVersion,
       if (nextToken != null) 'NextToken': nextToken,
       if (notes != null) 'Notes': notes,
       if (pillarReviewSummaries != null)
         'PillarReviewSummaries': pillarReviewSummaries,
       if (riskCounts != null)
-        'RiskCounts': riskCounts.map((k, e) => MapEntry(k.toValue(), e)),
+        'RiskCounts': riskCounts.map((k, e) => MapEntry(k.value, e)),
       if (updatedAt != null) 'UpdatedAt': unixTimestampToJson(updatedAt),
     };
   }
@@ -3589,10 +3391,10 @@ class LensReviewSummary {
       lensAlias: json['LensAlias'] as String?,
       lensArn: json['LensArn'] as String?,
       lensName: json['LensName'] as String?,
-      lensStatus: (json['LensStatus'] as String?)?.toLensStatus(),
+      lensStatus: (json['LensStatus'] as String?)?.let(LensStatus.fromString),
       lensVersion: json['LensVersion'] as String?,
       riskCounts: (json['RiskCounts'] as Map<String, dynamic>?)
-          ?.map((k, e) => MapEntry(k.toRisk(), e as int)),
+          ?.map((k, e) => MapEntry(Risk.fromString(k), e as int)),
       updatedAt: timeStampFromJson(json['UpdatedAt']),
     );
   }
@@ -3609,10 +3411,10 @@ class LensReviewSummary {
       if (lensAlias != null) 'LensAlias': lensAlias,
       if (lensArn != null) 'LensArn': lensArn,
       if (lensName != null) 'LensName': lensName,
-      if (lensStatus != null) 'LensStatus': lensStatus.toValue(),
+      if (lensStatus != null) 'LensStatus': lensStatus.value,
       if (lensVersion != null) 'LensVersion': lensVersion,
       if (riskCounts != null)
-        'RiskCounts': riskCounts.map((k, e) => MapEntry(k.toValue(), e)),
+        'RiskCounts': riskCounts.map((k, e) => MapEntry(k.value, e)),
       if (updatedAt != null) 'UpdatedAt': unixTimestampToJson(updatedAt),
     };
   }
@@ -3638,7 +3440,7 @@ class LensShareSummary {
     return LensShareSummary(
       shareId: json['ShareId'] as String?,
       sharedWith: json['SharedWith'] as String?,
-      status: (json['Status'] as String?)?.toShareStatus(),
+      status: (json['Status'] as String?)?.let(ShareStatus.fromString),
       statusMessage: json['StatusMessage'] as String?,
     );
   }
@@ -3651,86 +3453,43 @@ class LensShareSummary {
     return {
       if (shareId != null) 'ShareId': shareId,
       if (sharedWith != null) 'SharedWith': sharedWith,
-      if (status != null) 'Status': status.toValue(),
+      if (status != null) 'Status': status.value,
       if (statusMessage != null) 'StatusMessage': statusMessage,
     };
   }
 }
 
 enum LensStatus {
-  current,
-  notCurrent,
-  deprecated,
-  deleted,
-  unshared,
-}
+  current('CURRENT'),
+  notCurrent('NOT_CURRENT'),
+  deprecated('DEPRECATED'),
+  deleted('DELETED'),
+  unshared('UNSHARED'),
+  ;
 
-extension LensStatusValueExtension on LensStatus {
-  String toValue() {
-    switch (this) {
-      case LensStatus.current:
-        return 'CURRENT';
-      case LensStatus.notCurrent:
-        return 'NOT_CURRENT';
-      case LensStatus.deprecated:
-        return 'DEPRECATED';
-      case LensStatus.deleted:
-        return 'DELETED';
-      case LensStatus.unshared:
-        return 'UNSHARED';
-    }
-  }
-}
+  final String value;
 
-extension LensStatusFromString on String {
-  LensStatus toLensStatus() {
-    switch (this) {
-      case 'CURRENT':
-        return LensStatus.current;
-      case 'NOT_CURRENT':
-        return LensStatus.notCurrent;
-      case 'DEPRECATED':
-        return LensStatus.deprecated;
-      case 'DELETED':
-        return LensStatus.deleted;
-      case 'UNSHARED':
-        return LensStatus.unshared;
-    }
-    throw Exception('$this is not known in enum LensStatus');
-  }
+  const LensStatus(this.value);
+
+  static LensStatus fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum LensStatus'));
 }
 
 enum LensStatusType {
-  all,
-  draft,
-  published,
-}
+  all('ALL'),
+  draft('DRAFT'),
+  published('PUBLISHED'),
+  ;
 
-extension LensStatusTypeValueExtension on LensStatusType {
-  String toValue() {
-    switch (this) {
-      case LensStatusType.all:
-        return 'ALL';
-      case LensStatusType.draft:
-        return 'DRAFT';
-      case LensStatusType.published:
-        return 'PUBLISHED';
-    }
-  }
-}
+  final String value;
 
-extension LensStatusTypeFromString on String {
-  LensStatusType toLensStatusType() {
-    switch (this) {
-      case 'ALL':
-        return LensStatusType.all;
-      case 'DRAFT':
-        return LensStatusType.draft;
-      case 'PUBLISHED':
-        return LensStatusType.published;
-    }
-    throw Exception('$this is not known in enum LensStatusType');
-  }
+  const LensStatusType(this.value);
+
+  static LensStatusType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum LensStatusType'));
 }
 
 /// A lens summary of a lens.
@@ -3774,8 +3533,8 @@ class LensSummary {
       lensAlias: json['LensAlias'] as String?,
       lensArn: json['LensArn'] as String?,
       lensName: json['LensName'] as String?,
-      lensStatus: (json['LensStatus'] as String?)?.toLensStatus(),
-      lensType: (json['LensType'] as String?)?.toLensType(),
+      lensStatus: (json['LensStatus'] as String?)?.let(LensStatus.fromString),
+      lensType: (json['LensType'] as String?)?.let(LensType.fromString),
       lensVersion: json['LensVersion'] as String?,
       owner: json['Owner'] as String?,
       updatedAt: timeStampFromJson(json['UpdatedAt']),
@@ -3799,8 +3558,8 @@ class LensSummary {
       if (lensAlias != null) 'LensAlias': lensAlias,
       if (lensArn != null) 'LensArn': lensArn,
       if (lensName != null) 'LensName': lensName,
-      if (lensStatus != null) 'LensStatus': lensStatus.toValue(),
-      if (lensType != null) 'LensType': lensType.toValue(),
+      if (lensStatus != null) 'LensStatus': lensStatus.value,
+      if (lensType != null) 'LensType': lensType.value,
       if (lensVersion != null) 'LensVersion': lensVersion,
       if (owner != null) 'Owner': owner,
       if (updatedAt != null) 'UpdatedAt': unixTimestampToJson(updatedAt),
@@ -3809,36 +3568,18 @@ class LensSummary {
 }
 
 enum LensType {
-  awsOfficial,
-  customShared,
-  customSelf,
-}
+  awsOfficial('AWS_OFFICIAL'),
+  customShared('CUSTOM_SHARED'),
+  customSelf('CUSTOM_SELF'),
+  ;
 
-extension LensTypeValueExtension on LensType {
-  String toValue() {
-    switch (this) {
-      case LensType.awsOfficial:
-        return 'AWS_OFFICIAL';
-      case LensType.customShared:
-        return 'CUSTOM_SHARED';
-      case LensType.customSelf:
-        return 'CUSTOM_SELF';
-    }
-  }
-}
+  final String value;
 
-extension LensTypeFromString on String {
-  LensType toLensType() {
-    switch (this) {
-      case 'AWS_OFFICIAL':
-        return LensType.awsOfficial;
-      case 'CUSTOM_SHARED':
-        return LensType.customShared;
-      case 'CUSTOM_SELF':
-        return LensType.customSelf;
-    }
-    throw Exception('$this is not known in enum LensType');
-  }
+  const LensType(this.value);
+
+  static LensType fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum LensType'));
 }
 
 /// Lens upgrade summary return object.
@@ -4352,26 +4093,16 @@ class ListWorkloadsOutput {
 }
 
 enum MetricType {
-  workload,
-}
+  workload('WORKLOAD'),
+  ;
 
-extension MetricTypeValueExtension on MetricType {
-  String toValue() {
-    switch (this) {
-      case MetricType.workload:
-        return 'WORKLOAD';
-    }
-  }
-}
+  final String value;
 
-extension MetricTypeFromString on String {
-  MetricType toMetricType() {
-    switch (this) {
-      case 'WORKLOAD':
-        return MetricType.workload;
-    }
-    throw Exception('$this is not known in enum MetricType');
-  }
+  const MetricType(this.value);
+
+  static MetricType fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum MetricType'));
 }
 
 /// A milestone return object.
@@ -4472,7 +4203,7 @@ class NotificationSummary {
           ? LensUpgradeSummary.fromJson(
               json['LensUpgradeSummary'] as Map<String, dynamic>)
           : null,
-      type: (json['Type'] as String?)?.toNotificationType(),
+      type: (json['Type'] as String?)?.let(NotificationType.fromString),
     );
   }
 
@@ -4481,94 +4212,55 @@ class NotificationSummary {
     final type = this.type;
     return {
       if (lensUpgradeSummary != null) 'LensUpgradeSummary': lensUpgradeSummary,
-      if (type != null) 'Type': type.toValue(),
+      if (type != null) 'Type': type.value,
     };
   }
 }
 
 enum NotificationType {
-  lensVersionUpgraded,
-  lensVersionDeprecated,
-}
+  lensVersionUpgraded('LENS_VERSION_UPGRADED'),
+  lensVersionDeprecated('LENS_VERSION_DEPRECATED'),
+  ;
 
-extension NotificationTypeValueExtension on NotificationType {
-  String toValue() {
-    switch (this) {
-      case NotificationType.lensVersionUpgraded:
-        return 'LENS_VERSION_UPGRADED';
-      case NotificationType.lensVersionDeprecated:
-        return 'LENS_VERSION_DEPRECATED';
-    }
-  }
-}
+  final String value;
 
-extension NotificationTypeFromString on String {
-  NotificationType toNotificationType() {
-    switch (this) {
-      case 'LENS_VERSION_UPGRADED':
-        return NotificationType.lensVersionUpgraded;
-      case 'LENS_VERSION_DEPRECATED':
-        return NotificationType.lensVersionDeprecated;
-    }
-    throw Exception('$this is not known in enum NotificationType');
-  }
+  const NotificationType(this.value);
+
+  static NotificationType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum NotificationType'));
 }
 
 enum OrganizationSharingStatus {
-  enabled,
-  disabled,
-}
+  enabled('ENABLED'),
+  disabled('DISABLED'),
+  ;
 
-extension OrganizationSharingStatusValueExtension on OrganizationSharingStatus {
-  String toValue() {
-    switch (this) {
-      case OrganizationSharingStatus.enabled:
-        return 'ENABLED';
-      case OrganizationSharingStatus.disabled:
-        return 'DISABLED';
-    }
-  }
-}
+  final String value;
 
-extension OrganizationSharingStatusFromString on String {
-  OrganizationSharingStatus toOrganizationSharingStatus() {
-    switch (this) {
-      case 'ENABLED':
-        return OrganizationSharingStatus.enabled;
-      case 'DISABLED':
-        return OrganizationSharingStatus.disabled;
-    }
-    throw Exception('$this is not known in enum OrganizationSharingStatus');
-  }
+  const OrganizationSharingStatus(this.value);
+
+  static OrganizationSharingStatus fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum OrganizationSharingStatus'));
 }
 
 /// Permission granted on a workload share.
 enum PermissionType {
-  readonly,
-  contributor,
-}
+  readonly('READONLY'),
+  contributor('CONTRIBUTOR'),
+  ;
 
-extension PermissionTypeValueExtension on PermissionType {
-  String toValue() {
-    switch (this) {
-      case PermissionType.readonly:
-        return 'READONLY';
-      case PermissionType.contributor:
-        return 'CONTRIBUTOR';
-    }
-  }
-}
+  final String value;
 
-extension PermissionTypeFromString on String {
-  PermissionType toPermissionType() {
-    switch (this) {
-      case 'READONLY':
-        return PermissionType.readonly;
-      case 'CONTRIBUTOR':
-        return PermissionType.contributor;
-    }
-    throw Exception('$this is not known in enum PermissionType');
-  }
+  const PermissionType(this.value);
+
+  static PermissionType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum PermissionType'));
 }
 
 /// A pillar difference return object.
@@ -4590,8 +4282,8 @@ class PillarDifference {
 
   factory PillarDifference.fromJson(Map<String, dynamic> json) {
     return PillarDifference(
-      differenceStatus:
-          (json['DifferenceStatus'] as String?)?.toDifferenceStatus(),
+      differenceStatus: (json['DifferenceStatus'] as String?)
+          ?.let(DifferenceStatus.fromString),
       pillarId: json['PillarId'] as String?,
       pillarName: json['PillarName'] as String?,
       questionDifferences: (json['QuestionDifferences'] as List?)
@@ -4607,8 +4299,7 @@ class PillarDifference {
     final pillarName = this.pillarName;
     final questionDifferences = this.questionDifferences;
     return {
-      if (differenceStatus != null)
-        'DifferenceStatus': differenceStatus.toValue(),
+      if (differenceStatus != null) 'DifferenceStatus': differenceStatus.value,
       if (pillarId != null) 'PillarId': pillarId,
       if (pillarName != null) 'PillarName': pillarName,
       if (questionDifferences != null)
@@ -4639,7 +4330,7 @@ class PillarMetric {
           .map((e) => QuestionMetric.fromJson(e as Map<String, dynamic>))
           .toList(),
       riskCounts: (json['RiskCounts'] as Map<String, dynamic>?)
-          ?.map((k, e) => MapEntry(k.toRisk(), e as int)),
+          ?.map((k, e) => MapEntry(Risk.fromString(k), e as int)),
     );
   }
 
@@ -4651,7 +4342,7 @@ class PillarMetric {
       if (pillarId != null) 'PillarId': pillarId,
       if (questions != null) 'Questions': questions,
       if (riskCounts != null)
-        'RiskCounts': riskCounts.map((k, e) => MapEntry(k.toValue(), e)),
+        'RiskCounts': riskCounts.map((k, e) => MapEntry(k.value, e)),
     };
   }
 }
@@ -4676,7 +4367,7 @@ class PillarReviewSummary {
       pillarId: json['PillarId'] as String?,
       pillarName: json['PillarName'] as String?,
       riskCounts: (json['RiskCounts'] as Map<String, dynamic>?)
-          ?.map((k, e) => MapEntry(k.toRisk(), e as int)),
+          ?.map((k, e) => MapEntry(Risk.fromString(k), e as int)),
     );
   }
 
@@ -4690,7 +4381,7 @@ class PillarReviewSummary {
       if (pillarId != null) 'PillarId': pillarId,
       if (pillarName != null) 'PillarName': pillarName,
       if (riskCounts != null)
-        'RiskCounts': riskCounts.map((k, e) => MapEntry(k.toValue(), e)),
+        'RiskCounts': riskCounts.map((k, e) => MapEntry(k.value, e)),
     };
   }
 }
@@ -4710,8 +4401,8 @@ class QuestionDifference {
 
   factory QuestionDifference.fromJson(Map<String, dynamic> json) {
     return QuestionDifference(
-      differenceStatus:
-          (json['DifferenceStatus'] as String?)?.toDifferenceStatus(),
+      differenceStatus: (json['DifferenceStatus'] as String?)
+          ?.let(DifferenceStatus.fromString),
       questionId: json['QuestionId'] as String?,
       questionTitle: json['QuestionTitle'] as String?,
     );
@@ -4722,8 +4413,7 @@ class QuestionDifference {
     final questionId = this.questionId;
     final questionTitle = this.questionTitle;
     return {
-      if (differenceStatus != null)
-        'DifferenceStatus': differenceStatus.toValue(),
+      if (differenceStatus != null) 'DifferenceStatus': differenceStatus.value,
       if (questionId != null) 'QuestionId': questionId,
       if (questionTitle != null) 'QuestionTitle': questionTitle,
     };
@@ -4751,7 +4441,7 @@ class QuestionMetric {
           .map((e) => BestPractice.fromJson(e as Map<String, dynamic>))
           .toList(),
       questionId: json['QuestionId'] as String?,
-      risk: (json['Risk'] as String?)?.toRisk(),
+      risk: (json['Risk'] as String?)?.let(Risk.fromString),
     );
   }
 
@@ -4762,81 +4452,42 @@ class QuestionMetric {
     return {
       if (bestPractices != null) 'BestPractices': bestPractices,
       if (questionId != null) 'QuestionId': questionId,
-      if (risk != null) 'Risk': risk.toValue(),
+      if (risk != null) 'Risk': risk.value,
     };
   }
 }
 
 enum ReportFormat {
-  pdf,
-  json,
-}
+  pdf('PDF'),
+  json('JSON'),
+  ;
 
-extension ReportFormatValueExtension on ReportFormat {
-  String toValue() {
-    switch (this) {
-      case ReportFormat.pdf:
-        return 'PDF';
-      case ReportFormat.json:
-        return 'JSON';
-    }
-  }
-}
+  final String value;
 
-extension ReportFormatFromString on String {
-  ReportFormat toReportFormat() {
-    switch (this) {
-      case 'PDF':
-        return ReportFormat.pdf;
-      case 'JSON':
-        return ReportFormat.json;
-    }
-    throw Exception('$this is not known in enum ReportFormat');
-  }
+  const ReportFormat(this.value);
+
+  static ReportFormat fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum ReportFormat'));
 }
 
 /// The risk for a given workload, lens review, pillar, or question.
 enum Risk {
-  unanswered,
-  high,
-  medium,
-  none,
-  notApplicable,
-}
+  unanswered('UNANSWERED'),
+  high('HIGH'),
+  medium('MEDIUM'),
+  none('NONE'),
+  notApplicable('NOT_APPLICABLE'),
+  ;
 
-extension RiskValueExtension on Risk {
-  String toValue() {
-    switch (this) {
-      case Risk.unanswered:
-        return 'UNANSWERED';
-      case Risk.high:
-        return 'HIGH';
-      case Risk.medium:
-        return 'MEDIUM';
-      case Risk.none:
-        return 'NONE';
-      case Risk.notApplicable:
-        return 'NOT_APPLICABLE';
-    }
-  }
-}
+  final String value;
 
-extension RiskFromString on String {
-  Risk toRisk() {
-    switch (this) {
-      case 'UNANSWERED':
-        return Risk.unanswered;
-      case 'HIGH':
-        return Risk.high;
-      case 'MEDIUM':
-        return Risk.medium;
-      case 'NONE':
-        return Risk.none;
-      case 'NOT_APPLICABLE':
-        return Risk.notApplicable;
-    }
-    throw Exception('$this is not known in enum Risk');
-  }
+  const Risk(this.value);
+
+  static Risk fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception('$value is not known in enum Risk'));
 }
 
 /// The share invitation.
@@ -4866,8 +4517,8 @@ class ShareInvitation {
       lensAlias: json['LensAlias'] as String?,
       lensArn: json['LensArn'] as String?,
       shareInvitationId: json['ShareInvitationId'] as String?,
-      shareResourceType:
-          (json['ShareResourceType'] as String?)?.toShareResourceType(),
+      shareResourceType: (json['ShareResourceType'] as String?)
+          ?.let(ShareResourceType.fromString),
       workloadId: json['WorkloadId'] as String?,
     );
   }
@@ -4883,7 +4534,7 @@ class ShareInvitation {
       if (lensArn != null) 'LensArn': lensArn,
       if (shareInvitationId != null) 'ShareInvitationId': shareInvitationId,
       if (shareResourceType != null)
-        'ShareResourceType': shareResourceType.toValue(),
+        'ShareResourceType': shareResourceType.value,
       if (workloadId != null) 'WorkloadId': workloadId,
     };
   }
@@ -4891,31 +4542,18 @@ class ShareInvitation {
 
 /// Share invitation action taken by contributor.
 enum ShareInvitationAction {
-  accept,
-  reject,
-}
+  accept('ACCEPT'),
+  reject('REJECT'),
+  ;
 
-extension ShareInvitationActionValueExtension on ShareInvitationAction {
-  String toValue() {
-    switch (this) {
-      case ShareInvitationAction.accept:
-        return 'ACCEPT';
-      case ShareInvitationAction.reject:
-        return 'REJECT';
-    }
-  }
-}
+  final String value;
 
-extension ShareInvitationActionFromString on String {
-  ShareInvitationAction toShareInvitationAction() {
-    switch (this) {
-      case 'ACCEPT':
-        return ShareInvitationAction.accept;
-      case 'REJECT':
-        return ShareInvitationAction.reject;
-    }
-    throw Exception('$this is not known in enum ShareInvitationAction');
-  }
+  const ShareInvitationAction(this.value);
+
+  static ShareInvitationAction fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum ShareInvitationAction'));
 }
 
 /// A share invitation summary return object.
@@ -4951,10 +4589,11 @@ class ShareInvitationSummary {
     return ShareInvitationSummary(
       lensArn: json['LensArn'] as String?,
       lensName: json['LensName'] as String?,
-      permissionType: (json['PermissionType'] as String?)?.toPermissionType(),
+      permissionType:
+          (json['PermissionType'] as String?)?.let(PermissionType.fromString),
       shareInvitationId: json['ShareInvitationId'] as String?,
-      shareResourceType:
-          (json['ShareResourceType'] as String?)?.toShareResourceType(),
+      shareResourceType: (json['ShareResourceType'] as String?)
+          ?.let(ShareResourceType.fromString),
       sharedBy: json['SharedBy'] as String?,
       sharedWith: json['SharedWith'] as String?,
       workloadId: json['WorkloadId'] as String?,
@@ -4975,10 +4614,10 @@ class ShareInvitationSummary {
     return {
       if (lensArn != null) 'LensArn': lensArn,
       if (lensName != null) 'LensName': lensName,
-      if (permissionType != null) 'PermissionType': permissionType.toValue(),
+      if (permissionType != null) 'PermissionType': permissionType.value,
       if (shareInvitationId != null) 'ShareInvitationId': shareInvitationId,
       if (shareResourceType != null)
-        'ShareResourceType': shareResourceType.toValue(),
+        'ShareResourceType': shareResourceType.value,
       if (sharedBy != null) 'SharedBy': sharedBy,
       if (sharedWith != null) 'SharedWith': sharedWith,
       if (workloadId != null) 'WorkloadId': workloadId,
@@ -4988,90 +4627,39 @@ class ShareInvitationSummary {
 }
 
 enum ShareResourceType {
-  workload,
-  lens,
-}
+  workload('WORKLOAD'),
+  lens('LENS'),
+  ;
 
-extension ShareResourceTypeValueExtension on ShareResourceType {
-  String toValue() {
-    switch (this) {
-      case ShareResourceType.workload:
-        return 'WORKLOAD';
-      case ShareResourceType.lens:
-        return 'LENS';
-    }
-  }
-}
+  final String value;
 
-extension ShareResourceTypeFromString on String {
-  ShareResourceType toShareResourceType() {
-    switch (this) {
-      case 'WORKLOAD':
-        return ShareResourceType.workload;
-      case 'LENS':
-        return ShareResourceType.lens;
-    }
-    throw Exception('$this is not known in enum ShareResourceType');
-  }
+  const ShareResourceType(this.value);
+
+  static ShareResourceType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum ShareResourceType'));
 }
 
 /// The status of a workload share.
 enum ShareStatus {
-  accepted,
-  rejected,
-  pending,
-  revoked,
-  expired,
-  associating,
-  associated,
-  failed,
-}
+  accepted('ACCEPTED'),
+  rejected('REJECTED'),
+  pending('PENDING'),
+  revoked('REVOKED'),
+  expired('EXPIRED'),
+  associating('ASSOCIATING'),
+  associated('ASSOCIATED'),
+  failed('FAILED'),
+  ;
 
-extension ShareStatusValueExtension on ShareStatus {
-  String toValue() {
-    switch (this) {
-      case ShareStatus.accepted:
-        return 'ACCEPTED';
-      case ShareStatus.rejected:
-        return 'REJECTED';
-      case ShareStatus.pending:
-        return 'PENDING';
-      case ShareStatus.revoked:
-        return 'REVOKED';
-      case ShareStatus.expired:
-        return 'EXPIRED';
-      case ShareStatus.associating:
-        return 'ASSOCIATING';
-      case ShareStatus.associated:
-        return 'ASSOCIATED';
-      case ShareStatus.failed:
-        return 'FAILED';
-    }
-  }
-}
+  final String value;
 
-extension ShareStatusFromString on String {
-  ShareStatus toShareStatus() {
-    switch (this) {
-      case 'ACCEPTED':
-        return ShareStatus.accepted;
-      case 'REJECTED':
-        return ShareStatus.rejected;
-      case 'PENDING':
-        return ShareStatus.pending;
-      case 'REVOKED':
-        return ShareStatus.revoked;
-      case 'EXPIRED':
-        return ShareStatus.expired;
-      case 'ASSOCIATING':
-        return ShareStatus.associating;
-      case 'ASSOCIATED':
-        return ShareStatus.associated;
-      case 'FAILED':
-        return ShareStatus.failed;
-    }
-    throw Exception('$this is not known in enum ShareStatus');
-  }
+  const ShareStatus(this.value);
+
+  static ShareStatus fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum ShareStatus'));
 }
 
 class TagResourceOutput {
@@ -5087,33 +4675,18 @@ class TagResourceOutput {
 }
 
 enum TrustedAdvisorIntegrationStatus {
-  enabled,
-  disabled,
-}
+  enabled('ENABLED'),
+  disabled('DISABLED'),
+  ;
 
-extension TrustedAdvisorIntegrationStatusValueExtension
-    on TrustedAdvisorIntegrationStatus {
-  String toValue() {
-    switch (this) {
-      case TrustedAdvisorIntegrationStatus.enabled:
-        return 'ENABLED';
-      case TrustedAdvisorIntegrationStatus.disabled:
-        return 'DISABLED';
-    }
-  }
-}
+  final String value;
 
-extension TrustedAdvisorIntegrationStatusFromString on String {
-  TrustedAdvisorIntegrationStatus toTrustedAdvisorIntegrationStatus() {
-    switch (this) {
-      case 'ENABLED':
-        return TrustedAdvisorIntegrationStatus.enabled;
-      case 'DISABLED':
-        return TrustedAdvisorIntegrationStatus.disabled;
-    }
-    throw Exception(
-        '$this is not known in enum TrustedAdvisorIntegrationStatus');
-  }
+  const TrustedAdvisorIntegrationStatus(this.value);
+
+  static TrustedAdvisorIntegrationStatus fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum TrustedAdvisorIntegrationStatus'));
 }
 
 class UntagResourceOutput {
@@ -5394,9 +4967,10 @@ class Workload {
           ? WorkloadDiscoveryConfig.fromJson(
               json['DiscoveryConfig'] as Map<String, dynamic>)
           : null,
-      environment: (json['Environment'] as String?)?.toWorkloadEnvironment(),
-      improvementStatus:
-          (json['ImprovementStatus'] as String?)?.toWorkloadImprovementStatus(),
+      environment:
+          (json['Environment'] as String?)?.let(WorkloadEnvironment.fromString),
+      improvementStatus: (json['ImprovementStatus'] as String?)
+          ?.let(WorkloadImprovementStatus.fromString),
       industry: json['Industry'] as String?,
       industryType: json['IndustryType'] as String?,
       isReviewOwnerUpdateAcknowledged:
@@ -5418,7 +4992,7 @@ class Workload {
       reviewOwner: json['ReviewOwner'] as String?,
       reviewRestrictionDate: timeStampFromJson(json['ReviewRestrictionDate']),
       riskCounts: (json['RiskCounts'] as Map<String, dynamic>?)
-          ?.map((k, e) => MapEntry(k.toRisk(), e as int)),
+          ?.map((k, e) => MapEntry(Risk.fromString(k), e as int)),
       shareInvitationId: json['ShareInvitationId'] as String?,
       tags: (json['Tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
@@ -5464,9 +5038,9 @@ class Workload {
       if (awsRegions != null) 'AwsRegions': awsRegions,
       if (description != null) 'Description': description,
       if (discoveryConfig != null) 'DiscoveryConfig': discoveryConfig,
-      if (environment != null) 'Environment': environment.toValue(),
+      if (environment != null) 'Environment': environment.value,
       if (improvementStatus != null)
-        'ImprovementStatus': improvementStatus.toValue(),
+        'ImprovementStatus': improvementStatus.value,
       if (industry != null) 'Industry': industry,
       if (industryType != null) 'IndustryType': industryType,
       if (isReviewOwnerUpdateAcknowledged != null)
@@ -5480,7 +5054,7 @@ class Workload {
       if (reviewRestrictionDate != null)
         'ReviewRestrictionDate': unixTimestampToJson(reviewRestrictionDate),
       if (riskCounts != null)
-        'RiskCounts': riskCounts.map((k, e) => MapEntry(k.toValue(), e)),
+        'RiskCounts': riskCounts.map((k, e) => MapEntry(k.value, e)),
       if (shareInvitationId != null) 'ShareInvitationId': shareInvitationId,
       if (tags != null) 'Tags': tags,
       if (updatedAt != null) 'UpdatedAt': unixTimestampToJson(updatedAt),
@@ -5511,10 +5085,10 @@ class WorkloadDiscoveryConfig {
     return WorkloadDiscoveryConfig(
       trustedAdvisorIntegrationStatus:
           (json['TrustedAdvisorIntegrationStatus'] as String?)
-              ?.toTrustedAdvisorIntegrationStatus(),
+              ?.let(TrustedAdvisorIntegrationStatus.fromString),
       workloadResourceDefinition: (json['WorkloadResourceDefinition'] as List?)
           ?.whereNotNull()
-          .map((e) => (e as String).toDefinitionType())
+          .map((e) => DefinitionType.fromString((e as String)))
           .toList(),
     );
   }
@@ -5526,85 +5100,47 @@ class WorkloadDiscoveryConfig {
     return {
       if (trustedAdvisorIntegrationStatus != null)
         'TrustedAdvisorIntegrationStatus':
-            trustedAdvisorIntegrationStatus.toValue(),
+            trustedAdvisorIntegrationStatus.value,
       if (workloadResourceDefinition != null)
         'WorkloadResourceDefinition':
-            workloadResourceDefinition.map((e) => e.toValue()).toList(),
+            workloadResourceDefinition.map((e) => e.value).toList(),
     };
   }
 }
 
 /// The environment for the workload.
 enum WorkloadEnvironment {
-  production,
-  preproduction,
-}
+  production('PRODUCTION'),
+  preproduction('PREPRODUCTION'),
+  ;
 
-extension WorkloadEnvironmentValueExtension on WorkloadEnvironment {
-  String toValue() {
-    switch (this) {
-      case WorkloadEnvironment.production:
-        return 'PRODUCTION';
-      case WorkloadEnvironment.preproduction:
-        return 'PREPRODUCTION';
-    }
-  }
-}
+  final String value;
 
-extension WorkloadEnvironmentFromString on String {
-  WorkloadEnvironment toWorkloadEnvironment() {
-    switch (this) {
-      case 'PRODUCTION':
-        return WorkloadEnvironment.production;
-      case 'PREPRODUCTION':
-        return WorkloadEnvironment.preproduction;
-    }
-    throw Exception('$this is not known in enum WorkloadEnvironment');
-  }
+  const WorkloadEnvironment(this.value);
+
+  static WorkloadEnvironment fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum WorkloadEnvironment'));
 }
 
 /// The improvement status for a workload.
 enum WorkloadImprovementStatus {
-  notApplicable,
-  notStarted,
-  inProgress,
-  complete,
-  riskAcknowledged,
-}
+  notApplicable('NOT_APPLICABLE'),
+  notStarted('NOT_STARTED'),
+  inProgress('IN_PROGRESS'),
+  complete('COMPLETE'),
+  riskAcknowledged('RISK_ACKNOWLEDGED'),
+  ;
 
-extension WorkloadImprovementStatusValueExtension on WorkloadImprovementStatus {
-  String toValue() {
-    switch (this) {
-      case WorkloadImprovementStatus.notApplicable:
-        return 'NOT_APPLICABLE';
-      case WorkloadImprovementStatus.notStarted:
-        return 'NOT_STARTED';
-      case WorkloadImprovementStatus.inProgress:
-        return 'IN_PROGRESS';
-      case WorkloadImprovementStatus.complete:
-        return 'COMPLETE';
-      case WorkloadImprovementStatus.riskAcknowledged:
-        return 'RISK_ACKNOWLEDGED';
-    }
-  }
-}
+  final String value;
 
-extension WorkloadImprovementStatusFromString on String {
-  WorkloadImprovementStatus toWorkloadImprovementStatus() {
-    switch (this) {
-      case 'NOT_APPLICABLE':
-        return WorkloadImprovementStatus.notApplicable;
-      case 'NOT_STARTED':
-        return WorkloadImprovementStatus.notStarted;
-      case 'IN_PROGRESS':
-        return WorkloadImprovementStatus.inProgress;
-      case 'COMPLETE':
-        return WorkloadImprovementStatus.complete;
-      case 'RISK_ACKNOWLEDGED':
-        return WorkloadImprovementStatus.riskAcknowledged;
-    }
-    throw Exception('$this is not known in enum WorkloadImprovementStatus');
-  }
+  const WorkloadImprovementStatus(this.value);
+
+  static WorkloadImprovementStatus fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum WorkloadImprovementStatus'));
 }
 
 /// A workload share return object.
@@ -5629,11 +5165,12 @@ class WorkloadShare {
 
   factory WorkloadShare.fromJson(Map<String, dynamic> json) {
     return WorkloadShare(
-      permissionType: (json['PermissionType'] as String?)?.toPermissionType(),
+      permissionType:
+          (json['PermissionType'] as String?)?.let(PermissionType.fromString),
       shareId: json['ShareId'] as String?,
       sharedBy: json['SharedBy'] as String?,
       sharedWith: json['SharedWith'] as String?,
-      status: (json['Status'] as String?)?.toShareStatus(),
+      status: (json['Status'] as String?)?.let(ShareStatus.fromString),
       workloadId: json['WorkloadId'] as String?,
       workloadName: json['WorkloadName'] as String?,
     );
@@ -5648,11 +5185,11 @@ class WorkloadShare {
     final workloadId = this.workloadId;
     final workloadName = this.workloadName;
     return {
-      if (permissionType != null) 'PermissionType': permissionType.toValue(),
+      if (permissionType != null) 'PermissionType': permissionType.value,
       if (shareId != null) 'ShareId': shareId,
       if (sharedBy != null) 'SharedBy': sharedBy,
       if (sharedWith != null) 'SharedWith': sharedWith,
-      if (status != null) 'Status': status.toValue(),
+      if (status != null) 'Status': status.value,
       if (workloadId != null) 'WorkloadId': workloadId,
       if (workloadName != null) 'WorkloadName': workloadName,
     };
@@ -5679,10 +5216,11 @@ class WorkloadShareSummary {
 
   factory WorkloadShareSummary.fromJson(Map<String, dynamic> json) {
     return WorkloadShareSummary(
-      permissionType: (json['PermissionType'] as String?)?.toPermissionType(),
+      permissionType:
+          (json['PermissionType'] as String?)?.let(PermissionType.fromString),
       shareId: json['ShareId'] as String?,
       sharedWith: json['SharedWith'] as String?,
-      status: (json['Status'] as String?)?.toShareStatus(),
+      status: (json['Status'] as String?)?.let(ShareStatus.fromString),
       statusMessage: json['StatusMessage'] as String?,
     );
   }
@@ -5694,10 +5232,10 @@ class WorkloadShareSummary {
     final status = this.status;
     final statusMessage = this.statusMessage;
     return {
-      if (permissionType != null) 'PermissionType': permissionType.toValue(),
+      if (permissionType != null) 'PermissionType': permissionType.value,
       if (shareId != null) 'ShareId': shareId,
       if (sharedWith != null) 'SharedWith': sharedWith,
-      if (status != null) 'Status': status.toValue(),
+      if (status != null) 'Status': status.value,
       if (statusMessage != null) 'StatusMessage': statusMessage,
     };
   }
@@ -5727,15 +5265,15 @@ class WorkloadSummary {
 
   factory WorkloadSummary.fromJson(Map<String, dynamic> json) {
     return WorkloadSummary(
-      improvementStatus:
-          (json['ImprovementStatus'] as String?)?.toWorkloadImprovementStatus(),
+      improvementStatus: (json['ImprovementStatus'] as String?)
+          ?.let(WorkloadImprovementStatus.fromString),
       lenses: (json['Lenses'] as List?)
           ?.whereNotNull()
           .map((e) => e as String)
           .toList(),
       owner: json['Owner'] as String?,
       riskCounts: (json['RiskCounts'] as Map<String, dynamic>?)
-          ?.map((k, e) => MapEntry(k.toRisk(), e as int)),
+          ?.map((k, e) => MapEntry(Risk.fromString(k), e as int)),
       updatedAt: timeStampFromJson(json['UpdatedAt']),
       workloadArn: json['WorkloadArn'] as String?,
       workloadId: json['WorkloadId'] as String?,
@@ -5754,11 +5292,11 @@ class WorkloadSummary {
     final workloadName = this.workloadName;
     return {
       if (improvementStatus != null)
-        'ImprovementStatus': improvementStatus.toValue(),
+        'ImprovementStatus': improvementStatus.value,
       if (lenses != null) 'Lenses': lenses,
       if (owner != null) 'Owner': owner,
       if (riskCounts != null)
-        'RiskCounts': riskCounts.map((k, e) => MapEntry(k.toValue(), e)),
+        'RiskCounts': riskCounts.map((k, e) => MapEntry(k.value, e)),
       if (updatedAt != null) 'UpdatedAt': unixTimestampToJson(updatedAt),
       if (workloadArn != null) 'WorkloadArn': workloadArn,
       if (workloadId != null) 'WorkloadId': workloadId,

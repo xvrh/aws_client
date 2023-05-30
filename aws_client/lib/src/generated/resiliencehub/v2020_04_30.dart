@@ -162,7 +162,7 @@ class ResilienceHub {
     final $payload = <String, dynamic>{
       'name': name,
       if (assessmentSchedule != null)
-        'assessmentSchedule': assessmentSchedule.toValue(),
+        'assessmentSchedule': assessmentSchedule.value,
       'clientToken': clientToken ?? _s.generateIdempotencyToken(),
       if (description != null) 'description': description,
       if (policyArn != null) 'policyArn': policyArn,
@@ -418,11 +418,10 @@ class ResilienceHub {
       'name': name,
       if (bucketName != null) 'bucketName': bucketName,
       'clientToken': clientToken ?? _s.generateIdempotencyToken(),
-      if (format != null) 'format': format.toValue(),
+      if (format != null) 'format': format.value,
       if (recommendationIds != null) 'recommendationIds': recommendationIds,
       if (recommendationTypes != null)
-        'recommendationTypes':
-            recommendationTypes.map((e) => e.toValue()).toList(),
+        'recommendationTypes': recommendationTypes.map((e) => e.value).toList(),
       if (tags != null) 'tags': tags,
     };
     final response = await _protocol.send(
@@ -479,12 +478,12 @@ class ResilienceHub {
     Map<String, String>? tags,
   }) async {
     final $payload = <String, dynamic>{
-      'policy': policy.map((k, e) => MapEntry(k.toValue(), e)),
+      'policy': policy.map((k, e) => MapEntry(k.value, e)),
       'policyName': policyName,
-      'tier': tier.toValue(),
+      'tier': tier.value,
       'clientToken': clientToken ?? _s.generateIdempotencyToken(),
       if (dataLocationConstraint != null)
-        'dataLocationConstraint': dataLocationConstraint.toValue(),
+        'dataLocationConstraint': dataLocationConstraint.value,
       if (policyDescription != null) 'policyDescription': policyDescription,
       if (tags != null) 'tags': tags,
     };
@@ -1274,7 +1273,7 @@ class ResilienceHub {
     final $payload = <String, dynamic>{
       'appArn': appArn,
       if (eksSources != null) 'eksSources': eksSources,
-      if (importStrategy != null) 'importStrategy': importStrategy.toValue(),
+      if (importStrategy != null) 'importStrategy': importStrategy.value,
       if (sourceArns != null) 'sourceArns': sourceArns,
       if (terraformSources != null) 'terraformSources': terraformSources,
     };
@@ -1398,10 +1397,10 @@ class ResilienceHub {
       if (appArn != null) 'appArn': [appArn],
       if (assessmentName != null) 'assessmentName': [assessmentName],
       if (assessmentStatus != null)
-        'assessmentStatus': assessmentStatus.map((e) => e.toValue()).toList(),
+        'assessmentStatus': assessmentStatus.map((e) => e.value).toList(),
       if (complianceStatus != null)
-        'complianceStatus': [complianceStatus.toValue()],
-      if (invoker != null) 'invoker': [invoker.toValue()],
+        'complianceStatus': [complianceStatus.value],
+      if (invoker != null) 'invoker': [invoker.value],
       if (maxResults != null) 'maxResults': [maxResults.toString()],
       if (nextToken != null) 'nextToken': [nextToken],
       if (reverseOrder != null) 'reverseOrder': [reverseOrder.toString()],
@@ -1911,7 +1910,7 @@ class ResilienceHub {
       if (recommendationTemplateArn != null)
         'recommendationTemplateArn': [recommendationTemplateArn],
       if (reverseOrder != null) 'reverseOrder': [reverseOrder.toString()],
-      if (status != null) 'status': status.map((e) => e.toValue()).toList(),
+      if (status != null) 'status': status.map((e) => e.value).toList(),
     };
     final response = await _protocol.send(
       payload: null,
@@ -2791,7 +2790,7 @@ class ResilienceHub {
     final $payload = <String, dynamic>{
       'appArn': appArn,
       if (assessmentSchedule != null)
-        'assessmentSchedule': assessmentSchedule.toValue(),
+        'assessmentSchedule': assessmentSchedule.value,
       if (clearResiliencyPolicyArn != null)
         'clearResiliencyPolicyArn': clearResiliencyPolicyArn,
       if (description != null) 'description': description,
@@ -3068,12 +3067,11 @@ class ResilienceHub {
     final $payload = <String, dynamic>{
       'policyArn': policyArn,
       if (dataLocationConstraint != null)
-        'dataLocationConstraint': dataLocationConstraint.toValue(),
-      if (policy != null)
-        'policy': policy.map((k, e) => MapEntry(k.toValue(), e)),
+        'dataLocationConstraint': dataLocationConstraint.value,
+      if (policy != null) 'policy': policy.map((k, e) => MapEntry(k.value, e)),
       if (policyDescription != null) 'policyDescription': policyDescription,
       if (policyName != null) 'policyName': policyName,
-      if (tier != null) 'tier': tier.toValue(),
+      if (tier != null) 'tier': tier.value,
     };
     final response = await _protocol.send(
       payload: $payload,
@@ -3177,7 +3175,7 @@ class AlarmRecommendation {
       name: json['name'] as String,
       recommendationId: json['recommendationId'] as String,
       referenceId: json['referenceId'] as String,
-      type: (json['type'] as String).toAlarmType(),
+      type: AlarmType.fromString((json['type'] as String)),
       appComponentName: json['appComponentName'] as String?,
       description: json['description'] as String?,
       items: (json['items'] as List?)
@@ -3201,7 +3199,7 @@ class AlarmRecommendation {
       'name': name,
       'recommendationId': recommendationId,
       'referenceId': referenceId,
-      'type': type.toValue(),
+      'type': type.value,
       if (appComponentName != null) 'appComponentName': appComponentName,
       if (description != null) 'description': description,
       if (items != null) 'items': items,
@@ -3211,46 +3209,20 @@ class AlarmRecommendation {
 }
 
 enum AlarmType {
-  metric,
-  composite,
-  canary,
-  logs,
-  event,
-}
+  metric('Metric'),
+  composite('Composite'),
+  canary('Canary'),
+  logs('Logs'),
+  event('Event'),
+  ;
 
-extension AlarmTypeValueExtension on AlarmType {
-  String toValue() {
-    switch (this) {
-      case AlarmType.metric:
-        return 'Metric';
-      case AlarmType.composite:
-        return 'Composite';
-      case AlarmType.canary:
-        return 'Canary';
-      case AlarmType.logs:
-        return 'Logs';
-      case AlarmType.event:
-        return 'Event';
-    }
-  }
-}
+  final String value;
 
-extension AlarmTypeFromString on String {
-  AlarmType toAlarmType() {
-    switch (this) {
-      case 'Metric':
-        return AlarmType.metric;
-      case 'Composite':
-        return AlarmType.composite;
-      case 'Canary':
-        return AlarmType.canary;
-      case 'Logs':
-        return AlarmType.logs;
-      case 'Event':
-        return AlarmType.event;
-    }
-    throw Exception('$this is not known in enum AlarmType');
-  }
+  const AlarmType(this.value);
+
+  static AlarmType fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum AlarmType'));
 }
 
 /// Defines an Resilience Hub application.
@@ -3324,9 +3296,9 @@ class App {
           nonNullableTimeStampFromJson(json['creationTime'] as Object),
       name: json['name'] as String,
       assessmentSchedule: (json['assessmentSchedule'] as String?)
-          ?.toAppAssessmentScheduleType(),
-      complianceStatus:
-          (json['complianceStatus'] as String?)?.toAppComplianceStatusType(),
+          ?.let(AppAssessmentScheduleType.fromString),
+      complianceStatus: (json['complianceStatus'] as String?)
+          ?.let(AppComplianceStatusType.fromString),
       description: json['description'] as String?,
       lastAppComplianceEvaluationTime:
           timeStampFromJson(json['lastAppComplianceEvaluationTime']),
@@ -3334,7 +3306,7 @@ class App {
           timeStampFromJson(json['lastResiliencyScoreEvaluationTime']),
       policyArn: json['policyArn'] as String?,
       resiliencyScore: json['resiliencyScore'] as double?,
-      status: (json['status'] as String?)?.toAppStatusType(),
+      status: (json['status'] as String?)?.let(AppStatusType.fromString),
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
@@ -3360,9 +3332,8 @@ class App {
       'creationTime': unixTimestampToJson(creationTime),
       'name': name,
       if (assessmentSchedule != null)
-        'assessmentSchedule': assessmentSchedule.toValue(),
-      if (complianceStatus != null)
-        'complianceStatus': complianceStatus.toValue(),
+        'assessmentSchedule': assessmentSchedule.value,
+      if (complianceStatus != null) 'complianceStatus': complianceStatus.value,
       if (description != null) 'description': description,
       if (lastAppComplianceEvaluationTime != null)
         'lastAppComplianceEvaluationTime':
@@ -3372,7 +3343,7 @@ class App {
             unixTimestampToJson(lastResiliencyScoreEvaluationTime),
       if (policyArn != null) 'policyArn': policyArn,
       if (resiliencyScore != null) 'resiliencyScore': resiliencyScore,
-      if (status != null) 'status': status.toValue(),
+      if (status != null) 'status': status.value,
       if (tags != null) 'tags': tags,
     };
   }
@@ -3463,16 +3434,16 @@ class AppAssessment {
     return AppAssessment(
       assessmentArn: json['assessmentArn'] as String,
       assessmentStatus:
-          (json['assessmentStatus'] as String).toAssessmentStatus(),
-      invoker: (json['invoker'] as String).toAssessmentInvoker(),
+          AssessmentStatus.fromString((json['assessmentStatus'] as String)),
+      invoker: AssessmentInvoker.fromString((json['invoker'] as String)),
       appArn: json['appArn'] as String?,
       appVersion: json['appVersion'] as String?,
       assessmentName: json['assessmentName'] as String?,
       compliance: (json['compliance'] as Map<String, dynamic>?)?.map((k, e) =>
-          MapEntry(k.toDisruptionType(),
+          MapEntry(DisruptionType.fromString(k),
               DisruptionCompliance.fromJson(e as Map<String, dynamic>))),
-      complianceStatus:
-          (json['complianceStatus'] as String?)?.toComplianceStatus(),
+      complianceStatus: (json['complianceStatus'] as String?)
+          ?.let(ComplianceStatus.fromString),
       cost: json['cost'] != null
           ? Cost.fromJson(json['cost'] as Map<String, dynamic>)
           : null,
@@ -3514,15 +3485,14 @@ class AppAssessment {
     final tags = this.tags;
     return {
       'assessmentArn': assessmentArn,
-      'assessmentStatus': assessmentStatus.toValue(),
-      'invoker': invoker.toValue(),
+      'assessmentStatus': assessmentStatus.value,
+      'invoker': invoker.value,
       if (appArn != null) 'appArn': appArn,
       if (appVersion != null) 'appVersion': appVersion,
       if (assessmentName != null) 'assessmentName': assessmentName,
       if (compliance != null)
-        'compliance': compliance.map((k, e) => MapEntry(k.toValue(), e)),
-      if (complianceStatus != null)
-        'complianceStatus': complianceStatus.toValue(),
+        'compliance': compliance.map((k, e) => MapEntry(k.value, e)),
+      if (complianceStatus != null) 'complianceStatus': complianceStatus.value,
       if (cost != null) 'cost': cost,
       if (endTime != null) 'endTime': unixTimestampToJson(endTime),
       if (message != null) 'message': message,
@@ -3537,31 +3507,18 @@ class AppAssessment {
 }
 
 enum AppAssessmentScheduleType {
-  disabled,
-  daily,
-}
+  disabled('Disabled'),
+  daily('Daily'),
+  ;
 
-extension AppAssessmentScheduleTypeValueExtension on AppAssessmentScheduleType {
-  String toValue() {
-    switch (this) {
-      case AppAssessmentScheduleType.disabled:
-        return 'Disabled';
-      case AppAssessmentScheduleType.daily:
-        return 'Daily';
-    }
-  }
-}
+  final String value;
 
-extension AppAssessmentScheduleTypeFromString on String {
-  AppAssessmentScheduleType toAppAssessmentScheduleType() {
-    switch (this) {
-      case 'Disabled':
-        return AppAssessmentScheduleType.disabled;
-      case 'Daily':
-        return AppAssessmentScheduleType.daily;
-    }
-    throw Exception('$this is not known in enum AppAssessmentScheduleType');
-  }
+  const AppAssessmentScheduleType(this.value);
+
+  static AppAssessmentScheduleType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum AppAssessmentScheduleType'));
 }
 
 /// Defines an application assessment summary.
@@ -3631,17 +3588,17 @@ class AppAssessmentSummary {
     return AppAssessmentSummary(
       assessmentArn: json['assessmentArn'] as String,
       assessmentStatus:
-          (json['assessmentStatus'] as String).toAssessmentStatus(),
+          AssessmentStatus.fromString((json['assessmentStatus'] as String)),
       appArn: json['appArn'] as String?,
       appVersion: json['appVersion'] as String?,
       assessmentName: json['assessmentName'] as String?,
-      complianceStatus:
-          (json['complianceStatus'] as String?)?.toComplianceStatus(),
+      complianceStatus: (json['complianceStatus'] as String?)
+          ?.let(ComplianceStatus.fromString),
       cost: json['cost'] != null
           ? Cost.fromJson(json['cost'] as Map<String, dynamic>)
           : null,
       endTime: timeStampFromJson(json['endTime']),
-      invoker: (json['invoker'] as String?)?.toAssessmentInvoker(),
+      invoker: (json['invoker'] as String?)?.let(AssessmentInvoker.fromString),
       message: json['message'] as String?,
       resiliencyScore: json['resiliencyScore'] as double?,
       startTime: timeStampFromJson(json['startTime']),
@@ -3663,15 +3620,14 @@ class AppAssessmentSummary {
     final startTime = this.startTime;
     return {
       'assessmentArn': assessmentArn,
-      'assessmentStatus': assessmentStatus.toValue(),
+      'assessmentStatus': assessmentStatus.value,
       if (appArn != null) 'appArn': appArn,
       if (appVersion != null) 'appVersion': appVersion,
       if (assessmentName != null) 'assessmentName': assessmentName,
-      if (complianceStatus != null)
-        'complianceStatus': complianceStatus.toValue(),
+      if (complianceStatus != null) 'complianceStatus': complianceStatus.value,
       if (cost != null) 'cost': cost,
       if (endTime != null) 'endTime': unixTimestampToJson(endTime),
-      if (invoker != null) 'invoker': invoker.toValue(),
+      if (invoker != null) 'invoker': invoker.value,
       if (message != null) 'message': message,
       if (resiliencyScore != null) 'resiliencyScore': resiliencyScore,
       if (startTime != null) 'startTime': unixTimestampToJson(startTime),
@@ -3680,41 +3636,20 @@ class AppAssessmentSummary {
 }
 
 enum AppComplianceStatusType {
-  policyBreached,
-  policyMet,
-  notAssessed,
-  changesDetected,
-}
+  policyBreached('PolicyBreached'),
+  policyMet('PolicyMet'),
+  notAssessed('NotAssessed'),
+  changesDetected('ChangesDetected'),
+  ;
 
-extension AppComplianceStatusTypeValueExtension on AppComplianceStatusType {
-  String toValue() {
-    switch (this) {
-      case AppComplianceStatusType.policyBreached:
-        return 'PolicyBreached';
-      case AppComplianceStatusType.policyMet:
-        return 'PolicyMet';
-      case AppComplianceStatusType.notAssessed:
-        return 'NotAssessed';
-      case AppComplianceStatusType.changesDetected:
-        return 'ChangesDetected';
-    }
-  }
-}
+  final String value;
 
-extension AppComplianceStatusTypeFromString on String {
-  AppComplianceStatusType toAppComplianceStatusType() {
-    switch (this) {
-      case 'PolicyBreached':
-        return AppComplianceStatusType.policyBreached;
-      case 'PolicyMet':
-        return AppComplianceStatusType.policyMet;
-      case 'NotAssessed':
-        return AppComplianceStatusType.notAssessed;
-      case 'ChangesDetected':
-        return AppComplianceStatusType.changesDetected;
-    }
-    throw Exception('$this is not known in enum AppComplianceStatusType');
-  }
+  const AppComplianceStatusType(this.value);
+
+  static AppComplianceStatusType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum AppComplianceStatusType'));
 }
 
 /// Defines an Application Component.
@@ -3810,7 +3745,7 @@ class AppComponentCompliance {
     return AppComponentCompliance(
       appComponentName: json['appComponentName'] as String?,
       compliance: (json['compliance'] as Map<String, dynamic>?)?.map((k, e) =>
-          MapEntry(k.toDisruptionType(),
+          MapEntry(DisruptionType.fromString(k),
               DisruptionCompliance.fromJson(e as Map<String, dynamic>))),
       cost: json['cost'] != null
           ? Cost.fromJson(json['cost'] as Map<String, dynamic>)
@@ -3820,7 +3755,7 @@ class AppComponentCompliance {
           ? ResiliencyScore.fromJson(
               json['resiliencyScore'] as Map<String, dynamic>)
           : null,
-      status: (json['status'] as String?)?.toComplianceStatus(),
+      status: (json['status'] as String?)?.let(ComplianceStatus.fromString),
     );
   }
 
@@ -3834,11 +3769,11 @@ class AppComponentCompliance {
     return {
       if (appComponentName != null) 'appComponentName': appComponentName,
       if (compliance != null)
-        'compliance': compliance.map((k, e) => MapEntry(k.toValue(), e)),
+        'compliance': compliance.map((k, e) => MapEntry(k.value, e)),
       if (cost != null) 'cost': cost,
       if (message != null) 'message': message,
       if (resiliencyScore != null) 'resiliencyScore': resiliencyScore,
-      if (status != null) 'status': status.toValue(),
+      if (status != null) 'status': status.value,
     };
   }
 }
@@ -3877,7 +3812,8 @@ class AppInputSource {
 
   factory AppInputSource.fromJson(Map<String, dynamic> json) {
     return AppInputSource(
-      importType: (json['importType'] as String).toResourceMappingType(),
+      importType:
+          ResourceMappingType.fromString((json['importType'] as String)),
       eksSourceClusterNamespace: json['eksSourceClusterNamespace'] != null
           ? EksSourceClusterNamespace.fromJson(
               json['eksSourceClusterNamespace'] as Map<String, dynamic>)
@@ -3900,7 +3836,7 @@ class AppInputSource {
     final sourceName = this.sourceName;
     final terraformSource = this.terraformSource;
     return {
-      'importType': importType.toValue(),
+      'importType': importType.value,
       if (eksSourceClusterNamespace != null)
         'eksSourceClusterNamespace': eksSourceClusterNamespace,
       if (resourceCount != null) 'resourceCount': resourceCount,
@@ -3912,31 +3848,18 @@ class AppInputSource {
 }
 
 enum AppStatusType {
-  active,
-  deleting,
-}
+  active('Active'),
+  deleting('Deleting'),
+  ;
 
-extension AppStatusTypeValueExtension on AppStatusType {
-  String toValue() {
-    switch (this) {
-      case AppStatusType.active:
-        return 'Active';
-      case AppStatusType.deleting:
-        return 'Deleting';
-    }
-  }
-}
+  final String value;
 
-extension AppStatusTypeFromString on String {
-  AppStatusType toAppStatusType() {
-    switch (this) {
-      case 'Active':
-        return AppStatusType.active;
-      case 'Deleting':
-        return AppStatusType.deleting;
-    }
-    throw Exception('$this is not known in enum AppStatusType');
-  }
+  const AppStatusType(this.value);
+
+  static AppStatusType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum AppStatusType'));
 }
 
 /// Defines an application summary.
@@ -3988,12 +3911,12 @@ class AppSummary {
           nonNullableTimeStampFromJson(json['creationTime'] as Object),
       name: json['name'] as String,
       assessmentSchedule: (json['assessmentSchedule'] as String?)
-          ?.toAppAssessmentScheduleType(),
-      complianceStatus:
-          (json['complianceStatus'] as String?)?.toAppComplianceStatusType(),
+          ?.let(AppAssessmentScheduleType.fromString),
+      complianceStatus: (json['complianceStatus'] as String?)
+          ?.let(AppComplianceStatusType.fromString),
       description: json['description'] as String?,
       resiliencyScore: json['resiliencyScore'] as double?,
-      status: (json['status'] as String?)?.toAppStatusType(),
+      status: (json['status'] as String?)?.let(AppStatusType.fromString),
     );
   }
 
@@ -4011,12 +3934,11 @@ class AppSummary {
       'creationTime': unixTimestampToJson(creationTime),
       'name': name,
       if (assessmentSchedule != null)
-        'assessmentSchedule': assessmentSchedule.toValue(),
-      if (complianceStatus != null)
-        'complianceStatus': complianceStatus.toValue(),
+        'assessmentSchedule': assessmentSchedule.value,
+      if (complianceStatus != null) 'complianceStatus': complianceStatus.value,
       if (description != null) 'description': description,
       if (resiliencyScore != null) 'resiliencyScore': resiliencyScore,
-      if (status != null) 'status': status.toValue(),
+      if (status != null) 'status': status.value,
     };
   }
 }
@@ -4045,97 +3967,50 @@ class AppVersionSummary {
 }
 
 enum AssessmentInvoker {
-  user,
-  system,
-}
+  user('User'),
+  system('System'),
+  ;
 
-extension AssessmentInvokerValueExtension on AssessmentInvoker {
-  String toValue() {
-    switch (this) {
-      case AssessmentInvoker.user:
-        return 'User';
-      case AssessmentInvoker.system:
-        return 'System';
-    }
-  }
-}
+  final String value;
 
-extension AssessmentInvokerFromString on String {
-  AssessmentInvoker toAssessmentInvoker() {
-    switch (this) {
-      case 'User':
-        return AssessmentInvoker.user;
-      case 'System':
-        return AssessmentInvoker.system;
-    }
-    throw Exception('$this is not known in enum AssessmentInvoker');
-  }
+  const AssessmentInvoker(this.value);
+
+  static AssessmentInvoker fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum AssessmentInvoker'));
 }
 
 enum AssessmentStatus {
-  pending,
-  inProgress,
-  failed,
-  success,
-}
+  pending('Pending'),
+  inProgress('InProgress'),
+  failed('Failed'),
+  success('Success'),
+  ;
 
-extension AssessmentStatusValueExtension on AssessmentStatus {
-  String toValue() {
-    switch (this) {
-      case AssessmentStatus.pending:
-        return 'Pending';
-      case AssessmentStatus.inProgress:
-        return 'InProgress';
-      case AssessmentStatus.failed:
-        return 'Failed';
-      case AssessmentStatus.success:
-        return 'Success';
-    }
-  }
-}
+  final String value;
 
-extension AssessmentStatusFromString on String {
-  AssessmentStatus toAssessmentStatus() {
-    switch (this) {
-      case 'Pending':
-        return AssessmentStatus.pending;
-      case 'InProgress':
-        return AssessmentStatus.inProgress;
-      case 'Failed':
-        return AssessmentStatus.failed;
-      case 'Success':
-        return AssessmentStatus.success;
-    }
-    throw Exception('$this is not known in enum AssessmentStatus');
-  }
+  const AssessmentStatus(this.value);
+
+  static AssessmentStatus fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum AssessmentStatus'));
 }
 
 enum ComplianceStatus {
-  policyBreached,
-  policyMet,
-}
+  policyBreached('PolicyBreached'),
+  policyMet('PolicyMet'),
+  ;
 
-extension ComplianceStatusValueExtension on ComplianceStatus {
-  String toValue() {
-    switch (this) {
-      case ComplianceStatus.policyBreached:
-        return 'PolicyBreached';
-      case ComplianceStatus.policyMet:
-        return 'PolicyMet';
-    }
-  }
-}
+  final String value;
 
-extension ComplianceStatusFromString on String {
-  ComplianceStatus toComplianceStatus() {
-    switch (this) {
-      case 'PolicyBreached':
-        return ComplianceStatus.policyBreached;
-      case 'PolicyMet':
-        return ComplianceStatus.policyMet;
-    }
-    throw Exception('$this is not known in enum ComplianceStatus');
-  }
+  const ComplianceStatus(this.value);
+
+  static ComplianceStatus fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum ComplianceStatus'));
 }
 
 /// Defines recommendations for an Resilience Hub Application Component,
@@ -4164,8 +4039,8 @@ class ComponentRecommendation {
           .whereNotNull()
           .map((e) => ConfigRecommendation.fromJson(e as Map<String, dynamic>))
           .toList(),
-      recommendationStatus: (json['recommendationStatus'] as String)
-          .toRecommendationComplianceStatus(),
+      recommendationStatus: RecommendationComplianceStatus.fromString(
+          (json['recommendationStatus'] as String)),
     );
   }
 
@@ -4176,7 +4051,7 @@ class ComponentRecommendation {
     return {
       'appComponentName': appComponentName,
       'configRecommendations': configRecommendations,
-      'recommendationStatus': recommendationStatus.toValue(),
+      'recommendationStatus': recommendationStatus.value,
     };
   }
 }
@@ -4232,22 +4107,23 @@ class ConfigRecommendation {
   factory ConfigRecommendation.fromJson(Map<String, dynamic> json) {
     return ConfigRecommendation(
       name: json['name'] as String,
-      optimizationType: (json['optimizationType'] as String)
-          .toConfigRecommendationOptimizationType(),
+      optimizationType: ConfigRecommendationOptimizationType.fromString(
+          (json['optimizationType'] as String)),
       referenceId: json['referenceId'] as String,
       appComponentName: json['appComponentName'] as String?,
       compliance: (json['compliance'] as Map<String, dynamic>?)?.map((k, e) =>
-          MapEntry(k.toDisruptionType(),
+          MapEntry(DisruptionType.fromString(k),
               DisruptionCompliance.fromJson(e as Map<String, dynamic>))),
       cost: json['cost'] != null
           ? Cost.fromJson(json['cost'] as Map<String, dynamic>)
           : null,
       description: json['description'] as String?,
-      haArchitecture: (json['haArchitecture'] as String?)?.toHaArchitecture(),
+      haArchitecture:
+          (json['haArchitecture'] as String?)?.let(HaArchitecture.fromString),
       recommendationCompliance:
           (json['recommendationCompliance'] as Map<String, dynamic>?)?.map(
               (k, e) => MapEntry(
-                  k.toDisruptionType(),
+                  DisruptionType.fromString(k),
                   RecommendationDisruptionCompliance.fromJson(
                       e as Map<String, dynamic>))),
       suggestedChanges: (json['suggestedChanges'] as List?)
@@ -4270,71 +4146,39 @@ class ConfigRecommendation {
     final suggestedChanges = this.suggestedChanges;
     return {
       'name': name,
-      'optimizationType': optimizationType.toValue(),
+      'optimizationType': optimizationType.value,
       'referenceId': referenceId,
       if (appComponentName != null) 'appComponentName': appComponentName,
       if (compliance != null)
-        'compliance': compliance.map((k, e) => MapEntry(k.toValue(), e)),
+        'compliance': compliance.map((k, e) => MapEntry(k.value, e)),
       if (cost != null) 'cost': cost,
       if (description != null) 'description': description,
-      if (haArchitecture != null) 'haArchitecture': haArchitecture.toValue(),
+      if (haArchitecture != null) 'haArchitecture': haArchitecture.value,
       if (recommendationCompliance != null)
         'recommendationCompliance':
-            recommendationCompliance.map((k, e) => MapEntry(k.toValue(), e)),
+            recommendationCompliance.map((k, e) => MapEntry(k.value, e)),
       if (suggestedChanges != null) 'suggestedChanges': suggestedChanges,
     };
   }
 }
 
 enum ConfigRecommendationOptimizationType {
-  leastCost,
-  leastChange,
-  bestAZRecovery,
-  leastErrors,
-  bestAttainable,
-  bestRegionRecovery,
-}
+  leastCost('LeastCost'),
+  leastChange('LeastChange'),
+  bestAZRecovery('BestAZRecovery'),
+  leastErrors('LeastErrors'),
+  bestAttainable('BestAttainable'),
+  bestRegionRecovery('BestRegionRecovery'),
+  ;
 
-extension ConfigRecommendationOptimizationTypeValueExtension
-    on ConfigRecommendationOptimizationType {
-  String toValue() {
-    switch (this) {
-      case ConfigRecommendationOptimizationType.leastCost:
-        return 'LeastCost';
-      case ConfigRecommendationOptimizationType.leastChange:
-        return 'LeastChange';
-      case ConfigRecommendationOptimizationType.bestAZRecovery:
-        return 'BestAZRecovery';
-      case ConfigRecommendationOptimizationType.leastErrors:
-        return 'LeastErrors';
-      case ConfigRecommendationOptimizationType.bestAttainable:
-        return 'BestAttainable';
-      case ConfigRecommendationOptimizationType.bestRegionRecovery:
-        return 'BestRegionRecovery';
-    }
-  }
-}
+  final String value;
 
-extension ConfigRecommendationOptimizationTypeFromString on String {
-  ConfigRecommendationOptimizationType
-      toConfigRecommendationOptimizationType() {
-    switch (this) {
-      case 'LeastCost':
-        return ConfigRecommendationOptimizationType.leastCost;
-      case 'LeastChange':
-        return ConfigRecommendationOptimizationType.leastChange;
-      case 'BestAZRecovery':
-        return ConfigRecommendationOptimizationType.bestAZRecovery;
-      case 'LeastErrors':
-        return ConfigRecommendationOptimizationType.leastErrors;
-      case 'BestAttainable':
-        return ConfigRecommendationOptimizationType.bestAttainable;
-      case 'BestRegionRecovery':
-        return ConfigRecommendationOptimizationType.bestRegionRecovery;
-    }
-    throw Exception(
-        '$this is not known in enum ConfigRecommendationOptimizationType');
-  }
+  const ConfigRecommendationOptimizationType(this.value);
+
+  static ConfigRecommendationOptimizationType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum ConfigRecommendationOptimizationType'));
 }
 
 /// Defines a cost object.
@@ -4358,7 +4202,7 @@ class Cost {
     return Cost(
       amount: json['amount'] as double,
       currency: json['currency'] as String,
-      frequency: (json['frequency'] as String).toCostFrequency(),
+      frequency: CostFrequency.fromString((json['frequency'] as String)),
     );
   }
 
@@ -4369,47 +4213,26 @@ class Cost {
     return {
       'amount': amount,
       'currency': currency,
-      'frequency': frequency.toValue(),
+      'frequency': frequency.value,
     };
   }
 }
 
 enum CostFrequency {
-  hourly,
-  daily,
-  monthly,
-  yearly,
-}
+  hourly('Hourly'),
+  daily('Daily'),
+  monthly('Monthly'),
+  yearly('Yearly'),
+  ;
 
-extension CostFrequencyValueExtension on CostFrequency {
-  String toValue() {
-    switch (this) {
-      case CostFrequency.hourly:
-        return 'Hourly';
-      case CostFrequency.daily:
-        return 'Daily';
-      case CostFrequency.monthly:
-        return 'Monthly';
-      case CostFrequency.yearly:
-        return 'Yearly';
-    }
-  }
-}
+  final String value;
 
-extension CostFrequencyFromString on String {
-  CostFrequency toCostFrequency() {
-    switch (this) {
-      case 'Hourly':
-        return CostFrequency.hourly;
-      case 'Daily':
-        return CostFrequency.daily;
-      case 'Monthly':
-        return CostFrequency.monthly;
-      case 'Yearly':
-        return CostFrequency.yearly;
-    }
-    throw Exception('$this is not known in enum CostFrequency');
-  }
+  const CostFrequency(this.value);
+
+  static CostFrequency fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum CostFrequency'));
 }
 
 class CreateAppResponse {
@@ -4578,36 +4401,19 @@ class CreateResiliencyPolicyResponse {
 }
 
 enum DataLocationConstraint {
-  anyLocation,
-  sameContinent,
-  sameCountry,
-}
+  anyLocation('AnyLocation'),
+  sameContinent('SameContinent'),
+  sameCountry('SameCountry'),
+  ;
 
-extension DataLocationConstraintValueExtension on DataLocationConstraint {
-  String toValue() {
-    switch (this) {
-      case DataLocationConstraint.anyLocation:
-        return 'AnyLocation';
-      case DataLocationConstraint.sameContinent:
-        return 'SameContinent';
-      case DataLocationConstraint.sameCountry:
-        return 'SameCountry';
-    }
-  }
-}
+  final String value;
 
-extension DataLocationConstraintFromString on String {
-  DataLocationConstraint toDataLocationConstraint() {
-    switch (this) {
-      case 'AnyLocation':
-        return DataLocationConstraint.anyLocation;
-      case 'SameContinent':
-        return DataLocationConstraint.sameContinent;
-      case 'SameCountry':
-        return DataLocationConstraint.sameCountry;
-    }
-    throw Exception('$this is not known in enum DataLocationConstraint');
-  }
+  const DataLocationConstraint(this.value);
+
+  static DataLocationConstraint fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum DataLocationConstraint'));
 }
 
 class DeleteAppAssessmentResponse {
@@ -4631,7 +4437,7 @@ class DeleteAppAssessmentResponse {
     return DeleteAppAssessmentResponse(
       assessmentArn: json['assessmentArn'] as String,
       assessmentStatus:
-          (json['assessmentStatus'] as String).toAssessmentStatus(),
+          AssessmentStatus.fromString((json['assessmentStatus'] as String)),
     );
   }
 
@@ -4640,7 +4446,7 @@ class DeleteAppAssessmentResponse {
     final assessmentStatus = this.assessmentStatus;
     return {
       'assessmentArn': assessmentArn,
-      'assessmentStatus': assessmentStatus.toValue(),
+      'assessmentStatus': assessmentStatus.value,
     };
   }
 }
@@ -4816,7 +4622,8 @@ class DeleteRecommendationTemplateResponse {
       Map<String, dynamic> json) {
     return DeleteRecommendationTemplateResponse(
       recommendationTemplateArn: json['recommendationTemplateArn'] as String,
-      status: (json['status'] as String).toRecommendationTemplateStatus(),
+      status:
+          RecommendationTemplateStatus.fromString((json['status'] as String)),
     );
   }
 
@@ -4825,7 +4632,7 @@ class DeleteRecommendationTemplateResponse {
     final status = this.status;
     return {
       'recommendationTemplateArn': recommendationTemplateArn,
-      'status': status.toValue(),
+      'status': status.value,
     };
   }
 }
@@ -5031,7 +4838,8 @@ class DescribeAppVersionResourcesResolutionStatusResponse {
       appArn: json['appArn'] as String,
       appVersion: json['appVersion'] as String,
       resolutionId: json['resolutionId'] as String,
-      status: (json['status'] as String).toResourceResolutionStatusType(),
+      status:
+          ResourceResolutionStatusType.fromString((json['status'] as String)),
       errorMessage: json['errorMessage'] as String?,
     );
   }
@@ -5046,7 +4854,7 @@ class DescribeAppVersionResourcesResolutionStatusResponse {
       'appArn': appArn,
       'appVersion': appVersion,
       'resolutionId': resolutionId,
-      'status': status.toValue(),
+      'status': status.value,
       if (errorMessage != null) 'errorMessage': errorMessage,
     };
   }
@@ -5436,7 +5244,7 @@ class DescribeDraftAppVersionResourcesImportStatusResponse {
     return DescribeDraftAppVersionResourcesImportStatusResponse(
       appArn: json['appArn'] as String,
       appVersion: json['appVersion'] as String,
-      status: (json['status'] as String).toResourceImportStatusType(),
+      status: ResourceImportStatusType.fromString((json['status'] as String)),
       statusChangeTime:
           nonNullableTimeStampFromJson(json['statusChangeTime'] as Object),
       errorMessage: json['errorMessage'] as String?,
@@ -5452,7 +5260,7 @@ class DescribeDraftAppVersionResourcesImportStatusResponse {
     return {
       'appArn': appArn,
       'appVersion': appVersion,
-      'status': status.toValue(),
+      'status': status.value,
       'statusChangeTime': unixTimestampToJson(statusChangeTime),
       if (errorMessage != null) 'errorMessage': errorMessage,
     };
@@ -5532,7 +5340,7 @@ class DisruptionCompliance {
   factory DisruptionCompliance.fromJson(Map<String, dynamic> json) {
     return DisruptionCompliance(
       complianceStatus:
-          (json['complianceStatus'] as String).toComplianceStatus(),
+          ComplianceStatus.fromString((json['complianceStatus'] as String)),
       achievableRpoInSecs: json['achievableRpoInSecs'] as int?,
       achievableRtoInSecs: json['achievableRtoInSecs'] as int?,
       currentRpoInSecs: json['currentRpoInSecs'] as int?,
@@ -5557,7 +5365,7 @@ class DisruptionCompliance {
     final rtoDescription = this.rtoDescription;
     final rtoReferenceId = this.rtoReferenceId;
     return {
-      'complianceStatus': complianceStatus.toValue(),
+      'complianceStatus': complianceStatus.value,
       if (achievableRpoInSecs != null)
         'achievableRpoInSecs': achievableRpoInSecs,
       if (achievableRtoInSecs != null)
@@ -5574,41 +5382,20 @@ class DisruptionCompliance {
 }
 
 enum DisruptionType {
-  software,
-  hardware,
-  az,
-  region,
-}
+  software('Software'),
+  hardware('Hardware'),
+  az('AZ'),
+  region('Region'),
+  ;
 
-extension DisruptionTypeValueExtension on DisruptionType {
-  String toValue() {
-    switch (this) {
-      case DisruptionType.software:
-        return 'Software';
-      case DisruptionType.hardware:
-        return 'Hardware';
-      case DisruptionType.az:
-        return 'AZ';
-      case DisruptionType.region:
-        return 'Region';
-    }
-  }
-}
+  final String value;
 
-extension DisruptionTypeFromString on String {
-  DisruptionType toDisruptionType() {
-    switch (this) {
-      case 'Software':
-        return DisruptionType.software;
-      case 'Hardware':
-        return DisruptionType.hardware;
-      case 'AZ':
-        return DisruptionType.az;
-      case 'Region':
-        return DisruptionType.region;
-    }
-    throw Exception('$this is not known in enum DisruptionType');
-  }
+  const DisruptionType(this.value);
+
+  static DisruptionType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum DisruptionType'));
 }
 
 /// The input source of the Amazon Elastic Kubernetes Service cluster.
@@ -5688,41 +5475,20 @@ class EksSourceClusterNamespace {
 }
 
 enum EstimatedCostTier {
-  l1,
-  l2,
-  l3,
-  l4,
-}
+  l1('L1'),
+  l2('L2'),
+  l3('L3'),
+  l4('L4'),
+  ;
 
-extension EstimatedCostTierValueExtension on EstimatedCostTier {
-  String toValue() {
-    switch (this) {
-      case EstimatedCostTier.l1:
-        return 'L1';
-      case EstimatedCostTier.l2:
-        return 'L2';
-      case EstimatedCostTier.l3:
-        return 'L3';
-      case EstimatedCostTier.l4:
-        return 'L4';
-    }
-  }
-}
+  final String value;
 
-extension EstimatedCostTierFromString on String {
-  EstimatedCostTier toEstimatedCostTier() {
-    switch (this) {
-      case 'L1':
-        return EstimatedCostTier.l1;
-      case 'L2':
-        return EstimatedCostTier.l2;
-      case 'L3':
-        return EstimatedCostTier.l3;
-      case 'L4':
-        return EstimatedCostTier.l4;
-    }
-    throw Exception('$this is not known in enum EstimatedCostTier');
-  }
+  const EstimatedCostTier(this.value);
+
+  static EstimatedCostTier fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum EstimatedCostTier'));
 }
 
 /// Defines a failure policy.
@@ -5756,46 +5522,21 @@ class FailurePolicy {
 }
 
 enum HaArchitecture {
-  multiSite,
-  warmStandby,
-  pilotLight,
-  backupAndRestore,
-  noRecoveryPlan,
-}
+  multiSite('MultiSite'),
+  warmStandby('WarmStandby'),
+  pilotLight('PilotLight'),
+  backupAndRestore('BackupAndRestore'),
+  noRecoveryPlan('NoRecoveryPlan'),
+  ;
 
-extension HaArchitectureValueExtension on HaArchitecture {
-  String toValue() {
-    switch (this) {
-      case HaArchitecture.multiSite:
-        return 'MultiSite';
-      case HaArchitecture.warmStandby:
-        return 'WarmStandby';
-      case HaArchitecture.pilotLight:
-        return 'PilotLight';
-      case HaArchitecture.backupAndRestore:
-        return 'BackupAndRestore';
-      case HaArchitecture.noRecoveryPlan:
-        return 'NoRecoveryPlan';
-    }
-  }
-}
+  final String value;
 
-extension HaArchitectureFromString on String {
-  HaArchitecture toHaArchitecture() {
-    switch (this) {
-      case 'MultiSite':
-        return HaArchitecture.multiSite;
-      case 'WarmStandby':
-        return HaArchitecture.warmStandby;
-      case 'PilotLight':
-        return HaArchitecture.pilotLight;
-      case 'BackupAndRestore':
-        return HaArchitecture.backupAndRestore;
-      case 'NoRecoveryPlan':
-        return HaArchitecture.noRecoveryPlan;
-    }
-    throw Exception('$this is not known in enum HaArchitecture');
-  }
+  const HaArchitecture(this.value);
+
+  static HaArchitecture fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum HaArchitecture'));
 }
 
 class ImportResourcesToDraftAppVersionResponse {
@@ -5837,7 +5578,7 @@ class ImportResourcesToDraftAppVersionResponse {
     return ImportResourcesToDraftAppVersionResponse(
       appArn: json['appArn'] as String,
       appVersion: json['appVersion'] as String,
-      status: (json['status'] as String).toResourceImportStatusType(),
+      status: ResourceImportStatusType.fromString((json['status'] as String)),
       eksSources: (json['eksSources'] as List?)
           ?.whereNotNull()
           .map((e) => EksSource.fromJson(e as Map<String, dynamic>))
@@ -5863,7 +5604,7 @@ class ImportResourcesToDraftAppVersionResponse {
     return {
       'appArn': appArn,
       'appVersion': appVersion,
-      'status': status.toValue(),
+      'status': status.value,
       if (eksSources != null) 'eksSources': eksSources,
       if (sourceArns != null) 'sourceArns': sourceArns,
       if (terraformSources != null) 'terraformSources': terraformSources,
@@ -6523,31 +6264,18 @@ class LogicalResourceId {
 }
 
 enum PhysicalIdentifierType {
-  arn,
-  native,
-}
+  arn('Arn'),
+  native('Native'),
+  ;
 
-extension PhysicalIdentifierTypeValueExtension on PhysicalIdentifierType {
-  String toValue() {
-    switch (this) {
-      case PhysicalIdentifierType.arn:
-        return 'Arn';
-      case PhysicalIdentifierType.native:
-        return 'Native';
-    }
-  }
-}
+  final String value;
 
-extension PhysicalIdentifierTypeFromString on String {
-  PhysicalIdentifierType toPhysicalIdentifierType() {
-    switch (this) {
-      case 'Arn':
-        return PhysicalIdentifierType.arn;
-      case 'Native':
-        return PhysicalIdentifierType.native;
-    }
-    throw Exception('$this is not known in enum PhysicalIdentifierType');
-  }
+  const PhysicalIdentifierType(this.value);
+
+  static PhysicalIdentifierType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum PhysicalIdentifierType'));
 }
 
 /// Defines a physical resource. A physical resource is a resource that exists
@@ -6623,7 +6351,8 @@ class PhysicalResource {
       excluded: json['excluded'] as bool?,
       parentResourceName: json['parentResourceName'] as String?,
       resourceName: json['resourceName'] as String?,
-      sourceType: (json['sourceType'] as String?)?.toResourceSourceType(),
+      sourceType:
+          (json['sourceType'] as String?)?.let(ResourceSourceType.fromString),
     );
   }
 
@@ -6646,7 +6375,7 @@ class PhysicalResource {
       if (excluded != null) 'excluded': excluded,
       if (parentResourceName != null) 'parentResourceName': parentResourceName,
       if (resourceName != null) 'resourceName': resourceName,
-      if (sourceType != null) 'sourceType': sourceType.toValue(),
+      if (sourceType != null) 'sourceType': sourceType.value,
     };
   }
 }
@@ -6680,7 +6409,7 @@ class PhysicalResourceId {
   factory PhysicalResourceId.fromJson(Map<String, dynamic> json) {
     return PhysicalResourceId(
       identifier: json['identifier'] as String,
-      type: (json['type'] as String).toPhysicalIdentifierType(),
+      type: PhysicalIdentifierType.fromString((json['type'] as String)),
       awsAccountId: json['awsAccountId'] as String?,
       awsRegion: json['awsRegion'] as String?,
     );
@@ -6693,7 +6422,7 @@ class PhysicalResourceId {
     final awsRegion = this.awsRegion;
     return {
       'identifier': identifier,
-      'type': type.toValue(),
+      'type': type.value,
       if (awsAccountId != null) 'awsAccountId': awsAccountId,
       if (awsRegion != null) 'awsRegion': awsRegion,
     };
@@ -6770,38 +6499,19 @@ class PutDraftAppVersionTemplateResponse {
 }
 
 enum RecommendationComplianceStatus {
-  breachedUnattainable,
-  breachedCanMeet,
-  metCanImprove,
-}
+  breachedUnattainable('BreachedUnattainable'),
+  breachedCanMeet('BreachedCanMeet'),
+  metCanImprove('MetCanImprove'),
+  ;
 
-extension RecommendationComplianceStatusValueExtension
-    on RecommendationComplianceStatus {
-  String toValue() {
-    switch (this) {
-      case RecommendationComplianceStatus.breachedUnattainable:
-        return 'BreachedUnattainable';
-      case RecommendationComplianceStatus.breachedCanMeet:
-        return 'BreachedCanMeet';
-      case RecommendationComplianceStatus.metCanImprove:
-        return 'MetCanImprove';
-    }
-  }
-}
+  final String value;
 
-extension RecommendationComplianceStatusFromString on String {
-  RecommendationComplianceStatus toRecommendationComplianceStatus() {
-    switch (this) {
-      case 'BreachedUnattainable':
-        return RecommendationComplianceStatus.breachedUnattainable;
-      case 'BreachedCanMeet':
-        return RecommendationComplianceStatus.breachedCanMeet;
-      case 'MetCanImprove':
-        return RecommendationComplianceStatus.metCanImprove;
-    }
-    throw Exception(
-        '$this is not known in enum RecommendationComplianceStatus');
-  }
+  const RecommendationComplianceStatus(this.value);
+
+  static RecommendationComplianceStatus fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum RecommendationComplianceStatus'));
 }
 
 /// Defines a disruption compliance recommendation.
@@ -6835,8 +6545,8 @@ class RecommendationDisruptionCompliance {
   factory RecommendationDisruptionCompliance.fromJson(
       Map<String, dynamic> json) {
     return RecommendationDisruptionCompliance(
-      expectedComplianceStatus:
-          (json['expectedComplianceStatus'] as String).toComplianceStatus(),
+      expectedComplianceStatus: ComplianceStatus.fromString(
+          (json['expectedComplianceStatus'] as String)),
       expectedRpoDescription: json['expectedRpoDescription'] as String?,
       expectedRpoInSecs: json['expectedRpoInSecs'] as int?,
       expectedRtoDescription: json['expectedRtoDescription'] as String?,
@@ -6851,7 +6561,7 @@ class RecommendationDisruptionCompliance {
     final expectedRtoDescription = this.expectedRtoDescription;
     final expectedRtoInSecs = this.expectedRtoInSecs;
     return {
-      'expectedComplianceStatus': expectedComplianceStatus.toValue(),
+      'expectedComplianceStatus': expectedComplianceStatus.value,
       if (expectedRpoDescription != null)
         'expectedRpoDescription': expectedRpoDescription,
       if (expectedRpoInSecs != null) 'expectedRpoInSecs': expectedRpoInSecs,
@@ -6994,14 +6704,15 @@ class RecommendationTemplate {
   factory RecommendationTemplate.fromJson(Map<String, dynamic> json) {
     return RecommendationTemplate(
       assessmentArn: json['assessmentArn'] as String,
-      format: (json['format'] as String).toTemplateFormat(),
+      format: TemplateFormat.fromString((json['format'] as String)),
       name: json['name'] as String,
       recommendationTemplateArn: json['recommendationTemplateArn'] as String,
       recommendationTypes: (json['recommendationTypes'] as List)
           .whereNotNull()
-          .map((e) => (e as String).toRenderRecommendationType())
+          .map((e) => RenderRecommendationType.fromString((e as String)))
           .toList(),
-      status: (json['status'] as String).toRecommendationTemplateStatus(),
+      status:
+          RecommendationTemplateStatus.fromString((json['status'] as String)),
       appArn: json['appArn'] as String?,
       endTime: timeStampFromJson(json['endTime']),
       message: json['message'] as String?,
@@ -7037,12 +6748,11 @@ class RecommendationTemplate {
     final templatesLocation = this.templatesLocation;
     return {
       'assessmentArn': assessmentArn,
-      'format': format.toValue(),
+      'format': format.value,
       'name': name,
       'recommendationTemplateArn': recommendationTemplateArn,
-      'recommendationTypes':
-          recommendationTypes.map((e) => e.toValue()).toList(),
-      'status': status.toValue(),
+      'recommendationTypes': recommendationTypes.map((e) => e.value).toList(),
+      'status': status.value,
       if (appArn != null) 'appArn': appArn,
       if (endTime != null) 'endTime': unixTimestampToJson(endTime),
       if (message != null) 'message': message,
@@ -7056,42 +6766,20 @@ class RecommendationTemplate {
 }
 
 enum RecommendationTemplateStatus {
-  pending,
-  inProgress,
-  failed,
-  success,
-}
+  pending('Pending'),
+  inProgress('InProgress'),
+  failed('Failed'),
+  success('Success'),
+  ;
 
-extension RecommendationTemplateStatusValueExtension
-    on RecommendationTemplateStatus {
-  String toValue() {
-    switch (this) {
-      case RecommendationTemplateStatus.pending:
-        return 'Pending';
-      case RecommendationTemplateStatus.inProgress:
-        return 'InProgress';
-      case RecommendationTemplateStatus.failed:
-        return 'Failed';
-      case RecommendationTemplateStatus.success:
-        return 'Success';
-    }
-  }
-}
+  final String value;
 
-extension RecommendationTemplateStatusFromString on String {
-  RecommendationTemplateStatus toRecommendationTemplateStatus() {
-    switch (this) {
-      case 'Pending':
-        return RecommendationTemplateStatus.pending;
-      case 'InProgress':
-        return RecommendationTemplateStatus.inProgress;
-      case 'Failed':
-        return RecommendationTemplateStatus.failed;
-      case 'Success':
-        return RecommendationTemplateStatus.success;
-    }
-    throw Exception('$this is not known in enum RecommendationTemplateStatus');
-  }
+  const RecommendationTemplateStatus(this.value);
+
+  static RecommendationTemplateStatus fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum RecommendationTemplateStatus'));
 }
 
 class RemoveDraftAppVersionResourceMappingsResponse {
@@ -7130,36 +6818,19 @@ class RemoveDraftAppVersionResourceMappingsResponse {
 }
 
 enum RenderRecommendationType {
-  alarm,
-  sop,
-  test,
-}
+  alarm('Alarm'),
+  sop('Sop'),
+  test('Test'),
+  ;
 
-extension RenderRecommendationTypeValueExtension on RenderRecommendationType {
-  String toValue() {
-    switch (this) {
-      case RenderRecommendationType.alarm:
-        return 'Alarm';
-      case RenderRecommendationType.sop:
-        return 'Sop';
-      case RenderRecommendationType.test:
-        return 'Test';
-    }
-  }
-}
+  final String value;
 
-extension RenderRecommendationTypeFromString on String {
-  RenderRecommendationType toRenderRecommendationType() {
-    switch (this) {
-      case 'Alarm':
-        return RenderRecommendationType.alarm;
-      case 'Sop':
-        return RenderRecommendationType.sop;
-      case 'Test':
-        return RenderRecommendationType.test;
-    }
-    throw Exception('$this is not known in enum RenderRecommendationType');
-  }
+  const RenderRecommendationType(this.value);
+
+  static RenderRecommendationType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum RenderRecommendationType'));
 }
 
 /// Defines a resiliency policy.
@@ -7215,18 +6886,18 @@ class ResiliencyPolicy {
     return ResiliencyPolicy(
       creationTime: timeStampFromJson(json['creationTime']),
       dataLocationConstraint: (json['dataLocationConstraint'] as String?)
-          ?.toDataLocationConstraint(),
-      estimatedCostTier:
-          (json['estimatedCostTier'] as String?)?.toEstimatedCostTier(),
+          ?.let(DataLocationConstraint.fromString),
+      estimatedCostTier: (json['estimatedCostTier'] as String?)
+          ?.let(EstimatedCostTier.fromString),
       policy: (json['policy'] as Map<String, dynamic>?)?.map((k, e) => MapEntry(
-          k.toDisruptionType(),
+          DisruptionType.fromString(k),
           FailurePolicy.fromJson(e as Map<String, dynamic>))),
       policyArn: json['policyArn'] as String?,
       policyDescription: json['policyDescription'] as String?,
       policyName: json['policyName'] as String?,
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
-      tier: (json['tier'] as String?)?.toResiliencyPolicyTier(),
+      tier: (json['tier'] as String?)?.let(ResiliencyPolicyTier.fromString),
     );
   }
 
@@ -7244,61 +6915,35 @@ class ResiliencyPolicy {
       if (creationTime != null)
         'creationTime': unixTimestampToJson(creationTime),
       if (dataLocationConstraint != null)
-        'dataLocationConstraint': dataLocationConstraint.toValue(),
+        'dataLocationConstraint': dataLocationConstraint.value,
       if (estimatedCostTier != null)
-        'estimatedCostTier': estimatedCostTier.toValue(),
-      if (policy != null)
-        'policy': policy.map((k, e) => MapEntry(k.toValue(), e)),
+        'estimatedCostTier': estimatedCostTier.value,
+      if (policy != null) 'policy': policy.map((k, e) => MapEntry(k.value, e)),
       if (policyArn != null) 'policyArn': policyArn,
       if (policyDescription != null) 'policyDescription': policyDescription,
       if (policyName != null) 'policyName': policyName,
       if (tags != null) 'tags': tags,
-      if (tier != null) 'tier': tier.toValue(),
+      if (tier != null) 'tier': tier.value,
     };
   }
 }
 
 enum ResiliencyPolicyTier {
-  missionCritical,
-  critical,
-  important,
-  coreServices,
-  nonCritical,
-}
+  missionCritical('MissionCritical'),
+  critical('Critical'),
+  important('Important'),
+  coreServices('CoreServices'),
+  nonCritical('NonCritical'),
+  ;
 
-extension ResiliencyPolicyTierValueExtension on ResiliencyPolicyTier {
-  String toValue() {
-    switch (this) {
-      case ResiliencyPolicyTier.missionCritical:
-        return 'MissionCritical';
-      case ResiliencyPolicyTier.critical:
-        return 'Critical';
-      case ResiliencyPolicyTier.important:
-        return 'Important';
-      case ResiliencyPolicyTier.coreServices:
-        return 'CoreServices';
-      case ResiliencyPolicyTier.nonCritical:
-        return 'NonCritical';
-    }
-  }
-}
+  final String value;
 
-extension ResiliencyPolicyTierFromString on String {
-  ResiliencyPolicyTier toResiliencyPolicyTier() {
-    switch (this) {
-      case 'MissionCritical':
-        return ResiliencyPolicyTier.missionCritical;
-      case 'Critical':
-        return ResiliencyPolicyTier.critical;
-      case 'Important':
-        return ResiliencyPolicyTier.important;
-      case 'CoreServices':
-        return ResiliencyPolicyTier.coreServices;
-      case 'NonCritical':
-        return ResiliencyPolicyTier.nonCritical;
-    }
-    throw Exception('$this is not known in enum ResiliencyPolicyTier');
-  }
+  const ResiliencyPolicyTier(this.value);
+
+  static ResiliencyPolicyTier fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum ResiliencyPolicyTier'));
 }
 
 /// The overall resiliency score, returned as an object that includes the
@@ -7318,7 +6963,7 @@ class ResiliencyScore {
   factory ResiliencyScore.fromJson(Map<String, dynamic> json) {
     return ResiliencyScore(
       disruptionScore: (json['disruptionScore'] as Map<String, dynamic>)
-          .map((k, e) => MapEntry(k.toDisruptionType(), e as double)),
+          .map((k, e) => MapEntry(DisruptionType.fromString(k), e as double)),
       score: json['score'] as double,
     );
   }
@@ -7327,8 +6972,7 @@ class ResiliencyScore {
     final disruptionScore = this.disruptionScore;
     final score = this.score;
     return {
-      'disruptionScore':
-          disruptionScore.map((k, e) => MapEntry(k.toValue(), e)),
+      'disruptionScore': disruptionScore.map((k, e) => MapEntry(k.value, e)),
       'score': score,
     };
   }
@@ -7365,7 +7009,8 @@ class ResolveAppVersionResourcesResponse {
       appArn: json['appArn'] as String,
       appVersion: json['appVersion'] as String,
       resolutionId: json['resolutionId'] as String,
-      status: (json['status'] as String).toResourceResolutionStatusType(),
+      status:
+          ResourceResolutionStatusType.fromString((json['status'] as String)),
     );
   }
 
@@ -7378,7 +7023,7 @@ class ResolveAppVersionResourcesResponse {
       'appArn': appArn,
       'appVersion': appVersion,
       'resolutionId': resolutionId,
-      'status': status.toValue(),
+      'status': status.value,
     };
   }
 }
@@ -7455,70 +7100,35 @@ class ResourceErrorsDetails {
 }
 
 enum ResourceImportStatusType {
-  pending,
-  inProgress,
-  failed,
-  success,
-}
+  pending('Pending'),
+  inProgress('InProgress'),
+  failed('Failed'),
+  success('Success'),
+  ;
 
-extension ResourceImportStatusTypeValueExtension on ResourceImportStatusType {
-  String toValue() {
-    switch (this) {
-      case ResourceImportStatusType.pending:
-        return 'Pending';
-      case ResourceImportStatusType.inProgress:
-        return 'InProgress';
-      case ResourceImportStatusType.failed:
-        return 'Failed';
-      case ResourceImportStatusType.success:
-        return 'Success';
-    }
-  }
-}
+  final String value;
 
-extension ResourceImportStatusTypeFromString on String {
-  ResourceImportStatusType toResourceImportStatusType() {
-    switch (this) {
-      case 'Pending':
-        return ResourceImportStatusType.pending;
-      case 'InProgress':
-        return ResourceImportStatusType.inProgress;
-      case 'Failed':
-        return ResourceImportStatusType.failed;
-      case 'Success':
-        return ResourceImportStatusType.success;
-    }
-    throw Exception('$this is not known in enum ResourceImportStatusType');
-  }
+  const ResourceImportStatusType(this.value);
+
+  static ResourceImportStatusType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum ResourceImportStatusType'));
 }
 
 enum ResourceImportStrategyType {
-  addOnly,
-  replaceAll,
-}
+  addOnly('AddOnly'),
+  replaceAll('ReplaceAll'),
+  ;
 
-extension ResourceImportStrategyTypeValueExtension
-    on ResourceImportStrategyType {
-  String toValue() {
-    switch (this) {
-      case ResourceImportStrategyType.addOnly:
-        return 'AddOnly';
-      case ResourceImportStrategyType.replaceAll:
-        return 'ReplaceAll';
-    }
-  }
-}
+  final String value;
 
-extension ResourceImportStrategyTypeFromString on String {
-  ResourceImportStrategyType toResourceImportStrategyType() {
-    switch (this) {
-      case 'AddOnly':
-        return ResourceImportStrategyType.addOnly;
-      case 'ReplaceAll':
-        return ResourceImportStrategyType.replaceAll;
-    }
-    throw Exception('$this is not known in enum ResourceImportStrategyType');
-  }
+  const ResourceImportStrategyType(this.value);
+
+  static ResourceImportStrategyType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum ResourceImportStrategyType'));
 }
 
 /// Defines a resource mapping.
@@ -7578,7 +7188,8 @@ class ResourceMapping {
 
   factory ResourceMapping.fromJson(Map<String, dynamic> json) {
     return ResourceMapping(
-      mappingType: (json['mappingType'] as String).toResourceMappingType(),
+      mappingType:
+          ResourceMappingType.fromString((json['mappingType'] as String)),
       physicalResourceId: PhysicalResourceId.fromJson(
           json['physicalResourceId'] as Map<String, dynamic>),
       appRegistryAppName: json['appRegistryAppName'] as String?,
@@ -7600,7 +7211,7 @@ class ResourceMapping {
     final resourceName = this.resourceName;
     final terraformSourceName = this.terraformSourceName;
     return {
-      'mappingType': mappingType.toValue(),
+      'mappingType': mappingType.value,
       'physicalResourceId': physicalResourceId,
       if (appRegistryAppName != null) 'appRegistryAppName': appRegistryAppName,
       if (eksSourceName != null) 'eksSourceName': eksSourceName,
@@ -7614,118 +7225,54 @@ class ResourceMapping {
 }
 
 enum ResourceMappingType {
-  cfnStack,
-  resource,
-  appRegistryApp,
-  resourceGroup,
-  terraform,
-  eks,
-}
+  cfnStack('CfnStack'),
+  resource('Resource'),
+  appRegistryApp('AppRegistryApp'),
+  resourceGroup('ResourceGroup'),
+  terraform('Terraform'),
+  eks('EKS'),
+  ;
 
-extension ResourceMappingTypeValueExtension on ResourceMappingType {
-  String toValue() {
-    switch (this) {
-      case ResourceMappingType.cfnStack:
-        return 'CfnStack';
-      case ResourceMappingType.resource:
-        return 'Resource';
-      case ResourceMappingType.appRegistryApp:
-        return 'AppRegistryApp';
-      case ResourceMappingType.resourceGroup:
-        return 'ResourceGroup';
-      case ResourceMappingType.terraform:
-        return 'Terraform';
-      case ResourceMappingType.eks:
-        return 'EKS';
-    }
-  }
-}
+  final String value;
 
-extension ResourceMappingTypeFromString on String {
-  ResourceMappingType toResourceMappingType() {
-    switch (this) {
-      case 'CfnStack':
-        return ResourceMappingType.cfnStack;
-      case 'Resource':
-        return ResourceMappingType.resource;
-      case 'AppRegistryApp':
-        return ResourceMappingType.appRegistryApp;
-      case 'ResourceGroup':
-        return ResourceMappingType.resourceGroup;
-      case 'Terraform':
-        return ResourceMappingType.terraform;
-      case 'EKS':
-        return ResourceMappingType.eks;
-    }
-    throw Exception('$this is not known in enum ResourceMappingType');
-  }
+  const ResourceMappingType(this.value);
+
+  static ResourceMappingType fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum ResourceMappingType'));
 }
 
 enum ResourceResolutionStatusType {
-  pending,
-  inProgress,
-  failed,
-  success,
-}
+  pending('Pending'),
+  inProgress('InProgress'),
+  failed('Failed'),
+  success('Success'),
+  ;
 
-extension ResourceResolutionStatusTypeValueExtension
-    on ResourceResolutionStatusType {
-  String toValue() {
-    switch (this) {
-      case ResourceResolutionStatusType.pending:
-        return 'Pending';
-      case ResourceResolutionStatusType.inProgress:
-        return 'InProgress';
-      case ResourceResolutionStatusType.failed:
-        return 'Failed';
-      case ResourceResolutionStatusType.success:
-        return 'Success';
-    }
-  }
-}
+  final String value;
 
-extension ResourceResolutionStatusTypeFromString on String {
-  ResourceResolutionStatusType toResourceResolutionStatusType() {
-    switch (this) {
-      case 'Pending':
-        return ResourceResolutionStatusType.pending;
-      case 'InProgress':
-        return ResourceResolutionStatusType.inProgress;
-      case 'Failed':
-        return ResourceResolutionStatusType.failed;
-      case 'Success':
-        return ResourceResolutionStatusType.success;
-    }
-    throw Exception('$this is not known in enum ResourceResolutionStatusType');
-  }
+  const ResourceResolutionStatusType(this.value);
+
+  static ResourceResolutionStatusType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum ResourceResolutionStatusType'));
 }
 
 enum ResourceSourceType {
-  appTemplate,
-  discovered,
-}
+  appTemplate('AppTemplate'),
+  discovered('Discovered'),
+  ;
 
-extension ResourceSourceTypeValueExtension on ResourceSourceType {
-  String toValue() {
-    switch (this) {
-      case ResourceSourceType.appTemplate:
-        return 'AppTemplate';
-      case ResourceSourceType.discovered:
-        return 'Discovered';
-    }
-  }
-}
+  final String value;
 
-extension ResourceSourceTypeFromString on String {
-  ResourceSourceType toResourceSourceType() {
-    switch (this) {
-      case 'AppTemplate':
-        return ResourceSourceType.appTemplate;
-      case 'Discovered':
-        return ResourceSourceType.discovered;
-    }
-    throw Exception('$this is not known in enum ResourceSourceType');
-  }
+  const ResourceSourceType(this.value);
+
+  static ResourceSourceType fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum ResourceSourceType'));
 }
 
 /// The location of the Amazon S3 bucket.
@@ -7799,7 +7346,7 @@ class SopRecommendation {
     return SopRecommendation(
       recommendationId: json['recommendationId'] as String,
       referenceId: json['referenceId'] as String,
-      serviceType: (json['serviceType'] as String).toSopServiceType(),
+      serviceType: SopServiceType.fromString((json['serviceType'] as String)),
       appComponentName: json['appComponentName'] as String?,
       description: json['description'] as String?,
       items: (json['items'] as List?)
@@ -7823,7 +7370,7 @@ class SopRecommendation {
     return {
       'recommendationId': recommendationId,
       'referenceId': referenceId,
-      'serviceType': serviceType.toValue(),
+      'serviceType': serviceType.value,
       if (appComponentName != null) 'appComponentName': appComponentName,
       if (description != null) 'description': description,
       if (items != null) 'items': items,
@@ -7834,26 +7381,17 @@ class SopRecommendation {
 }
 
 enum SopServiceType {
-  ssm,
-}
+  ssm('SSM'),
+  ;
 
-extension SopServiceTypeValueExtension on SopServiceType {
-  String toValue() {
-    switch (this) {
-      case SopServiceType.ssm:
-        return 'SSM';
-    }
-  }
-}
+  final String value;
 
-extension SopServiceTypeFromString on String {
-  SopServiceType toSopServiceType() {
-    switch (this) {
-      case 'SSM':
-        return SopServiceType.ssm;
-    }
-    throw Exception('$this is not known in enum SopServiceType');
-  }
+  const SopServiceType(this.value);
+
+  static SopServiceType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum SopServiceType'));
 }
 
 class StartAppAssessmentResponse {
@@ -7892,31 +7430,18 @@ class TagResourceResponse {
 }
 
 enum TemplateFormat {
-  cfnYaml,
-  cfnJson,
-}
+  cfnYaml('CfnYaml'),
+  cfnJson('CfnJson'),
+  ;
 
-extension TemplateFormatValueExtension on TemplateFormat {
-  String toValue() {
-    switch (this) {
-      case TemplateFormat.cfnYaml:
-        return 'CfnYaml';
-      case TemplateFormat.cfnJson:
-        return 'CfnJson';
-    }
-  }
-}
+  final String value;
 
-extension TemplateFormatFromString on String {
-  TemplateFormat toTemplateFormat() {
-    switch (this) {
-      case 'CfnYaml':
-        return TemplateFormat.cfnYaml;
-      case 'CfnJson':
-        return TemplateFormat.cfnJson;
-    }
-    throw Exception('$this is not known in enum TemplateFormat');
-  }
+  const TemplateFormat(this.value);
+
+  static TemplateFormat fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum TemplateFormat'));
 }
 
 /// The Terraform s3 state file you need to import.
@@ -8009,8 +7534,8 @@ class TestRecommendation {
       name: json['name'] as String?,
       prerequisite: json['prerequisite'] as String?,
       recommendationId: json['recommendationId'] as String?,
-      risk: (json['risk'] as String?)?.toTestRisk(),
-      type: (json['type'] as String?)?.toTestType(),
+      risk: (json['risk'] as String?)?.let(TestRisk.fromString),
+      type: (json['type'] as String?)?.let(TestType.fromString),
     );
   }
 
@@ -8036,81 +7561,41 @@ class TestRecommendation {
       if (name != null) 'name': name,
       if (prerequisite != null) 'prerequisite': prerequisite,
       if (recommendationId != null) 'recommendationId': recommendationId,
-      if (risk != null) 'risk': risk.toValue(),
-      if (type != null) 'type': type.toValue(),
+      if (risk != null) 'risk': risk.value,
+      if (type != null) 'type': type.value,
     };
   }
 }
 
 enum TestRisk {
-  small,
-  medium,
-  high,
-}
+  small('Small'),
+  medium('Medium'),
+  high('High'),
+  ;
 
-extension TestRiskValueExtension on TestRisk {
-  String toValue() {
-    switch (this) {
-      case TestRisk.small:
-        return 'Small';
-      case TestRisk.medium:
-        return 'Medium';
-      case TestRisk.high:
-        return 'High';
-    }
-  }
-}
+  final String value;
 
-extension TestRiskFromString on String {
-  TestRisk toTestRisk() {
-    switch (this) {
-      case 'Small':
-        return TestRisk.small;
-      case 'Medium':
-        return TestRisk.medium;
-      case 'High':
-        return TestRisk.high;
-    }
-    throw Exception('$this is not known in enum TestRisk');
-  }
+  const TestRisk(this.value);
+
+  static TestRisk fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum TestRisk'));
 }
 
 enum TestType {
-  software,
-  hardware,
-  az,
-  region,
-}
+  software('Software'),
+  hardware('Hardware'),
+  az('AZ'),
+  region('Region'),
+  ;
 
-extension TestTypeValueExtension on TestType {
-  String toValue() {
-    switch (this) {
-      case TestType.software:
-        return 'Software';
-      case TestType.hardware:
-        return 'Hardware';
-      case TestType.az:
-        return 'AZ';
-      case TestType.region:
-        return 'Region';
-    }
-  }
-}
+  final String value;
 
-extension TestTypeFromString on String {
-  TestType toTestType() {
-    switch (this) {
-      case 'Software':
-        return TestType.software;
-      case 'Hardware':
-        return TestType.hardware;
-      case 'AZ':
-        return TestType.az;
-      case 'Region':
-        return TestType.region;
-    }
-    throw Exception('$this is not known in enum TestType');
-  }
+  const TestType(this.value);
+
+  static TestType fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum TestType'));
 }
 
 /// Defines a resource that is not supported by Resilience Hub.

@@ -879,7 +879,7 @@ class AssertionRule {
       ruleConfig:
           RuleConfig.fromJson(json['RuleConfig'] as Map<String, dynamic>),
       safetyRuleArn: json['SafetyRuleArn'] as String,
-      status: (json['Status'] as String).toStatus(),
+      status: Status.fromString((json['Status'] as String)),
       waitPeriodMs: json['WaitPeriodMs'] as int,
     );
   }
@@ -898,7 +898,7 @@ class AssertionRule {
       'Name': name,
       'RuleConfig': ruleConfig,
       'SafetyRuleArn': safetyRuleArn,
-      'Status': status.toValue(),
+      'Status': status.value,
       'WaitPeriodMs': waitPeriodMs,
     };
   }
@@ -975,7 +975,7 @@ class Cluster {
           .map((e) => ClusterEndpoint.fromJson(e as Map<String, dynamic>))
           .toList(),
       name: json['Name'] as String?,
-      status: (json['Status'] as String?)?.toStatus(),
+      status: (json['Status'] as String?)?.let(Status.fromString),
     );
   }
 
@@ -988,7 +988,7 @@ class Cluster {
       if (clusterArn != null) 'ClusterArn': clusterArn,
       if (clusterEndpoints != null) 'ClusterEndpoints': clusterEndpoints,
       if (name != null) 'Name': name,
-      if (status != null) 'Status': status.toValue(),
+      if (status != null) 'Status': status.value,
     };
   }
 }
@@ -1072,7 +1072,7 @@ class ControlPanel {
       defaultControlPanel: json['DefaultControlPanel'] as bool?,
       name: json['Name'] as String?,
       routingControlCount: json['RoutingControlCount'] as int?,
-      status: (json['Status'] as String?)?.toStatus(),
+      status: (json['Status'] as String?)?.let(Status.fromString),
     );
   }
 
@@ -1091,7 +1091,7 @@ class ControlPanel {
       if (name != null) 'Name': name,
       if (routingControlCount != null)
         'RoutingControlCount': routingControlCount,
-      if (status != null) 'Status': status.toValue(),
+      if (status != null) 'Status': status.value,
     };
   }
 }
@@ -1430,7 +1430,7 @@ class GatingRule {
       ruleConfig:
           RuleConfig.fromJson(json['RuleConfig'] as Map<String, dynamic>),
       safetyRuleArn: json['SafetyRuleArn'] as String,
-      status: (json['Status'] as String).toStatus(),
+      status: Status.fromString((json['Status'] as String)),
       targetControls: (json['TargetControls'] as List)
           .whereNotNull()
           .map((e) => e as String)
@@ -1454,7 +1454,7 @@ class GatingRule {
       'Name': name,
       'RuleConfig': ruleConfig,
       'SafetyRuleArn': safetyRuleArn,
-      'Status': status.toValue(),
+      'Status': status.value,
       'TargetControls': targetControls,
       'WaitPeriodMs': waitPeriodMs,
     };
@@ -1825,7 +1825,7 @@ class RoutingControl {
       controlPanelArn: json['ControlPanelArn'] as String?,
       name: json['Name'] as String?,
       routingControlArn: json['RoutingControlArn'] as String?,
-      status: (json['Status'] as String?)?.toStatus(),
+      status: (json['Status'] as String?)?.let(Status.fromString),
     );
   }
 
@@ -1838,7 +1838,7 @@ class RoutingControl {
       if (controlPanelArn != null) 'ControlPanelArn': controlPanelArn,
       if (name != null) 'Name': name,
       if (routingControlArn != null) 'RoutingControlArn': routingControlArn,
-      if (status != null) 'Status': status.toValue(),
+      if (status != null) 'Status': status.value,
     };
   }
 }
@@ -1916,7 +1916,7 @@ class RuleConfig {
     return RuleConfig(
       inverted: json['Inverted'] as bool,
       threshold: json['Threshold'] as int,
-      type: (json['Type'] as String).toRuleType(),
+      type: RuleType.fromString((json['Type'] as String)),
     );
   }
 
@@ -1927,7 +1927,7 @@ class RuleConfig {
     return {
       'Inverted': inverted,
       'Threshold': threshold,
-      'Type': type.toValue(),
+      'Type': type.value,
     };
   }
 }
@@ -1944,36 +1944,18 @@ class RuleConfig {
 /// OR - Any control must be set. This is a shortcut for "At least N," where N
 /// is 1.
 enum RuleType {
-  atleast,
-  and,
-  or,
-}
+  atleast('ATLEAST'),
+  and('AND'),
+  or('OR'),
+  ;
 
-extension RuleTypeValueExtension on RuleType {
-  String toValue() {
-    switch (this) {
-      case RuleType.atleast:
-        return 'ATLEAST';
-      case RuleType.and:
-        return 'AND';
-      case RuleType.or:
-        return 'OR';
-    }
-  }
-}
+  final String value;
 
-extension RuleTypeFromString on String {
-  RuleType toRuleType() {
-    switch (this) {
-      case 'ATLEAST':
-        return RuleType.atleast;
-      case 'AND':
-        return RuleType.and;
-      case 'OR':
-        return RuleType.or;
-    }
-    throw Exception('$this is not known in enum RuleType');
-  }
+  const RuleType(this.value);
+
+  static RuleType fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum RuleType'));
 }
 
 /// The deployment status of a resource. Status can be one of the following:
@@ -1986,36 +1968,18 @@ extension RuleTypeFromString on String {
 /// PENDING_DELETION: Amazon Route 53 Application Recovery Controller is
 /// deleting the resource.
 enum Status {
-  pending,
-  deployed,
-  pendingDeletion,
-}
+  pending('PENDING'),
+  deployed('DEPLOYED'),
+  pendingDeletion('PENDING_DELETION'),
+  ;
 
-extension StatusValueExtension on Status {
-  String toValue() {
-    switch (this) {
-      case Status.pending:
-        return 'PENDING';
-      case Status.deployed:
-        return 'DEPLOYED';
-      case Status.pendingDeletion:
-        return 'PENDING_DELETION';
-    }
-  }
-}
+  final String value;
 
-extension StatusFromString on String {
-  Status toStatus() {
-    switch (this) {
-      case 'PENDING':
-        return Status.pending;
-      case 'DEPLOYED':
-        return Status.deployed;
-      case 'PENDING_DELETION':
-        return Status.pendingDeletion;
-    }
-    throw Exception('$this is not known in enum Status');
-  }
+  const Status(this.value);
+
+  static Status fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception('$value is not known in enum Status'));
 }
 
 class TagResourceResponse {

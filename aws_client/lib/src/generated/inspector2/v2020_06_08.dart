@@ -253,7 +253,7 @@ class Inspector2 {
     Map<String, String>? tags,
   }) async {
     final $payload = <String, dynamic>{
-      'action': action.toValue(),
+      'action': action.value,
       'filterCriteria': filterCriteria,
       'name': name,
       if (description != null) 'description': description,
@@ -294,7 +294,7 @@ class Inspector2 {
     FilterCriteria? filterCriteria,
   }) async {
     final $payload = <String, dynamic>{
-      'reportFormat': reportFormat.toValue(),
+      'reportFormat': reportFormat.value,
       's3Destination': s3Destination,
       if (filterCriteria != null) 'filterCriteria': filterCriteria,
     };
@@ -372,7 +372,7 @@ class Inspector2 {
     final $payload = <String, dynamic>{
       if (accountIds != null) 'accountIds': accountIds,
       if (resourceTypes != null)
-        'resourceTypes': resourceTypes.map((e) => e.toValue()).toList(),
+        'resourceTypes': resourceTypes.map((e) => e.value).toList(),
     };
     final response = await _protocol.send(
       payload: $payload,
@@ -459,7 +459,7 @@ class Inspector2 {
     String? clientToken,
   }) async {
     final $payload = <String, dynamic>{
-      'resourceTypes': resourceTypes.map((e) => e.toValue()).toList(),
+      'resourceTypes': resourceTypes.map((e) => e.value).toList(),
       if (accountIds != null) 'accountIds': accountIds,
       'clientToken': clientToken ?? _s.generateIdempotencyToken(),
     };
@@ -640,7 +640,7 @@ class Inspector2 {
     final $payload = <String, dynamic>{
       if (maxResults != null) 'maxResults': maxResults,
       if (nextToken != null) 'nextToken': nextToken,
-      if (service != null) 'service': service.toValue(),
+      if (service != null) 'service': service.value,
     };
     final response = await _protocol.send(
       payload: $payload,
@@ -721,7 +721,7 @@ class Inspector2 {
   }) async {
     final $payload = <String, dynamic>{
       if (filterCriteria != null) 'filterCriteria': filterCriteria,
-      if (groupBy != null) 'groupBy': groupBy.toValue(),
+      if (groupBy != null) 'groupBy': groupBy.value,
       if (nextToken != null) 'nextToken': nextToken,
     };
     final response = await _protocol.send(
@@ -808,7 +808,7 @@ class Inspector2 {
       100,
     );
     final $payload = <String, dynamic>{
-      if (action != null) 'action': action.toValue(),
+      if (action != null) 'action': action.value,
       if (arns != null) 'arns': arns,
       if (maxResults != null) 'maxResults': maxResults,
       if (nextToken != null) 'nextToken': nextToken,
@@ -863,7 +863,7 @@ class Inspector2 {
       100,
     );
     final $payload = <String, dynamic>{
-      'aggregationType': aggregationType.toValue(),
+      'aggregationType': aggregationType.value,
       if (accountIds != null) 'accountIds': accountIds,
       if (aggregationRequest != null) 'aggregationRequest': aggregationRequest,
       if (maxResults != null) 'maxResults': maxResults,
@@ -1229,7 +1229,7 @@ class Inspector2 {
   }) async {
     final $payload = <String, dynamic>{
       'filterArn': filterArn,
-      if (action != null) 'action': action.toValue(),
+      if (action != null) 'action': action.value,
       if (description != null) 'description': description,
       if (filterCriteria != null) 'filterCriteria': filterCriteria,
       if (name != null) 'name': name,
@@ -1320,7 +1320,7 @@ class Account {
       accountId: json['accountId'] as String,
       resourceStatus: ResourceStatus.fromJson(
           json['resourceStatus'] as Map<String, dynamic>),
-      status: (json['status'] as String).toStatus(),
+      status: Status.fromString((json['status'] as String)),
     );
   }
 
@@ -1331,7 +1331,7 @@ class Account {
     return {
       'accountId': accountId,
       'resourceStatus': resourceStatus,
-      'status': status.toValue(),
+      'status': status.value,
     };
   }
 }
@@ -1364,10 +1364,10 @@ class AccountAggregation {
     final sortBy = this.sortBy;
     final sortOrder = this.sortOrder;
     return {
-      if (findingType != null) 'findingType': findingType.toValue(),
-      if (resourceType != null) 'resourceType': resourceType.toValue(),
-      if (sortBy != null) 'sortBy': sortBy.toValue(),
-      if (sortOrder != null) 'sortOrder': sortOrder.toValue(),
+      if (findingType != null) 'findingType': findingType.value,
+      if (resourceType != null) 'resourceType': resourceType.value,
+      if (sortBy != null) 'sortBy': sortBy.value,
+      if (sortOrder != null) 'sortOrder': sortOrder.value,
     };
   }
 }
@@ -1406,36 +1406,19 @@ class AccountAggregationResponse {
 }
 
 enum AccountSortBy {
-  critical,
-  high,
-  all,
-}
+  critical('CRITICAL'),
+  high('HIGH'),
+  all('ALL'),
+  ;
 
-extension AccountSortByValueExtension on AccountSortBy {
-  String toValue() {
-    switch (this) {
-      case AccountSortBy.critical:
-        return 'CRITICAL';
-      case AccountSortBy.high:
-        return 'HIGH';
-      case AccountSortBy.all:
-        return 'ALL';
-    }
-  }
-}
+  final String value;
 
-extension AccountSortByFromString on String {
-  AccountSortBy toAccountSortBy() {
-    switch (this) {
-      case 'CRITICAL':
-        return AccountSortBy.critical;
-      case 'HIGH':
-        return AccountSortBy.high;
-      case 'ALL':
-        return AccountSortBy.all;
-    }
-    throw Exception('$this is not known in enum AccountSortBy');
-  }
+  const AccountSortBy(this.value);
+
+  static AccountSortBy fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum AccountSortBy'));
 }
 
 /// An object with details the status of an Amazon Web Services account within
@@ -1479,31 +1462,18 @@ class AccountState {
 }
 
 enum AggregationFindingType {
-  networkReachability,
-  packageVulnerability,
-}
+  networkReachability('NETWORK_REACHABILITY'),
+  packageVulnerability('PACKAGE_VULNERABILITY'),
+  ;
 
-extension AggregationFindingTypeValueExtension on AggregationFindingType {
-  String toValue() {
-    switch (this) {
-      case AggregationFindingType.networkReachability:
-        return 'NETWORK_REACHABILITY';
-      case AggregationFindingType.packageVulnerability:
-        return 'PACKAGE_VULNERABILITY';
-    }
-  }
-}
+  final String value;
 
-extension AggregationFindingTypeFromString on String {
-  AggregationFindingType toAggregationFindingType() {
-    switch (this) {
-      case 'NETWORK_REACHABILITY':
-        return AggregationFindingType.networkReachability;
-      case 'PACKAGE_VULNERABILITY':
-        return AggregationFindingType.packageVulnerability;
-    }
-    throw Exception('$this is not known in enum AggregationFindingType');
-  }
+  const AggregationFindingType(this.value);
+
+  static AggregationFindingType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum AggregationFindingType'));
 }
 
 /// Contains details about an aggregation request.
@@ -1600,36 +1570,19 @@ class AggregationRequest {
 }
 
 enum AggregationResourceType {
-  awsEc2Instance,
-  awsEcrContainerImage,
-  awsLambdaFunction,
-}
+  awsEc2Instance('AWS_EC2_INSTANCE'),
+  awsEcrContainerImage('AWS_ECR_CONTAINER_IMAGE'),
+  awsLambdaFunction('AWS_LAMBDA_FUNCTION'),
+  ;
 
-extension AggregationResourceTypeValueExtension on AggregationResourceType {
-  String toValue() {
-    switch (this) {
-      case AggregationResourceType.awsEc2Instance:
-        return 'AWS_EC2_INSTANCE';
-      case AggregationResourceType.awsEcrContainerImage:
-        return 'AWS_ECR_CONTAINER_IMAGE';
-      case AggregationResourceType.awsLambdaFunction:
-        return 'AWS_LAMBDA_FUNCTION';
-    }
-  }
-}
+  final String value;
 
-extension AggregationResourceTypeFromString on String {
-  AggregationResourceType toAggregationResourceType() {
-    switch (this) {
-      case 'AWS_EC2_INSTANCE':
-        return AggregationResourceType.awsEc2Instance;
-      case 'AWS_ECR_CONTAINER_IMAGE':
-        return AggregationResourceType.awsEcrContainerImage;
-      case 'AWS_LAMBDA_FUNCTION':
-        return AggregationResourceType.awsLambdaFunction;
-    }
-    throw Exception('$this is not known in enum AggregationResourceType');
-  }
+  const AggregationResourceType(this.value);
+
+  static AggregationResourceType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum AggregationResourceType'));
 }
 
 /// A structure that contains details about the results of an aggregation type.
@@ -1775,76 +1728,27 @@ class AggregationResponse {
 }
 
 enum AggregationType {
-  findingType,
-  package,
-  title,
-  repository,
-  ami,
-  awsEc2Instance,
-  awsEcrContainer,
-  imageLayer,
-  account,
-  awsLambdaFunction,
-  lambdaLayer,
-}
+  findingType('FINDING_TYPE'),
+  package('PACKAGE'),
+  title('TITLE'),
+  repository('REPOSITORY'),
+  ami('AMI'),
+  awsEc2Instance('AWS_EC2_INSTANCE'),
+  awsEcrContainer('AWS_ECR_CONTAINER'),
+  imageLayer('IMAGE_LAYER'),
+  account('ACCOUNT'),
+  awsLambdaFunction('AWS_LAMBDA_FUNCTION'),
+  lambdaLayer('LAMBDA_LAYER'),
+  ;
 
-extension AggregationTypeValueExtension on AggregationType {
-  String toValue() {
-    switch (this) {
-      case AggregationType.findingType:
-        return 'FINDING_TYPE';
-      case AggregationType.package:
-        return 'PACKAGE';
-      case AggregationType.title:
-        return 'TITLE';
-      case AggregationType.repository:
-        return 'REPOSITORY';
-      case AggregationType.ami:
-        return 'AMI';
-      case AggregationType.awsEc2Instance:
-        return 'AWS_EC2_INSTANCE';
-      case AggregationType.awsEcrContainer:
-        return 'AWS_ECR_CONTAINER';
-      case AggregationType.imageLayer:
-        return 'IMAGE_LAYER';
-      case AggregationType.account:
-        return 'ACCOUNT';
-      case AggregationType.awsLambdaFunction:
-        return 'AWS_LAMBDA_FUNCTION';
-      case AggregationType.lambdaLayer:
-        return 'LAMBDA_LAYER';
-    }
-  }
-}
+  final String value;
 
-extension AggregationTypeFromString on String {
-  AggregationType toAggregationType() {
-    switch (this) {
-      case 'FINDING_TYPE':
-        return AggregationType.findingType;
-      case 'PACKAGE':
-        return AggregationType.package;
-      case 'TITLE':
-        return AggregationType.title;
-      case 'REPOSITORY':
-        return AggregationType.repository;
-      case 'AMI':
-        return AggregationType.ami;
-      case 'AWS_EC2_INSTANCE':
-        return AggregationType.awsEc2Instance;
-      case 'AWS_ECR_CONTAINER':
-        return AggregationType.awsEcrContainer;
-      case 'IMAGE_LAYER':
-        return AggregationType.imageLayer;
-      case 'ACCOUNT':
-        return AggregationType.account;
-      case 'AWS_LAMBDA_FUNCTION':
-        return AggregationType.awsLambdaFunction;
-      case 'LAMBDA_LAYER':
-        return AggregationType.lambdaLayer;
-    }
-    throw Exception('$this is not known in enum AggregationType');
-  }
+  const AggregationType(this.value);
+
+  static AggregationType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum AggregationType'));
 }
 
 /// The details that define an aggregation based on Amazon machine images
@@ -1871,8 +1775,8 @@ class AmiAggregation {
     final sortOrder = this.sortOrder;
     return {
       if (amis != null) 'amis': amis,
-      if (sortBy != null) 'sortBy': sortBy.toValue(),
-      if (sortOrder != null) 'sortOrder': sortOrder.toValue(),
+      if (sortBy != null) 'sortBy': sortBy.value,
+      if (sortOrder != null) 'sortOrder': sortOrder.value,
     };
   }
 }
@@ -1925,69 +1829,34 @@ class AmiAggregationResponse {
 }
 
 enum AmiSortBy {
-  critical,
-  high,
-  all,
-  affectedInstances,
-}
+  critical('CRITICAL'),
+  high('HIGH'),
+  all('ALL'),
+  affectedInstances('AFFECTED_INSTANCES'),
+  ;
 
-extension AmiSortByValueExtension on AmiSortBy {
-  String toValue() {
-    switch (this) {
-      case AmiSortBy.critical:
-        return 'CRITICAL';
-      case AmiSortBy.high:
-        return 'HIGH';
-      case AmiSortBy.all:
-        return 'ALL';
-      case AmiSortBy.affectedInstances:
-        return 'AFFECTED_INSTANCES';
-    }
-  }
-}
+  final String value;
 
-extension AmiSortByFromString on String {
-  AmiSortBy toAmiSortBy() {
-    switch (this) {
-      case 'CRITICAL':
-        return AmiSortBy.critical;
-      case 'HIGH':
-        return AmiSortBy.high;
-      case 'ALL':
-        return AmiSortBy.all;
-      case 'AFFECTED_INSTANCES':
-        return AmiSortBy.affectedInstances;
-    }
-    throw Exception('$this is not known in enum AmiSortBy');
-  }
+  const AmiSortBy(this.value);
+
+  static AmiSortBy fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum AmiSortBy'));
 }
 
 enum Architecture {
-  x86_64,
-  arm64,
-}
+  x86_64('X86_64'),
+  arm64('ARM64'),
+  ;
 
-extension ArchitectureValueExtension on Architecture {
-  String toValue() {
-    switch (this) {
-      case Architecture.x86_64:
-        return 'X86_64';
-      case Architecture.arm64:
-        return 'ARM64';
-    }
-  }
-}
+  final String value;
 
-extension ArchitectureFromString on String {
-  Architecture toArchitecture() {
-    switch (this) {
-      case 'X86_64':
-        return Architecture.x86_64;
-      case 'ARM64':
-        return Architecture.arm64;
-    }
-    throw Exception('$this is not known in enum Architecture');
-  }
+  const Architecture(this.value);
+
+  static Architecture fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum Architecture'));
 }
 
 class AssociateMemberResponse {
@@ -2246,8 +2115,8 @@ class AwsEcrContainerAggregation {
       if (imageTags != null) 'imageTags': imageTags,
       if (repositories != null) 'repositories': repositories,
       if (resourceIds != null) 'resourceIds': resourceIds,
-      if (sortBy != null) 'sortBy': sortBy.toValue(),
-      if (sortOrder != null) 'sortOrder': sortOrder.toValue(),
+      if (sortBy != null) 'sortBy': sortBy.value,
+      if (sortOrder != null) 'sortOrder': sortOrder.value,
     };
   }
 }
@@ -2400,36 +2269,19 @@ class AwsEcrContainerImageDetails {
 }
 
 enum AwsEcrContainerSortBy {
-  critical,
-  high,
-  all,
-}
+  critical('CRITICAL'),
+  high('HIGH'),
+  all('ALL'),
+  ;
 
-extension AwsEcrContainerSortByValueExtension on AwsEcrContainerSortBy {
-  String toValue() {
-    switch (this) {
-      case AwsEcrContainerSortBy.critical:
-        return 'CRITICAL';
-      case AwsEcrContainerSortBy.high:
-        return 'HIGH';
-      case AwsEcrContainerSortBy.all:
-        return 'ALL';
-    }
-  }
-}
+  final String value;
 
-extension AwsEcrContainerSortByFromString on String {
-  AwsEcrContainerSortBy toAwsEcrContainerSortBy() {
-    switch (this) {
-      case 'CRITICAL':
-        return AwsEcrContainerSortBy.critical;
-      case 'HIGH':
-        return AwsEcrContainerSortBy.high;
-      case 'ALL':
-        return AwsEcrContainerSortBy.all;
-    }
-    throw Exception('$this is not known in enum AwsEcrContainerSortBy');
-  }
+  const AwsEcrContainerSortBy(this.value);
+
+  static AwsEcrContainerSortBy fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum AwsEcrContainerSortBy'));
 }
 
 /// A summary of information about the AWS Lambda function.
@@ -2489,18 +2341,19 @@ class AwsLambdaFunctionDetails {
       codeSha256: json['codeSha256'] as String,
       executionRoleArn: json['executionRoleArn'] as String,
       functionName: json['functionName'] as String,
-      runtime: (json['runtime'] as String).toRuntime(),
+      runtime: Runtime.fromString((json['runtime'] as String)),
       version: json['version'] as String,
       architectures: (json['architectures'] as List?)
           ?.whereNotNull()
-          .map((e) => (e as String).toArchitecture())
+          .map((e) => Architecture.fromString((e as String)))
           .toList(),
       lastModifiedAt: timeStampFromJson(json['lastModifiedAt']),
       layers: (json['layers'] as List?)
           ?.whereNotNull()
           .map((e) => e as String)
           .toList(),
-      packageType: (json['packageType'] as String?)?.toPackageType(),
+      packageType:
+          (json['packageType'] as String?)?.let(PackageType.fromString),
       vpcConfig: json['vpcConfig'] != null
           ? LambdaVpcConfig.fromJson(json['vpcConfig'] as Map<String, dynamic>)
           : null,
@@ -2522,14 +2375,14 @@ class AwsLambdaFunctionDetails {
       'codeSha256': codeSha256,
       'executionRoleArn': executionRoleArn,
       'functionName': functionName,
-      'runtime': runtime.toValue(),
+      'runtime': runtime.value,
       'version': version,
       if (architectures != null)
-        'architectures': architectures.map((e) => e.toValue()).toList(),
+        'architectures': architectures.map((e) => e.value).toList(),
       if (lastModifiedAt != null)
         'lastModifiedAt': unixTimestampToJson(lastModifiedAt),
       if (layers != null) 'layers': layers,
-      if (packageType != null) 'packageType': packageType.toValue(),
+      if (packageType != null) 'packageType': packageType.value,
       if (vpcConfig != null) 'vpcConfig': vpcConfig,
     };
   }
@@ -2769,7 +2622,7 @@ class Counts {
   factory Counts.fromJson(Map<String, dynamic> json) {
     return Counts(
       count: json['count'] as int?,
-      groupKey: (json['groupKey'] as String?)?.toGroupKey(),
+      groupKey: (json['groupKey'] as String?)?.let(GroupKey.fromString),
     );
   }
 
@@ -2778,7 +2631,7 @@ class Counts {
     final groupKey = this.groupKey;
     return {
       if (count != null) 'count': count,
-      if (groupKey != null) 'groupKey': groupKey.toValue(),
+      if (groupKey != null) 'groupKey': groupKey.value,
     };
   }
 }
@@ -2874,26 +2727,17 @@ class CoverageFilterCriteria {
 }
 
 enum CoverageMapComparison {
-  equals,
-}
+  equals('EQUALS'),
+  ;
 
-extension CoverageMapComparisonValueExtension on CoverageMapComparison {
-  String toValue() {
-    switch (this) {
-      case CoverageMapComparison.equals:
-        return 'EQUALS';
-    }
-  }
-}
+  final String value;
 
-extension CoverageMapComparisonFromString on String {
-  CoverageMapComparison toCoverageMapComparison() {
-    switch (this) {
-      case 'EQUALS':
-        return CoverageMapComparison.equals;
-    }
-    throw Exception('$this is not known in enum CoverageMapComparison');
-  }
+  const CoverageMapComparison(this.value);
+
+  static CoverageMapComparison fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum CoverageMapComparison'));
 }
 
 /// Contains details of a coverage map filter.
@@ -2918,7 +2762,7 @@ class CoverageMapFilter {
     final key = this.key;
     final value = this.value;
     return {
-      'comparison': comparison.toValue(),
+      'comparison': comparison.value,
       'key': key,
       if (value != null) 'value': value,
     };
@@ -2926,69 +2770,35 @@ class CoverageMapFilter {
 }
 
 enum CoverageResourceType {
-  awsEc2Instance,
-  awsEcrContainerImage,
-  awsEcrRepository,
-  awsLambdaFunction,
-}
+  awsEc2Instance('AWS_EC2_INSTANCE'),
+  awsEcrContainerImage('AWS_ECR_CONTAINER_IMAGE'),
+  awsEcrRepository('AWS_ECR_REPOSITORY'),
+  awsLambdaFunction('AWS_LAMBDA_FUNCTION'),
+  ;
 
-extension CoverageResourceTypeValueExtension on CoverageResourceType {
-  String toValue() {
-    switch (this) {
-      case CoverageResourceType.awsEc2Instance:
-        return 'AWS_EC2_INSTANCE';
-      case CoverageResourceType.awsEcrContainerImage:
-        return 'AWS_ECR_CONTAINER_IMAGE';
-      case CoverageResourceType.awsEcrRepository:
-        return 'AWS_ECR_REPOSITORY';
-      case CoverageResourceType.awsLambdaFunction:
-        return 'AWS_LAMBDA_FUNCTION';
-    }
-  }
-}
+  final String value;
 
-extension CoverageResourceTypeFromString on String {
-  CoverageResourceType toCoverageResourceType() {
-    switch (this) {
-      case 'AWS_EC2_INSTANCE':
-        return CoverageResourceType.awsEc2Instance;
-      case 'AWS_ECR_CONTAINER_IMAGE':
-        return CoverageResourceType.awsEcrContainerImage;
-      case 'AWS_ECR_REPOSITORY':
-        return CoverageResourceType.awsEcrRepository;
-      case 'AWS_LAMBDA_FUNCTION':
-        return CoverageResourceType.awsLambdaFunction;
-    }
-    throw Exception('$this is not known in enum CoverageResourceType');
-  }
+  const CoverageResourceType(this.value);
+
+  static CoverageResourceType fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum CoverageResourceType'));
 }
 
 enum CoverageStringComparison {
-  equals,
-  notEquals,
-}
+  equals('EQUALS'),
+  notEquals('NOT_EQUALS'),
+  ;
 
-extension CoverageStringComparisonValueExtension on CoverageStringComparison {
-  String toValue() {
-    switch (this) {
-      case CoverageStringComparison.equals:
-        return 'EQUALS';
-      case CoverageStringComparison.notEquals:
-        return 'NOT_EQUALS';
-    }
-  }
-}
+  final String value;
 
-extension CoverageStringComparisonFromString on String {
-  CoverageStringComparison toCoverageStringComparison() {
-    switch (this) {
-      case 'EQUALS':
-        return CoverageStringComparison.equals;
-      case 'NOT_EQUALS':
-        return CoverageStringComparison.notEquals;
-    }
-    throw Exception('$this is not known in enum CoverageStringComparison');
-  }
+  const CoverageStringComparison(this.value);
+
+  static CoverageStringComparison fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum CoverageStringComparison'));
 }
 
 /// Contains details of a coverage string filter.
@@ -3008,7 +2818,7 @@ class CoverageStringFilter {
     final comparison = this.comparison;
     final value = this.value;
     return {
-      'comparison': comparison.toValue(),
+      'comparison': comparison.value,
       'value': value,
     };
   }
@@ -3048,8 +2858,9 @@ class CoveredResource {
     return CoveredResource(
       accountId: json['accountId'] as String,
       resourceId: json['resourceId'] as String,
-      resourceType: (json['resourceType'] as String).toCoverageResourceType(),
-      scanType: (json['scanType'] as String).toScanType(),
+      resourceType:
+          CoverageResourceType.fromString((json['resourceType'] as String)),
+      scanType: ScanType.fromString((json['scanType'] as String)),
       resourceMetadata: json['resourceMetadata'] != null
           ? ResourceScanMetadata.fromJson(
               json['resourceMetadata'] as Map<String, dynamic>)
@@ -3070,8 +2881,8 @@ class CoveredResource {
     return {
       'accountId': accountId,
       'resourceId': resourceId,
-      'resourceType': resourceType.toValue(),
-      'scanType': scanType.toValue(),
+      'resourceType': resourceType.value,
+      'scanType': scanType.value,
       if (resourceMetadata != null) 'resourceMetadata': resourceMetadata,
       if (scanStatus != null) 'scanStatus': scanStatus,
     };
@@ -3123,26 +2934,16 @@ class CreateFindingsReportResponse {
 }
 
 enum Currency {
-  usd,
-}
+  usd('USD'),
+  ;
 
-extension CurrencyValueExtension on Currency {
-  String toValue() {
-    switch (this) {
-      case Currency.usd:
-        return 'USD';
-    }
-  }
-}
+  final String value;
 
-extension CurrencyFromString on String {
-  Currency toCurrency() {
-    switch (this) {
-      case 'USD':
-        return Currency.usd;
-    }
-    throw Exception('$this is not known in enum Currency');
-  }
+  const Currency(this.value);
+
+  static Currency fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum Currency'));
 }
 
 /// The Common Vulnerability Scoring System (CVSS) version 2 details for the
@@ -3394,8 +3195,8 @@ class DelegatedAdmin {
   factory DelegatedAdmin.fromJson(Map<String, dynamic> json) {
     return DelegatedAdmin(
       accountId: json['accountId'] as String?,
-      relationshipStatus:
-          (json['relationshipStatus'] as String?)?.toRelationshipStatus(),
+      relationshipStatus: (json['relationshipStatus'] as String?)
+          ?.let(RelationshipStatus.fromString),
     );
   }
 
@@ -3405,7 +3206,7 @@ class DelegatedAdmin {
     return {
       if (accountId != null) 'accountId': accountId,
       if (relationshipStatus != null)
-        'relationshipStatus': relationshipStatus.toValue(),
+        'relationshipStatus': relationshipStatus.value,
     };
   }
 }
@@ -3428,7 +3229,7 @@ class DelegatedAdminAccount {
   factory DelegatedAdminAccount.fromJson(Map<String, dynamic> json) {
     return DelegatedAdminAccount(
       accountId: json['accountId'] as String?,
-      status: (json['status'] as String?)?.toDelegatedAdminStatus(),
+      status: (json['status'] as String?)?.let(DelegatedAdminStatus.fromString),
     );
   }
 
@@ -3437,37 +3238,24 @@ class DelegatedAdminAccount {
     final status = this.status;
     return {
       if (accountId != null) 'accountId': accountId,
-      if (status != null) 'status': status.toValue(),
+      if (status != null) 'status': status.value,
     };
   }
 }
 
 enum DelegatedAdminStatus {
-  enabled,
-  disableInProgress,
-}
+  enabled('ENABLED'),
+  disableInProgress('DISABLE_IN_PROGRESS'),
+  ;
 
-extension DelegatedAdminStatusValueExtension on DelegatedAdminStatus {
-  String toValue() {
-    switch (this) {
-      case DelegatedAdminStatus.enabled:
-        return 'ENABLED';
-      case DelegatedAdminStatus.disableInProgress:
-        return 'DISABLE_IN_PROGRESS';
-    }
-  }
-}
+  final String value;
 
-extension DelegatedAdminStatusFromString on String {
-  DelegatedAdminStatus toDelegatedAdminStatus() {
-    switch (this) {
-      case 'ENABLED':
-        return DelegatedAdminStatus.enabled;
-      case 'DISABLE_IN_PROGRESS':
-        return DelegatedAdminStatus.disableInProgress;
-    }
-    throw Exception('$this is not known in enum DelegatedAdminStatus');
-  }
+  const DelegatedAdminStatus(this.value);
+
+  static DelegatedAdminStatus fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum DelegatedAdminStatus'));
 }
 
 class DeleteFilterResponse {
@@ -3649,41 +3437,20 @@ class DisassociateMemberResponse {
 }
 
 enum Ec2DeepInspectionStatus {
-  activated,
-  deactivated,
-  pending,
-  failed,
-}
+  activated('ACTIVATED'),
+  deactivated('DEACTIVATED'),
+  pending('PENDING'),
+  failed('FAILED'),
+  ;
 
-extension Ec2DeepInspectionStatusValueExtension on Ec2DeepInspectionStatus {
-  String toValue() {
-    switch (this) {
-      case Ec2DeepInspectionStatus.activated:
-        return 'ACTIVATED';
-      case Ec2DeepInspectionStatus.deactivated:
-        return 'DEACTIVATED';
-      case Ec2DeepInspectionStatus.pending:
-        return 'PENDING';
-      case Ec2DeepInspectionStatus.failed:
-        return 'FAILED';
-    }
-  }
-}
+  final String value;
 
-extension Ec2DeepInspectionStatusFromString on String {
-  Ec2DeepInspectionStatus toEc2DeepInspectionStatus() {
-    switch (this) {
-      case 'ACTIVATED':
-        return Ec2DeepInspectionStatus.activated;
-      case 'DEACTIVATED':
-        return Ec2DeepInspectionStatus.deactivated;
-      case 'PENDING':
-        return Ec2DeepInspectionStatus.pending;
-      case 'FAILED':
-        return Ec2DeepInspectionStatus.failed;
-    }
-    throw Exception('$this is not known in enum Ec2DeepInspectionStatus');
-  }
+  const Ec2DeepInspectionStatus(this.value);
+
+  static Ec2DeepInspectionStatus fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum Ec2DeepInspectionStatus'));
 }
 
 /// The details that define an aggregation based on Amazon EC2 instances.
@@ -3730,8 +3497,8 @@ class Ec2InstanceAggregation {
       if (instanceIds != null) 'instanceIds': instanceIds,
       if (instanceTags != null) 'instanceTags': instanceTags,
       if (operatingSystems != null) 'operatingSystems': operatingSystems,
-      if (sortBy != null) 'sortBy': sortBy.toValue(),
-      if (sortOrder != null) 'sortOrder': sortOrder.toValue(),
+      if (sortBy != null) 'sortBy': sortBy.value,
+      if (sortOrder != null) 'sortOrder': sortOrder.value,
     };
   }
 }
@@ -3807,41 +3574,20 @@ class Ec2InstanceAggregationResponse {
 }
 
 enum Ec2InstanceSortBy {
-  networkFindings,
-  critical,
-  high,
-  all,
-}
+  networkFindings('NETWORK_FINDINGS'),
+  critical('CRITICAL'),
+  high('HIGH'),
+  all('ALL'),
+  ;
 
-extension Ec2InstanceSortByValueExtension on Ec2InstanceSortBy {
-  String toValue() {
-    switch (this) {
-      case Ec2InstanceSortBy.networkFindings:
-        return 'NETWORK_FINDINGS';
-      case Ec2InstanceSortBy.critical:
-        return 'CRITICAL';
-      case Ec2InstanceSortBy.high:
-        return 'HIGH';
-      case Ec2InstanceSortBy.all:
-        return 'ALL';
-    }
-  }
-}
+  final String value;
 
-extension Ec2InstanceSortByFromString on String {
-  Ec2InstanceSortBy toEc2InstanceSortBy() {
-    switch (this) {
-      case 'NETWORK_FINDINGS':
-        return Ec2InstanceSortBy.networkFindings;
-      case 'CRITICAL':
-        return Ec2InstanceSortBy.critical;
-      case 'HIGH':
-        return Ec2InstanceSortBy.high;
-      case 'ALL':
-        return Ec2InstanceSortBy.all;
-    }
-    throw Exception('$this is not known in enum Ec2InstanceSortBy');
-  }
+  const Ec2InstanceSortBy(this.value);
+
+  static Ec2InstanceSortBy fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum Ec2InstanceSortBy'));
 }
 
 /// Meta data details of an Amazon EC2 instance.
@@ -3864,7 +3610,7 @@ class Ec2Metadata {
   factory Ec2Metadata.fromJson(Map<String, dynamic> json) {
     return Ec2Metadata(
       amiId: json['amiId'] as String?,
-      platform: (json['platform'] as String?)?.toEc2Platform(),
+      platform: (json['platform'] as String?)?.let(Ec2Platform.fromString),
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
@@ -3876,43 +3622,25 @@ class Ec2Metadata {
     final tags = this.tags;
     return {
       if (amiId != null) 'amiId': amiId,
-      if (platform != null) 'platform': platform.toValue(),
+      if (platform != null) 'platform': platform.value,
       if (tags != null) 'tags': tags,
     };
   }
 }
 
 enum Ec2Platform {
-  windows,
-  linux,
-  unknown,
-}
+  windows('WINDOWS'),
+  linux('LINUX'),
+  unknown('UNKNOWN'),
+  ;
 
-extension Ec2PlatformValueExtension on Ec2Platform {
-  String toValue() {
-    switch (this) {
-      case Ec2Platform.windows:
-        return 'WINDOWS';
-      case Ec2Platform.linux:
-        return 'LINUX';
-      case Ec2Platform.unknown:
-        return 'UNKNOWN';
-    }
-  }
-}
+  final String value;
 
-extension Ec2PlatformFromString on String {
-  Ec2Platform toEc2Platform() {
-    switch (this) {
-      case 'WINDOWS':
-        return Ec2Platform.windows;
-      case 'LINUX':
-        return Ec2Platform.linux;
-      case 'UNKNOWN':
-        return Ec2Platform.unknown;
-    }
-    throw Exception('$this is not known in enum Ec2Platform');
-  }
+  const Ec2Platform(this.value);
+
+  static Ec2Platform fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum Ec2Platform'));
 }
 
 /// Details about the ECR automated re-scan duration setting for your
@@ -3932,7 +3660,7 @@ class EcrConfiguration {
   Map<String, dynamic> toJson() {
     final rescanDuration = this.rescanDuration;
     return {
-      'rescanDuration': rescanDuration.toValue(),
+      'rescanDuration': rescanDuration.value,
     };
   }
 }
@@ -4007,7 +3735,8 @@ class EcrRepositoryMetadata {
   factory EcrRepositoryMetadata.fromJson(Map<String, dynamic> json) {
     return EcrRepositoryMetadata(
       name: json['name'] as String?,
-      scanFrequency: (json['scanFrequency'] as String?)?.toEcrScanFrequency(),
+      scanFrequency:
+          (json['scanFrequency'] as String?)?.let(EcrScanFrequency.fromString),
     );
   }
 
@@ -4016,42 +3745,25 @@ class EcrRepositoryMetadata {
     final scanFrequency = this.scanFrequency;
     return {
       if (name != null) 'name': name,
-      if (scanFrequency != null) 'scanFrequency': scanFrequency.toValue(),
+      if (scanFrequency != null) 'scanFrequency': scanFrequency.value,
     };
   }
 }
 
 enum EcrRescanDuration {
-  lifetime,
-  days_30,
-  days_180,
-}
+  lifetime('LIFETIME'),
+  days_30('DAYS_30'),
+  days_180('DAYS_180'),
+  ;
 
-extension EcrRescanDurationValueExtension on EcrRescanDuration {
-  String toValue() {
-    switch (this) {
-      case EcrRescanDuration.lifetime:
-        return 'LIFETIME';
-      case EcrRescanDuration.days_30:
-        return 'DAYS_30';
-      case EcrRescanDuration.days_180:
-        return 'DAYS_180';
-    }
-  }
-}
+  final String value;
 
-extension EcrRescanDurationFromString on String {
-  EcrRescanDuration toEcrRescanDuration() {
-    switch (this) {
-      case 'LIFETIME':
-        return EcrRescanDuration.lifetime;
-      case 'DAYS_30':
-        return EcrRescanDuration.days_30;
-      case 'DAYS_180':
-        return EcrRescanDuration.days_180;
-    }
-    throw Exception('$this is not known in enum EcrRescanDuration');
-  }
+  const EcrRescanDuration(this.value);
+
+  static EcrRescanDuration fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum EcrRescanDuration'));
 }
 
 /// Details about the state of any changes to the ECR automated re-scan duration
@@ -4079,9 +3791,10 @@ class EcrRescanDurationState {
 
   factory EcrRescanDurationState.fromJson(Map<String, dynamic> json) {
     return EcrRescanDurationState(
-      rescanDuration:
-          (json['rescanDuration'] as String?)?.toEcrRescanDuration(),
-      status: (json['status'] as String?)?.toEcrRescanDurationStatus(),
+      rescanDuration: (json['rescanDuration'] as String?)
+          ?.let(EcrRescanDuration.fromString),
+      status:
+          (json['status'] as String?)?.let(EcrRescanDurationStatus.fromString),
       updatedAt: timeStampFromJson(json['updatedAt']),
     );
   }
@@ -4091,77 +3804,43 @@ class EcrRescanDurationState {
     final status = this.status;
     final updatedAt = this.updatedAt;
     return {
-      if (rescanDuration != null) 'rescanDuration': rescanDuration.toValue(),
-      if (status != null) 'status': status.toValue(),
+      if (rescanDuration != null) 'rescanDuration': rescanDuration.value,
+      if (status != null) 'status': status.value,
       if (updatedAt != null) 'updatedAt': unixTimestampToJson(updatedAt),
     };
   }
 }
 
 enum EcrRescanDurationStatus {
-  success,
-  pending,
-  failed,
-}
+  success('SUCCESS'),
+  pending('PENDING'),
+  failed('FAILED'),
+  ;
 
-extension EcrRescanDurationStatusValueExtension on EcrRescanDurationStatus {
-  String toValue() {
-    switch (this) {
-      case EcrRescanDurationStatus.success:
-        return 'SUCCESS';
-      case EcrRescanDurationStatus.pending:
-        return 'PENDING';
-      case EcrRescanDurationStatus.failed:
-        return 'FAILED';
-    }
-  }
-}
+  final String value;
 
-extension EcrRescanDurationStatusFromString on String {
-  EcrRescanDurationStatus toEcrRescanDurationStatus() {
-    switch (this) {
-      case 'SUCCESS':
-        return EcrRescanDurationStatus.success;
-      case 'PENDING':
-        return EcrRescanDurationStatus.pending;
-      case 'FAILED':
-        return EcrRescanDurationStatus.failed;
-    }
-    throw Exception('$this is not known in enum EcrRescanDurationStatus');
-  }
+  const EcrRescanDurationStatus(this.value);
+
+  static EcrRescanDurationStatus fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum EcrRescanDurationStatus'));
 }
 
 enum EcrScanFrequency {
-  manual,
-  scanOnPush,
-  continuousScan,
-}
+  manual('MANUAL'),
+  scanOnPush('SCAN_ON_PUSH'),
+  continuousScan('CONTINUOUS_SCAN'),
+  ;
 
-extension EcrScanFrequencyValueExtension on EcrScanFrequency {
-  String toValue() {
-    switch (this) {
-      case EcrScanFrequency.manual:
-        return 'MANUAL';
-      case EcrScanFrequency.scanOnPush:
-        return 'SCAN_ON_PUSH';
-      case EcrScanFrequency.continuousScan:
-        return 'CONTINUOUS_SCAN';
-    }
-  }
-}
+  final String value;
 
-extension EcrScanFrequencyFromString on String {
-  EcrScanFrequency toEcrScanFrequency() {
-    switch (this) {
-      case 'MANUAL':
-        return EcrScanFrequency.manual;
-      case 'SCAN_ON_PUSH':
-        return EcrScanFrequency.scanOnPush;
-      case 'CONTINUOUS_SCAN':
-        return EcrScanFrequency.continuousScan;
-    }
-    throw Exception('$this is not known in enum EcrScanFrequency');
-  }
+  const EcrScanFrequency(this.value);
+
+  static EcrScanFrequency fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum EcrScanFrequency'));
 }
 
 class EnableDelegatedAdminAccountResponse {
@@ -4249,119 +3928,44 @@ class Epss {
 }
 
 enum ErrorCode {
-  alreadyEnabled,
-  enableInProgress,
-  disableInProgress,
-  suspendInProgress,
-  resourceNotFound,
-  accessDenied,
-  internalError,
-  ssmUnavailable,
-  ssmThrottled,
-  eventbridgeUnavailable,
-  eventbridgeThrottled,
-  resourceScanNotDisabled,
-  disassociateAllMembers,
-  accountIsIsolated,
-}
+  alreadyEnabled('ALREADY_ENABLED'),
+  enableInProgress('ENABLE_IN_PROGRESS'),
+  disableInProgress('DISABLE_IN_PROGRESS'),
+  suspendInProgress('SUSPEND_IN_PROGRESS'),
+  resourceNotFound('RESOURCE_NOT_FOUND'),
+  accessDenied('ACCESS_DENIED'),
+  internalError('INTERNAL_ERROR'),
+  ssmUnavailable('SSM_UNAVAILABLE'),
+  ssmThrottled('SSM_THROTTLED'),
+  eventbridgeUnavailable('EVENTBRIDGE_UNAVAILABLE'),
+  eventbridgeThrottled('EVENTBRIDGE_THROTTLED'),
+  resourceScanNotDisabled('RESOURCE_SCAN_NOT_DISABLED'),
+  disassociateAllMembers('DISASSOCIATE_ALL_MEMBERS'),
+  accountIsIsolated('ACCOUNT_IS_ISOLATED'),
+  ;
 
-extension ErrorCodeValueExtension on ErrorCode {
-  String toValue() {
-    switch (this) {
-      case ErrorCode.alreadyEnabled:
-        return 'ALREADY_ENABLED';
-      case ErrorCode.enableInProgress:
-        return 'ENABLE_IN_PROGRESS';
-      case ErrorCode.disableInProgress:
-        return 'DISABLE_IN_PROGRESS';
-      case ErrorCode.suspendInProgress:
-        return 'SUSPEND_IN_PROGRESS';
-      case ErrorCode.resourceNotFound:
-        return 'RESOURCE_NOT_FOUND';
-      case ErrorCode.accessDenied:
-        return 'ACCESS_DENIED';
-      case ErrorCode.internalError:
-        return 'INTERNAL_ERROR';
-      case ErrorCode.ssmUnavailable:
-        return 'SSM_UNAVAILABLE';
-      case ErrorCode.ssmThrottled:
-        return 'SSM_THROTTLED';
-      case ErrorCode.eventbridgeUnavailable:
-        return 'EVENTBRIDGE_UNAVAILABLE';
-      case ErrorCode.eventbridgeThrottled:
-        return 'EVENTBRIDGE_THROTTLED';
-      case ErrorCode.resourceScanNotDisabled:
-        return 'RESOURCE_SCAN_NOT_DISABLED';
-      case ErrorCode.disassociateAllMembers:
-        return 'DISASSOCIATE_ALL_MEMBERS';
-      case ErrorCode.accountIsIsolated:
-        return 'ACCOUNT_IS_ISOLATED';
-    }
-  }
-}
+  final String value;
 
-extension ErrorCodeFromString on String {
-  ErrorCode toErrorCode() {
-    switch (this) {
-      case 'ALREADY_ENABLED':
-        return ErrorCode.alreadyEnabled;
-      case 'ENABLE_IN_PROGRESS':
-        return ErrorCode.enableInProgress;
-      case 'DISABLE_IN_PROGRESS':
-        return ErrorCode.disableInProgress;
-      case 'SUSPEND_IN_PROGRESS':
-        return ErrorCode.suspendInProgress;
-      case 'RESOURCE_NOT_FOUND':
-        return ErrorCode.resourceNotFound;
-      case 'ACCESS_DENIED':
-        return ErrorCode.accessDenied;
-      case 'INTERNAL_ERROR':
-        return ErrorCode.internalError;
-      case 'SSM_UNAVAILABLE':
-        return ErrorCode.ssmUnavailable;
-      case 'SSM_THROTTLED':
-        return ErrorCode.ssmThrottled;
-      case 'EVENTBRIDGE_UNAVAILABLE':
-        return ErrorCode.eventbridgeUnavailable;
-      case 'EVENTBRIDGE_THROTTLED':
-        return ErrorCode.eventbridgeThrottled;
-      case 'RESOURCE_SCAN_NOT_DISABLED':
-        return ErrorCode.resourceScanNotDisabled;
-      case 'DISASSOCIATE_ALL_MEMBERS':
-        return ErrorCode.disassociateAllMembers;
-      case 'ACCOUNT_IS_ISOLATED':
-        return ErrorCode.accountIsIsolated;
-    }
-    throw Exception('$this is not known in enum ErrorCode');
-  }
+  const ErrorCode(this.value);
+
+  static ErrorCode fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum ErrorCode'));
 }
 
 enum ExploitAvailable {
-  yes,
-  no,
-}
+  yes('YES'),
+  no('NO'),
+  ;
 
-extension ExploitAvailableValueExtension on ExploitAvailable {
-  String toValue() {
-    switch (this) {
-      case ExploitAvailable.yes:
-        return 'YES';
-      case ExploitAvailable.no:
-        return 'NO';
-    }
-  }
-}
+  final String value;
 
-extension ExploitAvailableFromString on String {
-  ExploitAvailable toExploitAvailable() {
-    switch (this) {
-      case 'YES':
-        return ExploitAvailable.yes;
-      case 'NO':
-        return ExploitAvailable.no;
-    }
-    throw Exception('$this is not known in enum ExploitAvailable');
-  }
+  const ExploitAvailable(this.value);
+
+  static ExploitAvailable fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum ExploitAvailable'));
 }
 
 /// Contains information on when this exploit was observed.
@@ -4421,41 +4025,20 @@ class ExploitabilityDetails {
 }
 
 enum ExternalReportStatus {
-  succeeded,
-  inProgress,
-  cancelled,
-  failed,
-}
+  succeeded('SUCCEEDED'),
+  inProgress('IN_PROGRESS'),
+  cancelled('CANCELLED'),
+  failed('FAILED'),
+  ;
 
-extension ExternalReportStatusValueExtension on ExternalReportStatus {
-  String toValue() {
-    switch (this) {
-      case ExternalReportStatus.succeeded:
-        return 'SUCCEEDED';
-      case ExternalReportStatus.inProgress:
-        return 'IN_PROGRESS';
-      case ExternalReportStatus.cancelled:
-        return 'CANCELLED';
-      case ExternalReportStatus.failed:
-        return 'FAILED';
-    }
-  }
-}
+  final String value;
 
-extension ExternalReportStatusFromString on String {
-  ExternalReportStatus toExternalReportStatus() {
-    switch (this) {
-      case 'SUCCEEDED':
-        return ExternalReportStatus.succeeded;
-      case 'IN_PROGRESS':
-        return ExternalReportStatus.inProgress;
-      case 'CANCELLED':
-        return ExternalReportStatus.cancelled;
-      case 'FAILED':
-        return ExternalReportStatus.failed;
-    }
-    throw Exception('$this is not known in enum ExternalReportStatus');
-  }
+  const ExternalReportStatus(this.value);
+
+  static ExternalReportStatus fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum ExternalReportStatus'));
 }
 
 /// An object with details on why an account failed to enable Amazon Inspector.
@@ -4488,13 +4071,13 @@ class FailedAccount {
   factory FailedAccount.fromJson(Map<String, dynamic> json) {
     return FailedAccount(
       accountId: json['accountId'] as String,
-      errorCode: (json['errorCode'] as String).toErrorCode(),
+      errorCode: ErrorCode.fromString((json['errorCode'] as String)),
       errorMessage: json['errorMessage'] as String,
       resourceStatus: json['resourceStatus'] != null
           ? ResourceStatus.fromJson(
               json['resourceStatus'] as Map<String, dynamic>)
           : null,
-      status: (json['status'] as String?)?.toStatus(),
+      status: (json['status'] as String?)?.let(Status.fromString),
     );
   }
 
@@ -4506,10 +4089,10 @@ class FailedAccount {
     final status = this.status;
     return {
       'accountId': accountId,
-      'errorCode': errorCode.toValue(),
+      'errorCode': errorCode.value,
       'errorMessage': errorMessage,
       if (resourceStatus != null) 'resourceStatus': resourceStatus,
-      if (status != null) 'status': status.toValue(),
+      if (status != null) 'status': status.value,
     };
   }
 }
@@ -4540,7 +4123,7 @@ class FailedMemberAccountEc2DeepInspectionStatusState {
       Map<String, dynamic> json) {
     return FailedMemberAccountEc2DeepInspectionStatusState(
       accountId: json['accountId'] as String,
-      ec2ScanStatus: (json['ec2ScanStatus'] as String?)?.toStatus(),
+      ec2ScanStatus: (json['ec2ScanStatus'] as String?)?.let(Status.fromString),
       errorMessage: json['errorMessage'] as String?,
     );
   }
@@ -4551,7 +4134,7 @@ class FailedMemberAccountEc2DeepInspectionStatusState {
     final errorMessage = this.errorMessage;
     return {
       'accountId': accountId,
-      if (ec2ScanStatus != null) 'ec2ScanStatus': ec2ScanStatus.toValue(),
+      if (ec2ScanStatus != null) 'ec2ScanStatus': ec2ScanStatus.value,
       if (errorMessage != null) 'errorMessage': errorMessage,
     };
   }
@@ -4604,7 +4187,7 @@ class Filter {
 
   factory Filter.fromJson(Map<String, dynamic> json) {
     return Filter(
-      action: (json['action'] as String).toFilterAction(),
+      action: FilterAction.fromString((json['action'] as String)),
       arn: json['arn'] as String,
       createdAt: nonNullableTimeStampFromJson(json['createdAt'] as Object),
       criteria:
@@ -4631,7 +4214,7 @@ class Filter {
     final reason = this.reason;
     final tags = this.tags;
     return {
-      'action': action.toValue(),
+      'action': action.value,
       'arn': arn,
       'createdAt': unixTimestampToJson(createdAt),
       'criteria': criteria,
@@ -4646,31 +4229,18 @@ class Filter {
 }
 
 enum FilterAction {
-  none,
-  suppress,
-}
+  none('NONE'),
+  suppress('SUPPRESS'),
+  ;
 
-extension FilterActionValueExtension on FilterAction {
-  String toValue() {
-    switch (this) {
-      case FilterAction.none:
-        return 'NONE';
-      case FilterAction.suppress:
-        return 'SUPPRESS';
-    }
-  }
-}
+  final String value;
 
-extension FilterActionFromString on String {
-  FilterAction toFilterAction() {
-    switch (this) {
-      case 'NONE':
-        return FilterAction.none;
-      case 'SUPPRESS':
-        return FilterAction.suppress;
-    }
-    throw Exception('$this is not known in enum FilterAction');
-  }
+  const FilterAction(this.value);
+
+  static FilterAction fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum FilterAction'));
 }
 
 /// Details on the criteria used to define the filter.
@@ -5192,16 +4762,17 @@ class Finding {
           .whereNotNull()
           .map((e) => Resource.fromJson(e as Map<String, dynamic>))
           .toList(),
-      severity: (json['severity'] as String).toSeverity(),
-      status: (json['status'] as String).toFindingStatus(),
-      type: (json['type'] as String).toFindingType(),
-      exploitAvailable:
-          (json['exploitAvailable'] as String?)?.toExploitAvailable(),
+      severity: Severity.fromString((json['severity'] as String)),
+      status: FindingStatus.fromString((json['status'] as String)),
+      type: FindingType.fromString((json['type'] as String)),
+      exploitAvailable: (json['exploitAvailable'] as String?)
+          ?.let(ExploitAvailable.fromString),
       exploitabilityDetails: json['exploitabilityDetails'] != null
           ? ExploitabilityDetails.fromJson(
               json['exploitabilityDetails'] as Map<String, dynamic>)
           : null,
-      fixAvailable: (json['fixAvailable'] as String?)?.toFixAvailable(),
+      fixAvailable:
+          (json['fixAvailable'] as String?)?.let(FixAvailable.fromString),
       inspectorScore: json['inspectorScore'] as double?,
       inspectorScoreDetails: json['inspectorScoreDetails'] != null
           ? InspectorScoreDetails.fromJson(
@@ -5248,14 +4819,13 @@ class Finding {
       'lastObservedAt': unixTimestampToJson(lastObservedAt),
       'remediation': remediation,
       'resources': resources,
-      'severity': severity.toValue(),
-      'status': status.toValue(),
-      'type': type.toValue(),
-      if (exploitAvailable != null)
-        'exploitAvailable': exploitAvailable.toValue(),
+      'severity': severity.value,
+      'status': status.value,
+      'type': type.value,
+      if (exploitAvailable != null) 'exploitAvailable': exploitAvailable.value,
       if (exploitabilityDetails != null)
         'exploitabilityDetails': exploitabilityDetails,
-      if (fixAvailable != null) 'fixAvailable': fixAvailable.toValue(),
+      if (fixAvailable != null) 'fixAvailable': fixAvailable.value,
       if (inspectorScore != null) 'inspectorScore': inspectorScore,
       if (inspectorScoreDetails != null)
         'inspectorScoreDetails': inspectorScoreDetails,
@@ -5270,64 +4840,33 @@ class Finding {
 }
 
 enum FindingStatus {
-  active,
-  suppressed,
-  closed,
-}
+  active('ACTIVE'),
+  suppressed('SUPPRESSED'),
+  closed('CLOSED'),
+  ;
 
-extension FindingStatusValueExtension on FindingStatus {
-  String toValue() {
-    switch (this) {
-      case FindingStatus.active:
-        return 'ACTIVE';
-      case FindingStatus.suppressed:
-        return 'SUPPRESSED';
-      case FindingStatus.closed:
-        return 'CLOSED';
-    }
-  }
-}
+  final String value;
 
-extension FindingStatusFromString on String {
-  FindingStatus toFindingStatus() {
-    switch (this) {
-      case 'ACTIVE':
-        return FindingStatus.active;
-      case 'SUPPRESSED':
-        return FindingStatus.suppressed;
-      case 'CLOSED':
-        return FindingStatus.closed;
-    }
-    throw Exception('$this is not known in enum FindingStatus');
-  }
+  const FindingStatus(this.value);
+
+  static FindingStatus fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum FindingStatus'));
 }
 
 enum FindingType {
-  networkReachability,
-  packageVulnerability,
-}
+  networkReachability('NETWORK_REACHABILITY'),
+  packageVulnerability('PACKAGE_VULNERABILITY'),
+  ;
 
-extension FindingTypeValueExtension on FindingType {
-  String toValue() {
-    switch (this) {
-      case FindingType.networkReachability:
-        return 'NETWORK_REACHABILITY';
-      case FindingType.packageVulnerability:
-        return 'PACKAGE_VULNERABILITY';
-    }
-  }
-}
+  final String value;
 
-extension FindingTypeFromString on String {
-  FindingType toFindingType() {
-    switch (this) {
-      case 'NETWORK_REACHABILITY':
-        return FindingType.networkReachability;
-      case 'PACKAGE_VULNERABILITY':
-        return FindingType.packageVulnerability;
-    }
-    throw Exception('$this is not known in enum FindingType');
-  }
+  const FindingType(this.value);
+
+  static FindingType fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum FindingType'));
 }
 
 /// The details that define an aggregation based on finding type.
@@ -5357,10 +4896,10 @@ class FindingTypeAggregation {
     final sortBy = this.sortBy;
     final sortOrder = this.sortOrder;
     return {
-      if (findingType != null) 'findingType': findingType.toValue(),
-      if (resourceType != null) 'resourceType': resourceType.toValue(),
-      if (sortBy != null) 'sortBy': sortBy.toValue(),
-      if (sortOrder != null) 'sortOrder': sortOrder.toValue(),
+      if (findingType != null) 'findingType': findingType.value,
+      if (resourceType != null) 'resourceType': resourceType.value,
+      if (sortBy != null) 'sortBy': sortBy.value,
+      if (sortOrder != null) 'sortOrder': sortOrder.value,
     };
   }
 }
@@ -5399,69 +4938,35 @@ class FindingTypeAggregationResponse {
 }
 
 enum FindingTypeSortBy {
-  critical,
-  high,
-  all,
-}
+  critical('CRITICAL'),
+  high('HIGH'),
+  all('ALL'),
+  ;
 
-extension FindingTypeSortByValueExtension on FindingTypeSortBy {
-  String toValue() {
-    switch (this) {
-      case FindingTypeSortBy.critical:
-        return 'CRITICAL';
-      case FindingTypeSortBy.high:
-        return 'HIGH';
-      case FindingTypeSortBy.all:
-        return 'ALL';
-    }
-  }
-}
+  final String value;
 
-extension FindingTypeSortByFromString on String {
-  FindingTypeSortBy toFindingTypeSortBy() {
-    switch (this) {
-      case 'CRITICAL':
-        return FindingTypeSortBy.critical;
-      case 'HIGH':
-        return FindingTypeSortBy.high;
-      case 'ALL':
-        return FindingTypeSortBy.all;
-    }
-    throw Exception('$this is not known in enum FindingTypeSortBy');
-  }
+  const FindingTypeSortBy(this.value);
+
+  static FindingTypeSortBy fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum FindingTypeSortBy'));
 }
 
 enum FixAvailable {
-  yes,
-  no,
-  partial,
-}
+  yes('YES'),
+  no('NO'),
+  partial('PARTIAL'),
+  ;
 
-extension FixAvailableValueExtension on FixAvailable {
-  String toValue() {
-    switch (this) {
-      case FixAvailable.yes:
-        return 'YES';
-      case FixAvailable.no:
-        return 'NO';
-      case FixAvailable.partial:
-        return 'PARTIAL';
-    }
-  }
-}
+  final String value;
 
-extension FixAvailableFromString on String {
-  FixAvailable toFixAvailable() {
-    switch (this) {
-      case 'YES':
-        return FixAvailable.yes;
-      case 'NO':
-        return FixAvailable.no;
-      case 'PARTIAL':
-        return FixAvailable.partial;
-    }
-    throw Exception('$this is not known in enum FixAvailable');
-  }
+  const FixAvailable(this.value);
+
+  static FixAvailable fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum FixAvailable'));
 }
 
 /// Information about the Amazon Inspector free trial for an account.
@@ -5525,8 +5030,8 @@ class FreeTrialInfo {
     return FreeTrialInfo(
       end: nonNullableTimeStampFromJson(json['end'] as Object),
       start: nonNullableTimeStampFromJson(json['start'] as Object),
-      status: (json['status'] as String).toFreeTrialStatus(),
-      type: (json['type'] as String).toFreeTrialType(),
+      status: FreeTrialStatus.fromString((json['status'] as String)),
+      type: FreeTrialType.fromString((json['type'] as String)),
     );
   }
 
@@ -5538,8 +5043,8 @@ class FreeTrialInfo {
     return {
       'end': unixTimestampToJson(end),
       'start': unixTimestampToJson(start),
-      'status': status.toValue(),
-      'type': type.toValue(),
+      'status': status.value,
+      'type': type.value,
     };
   }
 }
@@ -5565,7 +5070,7 @@ class FreeTrialInfoError {
   factory FreeTrialInfoError.fromJson(Map<String, dynamic> json) {
     return FreeTrialInfoError(
       accountId: json['accountId'] as String,
-      code: (json['code'] as String).toFreeTrialInfoErrorCode(),
+      code: FreeTrialInfoErrorCode.fromString((json['code'] as String)),
       message: json['message'] as String,
     );
   }
@@ -5576,99 +5081,56 @@ class FreeTrialInfoError {
     final message = this.message;
     return {
       'accountId': accountId,
-      'code': code.toValue(),
+      'code': code.value,
       'message': message,
     };
   }
 }
 
 enum FreeTrialInfoErrorCode {
-  accessDenied,
-  internalError,
-}
+  accessDenied('ACCESS_DENIED'),
+  internalError('INTERNAL_ERROR'),
+  ;
 
-extension FreeTrialInfoErrorCodeValueExtension on FreeTrialInfoErrorCode {
-  String toValue() {
-    switch (this) {
-      case FreeTrialInfoErrorCode.accessDenied:
-        return 'ACCESS_DENIED';
-      case FreeTrialInfoErrorCode.internalError:
-        return 'INTERNAL_ERROR';
-    }
-  }
-}
+  final String value;
 
-extension FreeTrialInfoErrorCodeFromString on String {
-  FreeTrialInfoErrorCode toFreeTrialInfoErrorCode() {
-    switch (this) {
-      case 'ACCESS_DENIED':
-        return FreeTrialInfoErrorCode.accessDenied;
-      case 'INTERNAL_ERROR':
-        return FreeTrialInfoErrorCode.internalError;
-    }
-    throw Exception('$this is not known in enum FreeTrialInfoErrorCode');
-  }
+  const FreeTrialInfoErrorCode(this.value);
+
+  static FreeTrialInfoErrorCode fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum FreeTrialInfoErrorCode'));
 }
 
 enum FreeTrialStatus {
-  active,
-  inactive,
-}
+  active('ACTIVE'),
+  inactive('INACTIVE'),
+  ;
 
-extension FreeTrialStatusValueExtension on FreeTrialStatus {
-  String toValue() {
-    switch (this) {
-      case FreeTrialStatus.active:
-        return 'ACTIVE';
-      case FreeTrialStatus.inactive:
-        return 'INACTIVE';
-    }
-  }
-}
+  final String value;
 
-extension FreeTrialStatusFromString on String {
-  FreeTrialStatus toFreeTrialStatus() {
-    switch (this) {
-      case 'ACTIVE':
-        return FreeTrialStatus.active;
-      case 'INACTIVE':
-        return FreeTrialStatus.inactive;
-    }
-    throw Exception('$this is not known in enum FreeTrialStatus');
-  }
+  const FreeTrialStatus(this.value);
+
+  static FreeTrialStatus fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum FreeTrialStatus'));
 }
 
 enum FreeTrialType {
-  ec2,
-  ecr,
-  lambda,
-}
+  ec2('EC2'),
+  ecr('ECR'),
+  lambda('LAMBDA'),
+  ;
 
-extension FreeTrialTypeValueExtension on FreeTrialType {
-  String toValue() {
-    switch (this) {
-      case FreeTrialType.ec2:
-        return 'EC2';
-      case FreeTrialType.ecr:
-        return 'ECR';
-      case FreeTrialType.lambda:
-        return 'LAMBDA';
-    }
-  }
-}
+  final String value;
 
-extension FreeTrialTypeFromString on String {
-  FreeTrialType toFreeTrialType() {
-    switch (this) {
-      case 'EC2':
-        return FreeTrialType.ec2;
-      case 'ECR':
-        return FreeTrialType.ecr;
-      case 'LAMBDA':
-        return FreeTrialType.lambda;
-    }
-    throw Exception('$this is not known in enum FreeTrialType');
-  }
+  const FreeTrialType(this.value);
+
+  static FreeTrialType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum FreeTrialType'));
 }
 
 class GetConfigurationResponse {
@@ -5756,7 +5218,8 @@ class GetEc2DeepInspectionConfigurationResponse {
           ?.whereNotNull()
           .map((e) => e as String)
           .toList(),
-      status: (json['status'] as String?)?.toEc2DeepInspectionStatus(),
+      status:
+          (json['status'] as String?)?.let(Ec2DeepInspectionStatus.fromString),
     );
   }
 
@@ -5769,7 +5232,7 @@ class GetEc2DeepInspectionConfigurationResponse {
       if (errorMessage != null) 'errorMessage': errorMessage,
       if (orgPackagePaths != null) 'orgPackagePaths': orgPackagePaths,
       if (packagePaths != null) 'packagePaths': packagePaths,
-      if (status != null) 'status': status.toValue(),
+      if (status != null) 'status': status.value,
     };
   }
 }
@@ -5807,14 +5270,15 @@ class GetFindingsReportStatusResponse {
       destination: json['destination'] != null
           ? Destination.fromJson(json['destination'] as Map<String, dynamic>)
           : null,
-      errorCode: (json['errorCode'] as String?)?.toReportingErrorCode(),
+      errorCode:
+          (json['errorCode'] as String?)?.let(ReportingErrorCode.fromString),
       errorMessage: json['errorMessage'] as String?,
       filterCriteria: json['filterCriteria'] != null
           ? FilterCriteria.fromJson(
               json['filterCriteria'] as Map<String, dynamic>)
           : null,
       reportId: json['reportId'] as String?,
-      status: (json['status'] as String?)?.toExternalReportStatus(),
+      status: (json['status'] as String?)?.let(ExternalReportStatus.fromString),
     );
   }
 
@@ -5827,11 +5291,11 @@ class GetFindingsReportStatusResponse {
     final status = this.status;
     return {
       if (destination != null) 'destination': destination,
-      if (errorCode != null) 'errorCode': errorCode.toValue(),
+      if (errorCode != null) 'errorCode': errorCode.value,
       if (errorMessage != null) 'errorMessage': errorMessage,
       if (filterCriteria != null) 'filterCriteria': filterCriteria,
       if (reportId != null) 'reportId': reportId,
-      if (status != null) 'status': status.toValue(),
+      if (status != null) 'status': status.value,
     };
   }
 }
@@ -5861,46 +5325,20 @@ class GetMemberResponse {
 }
 
 enum GroupKey {
-  scanStatusCode,
-  scanStatusReason,
-  accountId,
-  resourceType,
-  ecrRepositoryName,
-}
+  scanStatusCode('SCAN_STATUS_CODE'),
+  scanStatusReason('SCAN_STATUS_REASON'),
+  accountId('ACCOUNT_ID'),
+  resourceType('RESOURCE_TYPE'),
+  ecrRepositoryName('ECR_REPOSITORY_NAME'),
+  ;
 
-extension GroupKeyValueExtension on GroupKey {
-  String toValue() {
-    switch (this) {
-      case GroupKey.scanStatusCode:
-        return 'SCAN_STATUS_CODE';
-      case GroupKey.scanStatusReason:
-        return 'SCAN_STATUS_REASON';
-      case GroupKey.accountId:
-        return 'ACCOUNT_ID';
-      case GroupKey.resourceType:
-        return 'RESOURCE_TYPE';
-      case GroupKey.ecrRepositoryName:
-        return 'ECR_REPOSITORY_NAME';
-    }
-  }
-}
+  final String value;
 
-extension GroupKeyFromString on String {
-  GroupKey toGroupKey() {
-    switch (this) {
-      case 'SCAN_STATUS_CODE':
-        return GroupKey.scanStatusCode;
-      case 'SCAN_STATUS_REASON':
-        return GroupKey.scanStatusReason;
-      case 'ACCOUNT_ID':
-        return GroupKey.accountId;
-      case 'RESOURCE_TYPE':
-        return GroupKey.resourceType;
-      case 'ECR_REPOSITORY_NAME':
-        return GroupKey.ecrRepositoryName;
-    }
-    throw Exception('$this is not known in enum GroupKey');
-  }
+  const GroupKey(this.value);
+
+  static GroupKey fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum GroupKey'));
 }
 
 /// The details that define an aggregation based on container image layers.
@@ -5938,8 +5376,8 @@ class ImageLayerAggregation {
       if (layerHashes != null) 'layerHashes': layerHashes,
       if (repositories != null) 'repositories': repositories,
       if (resourceIds != null) 'resourceIds': resourceIds,
-      if (sortBy != null) 'sortBy': sortBy.toValue(),
-      if (sortOrder != null) 'sortOrder': sortOrder.toValue(),
+      if (sortBy != null) 'sortBy': sortBy.value,
+      if (sortOrder != null) 'sortOrder': sortOrder.value,
     };
   }
 }
@@ -6001,36 +5439,19 @@ class ImageLayerAggregationResponse {
 }
 
 enum ImageLayerSortBy {
-  critical,
-  high,
-  all,
-}
+  critical('CRITICAL'),
+  high('HIGH'),
+  all('ALL'),
+  ;
 
-extension ImageLayerSortByValueExtension on ImageLayerSortBy {
-  String toValue() {
-    switch (this) {
-      case ImageLayerSortBy.critical:
-        return 'CRITICAL';
-      case ImageLayerSortBy.high:
-        return 'HIGH';
-      case ImageLayerSortBy.all:
-        return 'ALL';
-    }
-  }
-}
+  final String value;
 
-extension ImageLayerSortByFromString on String {
-  ImageLayerSortBy toImageLayerSortBy() {
-    switch (this) {
-      case 'CRITICAL':
-        return ImageLayerSortBy.critical;
-      case 'HIGH':
-        return ImageLayerSortBy.high;
-      case 'ALL':
-        return ImageLayerSortBy.all;
-    }
-    throw Exception('$this is not known in enum ImageLayerSortBy');
-  }
+  const ImageLayerSortBy(this.value);
+
+  static ImageLayerSortBy fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum ImageLayerSortBy'));
 }
 
 /// Information about the Amazon Inspector score given to a finding.
@@ -6101,8 +5522,8 @@ class LambdaFunctionAggregation {
       if (functionTags != null) 'functionTags': functionTags,
       if (resourceIds != null) 'resourceIds': resourceIds,
       if (runtimes != null) 'runtimes': runtimes,
-      if (sortBy != null) 'sortBy': sortBy.toValue(),
-      if (sortOrder != null) 'sortOrder': sortOrder.toValue(),
+      if (sortBy != null) 'sortBy': sortBy.value,
+      if (sortOrder != null) 'sortOrder': sortOrder.value,
     };
   }
 }
@@ -6209,7 +5630,7 @@ class LambdaFunctionMetadata {
           ?.whereNotNull()
           .map((e) => e as String)
           .toList(),
-      runtime: (json['runtime'] as String?)?.toRuntime(),
+      runtime: (json['runtime'] as String?)?.let(Runtime.fromString),
     );
   }
 
@@ -6222,42 +5643,25 @@ class LambdaFunctionMetadata {
       if (functionName != null) 'functionName': functionName,
       if (functionTags != null) 'functionTags': functionTags,
       if (layers != null) 'layers': layers,
-      if (runtime != null) 'runtime': runtime.toValue(),
+      if (runtime != null) 'runtime': runtime.value,
     };
   }
 }
 
 enum LambdaFunctionSortBy {
-  critical,
-  high,
-  all,
-}
+  critical('CRITICAL'),
+  high('HIGH'),
+  all('ALL'),
+  ;
 
-extension LambdaFunctionSortByValueExtension on LambdaFunctionSortBy {
-  String toValue() {
-    switch (this) {
-      case LambdaFunctionSortBy.critical:
-        return 'CRITICAL';
-      case LambdaFunctionSortBy.high:
-        return 'HIGH';
-      case LambdaFunctionSortBy.all:
-        return 'ALL';
-    }
-  }
-}
+  final String value;
 
-extension LambdaFunctionSortByFromString on String {
-  LambdaFunctionSortBy toLambdaFunctionSortBy() {
-    switch (this) {
-      case 'CRITICAL':
-        return LambdaFunctionSortBy.critical;
-      case 'HIGH':
-        return LambdaFunctionSortBy.high;
-      case 'ALL':
-        return LambdaFunctionSortBy.all;
-    }
-    throw Exception('$this is not known in enum LambdaFunctionSortBy');
-  }
+  const LambdaFunctionSortBy(this.value);
+
+  static LambdaFunctionSortBy fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum LambdaFunctionSortBy'));
 }
 
 /// The details that define a findings aggregation based on an AWS Lambda
@@ -6296,8 +5700,8 @@ class LambdaLayerAggregation {
       if (functionNames != null) 'functionNames': functionNames,
       if (layerArns != null) 'layerArns': layerArns,
       if (resourceIds != null) 'resourceIds': resourceIds,
-      if (sortBy != null) 'sortBy': sortBy.toValue(),
-      if (sortOrder != null) 'sortOrder': sortOrder.toValue(),
+      if (sortBy != null) 'sortBy': sortBy.value,
+      if (sortOrder != null) 'sortOrder': sortOrder.value,
     };
   }
 }
@@ -6356,36 +5760,19 @@ class LambdaLayerAggregationResponse {
 }
 
 enum LambdaLayerSortBy {
-  critical,
-  high,
-  all,
-}
+  critical('CRITICAL'),
+  high('HIGH'),
+  all('ALL'),
+  ;
 
-extension LambdaLayerSortByValueExtension on LambdaLayerSortBy {
-  String toValue() {
-    switch (this) {
-      case LambdaLayerSortBy.critical:
-        return 'CRITICAL';
-      case LambdaLayerSortBy.high:
-        return 'HIGH';
-      case LambdaLayerSortBy.all:
-        return 'ALL';
-    }
-  }
-}
+  final String value;
 
-extension LambdaLayerSortByFromString on String {
-  LambdaLayerSortBy toLambdaLayerSortBy() {
-    switch (this) {
-      case 'CRITICAL':
-        return LambdaLayerSortBy.critical;
-      case 'HIGH':
-        return LambdaLayerSortBy.high;
-      case 'ALL':
-        return LambdaLayerSortBy.all;
-    }
-    throw Exception('$this is not known in enum LambdaLayerSortBy');
-  }
+  const LambdaLayerSortBy(this.value);
+
+  static LambdaLayerSortBy fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum LambdaLayerSortBy'));
 }
 
 /// The VPC security groups and subnets that are attached to an AWS Lambda
@@ -6645,7 +6032,8 @@ class ListFindingAggregationsResponse {
 
   factory ListFindingAggregationsResponse.fromJson(Map<String, dynamic> json) {
     return ListFindingAggregationsResponse(
-      aggregationType: (json['aggregationType'] as String).toAggregationType(),
+      aggregationType:
+          AggregationType.fromString((json['aggregationType'] as String)),
       nextToken: json['nextToken'] as String?,
       responses: (json['responses'] as List?)
           ?.whereNotNull()
@@ -6659,7 +6047,7 @@ class ListFindingAggregationsResponse {
     final nextToken = this.nextToken;
     final responses = this.responses;
     return {
-      'aggregationType': aggregationType.toValue(),
+      'aggregationType': aggregationType.value,
       if (nextToken != null) 'nextToken': nextToken,
       if (responses != null) 'responses': responses,
     };
@@ -6791,26 +6179,17 @@ class ListUsageTotalsResponse {
 }
 
 enum MapComparison {
-  equals,
-}
+  equals('EQUALS'),
+  ;
 
-extension MapComparisonValueExtension on MapComparison {
-  String toValue() {
-    switch (this) {
-      case MapComparison.equals:
-        return 'EQUALS';
-    }
-  }
-}
+  final String value;
 
-extension MapComparisonFromString on String {
-  MapComparison toMapComparison() {
-    switch (this) {
-      case 'EQUALS':
-        return MapComparison.equals;
-    }
-    throw Exception('$this is not known in enum MapComparison');
-  }
+  const MapComparison(this.value);
+
+  static MapComparison fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum MapComparison'));
 }
 
 /// An object that describes details of a map filter.
@@ -6832,7 +6211,7 @@ class MapFilter {
 
   factory MapFilter.fromJson(Map<String, dynamic> json) {
     return MapFilter(
-      comparison: (json['comparison'] as String).toMapComparison(),
+      comparison: MapComparison.fromString((json['comparison'] as String)),
       key: json['key'] as String,
       value: json['value'] as String?,
     );
@@ -6843,7 +6222,7 @@ class MapFilter {
     final key = this.key;
     final value = this.value;
     return {
-      'comparison': comparison.toValue(),
+      'comparison': comparison.value,
       'key': key,
       if (value != null) 'value': value,
     };
@@ -6876,8 +6255,8 @@ class Member {
     return Member(
       accountId: json['accountId'] as String?,
       delegatedAdminAccountId: json['delegatedAdminAccountId'] as String?,
-      relationshipStatus:
-          (json['relationshipStatus'] as String?)?.toRelationshipStatus(),
+      relationshipStatus: (json['relationshipStatus'] as String?)
+          ?.let(RelationshipStatus.fromString),
       updatedAt: timeStampFromJson(json['updatedAt']),
     );
   }
@@ -6892,7 +6271,7 @@ class Member {
       if (delegatedAdminAccountId != null)
         'delegatedAdminAccountId': delegatedAdminAccountId,
       if (relationshipStatus != null)
-        'relationshipStatus': relationshipStatus.toValue(),
+        'relationshipStatus': relationshipStatus.value,
       if (updatedAt != null) 'updatedAt': unixTimestampToJson(updatedAt),
     };
   }
@@ -6950,7 +6329,8 @@ class MemberAccountEc2DeepInspectionStatusState {
     return MemberAccountEc2DeepInspectionStatusState(
       accountId: json['accountId'] as String,
       errorMessage: json['errorMessage'] as String?,
-      status: (json['status'] as String?)?.toEc2DeepInspectionStatus(),
+      status:
+          (json['status'] as String?)?.let(Ec2DeepInspectionStatus.fromString),
     );
   }
 
@@ -6961,7 +6341,7 @@ class MemberAccountEc2DeepInspectionStatusState {
     return {
       'accountId': accountId,
       if (errorMessage != null) 'errorMessage': errorMessage,
-      if (status != null) 'status': status.toValue(),
+      if (status != null) 'status': status.value,
     };
   }
 }
@@ -6993,31 +6373,18 @@ class NetworkPath {
 }
 
 enum NetworkProtocol {
-  tcp,
-  udp,
-}
+  tcp('TCP'),
+  udp('UDP'),
+  ;
 
-extension NetworkProtocolValueExtension on NetworkProtocol {
-  String toValue() {
-    switch (this) {
-      case NetworkProtocol.tcp:
-        return 'TCP';
-      case NetworkProtocol.udp:
-        return 'UDP';
-    }
-  }
-}
+  final String value;
 
-extension NetworkProtocolFromString on String {
-  NetworkProtocol toNetworkProtocol() {
-    switch (this) {
-      case 'TCP':
-        return NetworkProtocol.tcp;
-      case 'UDP':
-        return NetworkProtocol.udp;
-    }
-    throw Exception('$this is not known in enum NetworkProtocol');
-  }
+  const NetworkProtocol(this.value);
+
+  static NetworkProtocol fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum NetworkProtocol'));
 }
 
 /// Contains the details of a network reachability finding.
@@ -7045,7 +6412,7 @@ class NetworkReachabilityDetails {
           NetworkPath.fromJson(json['networkPath'] as Map<String, dynamic>),
       openPortRange:
           PortRange.fromJson(json['openPortRange'] as Map<String, dynamic>),
-      protocol: (json['protocol'] as String).toNetworkProtocol(),
+      protocol: NetworkProtocol.fromString((json['protocol'] as String)),
     );
   }
 
@@ -7056,7 +6423,7 @@ class NetworkReachabilityDetails {
     return {
       'networkPath': networkPath,
       'openPortRange': openPortRange,
-      'protocol': protocol.toValue(),
+      'protocol': protocol.value,
     };
   }
 }
@@ -7092,41 +6459,19 @@ class NumberFilter {
 }
 
 enum Operation {
-  enableScanning,
-  disableScanning,
-  enableRepository,
-  disableRepository,
-}
+  enableScanning('ENABLE_SCANNING'),
+  disableScanning('DISABLE_SCANNING'),
+  enableRepository('ENABLE_REPOSITORY'),
+  disableRepository('DISABLE_REPOSITORY'),
+  ;
 
-extension OperationValueExtension on Operation {
-  String toValue() {
-    switch (this) {
-      case Operation.enableScanning:
-        return 'ENABLE_SCANNING';
-      case Operation.disableScanning:
-        return 'DISABLE_SCANNING';
-      case Operation.enableRepository:
-        return 'ENABLE_REPOSITORY';
-      case Operation.disableRepository:
-        return 'DISABLE_REPOSITORY';
-    }
-  }
-}
+  final String value;
 
-extension OperationFromString on String {
-  Operation toOperation() {
-    switch (this) {
-      case 'ENABLE_SCANNING':
-        return Operation.enableScanning;
-      case 'DISABLE_SCANNING':
-        return Operation.disableScanning;
-      case 'ENABLE_REPOSITORY':
-        return Operation.enableRepository;
-      case 'DISABLE_REPOSITORY':
-        return Operation.disableRepository;
-    }
-    throw Exception('$this is not known in enum Operation');
-  }
+  const Operation(this.value);
+
+  static Operation fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum Operation'));
 }
 
 /// The details that define an aggregation based on operating system package
@@ -7153,8 +6498,8 @@ class PackageAggregation {
     final sortOrder = this.sortOrder;
     return {
       if (packageNames != null) 'packageNames': packageNames,
-      if (sortBy != null) 'sortBy': sortBy.toValue(),
-      if (sortOrder != null) 'sortOrder': sortOrder.toValue(),
+      if (sortBy != null) 'sortBy': sortBy.value,
+      if (sortOrder != null) 'sortOrder': sortOrder.value,
     };
   }
 }
@@ -7282,167 +6627,63 @@ class PackageFilter {
 }
 
 enum PackageManager {
-  bundler,
-  cargo,
-  composer,
-  npm,
-  nuget,
-  pipenv,
-  poetry,
-  yarn,
-  gobinary,
-  gomod,
-  jar,
-  os,
-  pip,
-  pythonpkg,
-  nodepkg,
-  pom,
-  gemspec,
-}
+  bundler('BUNDLER'),
+  cargo('CARGO'),
+  composer('COMPOSER'),
+  npm('NPM'),
+  nuget('NUGET'),
+  pipenv('PIPENV'),
+  poetry('POETRY'),
+  yarn('YARN'),
+  gobinary('GOBINARY'),
+  gomod('GOMOD'),
+  jar('JAR'),
+  os('OS'),
+  pip('PIP'),
+  pythonpkg('PYTHONPKG'),
+  nodepkg('NODEPKG'),
+  pom('POM'),
+  gemspec('GEMSPEC'),
+  ;
 
-extension PackageManagerValueExtension on PackageManager {
-  String toValue() {
-    switch (this) {
-      case PackageManager.bundler:
-        return 'BUNDLER';
-      case PackageManager.cargo:
-        return 'CARGO';
-      case PackageManager.composer:
-        return 'COMPOSER';
-      case PackageManager.npm:
-        return 'NPM';
-      case PackageManager.nuget:
-        return 'NUGET';
-      case PackageManager.pipenv:
-        return 'PIPENV';
-      case PackageManager.poetry:
-        return 'POETRY';
-      case PackageManager.yarn:
-        return 'YARN';
-      case PackageManager.gobinary:
-        return 'GOBINARY';
-      case PackageManager.gomod:
-        return 'GOMOD';
-      case PackageManager.jar:
-        return 'JAR';
-      case PackageManager.os:
-        return 'OS';
-      case PackageManager.pip:
-        return 'PIP';
-      case PackageManager.pythonpkg:
-        return 'PYTHONPKG';
-      case PackageManager.nodepkg:
-        return 'NODEPKG';
-      case PackageManager.pom:
-        return 'POM';
-      case PackageManager.gemspec:
-        return 'GEMSPEC';
-    }
-  }
-}
+  final String value;
 
-extension PackageManagerFromString on String {
-  PackageManager toPackageManager() {
-    switch (this) {
-      case 'BUNDLER':
-        return PackageManager.bundler;
-      case 'CARGO':
-        return PackageManager.cargo;
-      case 'COMPOSER':
-        return PackageManager.composer;
-      case 'NPM':
-        return PackageManager.npm;
-      case 'NUGET':
-        return PackageManager.nuget;
-      case 'PIPENV':
-        return PackageManager.pipenv;
-      case 'POETRY':
-        return PackageManager.poetry;
-      case 'YARN':
-        return PackageManager.yarn;
-      case 'GOBINARY':
-        return PackageManager.gobinary;
-      case 'GOMOD':
-        return PackageManager.gomod;
-      case 'JAR':
-        return PackageManager.jar;
-      case 'OS':
-        return PackageManager.os;
-      case 'PIP':
-        return PackageManager.pip;
-      case 'PYTHONPKG':
-        return PackageManager.pythonpkg;
-      case 'NODEPKG':
-        return PackageManager.nodepkg;
-      case 'POM':
-        return PackageManager.pom;
-      case 'GEMSPEC':
-        return PackageManager.gemspec;
-    }
-    throw Exception('$this is not known in enum PackageManager');
-  }
+  const PackageManager(this.value);
+
+  static PackageManager fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum PackageManager'));
 }
 
 enum PackageSortBy {
-  critical,
-  high,
-  all,
-}
+  critical('CRITICAL'),
+  high('HIGH'),
+  all('ALL'),
+  ;
 
-extension PackageSortByValueExtension on PackageSortBy {
-  String toValue() {
-    switch (this) {
-      case PackageSortBy.critical:
-        return 'CRITICAL';
-      case PackageSortBy.high:
-        return 'HIGH';
-      case PackageSortBy.all:
-        return 'ALL';
-    }
-  }
-}
+  final String value;
 
-extension PackageSortByFromString on String {
-  PackageSortBy toPackageSortBy() {
-    switch (this) {
-      case 'CRITICAL':
-        return PackageSortBy.critical;
-      case 'HIGH':
-        return PackageSortBy.high;
-      case 'ALL':
-        return PackageSortBy.all;
-    }
-    throw Exception('$this is not known in enum PackageSortBy');
-  }
+  const PackageSortBy(this.value);
+
+  static PackageSortBy fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum PackageSortBy'));
 }
 
 enum PackageType {
-  image,
-  zip,
-}
+  image('IMAGE'),
+  zip('ZIP'),
+  ;
 
-extension PackageTypeValueExtension on PackageType {
-  String toValue() {
-    switch (this) {
-      case PackageType.image:
-        return 'IMAGE';
-      case PackageType.zip:
-        return 'ZIP';
-    }
-  }
-}
+  final String value;
 
-extension PackageTypeFromString on String {
-  PackageType toPackageType() {
-    switch (this) {
-      case 'IMAGE':
-        return PackageType.image;
-      case 'ZIP':
-        return PackageType.zip;
-    }
-    throw Exception('$this is not known in enum PackageType');
-  }
+  const PackageType(this.value);
+
+  static PackageType fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum PackageType'));
 }
 
 /// Information about a package vulnerability finding.
@@ -7565,8 +6806,8 @@ class Permission {
 
   factory Permission.fromJson(Map<String, dynamic> json) {
     return Permission(
-      operation: (json['operation'] as String).toOperation(),
-      service: (json['service'] as String).toService(),
+      operation: Operation.fromString((json['operation'] as String)),
+      service: Service.fromString((json['service'] as String)),
     );
   }
 
@@ -7574,8 +6815,8 @@ class Permission {
     final operation = this.operation;
     final service = this.service;
     return {
-      'operation': operation.toValue(),
-      'service': service.toValue(),
+      'operation': operation.value,
+      'service': service.value,
     };
   }
 }
@@ -7671,81 +6912,28 @@ class Recommendation {
 }
 
 enum RelationshipStatus {
-  created,
-  invited,
-  disabled,
-  enabled,
-  removed,
-  resigned,
-  deleted,
-  emailVerificationInProgress,
-  emailVerificationFailed,
-  regionDisabled,
-  accountSuspended,
-  cannotCreateDetectorInOrgMaster,
-}
+  created('CREATED'),
+  invited('INVITED'),
+  disabled('DISABLED'),
+  enabled('ENABLED'),
+  removed('REMOVED'),
+  resigned('RESIGNED'),
+  deleted('DELETED'),
+  emailVerificationInProgress('EMAIL_VERIFICATION_IN_PROGRESS'),
+  emailVerificationFailed('EMAIL_VERIFICATION_FAILED'),
+  regionDisabled('REGION_DISABLED'),
+  accountSuspended('ACCOUNT_SUSPENDED'),
+  cannotCreateDetectorInOrgMaster('CANNOT_CREATE_DETECTOR_IN_ORG_MASTER'),
+  ;
 
-extension RelationshipStatusValueExtension on RelationshipStatus {
-  String toValue() {
-    switch (this) {
-      case RelationshipStatus.created:
-        return 'CREATED';
-      case RelationshipStatus.invited:
-        return 'INVITED';
-      case RelationshipStatus.disabled:
-        return 'DISABLED';
-      case RelationshipStatus.enabled:
-        return 'ENABLED';
-      case RelationshipStatus.removed:
-        return 'REMOVED';
-      case RelationshipStatus.resigned:
-        return 'RESIGNED';
-      case RelationshipStatus.deleted:
-        return 'DELETED';
-      case RelationshipStatus.emailVerificationInProgress:
-        return 'EMAIL_VERIFICATION_IN_PROGRESS';
-      case RelationshipStatus.emailVerificationFailed:
-        return 'EMAIL_VERIFICATION_FAILED';
-      case RelationshipStatus.regionDisabled:
-        return 'REGION_DISABLED';
-      case RelationshipStatus.accountSuspended:
-        return 'ACCOUNT_SUSPENDED';
-      case RelationshipStatus.cannotCreateDetectorInOrgMaster:
-        return 'CANNOT_CREATE_DETECTOR_IN_ORG_MASTER';
-    }
-  }
-}
+  final String value;
 
-extension RelationshipStatusFromString on String {
-  RelationshipStatus toRelationshipStatus() {
-    switch (this) {
-      case 'CREATED':
-        return RelationshipStatus.created;
-      case 'INVITED':
-        return RelationshipStatus.invited;
-      case 'DISABLED':
-        return RelationshipStatus.disabled;
-      case 'ENABLED':
-        return RelationshipStatus.enabled;
-      case 'REMOVED':
-        return RelationshipStatus.removed;
-      case 'RESIGNED':
-        return RelationshipStatus.resigned;
-      case 'DELETED':
-        return RelationshipStatus.deleted;
-      case 'EMAIL_VERIFICATION_IN_PROGRESS':
-        return RelationshipStatus.emailVerificationInProgress;
-      case 'EMAIL_VERIFICATION_FAILED':
-        return RelationshipStatus.emailVerificationFailed;
-      case 'REGION_DISABLED':
-        return RelationshipStatus.regionDisabled;
-      case 'ACCOUNT_SUSPENDED':
-        return RelationshipStatus.accountSuspended;
-      case 'CANNOT_CREATE_DETECTOR_IN_ORG_MASTER':
-        return RelationshipStatus.cannotCreateDetectorInOrgMaster;
-    }
-    throw Exception('$this is not known in enum RelationshipStatus');
-  }
+  const RelationshipStatus(this.value);
+
+  static RelationshipStatus fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum RelationshipStatus'));
 }
 
 /// Information on how to remediate a finding.
@@ -7776,79 +6964,37 @@ class Remediation {
 }
 
 enum ReportFormat {
-  csv,
-  json,
-}
+  csv('CSV'),
+  json('JSON'),
+  ;
 
-extension ReportFormatValueExtension on ReportFormat {
-  String toValue() {
-    switch (this) {
-      case ReportFormat.csv:
-        return 'CSV';
-      case ReportFormat.json:
-        return 'JSON';
-    }
-  }
-}
+  final String value;
 
-extension ReportFormatFromString on String {
-  ReportFormat toReportFormat() {
-    switch (this) {
-      case 'CSV':
-        return ReportFormat.csv;
-      case 'JSON':
-        return ReportFormat.json;
-    }
-    throw Exception('$this is not known in enum ReportFormat');
-  }
+  const ReportFormat(this.value);
+
+  static ReportFormat fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum ReportFormat'));
 }
 
 enum ReportingErrorCode {
-  internalError,
-  invalidPermissions,
-  noFindingsFound,
-  bucketNotFound,
-  incompatibleBucketRegion,
-  malformedKmsKey,
-}
+  internalError('INTERNAL_ERROR'),
+  invalidPermissions('INVALID_PERMISSIONS'),
+  noFindingsFound('NO_FINDINGS_FOUND'),
+  bucketNotFound('BUCKET_NOT_FOUND'),
+  incompatibleBucketRegion('INCOMPATIBLE_BUCKET_REGION'),
+  malformedKmsKey('MALFORMED_KMS_KEY'),
+  ;
 
-extension ReportingErrorCodeValueExtension on ReportingErrorCode {
-  String toValue() {
-    switch (this) {
-      case ReportingErrorCode.internalError:
-        return 'INTERNAL_ERROR';
-      case ReportingErrorCode.invalidPermissions:
-        return 'INVALID_PERMISSIONS';
-      case ReportingErrorCode.noFindingsFound:
-        return 'NO_FINDINGS_FOUND';
-      case ReportingErrorCode.bucketNotFound:
-        return 'BUCKET_NOT_FOUND';
-      case ReportingErrorCode.incompatibleBucketRegion:
-        return 'INCOMPATIBLE_BUCKET_REGION';
-      case ReportingErrorCode.malformedKmsKey:
-        return 'MALFORMED_KMS_KEY';
-    }
-  }
-}
+  final String value;
 
-extension ReportingErrorCodeFromString on String {
-  ReportingErrorCode toReportingErrorCode() {
-    switch (this) {
-      case 'INTERNAL_ERROR':
-        return ReportingErrorCode.internalError;
-      case 'INVALID_PERMISSIONS':
-        return ReportingErrorCode.invalidPermissions;
-      case 'NO_FINDINGS_FOUND':
-        return ReportingErrorCode.noFindingsFound;
-      case 'BUCKET_NOT_FOUND':
-        return ReportingErrorCode.bucketNotFound;
-      case 'INCOMPATIBLE_BUCKET_REGION':
-        return ReportingErrorCode.incompatibleBucketRegion;
-      case 'MALFORMED_KMS_KEY':
-        return ReportingErrorCode.malformedKmsKey;
-    }
-    throw Exception('$this is not known in enum ReportingErrorCode');
-  }
+  const ReportingErrorCode(this.value);
+
+  static ReportingErrorCode fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum ReportingErrorCode'));
 }
 
 /// The details that define an aggregation based on repository.
@@ -7874,8 +7020,8 @@ class RepositoryAggregation {
     final sortOrder = this.sortOrder;
     return {
       if (repositories != null) 'repositories': repositories,
-      if (sortBy != null) 'sortBy': sortBy.toValue(),
-      if (sortOrder != null) 'sortOrder': sortOrder.toValue(),
+      if (sortBy != null) 'sortBy': sortBy.value,
+      if (sortOrder != null) 'sortOrder': sortOrder.value,
     };
   }
 }
@@ -7929,41 +7075,20 @@ class RepositoryAggregationResponse {
 }
 
 enum RepositorySortBy {
-  critical,
-  high,
-  all,
-  affectedImages,
-}
+  critical('CRITICAL'),
+  high('HIGH'),
+  all('ALL'),
+  affectedImages('AFFECTED_IMAGES'),
+  ;
 
-extension RepositorySortByValueExtension on RepositorySortBy {
-  String toValue() {
-    switch (this) {
-      case RepositorySortBy.critical:
-        return 'CRITICAL';
-      case RepositorySortBy.high:
-        return 'HIGH';
-      case RepositorySortBy.all:
-        return 'ALL';
-      case RepositorySortBy.affectedImages:
-        return 'AFFECTED_IMAGES';
-    }
-  }
-}
+  final String value;
 
-extension RepositorySortByFromString on String {
-  RepositorySortBy toRepositorySortBy() {
-    switch (this) {
-      case 'CRITICAL':
-        return RepositorySortBy.critical;
-      case 'HIGH':
-        return RepositorySortBy.high;
-      case 'ALL':
-        return RepositorySortBy.all;
-      case 'AFFECTED_IMAGES':
-        return RepositorySortBy.affectedImages;
-    }
-    throw Exception('$this is not known in enum RepositorySortBy');
-  }
+  const RepositorySortBy(this.value);
+
+  static RepositorySortBy fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum RepositorySortBy'));
 }
 
 /// Details about the resource involved in a finding.
@@ -7998,7 +7123,7 @@ class Resource {
   factory Resource.fromJson(Map<String, dynamic> json) {
     return Resource(
       id: json['id'] as String,
-      type: (json['type'] as String).toResourceType(),
+      type: ResourceType.fromString((json['type'] as String)),
       details: json['details'] != null
           ? ResourceDetails.fromJson(json['details'] as Map<String, dynamic>)
           : null,
@@ -8018,7 +7143,7 @@ class Resource {
     final tags = this.tags;
     return {
       'id': id,
-      'type': type.toValue(),
+      'type': type.value,
       if (details != null) 'details': details,
       if (partition != null) 'partition': partition,
       if (region != null) 'region': region,
@@ -8136,36 +7261,19 @@ class ResourceScanMetadata {
 }
 
 enum ResourceScanType {
-  ec2,
-  ecr,
-  lambda,
-}
+  ec2('EC2'),
+  ecr('ECR'),
+  lambda('LAMBDA'),
+  ;
 
-extension ResourceScanTypeValueExtension on ResourceScanType {
-  String toValue() {
-    switch (this) {
-      case ResourceScanType.ec2:
-        return 'EC2';
-      case ResourceScanType.ecr:
-        return 'ECR';
-      case ResourceScanType.lambda:
-        return 'LAMBDA';
-    }
-  }
-}
+  final String value;
 
-extension ResourceScanTypeFromString on String {
-  ResourceScanType toResourceScanType() {
-    switch (this) {
-      case 'EC2':
-        return ResourceScanType.ec2;
-      case 'ECR':
-        return ResourceScanType.ecr;
-      case 'LAMBDA':
-        return ResourceScanType.lambda;
-    }
-    throw Exception('$this is not known in enum ResourceScanType');
-  }
+  const ResourceScanType(this.value);
+
+  static ResourceScanType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum ResourceScanType'));
 }
 
 /// Details the state of Amazon Inspector for each resource type Amazon
@@ -8228,9 +7336,9 @@ class ResourceStatus {
 
   factory ResourceStatus.fromJson(Map<String, dynamic> json) {
     return ResourceStatus(
-      ec2: (json['ec2'] as String).toStatus(),
-      ecr: (json['ecr'] as String).toStatus(),
-      lambda: (json['lambda'] as String?)?.toStatus(),
+      ec2: Status.fromString((json['ec2'] as String)),
+      ecr: Status.fromString((json['ecr'] as String)),
+      lambda: (json['lambda'] as String?)?.let(Status.fromString),
     );
   }
 
@@ -8239,132 +7347,53 @@ class ResourceStatus {
     final ecr = this.ecr;
     final lambda = this.lambda;
     return {
-      'ec2': ec2.toValue(),
-      'ecr': ecr.toValue(),
-      if (lambda != null) 'lambda': lambda.toValue(),
+      'ec2': ec2.value,
+      'ecr': ecr.value,
+      if (lambda != null) 'lambda': lambda.value,
     };
   }
 }
 
 enum ResourceType {
-  awsEc2Instance,
-  awsEcrContainerImage,
-  awsEcrRepository,
-  awsLambdaFunction,
-}
+  awsEc2Instance('AWS_EC2_INSTANCE'),
+  awsEcrContainerImage('AWS_ECR_CONTAINER_IMAGE'),
+  awsEcrRepository('AWS_ECR_REPOSITORY'),
+  awsLambdaFunction('AWS_LAMBDA_FUNCTION'),
+  ;
 
-extension ResourceTypeValueExtension on ResourceType {
-  String toValue() {
-    switch (this) {
-      case ResourceType.awsEc2Instance:
-        return 'AWS_EC2_INSTANCE';
-      case ResourceType.awsEcrContainerImage:
-        return 'AWS_ECR_CONTAINER_IMAGE';
-      case ResourceType.awsEcrRepository:
-        return 'AWS_ECR_REPOSITORY';
-      case ResourceType.awsLambdaFunction:
-        return 'AWS_LAMBDA_FUNCTION';
-    }
-  }
-}
+  final String value;
 
-extension ResourceTypeFromString on String {
-  ResourceType toResourceType() {
-    switch (this) {
-      case 'AWS_EC2_INSTANCE':
-        return ResourceType.awsEc2Instance;
-      case 'AWS_ECR_CONTAINER_IMAGE':
-        return ResourceType.awsEcrContainerImage;
-      case 'AWS_ECR_REPOSITORY':
-        return ResourceType.awsEcrRepository;
-      case 'AWS_LAMBDA_FUNCTION':
-        return ResourceType.awsLambdaFunction;
-    }
-    throw Exception('$this is not known in enum ResourceType');
-  }
+  const ResourceType(this.value);
+
+  static ResourceType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum ResourceType'));
 }
 
 enum Runtime {
-  nodejs,
-  nodejs_12X,
-  nodejs_14X,
-  nodejs_16X,
-  java_8,
-  java_8Al2,
-  java_11,
-  python_3_7,
-  python_3_8,
-  python_3_9,
-  unsupported,
-  nodejs_18X,
-  go_1X,
-}
+  nodejs('NODEJS'),
+  nodejs_12X('NODEJS_12_X'),
+  nodejs_14X('NODEJS_14_X'),
+  nodejs_16X('NODEJS_16_X'),
+  java_8('JAVA_8'),
+  java_8Al2('JAVA_8_AL2'),
+  java_11('JAVA_11'),
+  python_3_7('PYTHON_3_7'),
+  python_3_8('PYTHON_3_8'),
+  python_3_9('PYTHON_3_9'),
+  unsupported('UNSUPPORTED'),
+  nodejs_18X('NODEJS_18_X'),
+  go_1X('GO_1_X'),
+  ;
 
-extension RuntimeValueExtension on Runtime {
-  String toValue() {
-    switch (this) {
-      case Runtime.nodejs:
-        return 'NODEJS';
-      case Runtime.nodejs_12X:
-        return 'NODEJS_12_X';
-      case Runtime.nodejs_14X:
-        return 'NODEJS_14_X';
-      case Runtime.nodejs_16X:
-        return 'NODEJS_16_X';
-      case Runtime.java_8:
-        return 'JAVA_8';
-      case Runtime.java_8Al2:
-        return 'JAVA_8_AL2';
-      case Runtime.java_11:
-        return 'JAVA_11';
-      case Runtime.python_3_7:
-        return 'PYTHON_3_7';
-      case Runtime.python_3_8:
-        return 'PYTHON_3_8';
-      case Runtime.python_3_9:
-        return 'PYTHON_3_9';
-      case Runtime.unsupported:
-        return 'UNSUPPORTED';
-      case Runtime.nodejs_18X:
-        return 'NODEJS_18_X';
-      case Runtime.go_1X:
-        return 'GO_1_X';
-    }
-  }
-}
+  final String value;
 
-extension RuntimeFromString on String {
-  Runtime toRuntime() {
-    switch (this) {
-      case 'NODEJS':
-        return Runtime.nodejs;
-      case 'NODEJS_12_X':
-        return Runtime.nodejs_12X;
-      case 'NODEJS_14_X':
-        return Runtime.nodejs_14X;
-      case 'NODEJS_16_X':
-        return Runtime.nodejs_16X;
-      case 'JAVA_8':
-        return Runtime.java_8;
-      case 'JAVA_8_AL2':
-        return Runtime.java_8Al2;
-      case 'JAVA_11':
-        return Runtime.java_11;
-      case 'PYTHON_3_7':
-        return Runtime.python_3_7;
-      case 'PYTHON_3_8':
-        return Runtime.python_3_8;
-      case 'PYTHON_3_9':
-        return Runtime.python_3_9;
-      case 'UNSUPPORTED':
-        return Runtime.unsupported;
-      case 'NODEJS_18_X':
-        return Runtime.nodejs_18X;
-      case 'GO_1_X':
-        return Runtime.go_1X;
-    }
-    throw Exception('$this is not known in enum Runtime');
-  }
+  const Runtime(this.value);
+
+  static Runtime fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception('$value is not known in enum Runtime'));
 }
 
 /// The status of the scan.
@@ -8382,8 +7411,8 @@ class ScanStatus {
 
   factory ScanStatus.fromJson(Map<String, dynamic> json) {
     return ScanStatus(
-      reason: (json['reason'] as String).toScanStatusReason(),
-      statusCode: (json['statusCode'] as String).toScanStatusCode(),
+      reason: ScanStatusReason.fromString((json['reason'] as String)),
+      statusCode: ScanStatusCode.fromString((json['statusCode'] as String)),
     );
   }
 
@@ -8391,204 +7420,79 @@ class ScanStatus {
     final reason = this.reason;
     final statusCode = this.statusCode;
     return {
-      'reason': reason.toValue(),
-      'statusCode': statusCode.toValue(),
+      'reason': reason.value,
+      'statusCode': statusCode.value,
     };
   }
 }
 
 enum ScanStatusCode {
-  active,
-  inactive,
-}
+  active('ACTIVE'),
+  inactive('INACTIVE'),
+  ;
 
-extension ScanStatusCodeValueExtension on ScanStatusCode {
-  String toValue() {
-    switch (this) {
-      case ScanStatusCode.active:
-        return 'ACTIVE';
-      case ScanStatusCode.inactive:
-        return 'INACTIVE';
-    }
-  }
-}
+  final String value;
 
-extension ScanStatusCodeFromString on String {
-  ScanStatusCode toScanStatusCode() {
-    switch (this) {
-      case 'ACTIVE':
-        return ScanStatusCode.active;
-      case 'INACTIVE':
-        return ScanStatusCode.inactive;
-    }
-    throw Exception('$this is not known in enum ScanStatusCode');
-  }
+  const ScanStatusCode(this.value);
+
+  static ScanStatusCode fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum ScanStatusCode'));
 }
 
 enum ScanStatusReason {
-  pendingInitialScan,
-  accessDenied,
-  internalError,
-  unmanagedEc2Instance,
-  unsupportedOs,
-  scanEligibilityExpired,
-  resourceTerminated,
-  successful,
-  noResourcesFound,
-  imageSizeExceeded,
-  scanFrequencyManual,
-  scanFrequencyScanOnPush,
-  ec2InstanceStopped,
-  pendingDisable,
-  noInventory,
-  staleInventory,
-  excludedByTag,
-  unsupportedRuntime,
-  unsupportedMediaType,
-  unsupportedConfigFile,
-  deepInspectionPackageCollectionLimitExceeded,
-  deepInspectionDailySsmInventoryLimitExceeded,
-  deepInspectionCollectionTimeLimitExceeded,
-  deepInspectionNoInventory,
-}
+  pendingInitialScan('PENDING_INITIAL_SCAN'),
+  accessDenied('ACCESS_DENIED'),
+  internalError('INTERNAL_ERROR'),
+  unmanagedEc2Instance('UNMANAGED_EC2_INSTANCE'),
+  unsupportedOs('UNSUPPORTED_OS'),
+  scanEligibilityExpired('SCAN_ELIGIBILITY_EXPIRED'),
+  resourceTerminated('RESOURCE_TERMINATED'),
+  successful('SUCCESSFUL'),
+  noResourcesFound('NO_RESOURCES_FOUND'),
+  imageSizeExceeded('IMAGE_SIZE_EXCEEDED'),
+  scanFrequencyManual('SCAN_FREQUENCY_MANUAL'),
+  scanFrequencyScanOnPush('SCAN_FREQUENCY_SCAN_ON_PUSH'),
+  ec2InstanceStopped('EC2_INSTANCE_STOPPED'),
+  pendingDisable('PENDING_DISABLE'),
+  noInventory('NO_INVENTORY'),
+  staleInventory('STALE_INVENTORY'),
+  excludedByTag('EXCLUDED_BY_TAG'),
+  unsupportedRuntime('UNSUPPORTED_RUNTIME'),
+  unsupportedMediaType('UNSUPPORTED_MEDIA_TYPE'),
+  unsupportedConfigFile('UNSUPPORTED_CONFIG_FILE'),
+  deepInspectionPackageCollectionLimitExceeded(
+      'DEEP_INSPECTION_PACKAGE_COLLECTION_LIMIT_EXCEEDED'),
+  deepInspectionDailySsmInventoryLimitExceeded(
+      'DEEP_INSPECTION_DAILY_SSM_INVENTORY_LIMIT_EXCEEDED'),
+  deepInspectionCollectionTimeLimitExceeded(
+      'DEEP_INSPECTION_COLLECTION_TIME_LIMIT_EXCEEDED'),
+  deepInspectionNoInventory('DEEP_INSPECTION_NO_INVENTORY'),
+  ;
 
-extension ScanStatusReasonValueExtension on ScanStatusReason {
-  String toValue() {
-    switch (this) {
-      case ScanStatusReason.pendingInitialScan:
-        return 'PENDING_INITIAL_SCAN';
-      case ScanStatusReason.accessDenied:
-        return 'ACCESS_DENIED';
-      case ScanStatusReason.internalError:
-        return 'INTERNAL_ERROR';
-      case ScanStatusReason.unmanagedEc2Instance:
-        return 'UNMANAGED_EC2_INSTANCE';
-      case ScanStatusReason.unsupportedOs:
-        return 'UNSUPPORTED_OS';
-      case ScanStatusReason.scanEligibilityExpired:
-        return 'SCAN_ELIGIBILITY_EXPIRED';
-      case ScanStatusReason.resourceTerminated:
-        return 'RESOURCE_TERMINATED';
-      case ScanStatusReason.successful:
-        return 'SUCCESSFUL';
-      case ScanStatusReason.noResourcesFound:
-        return 'NO_RESOURCES_FOUND';
-      case ScanStatusReason.imageSizeExceeded:
-        return 'IMAGE_SIZE_EXCEEDED';
-      case ScanStatusReason.scanFrequencyManual:
-        return 'SCAN_FREQUENCY_MANUAL';
-      case ScanStatusReason.scanFrequencyScanOnPush:
-        return 'SCAN_FREQUENCY_SCAN_ON_PUSH';
-      case ScanStatusReason.ec2InstanceStopped:
-        return 'EC2_INSTANCE_STOPPED';
-      case ScanStatusReason.pendingDisable:
-        return 'PENDING_DISABLE';
-      case ScanStatusReason.noInventory:
-        return 'NO_INVENTORY';
-      case ScanStatusReason.staleInventory:
-        return 'STALE_INVENTORY';
-      case ScanStatusReason.excludedByTag:
-        return 'EXCLUDED_BY_TAG';
-      case ScanStatusReason.unsupportedRuntime:
-        return 'UNSUPPORTED_RUNTIME';
-      case ScanStatusReason.unsupportedMediaType:
-        return 'UNSUPPORTED_MEDIA_TYPE';
-      case ScanStatusReason.unsupportedConfigFile:
-        return 'UNSUPPORTED_CONFIG_FILE';
-      case ScanStatusReason.deepInspectionPackageCollectionLimitExceeded:
-        return 'DEEP_INSPECTION_PACKAGE_COLLECTION_LIMIT_EXCEEDED';
-      case ScanStatusReason.deepInspectionDailySsmInventoryLimitExceeded:
-        return 'DEEP_INSPECTION_DAILY_SSM_INVENTORY_LIMIT_EXCEEDED';
-      case ScanStatusReason.deepInspectionCollectionTimeLimitExceeded:
-        return 'DEEP_INSPECTION_COLLECTION_TIME_LIMIT_EXCEEDED';
-      case ScanStatusReason.deepInspectionNoInventory:
-        return 'DEEP_INSPECTION_NO_INVENTORY';
-    }
-  }
-}
+  final String value;
 
-extension ScanStatusReasonFromString on String {
-  ScanStatusReason toScanStatusReason() {
-    switch (this) {
-      case 'PENDING_INITIAL_SCAN':
-        return ScanStatusReason.pendingInitialScan;
-      case 'ACCESS_DENIED':
-        return ScanStatusReason.accessDenied;
-      case 'INTERNAL_ERROR':
-        return ScanStatusReason.internalError;
-      case 'UNMANAGED_EC2_INSTANCE':
-        return ScanStatusReason.unmanagedEc2Instance;
-      case 'UNSUPPORTED_OS':
-        return ScanStatusReason.unsupportedOs;
-      case 'SCAN_ELIGIBILITY_EXPIRED':
-        return ScanStatusReason.scanEligibilityExpired;
-      case 'RESOURCE_TERMINATED':
-        return ScanStatusReason.resourceTerminated;
-      case 'SUCCESSFUL':
-        return ScanStatusReason.successful;
-      case 'NO_RESOURCES_FOUND':
-        return ScanStatusReason.noResourcesFound;
-      case 'IMAGE_SIZE_EXCEEDED':
-        return ScanStatusReason.imageSizeExceeded;
-      case 'SCAN_FREQUENCY_MANUAL':
-        return ScanStatusReason.scanFrequencyManual;
-      case 'SCAN_FREQUENCY_SCAN_ON_PUSH':
-        return ScanStatusReason.scanFrequencyScanOnPush;
-      case 'EC2_INSTANCE_STOPPED':
-        return ScanStatusReason.ec2InstanceStopped;
-      case 'PENDING_DISABLE':
-        return ScanStatusReason.pendingDisable;
-      case 'NO_INVENTORY':
-        return ScanStatusReason.noInventory;
-      case 'STALE_INVENTORY':
-        return ScanStatusReason.staleInventory;
-      case 'EXCLUDED_BY_TAG':
-        return ScanStatusReason.excludedByTag;
-      case 'UNSUPPORTED_RUNTIME':
-        return ScanStatusReason.unsupportedRuntime;
-      case 'UNSUPPORTED_MEDIA_TYPE':
-        return ScanStatusReason.unsupportedMediaType;
-      case 'UNSUPPORTED_CONFIG_FILE':
-        return ScanStatusReason.unsupportedConfigFile;
-      case 'DEEP_INSPECTION_PACKAGE_COLLECTION_LIMIT_EXCEEDED':
-        return ScanStatusReason.deepInspectionPackageCollectionLimitExceeded;
-      case 'DEEP_INSPECTION_DAILY_SSM_INVENTORY_LIMIT_EXCEEDED':
-        return ScanStatusReason.deepInspectionDailySsmInventoryLimitExceeded;
-      case 'DEEP_INSPECTION_COLLECTION_TIME_LIMIT_EXCEEDED':
-        return ScanStatusReason.deepInspectionCollectionTimeLimitExceeded;
-      case 'DEEP_INSPECTION_NO_INVENTORY':
-        return ScanStatusReason.deepInspectionNoInventory;
-    }
-    throw Exception('$this is not known in enum ScanStatusReason');
-  }
+  const ScanStatusReason(this.value);
+
+  static ScanStatusReason fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum ScanStatusReason'));
 }
 
 enum ScanType {
-  network,
-  package,
-}
+  network('NETWORK'),
+  package('PACKAGE'),
+  ;
 
-extension ScanTypeValueExtension on ScanType {
-  String toValue() {
-    switch (this) {
-      case ScanType.network:
-        return 'NETWORK';
-      case ScanType.package:
-        return 'PACKAGE';
-    }
-  }
-}
+  final String value;
 
-extension ScanTypeFromString on String {
-  ScanType toScanType() {
-    switch (this) {
-      case 'NETWORK':
-        return ScanType.network;
-      case 'PACKAGE':
-        return ScanType.package;
-    }
-    throw Exception('$this is not known in enum ScanType');
-  }
+  const ScanType(this.value);
+
+  static ScanType fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum ScanType'));
 }
 
 /// Details on the criteria used to define the filter for a vulnerability
@@ -8643,84 +7547,36 @@ class SearchVulnerabilitiesResponse {
 }
 
 enum Service {
-  ec2,
-  ecr,
-  lambda,
-}
+  ec2('EC2'),
+  ecr('ECR'),
+  lambda('LAMBDA'),
+  ;
 
-extension ServiceValueExtension on Service {
-  String toValue() {
-    switch (this) {
-      case Service.ec2:
-        return 'EC2';
-      case Service.ecr:
-        return 'ECR';
-      case Service.lambda:
-        return 'LAMBDA';
-    }
-  }
-}
+  final String value;
 
-extension ServiceFromString on String {
-  Service toService() {
-    switch (this) {
-      case 'EC2':
-        return Service.ec2;
-      case 'ECR':
-        return Service.ecr;
-      case 'LAMBDA':
-        return Service.lambda;
-    }
-    throw Exception('$this is not known in enum Service');
-  }
+  const Service(this.value);
+
+  static Service fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception('$value is not known in enum Service'));
 }
 
 enum Severity {
-  informational,
-  low,
-  medium,
-  high,
-  critical,
-  untriaged,
-}
+  informational('INFORMATIONAL'),
+  low('LOW'),
+  medium('MEDIUM'),
+  high('HIGH'),
+  critical('CRITICAL'),
+  untriaged('UNTRIAGED'),
+  ;
 
-extension SeverityValueExtension on Severity {
-  String toValue() {
-    switch (this) {
-      case Severity.informational:
-        return 'INFORMATIONAL';
-      case Severity.low:
-        return 'LOW';
-      case Severity.medium:
-        return 'MEDIUM';
-      case Severity.high:
-        return 'HIGH';
-      case Severity.critical:
-        return 'CRITICAL';
-      case Severity.untriaged:
-        return 'UNTRIAGED';
-    }
-  }
-}
+  final String value;
 
-extension SeverityFromString on String {
-  Severity toSeverity() {
-    switch (this) {
-      case 'INFORMATIONAL':
-        return Severity.informational;
-      case 'LOW':
-        return Severity.low;
-      case 'MEDIUM':
-        return Severity.medium;
-      case 'HIGH':
-        return Severity.high;
-      case 'CRITICAL':
-        return Severity.critical;
-      case 'UNTRIAGED':
-        return Severity.untriaged;
-    }
-    throw Exception('$this is not known in enum Severity');
-  }
+  const Severity(this.value);
+
+  static Severity fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum Severity'));
 }
 
 /// An object that contains the counts of aggregated finding per severity.
@@ -8784,136 +7640,52 @@ class SortCriteria {
     final field = this.field;
     final sortOrder = this.sortOrder;
     return {
-      'field': field.toValue(),
-      'sortOrder': sortOrder.toValue(),
+      'field': field.value,
+      'sortOrder': sortOrder.value,
     };
   }
 }
 
 enum SortField {
-  awsAccountId,
-  findingType,
-  severity,
-  firstObservedAt,
-  lastObservedAt,
-  findingStatus,
-  resourceType,
-  ecrImagePushedAt,
-  ecrImageRepositoryName,
-  ecrImageRegistry,
-  networkProtocol,
-  componentType,
-  vulnerabilityId,
-  vulnerabilitySource,
-  inspectorScore,
-  vendorSeverity,
-}
+  awsAccountId('AWS_ACCOUNT_ID'),
+  findingType('FINDING_TYPE'),
+  severity('SEVERITY'),
+  firstObservedAt('FIRST_OBSERVED_AT'),
+  lastObservedAt('LAST_OBSERVED_AT'),
+  findingStatus('FINDING_STATUS'),
+  resourceType('RESOURCE_TYPE'),
+  ecrImagePushedAt('ECR_IMAGE_PUSHED_AT'),
+  ecrImageRepositoryName('ECR_IMAGE_REPOSITORY_NAME'),
+  ecrImageRegistry('ECR_IMAGE_REGISTRY'),
+  networkProtocol('NETWORK_PROTOCOL'),
+  componentType('COMPONENT_TYPE'),
+  vulnerabilityId('VULNERABILITY_ID'),
+  vulnerabilitySource('VULNERABILITY_SOURCE'),
+  inspectorScore('INSPECTOR_SCORE'),
+  vendorSeverity('VENDOR_SEVERITY'),
+  ;
 
-extension SortFieldValueExtension on SortField {
-  String toValue() {
-    switch (this) {
-      case SortField.awsAccountId:
-        return 'AWS_ACCOUNT_ID';
-      case SortField.findingType:
-        return 'FINDING_TYPE';
-      case SortField.severity:
-        return 'SEVERITY';
-      case SortField.firstObservedAt:
-        return 'FIRST_OBSERVED_AT';
-      case SortField.lastObservedAt:
-        return 'LAST_OBSERVED_AT';
-      case SortField.findingStatus:
-        return 'FINDING_STATUS';
-      case SortField.resourceType:
-        return 'RESOURCE_TYPE';
-      case SortField.ecrImagePushedAt:
-        return 'ECR_IMAGE_PUSHED_AT';
-      case SortField.ecrImageRepositoryName:
-        return 'ECR_IMAGE_REPOSITORY_NAME';
-      case SortField.ecrImageRegistry:
-        return 'ECR_IMAGE_REGISTRY';
-      case SortField.networkProtocol:
-        return 'NETWORK_PROTOCOL';
-      case SortField.componentType:
-        return 'COMPONENT_TYPE';
-      case SortField.vulnerabilityId:
-        return 'VULNERABILITY_ID';
-      case SortField.vulnerabilitySource:
-        return 'VULNERABILITY_SOURCE';
-      case SortField.inspectorScore:
-        return 'INSPECTOR_SCORE';
-      case SortField.vendorSeverity:
-        return 'VENDOR_SEVERITY';
-    }
-  }
-}
+  final String value;
 
-extension SortFieldFromString on String {
-  SortField toSortField() {
-    switch (this) {
-      case 'AWS_ACCOUNT_ID':
-        return SortField.awsAccountId;
-      case 'FINDING_TYPE':
-        return SortField.findingType;
-      case 'SEVERITY':
-        return SortField.severity;
-      case 'FIRST_OBSERVED_AT':
-        return SortField.firstObservedAt;
-      case 'LAST_OBSERVED_AT':
-        return SortField.lastObservedAt;
-      case 'FINDING_STATUS':
-        return SortField.findingStatus;
-      case 'RESOURCE_TYPE':
-        return SortField.resourceType;
-      case 'ECR_IMAGE_PUSHED_AT':
-        return SortField.ecrImagePushedAt;
-      case 'ECR_IMAGE_REPOSITORY_NAME':
-        return SortField.ecrImageRepositoryName;
-      case 'ECR_IMAGE_REGISTRY':
-        return SortField.ecrImageRegistry;
-      case 'NETWORK_PROTOCOL':
-        return SortField.networkProtocol;
-      case 'COMPONENT_TYPE':
-        return SortField.componentType;
-      case 'VULNERABILITY_ID':
-        return SortField.vulnerabilityId;
-      case 'VULNERABILITY_SOURCE':
-        return SortField.vulnerabilitySource;
-      case 'INSPECTOR_SCORE':
-        return SortField.inspectorScore;
-      case 'VENDOR_SEVERITY':
-        return SortField.vendorSeverity;
-    }
-    throw Exception('$this is not known in enum SortField');
-  }
+  const SortField(this.value);
+
+  static SortField fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum SortField'));
 }
 
 enum SortOrder {
-  asc,
-  desc,
-}
+  asc('ASC'),
+  desc('DESC'),
+  ;
 
-extension SortOrderValueExtension on SortOrder {
-  String toValue() {
-    switch (this) {
-      case SortOrder.asc:
-        return 'ASC';
-      case SortOrder.desc:
-        return 'DESC';
-    }
-  }
-}
+  final String value;
 
-extension SortOrderFromString on String {
-  SortOrder toSortOrder() {
-    switch (this) {
-      case 'ASC':
-        return SortOrder.asc;
-      case 'DESC':
-        return SortOrder.desc;
-    }
-    throw Exception('$this is not known in enum SortOrder');
-  }
+  const SortOrder(this.value);
+
+  static SortOrder fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum SortOrder'));
 }
 
 /// An object that described the state of Amazon Inspector scans for an account.
@@ -8936,9 +7708,9 @@ class State {
 
   factory State.fromJson(Map<String, dynamic> json) {
     return State(
-      errorCode: (json['errorCode'] as String).toErrorCode(),
+      errorCode: ErrorCode.fromString((json['errorCode'] as String)),
       errorMessage: json['errorMessage'] as String,
-      status: (json['status'] as String).toStatus(),
+      status: Status.fromString((json['status'] as String)),
     );
   }
 
@@ -8947,59 +7719,29 @@ class State {
     final errorMessage = this.errorMessage;
     final status = this.status;
     return {
-      'errorCode': errorCode.toValue(),
+      'errorCode': errorCode.value,
       'errorMessage': errorMessage,
-      'status': status.toValue(),
+      'status': status.value,
     };
   }
 }
 
 enum Status {
-  enabling,
-  enabled,
-  disabling,
-  disabled,
-  suspending,
-  suspended,
-}
+  enabling('ENABLING'),
+  enabled('ENABLED'),
+  disabling('DISABLING'),
+  disabled('DISABLED'),
+  suspending('SUSPENDING'),
+  suspended('SUSPENDED'),
+  ;
 
-extension StatusValueExtension on Status {
-  String toValue() {
-    switch (this) {
-      case Status.enabling:
-        return 'ENABLING';
-      case Status.enabled:
-        return 'ENABLED';
-      case Status.disabling:
-        return 'DISABLING';
-      case Status.disabled:
-        return 'DISABLED';
-      case Status.suspending:
-        return 'SUSPENDING';
-      case Status.suspended:
-        return 'SUSPENDED';
-    }
-  }
-}
+  final String value;
 
-extension StatusFromString on String {
-  Status toStatus() {
-    switch (this) {
-      case 'ENABLING':
-        return Status.enabling;
-      case 'ENABLED':
-        return Status.enabled;
-      case 'DISABLING':
-        return Status.disabling;
-      case 'DISABLED':
-        return Status.disabled;
-      case 'SUSPENDING':
-        return Status.suspending;
-      case 'SUSPENDED':
-        return Status.suspended;
-    }
-    throw Exception('$this is not known in enum Status');
-  }
+  const Status(this.value);
+
+  static Status fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception('$value is not known in enum Status'));
 }
 
 /// Details about the step associated with a finding.
@@ -9033,36 +7775,19 @@ class Step {
 }
 
 enum StringComparison {
-  equals,
-  prefix,
-  notEquals,
-}
+  equals('EQUALS'),
+  prefix('PREFIX'),
+  notEquals('NOT_EQUALS'),
+  ;
 
-extension StringComparisonValueExtension on StringComparison {
-  String toValue() {
-    switch (this) {
-      case StringComparison.equals:
-        return 'EQUALS';
-      case StringComparison.prefix:
-        return 'PREFIX';
-      case StringComparison.notEquals:
-        return 'NOT_EQUALS';
-    }
-  }
-}
+  final String value;
 
-extension StringComparisonFromString on String {
-  StringComparison toStringComparison() {
-    switch (this) {
-      case 'EQUALS':
-        return StringComparison.equals;
-      case 'PREFIX':
-        return StringComparison.prefix;
-      case 'NOT_EQUALS':
-        return StringComparison.notEquals;
-    }
-    throw Exception('$this is not known in enum StringComparison');
-  }
+  const StringComparison(this.value);
+
+  static StringComparison fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum StringComparison'));
 }
 
 /// An object that describes the details of a string filter.
@@ -9080,7 +7805,7 @@ class StringFilter {
 
   factory StringFilter.fromJson(Map<String, dynamic> json) {
     return StringFilter(
-      comparison: (json['comparison'] as String).toStringComparison(),
+      comparison: StringComparison.fromString((json['comparison'] as String)),
       value: json['value'] as String,
     );
   }
@@ -9089,7 +7814,7 @@ class StringFilter {
     final comparison = this.comparison;
     final value = this.value;
     return {
-      'comparison': comparison.toValue(),
+      'comparison': comparison.value,
       'value': value,
     };
   }
@@ -9139,9 +7864,9 @@ class TitleAggregation {
     final titles = this.titles;
     final vulnerabilityIds = this.vulnerabilityIds;
     return {
-      if (resourceType != null) 'resourceType': resourceType.toValue(),
-      if (sortBy != null) 'sortBy': sortBy.toValue(),
-      if (sortOrder != null) 'sortOrder': sortOrder.toValue(),
+      if (resourceType != null) 'resourceType': resourceType.value,
+      if (sortBy != null) 'sortBy': sortBy.value,
+      if (sortOrder != null) 'sortOrder': sortOrder.value,
       if (titles != null) 'titles': titles,
       if (vulnerabilityIds != null) 'vulnerabilityIds': vulnerabilityIds,
     };
@@ -9197,36 +7922,18 @@ class TitleAggregationResponse {
 }
 
 enum TitleSortBy {
-  critical,
-  high,
-  all,
-}
+  critical('CRITICAL'),
+  high('HIGH'),
+  all('ALL'),
+  ;
 
-extension TitleSortByValueExtension on TitleSortBy {
-  String toValue() {
-    switch (this) {
-      case TitleSortBy.critical:
-        return 'CRITICAL';
-      case TitleSortBy.high:
-        return 'HIGH';
-      case TitleSortBy.all:
-        return 'ALL';
-    }
-  }
-}
+  final String value;
 
-extension TitleSortByFromString on String {
-  TitleSortBy toTitleSortBy() {
-    switch (this) {
-      case 'CRITICAL':
-        return TitleSortBy.critical;
-      case 'HIGH':
-        return TitleSortBy.high;
-      case 'ALL':
-        return TitleSortBy.all;
-    }
-    throw Exception('$this is not known in enum TitleSortBy');
-  }
+  const TitleSortBy(this.value);
+
+  static TitleSortBy fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum TitleSortBy'));
 }
 
 class UntagResourceResponse {
@@ -9287,7 +7994,8 @@ class UpdateEc2DeepInspectionConfigurationResponse {
           ?.whereNotNull()
           .map((e) => e as String)
           .toList(),
-      status: (json['status'] as String?)?.toEc2DeepInspectionStatus(),
+      status:
+          (json['status'] as String?)?.let(Ec2DeepInspectionStatus.fromString),
     );
   }
 
@@ -9300,7 +8008,7 @@ class UpdateEc2DeepInspectionConfigurationResponse {
       if (errorMessage != null) 'errorMessage': errorMessage,
       if (orgPackagePaths != null) 'orgPackagePaths': orgPackagePaths,
       if (packagePaths != null) 'packagePaths': packagePaths,
-      if (status != null) 'status': status.toValue(),
+      if (status != null) 'status': status.value,
     };
   }
 }
@@ -9388,10 +8096,10 @@ class Usage {
 
   factory Usage.fromJson(Map<String, dynamic> json) {
     return Usage(
-      currency: (json['currency'] as String?)?.toCurrency(),
+      currency: (json['currency'] as String?)?.let(Currency.fromString),
       estimatedMonthlyCost: json['estimatedMonthlyCost'] as double?,
       total: json['total'] as double?,
-      type: (json['type'] as String?)?.toUsageType(),
+      type: (json['type'] as String?)?.let(UsageType.fromString),
     );
   }
 
@@ -9401,11 +8109,11 @@ class Usage {
     final total = this.total;
     final type = this.type;
     return {
-      if (currency != null) 'currency': currency.toValue(),
+      if (currency != null) 'currency': currency.value,
       if (estimatedMonthlyCost != null)
         'estimatedMonthlyCost': estimatedMonthlyCost,
       if (total != null) 'total': total,
-      if (type != null) 'type': type.toValue(),
+      if (type != null) 'type': type.value,
     };
   }
 }
@@ -9444,41 +8152,19 @@ class UsageTotal {
 }
 
 enum UsageType {
-  ec2InstanceHours,
-  ecrInitialScan,
-  ecrRescan,
-  lambdaFunctionHours,
-}
+  ec2InstanceHours('EC2_INSTANCE_HOURS'),
+  ecrInitialScan('ECR_INITIAL_SCAN'),
+  ecrRescan('ECR_RESCAN'),
+  lambdaFunctionHours('LAMBDA_FUNCTION_HOURS'),
+  ;
 
-extension UsageTypeValueExtension on UsageType {
-  String toValue() {
-    switch (this) {
-      case UsageType.ec2InstanceHours:
-        return 'EC2_INSTANCE_HOURS';
-      case UsageType.ecrInitialScan:
-        return 'ECR_INITIAL_SCAN';
-      case UsageType.ecrRescan:
-        return 'ECR_RESCAN';
-      case UsageType.lambdaFunctionHours:
-        return 'LAMBDA_FUNCTION_HOURS';
-    }
-  }
-}
+  final String value;
 
-extension UsageTypeFromString on String {
-  UsageType toUsageType() {
-    switch (this) {
-      case 'EC2_INSTANCE_HOURS':
-        return UsageType.ec2InstanceHours;
-      case 'ECR_INITIAL_SCAN':
-        return UsageType.ecrInitialScan;
-      case 'ECR_RESCAN':
-        return UsageType.ecrRescan;
-      case 'LAMBDA_FUNCTION_HOURS':
-        return UsageType.lambdaFunctionHours;
-    }
-    throw Exception('$this is not known in enum UsageType');
-  }
+  const UsageType(this.value);
+
+  static UsageType fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum UsageType'));
 }
 
 /// Contains details about a specific vulnerability Amazon Inspector can detect.
@@ -9597,7 +8283,7 @@ class Vulnerability {
           ?.whereNotNull()
           .map((e) => e as String)
           .toList(),
-      source: (json['source'] as String?)?.toVulnerabilitySource(),
+      source: (json['source'] as String?)?.let(VulnerabilitySource.fromString),
       sourceUrl: json['sourceUrl'] as String?,
       vendorCreatedAt: timeStampFromJson(json['vendorCreatedAt']),
       vendorSeverity: json['vendorSeverity'] as String?,
@@ -9637,7 +8323,7 @@ class Vulnerability {
       if (referenceUrls != null) 'referenceUrls': referenceUrls,
       if (relatedVulnerabilities != null)
         'relatedVulnerabilities': relatedVulnerabilities,
-      if (source != null) 'source': source.toValue(),
+      if (source != null) 'source': source.value,
       if (sourceUrl != null) 'sourceUrl': sourceUrl,
       if (vendorCreatedAt != null)
         'vendorCreatedAt': unixTimestampToJson(vendorCreatedAt),
@@ -9649,26 +8335,17 @@ class Vulnerability {
 }
 
 enum VulnerabilitySource {
-  nvd,
-}
+  nvd('NVD'),
+  ;
 
-extension VulnerabilitySourceValueExtension on VulnerabilitySource {
-  String toValue() {
-    switch (this) {
-      case VulnerabilitySource.nvd:
-        return 'NVD';
-    }
-  }
-}
+  final String value;
 
-extension VulnerabilitySourceFromString on String {
-  VulnerabilitySource toVulnerabilitySource() {
-    switch (this) {
-      case 'NVD':
-        return VulnerabilitySource.nvd;
-    }
-    throw Exception('$this is not known in enum VulnerabilitySource');
-  }
+  const VulnerabilitySource(this.value);
+
+  static VulnerabilitySource fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum VulnerabilitySource'));
 }
 
 /// Information on the vulnerable package identified by a finding.
@@ -9729,7 +8406,8 @@ class VulnerablePackage {
       epoch: json['epoch'] as int?,
       filePath: json['filePath'] as String?,
       fixedInVersion: json['fixedInVersion'] as String?,
-      packageManager: (json['packageManager'] as String?)?.toPackageManager(),
+      packageManager:
+          (json['packageManager'] as String?)?.let(PackageManager.fromString),
       release: json['release'] as String?,
       remediation: json['remediation'] as String?,
       sourceLambdaLayerArn: json['sourceLambdaLayerArn'] as String?,
@@ -9756,7 +8434,7 @@ class VulnerablePackage {
       if (epoch != null) 'epoch': epoch,
       if (filePath != null) 'filePath': filePath,
       if (fixedInVersion != null) 'fixedInVersion': fixedInVersion,
-      if (packageManager != null) 'packageManager': packageManager.toValue(),
+      if (packageManager != null) 'packageManager': packageManager.value,
       if (release != null) 'release': release,
       if (remediation != null) 'remediation': remediation,
       if (sourceLambdaLayerArn != null)

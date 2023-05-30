@@ -327,7 +327,7 @@ class MarketplaceCatalog {
       if (filterList != null) 'FilterList': filterList,
       if (maxResults != null) 'MaxResults': maxResults,
       if (nextToken != null) 'NextToken': nextToken,
-      if (ownershipType != null) 'OwnershipType': ownershipType.toValue(),
+      if (ownershipType != null) 'OwnershipType': ownershipType.value,
       if (sort != null) 'Sort': sort,
     };
     final response = await _protocol.send(
@@ -688,9 +688,10 @@ class ChangeSetSummaryListItem {
           ?.whereNotNull()
           .map((e) => e as String)
           .toList(),
-      failureCode: (json['FailureCode'] as String?)?.toFailureCode(),
+      failureCode:
+          (json['FailureCode'] as String?)?.let(FailureCode.fromString),
       startTime: json['StartTime'] as String?,
-      status: (json['Status'] as String?)?.toChangeStatus(),
+      status: (json['Status'] as String?)?.let(ChangeStatus.fromString),
     );
   }
 
@@ -709,54 +710,29 @@ class ChangeSetSummaryListItem {
       if (changeSetName != null) 'ChangeSetName': changeSetName,
       if (endTime != null) 'EndTime': endTime,
       if (entityIdList != null) 'EntityIdList': entityIdList,
-      if (failureCode != null) 'FailureCode': failureCode.toValue(),
+      if (failureCode != null) 'FailureCode': failureCode.value,
       if (startTime != null) 'StartTime': startTime,
-      if (status != null) 'Status': status.toValue(),
+      if (status != null) 'Status': status.value,
     };
   }
 }
 
 enum ChangeStatus {
-  preparing,
-  applying,
-  succeeded,
-  cancelled,
-  failed,
-}
+  preparing('PREPARING'),
+  applying('APPLYING'),
+  succeeded('SUCCEEDED'),
+  cancelled('CANCELLED'),
+  failed('FAILED'),
+  ;
 
-extension ChangeStatusValueExtension on ChangeStatus {
-  String toValue() {
-    switch (this) {
-      case ChangeStatus.preparing:
-        return 'PREPARING';
-      case ChangeStatus.applying:
-        return 'APPLYING';
-      case ChangeStatus.succeeded:
-        return 'SUCCEEDED';
-      case ChangeStatus.cancelled:
-        return 'CANCELLED';
-      case ChangeStatus.failed:
-        return 'FAILED';
-    }
-  }
-}
+  final String value;
 
-extension ChangeStatusFromString on String {
-  ChangeStatus toChangeStatus() {
-    switch (this) {
-      case 'PREPARING':
-        return ChangeStatus.preparing;
-      case 'APPLYING':
-        return ChangeStatus.applying;
-      case 'SUCCEEDED':
-        return ChangeStatus.succeeded;
-      case 'CANCELLED':
-        return ChangeStatus.cancelled;
-      case 'FAILED':
-        return ChangeStatus.failed;
-    }
-    throw Exception('$this is not known in enum ChangeStatus');
-  }
+  const ChangeStatus(this.value);
+
+  static ChangeStatus fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum ChangeStatus'));
 }
 
 /// This object is a container for common summary information about the change.
@@ -890,10 +866,11 @@ class DescribeChangeSetResponse {
       changeSetId: json['ChangeSetId'] as String?,
       changeSetName: json['ChangeSetName'] as String?,
       endTime: json['EndTime'] as String?,
-      failureCode: (json['FailureCode'] as String?)?.toFailureCode(),
+      failureCode:
+          (json['FailureCode'] as String?)?.let(FailureCode.fromString),
       failureDescription: json['FailureDescription'] as String?,
       startTime: json['StartTime'] as String?,
-      status: (json['Status'] as String?)?.toChangeStatus(),
+      status: (json['Status'] as String?)?.let(ChangeStatus.fromString),
     );
   }
 
@@ -913,10 +890,10 @@ class DescribeChangeSetResponse {
       if (changeSetId != null) 'ChangeSetId': changeSetId,
       if (changeSetName != null) 'ChangeSetName': changeSetName,
       if (endTime != null) 'EndTime': endTime,
-      if (failureCode != null) 'FailureCode': failureCode.toValue(),
+      if (failureCode != null) 'FailureCode': failureCode.value,
       if (failureDescription != null) 'FailureDescription': failureDescription,
       if (startTime != null) 'StartTime': startTime,
-      if (status != null) 'Status': status.toValue(),
+      if (status != null) 'Status': status.value,
     };
   }
 }
@@ -1103,31 +1080,17 @@ class ErrorDetail {
 }
 
 enum FailureCode {
-  clientError,
-  serverFault,
-}
+  clientError('CLIENT_ERROR'),
+  serverFault('SERVER_FAULT'),
+  ;
 
-extension FailureCodeValueExtension on FailureCode {
-  String toValue() {
-    switch (this) {
-      case FailureCode.clientError:
-        return 'CLIENT_ERROR';
-      case FailureCode.serverFault:
-        return 'SERVER_FAULT';
-    }
-  }
-}
+  final String value;
 
-extension FailureCodeFromString on String {
-  FailureCode toFailureCode() {
-    switch (this) {
-      case 'CLIENT_ERROR':
-        return FailureCode.clientError;
-      case 'SERVER_FAULT':
-        return FailureCode.serverFault;
-    }
-    throw Exception('$this is not known in enum FailureCode');
-  }
+  const FailureCode(this.value);
+
+  static FailureCode fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum FailureCode'));
 }
 
 /// A filter object, used to optionally filter results from calls to the
@@ -1315,31 +1278,18 @@ class ListTagsForResourceResponse {
 }
 
 enum OwnershipType {
-  self,
-  shared,
-}
+  self('SELF'),
+  shared('SHARED'),
+  ;
 
-extension OwnershipTypeValueExtension on OwnershipType {
-  String toValue() {
-    switch (this) {
-      case OwnershipType.self:
-        return 'SELF';
-      case OwnershipType.shared:
-        return 'SHARED';
-    }
-  }
-}
+  final String value;
 
-extension OwnershipTypeFromString on String {
-  OwnershipType toOwnershipType() {
-    switch (this) {
-      case 'SELF':
-        return OwnershipType.self;
-      case 'SHARED':
-        return OwnershipType.shared;
-    }
-    throw Exception('$this is not known in enum OwnershipType');
-  }
+  const OwnershipType(this.value);
+
+  static OwnershipType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum OwnershipType'));
 }
 
 class PutResourcePolicyResponse {
@@ -1379,37 +1329,23 @@ class Sort {
     final sortOrder = this.sortOrder;
     return {
       if (sortBy != null) 'SortBy': sortBy,
-      if (sortOrder != null) 'SortOrder': sortOrder.toValue(),
+      if (sortOrder != null) 'SortOrder': sortOrder.value,
     };
   }
 }
 
 enum SortOrder {
-  ascending,
-  descending,
-}
+  ascending('ASCENDING'),
+  descending('DESCENDING'),
+  ;
 
-extension SortOrderValueExtension on SortOrder {
-  String toValue() {
-    switch (this) {
-      case SortOrder.ascending:
-        return 'ASCENDING';
-      case SortOrder.descending:
-        return 'DESCENDING';
-    }
-  }
-}
+  final String value;
 
-extension SortOrderFromString on String {
-  SortOrder toSortOrder() {
-    switch (this) {
-      case 'ASCENDING':
-        return SortOrder.ascending;
-      case 'DESCENDING':
-        return SortOrder.descending;
-    }
-    throw Exception('$this is not known in enum SortOrder');
-  }
+  const SortOrder(this.value);
+
+  static SortOrder fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum SortOrder'));
 }
 
 class StartChangeSetResponse {

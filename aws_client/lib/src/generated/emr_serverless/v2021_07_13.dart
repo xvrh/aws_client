@@ -177,7 +177,7 @@ class EmrServerless {
     final $payload = <String, dynamic>{
       'releaseLabel': releaseLabel,
       'type': type,
-      if (architecture != null) 'architecture': architecture.toValue(),
+      if (architecture != null) 'architecture': architecture.value,
       if (autoStartConfiguration != null)
         'autoStartConfiguration': autoStartConfiguration,
       if (autoStopConfiguration != null)
@@ -322,7 +322,7 @@ class EmrServerless {
     final $query = <String, List<String>>{
       if (maxResults != null) 'maxResults': [maxResults.toString()],
       if (nextToken != null) 'nextToken': [nextToken],
-      if (states != null) 'states': states.map((e) => e.toValue()).toList(),
+      if (states != null) 'states': states.map((e) => e.value).toList(),
     };
     final response = await _protocol.send(
       payload: null,
@@ -378,7 +378,7 @@ class EmrServerless {
         'createdAtBefore': [_s.iso8601ToJson(createdAtBefore).toString()],
       if (maxResults != null) 'maxResults': [maxResults.toString()],
       if (nextToken != null) 'nextToken': [nextToken],
-      if (states != null) 'states': states.map((e) => e.toValue()).toList(),
+      if (states != null) 'states': states.map((e) => e.value).toList(),
     };
     final response = await _protocol.send(
       payload: null,
@@ -644,7 +644,7 @@ class EmrServerless {
     Map<String, WorkerTypeSpecificationInput>? workerTypeSpecifications,
   }) async {
     final $payload = <String, dynamic>{
-      if (architecture != null) 'architecture': architecture.toValue(),
+      if (architecture != null) 'architecture': architecture.value,
       if (autoStartConfiguration != null)
         'autoStartConfiguration': autoStartConfiguration,
       if (autoStopConfiguration != null)
@@ -757,10 +757,11 @@ class Application {
       arn: json['arn'] as String,
       createdAt: nonNullableTimeStampFromJson(json['createdAt'] as Object),
       releaseLabel: json['releaseLabel'] as String,
-      state: (json['state'] as String).toApplicationState(),
+      state: ApplicationState.fromString((json['state'] as String)),
       type: json['type'] as String,
       updatedAt: nonNullableTimeStampFromJson(json['updatedAt'] as Object),
-      architecture: (json['architecture'] as String?)?.toArchitecture(),
+      architecture:
+          (json['architecture'] as String?)?.let(Architecture.fromString),
       autoStartConfiguration: json['autoStartConfiguration'] != null
           ? AutoStartConfig.fromJson(
               json['autoStartConfiguration'] as Map<String, dynamic>)
@@ -819,10 +820,10 @@ class Application {
       'arn': arn,
       'createdAt': unixTimestampToJson(createdAt),
       'releaseLabel': releaseLabel,
-      'state': state.toValue(),
+      'state': state.value,
       'type': type,
       'updatedAt': unixTimestampToJson(updatedAt),
-      if (architecture != null) 'architecture': architecture.toValue(),
+      if (architecture != null) 'architecture': architecture.value,
       if (autoStartConfiguration != null)
         'autoStartConfiguration': autoStartConfiguration,
       if (autoStopConfiguration != null)
@@ -842,56 +843,23 @@ class Application {
 }
 
 enum ApplicationState {
-  creating,
-  created,
-  starting,
-  started,
-  stopping,
-  stopped,
-  terminated,
-}
+  creating('CREATING'),
+  created('CREATED'),
+  starting('STARTING'),
+  started('STARTED'),
+  stopping('STOPPING'),
+  stopped('STOPPED'),
+  terminated('TERMINATED'),
+  ;
 
-extension ApplicationStateValueExtension on ApplicationState {
-  String toValue() {
-    switch (this) {
-      case ApplicationState.creating:
-        return 'CREATING';
-      case ApplicationState.created:
-        return 'CREATED';
-      case ApplicationState.starting:
-        return 'STARTING';
-      case ApplicationState.started:
-        return 'STARTED';
-      case ApplicationState.stopping:
-        return 'STOPPING';
-      case ApplicationState.stopped:
-        return 'STOPPED';
-      case ApplicationState.terminated:
-        return 'TERMINATED';
-    }
-  }
-}
+  final String value;
 
-extension ApplicationStateFromString on String {
-  ApplicationState toApplicationState() {
-    switch (this) {
-      case 'CREATING':
-        return ApplicationState.creating;
-      case 'CREATED':
-        return ApplicationState.created;
-      case 'STARTING':
-        return ApplicationState.starting;
-      case 'STARTED':
-        return ApplicationState.started;
-      case 'STOPPING':
-        return ApplicationState.stopping;
-      case 'STOPPED':
-        return ApplicationState.stopped;
-      case 'TERMINATED':
-        return ApplicationState.terminated;
-    }
-    throw Exception('$this is not known in enum ApplicationState');
-  }
+  const ApplicationState(this.value);
+
+  static ApplicationState fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum ApplicationState'));
 }
 
 /// The summary of attributes associated with an application.
@@ -945,10 +913,11 @@ class ApplicationSummary {
       createdAt: nonNullableTimeStampFromJson(json['createdAt'] as Object),
       id: json['id'] as String,
       releaseLabel: json['releaseLabel'] as String,
-      state: (json['state'] as String).toApplicationState(),
+      state: ApplicationState.fromString((json['state'] as String)),
       type: json['type'] as String,
       updatedAt: nonNullableTimeStampFromJson(json['updatedAt'] as Object),
-      architecture: (json['architecture'] as String?)?.toArchitecture(),
+      architecture:
+          (json['architecture'] as String?)?.let(Architecture.fromString),
       name: json['name'] as String?,
       stateDetails: json['stateDetails'] as String?,
     );
@@ -970,10 +939,10 @@ class ApplicationSummary {
       'createdAt': unixTimestampToJson(createdAt),
       'id': id,
       'releaseLabel': releaseLabel,
-      'state': state.toValue(),
+      'state': state.value,
       'type': type,
       'updatedAt': unixTimestampToJson(updatedAt),
-      if (architecture != null) 'architecture': architecture.toValue(),
+      if (architecture != null) 'architecture': architecture.value,
       if (name != null) 'name': name,
       if (stateDetails != null) 'stateDetails': stateDetails,
     };
@@ -981,31 +950,18 @@ class ApplicationSummary {
 }
 
 enum Architecture {
-  arm64,
-  x86_64,
-}
+  arm64('ARM64'),
+  x86_64('X86_64'),
+  ;
 
-extension ArchitectureValueExtension on Architecture {
-  String toValue() {
-    switch (this) {
-      case Architecture.arm64:
-        return 'ARM64';
-      case Architecture.x86_64:
-        return 'X86_64';
-    }
-  }
-}
+  final String value;
 
-extension ArchitectureFromString on String {
-  Architecture toArchitecture() {
-    switch (this) {
-      case 'ARM64':
-        return Architecture.arm64;
-      case 'X86_64':
-        return Architecture.x86_64;
-    }
-    throw Exception('$this is not known in enum Architecture');
-  }
+  const Architecture(this.value);
+
+  static Architecture fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum Architecture'));
 }
 
 /// The configuration for an application to automatically start on job
@@ -1551,7 +1507,7 @@ class JobRun {
       jobDriver: JobDriver.fromJson(json['jobDriver'] as Map<String, dynamic>),
       jobRunId: json['jobRunId'] as String,
       releaseLabel: json['releaseLabel'] as String,
-      state: (json['state'] as String).toJobRunState(),
+      state: JobRunState.fromString((json['state'] as String)),
       stateDetails: json['stateDetails'] as String,
       updatedAt: nonNullableTimeStampFromJson(json['updatedAt'] as Object),
       billedResourceUtilization: json['billedResourceUtilization'] != null
@@ -1608,7 +1564,7 @@ class JobRun {
       'jobDriver': jobDriver,
       'jobRunId': jobRunId,
       'releaseLabel': releaseLabel,
-      'state': state.toValue(),
+      'state': state.value,
       'stateDetails': stateDetails,
       'updatedAt': unixTimestampToJson(updatedAt),
       if (billedResourceUtilization != null)
@@ -1630,61 +1586,23 @@ class JobRun {
 }
 
 enum JobRunState {
-  submitted,
-  pending,
-  scheduled,
-  running,
-  success,
-  failed,
-  cancelling,
-  cancelled,
-}
+  submitted('SUBMITTED'),
+  pending('PENDING'),
+  scheduled('SCHEDULED'),
+  running('RUNNING'),
+  success('SUCCESS'),
+  failed('FAILED'),
+  cancelling('CANCELLING'),
+  cancelled('CANCELLED'),
+  ;
 
-extension JobRunStateValueExtension on JobRunState {
-  String toValue() {
-    switch (this) {
-      case JobRunState.submitted:
-        return 'SUBMITTED';
-      case JobRunState.pending:
-        return 'PENDING';
-      case JobRunState.scheduled:
-        return 'SCHEDULED';
-      case JobRunState.running:
-        return 'RUNNING';
-      case JobRunState.success:
-        return 'SUCCESS';
-      case JobRunState.failed:
-        return 'FAILED';
-      case JobRunState.cancelling:
-        return 'CANCELLING';
-      case JobRunState.cancelled:
-        return 'CANCELLED';
-    }
-  }
-}
+  final String value;
 
-extension JobRunStateFromString on String {
-  JobRunState toJobRunState() {
-    switch (this) {
-      case 'SUBMITTED':
-        return JobRunState.submitted;
-      case 'PENDING':
-        return JobRunState.pending;
-      case 'SCHEDULED':
-        return JobRunState.scheduled;
-      case 'RUNNING':
-        return JobRunState.running;
-      case 'SUCCESS':
-        return JobRunState.success;
-      case 'FAILED':
-        return JobRunState.failed;
-      case 'CANCELLING':
-        return JobRunState.cancelling;
-      case 'CANCELLED':
-        return JobRunState.cancelled;
-    }
-    throw Exception('$this is not known in enum JobRunState');
-  }
+  const JobRunState(this.value);
+
+  static JobRunState fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum JobRunState'));
 }
 
 /// The summary of attributes associated with a job run.
@@ -1749,7 +1667,7 @@ class JobRunSummary {
       executionRole: json['executionRole'] as String,
       id: json['id'] as String,
       releaseLabel: json['releaseLabel'] as String,
-      state: (json['state'] as String).toJobRunState(),
+      state: JobRunState.fromString((json['state'] as String)),
       stateDetails: json['stateDetails'] as String,
       updatedAt: nonNullableTimeStampFromJson(json['updatedAt'] as Object),
       name: json['name'] as String?,
@@ -1778,7 +1696,7 @@ class JobRunSummary {
       'executionRole': executionRole,
       'id': id,
       'releaseLabel': releaseLabel,
-      'state': state.toValue(),
+      'state': state.value,
       'stateDetails': stateDetails,
       'updatedAt': unixTimestampToJson(updatedAt),
       if (name != null) 'name': name,

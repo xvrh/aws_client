@@ -74,7 +74,7 @@ class MediaTailor {
   }) async {
     final $payload = <String, dynamic>{
       'ChannelName': channelName,
-      'LogTypes': logTypes.map((e) => e.toValue()).toList(),
+      'LogTypes': logTypes.map((e) => e.value).toList(),
     };
     final response = await _protocol.send(
       payload: $payload,
@@ -164,10 +164,10 @@ class MediaTailor {
   }) async {
     final $payload = <String, dynamic>{
       'Outputs': outputs,
-      'PlaybackMode': playbackMode.toValue(),
+      'PlaybackMode': playbackMode.value,
       if (fillerSlate != null) 'FillerSlate': fillerSlate,
       if (tags != null) 'tags': tags,
-      if (tier != null) 'Tier': tier.toValue(),
+      if (tier != null) 'Tier': tier.value,
     };
     final response = await _protocol.send(
       payload: $payload,
@@ -1566,7 +1566,7 @@ class AccessConfiguration {
 
   factory AccessConfiguration.fromJson(Map<String, dynamic> json) {
     return AccessConfiguration(
-      accessType: (json['AccessType'] as String?)?.toAccessType(),
+      accessType: (json['AccessType'] as String?)?.let(AccessType.fromString),
       secretsManagerAccessTokenConfiguration:
           json['SecretsManagerAccessTokenConfiguration'] != null
               ? SecretsManagerAccessTokenConfiguration.fromJson(
@@ -1581,7 +1581,7 @@ class AccessConfiguration {
     final secretsManagerAccessTokenConfiguration =
         this.secretsManagerAccessTokenConfiguration;
     return {
-      if (accessType != null) 'AccessType': accessType.toValue(),
+      if (accessType != null) 'AccessType': accessType.value,
       if (secretsManagerAccessTokenConfiguration != null)
         'SecretsManagerAccessTokenConfiguration':
             secretsManagerAccessTokenConfiguration,
@@ -1590,31 +1590,17 @@ class AccessConfiguration {
 }
 
 enum AccessType {
-  s3Sigv4,
-  secretsManagerAccessToken,
-}
+  s3Sigv4('S3_SIGV4'),
+  secretsManagerAccessToken('SECRETS_MANAGER_ACCESS_TOKEN'),
+  ;
 
-extension AccessTypeValueExtension on AccessType {
-  String toValue() {
-    switch (this) {
-      case AccessType.s3Sigv4:
-        return 'S3_SIGV4';
-      case AccessType.secretsManagerAccessToken:
-        return 'SECRETS_MANAGER_ACCESS_TOKEN';
-    }
-  }
-}
+  final String value;
 
-extension AccessTypeFromString on String {
-  AccessType toAccessType() {
-    switch (this) {
-      case 'S3_SIGV4':
-        return AccessType.s3Sigv4;
-      case 'SECRETS_MANAGER_ACCESS_TOKEN':
-        return AccessType.secretsManagerAccessToken;
-    }
-    throw Exception('$this is not known in enum AccessType');
-  }
+  const AccessType(this.value);
+
+  static AccessType fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum AccessType'));
 }
 
 /// Ad break configuration parameters.
@@ -1655,7 +1641,8 @@ class AdBreak {
 
   factory AdBreak.fromJson(Map<String, dynamic> json) {
     return AdBreak(
-      messageType: (json['MessageType'] as String?)?.toMessageType(),
+      messageType:
+          (json['MessageType'] as String?)?.let(MessageType.fromString),
       offsetMillis: json['OffsetMillis'] as int?,
       slate: json['Slate'] != null
           ? SlateSource.fromJson(json['Slate'] as Map<String, dynamic>)
@@ -1678,7 +1665,7 @@ class AdBreak {
     final spliceInsertMessage = this.spliceInsertMessage;
     final timeSignalMessage = this.timeSignalMessage;
     return {
-      if (messageType != null) 'MessageType': messageType.toValue(),
+      if (messageType != null) 'MessageType': messageType.value,
       if (offsetMillis != null) 'OffsetMillis': offsetMillis,
       if (slate != null) 'Slate': slate,
       if (spliceInsertMessage != null)
@@ -1817,7 +1804,7 @@ class AvailMatchingCriteria {
   factory AvailMatchingCriteria.fromJson(Map<String, dynamic> json) {
     return AvailMatchingCriteria(
       dynamicVariable: json['DynamicVariable'] as String,
-      operator: (json['Operator'] as String).toOperator(),
+      operator: Operator.fromString((json['Operator'] as String)),
     );
   }
 
@@ -1826,7 +1813,7 @@ class AvailMatchingCriteria {
     final operator = this.operator;
     return {
       'DynamicVariable': dynamicVariable,
-      'Operator': operator.toValue(),
+      'Operator': operator.value,
     };
   }
 }
@@ -1869,8 +1856,8 @@ class AvailSuppression {
 
   factory AvailSuppression.fromJson(Map<String, dynamic> json) {
     return AvailSuppression(
-      fillPolicy: (json['FillPolicy'] as String?)?.toFillPolicy(),
-      mode: (json['Mode'] as String?)?.toMode(),
+      fillPolicy: (json['FillPolicy'] as String?)?.let(FillPolicy.fromString),
+      mode: (json['Mode'] as String?)?.let(Mode.fromString),
       value: json['Value'] as String?,
     );
   }
@@ -1880,8 +1867,8 @@ class AvailSuppression {
     final mode = this.mode;
     final value = this.value;
     return {
-      if (fillPolicy != null) 'FillPolicy': fillPolicy.toValue(),
-      if (mode != null) 'Mode': mode.toValue(),
+      if (fillPolicy != null) 'FillPolicy': fillPolicy.value,
+      if (mode != null) 'Mode': mode.value,
       if (value != null) 'Value': value,
     };
   }
@@ -2082,31 +2069,18 @@ class Channel {
 }
 
 enum ChannelState {
-  running,
-  stopped,
-}
+  running('RUNNING'),
+  stopped('STOPPED'),
+  ;
 
-extension ChannelStateValueExtension on ChannelState {
-  String toValue() {
-    switch (this) {
-      case ChannelState.running:
-        return 'RUNNING';
-      case ChannelState.stopped:
-        return 'STOPPED';
-    }
-  }
-}
+  final String value;
 
-extension ChannelStateFromString on String {
-  ChannelState toChannelState() {
-    switch (this) {
-      case 'RUNNING':
-        return ChannelState.running;
-      case 'STOPPED':
-        return ChannelState.stopped;
-    }
-    throw Exception('$this is not known in enum ChannelState');
-  }
+  const ChannelState(this.value);
+
+  static ChannelState fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum ChannelState'));
 }
 
 /// Clip range configuration for the VOD source associated with the program.
@@ -2150,7 +2124,7 @@ class ConfigureLogsForChannelResponse {
       channelName: json['ChannelName'] as String?,
       logTypes: (json['LogTypes'] as List?)
           ?.whereNotNull()
-          .map((e) => (e as String).toLogType())
+          .map((e) => LogType.fromString((e as String)))
           .toList(),
     );
   }
@@ -2160,8 +2134,7 @@ class ConfigureLogsForChannelResponse {
     final logTypes = this.logTypes;
     return {
       if (channelName != null) 'ChannelName': channelName,
-      if (logTypes != null)
-        'LogTypes': logTypes.map((e) => e.toValue()).toList(),
+      if (logTypes != null) 'LogTypes': logTypes.map((e) => e.value).toList(),
     };
   }
 }
@@ -2251,7 +2224,8 @@ class CreateChannelResponse {
     return CreateChannelResponse(
       arn: json['Arn'] as String?,
       channelName: json['ChannelName'] as String?,
-      channelState: (json['ChannelState'] as String?)?.toChannelState(),
+      channelState:
+          (json['ChannelState'] as String?)?.let(ChannelState.fromString),
       creationTime: timeStampFromJson(json['CreationTime']),
       fillerSlate: json['FillerSlate'] != null
           ? SlateSource.fromJson(json['FillerSlate'] as Map<String, dynamic>)
@@ -2282,7 +2256,7 @@ class CreateChannelResponse {
     return {
       if (arn != null) 'Arn': arn,
       if (channelName != null) 'ChannelName': channelName,
-      if (channelState != null) 'ChannelState': channelState.toValue(),
+      if (channelState != null) 'ChannelState': channelState.value,
       if (creationTime != null)
         'CreationTime': unixTimestampToJson(creationTime),
       if (fillerSlate != null) 'FillerSlate': fillerSlate,
@@ -2768,8 +2742,8 @@ class DashConfiguration {
     return DashConfiguration(
       manifestEndpointPrefix: json['ManifestEndpointPrefix'] as String?,
       mpdLocation: json['MpdLocation'] as String?,
-      originManifestType:
-          (json['OriginManifestType'] as String?)?.toOriginManifestType(),
+      originManifestType: (json['OriginManifestType'] as String?)
+          ?.let(OriginManifestType.fromString),
     );
   }
 
@@ -2782,7 +2756,7 @@ class DashConfiguration {
         'ManifestEndpointPrefix': manifestEndpointPrefix,
       if (mpdLocation != null) 'MpdLocation': mpdLocation,
       if (originManifestType != null)
-        'OriginManifestType': originManifestType.toValue(),
+        'OriginManifestType': originManifestType.value,
     };
   }
 }
@@ -2819,7 +2793,7 @@ class DashConfigurationForPut {
     return {
       if (mpdLocation != null) 'MpdLocation': mpdLocation,
       if (originManifestType != null)
-        'OriginManifestType': originManifestType.toValue(),
+        'OriginManifestType': originManifestType.value,
     };
   }
 }
@@ -3067,7 +3041,8 @@ class DescribeChannelResponse {
           json['LogConfiguration'] as Map<String, dynamic>),
       arn: json['Arn'] as String?,
       channelName: json['ChannelName'] as String?,
-      channelState: (json['ChannelState'] as String?)?.toChannelState(),
+      channelState:
+          (json['ChannelState'] as String?)?.let(ChannelState.fromString),
       creationTime: timeStampFromJson(json['CreationTime']),
       fillerSlate: json['FillerSlate'] != null
           ? SlateSource.fromJson(json['FillerSlate'] as Map<String, dynamic>)
@@ -3100,7 +3075,7 @@ class DescribeChannelResponse {
       'LogConfiguration': logConfiguration,
       if (arn != null) 'Arn': arn,
       if (channelName != null) 'ChannelName': channelName,
-      if (channelState != null) 'ChannelState': channelState.toValue(),
+      if (channelState != null) 'ChannelState': channelState.value,
       if (creationTime != null)
         'CreationTime': unixTimestampToJson(creationTime),
       if (fillerSlate != null) 'FillerSlate': fillerSlate,
@@ -3475,31 +3450,17 @@ class DescribeVodSourceResponse {
 }
 
 enum FillPolicy {
-  fullAvailOnly,
-  partialAvail,
-}
+  fullAvailOnly('FULL_AVAIL_ONLY'),
+  partialAvail('PARTIAL_AVAIL'),
+  ;
 
-extension FillPolicyValueExtension on FillPolicy {
-  String toValue() {
-    switch (this) {
-      case FillPolicy.fullAvailOnly:
-        return 'FULL_AVAIL_ONLY';
-      case FillPolicy.partialAvail:
-        return 'PARTIAL_AVAIL';
-    }
-  }
-}
+  final String value;
 
-extension FillPolicyFromString on String {
-  FillPolicy toFillPolicy() {
-    switch (this) {
-      case 'FULL_AVAIL_ONLY':
-        return FillPolicy.fullAvailOnly;
-      case 'PARTIAL_AVAIL':
-        return FillPolicy.partialAvail;
-    }
-    throw Exception('$this is not known in enum FillPolicy');
-  }
+  const FillPolicy(this.value);
+
+  static FillPolicy fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum FillPolicy'));
 }
 
 class GetChannelPolicyResponse {
@@ -3958,7 +3919,7 @@ class HttpPackageConfiguration {
     return HttpPackageConfiguration(
       path: json['Path'] as String,
       sourceGroup: json['SourceGroup'] as String,
-      type: (json['Type'] as String).toType(),
+      type: Type.fromString((json['Type'] as String)),
     );
   }
 
@@ -3969,7 +3930,7 @@ class HttpPackageConfiguration {
     return {
       'Path': path,
       'SourceGroup': sourceGroup,
-      'Type': type.toValue(),
+      'Type': type.value,
     };
   }
 }
@@ -4394,7 +4355,7 @@ class LogConfigurationForChannel {
     return LogConfigurationForChannel(
       logTypes: (json['LogTypes'] as List?)
           ?.whereNotNull()
-          .map((e) => (e as String).toLogType())
+          .map((e) => LogType.fromString((e as String)))
           .toList(),
     );
   }
@@ -4402,33 +4363,22 @@ class LogConfigurationForChannel {
   Map<String, dynamic> toJson() {
     final logTypes = this.logTypes;
     return {
-      if (logTypes != null)
-        'LogTypes': logTypes.map((e) => e.toValue()).toList(),
+      if (logTypes != null) 'LogTypes': logTypes.map((e) => e.value).toList(),
     };
   }
 }
 
 enum LogType {
-  asRun,
-}
+  asRun('AS_RUN'),
+  ;
 
-extension LogTypeValueExtension on LogType {
-  String toValue() {
-    switch (this) {
-      case LogType.asRun:
-        return 'AS_RUN';
-    }
-  }
-}
+  final String value;
 
-extension LogTypeFromString on String {
-  LogType toLogType() {
-    switch (this) {
-      case 'AS_RUN':
-        return LogType.asRun;
-    }
-    throw Exception('$this is not known in enum LogType');
-  }
+  const LogType(this.value);
+
+  static LogType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception('$value is not known in enum LogType'));
 }
 
 /// The configuration for manifest processing rules. Manifest processing rules
@@ -4468,115 +4418,60 @@ class ManifestProcessingRules {
 }
 
 enum MessageType {
-  spliceInsert,
-  timeSignal,
-}
+  spliceInsert('SPLICE_INSERT'),
+  timeSignal('TIME_SIGNAL'),
+  ;
 
-extension MessageTypeValueExtension on MessageType {
-  String toValue() {
-    switch (this) {
-      case MessageType.spliceInsert:
-        return 'SPLICE_INSERT';
-      case MessageType.timeSignal:
-        return 'TIME_SIGNAL';
-    }
-  }
-}
+  final String value;
 
-extension MessageTypeFromString on String {
-  MessageType toMessageType() {
-    switch (this) {
-      case 'SPLICE_INSERT':
-        return MessageType.spliceInsert;
-      case 'TIME_SIGNAL':
-        return MessageType.timeSignal;
-    }
-    throw Exception('$this is not known in enum MessageType');
-  }
+  const MessageType(this.value);
+
+  static MessageType fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum MessageType'));
 }
 
 enum Mode {
-  off,
-  behindLiveEdge,
-  afterLiveEdge,
-}
+  off('OFF'),
+  behindLiveEdge('BEHIND_LIVE_EDGE'),
+  afterLiveEdge('AFTER_LIVE_EDGE'),
+  ;
 
-extension ModeValueExtension on Mode {
-  String toValue() {
-    switch (this) {
-      case Mode.off:
-        return 'OFF';
-      case Mode.behindLiveEdge:
-        return 'BEHIND_LIVE_EDGE';
-      case Mode.afterLiveEdge:
-        return 'AFTER_LIVE_EDGE';
-    }
-  }
-}
+  final String value;
 
-extension ModeFromString on String {
-  Mode toMode() {
-    switch (this) {
-      case 'OFF':
-        return Mode.off;
-      case 'BEHIND_LIVE_EDGE':
-        return Mode.behindLiveEdge;
-      case 'AFTER_LIVE_EDGE':
-        return Mode.afterLiveEdge;
-    }
-    throw Exception('$this is not known in enum Mode');
-  }
+  const Mode(this.value);
+
+  static Mode fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception('$value is not known in enum Mode'));
 }
 
 enum Operator {
-  equals,
-}
+  equals('EQUALS'),
+  ;
 
-extension OperatorValueExtension on Operator {
-  String toValue() {
-    switch (this) {
-      case Operator.equals:
-        return 'EQUALS';
-    }
-  }
-}
+  final String value;
 
-extension OperatorFromString on String {
-  Operator toOperator() {
-    switch (this) {
-      case 'EQUALS':
-        return Operator.equals;
-    }
-    throw Exception('$this is not known in enum Operator');
-  }
+  const Operator(this.value);
+
+  static Operator fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum Operator'));
 }
 
 enum OriginManifestType {
-  singlePeriod,
-  multiPeriod,
-}
+  singlePeriod('SINGLE_PERIOD'),
+  multiPeriod('MULTI_PERIOD'),
+  ;
 
-extension OriginManifestTypeValueExtension on OriginManifestType {
-  String toValue() {
-    switch (this) {
-      case OriginManifestType.singlePeriod:
-        return 'SINGLE_PERIOD';
-      case OriginManifestType.multiPeriod:
-        return 'MULTI_PERIOD';
-    }
-  }
-}
+  final String value;
 
-extension OriginManifestTypeFromString on String {
-  OriginManifestType toOriginManifestType() {
-    switch (this) {
-      case 'SINGLE_PERIOD':
-        return OriginManifestType.singlePeriod;
-      case 'MULTI_PERIOD':
-        return OriginManifestType.multiPeriod;
-    }
-    throw Exception('$this is not known in enum OriginManifestType');
-  }
+  const OriginManifestType(this.value);
+
+  static OriginManifestType fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum OriginManifestType'));
 }
 
 /// A playback configuration. For information about MediaTailor configurations,
@@ -4814,31 +4709,18 @@ class PlaybackConfiguration {
 }
 
 enum PlaybackMode {
-  loop,
-  linear,
-}
+  loop('LOOP'),
+  linear('LINEAR'),
+  ;
 
-extension PlaybackModeValueExtension on PlaybackMode {
-  String toValue() {
-    switch (this) {
-      case PlaybackMode.loop:
-        return 'LOOP';
-      case PlaybackMode.linear:
-        return 'LINEAR';
-    }
-  }
-}
+  final String value;
 
-extension PlaybackModeFromString on String {
-  PlaybackMode toPlaybackMode() {
-    switch (this) {
-      case 'LOOP':
-        return PlaybackMode.loop;
-      case 'LINEAR':
-        return PlaybackMode.linear;
-    }
-    throw Exception('$this is not known in enum PlaybackMode');
-  }
+  const PlaybackMode(this.value);
+
+  static PlaybackMode fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum PlaybackMode'));
 }
 
 /// A complex type that contains settings that determine how and when that
@@ -5255,31 +5137,18 @@ class PutPlaybackConfigurationResponse {
 }
 
 enum RelativePosition {
-  beforeProgram,
-  afterProgram,
-}
+  beforeProgram('BEFORE_PROGRAM'),
+  afterProgram('AFTER_PROGRAM'),
+  ;
 
-extension RelativePositionValueExtension on RelativePosition {
-  String toValue() {
-    switch (this) {
-      case RelativePosition.beforeProgram:
-        return 'BEFORE_PROGRAM';
-      case RelativePosition.afterProgram:
-        return 'AFTER_PROGRAM';
-    }
-  }
-}
+  final String value;
 
-extension RelativePositionFromString on String {
-  RelativePosition toRelativePosition() {
-    switch (this) {
-      case 'BEFORE_PROGRAM':
-        return RelativePosition.beforeProgram;
-      case 'AFTER_PROGRAM':
-        return RelativePosition.afterProgram;
-    }
-    throw Exception('$this is not known in enum RelativePosition');
-  }
+  const RelativePosition(this.value);
+
+  static RelativePosition fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum RelativePosition'));
 }
 
 /// The output configuration for this channel.
@@ -5511,8 +5380,8 @@ class ScheduleEntry {
           ?.whereNotNull()
           .map((e) => ScheduleAdBreak.fromJson(e as Map<String, dynamic>))
           .toList(),
-      scheduleEntryType:
-          (json['ScheduleEntryType'] as String?)?.toScheduleEntryType(),
+      scheduleEntryType: (json['ScheduleEntryType'] as String?)
+          ?.let(ScheduleEntryType.fromString),
       vodSourceName: json['VodSourceName'] as String?,
     );
   }
@@ -5540,38 +5409,25 @@ class ScheduleEntry {
       if (liveSourceName != null) 'LiveSourceName': liveSourceName,
       if (scheduleAdBreaks != null) 'ScheduleAdBreaks': scheduleAdBreaks,
       if (scheduleEntryType != null)
-        'ScheduleEntryType': scheduleEntryType.toValue(),
+        'ScheduleEntryType': scheduleEntryType.value,
       if (vodSourceName != null) 'VodSourceName': vodSourceName,
     };
   }
 }
 
 enum ScheduleEntryType {
-  program,
-  fillerSlate,
-}
+  program('PROGRAM'),
+  fillerSlate('FILLER_SLATE'),
+  ;
 
-extension ScheduleEntryTypeValueExtension on ScheduleEntryType {
-  String toValue() {
-    switch (this) {
-      case ScheduleEntryType.program:
-        return 'PROGRAM';
-      case ScheduleEntryType.fillerSlate:
-        return 'FILLER_SLATE';
-    }
-  }
-}
+  final String value;
 
-extension ScheduleEntryTypeFromString on String {
-  ScheduleEntryType toScheduleEntryType() {
-    switch (this) {
-      case 'PROGRAM':
-        return ScheduleEntryType.program;
-      case 'FILLER_SLATE':
-        return ScheduleEntryType.fillerSlate;
-    }
-    throw Exception('$this is not known in enum ScheduleEntryType');
-  }
+  const ScheduleEntryType(this.value);
+
+  static ScheduleEntryType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum ScheduleEntryType'));
 }
 
 /// AWS Secrets Manager access token configuration parameters. For information
@@ -5985,31 +5841,17 @@ class StopChannelResponse {
 }
 
 enum Tier {
-  basic,
-  standard,
-}
+  basic('BASIC'),
+  standard('STANDARD'),
+  ;
 
-extension TierValueExtension on Tier {
-  String toValue() {
-    switch (this) {
-      case Tier.basic:
-        return 'BASIC';
-      case Tier.standard:
-        return 'STANDARD';
-    }
-  }
-}
+  final String value;
 
-extension TierFromString on String {
-  Tier toTier() {
-    switch (this) {
-      case 'BASIC':
-        return Tier.basic;
-      case 'STANDARD':
-        return Tier.standard;
-    }
-    throw Exception('$this is not known in enum Tier');
-  }
+  const Tier(this.value);
+
+  static Tier fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception('$value is not known in enum Tier'));
 }
 
 /// The SCTE-35 <code>time_signal</code> message can be sent with one or more
@@ -6107,7 +5949,7 @@ class Transition {
     final relativeProgram = this.relativeProgram;
     final scheduledStartTimeMillis = this.scheduledStartTimeMillis;
     return {
-      'RelativePosition': relativePosition.toValue(),
+      'RelativePosition': relativePosition.value,
       'Type': type,
       if (durationMillis != null) 'DurationMillis': durationMillis,
       if (relativeProgram != null) 'RelativeProgram': relativeProgram,
@@ -6118,31 +5960,17 @@ class Transition {
 }
 
 enum Type {
-  dash,
-  hls,
-}
+  dash('DASH'),
+  hls('HLS'),
+  ;
 
-extension TypeValueExtension on Type {
-  String toValue() {
-    switch (this) {
-      case Type.dash:
-        return 'DASH';
-      case Type.hls:
-        return 'HLS';
-    }
-  }
-}
+  final String value;
 
-extension TypeFromString on String {
-  Type toType() {
-    switch (this) {
-      case 'DASH':
-        return Type.dash;
-      case 'HLS':
-        return Type.hls;
-    }
-    throw Exception('$this is not known in enum Type');
-  }
+  const Type(this.value);
+
+  static Type fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception('$value is not known in enum Type'));
 }
 
 class UpdateChannelResponse {
@@ -6206,7 +6034,8 @@ class UpdateChannelResponse {
     return UpdateChannelResponse(
       arn: json['Arn'] as String?,
       channelName: json['ChannelName'] as String?,
-      channelState: (json['ChannelState'] as String?)?.toChannelState(),
+      channelState:
+          (json['ChannelState'] as String?)?.let(ChannelState.fromString),
       creationTime: timeStampFromJson(json['CreationTime']),
       fillerSlate: json['FillerSlate'] != null
           ? SlateSource.fromJson(json['FillerSlate'] as Map<String, dynamic>)
@@ -6237,7 +6066,7 @@ class UpdateChannelResponse {
     return {
       if (arn != null) 'Arn': arn,
       if (channelName != null) 'ChannelName': channelName,
-      if (channelState != null) 'ChannelState': channelState.toValue(),
+      if (channelState != null) 'ChannelState': channelState.value,
       if (creationTime != null)
         'CreationTime': unixTimestampToJson(creationTime),
       if (fillerSlate != null) 'FillerSlate': fillerSlate,

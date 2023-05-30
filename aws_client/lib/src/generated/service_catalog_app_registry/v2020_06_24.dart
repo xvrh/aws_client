@@ -111,7 +111,7 @@ class AppRegistry {
       payload: null,
       method: 'PUT',
       requestUri:
-          '/applications/${Uri.encodeComponent(application)}/resources/${Uri.encodeComponent(resourceType.toValue())}/${Uri.encodeComponent(resource)}',
+          '/applications/${Uri.encodeComponent(application)}/resources/${Uri.encodeComponent(resourceType.value)}/${Uri.encodeComponent(resource)}',
       exceptionFnMap: _exceptionFns,
     );
     return AssociateResourceResponse.fromJson(response);
@@ -312,7 +312,7 @@ class AppRegistry {
       payload: null,
       method: 'DELETE',
       requestUri:
-          '/applications/${Uri.encodeComponent(application)}/resources/${Uri.encodeComponent(resourceType.toValue())}/${Uri.encodeComponent(resource)}',
+          '/applications/${Uri.encodeComponent(application)}/resources/${Uri.encodeComponent(resourceType.value)}/${Uri.encodeComponent(resource)}',
       exceptionFnMap: _exceptionFns,
     );
     return DisassociateResourceResponse.fromJson(response);
@@ -367,7 +367,7 @@ class AppRegistry {
       payload: null,
       method: 'GET',
       requestUri:
-          '/applications/${Uri.encodeComponent(application)}/resources/${Uri.encodeComponent(resourceType.toValue())}/${Uri.encodeComponent(resource)}',
+          '/applications/${Uri.encodeComponent(application)}/resources/${Uri.encodeComponent(resourceType.value)}/${Uri.encodeComponent(resource)}',
       exceptionFnMap: _exceptionFns,
     );
     return GetAssociatedResourceResponse.fromJson(response);
@@ -687,7 +687,7 @@ class AppRegistry {
       payload: null,
       method: 'POST',
       requestUri:
-          '/sync/${Uri.encodeComponent(resourceType.toValue())}/${Uri.encodeComponent(resource)}',
+          '/sync/${Uri.encodeComponent(resourceType.value)}/${Uri.encodeComponent(resource)}',
       exceptionFnMap: _exceptionFns,
     );
     return SyncResourceResponse.fromJson(response);
@@ -1950,7 +1950,7 @@ class ResourceGroup {
     return ResourceGroup(
       arn: json['arn'] as String?,
       errorMessage: json['errorMessage'] as String?,
-      state: (json['state'] as String?)?.toResourceGroupState(),
+      state: (json['state'] as String?)?.let(ResourceGroupState.fromString),
     );
   }
 
@@ -1961,57 +1961,28 @@ class ResourceGroup {
     return {
       if (arn != null) 'arn': arn,
       if (errorMessage != null) 'errorMessage': errorMessage,
-      if (state != null) 'state': state.toValue(),
+      if (state != null) 'state': state.value,
     };
   }
 }
 
 enum ResourceGroupState {
-  creating,
-  createComplete,
-  createFailed,
-  updating,
-  updateComplete,
-  updateFailed,
-}
+  creating('CREATING'),
+  createComplete('CREATE_COMPLETE'),
+  createFailed('CREATE_FAILED'),
+  updating('UPDATING'),
+  updateComplete('UPDATE_COMPLETE'),
+  updateFailed('UPDATE_FAILED'),
+  ;
 
-extension ResourceGroupStateValueExtension on ResourceGroupState {
-  String toValue() {
-    switch (this) {
-      case ResourceGroupState.creating:
-        return 'CREATING';
-      case ResourceGroupState.createComplete:
-        return 'CREATE_COMPLETE';
-      case ResourceGroupState.createFailed:
-        return 'CREATE_FAILED';
-      case ResourceGroupState.updating:
-        return 'UPDATING';
-      case ResourceGroupState.updateComplete:
-        return 'UPDATE_COMPLETE';
-      case ResourceGroupState.updateFailed:
-        return 'UPDATE_FAILED';
-    }
-  }
-}
+  final String value;
 
-extension ResourceGroupStateFromString on String {
-  ResourceGroupState toResourceGroupState() {
-    switch (this) {
-      case 'CREATING':
-        return ResourceGroupState.creating;
-      case 'CREATE_COMPLETE':
-        return ResourceGroupState.createComplete;
-      case 'CREATE_FAILED':
-        return ResourceGroupState.createFailed;
-      case 'UPDATING':
-        return ResourceGroupState.updating;
-      case 'UPDATE_COMPLETE':
-        return ResourceGroupState.updateComplete;
-      case 'UPDATE_FAILED':
-        return ResourceGroupState.updateFailed;
-    }
-    throw Exception('$this is not known in enum ResourceGroupState');
-  }
+  const ResourceGroupState(this.value);
+
+  static ResourceGroupState fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum ResourceGroupState'));
 }
 
 /// The information about the resource.
@@ -2043,7 +2014,8 @@ class ResourceInfo {
           ? ResourceDetails.fromJson(
               json['resourceDetails'] as Map<String, dynamic>)
           : null,
-      resourceType: (json['resourceType'] as String?)?.toResourceType(),
+      resourceType:
+          (json['resourceType'] as String?)?.let(ResourceType.fromString),
     );
   }
 
@@ -2056,7 +2028,7 @@ class ResourceInfo {
       if (arn != null) 'arn': arn,
       if (name != null) 'name': name,
       if (resourceDetails != null) 'resourceDetails': resourceDetails,
-      if (resourceType != null) 'resourceType': resourceType.toValue(),
+      if (resourceType != null) 'resourceType': resourceType.value,
     };
   }
 }
@@ -2088,59 +2060,32 @@ class ResourceIntegrations {
 }
 
 enum ResourceType {
-  cfnStack,
-  resourceTagValue,
-}
+  cfnStack('CFN_STACK'),
+  resourceTagValue('RESOURCE_TAG_VALUE'),
+  ;
 
-extension ResourceTypeValueExtension on ResourceType {
-  String toValue() {
-    switch (this) {
-      case ResourceType.cfnStack:
-        return 'CFN_STACK';
-      case ResourceType.resourceTagValue:
-        return 'RESOURCE_TAG_VALUE';
-    }
-  }
-}
+  final String value;
 
-extension ResourceTypeFromString on String {
-  ResourceType toResourceType() {
-    switch (this) {
-      case 'CFN_STACK':
-        return ResourceType.cfnStack;
-      case 'RESOURCE_TAG_VALUE':
-        return ResourceType.resourceTagValue;
-    }
-    throw Exception('$this is not known in enum ResourceType');
-  }
+  const ResourceType(this.value);
+
+  static ResourceType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum ResourceType'));
 }
 
 enum SyncAction {
-  startSync,
-  noAction,
-}
+  startSync('START_SYNC'),
+  noAction('NO_ACTION'),
+  ;
 
-extension SyncActionValueExtension on SyncAction {
-  String toValue() {
-    switch (this) {
-      case SyncAction.startSync:
-        return 'START_SYNC';
-      case SyncAction.noAction:
-        return 'NO_ACTION';
-    }
-  }
-}
+  final String value;
 
-extension SyncActionFromString on String {
-  SyncAction toSyncAction() {
-    switch (this) {
-      case 'START_SYNC':
-        return SyncAction.startSync;
-      case 'NO_ACTION':
-        return SyncAction.noAction;
-    }
-    throw Exception('$this is not known in enum SyncAction');
-  }
+  const SyncAction(this.value);
+
+  static SyncAction fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum SyncAction'));
 }
 
 class SyncResourceResponse {
@@ -2162,7 +2107,7 @@ class SyncResourceResponse {
 
   factory SyncResourceResponse.fromJson(Map<String, dynamic> json) {
     return SyncResourceResponse(
-      actionTaken: (json['actionTaken'] as String?)?.toSyncAction(),
+      actionTaken: (json['actionTaken'] as String?)?.let(SyncAction.fromString),
       applicationArn: json['applicationArn'] as String?,
       resourceArn: json['resourceArn'] as String?,
     );
@@ -2173,7 +2118,7 @@ class SyncResourceResponse {
     final applicationArn = this.applicationArn;
     final resourceArn = this.resourceArn;
     return {
-      if (actionTaken != null) 'actionTaken': actionTaken.toValue(),
+      if (actionTaken != null) 'actionTaken': actionTaken.value,
       if (applicationArn != null) 'applicationArn': applicationArn,
       if (resourceArn != null) 'resourceArn': resourceArn,
     };

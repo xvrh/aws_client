@@ -85,7 +85,7 @@ class Dlm {
       'Description': description,
       'ExecutionRoleArn': executionRoleArn,
       'PolicyDetails': policyDetails,
-      'State': state.toValue(),
+      'State': state.value,
       if (tags != null) 'Tags': tags,
     };
     final response = await _protocol.send(
@@ -162,8 +162,8 @@ class Dlm {
     final $query = <String, List<String>>{
       if (policyIds != null) 'policyIds': policyIds,
       if (resourceTypes != null)
-        'resourceTypes': resourceTypes.map((e) => e.toValue()).toList(),
-      if (state != null) 'state': [state.toValue()],
+        'resourceTypes': resourceTypes.map((e) => e.value).toList(),
+      if (state != null) 'state': [state.value],
       if (tagsToAdd != null) 'tagsToAdd': tagsToAdd,
       if (targetTags != null) 'targetTags': targetTags,
     };
@@ -308,7 +308,7 @@ class Dlm {
       if (description != null) 'Description': description,
       if (executionRoleArn != null) 'ExecutionRoleArn': executionRoleArn,
       if (policyDetails != null) 'PolicyDetails': policyDetails,
-      if (state != null) 'State': state.toValue(),
+      if (state != null) 'State': state.value,
     };
     final response = await _protocol.send(
       payload: $payload,
@@ -486,8 +486,9 @@ class CreateRule {
     return CreateRule(
       cronExpression: json['CronExpression'] as String?,
       interval: json['Interval'] as int?,
-      intervalUnit: (json['IntervalUnit'] as String?)?.toIntervalUnitValues(),
-      location: (json['Location'] as String?)?.toLocationValues(),
+      intervalUnit:
+          (json['IntervalUnit'] as String?)?.let(IntervalUnitValues.fromString),
+      location: (json['Location'] as String?)?.let(LocationValues.fromString),
       times: (json['Times'] as List?)
           ?.whereNotNull()
           .map((e) => e as String)
@@ -504,8 +505,8 @@ class CreateRule {
     return {
       if (cronExpression != null) 'CronExpression': cronExpression,
       if (interval != null) 'Interval': interval,
-      if (intervalUnit != null) 'IntervalUnit': intervalUnit.toValue(),
-      if (location != null) 'Location': location.toValue(),
+      if (intervalUnit != null) 'IntervalUnit': intervalUnit.value,
+      if (location != null) 'Location': location.value,
       if (times != null) 'Times': times,
     };
   }
@@ -577,8 +578,8 @@ class CrossRegionCopyDeprecateRule {
   factory CrossRegionCopyDeprecateRule.fromJson(Map<String, dynamic> json) {
     return CrossRegionCopyDeprecateRule(
       interval: json['Interval'] as int?,
-      intervalUnit:
-          (json['IntervalUnit'] as String?)?.toRetentionIntervalUnitValues(),
+      intervalUnit: (json['IntervalUnit'] as String?)
+          ?.let(RetentionIntervalUnitValues.fromString),
     );
   }
 
@@ -587,7 +588,7 @@ class CrossRegionCopyDeprecateRule {
     final intervalUnit = this.intervalUnit;
     return {
       if (interval != null) 'Interval': interval,
-      if (intervalUnit != null) 'IntervalUnit': intervalUnit.toValue(),
+      if (intervalUnit != null) 'IntervalUnit': intervalUnit.value,
     };
   }
 }
@@ -615,8 +616,8 @@ class CrossRegionCopyRetainRule {
   factory CrossRegionCopyRetainRule.fromJson(Map<String, dynamic> json) {
     return CrossRegionCopyRetainRule(
       interval: json['Interval'] as int?,
-      intervalUnit:
-          (json['IntervalUnit'] as String?)?.toRetentionIntervalUnitValues(),
+      intervalUnit: (json['IntervalUnit'] as String?)
+          ?.let(RetentionIntervalUnitValues.fromString),
     );
   }
 
@@ -625,7 +626,7 @@ class CrossRegionCopyRetainRule {
     final intervalUnit = this.intervalUnit;
     return {
       if (interval != null) 'Interval': interval,
-      if (intervalUnit != null) 'IntervalUnit': intervalUnit.toValue(),
+      if (intervalUnit != null) 'IntervalUnit': intervalUnit.value,
     };
   }
 }
@@ -768,8 +769,8 @@ class DeprecateRule {
     return DeprecateRule(
       count: json['Count'] as int?,
       interval: json['Interval'] as int?,
-      intervalUnit:
-          (json['IntervalUnit'] as String?)?.toRetentionIntervalUnitValues(),
+      intervalUnit: (json['IntervalUnit'] as String?)
+          ?.let(RetentionIntervalUnitValues.fromString),
     );
   }
 
@@ -780,7 +781,7 @@ class DeprecateRule {
     return {
       if (count != null) 'Count': count,
       if (interval != null) 'Interval': interval,
-      if (intervalUnit != null) 'IntervalUnit': intervalUnit.toValue(),
+      if (intervalUnit != null) 'IntervalUnit': intervalUnit.value,
     };
   }
 }
@@ -852,7 +853,7 @@ class EventParameters {
   factory EventParameters.fromJson(Map<String, dynamic> json) {
     return EventParameters(
       descriptionRegex: json['DescriptionRegex'] as String,
-      eventType: (json['EventType'] as String).toEventTypeValues(),
+      eventType: EventTypeValues.fromString((json['EventType'] as String)),
       snapshotOwner: (json['SnapshotOwner'] as List)
           .whereNotNull()
           .map((e) => e as String)
@@ -866,7 +867,7 @@ class EventParameters {
     final snapshotOwner = this.snapshotOwner;
     return {
       'DescriptionRegex': descriptionRegex,
-      'EventType': eventType.toValue(),
+      'EventType': eventType.value,
       'SnapshotOwner': snapshotOwner,
     };
   }
@@ -889,7 +890,7 @@ class EventSource {
 
   factory EventSource.fromJson(Map<String, dynamic> json) {
     return EventSource(
-      type: (json['Type'] as String).toEventSourceValues(),
+      type: EventSourceValues.fromString((json['Type'] as String)),
       parameters: json['Parameters'] != null
           ? EventParameters.fromJson(json['Parameters'] as Map<String, dynamic>)
           : null,
@@ -900,56 +901,38 @@ class EventSource {
     final type = this.type;
     final parameters = this.parameters;
     return {
-      'Type': type.toValue(),
+      'Type': type.value,
       if (parameters != null) 'Parameters': parameters,
     };
   }
 }
 
 enum EventSourceValues {
-  managedCwe,
-}
+  managedCwe('MANAGED_CWE'),
+  ;
 
-extension EventSourceValuesValueExtension on EventSourceValues {
-  String toValue() {
-    switch (this) {
-      case EventSourceValues.managedCwe:
-        return 'MANAGED_CWE';
-    }
-  }
-}
+  final String value;
 
-extension EventSourceValuesFromString on String {
-  EventSourceValues toEventSourceValues() {
-    switch (this) {
-      case 'MANAGED_CWE':
-        return EventSourceValues.managedCwe;
-    }
-    throw Exception('$this is not known in enum EventSourceValues');
-  }
+  const EventSourceValues(this.value);
+
+  static EventSourceValues fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum EventSourceValues'));
 }
 
 enum EventTypeValues {
-  shareSnapshot,
-}
+  shareSnapshot('shareSnapshot'),
+  ;
 
-extension EventTypeValuesValueExtension on EventTypeValues {
-  String toValue() {
-    switch (this) {
-      case EventTypeValues.shareSnapshot:
-        return 'shareSnapshot';
-    }
-  }
-}
+  final String value;
 
-extension EventTypeValuesFromString on String {
-  EventTypeValues toEventTypeValues() {
-    switch (this) {
-      case 'shareSnapshot':
-        return EventTypeValues.shareSnapshot;
-    }
-    throw Exception('$this is not known in enum EventTypeValues');
-  }
+  const EventTypeValues(this.value);
+
+  static EventTypeValues fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum EventTypeValues'));
 }
 
 /// <b>[Snapshot policies only]</b> Specifies a rule for enabling fast snapshot
@@ -984,8 +967,8 @@ class FastRestoreRule {
           .toList(),
       count: json['Count'] as int?,
       interval: json['Interval'] as int?,
-      intervalUnit:
-          (json['IntervalUnit'] as String?)?.toRetentionIntervalUnitValues(),
+      intervalUnit: (json['IntervalUnit'] as String?)
+          ?.let(RetentionIntervalUnitValues.fromString),
     );
   }
 
@@ -998,7 +981,7 @@ class FastRestoreRule {
       'AvailabilityZones': availabilityZones,
       if (count != null) 'Count': count,
       if (interval != null) 'Interval': interval,
-      if (intervalUnit != null) 'IntervalUnit': intervalUnit.toValue(),
+      if (intervalUnit != null) 'IntervalUnit': intervalUnit.value,
     };
   }
 }
@@ -1054,59 +1037,33 @@ class GetLifecyclePolicyResponse {
 }
 
 enum GettablePolicyStateValues {
-  enabled,
-  disabled,
-  error,
-}
+  enabled('ENABLED'),
+  disabled('DISABLED'),
+  error('ERROR'),
+  ;
 
-extension GettablePolicyStateValuesValueExtension on GettablePolicyStateValues {
-  String toValue() {
-    switch (this) {
-      case GettablePolicyStateValues.enabled:
-        return 'ENABLED';
-      case GettablePolicyStateValues.disabled:
-        return 'DISABLED';
-      case GettablePolicyStateValues.error:
-        return 'ERROR';
-    }
-  }
-}
+  final String value;
 
-extension GettablePolicyStateValuesFromString on String {
-  GettablePolicyStateValues toGettablePolicyStateValues() {
-    switch (this) {
-      case 'ENABLED':
-        return GettablePolicyStateValues.enabled;
-      case 'DISABLED':
-        return GettablePolicyStateValues.disabled;
-      case 'ERROR':
-        return GettablePolicyStateValues.error;
-    }
-    throw Exception('$this is not known in enum GettablePolicyStateValues');
-  }
+  const GettablePolicyStateValues(this.value);
+
+  static GettablePolicyStateValues fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum GettablePolicyStateValues'));
 }
 
 enum IntervalUnitValues {
-  hours,
-}
+  hours('HOURS'),
+  ;
 
-extension IntervalUnitValuesValueExtension on IntervalUnitValues {
-  String toValue() {
-    switch (this) {
-      case IntervalUnitValues.hours:
-        return 'HOURS';
-    }
-  }
-}
+  final String value;
 
-extension IntervalUnitValuesFromString on String {
-  IntervalUnitValues toIntervalUnitValues() {
-    switch (this) {
-      case 'HOURS':
-        return IntervalUnitValues.hours;
-    }
-    throw Exception('$this is not known in enum IntervalUnitValues');
-  }
+  const IntervalUnitValues(this.value);
+
+  static IntervalUnitValues fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum IntervalUnitValues'));
 }
 
 /// <b>[All policy types]</b> Detailed information about a snapshot, AMI, or
@@ -1168,7 +1125,8 @@ class LifecyclePolicy {
               json['PolicyDetails'] as Map<String, dynamic>)
           : null,
       policyId: json['PolicyId'] as String?,
-      state: (json['State'] as String?)?.toGettablePolicyStateValues(),
+      state:
+          (json['State'] as String?)?.let(GettablePolicyStateValues.fromString),
       statusMessage: json['StatusMessage'] as String?,
       tags: (json['Tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
@@ -1194,7 +1152,7 @@ class LifecyclePolicy {
       if (policyArn != null) 'PolicyArn': policyArn,
       if (policyDetails != null) 'PolicyDetails': policyDetails,
       if (policyId != null) 'PolicyId': policyId,
-      if (state != null) 'State': state.toValue(),
+      if (state != null) 'State': state.value,
       if (statusMessage != null) 'StatusMessage': statusMessage,
       if (tags != null) 'Tags': tags,
     };
@@ -1235,8 +1193,10 @@ class LifecyclePolicySummary {
     return LifecyclePolicySummary(
       description: json['Description'] as String?,
       policyId: json['PolicyId'] as String?,
-      policyType: (json['PolicyType'] as String?)?.toPolicyTypeValues(),
-      state: (json['State'] as String?)?.toGettablePolicyStateValues(),
+      policyType:
+          (json['PolicyType'] as String?)?.let(PolicyTypeValues.fromString),
+      state:
+          (json['State'] as String?)?.let(GettablePolicyStateValues.fromString),
       tags: (json['Tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
@@ -1251,8 +1211,8 @@ class LifecyclePolicySummary {
     return {
       if (description != null) 'Description': description,
       if (policyId != null) 'PolicyId': policyId,
-      if (policyType != null) 'PolicyType': policyType.toValue(),
-      if (state != null) 'State': state.toValue(),
+      if (policyType != null) 'PolicyType': policyType.value,
+      if (state != null) 'State': state.value,
       if (tags != null) 'Tags': tags,
     };
   }
@@ -1282,31 +1242,18 @@ class ListTagsForResourceResponse {
 }
 
 enum LocationValues {
-  cloud,
-  outpostLocal,
-}
+  cloud('CLOUD'),
+  outpostLocal('OUTPOST_LOCAL'),
+  ;
 
-extension LocationValuesValueExtension on LocationValues {
-  String toValue() {
-    switch (this) {
-      case LocationValues.cloud:
-        return 'CLOUD';
-      case LocationValues.outpostLocal:
-        return 'OUTPOST_LOCAL';
-    }
-  }
-}
+  final String value;
 
-extension LocationValuesFromString on String {
-  LocationValues toLocationValues() {
-    switch (this) {
-      case 'CLOUD':
-        return LocationValues.cloud;
-      case 'OUTPOST_LOCAL':
-        return LocationValues.outpostLocal;
-    }
-    throw Exception('$this is not known in enum LocationValues');
-  }
+  const LocationValues(this.value);
+
+  static LocationValues fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum LocationValues'));
 }
 
 /// <b>[Snapshot and AMI policies only]</b> Specifies optional parameters for
@@ -1453,14 +1400,15 @@ class PolicyDetails {
       parameters: json['Parameters'] != null
           ? Parameters.fromJson(json['Parameters'] as Map<String, dynamic>)
           : null,
-      policyType: (json['PolicyType'] as String?)?.toPolicyTypeValues(),
+      policyType:
+          (json['PolicyType'] as String?)?.let(PolicyTypeValues.fromString),
       resourceLocations: (json['ResourceLocations'] as List?)
           ?.whereNotNull()
-          .map((e) => (e as String).toResourceLocationValues())
+          .map((e) => ResourceLocationValues.fromString((e as String)))
           .toList(),
       resourceTypes: (json['ResourceTypes'] as List?)
           ?.whereNotNull()
-          .map((e) => (e as String).toResourceTypeValues())
+          .map((e) => ResourceTypeValues.fromString((e as String)))
           .toList(),
       schedules: (json['Schedules'] as List?)
           ?.whereNotNull()
@@ -1486,11 +1434,11 @@ class PolicyDetails {
       if (actions != null) 'Actions': actions,
       if (eventSource != null) 'EventSource': eventSource,
       if (parameters != null) 'Parameters': parameters,
-      if (policyType != null) 'PolicyType': policyType.toValue(),
+      if (policyType != null) 'PolicyType': policyType.value,
       if (resourceLocations != null)
-        'ResourceLocations': resourceLocations.map((e) => e.toValue()).toList(),
+        'ResourceLocations': resourceLocations.map((e) => e.value).toList(),
       if (resourceTypes != null)
-        'ResourceTypes': resourceTypes.map((e) => e.toValue()).toList(),
+        'ResourceTypes': resourceTypes.map((e) => e.value).toList(),
       if (schedules != null) 'Schedules': schedules,
       if (targetTags != null) 'TargetTags': targetTags,
     };
@@ -1498,92 +1446,49 @@ class PolicyDetails {
 }
 
 enum PolicyTypeValues {
-  ebsSnapshotManagement,
-  imageManagement,
-  eventBasedPolicy,
-}
+  ebsSnapshotManagement('EBS_SNAPSHOT_MANAGEMENT'),
+  imageManagement('IMAGE_MANAGEMENT'),
+  eventBasedPolicy('EVENT_BASED_POLICY'),
+  ;
 
-extension PolicyTypeValuesValueExtension on PolicyTypeValues {
-  String toValue() {
-    switch (this) {
-      case PolicyTypeValues.ebsSnapshotManagement:
-        return 'EBS_SNAPSHOT_MANAGEMENT';
-      case PolicyTypeValues.imageManagement:
-        return 'IMAGE_MANAGEMENT';
-      case PolicyTypeValues.eventBasedPolicy:
-        return 'EVENT_BASED_POLICY';
-    }
-  }
-}
+  final String value;
 
-extension PolicyTypeValuesFromString on String {
-  PolicyTypeValues toPolicyTypeValues() {
-    switch (this) {
-      case 'EBS_SNAPSHOT_MANAGEMENT':
-        return PolicyTypeValues.ebsSnapshotManagement;
-      case 'IMAGE_MANAGEMENT':
-        return PolicyTypeValues.imageManagement;
-      case 'EVENT_BASED_POLICY':
-        return PolicyTypeValues.eventBasedPolicy;
-    }
-    throw Exception('$this is not known in enum PolicyTypeValues');
-  }
+  const PolicyTypeValues(this.value);
+
+  static PolicyTypeValues fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum PolicyTypeValues'));
 }
 
 enum ResourceLocationValues {
-  cloud,
-  outpost,
-}
+  cloud('CLOUD'),
+  outpost('OUTPOST'),
+  ;
 
-extension ResourceLocationValuesValueExtension on ResourceLocationValues {
-  String toValue() {
-    switch (this) {
-      case ResourceLocationValues.cloud:
-        return 'CLOUD';
-      case ResourceLocationValues.outpost:
-        return 'OUTPOST';
-    }
-  }
-}
+  final String value;
 
-extension ResourceLocationValuesFromString on String {
-  ResourceLocationValues toResourceLocationValues() {
-    switch (this) {
-      case 'CLOUD':
-        return ResourceLocationValues.cloud;
-      case 'OUTPOST':
-        return ResourceLocationValues.outpost;
-    }
-    throw Exception('$this is not known in enum ResourceLocationValues');
-  }
+  const ResourceLocationValues(this.value);
+
+  static ResourceLocationValues fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum ResourceLocationValues'));
 }
 
 enum ResourceTypeValues {
-  volume,
-  instance,
-}
+  volume('VOLUME'),
+  instance('INSTANCE'),
+  ;
 
-extension ResourceTypeValuesValueExtension on ResourceTypeValues {
-  String toValue() {
-    switch (this) {
-      case ResourceTypeValues.volume:
-        return 'VOLUME';
-      case ResourceTypeValues.instance:
-        return 'INSTANCE';
-    }
-  }
-}
+  final String value;
 
-extension ResourceTypeValuesFromString on String {
-  ResourceTypeValues toResourceTypeValues() {
-    switch (this) {
-      case 'VOLUME':
-        return ResourceTypeValues.volume;
-      case 'INSTANCE':
-        return ResourceTypeValues.instance;
-    }
-    throw Exception('$this is not known in enum ResourceTypeValues');
-  }
+  const ResourceTypeValues(this.value);
+
+  static ResourceTypeValues fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum ResourceTypeValues'));
 }
 
 /// <b>[Snapshot and AMI policies only]</b> Specifies a retention rule for
@@ -1648,8 +1553,8 @@ class RetainRule {
     return RetainRule(
       count: json['Count'] as int?,
       interval: json['Interval'] as int?,
-      intervalUnit:
-          (json['IntervalUnit'] as String?)?.toRetentionIntervalUnitValues(),
+      intervalUnit: (json['IntervalUnit'] as String?)
+          ?.let(RetentionIntervalUnitValues.fromString),
     );
   }
 
@@ -1660,7 +1565,7 @@ class RetainRule {
     return {
       if (count != null) 'Count': count,
       if (interval != null) 'Interval': interval,
-      if (intervalUnit != null) 'IntervalUnit': intervalUnit.toValue(),
+      if (intervalUnit != null) 'IntervalUnit': intervalUnit.value,
     };
   }
 }
@@ -1706,8 +1611,8 @@ class RetentionArchiveTier {
     return RetentionArchiveTier(
       count: json['Count'] as int?,
       interval: json['Interval'] as int?,
-      intervalUnit:
-          (json['IntervalUnit'] as String?)?.toRetentionIntervalUnitValues(),
+      intervalUnit: (json['IntervalUnit'] as String?)
+          ?.let(RetentionIntervalUnitValues.fromString),
     );
   }
 
@@ -1718,48 +1623,26 @@ class RetentionArchiveTier {
     return {
       if (count != null) 'Count': count,
       if (interval != null) 'Interval': interval,
-      if (intervalUnit != null) 'IntervalUnit': intervalUnit.toValue(),
+      if (intervalUnit != null) 'IntervalUnit': intervalUnit.value,
     };
   }
 }
 
 enum RetentionIntervalUnitValues {
-  days,
-  weeks,
-  months,
-  years,
-}
+  days('DAYS'),
+  weeks('WEEKS'),
+  months('MONTHS'),
+  years('YEARS'),
+  ;
 
-extension RetentionIntervalUnitValuesValueExtension
-    on RetentionIntervalUnitValues {
-  String toValue() {
-    switch (this) {
-      case RetentionIntervalUnitValues.days:
-        return 'DAYS';
-      case RetentionIntervalUnitValues.weeks:
-        return 'WEEKS';
-      case RetentionIntervalUnitValues.months:
-        return 'MONTHS';
-      case RetentionIntervalUnitValues.years:
-        return 'YEARS';
-    }
-  }
-}
+  final String value;
 
-extension RetentionIntervalUnitValuesFromString on String {
-  RetentionIntervalUnitValues toRetentionIntervalUnitValues() {
-    switch (this) {
-      case 'DAYS':
-        return RetentionIntervalUnitValues.days;
-      case 'WEEKS':
-        return RetentionIntervalUnitValues.weeks;
-      case 'MONTHS':
-        return RetentionIntervalUnitValues.months;
-      case 'YEARS':
-        return RetentionIntervalUnitValues.years;
-    }
-    throw Exception('$this is not known in enum RetentionIntervalUnitValues');
-  }
+  const RetentionIntervalUnitValues(this.value);
+
+  static RetentionIntervalUnitValues fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum RetentionIntervalUnitValues'));
 }
 
 /// <b>[Snapshot and AMI policies only]</b> Specifies a schedule for a snapshot
@@ -1903,31 +1786,18 @@ class Schedule {
 }
 
 enum SettablePolicyStateValues {
-  enabled,
-  disabled,
-}
+  enabled('ENABLED'),
+  disabled('DISABLED'),
+  ;
 
-extension SettablePolicyStateValuesValueExtension on SettablePolicyStateValues {
-  String toValue() {
-    switch (this) {
-      case SettablePolicyStateValues.enabled:
-        return 'ENABLED';
-      case SettablePolicyStateValues.disabled:
-        return 'DISABLED';
-    }
-  }
-}
+  final String value;
 
-extension SettablePolicyStateValuesFromString on String {
-  SettablePolicyStateValues toSettablePolicyStateValues() {
-    switch (this) {
-      case 'ENABLED':
-        return SettablePolicyStateValues.enabled;
-      case 'DISABLED':
-        return SettablePolicyStateValues.disabled;
-    }
-    throw Exception('$this is not known in enum SettablePolicyStateValues');
-  }
+  const SettablePolicyStateValues(this.value);
+
+  static SettablePolicyStateValues fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum SettablePolicyStateValues'));
 }
 
 /// <b>[Snapshot policies only]</b> Specifies a rule for sharing snapshots
@@ -1958,7 +1828,7 @@ class ShareRule {
           .toList(),
       unshareInterval: json['UnshareInterval'] as int?,
       unshareIntervalUnit: (json['UnshareIntervalUnit'] as String?)
-          ?.toRetentionIntervalUnitValues(),
+          ?.let(RetentionIntervalUnitValues.fromString),
     );
   }
 
@@ -1970,7 +1840,7 @@ class ShareRule {
       'TargetAccounts': targetAccounts,
       if (unshareInterval != null) 'UnshareInterval': unshareInterval,
       if (unshareIntervalUnit != null)
-        'UnshareIntervalUnit': unshareIntervalUnit.toValue(),
+        'UnshareIntervalUnit': unshareIntervalUnit.value,
     };
   }
 }

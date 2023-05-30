@@ -916,7 +916,7 @@ class Proton {
         if (description != null) 'description': description,
         if (displayName != null) 'displayName': displayName,
         if (encryptionKey != null) 'encryptionKey': encryptionKey,
-        if (provisioning != null) 'provisioning': provisioning.toValue(),
+        if (provisioning != null) 'provisioning': provisioning.value,
         if (tags != null) 'tags': tags,
       },
     );
@@ -1066,7 +1066,7 @@ class Proton {
       payload: {
         'connectionArn': connectionArn,
         'name': name,
-        'provider': provider.toValue(),
+        'provider': provider.value,
         if (encryptionKey != null) 'encryptionKey': encryptionKey,
         if (tags != null) 'tags': tags,
       },
@@ -1294,7 +1294,7 @@ class Proton {
         'branch': branch,
         'filePath': filePath,
         'repositoryName': repositoryName,
-        'repositoryProvider': repositoryProvider.toValue(),
+        'repositoryProvider': repositoryProvider.value,
         'serviceName': serviceName,
       },
     );
@@ -1370,7 +1370,7 @@ class Proton {
         if (displayName != null) 'displayName': displayName,
         if (encryptionKey != null) 'encryptionKey': encryptionKey,
         if (pipelineProvisioning != null)
-          'pipelineProvisioning': pipelineProvisioning.toValue(),
+          'pipelineProvisioning': pipelineProvisioning.value,
         if (tags != null) 'tags': tags,
       },
     );
@@ -1465,7 +1465,7 @@ class Proton {
         if (majorVersion != null) 'majorVersion': majorVersion,
         if (supportedComponentSources != null)
           'supportedComponentSources':
-              supportedComponentSources.map((e) => e.toValue()).toList(),
+              supportedComponentSources.map((e) => e.value).toList(),
         if (tags != null) 'tags': tags,
       },
     );
@@ -1532,9 +1532,9 @@ class Proton {
       payload: {
         'branch': branch,
         'repositoryName': repositoryName,
-        'repositoryProvider': repositoryProvider.toValue(),
+        'repositoryProvider': repositoryProvider.value,
         'templateName': templateName,
-        'templateType': templateType.toValue(),
+        'templateType': templateType.value,
         if (subdirectory != null) 'subdirectory': subdirectory,
       },
     );
@@ -1771,7 +1771,7 @@ class Proton {
       headers: headers,
       payload: {
         'name': name,
-        'provider': provider.toValue(),
+        'provider': provider.value,
       },
     );
 
@@ -1967,7 +1967,7 @@ class Proton {
       headers: headers,
       payload: {
         'templateName': templateName,
-        'templateType': templateType.toValue(),
+        'templateType': templateType.value,
       },
     );
 
@@ -2206,7 +2206,7 @@ class Proton {
       headers: headers,
       payload: {
         'name': name,
-        'provider': provider.toValue(),
+        'provider': provider.value,
       },
     );
 
@@ -2263,8 +2263,8 @@ class Proton {
       payload: {
         'branch': branch,
         'repositoryName': repositoryName,
-        'repositoryProvider': repositoryProvider.toValue(),
-        'syncType': syncType.toValue(),
+        'repositoryProvider': repositoryProvider.value,
+        'syncType': syncType.value,
       },
     );
 
@@ -2593,7 +2593,7 @@ class Proton {
       headers: headers,
       payload: {
         'templateName': templateName,
-        'templateType': templateType.toValue(),
+        'templateType': templateType.value,
       },
     );
 
@@ -2633,7 +2633,7 @@ class Proton {
       headers: headers,
       payload: {
         'templateName': templateName,
-        'templateType': templateType.toValue(),
+        'templateType': templateType.value,
         'templateVersion': templateVersion,
       },
     );
@@ -2846,12 +2846,11 @@ class Proton {
       // TODO queryParams
       headers: headers,
       payload: {
-        'requestedBy': requestedBy.toValue(),
+        'requestedBy': requestedBy.value,
         if (environmentName != null) 'environmentName': environmentName,
         if (maxResults != null) 'maxResults': maxResults,
         if (nextToken != null) 'nextToken': nextToken,
-        if (statuses != null)
-          'statuses': statuses.map((e) => e.toValue()).toList(),
+        if (statuses != null) 'statuses': statuses.map((e) => e.value).toList(),
       },
     );
 
@@ -3170,8 +3169,8 @@ class Proton {
       headers: headers,
       payload: {
         'repositoryName': repositoryName,
-        'repositoryProvider': repositoryProvider.toValue(),
-        'syncType': syncType.toValue(),
+        'repositoryProvider': repositoryProvider.value,
+        'syncType': syncType.value,
         if (nextToken != null) 'nextToken': nextToken,
       },
     );
@@ -3335,8 +3334,8 @@ class Proton {
         if (maxResults != null) 'maxResults': maxResults,
         if (nextToken != null) 'nextToken': nextToken,
         if (serviceName != null) 'serviceName': serviceName,
-        if (sortBy != null) 'sortBy': sortBy.toValue(),
-        if (sortOrder != null) 'sortOrder': sortOrder.toValue(),
+        if (sortBy != null) 'sortBy': sortBy.value,
+        if (sortOrder != null) 'sortOrder': sortOrder.value,
       },
     );
 
@@ -3667,7 +3666,7 @@ class Proton {
         'resourceArn': resourceArn,
         if (deploymentId != null) 'deploymentId': deploymentId,
         if (outputs != null) 'outputs': outputs,
-        if (status != null) 'status': status.toValue(),
+        if (status != null) 'status': status.value,
         if (statusMessage != null) 'statusMessage': statusMessage,
       },
     );
@@ -3964,7 +3963,7 @@ class Proton {
       // TODO queryParams
       headers: headers,
       payload: {
-        'deploymentType': deploymentType.toValue(),
+        'deploymentType': deploymentType.value,
         'name': name,
         'clientToken': clientToken ?? _s.generateIdempotencyToken(),
         if (description != null) 'description': description,
@@ -4156,7 +4155,7 @@ class Proton {
       // TODO queryParams
       headers: headers,
       payload: {
-        'deploymentType': deploymentType.toValue(),
+        'deploymentType': deploymentType.value,
         'name': name,
         if (codebuildRoleArn != null) 'codebuildRoleArn': codebuildRoleArn,
         if (componentRoleArn != null) 'componentRoleArn': componentRoleArn,
@@ -4336,7 +4335,7 @@ class Proton {
         'minorVersion': minorVersion,
         'templateName': templateName,
         if (description != null) 'description': description,
-        if (status != null) 'status': status.toValue(),
+        if (status != null) 'status': status.value,
       },
     );
 
@@ -4496,7 +4495,7 @@ class Proton {
       // TODO queryParams
       headers: headers,
       payload: {
-        'deploymentType': deploymentType.toValue(),
+        'deploymentType': deploymentType.value,
         'name': name,
         'serviceName': serviceName,
         'clientToken': clientToken ?? _s.generateIdempotencyToken(),
@@ -4614,7 +4613,7 @@ class Proton {
       // TODO queryParams
       headers: headers,
       payload: {
-        'deploymentType': deploymentType.toValue(),
+        'deploymentType': deploymentType.value,
         'serviceName': serviceName,
         'spec': spec,
         if (templateMajorVersion != null)
@@ -4708,7 +4707,7 @@ class Proton {
         'branch': branch,
         'filePath': filePath,
         'repositoryName': repositoryName,
-        'repositoryProvider': repositoryProvider.toValue(),
+        'repositoryProvider': repositoryProvider.value,
         'serviceName': serviceName,
       },
     );
@@ -4829,10 +4828,10 @@ class Proton {
         if (compatibleEnvironmentTemplates != null)
           'compatibleEnvironmentTemplates': compatibleEnvironmentTemplates,
         if (description != null) 'description': description,
-        if (status != null) 'status': status.toValue(),
+        if (status != null) 'status': status.value,
         if (supportedComponentSources != null)
           'supportedComponentSources':
-              supportedComponentSources.map((e) => e.toValue()).toList(),
+              supportedComponentSources.map((e) => e.value).toList(),
       },
     );
 
@@ -4891,9 +4890,9 @@ class Proton {
       payload: {
         'branch': branch,
         'repositoryName': repositoryName,
-        'repositoryProvider': repositoryProvider.toValue(),
+        'repositoryProvider': repositoryProvider.value,
         'templateName': templateName,
-        'templateType': templateType.toValue(),
+        'templateType': templateType.value,
         if (subdirectory != null) 'subdirectory': subdirectory,
       },
     );
@@ -4980,54 +4979,31 @@ class AccountSettings {
 }
 
 enum BlockerStatus {
-  active,
-  resolved,
-}
+  active('ACTIVE'),
+  resolved('RESOLVED'),
+  ;
 
-extension BlockerStatusValueExtension on BlockerStatus {
-  String toValue() {
-    switch (this) {
-      case BlockerStatus.active:
-        return 'ACTIVE';
-      case BlockerStatus.resolved:
-        return 'RESOLVED';
-    }
-  }
-}
+  final String value;
 
-extension BlockerStatusFromString on String {
-  BlockerStatus toBlockerStatus() {
-    switch (this) {
-      case 'ACTIVE':
-        return BlockerStatus.active;
-      case 'RESOLVED':
-        return BlockerStatus.resolved;
-    }
-    throw Exception('$this is not known in enum BlockerStatus');
-  }
+  const BlockerStatus(this.value);
+
+  static BlockerStatus fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum BlockerStatus'));
 }
 
 enum BlockerType {
-  automated,
-}
+  automated('AUTOMATED'),
+  ;
 
-extension BlockerTypeValueExtension on BlockerType {
-  String toValue() {
-    switch (this) {
-      case BlockerType.automated:
-        return 'AUTOMATED';
-    }
-  }
-}
+  final String value;
 
-extension BlockerTypeFromString on String {
-  BlockerType toBlockerType() {
-    switch (this) {
-      case 'AUTOMATED':
-        return BlockerType.automated;
-    }
-    throw Exception('$this is not known in enum BlockerType');
-  }
+  const BlockerType(this.value);
+
+  static BlockerType fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum BlockerType'));
 }
 
 class CancelComponentDeploymentOutput {
@@ -5251,7 +5227,7 @@ class Component {
       arn: json['arn'] as String,
       createdAt: nonNullableTimeStampFromJson(json['createdAt'] as Object),
       deploymentStatus:
-          (json['deploymentStatus'] as String).toDeploymentStatus(),
+          DeploymentStatus.fromString((json['deploymentStatus'] as String)),
       environmentName: json['environmentName'] as String,
       lastModifiedAt:
           nonNullableTimeStampFromJson(json['lastModifiedAt'] as Object),
@@ -5287,7 +5263,7 @@ class Component {
     return {
       'arn': arn,
       'createdAt': unixTimestampToJson(createdAt),
-      'deploymentStatus': deploymentStatus.toValue(),
+      'deploymentStatus': deploymentStatus.value,
       'environmentName': environmentName,
       'lastModifiedAt': unixTimestampToJson(lastModifiedAt),
       'name': name,
@@ -5311,32 +5287,18 @@ class Component {
 }
 
 enum ComponentDeploymentUpdateType {
-  none,
-  currentVersion,
-}
+  none('NONE'),
+  currentVersion('CURRENT_VERSION'),
+  ;
 
-extension ComponentDeploymentUpdateTypeValueExtension
-    on ComponentDeploymentUpdateType {
-  String toValue() {
-    switch (this) {
-      case ComponentDeploymentUpdateType.none:
-        return 'NONE';
-      case ComponentDeploymentUpdateType.currentVersion:
-        return 'CURRENT_VERSION';
-    }
-  }
-}
+  final String value;
 
-extension ComponentDeploymentUpdateTypeFromString on String {
-  ComponentDeploymentUpdateType toComponentDeploymentUpdateType() {
-    switch (this) {
-      case 'NONE':
-        return ComponentDeploymentUpdateType.none;
-      case 'CURRENT_VERSION':
-        return ComponentDeploymentUpdateType.currentVersion;
-    }
-    throw Exception('$this is not known in enum ComponentDeploymentUpdateType');
-  }
+  const ComponentDeploymentUpdateType(this.value);
+
+  static ComponentDeploymentUpdateType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum ComponentDeploymentUpdateType'));
 }
 
 /// Summary data of an Proton component resource.
@@ -5399,7 +5361,7 @@ class ComponentSummary {
       arn: json['arn'] as String,
       createdAt: nonNullableTimeStampFromJson(json['createdAt'] as Object),
       deploymentStatus:
-          (json['deploymentStatus'] as String).toDeploymentStatus(),
+          DeploymentStatus.fromString((json['deploymentStatus'] as String)),
       environmentName: json['environmentName'] as String,
       lastModifiedAt:
           nonNullableTimeStampFromJson(json['lastModifiedAt'] as Object),
@@ -5429,7 +5391,7 @@ class ComponentSummary {
     return {
       'arn': arn,
       'createdAt': unixTimestampToJson(createdAt),
-      'deploymentStatus': deploymentStatus.toValue(),
+      'deploymentStatus': deploymentStatus.value,
       'environmentName': environmentName,
       'lastModifiedAt': unixTimestampToJson(lastModifiedAt),
       'name': name,
@@ -6110,99 +6072,41 @@ class DeleteTemplateSyncConfigOutput {
 }
 
 enum DeploymentStatus {
-  inProgress,
-  failed,
-  succeeded,
-  deleteInProgress,
-  deleteFailed,
-  deleteComplete,
-  cancelling,
-  cancelled,
-}
+  inProgress('IN_PROGRESS'),
+  failed('FAILED'),
+  succeeded('SUCCEEDED'),
+  deleteInProgress('DELETE_IN_PROGRESS'),
+  deleteFailed('DELETE_FAILED'),
+  deleteComplete('DELETE_COMPLETE'),
+  cancelling('CANCELLING'),
+  cancelled('CANCELLED'),
+  ;
 
-extension DeploymentStatusValueExtension on DeploymentStatus {
-  String toValue() {
-    switch (this) {
-      case DeploymentStatus.inProgress:
-        return 'IN_PROGRESS';
-      case DeploymentStatus.failed:
-        return 'FAILED';
-      case DeploymentStatus.succeeded:
-        return 'SUCCEEDED';
-      case DeploymentStatus.deleteInProgress:
-        return 'DELETE_IN_PROGRESS';
-      case DeploymentStatus.deleteFailed:
-        return 'DELETE_FAILED';
-      case DeploymentStatus.deleteComplete:
-        return 'DELETE_COMPLETE';
-      case DeploymentStatus.cancelling:
-        return 'CANCELLING';
-      case DeploymentStatus.cancelled:
-        return 'CANCELLED';
-    }
-  }
-}
+  final String value;
 
-extension DeploymentStatusFromString on String {
-  DeploymentStatus toDeploymentStatus() {
-    switch (this) {
-      case 'IN_PROGRESS':
-        return DeploymentStatus.inProgress;
-      case 'FAILED':
-        return DeploymentStatus.failed;
-      case 'SUCCEEDED':
-        return DeploymentStatus.succeeded;
-      case 'DELETE_IN_PROGRESS':
-        return DeploymentStatus.deleteInProgress;
-      case 'DELETE_FAILED':
-        return DeploymentStatus.deleteFailed;
-      case 'DELETE_COMPLETE':
-        return DeploymentStatus.deleteComplete;
-      case 'CANCELLING':
-        return DeploymentStatus.cancelling;
-      case 'CANCELLED':
-        return DeploymentStatus.cancelled;
-    }
-    throw Exception('$this is not known in enum DeploymentStatus');
-  }
+  const DeploymentStatus(this.value);
+
+  static DeploymentStatus fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum DeploymentStatus'));
 }
 
 enum DeploymentUpdateType {
-  none,
-  currentVersion,
-  minorVersion,
-  majorVersion,
-}
+  none('NONE'),
+  currentVersion('CURRENT_VERSION'),
+  minorVersion('MINOR_VERSION'),
+  majorVersion('MAJOR_VERSION'),
+  ;
 
-extension DeploymentUpdateTypeValueExtension on DeploymentUpdateType {
-  String toValue() {
-    switch (this) {
-      case DeploymentUpdateType.none:
-        return 'NONE';
-      case DeploymentUpdateType.currentVersion:
-        return 'CURRENT_VERSION';
-      case DeploymentUpdateType.minorVersion:
-        return 'MINOR_VERSION';
-      case DeploymentUpdateType.majorVersion:
-        return 'MAJOR_VERSION';
-    }
-  }
-}
+  final String value;
 
-extension DeploymentUpdateTypeFromString on String {
-  DeploymentUpdateType toDeploymentUpdateType() {
-    switch (this) {
-      case 'NONE':
-        return DeploymentUpdateType.none;
-      case 'CURRENT_VERSION':
-        return DeploymentUpdateType.currentVersion;
-      case 'MINOR_VERSION':
-        return DeploymentUpdateType.minorVersion;
-      case 'MAJOR_VERSION':
-        return DeploymentUpdateType.majorVersion;
-    }
-    throw Exception('$this is not known in enum DeploymentUpdateType');
-  }
+  const DeploymentUpdateType(this.value);
+
+  static DeploymentUpdateType fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum DeploymentUpdateType'));
 }
 
 /// Detailed data of an Proton environment resource. An Proton environment is a
@@ -6309,7 +6213,7 @@ class Environment {
       arn: json['arn'] as String,
       createdAt: nonNullableTimeStampFromJson(json['createdAt'] as Object),
       deploymentStatus:
-          (json['deploymentStatus'] as String).toDeploymentStatus(),
+          DeploymentStatus.fromString((json['deploymentStatus'] as String)),
       lastDeploymentAttemptedAt: nonNullableTimeStampFromJson(
           json['lastDeploymentAttemptedAt'] as Object),
       lastDeploymentSucceededAt: nonNullableTimeStampFromJson(
@@ -6326,7 +6230,8 @@ class Environment {
           json['environmentAccountConnectionId'] as String?,
       environmentAccountId: json['environmentAccountId'] as String?,
       protonServiceRoleArn: json['protonServiceRoleArn'] as String?,
-      provisioning: (json['provisioning'] as String?)?.toProvisioning(),
+      provisioning:
+          (json['provisioning'] as String?)?.let(Provisioning.fromString),
       provisioningRepository: json['provisioningRepository'] != null
           ? RepositoryBranch.fromJson(
               json['provisioningRepository'] as Map<String, dynamic>)
@@ -6358,7 +6263,7 @@ class Environment {
     return {
       'arn': arn,
       'createdAt': unixTimestampToJson(createdAt),
-      'deploymentStatus': deploymentStatus.toValue(),
+      'deploymentStatus': deploymentStatus.value,
       'lastDeploymentAttemptedAt':
           unixTimestampToJson(lastDeploymentAttemptedAt),
       'lastDeploymentSucceededAt':
@@ -6378,7 +6283,7 @@ class Environment {
         'environmentAccountId': environmentAccountId,
       if (protonServiceRoleArn != null)
         'protonServiceRoleArn': protonServiceRoleArn,
-      if (provisioning != null) 'provisioning': provisioning.toValue(),
+      if (provisioning != null) 'provisioning': provisioning.value,
       if (provisioningRepository != null)
         'provisioningRepository': provisioningRepository,
       if (spec != null) 'spec': spec,
@@ -6463,7 +6368,8 @@ class EnvironmentAccountConnection {
       managementAccountId: json['managementAccountId'] as String,
       requestedAt: nonNullableTimeStampFromJson(json['requestedAt'] as Object),
       roleArn: json['roleArn'] as String,
-      status: (json['status'] as String).toEnvironmentAccountConnectionStatus(),
+      status: EnvironmentAccountConnectionStatus.fromString(
+          (json['status'] as String)),
       codebuildRoleArn: json['codebuildRoleArn'] as String?,
       componentRoleArn: json['componentRoleArn'] as String?,
     );
@@ -6490,7 +6396,7 @@ class EnvironmentAccountConnection {
       'managementAccountId': managementAccountId,
       'requestedAt': unixTimestampToJson(requestedAt),
       'roleArn': roleArn,
-      'status': status.toValue(),
+      'status': status.value,
       if (codebuildRoleArn != null) 'codebuildRoleArn': codebuildRoleArn,
       if (componentRoleArn != null) 'componentRoleArn': componentRoleArn,
     };
@@ -6498,71 +6404,35 @@ class EnvironmentAccountConnection {
 }
 
 enum EnvironmentAccountConnectionRequesterAccountType {
-  managementAccount,
-  environmentAccount,
-}
+  managementAccount('MANAGEMENT_ACCOUNT'),
+  environmentAccount('ENVIRONMENT_ACCOUNT'),
+  ;
 
-extension EnvironmentAccountConnectionRequesterAccountTypeValueExtension
-    on EnvironmentAccountConnectionRequesterAccountType {
-  String toValue() {
-    switch (this) {
-      case EnvironmentAccountConnectionRequesterAccountType.managementAccount:
-        return 'MANAGEMENT_ACCOUNT';
-      case EnvironmentAccountConnectionRequesterAccountType.environmentAccount:
-        return 'ENVIRONMENT_ACCOUNT';
-    }
-  }
-}
+  final String value;
 
-extension EnvironmentAccountConnectionRequesterAccountTypeFromString on String {
-  EnvironmentAccountConnectionRequesterAccountType
-      toEnvironmentAccountConnectionRequesterAccountType() {
-    switch (this) {
-      case 'MANAGEMENT_ACCOUNT':
-        return EnvironmentAccountConnectionRequesterAccountType
-            .managementAccount;
-      case 'ENVIRONMENT_ACCOUNT':
-        return EnvironmentAccountConnectionRequesterAccountType
-            .environmentAccount;
-    }
-    throw Exception(
-        '$this is not known in enum EnvironmentAccountConnectionRequesterAccountType');
-  }
+  const EnvironmentAccountConnectionRequesterAccountType(this.value);
+
+  static EnvironmentAccountConnectionRequesterAccountType fromString(
+          String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum EnvironmentAccountConnectionRequesterAccountType'));
 }
 
 enum EnvironmentAccountConnectionStatus {
-  pending,
-  connected,
-  rejected,
-}
+  pending('PENDING'),
+  connected('CONNECTED'),
+  rejected('REJECTED'),
+  ;
 
-extension EnvironmentAccountConnectionStatusValueExtension
-    on EnvironmentAccountConnectionStatus {
-  String toValue() {
-    switch (this) {
-      case EnvironmentAccountConnectionStatus.pending:
-        return 'PENDING';
-      case EnvironmentAccountConnectionStatus.connected:
-        return 'CONNECTED';
-      case EnvironmentAccountConnectionStatus.rejected:
-        return 'REJECTED';
-    }
-  }
-}
+  final String value;
 
-extension EnvironmentAccountConnectionStatusFromString on String {
-  EnvironmentAccountConnectionStatus toEnvironmentAccountConnectionStatus() {
-    switch (this) {
-      case 'PENDING':
-        return EnvironmentAccountConnectionStatus.pending;
-      case 'CONNECTED':
-        return EnvironmentAccountConnectionStatus.connected;
-      case 'REJECTED':
-        return EnvironmentAccountConnectionStatus.rejected;
-    }
-    throw Exception(
-        '$this is not known in enum EnvironmentAccountConnectionStatus');
-  }
+  const EnvironmentAccountConnectionStatus(this.value);
+
+  static EnvironmentAccountConnectionStatus fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum EnvironmentAccountConnectionStatus'));
 }
 
 /// Summary data of an Proton environment account connection resource.
@@ -6637,7 +6507,8 @@ class EnvironmentAccountConnectionSummary {
       managementAccountId: json['managementAccountId'] as String,
       requestedAt: nonNullableTimeStampFromJson(json['requestedAt'] as Object),
       roleArn: json['roleArn'] as String,
-      status: (json['status'] as String).toEnvironmentAccountConnectionStatus(),
+      status: EnvironmentAccountConnectionStatus.fromString(
+          (json['status'] as String)),
       componentRoleArn: json['componentRoleArn'] as String?,
     );
   }
@@ -6662,7 +6533,7 @@ class EnvironmentAccountConnectionSummary {
       'managementAccountId': managementAccountId,
       'requestedAt': unixTimestampToJson(requestedAt),
       'roleArn': roleArn,
-      'status': status.toValue(),
+      'status': status.value,
       if (componentRoleArn != null) 'componentRoleArn': componentRoleArn,
     };
   }
@@ -6756,7 +6627,7 @@ class EnvironmentSummary {
       arn: json['arn'] as String,
       createdAt: nonNullableTimeStampFromJson(json['createdAt'] as Object),
       deploymentStatus:
-          (json['deploymentStatus'] as String).toDeploymentStatus(),
+          DeploymentStatus.fromString((json['deploymentStatus'] as String)),
       lastDeploymentAttemptedAt: nonNullableTimeStampFromJson(
           json['lastDeploymentAttemptedAt'] as Object),
       lastDeploymentSucceededAt: nonNullableTimeStampFromJson(
@@ -6772,7 +6643,8 @@ class EnvironmentSummary {
           json['environmentAccountConnectionId'] as String?,
       environmentAccountId: json['environmentAccountId'] as String?,
       protonServiceRoleArn: json['protonServiceRoleArn'] as String?,
-      provisioning: (json['provisioning'] as String?)?.toProvisioning(),
+      provisioning:
+          (json['provisioning'] as String?)?.let(Provisioning.fromString),
     );
   }
 
@@ -6796,7 +6668,7 @@ class EnvironmentSummary {
     return {
       'arn': arn,
       'createdAt': unixTimestampToJson(createdAt),
-      'deploymentStatus': deploymentStatus.toValue(),
+      'deploymentStatus': deploymentStatus.value,
       'lastDeploymentAttemptedAt':
           unixTimestampToJson(lastDeploymentAttemptedAt),
       'lastDeploymentSucceededAt':
@@ -6815,7 +6687,7 @@ class EnvironmentSummary {
         'environmentAccountId': environmentAccountId,
       if (protonServiceRoleArn != null)
         'protonServiceRoleArn': protonServiceRoleArn,
-      if (provisioning != null) 'provisioning': provisioning.toValue(),
+      if (provisioning != null) 'provisioning': provisioning.value,
     };
   }
 }
@@ -6873,7 +6745,8 @@ class EnvironmentTemplate {
       description: json['description'] as String?,
       displayName: json['displayName'] as String?,
       encryptionKey: json['encryptionKey'] as String?,
-      provisioning: (json['provisioning'] as String?)?.toProvisioning(),
+      provisioning:
+          (json['provisioning'] as String?)?.let(Provisioning.fromString),
       recommendedVersion: json['recommendedVersion'] as String?,
     );
   }
@@ -6896,7 +6769,7 @@ class EnvironmentTemplate {
       if (description != null) 'description': description,
       if (displayName != null) 'displayName': displayName,
       if (encryptionKey != null) 'encryptionKey': encryptionKey,
-      if (provisioning != null) 'provisioning': provisioning.toValue(),
+      if (provisioning != null) 'provisioning': provisioning.value,
       if (recommendedVersion != null) 'recommendedVersion': recommendedVersion,
     };
   }
@@ -6973,7 +6846,8 @@ class EnvironmentTemplateSummary {
       name: json['name'] as String,
       description: json['description'] as String?,
       displayName: json['displayName'] as String?,
-      provisioning: (json['provisioning'] as String?)?.toProvisioning(),
+      provisioning:
+          (json['provisioning'] as String?)?.let(Provisioning.fromString),
       recommendedVersion: json['recommendedVersion'] as String?,
     );
   }
@@ -6994,7 +6868,7 @@ class EnvironmentTemplateSummary {
       'name': name,
       if (description != null) 'description': description,
       if (displayName != null) 'displayName': displayName,
-      if (provisioning != null) 'provisioning': provisioning.toValue(),
+      if (provisioning != null) 'provisioning': provisioning.value,
       if (recommendedVersion != null) 'recommendedVersion': recommendedVersion,
     };
   }
@@ -7058,7 +6932,7 @@ class EnvironmentTemplateVersion {
           nonNullableTimeStampFromJson(json['lastModifiedAt'] as Object),
       majorVersion: json['majorVersion'] as String,
       minorVersion: json['minorVersion'] as String,
-      status: (json['status'] as String).toTemplateVersionStatus(),
+      status: TemplateVersionStatus.fromString((json['status'] as String)),
       templateName: json['templateName'] as String,
       description: json['description'] as String?,
       recommendedMinorVersion: json['recommendedMinorVersion'] as String?,
@@ -7085,7 +6959,7 @@ class EnvironmentTemplateVersion {
       'lastModifiedAt': unixTimestampToJson(lastModifiedAt),
       'majorVersion': majorVersion,
       'minorVersion': minorVersion,
-      'status': status.toValue(),
+      'status': status.value,
       'templateName': templateName,
       if (description != null) 'description': description,
       if (recommendedMinorVersion != null)
@@ -7151,7 +7025,7 @@ class EnvironmentTemplateVersionSummary {
           nonNullableTimeStampFromJson(json['lastModifiedAt'] as Object),
       majorVersion: json['majorVersion'] as String,
       minorVersion: json['minorVersion'] as String,
-      status: (json['status'] as String).toTemplateVersionStatus(),
+      status: TemplateVersionStatus.fromString((json['status'] as String)),
       templateName: json['templateName'] as String,
       description: json['description'] as String?,
       recommendedMinorVersion: json['recommendedMinorVersion'] as String?,
@@ -7176,7 +7050,7 @@ class EnvironmentTemplateVersionSummary {
       'lastModifiedAt': unixTimestampToJson(lastModifiedAt),
       'majorVersion': majorVersion,
       'minorVersion': minorVersion,
-      'status': status.toValue(),
+      'status': status.value,
       'templateName': templateName,
       if (description != null) 'description': description,
       if (recommendedMinorVersion != null)
@@ -8132,79 +8006,33 @@ class ListServiceInstancesFilter {
     final key = this.key;
     final value = this.value;
     return {
-      if (key != null) 'key': key.toValue(),
+      if (key != null) 'key': key.value,
       if (value != null) 'value': value,
     };
   }
 }
 
 enum ListServiceInstancesFilterBy {
-  name,
-  deploymentStatus,
-  templateName,
-  serviceName,
-  deployedTemplateVersionStatus,
-  environmentName,
-  lastDeploymentAttemptedAtBefore,
-  lastDeploymentAttemptedAtAfter,
-  createdAtBefore,
-  createdAtAfter,
-}
+  name('name'),
+  deploymentStatus('deploymentStatus'),
+  templateName('templateName'),
+  serviceName('serviceName'),
+  deployedTemplateVersionStatus('deployedTemplateVersionStatus'),
+  environmentName('environmentName'),
+  lastDeploymentAttemptedAtBefore('lastDeploymentAttemptedAtBefore'),
+  lastDeploymentAttemptedAtAfter('lastDeploymentAttemptedAtAfter'),
+  createdAtBefore('createdAtBefore'),
+  createdAtAfter('createdAtAfter'),
+  ;
 
-extension ListServiceInstancesFilterByValueExtension
-    on ListServiceInstancesFilterBy {
-  String toValue() {
-    switch (this) {
-      case ListServiceInstancesFilterBy.name:
-        return 'name';
-      case ListServiceInstancesFilterBy.deploymentStatus:
-        return 'deploymentStatus';
-      case ListServiceInstancesFilterBy.templateName:
-        return 'templateName';
-      case ListServiceInstancesFilterBy.serviceName:
-        return 'serviceName';
-      case ListServiceInstancesFilterBy.deployedTemplateVersionStatus:
-        return 'deployedTemplateVersionStatus';
-      case ListServiceInstancesFilterBy.environmentName:
-        return 'environmentName';
-      case ListServiceInstancesFilterBy.lastDeploymentAttemptedAtBefore:
-        return 'lastDeploymentAttemptedAtBefore';
-      case ListServiceInstancesFilterBy.lastDeploymentAttemptedAtAfter:
-        return 'lastDeploymentAttemptedAtAfter';
-      case ListServiceInstancesFilterBy.createdAtBefore:
-        return 'createdAtBefore';
-      case ListServiceInstancesFilterBy.createdAtAfter:
-        return 'createdAtAfter';
-    }
-  }
-}
+  final String value;
 
-extension ListServiceInstancesFilterByFromString on String {
-  ListServiceInstancesFilterBy toListServiceInstancesFilterBy() {
-    switch (this) {
-      case 'name':
-        return ListServiceInstancesFilterBy.name;
-      case 'deploymentStatus':
-        return ListServiceInstancesFilterBy.deploymentStatus;
-      case 'templateName':
-        return ListServiceInstancesFilterBy.templateName;
-      case 'serviceName':
-        return ListServiceInstancesFilterBy.serviceName;
-      case 'deployedTemplateVersionStatus':
-        return ListServiceInstancesFilterBy.deployedTemplateVersionStatus;
-      case 'environmentName':
-        return ListServiceInstancesFilterBy.environmentName;
-      case 'lastDeploymentAttemptedAtBefore':
-        return ListServiceInstancesFilterBy.lastDeploymentAttemptedAtBefore;
-      case 'lastDeploymentAttemptedAtAfter':
-        return ListServiceInstancesFilterBy.lastDeploymentAttemptedAtAfter;
-      case 'createdAtBefore':
-        return ListServiceInstancesFilterBy.createdAtBefore;
-      case 'createdAtAfter':
-        return ListServiceInstancesFilterBy.createdAtAfter;
-    }
-    throw Exception('$this is not known in enum ListServiceInstancesFilterBy');
-  }
+  const ListServiceInstancesFilterBy(this.value);
+
+  static ListServiceInstancesFilterBy fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum ListServiceInstancesFilterBy'));
 }
 
 class ListServiceInstancesOutput {
@@ -8243,57 +8071,23 @@ class ListServiceInstancesOutput {
 }
 
 enum ListServiceInstancesSortBy {
-  name,
-  deploymentStatus,
-  templateName,
-  serviceName,
-  environmentName,
-  lastDeploymentAttemptedAt,
-  createdAt,
-}
+  name('name'),
+  deploymentStatus('deploymentStatus'),
+  templateName('templateName'),
+  serviceName('serviceName'),
+  environmentName('environmentName'),
+  lastDeploymentAttemptedAt('lastDeploymentAttemptedAt'),
+  createdAt('createdAt'),
+  ;
 
-extension ListServiceInstancesSortByValueExtension
-    on ListServiceInstancesSortBy {
-  String toValue() {
-    switch (this) {
-      case ListServiceInstancesSortBy.name:
-        return 'name';
-      case ListServiceInstancesSortBy.deploymentStatus:
-        return 'deploymentStatus';
-      case ListServiceInstancesSortBy.templateName:
-        return 'templateName';
-      case ListServiceInstancesSortBy.serviceName:
-        return 'serviceName';
-      case ListServiceInstancesSortBy.environmentName:
-        return 'environmentName';
-      case ListServiceInstancesSortBy.lastDeploymentAttemptedAt:
-        return 'lastDeploymentAttemptedAt';
-      case ListServiceInstancesSortBy.createdAt:
-        return 'createdAt';
-    }
-  }
-}
+  final String value;
 
-extension ListServiceInstancesSortByFromString on String {
-  ListServiceInstancesSortBy toListServiceInstancesSortBy() {
-    switch (this) {
-      case 'name':
-        return ListServiceInstancesSortBy.name;
-      case 'deploymentStatus':
-        return ListServiceInstancesSortBy.deploymentStatus;
-      case 'templateName':
-        return ListServiceInstancesSortBy.templateName;
-      case 'serviceName':
-        return ListServiceInstancesSortBy.serviceName;
-      case 'environmentName':
-        return ListServiceInstancesSortBy.environmentName;
-      case 'lastDeploymentAttemptedAt':
-        return ListServiceInstancesSortBy.lastDeploymentAttemptedAt;
-      case 'createdAt':
-        return ListServiceInstancesSortBy.createdAt;
-    }
-    throw Exception('$this is not known in enum ListServiceInstancesSortBy');
-  }
+  const ListServiceInstancesSortBy(this.value);
+
+  static ListServiceInstancesSortBy fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum ListServiceInstancesSortBy'));
 }
 
 class ListServicePipelineOutputsOutput {
@@ -8572,7 +8366,7 @@ class ProvisionedResource {
       identifier: json['identifier'] as String?,
       name: json['name'] as String?,
       provisioningEngine: (json['provisioningEngine'] as String?)
-          ?.toProvisionedResourceEngine(),
+          ?.let(ProvisionedResourceEngine.fromString),
     );
   }
 
@@ -8584,61 +8378,39 @@ class ProvisionedResource {
       if (identifier != null) 'identifier': identifier,
       if (name != null) 'name': name,
       if (provisioningEngine != null)
-        'provisioningEngine': provisioningEngine.toValue(),
+        'provisioningEngine': provisioningEngine.value,
     };
   }
 }
 
 /// List of provisioning engines
 enum ProvisionedResourceEngine {
-  cloudformation,
-  terraform,
-}
+  cloudformation('CLOUDFORMATION'),
+  terraform('TERRAFORM'),
+  ;
 
-extension ProvisionedResourceEngineValueExtension on ProvisionedResourceEngine {
-  String toValue() {
-    switch (this) {
-      case ProvisionedResourceEngine.cloudformation:
-        return 'CLOUDFORMATION';
-      case ProvisionedResourceEngine.terraform:
-        return 'TERRAFORM';
-    }
-  }
-}
+  final String value;
 
-extension ProvisionedResourceEngineFromString on String {
-  ProvisionedResourceEngine toProvisionedResourceEngine() {
-    switch (this) {
-      case 'CLOUDFORMATION':
-        return ProvisionedResourceEngine.cloudformation;
-      case 'TERRAFORM':
-        return ProvisionedResourceEngine.terraform;
-    }
-    throw Exception('$this is not known in enum ProvisionedResourceEngine');
-  }
+  const ProvisionedResourceEngine(this.value);
+
+  static ProvisionedResourceEngine fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum ProvisionedResourceEngine'));
 }
 
 enum Provisioning {
-  customerManaged,
-}
+  customerManaged('CUSTOMER_MANAGED'),
+  ;
 
-extension ProvisioningValueExtension on Provisioning {
-  String toValue() {
-    switch (this) {
-      case Provisioning.customerManaged:
-        return 'CUSTOMER_MANAGED';
-    }
-  }
-}
+  final String value;
 
-extension ProvisioningFromString on String {
-  Provisioning toProvisioning() {
-    switch (this) {
-      case 'CUSTOMER_MANAGED':
-        return Provisioning.customerManaged;
-    }
-    throw Exception('$this is not known in enum Provisioning');
-  }
+  const Provisioning(this.value);
+
+  static Provisioning fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum Provisioning'));
 }
 
 class RejectEnvironmentAccountConnectionOutput {
@@ -8697,7 +8469,7 @@ class Repository {
       arn: json['arn'] as String,
       connectionArn: json['connectionArn'] as String,
       name: json['name'] as String,
-      provider: (json['provider'] as String).toRepositoryProvider(),
+      provider: RepositoryProvider.fromString((json['provider'] as String)),
       encryptionKey: json['encryptionKey'] as String?,
     );
   }
@@ -8712,7 +8484,7 @@ class Repository {
       'arn': arn,
       'connectionArn': connectionArn,
       'name': name,
-      'provider': provider.toValue(),
+      'provider': provider.value,
       if (encryptionKey != null) 'encryptionKey': encryptionKey,
     };
   }
@@ -8744,7 +8516,7 @@ class RepositoryBranch {
       arn: json['arn'] as String,
       branch: json['branch'] as String,
       name: json['name'] as String,
-      provider: (json['provider'] as String).toRepositoryProvider(),
+      provider: RepositoryProvider.fromString((json['provider'] as String)),
     );
   }
 
@@ -8757,7 +8529,7 @@ class RepositoryBranch {
       'arn': arn,
       'branch': branch,
       'name': name,
-      'provider': provider.toValue(),
+      'provider': provider.value,
     };
   }
 }
@@ -8786,42 +8558,25 @@ class RepositoryBranchInput {
     return {
       'branch': branch,
       'name': name,
-      'provider': provider.toValue(),
+      'provider': provider.value,
     };
   }
 }
 
 enum RepositoryProvider {
-  github,
-  githubEnterprise,
-  bitbucket,
-}
+  github('GITHUB'),
+  githubEnterprise('GITHUB_ENTERPRISE'),
+  bitbucket('BITBUCKET'),
+  ;
 
-extension RepositoryProviderValueExtension on RepositoryProvider {
-  String toValue() {
-    switch (this) {
-      case RepositoryProvider.github:
-        return 'GITHUB';
-      case RepositoryProvider.githubEnterprise:
-        return 'GITHUB_ENTERPRISE';
-      case RepositoryProvider.bitbucket:
-        return 'BITBUCKET';
-    }
-  }
-}
+  final String value;
 
-extension RepositoryProviderFromString on String {
-  RepositoryProvider toRepositoryProvider() {
-    switch (this) {
-      case 'GITHUB':
-        return RepositoryProvider.github;
-      case 'GITHUB_ENTERPRISE':
-        return RepositoryProvider.githubEnterprise;
-      case 'BITBUCKET':
-        return RepositoryProvider.bitbucket;
-    }
-    throw Exception('$this is not known in enum RepositoryProvider');
-  }
+  const RepositoryProvider(this.value);
+
+  static RepositoryProvider fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum RepositoryProvider'));
 }
 
 /// Summary data of a linked repository—a repository that has been registered
@@ -8852,7 +8607,7 @@ class RepositorySummary {
       arn: json['arn'] as String,
       connectionArn: json['connectionArn'] as String,
       name: json['name'] as String,
-      provider: (json['provider'] as String).toRepositoryProvider(),
+      provider: RepositoryProvider.fromString((json['provider'] as String)),
     );
   }
 
@@ -8865,7 +8620,7 @@ class RepositorySummary {
       'arn': arn,
       'connectionArn': connectionArn,
       'name': name,
-      'provider': provider.toValue(),
+      'provider': provider.value,
     };
   }
 }
@@ -8895,7 +8650,7 @@ class RepositorySyncAttempt {
           .map((e) => RepositorySyncEvent.fromJson(e as Map<String, dynamic>))
           .toList(),
       startedAt: nonNullableTimeStampFromJson(json['startedAt'] as Object),
-      status: (json['status'] as String).toRepositorySyncStatus(),
+      status: RepositorySyncStatus.fromString((json['status'] as String)),
     );
   }
 
@@ -8906,7 +8661,7 @@ class RepositorySyncAttempt {
     return {
       'events': events,
       'startedAt': unixTimestampToJson(startedAt),
-      'status': status.toValue(),
+      'status': status.value,
     };
   }
 }
@@ -9000,46 +8755,21 @@ class RepositorySyncEvent {
 }
 
 enum RepositorySyncStatus {
-  initiated,
-  inProgress,
-  succeeded,
-  failed,
-  queued,
-}
+  initiated('INITIATED'),
+  inProgress('IN_PROGRESS'),
+  succeeded('SUCCEEDED'),
+  failed('FAILED'),
+  queued('QUEUED'),
+  ;
 
-extension RepositorySyncStatusValueExtension on RepositorySyncStatus {
-  String toValue() {
-    switch (this) {
-      case RepositorySyncStatus.initiated:
-        return 'INITIATED';
-      case RepositorySyncStatus.inProgress:
-        return 'IN_PROGRESS';
-      case RepositorySyncStatus.succeeded:
-        return 'SUCCEEDED';
-      case RepositorySyncStatus.failed:
-        return 'FAILED';
-      case RepositorySyncStatus.queued:
-        return 'QUEUED';
-    }
-  }
-}
+  final String value;
 
-extension RepositorySyncStatusFromString on String {
-  RepositorySyncStatus toRepositorySyncStatus() {
-    switch (this) {
-      case 'INITIATED':
-        return RepositorySyncStatus.initiated;
-      case 'IN_PROGRESS':
-        return RepositorySyncStatus.inProgress;
-      case 'SUCCEEDED':
-        return RepositorySyncStatus.succeeded;
-      case 'FAILED':
-        return RepositorySyncStatus.failed;
-      case 'QUEUED':
-        return RepositorySyncStatus.queued;
-    }
-    throw Exception('$this is not known in enum RepositorySyncStatus');
-  }
+  const RepositorySyncStatus(this.value);
+
+  static RepositorySyncStatus fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum RepositorySyncStatus'));
 }
 
 /// Summary counts of each Proton resource types.
@@ -9100,36 +8830,19 @@ class ResourceCountsSummary {
 
 /// The state that a PR-based deployment can be updated to.
 enum ResourceDeploymentStatus {
-  inProgress,
-  failed,
-  succeeded,
-}
+  inProgress('IN_PROGRESS'),
+  failed('FAILED'),
+  succeeded('SUCCEEDED'),
+  ;
 
-extension ResourceDeploymentStatusValueExtension on ResourceDeploymentStatus {
-  String toValue() {
-    switch (this) {
-      case ResourceDeploymentStatus.inProgress:
-        return 'IN_PROGRESS';
-      case ResourceDeploymentStatus.failed:
-        return 'FAILED';
-      case ResourceDeploymentStatus.succeeded:
-        return 'SUCCEEDED';
-    }
-  }
-}
+  final String value;
 
-extension ResourceDeploymentStatusFromString on String {
-  ResourceDeploymentStatus toResourceDeploymentStatus() {
-    switch (this) {
-      case 'IN_PROGRESS':
-        return ResourceDeploymentStatus.inProgress;
-      case 'FAILED':
-        return ResourceDeploymentStatus.failed;
-      case 'SUCCEEDED':
-        return ResourceDeploymentStatus.succeeded;
-    }
-    throw Exception('$this is not known in enum ResourceDeploymentStatus');
-  }
+  const ResourceDeploymentStatus(this.value);
+
+  static ResourceDeploymentStatus fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum ResourceDeploymentStatus'));
 }
 
 /// Detail data for a resource sync attempt activated by a push to a repository.
@@ -9170,7 +8883,7 @@ class ResourceSyncAttempt {
       initialRevision:
           Revision.fromJson(json['initialRevision'] as Map<String, dynamic>),
       startedAt: nonNullableTimeStampFromJson(json['startedAt'] as Object),
-      status: (json['status'] as String).toResourceSyncStatus(),
+      status: ResourceSyncStatus.fromString((json['status'] as String)),
       target: json['target'] as String,
       targetRevision:
           Revision.fromJson(json['targetRevision'] as Map<String, dynamic>),
@@ -9188,7 +8901,7 @@ class ResourceSyncAttempt {
       'events': events,
       'initialRevision': initialRevision,
       'startedAt': unixTimestampToJson(startedAt),
-      'status': status.toValue(),
+      'status': status.value,
       'target': target,
       'targetRevision': targetRevision,
     };
@@ -9240,41 +8953,20 @@ class ResourceSyncEvent {
 }
 
 enum ResourceSyncStatus {
-  initiated,
-  inProgress,
-  succeeded,
-  failed,
-}
+  initiated('INITIATED'),
+  inProgress('IN_PROGRESS'),
+  succeeded('SUCCEEDED'),
+  failed('FAILED'),
+  ;
 
-extension ResourceSyncStatusValueExtension on ResourceSyncStatus {
-  String toValue() {
-    switch (this) {
-      case ResourceSyncStatus.initiated:
-        return 'INITIATED';
-      case ResourceSyncStatus.inProgress:
-        return 'IN_PROGRESS';
-      case ResourceSyncStatus.succeeded:
-        return 'SUCCEEDED';
-      case ResourceSyncStatus.failed:
-        return 'FAILED';
-    }
-  }
-}
+  final String value;
 
-extension ResourceSyncStatusFromString on String {
-  ResourceSyncStatus toResourceSyncStatus() {
-    switch (this) {
-      case 'INITIATED':
-        return ResourceSyncStatus.initiated;
-      case 'IN_PROGRESS':
-        return ResourceSyncStatus.inProgress;
-      case 'SUCCEEDED':
-        return ResourceSyncStatus.succeeded;
-      case 'FAILED':
-        return ResourceSyncStatus.failed;
-    }
-    throw Exception('$this is not known in enum ResourceSyncStatus');
-  }
+  const ResourceSyncStatus(this.value);
+
+  static ResourceSyncStatus fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum ResourceSyncStatus'));
 }
 
 /// Revision detail data for a commit and push that activates a sync attempt
@@ -9309,7 +9001,7 @@ class Revision {
       directory: json['directory'] as String,
       repositoryName: json['repositoryName'] as String,
       repositoryProvider:
-          (json['repositoryProvider'] as String).toRepositoryProvider(),
+          RepositoryProvider.fromString((json['repositoryProvider'] as String)),
       sha: json['sha'] as String,
     );
   }
@@ -9324,7 +9016,7 @@ class Revision {
       'branch': branch,
       'directory': directory,
       'repositoryName': repositoryName,
-      'repositoryProvider': repositoryProvider.toValue(),
+      'repositoryProvider': repositoryProvider.value,
       'sha': sha,
     };
   }
@@ -9422,7 +9114,7 @@ class Service {
           nonNullableTimeStampFromJson(json['lastModifiedAt'] as Object),
       name: json['name'] as String,
       spec: json['spec'] as String,
-      status: (json['status'] as String).toServiceStatus(),
+      status: ServiceStatus.fromString((json['status'] as String)),
       templateName: json['templateName'] as String,
       branchName: json['branchName'] as String?,
       description: json['description'] as String?,
@@ -9455,7 +9147,7 @@ class Service {
       'lastModifiedAt': unixTimestampToJson(lastModifiedAt),
       'name': name,
       'spec': spec,
-      'status': status.toValue(),
+      'status': status.value,
       'templateName': templateName,
       if (branchName != null) 'branchName': branchName,
       if (description != null) 'description': description,
@@ -9537,7 +9229,7 @@ class ServiceInstance {
       arn: json['arn'] as String,
       createdAt: nonNullableTimeStampFromJson(json['createdAt'] as Object),
       deploymentStatus:
-          (json['deploymentStatus'] as String).toDeploymentStatus(),
+          DeploymentStatus.fromString((json['deploymentStatus'] as String)),
       environmentName: json['environmentName'] as String,
       lastDeploymentAttemptedAt: nonNullableTimeStampFromJson(
           json['lastDeploymentAttemptedAt'] as Object),
@@ -9572,7 +9264,7 @@ class ServiceInstance {
     return {
       'arn': arn,
       'createdAt': unixTimestampToJson(createdAt),
-      'deploymentStatus': deploymentStatus.toValue(),
+      'deploymentStatus': deploymentStatus.value,
       'environmentName': environmentName,
       'lastDeploymentAttemptedAt':
           unixTimestampToJson(lastDeploymentAttemptedAt),
@@ -9650,7 +9342,7 @@ class ServiceInstanceSummary {
       arn: json['arn'] as String,
       createdAt: nonNullableTimeStampFromJson(json['createdAt'] as Object),
       deploymentStatus:
-          (json['deploymentStatus'] as String).toDeploymentStatus(),
+          DeploymentStatus.fromString((json['deploymentStatus'] as String)),
       environmentName: json['environmentName'] as String,
       lastDeploymentAttemptedAt: nonNullableTimeStampFromJson(
           json['lastDeploymentAttemptedAt'] as Object),
@@ -9681,7 +9373,7 @@ class ServiceInstanceSummary {
     return {
       'arn': arn,
       'createdAt': unixTimestampToJson(createdAt),
-      'deploymentStatus': deploymentStatus.toValue(),
+      'deploymentStatus': deploymentStatus.value,
       'environmentName': environmentName,
       'lastDeploymentAttemptedAt':
           unixTimestampToJson(lastDeploymentAttemptedAt),
@@ -9751,7 +9443,7 @@ class ServicePipeline {
       arn: json['arn'] as String,
       createdAt: nonNullableTimeStampFromJson(json['createdAt'] as Object),
       deploymentStatus:
-          (json['deploymentStatus'] as String).toDeploymentStatus(),
+          DeploymentStatus.fromString((json['deploymentStatus'] as String)),
       lastDeploymentAttemptedAt: nonNullableTimeStampFromJson(
           json['lastDeploymentAttemptedAt'] as Object),
       lastDeploymentSucceededAt: nonNullableTimeStampFromJson(
@@ -9778,7 +9470,7 @@ class ServicePipeline {
     return {
       'arn': arn,
       'createdAt': unixTimestampToJson(createdAt),
-      'deploymentStatus': deploymentStatus.toValue(),
+      'deploymentStatus': deploymentStatus.value,
       'lastDeploymentAttemptedAt':
           unixTimestampToJson(lastDeploymentAttemptedAt),
       'lastDeploymentSucceededAt':
@@ -9794,91 +9486,30 @@ class ServicePipeline {
 }
 
 enum ServiceStatus {
-  createInProgress,
-  createFailedCleanupInProgress,
-  createFailedCleanupComplete,
-  createFailedCleanupFailed,
-  createFailed,
-  active,
-  deleteInProgress,
-  deleteFailed,
-  updateInProgress,
-  updateFailedCleanupInProgress,
-  updateFailedCleanupComplete,
-  updateFailedCleanupFailed,
-  updateFailed,
-  updateCompleteCleanupFailed,
-}
+  createInProgress('CREATE_IN_PROGRESS'),
+  createFailedCleanupInProgress('CREATE_FAILED_CLEANUP_IN_PROGRESS'),
+  createFailedCleanupComplete('CREATE_FAILED_CLEANUP_COMPLETE'),
+  createFailedCleanupFailed('CREATE_FAILED_CLEANUP_FAILED'),
+  createFailed('CREATE_FAILED'),
+  active('ACTIVE'),
+  deleteInProgress('DELETE_IN_PROGRESS'),
+  deleteFailed('DELETE_FAILED'),
+  updateInProgress('UPDATE_IN_PROGRESS'),
+  updateFailedCleanupInProgress('UPDATE_FAILED_CLEANUP_IN_PROGRESS'),
+  updateFailedCleanupComplete('UPDATE_FAILED_CLEANUP_COMPLETE'),
+  updateFailedCleanupFailed('UPDATE_FAILED_CLEANUP_FAILED'),
+  updateFailed('UPDATE_FAILED'),
+  updateCompleteCleanupFailed('UPDATE_COMPLETE_CLEANUP_FAILED'),
+  ;
 
-extension ServiceStatusValueExtension on ServiceStatus {
-  String toValue() {
-    switch (this) {
-      case ServiceStatus.createInProgress:
-        return 'CREATE_IN_PROGRESS';
-      case ServiceStatus.createFailedCleanupInProgress:
-        return 'CREATE_FAILED_CLEANUP_IN_PROGRESS';
-      case ServiceStatus.createFailedCleanupComplete:
-        return 'CREATE_FAILED_CLEANUP_COMPLETE';
-      case ServiceStatus.createFailedCleanupFailed:
-        return 'CREATE_FAILED_CLEANUP_FAILED';
-      case ServiceStatus.createFailed:
-        return 'CREATE_FAILED';
-      case ServiceStatus.active:
-        return 'ACTIVE';
-      case ServiceStatus.deleteInProgress:
-        return 'DELETE_IN_PROGRESS';
-      case ServiceStatus.deleteFailed:
-        return 'DELETE_FAILED';
-      case ServiceStatus.updateInProgress:
-        return 'UPDATE_IN_PROGRESS';
-      case ServiceStatus.updateFailedCleanupInProgress:
-        return 'UPDATE_FAILED_CLEANUP_IN_PROGRESS';
-      case ServiceStatus.updateFailedCleanupComplete:
-        return 'UPDATE_FAILED_CLEANUP_COMPLETE';
-      case ServiceStatus.updateFailedCleanupFailed:
-        return 'UPDATE_FAILED_CLEANUP_FAILED';
-      case ServiceStatus.updateFailed:
-        return 'UPDATE_FAILED';
-      case ServiceStatus.updateCompleteCleanupFailed:
-        return 'UPDATE_COMPLETE_CLEANUP_FAILED';
-    }
-  }
-}
+  final String value;
 
-extension ServiceStatusFromString on String {
-  ServiceStatus toServiceStatus() {
-    switch (this) {
-      case 'CREATE_IN_PROGRESS':
-        return ServiceStatus.createInProgress;
-      case 'CREATE_FAILED_CLEANUP_IN_PROGRESS':
-        return ServiceStatus.createFailedCleanupInProgress;
-      case 'CREATE_FAILED_CLEANUP_COMPLETE':
-        return ServiceStatus.createFailedCleanupComplete;
-      case 'CREATE_FAILED_CLEANUP_FAILED':
-        return ServiceStatus.createFailedCleanupFailed;
-      case 'CREATE_FAILED':
-        return ServiceStatus.createFailed;
-      case 'ACTIVE':
-        return ServiceStatus.active;
-      case 'DELETE_IN_PROGRESS':
-        return ServiceStatus.deleteInProgress;
-      case 'DELETE_FAILED':
-        return ServiceStatus.deleteFailed;
-      case 'UPDATE_IN_PROGRESS':
-        return ServiceStatus.updateInProgress;
-      case 'UPDATE_FAILED_CLEANUP_IN_PROGRESS':
-        return ServiceStatus.updateFailedCleanupInProgress;
-      case 'UPDATE_FAILED_CLEANUP_COMPLETE':
-        return ServiceStatus.updateFailedCleanupComplete;
-      case 'UPDATE_FAILED_CLEANUP_FAILED':
-        return ServiceStatus.updateFailedCleanupFailed;
-      case 'UPDATE_FAILED':
-        return ServiceStatus.updateFailed;
-      case 'UPDATE_COMPLETE_CLEANUP_FAILED':
-        return ServiceStatus.updateCompleteCleanupFailed;
-    }
-    throw Exception('$this is not known in enum ServiceStatus');
-  }
+  const ServiceStatus(this.value);
+
+  static ServiceStatus fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum ServiceStatus'));
 }
 
 /// Summary data of an Proton service resource.
@@ -9925,7 +9556,7 @@ class ServiceSummary {
       lastModifiedAt:
           nonNullableTimeStampFromJson(json['lastModifiedAt'] as Object),
       name: json['name'] as String,
-      status: (json['status'] as String).toServiceStatus(),
+      status: ServiceStatus.fromString((json['status'] as String)),
       templateName: json['templateName'] as String,
       description: json['description'] as String?,
       statusMessage: json['statusMessage'] as String?,
@@ -9946,7 +9577,7 @@ class ServiceSummary {
       'createdAt': unixTimestampToJson(createdAt),
       'lastModifiedAt': unixTimestampToJson(lastModifiedAt),
       'name': name,
-      'status': status.toValue(),
+      'status': status.value,
       'templateName': templateName,
       if (description != null) 'description': description,
       if (statusMessage != null) 'statusMessage': statusMessage,
@@ -10042,7 +9673,7 @@ class ServiceSyncConfig {
       filePath: json['filePath'] as String,
       repositoryName: json['repositoryName'] as String,
       repositoryProvider:
-          (json['repositoryProvider'] as String).toRepositoryProvider(),
+          RepositoryProvider.fromString((json['repositoryProvider'] as String)),
       serviceName: json['serviceName'] as String,
     );
   }
@@ -10057,7 +9688,7 @@ class ServiceSyncConfig {
       'branch': branch,
       'filePath': filePath,
       'repositoryName': repositoryName,
-      'repositoryProvider': repositoryProvider.toValue(),
+      'repositoryProvider': repositoryProvider.value,
       'serviceName': serviceName,
     };
   }
@@ -10117,8 +9748,8 @@ class ServiceTemplate {
       description: json['description'] as String?,
       displayName: json['displayName'] as String?,
       encryptionKey: json['encryptionKey'] as String?,
-      pipelineProvisioning:
-          (json['pipelineProvisioning'] as String?)?.toProvisioning(),
+      pipelineProvisioning: (json['pipelineProvisioning'] as String?)
+          ?.let(Provisioning.fromString),
       recommendedVersion: json['recommendedVersion'] as String?,
     );
   }
@@ -10142,7 +9773,7 @@ class ServiceTemplate {
       if (displayName != null) 'displayName': displayName,
       if (encryptionKey != null) 'encryptionKey': encryptionKey,
       if (pipelineProvisioning != null)
-        'pipelineProvisioning': pipelineProvisioning.toValue(),
+        'pipelineProvisioning': pipelineProvisioning.value,
       if (recommendedVersion != null) 'recommendedVersion': recommendedVersion,
     };
   }
@@ -10196,8 +9827,8 @@ class ServiceTemplateSummary {
       name: json['name'] as String,
       description: json['description'] as String?,
       displayName: json['displayName'] as String?,
-      pipelineProvisioning:
-          (json['pipelineProvisioning'] as String?)?.toProvisioning(),
+      pipelineProvisioning: (json['pipelineProvisioning'] as String?)
+          ?.let(Provisioning.fromString),
       recommendedVersion: json['recommendedVersion'] as String?,
     );
   }
@@ -10219,36 +9850,24 @@ class ServiceTemplateSummary {
       if (description != null) 'description': description,
       if (displayName != null) 'displayName': displayName,
       if (pipelineProvisioning != null)
-        'pipelineProvisioning': pipelineProvisioning.toValue(),
+        'pipelineProvisioning': pipelineProvisioning.value,
       if (recommendedVersion != null) 'recommendedVersion': recommendedVersion,
     };
   }
 }
 
 enum ServiceTemplateSupportedComponentSourceType {
-  directlyDefined,
-}
+  directlyDefined('DIRECTLY_DEFINED'),
+  ;
 
-extension ServiceTemplateSupportedComponentSourceTypeValueExtension
-    on ServiceTemplateSupportedComponentSourceType {
-  String toValue() {
-    switch (this) {
-      case ServiceTemplateSupportedComponentSourceType.directlyDefined:
-        return 'DIRECTLY_DEFINED';
-    }
-  }
-}
+  final String value;
 
-extension ServiceTemplateSupportedComponentSourceTypeFromString on String {
-  ServiceTemplateSupportedComponentSourceType
-      toServiceTemplateSupportedComponentSourceType() {
-    switch (this) {
-      case 'DIRECTLY_DEFINED':
-        return ServiceTemplateSupportedComponentSourceType.directlyDefined;
-    }
-    throw Exception(
-        '$this is not known in enum ServiceTemplateSupportedComponentSourceType');
-  }
+  const ServiceTemplateSupportedComponentSourceType(this.value);
+
+  static ServiceTemplateSupportedComponentSourceType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum ServiceTemplateSupportedComponentSourceType'));
 }
 
 /// Detailed data of an Proton service template version resource.
@@ -10330,7 +9949,7 @@ class ServiceTemplateVersion {
           nonNullableTimeStampFromJson(json['lastModifiedAt'] as Object),
       majorVersion: json['majorVersion'] as String,
       minorVersion: json['minorVersion'] as String,
-      status: (json['status'] as String).toTemplateVersionStatus(),
+      status: TemplateVersionStatus.fromString((json['status'] as String)),
       templateName: json['templateName'] as String,
       description: json['description'] as String?,
       recommendedMinorVersion: json['recommendedMinorVersion'] as String?,
@@ -10338,8 +9957,8 @@ class ServiceTemplateVersion {
       statusMessage: json['statusMessage'] as String?,
       supportedComponentSources: (json['supportedComponentSources'] as List?)
           ?.whereNotNull()
-          .map((e) =>
-              (e as String).toServiceTemplateSupportedComponentSourceType())
+          .map((e) => ServiceTemplateSupportedComponentSourceType.fromString(
+              (e as String)))
           .toList(),
     );
   }
@@ -10365,7 +9984,7 @@ class ServiceTemplateVersion {
       'lastModifiedAt': unixTimestampToJson(lastModifiedAt),
       'majorVersion': majorVersion,
       'minorVersion': minorVersion,
-      'status': status.toValue(),
+      'status': status.value,
       'templateName': templateName,
       if (description != null) 'description': description,
       if (recommendedMinorVersion != null)
@@ -10374,7 +9993,7 @@ class ServiceTemplateVersion {
       if (statusMessage != null) 'statusMessage': statusMessage,
       if (supportedComponentSources != null)
         'supportedComponentSources':
-            supportedComponentSources.map((e) => e.toValue()).toList(),
+            supportedComponentSources.map((e) => e.value).toList(),
     };
   }
 }
@@ -10433,7 +10052,7 @@ class ServiceTemplateVersionSummary {
           nonNullableTimeStampFromJson(json['lastModifiedAt'] as Object),
       majorVersion: json['majorVersion'] as String,
       minorVersion: json['minorVersion'] as String,
-      status: (json['status'] as String).toTemplateVersionStatus(),
+      status: TemplateVersionStatus.fromString((json['status'] as String)),
       templateName: json['templateName'] as String,
       description: json['description'] as String?,
       recommendedMinorVersion: json['recommendedMinorVersion'] as String?,
@@ -10458,7 +10077,7 @@ class ServiceTemplateVersionSummary {
       'lastModifiedAt': unixTimestampToJson(lastModifiedAt),
       'majorVersion': majorVersion,
       'minorVersion': minorVersion,
-      'status': status.toValue(),
+      'status': status.value,
       'templateName': templateName,
       if (description != null) 'description': description,
       if (recommendedMinorVersion != null)
@@ -10469,31 +10088,17 @@ class ServiceTemplateVersionSummary {
 }
 
 enum SortOrder {
-  ascending,
-  descending,
-}
+  ascending('ASCENDING'),
+  descending('DESCENDING'),
+  ;
 
-extension SortOrderValueExtension on SortOrder {
-  String toValue() {
-    switch (this) {
-      case SortOrder.ascending:
-        return 'ASCENDING';
-      case SortOrder.descending:
-        return 'DESCENDING';
-    }
-  }
-}
+  final String value;
 
-extension SortOrderFromString on String {
-  SortOrder toSortOrder() {
-    switch (this) {
-      case 'ASCENDING':
-        return SortOrder.ascending;
-      case 'DESCENDING':
-        return SortOrder.descending;
-    }
-    throw Exception('$this is not known in enum SortOrder');
-  }
+  const SortOrder(this.value);
+
+  static SortOrder fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum SortOrder'));
 }
 
 /// Detailed data of the sync blocker.
@@ -10538,8 +10143,8 @@ class SyncBlocker {
       createdAt: nonNullableTimeStampFromJson(json['createdAt'] as Object),
       createdReason: json['createdReason'] as String,
       id: json['id'] as String,
-      status: (json['status'] as String).toBlockerStatus(),
-      type: (json['type'] as String).toBlockerType(),
+      status: BlockerStatus.fromString((json['status'] as String)),
+      type: BlockerType.fromString((json['type'] as String)),
       contexts: (json['contexts'] as List?)
           ?.whereNotNull()
           .map((e) => SyncBlockerContext.fromJson(e as Map<String, dynamic>))
@@ -10562,8 +10167,8 @@ class SyncBlocker {
       'createdAt': unixTimestampToJson(createdAt),
       'createdReason': createdReason,
       'id': id,
-      'status': status.toValue(),
-      'type': type.toValue(),
+      'status': status.value,
+      'type': type.value,
       if (contexts != null) 'contexts': contexts,
       if (resolvedAt != null) 'resolvedAt': unixTimestampToJson(resolvedAt),
       if (resolvedReason != null) 'resolvedReason': resolvedReason,
@@ -10602,31 +10207,17 @@ class SyncBlockerContext {
 }
 
 enum SyncType {
-  templateSync,
-  serviceSync,
-}
+  templateSync('TEMPLATE_SYNC'),
+  serviceSync('SERVICE_SYNC'),
+  ;
 
-extension SyncTypeValueExtension on SyncType {
-  String toValue() {
-    switch (this) {
-      case SyncType.templateSync:
-        return 'TEMPLATE_SYNC';
-      case SyncType.serviceSync:
-        return 'SERVICE_SYNC';
-    }
-  }
-}
+  final String value;
 
-extension SyncTypeFromString on String {
-  SyncType toSyncType() {
-    switch (this) {
-      case 'TEMPLATE_SYNC':
-        return SyncType.templateSync;
-      case 'SERVICE_SYNC':
-        return SyncType.serviceSync;
-    }
-    throw Exception('$this is not known in enum SyncType');
-  }
+  const SyncType(this.value);
+
+  static SyncType fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum SyncType'));
 }
 
 /// A description of a resource tag.
@@ -10705,9 +10296,9 @@ class TemplateSyncConfig {
       branch: json['branch'] as String,
       repositoryName: json['repositoryName'] as String,
       repositoryProvider:
-          (json['repositoryProvider'] as String).toRepositoryProvider(),
+          RepositoryProvider.fromString((json['repositoryProvider'] as String)),
       templateName: json['templateName'] as String,
-      templateType: (json['templateType'] as String).toTemplateType(),
+      templateType: TemplateType.fromString((json['templateType'] as String)),
       subdirectory: json['subdirectory'] as String?,
     );
   }
@@ -10722,40 +10313,27 @@ class TemplateSyncConfig {
     return {
       'branch': branch,
       'repositoryName': repositoryName,
-      'repositoryProvider': repositoryProvider.toValue(),
+      'repositoryProvider': repositoryProvider.value,
       'templateName': templateName,
-      'templateType': templateType.toValue(),
+      'templateType': templateType.value,
       if (subdirectory != null) 'subdirectory': subdirectory,
     };
   }
 }
 
 enum TemplateType {
-  environment,
-  service,
-}
+  environment('ENVIRONMENT'),
+  service('SERVICE'),
+  ;
 
-extension TemplateTypeValueExtension on TemplateType {
-  String toValue() {
-    switch (this) {
-      case TemplateType.environment:
-        return 'ENVIRONMENT';
-      case TemplateType.service:
-        return 'SERVICE';
-    }
-  }
-}
+  final String value;
 
-extension TemplateTypeFromString on String {
-  TemplateType toTemplateType() {
-    switch (this) {
-      case 'ENVIRONMENT':
-        return TemplateType.environment;
-      case 'SERVICE':
-        return TemplateType.service;
-    }
-    throw Exception('$this is not known in enum TemplateType');
-  }
+  const TemplateType(this.value);
+
+  static TemplateType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum TemplateType'));
 }
 
 /// Template version source data.
@@ -10777,41 +10355,20 @@ class TemplateVersionSourceInput {
 }
 
 enum TemplateVersionStatus {
-  registrationInProgress,
-  registrationFailed,
-  draft,
-  published,
-}
+  registrationInProgress('REGISTRATION_IN_PROGRESS'),
+  registrationFailed('REGISTRATION_FAILED'),
+  draft('DRAFT'),
+  published('PUBLISHED'),
+  ;
 
-extension TemplateVersionStatusValueExtension on TemplateVersionStatus {
-  String toValue() {
-    switch (this) {
-      case TemplateVersionStatus.registrationInProgress:
-        return 'REGISTRATION_IN_PROGRESS';
-      case TemplateVersionStatus.registrationFailed:
-        return 'REGISTRATION_FAILED';
-      case TemplateVersionStatus.draft:
-        return 'DRAFT';
-      case TemplateVersionStatus.published:
-        return 'PUBLISHED';
-    }
-  }
-}
+  final String value;
 
-extension TemplateVersionStatusFromString on String {
-  TemplateVersionStatus toTemplateVersionStatus() {
-    switch (this) {
-      case 'REGISTRATION_IN_PROGRESS':
-        return TemplateVersionStatus.registrationInProgress;
-      case 'REGISTRATION_FAILED':
-        return TemplateVersionStatus.registrationFailed;
-      case 'DRAFT':
-        return TemplateVersionStatus.draft;
-      case 'PUBLISHED':
-        return TemplateVersionStatus.published;
-    }
-    throw Exception('$this is not known in enum TemplateVersionStatus');
-  }
+  const TemplateVersionStatus(this.value);
+
+  static TemplateVersionStatus fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum TemplateVersionStatus'));
 }
 
 class UntagResourceOutput {

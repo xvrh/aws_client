@@ -321,18 +321,17 @@ class IoTFleetWise {
         'name': name,
         'signalCatalogArn': signalCatalogArn,
         'targetArn': targetArn,
-        if (compression != null) 'compression': compression.toValue(),
+        if (compression != null) 'compression': compression.value,
         if (dataExtraDimensions != null)
           'dataExtraDimensions': dataExtraDimensions,
         if (description != null) 'description': description,
-        if (diagnosticsMode != null)
-          'diagnosticsMode': diagnosticsMode.toValue(),
+        if (diagnosticsMode != null) 'diagnosticsMode': diagnosticsMode.value,
         if (expiryTime != null) 'expiryTime': unixTimestampToJson(expiryTime),
         if (postTriggerCollectionDuration != null)
           'postTriggerCollectionDuration': postTriggerCollectionDuration,
         if (priority != null) 'priority': priority,
         if (signalsToCollect != null) 'signalsToCollect': signalsToCollect,
-        if (spoolingMode != null) 'spoolingMode': spoolingMode.toValue(),
+        if (spoolingMode != null) 'spoolingMode': spoolingMode.value,
         if (startTime != null) 'startTime': unixTimestampToJson(startTime),
         if (tags != null) 'tags': tags,
       },
@@ -648,7 +647,7 @@ class IoTFleetWise {
         'modelManifestArn': modelManifestArn,
         'vehicleName': vehicleName,
         if (associationBehavior != null)
-          'associationBehavior': associationBehavior.toValue(),
+          'associationBehavior': associationBehavior.value,
         if (attributes != null) 'attributes': attributes,
         if (tags != null) 'tags': tags,
       },
@@ -2219,7 +2218,7 @@ class IoTFleetWise {
       // TODO queryParams
       headers: headers,
       payload: {
-        'action': action.toValue(),
+        'action': action.value,
         'name': name,
         if (dataExtraDimensions != null)
           'dataExtraDimensions': dataExtraDimensions,
@@ -2313,7 +2312,7 @@ class IoTFleetWise {
           'signalDecodersToRemove': signalDecodersToRemove,
         if (signalDecodersToUpdate != null)
           'signalDecodersToUpdate': signalDecodersToUpdate,
-        if (status != null) 'status': status.toValue(),
+        if (status != null) 'status': status.value,
       },
     );
 
@@ -2412,7 +2411,7 @@ class IoTFleetWise {
         if (description != null) 'description': description,
         if (nodesToAdd != null) 'nodesToAdd': nodesToAdd,
         if (nodesToRemove != null) 'nodesToRemove': nodesToRemove,
-        if (status != null) 'status': status.toValue(),
+        if (status != null) 'status': status.value,
       },
     );
 
@@ -2525,7 +2524,7 @@ class IoTFleetWise {
       payload: {
         'vehicleName': vehicleName,
         if (attributeUpdateMode != null)
-          'attributeUpdateMode': attributeUpdateMode.toValue(),
+          'attributeUpdateMode': attributeUpdateMode.value,
         if (attributes != null) 'attributes': attributes,
         if (decoderManifestArn != null)
           'decoderManifestArn': decoderManifestArn,
@@ -2583,7 +2582,7 @@ class Actuator {
 
   factory Actuator.fromJson(Map<String, dynamic> json) {
     return Actuator(
-      dataType: (json['dataType'] as String).toNodeDataType(),
+      dataType: NodeDataType.fromString((json['dataType'] as String)),
       fullyQualifiedName: json['fullyQualifiedName'] as String,
       allowedValues: (json['allowedValues'] as List?)
           ?.whereNotNull()
@@ -2607,7 +2606,7 @@ class Actuator {
     final min = this.min;
     final unit = this.unit;
     return {
-      'dataType': dataType.toValue(),
+      'dataType': dataType.value,
       'fullyQualifiedName': fullyQualifiedName,
       if (allowedValues != null) 'allowedValues': allowedValues,
       if (assignedValue != null) 'assignedValue': assignedValue,
@@ -2676,7 +2675,7 @@ class Attribute {
 
   factory Attribute.fromJson(Map<String, dynamic> json) {
     return Attribute(
-      dataType: (json['dataType'] as String).toNodeDataType(),
+      dataType: NodeDataType.fromString((json['dataType'] as String)),
       fullyQualifiedName: json['fullyQualifiedName'] as String,
       allowedValues: (json['allowedValues'] as List?)
           ?.whereNotNull()
@@ -2702,7 +2701,7 @@ class Attribute {
     final min = this.min;
     final unit = this.unit;
     return {
-      'dataType': dataType.toValue(),
+      'dataType': dataType.value,
       'fullyQualifiedName': fullyQualifiedName,
       if (allowedValues != null) 'allowedValues': allowedValues,
       if (assignedValue != null) 'assignedValue': assignedValue,
@@ -2825,41 +2824,20 @@ class Branch {
 }
 
 enum CampaignStatus {
-  creating,
-  waitingForApproval,
-  running,
-  suspended,
-}
+  creating('CREATING'),
+  waitingForApproval('WAITING_FOR_APPROVAL'),
+  running('RUNNING'),
+  suspended('SUSPENDED'),
+  ;
 
-extension CampaignStatusValueExtension on CampaignStatus {
-  String toValue() {
-    switch (this) {
-      case CampaignStatus.creating:
-        return 'CREATING';
-      case CampaignStatus.waitingForApproval:
-        return 'WAITING_FOR_APPROVAL';
-      case CampaignStatus.running:
-        return 'RUNNING';
-      case CampaignStatus.suspended:
-        return 'SUSPENDED';
-    }
-  }
-}
+  final String value;
 
-extension CampaignStatusFromString on String {
-  CampaignStatus toCampaignStatus() {
-    switch (this) {
-      case 'CREATING':
-        return CampaignStatus.creating;
-      case 'WAITING_FOR_APPROVAL':
-        return CampaignStatus.waitingForApproval;
-      case 'RUNNING':
-        return CampaignStatus.running;
-      case 'SUSPENDED':
-        return CampaignStatus.suspended;
-    }
-    throw Exception('$this is not known in enum CampaignStatus');
-  }
+  const CampaignStatus(this.value);
+
+  static CampaignStatus fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum CampaignStatus'));
 }
 
 /// Information about a campaign.
@@ -2932,7 +2910,7 @@ class CampaignSummary {
       description: json['description'] as String?,
       name: json['name'] as String?,
       signalCatalogArn: json['signalCatalogArn'] as String?,
-      status: (json['status'] as String?)?.toCampaignStatus(),
+      status: (json['status'] as String?)?.let(CampaignStatus.fromString),
       targetArn: json['targetArn'] as String?,
     );
   }
@@ -2953,7 +2931,7 @@ class CampaignSummary {
       if (description != null) 'description': description,
       if (name != null) 'name': name,
       if (signalCatalogArn != null) 'signalCatalogArn': signalCatalogArn,
-      if (status != null) 'status': status.toValue(),
+      if (status != null) 'status': status.value,
       if (targetArn != null) 'targetArn': targetArn,
     };
   }
@@ -3114,7 +3092,7 @@ class CloudWatchLogDeliveryOptions {
 
   factory CloudWatchLogDeliveryOptions.fromJson(Map<String, dynamic> json) {
     return CloudWatchLogDeliveryOptions(
-      logType: (json['logType'] as String).toLogType(),
+      logType: LogType.fromString((json['logType'] as String)),
       logGroupName: json['logGroupName'] as String?,
     );
   }
@@ -3123,7 +3101,7 @@ class CloudWatchLogDeliveryOptions {
     final logType = this.logType;
     final logGroupName = this.logGroupName;
     return {
-      'logType': logType.toValue(),
+      'logType': logType.value,
       if (logGroupName != null) 'logGroupName': logGroupName,
     };
   }
@@ -3171,31 +3149,17 @@ class CollectionScheme {
 }
 
 enum Compression {
-  off,
-  snappy,
-}
+  off('OFF'),
+  snappy('SNAPPY'),
+  ;
 
-extension CompressionValueExtension on Compression {
-  String toValue() {
-    switch (this) {
-      case Compression.off:
-        return 'OFF';
-      case Compression.snappy:
-        return 'SNAPPY';
-    }
-  }
-}
+  final String value;
 
-extension CompressionFromString on String {
-  Compression toCompression() {
-    switch (this) {
-      case 'OFF':
-        return Compression.off;
-      case 'SNAPPY':
-        return Compression.snappy;
-    }
-    throw Exception('$this is not known in enum Compression');
-  }
+  const Compression(this.value);
+
+  static Compression fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum Compression'));
 }
 
 /// Information about a collection scheme that uses a simple logical expression
@@ -3234,7 +3198,8 @@ class ConditionBasedCollectionScheme {
       expression: json['expression'] as String,
       conditionLanguageVersion: json['conditionLanguageVersion'] as int?,
       minimumTriggerIntervalMs: json['minimumTriggerIntervalMs'] as int?,
-      triggerMode: (json['triggerMode'] as String?)?.toTriggerMode(),
+      triggerMode:
+          (json['triggerMode'] as String?)?.let(TriggerMode.fromString),
     );
   }
 
@@ -3249,7 +3214,7 @@ class ConditionBasedCollectionScheme {
         'conditionLanguageVersion': conditionLanguageVersion,
       if (minimumTriggerIntervalMs != null)
         'minimumTriggerIntervalMs': minimumTriggerIntervalMs,
-      if (triggerMode != null) 'triggerMode': triggerMode.toValue(),
+      if (triggerMode != null) 'triggerMode': triggerMode.value,
     };
   }
 }
@@ -3480,7 +3445,7 @@ class CreateVehicleRequestItem {
       'modelManifestArn': modelManifestArn,
       'vehicleName': vehicleName,
       if (associationBehavior != null)
-        'associationBehavior': associationBehavior.toValue(),
+        'associationBehavior': associationBehavior.value,
       if (attributes != null) 'attributes': attributes,
       if (tags != null) 'tags': tags,
     };
@@ -3610,7 +3575,7 @@ class DecoderManifestSummary {
       description: json['description'] as String?,
       modelManifestArn: json['modelManifestArn'] as String?,
       name: json['name'] as String?,
-      status: (json['status'] as String?)?.toManifestStatus(),
+      status: (json['status'] as String?)?.let(ManifestStatus.fromString),
     );
   }
 
@@ -3629,7 +3594,7 @@ class DecoderManifestSummary {
       if (description != null) 'description': description,
       if (modelManifestArn != null) 'modelManifestArn': modelManifestArn,
       if (name != null) 'name': name,
-      if (status != null) 'status': status.toValue(),
+      if (status != null) 'status': status.value,
     };
   }
 }
@@ -3812,31 +3777,18 @@ class DeleteVehicleResponse {
 }
 
 enum DiagnosticsMode {
-  off,
-  sendActiveDtcs,
-}
+  off('OFF'),
+  sendActiveDtcs('SEND_ACTIVE_DTCS'),
+  ;
 
-extension DiagnosticsModeValueExtension on DiagnosticsMode {
-  String toValue() {
-    switch (this) {
-      case DiagnosticsMode.off:
-        return 'OFF';
-      case DiagnosticsMode.sendActiveDtcs:
-        return 'SEND_ACTIVE_DTCS';
-    }
-  }
-}
+  final String value;
 
-extension DiagnosticsModeFromString on String {
-  DiagnosticsMode toDiagnosticsMode() {
-    switch (this) {
-      case 'OFF':
-        return DiagnosticsMode.off;
-      case 'SEND_ACTIVE_DTCS':
-        return DiagnosticsMode.sendActiveDtcs;
-    }
-    throw Exception('$this is not known in enum DiagnosticsMode');
-  }
+  const DiagnosticsMode(this.value);
+
+  static DiagnosticsMode fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum DiagnosticsMode'));
 }
 
 class DisassociateVehicleFleetResponse {
@@ -4031,7 +3983,8 @@ class GetCampaignResponse {
           ? CollectionScheme.fromJson(
               json['collectionScheme'] as Map<String, dynamic>)
           : null,
-      compression: (json['compression'] as String?)?.toCompression(),
+      compression:
+          (json['compression'] as String?)?.let(Compression.fromString),
       creationTime: timeStampFromJson(json['creationTime']),
       dataExtraDimensions: (json['dataExtraDimensions'] as List?)
           ?.whereNotNull()
@@ -4039,7 +3992,7 @@ class GetCampaignResponse {
           .toList(),
       description: json['description'] as String?,
       diagnosticsMode:
-          (json['diagnosticsMode'] as String?)?.toDiagnosticsMode(),
+          (json['diagnosticsMode'] as String?)?.let(DiagnosticsMode.fromString),
       expiryTime: timeStampFromJson(json['expiryTime']),
       lastModificationTime: timeStampFromJson(json['lastModificationTime']),
       name: json['name'] as String?,
@@ -4051,9 +4004,10 @@ class GetCampaignResponse {
           ?.whereNotNull()
           .map((e) => SignalInformation.fromJson(e as Map<String, dynamic>))
           .toList(),
-      spoolingMode: (json['spoolingMode'] as String?)?.toSpoolingMode(),
+      spoolingMode:
+          (json['spoolingMode'] as String?)?.let(SpoolingMode.fromString),
       startTime: timeStampFromJson(json['startTime']),
-      status: (json['status'] as String?)?.toCampaignStatus(),
+      status: (json['status'] as String?)?.let(CampaignStatus.fromString),
       targetArn: json['targetArn'] as String?,
     );
   }
@@ -4080,13 +4034,13 @@ class GetCampaignResponse {
     return {
       if (arn != null) 'arn': arn,
       if (collectionScheme != null) 'collectionScheme': collectionScheme,
-      if (compression != null) 'compression': compression.toValue(),
+      if (compression != null) 'compression': compression.value,
       if (creationTime != null)
         'creationTime': unixTimestampToJson(creationTime),
       if (dataExtraDimensions != null)
         'dataExtraDimensions': dataExtraDimensions,
       if (description != null) 'description': description,
-      if (diagnosticsMode != null) 'diagnosticsMode': diagnosticsMode.toValue(),
+      if (diagnosticsMode != null) 'diagnosticsMode': diagnosticsMode.value,
       if (expiryTime != null) 'expiryTime': unixTimestampToJson(expiryTime),
       if (lastModificationTime != null)
         'lastModificationTime': unixTimestampToJson(lastModificationTime),
@@ -4096,9 +4050,9 @@ class GetCampaignResponse {
       if (priority != null) 'priority': priority,
       if (signalCatalogArn != null) 'signalCatalogArn': signalCatalogArn,
       if (signalsToCollect != null) 'signalsToCollect': signalsToCollect,
-      if (spoolingMode != null) 'spoolingMode': spoolingMode.toValue(),
+      if (spoolingMode != null) 'spoolingMode': spoolingMode.value,
       if (startTime != null) 'startTime': unixTimestampToJson(startTime),
-      if (status != null) 'status': status.toValue(),
+      if (status != null) 'status': status.value,
       if (targetArn != null) 'targetArn': targetArn,
     };
   }
@@ -4151,7 +4105,7 @@ class GetDecoderManifestResponse {
       name: json['name'] as String,
       description: json['description'] as String?,
       modelManifestArn: json['modelManifestArn'] as String?,
-      status: (json['status'] as String?)?.toManifestStatus(),
+      status: (json['status'] as String?)?.let(ManifestStatus.fromString),
     );
   }
 
@@ -4170,7 +4124,7 @@ class GetDecoderManifestResponse {
       'name': name,
       if (description != null) 'description': description,
       if (modelManifestArn != null) 'modelManifestArn': modelManifestArn,
-      if (status != null) 'status': status.toValue(),
+      if (status != null) 'status': status.value,
     };
   }
 }
@@ -4304,7 +4258,7 @@ class GetModelManifestResponse {
       name: json['name'] as String,
       description: json['description'] as String?,
       signalCatalogArn: json['signalCatalogArn'] as String?,
-      status: (json['status'] as String?)?.toManifestStatus(),
+      status: (json['status'] as String?)?.let(ManifestStatus.fromString),
     );
   }
 
@@ -4323,7 +4277,7 @@ class GetModelManifestResponse {
       'name': name,
       if (description != null) 'description': description,
       if (signalCatalogArn != null) 'signalCatalogArn': signalCatalogArn,
-      if (status != null) 'status': status.toValue(),
+      if (status != null) 'status': status.value,
     };
   }
 }
@@ -4379,7 +4333,8 @@ class GetRegisterAccountStatusResponse {
 
   factory GetRegisterAccountStatusResponse.fromJson(Map<String, dynamic> json) {
     return GetRegisterAccountStatusResponse(
-      accountStatus: (json['accountStatus'] as String).toRegistrationStatus(),
+      accountStatus:
+          RegistrationStatus.fromString((json['accountStatus'] as String)),
       creationTime:
           nonNullableTimeStampFromJson(json['creationTime'] as Object),
       customerAccountId: json['customerAccountId'] as String,
@@ -4400,7 +4355,7 @@ class GetRegisterAccountStatusResponse {
     final lastModificationTime = this.lastModificationTime;
     final timestreamRegistrationResponse = this.timestreamRegistrationResponse;
     return {
-      'accountStatus': accountStatus.toValue(),
+      'accountStatus': accountStatus.value,
       'creationTime': unixTimestampToJson(creationTime),
       'customerAccountId': customerAccountId,
       'iamRegistrationResponse': iamRegistrationResponse,
@@ -4600,7 +4555,7 @@ class IamRegistrationResponse {
   factory IamRegistrationResponse.fromJson(Map<String, dynamic> json) {
     return IamRegistrationResponse(
       registrationStatus:
-          (json['registrationStatus'] as String).toRegistrationStatus(),
+          RegistrationStatus.fromString((json['registrationStatus'] as String)),
       roleArn: json['roleArn'] as String,
       errorMessage: json['errorMessage'] as String?,
     );
@@ -4611,7 +4566,7 @@ class IamRegistrationResponse {
     final roleArn = this.roleArn;
     final errorMessage = this.errorMessage;
     return {
-      'registrationStatus': registrationStatus.toValue(),
+      'registrationStatus': registrationStatus.value,
       'roleArn': roleArn,
       if (errorMessage != null) 'errorMessage': errorMessage,
     };
@@ -5131,59 +5086,32 @@ class ListVehiclesResponse {
 }
 
 enum LogType {
-  off,
-  error,
-}
+  off('OFF'),
+  error('ERROR'),
+  ;
 
-extension LogTypeValueExtension on LogType {
-  String toValue() {
-    switch (this) {
-      case LogType.off:
-        return 'OFF';
-      case LogType.error:
-        return 'ERROR';
-    }
-  }
-}
+  final String value;
 
-extension LogTypeFromString on String {
-  LogType toLogType() {
-    switch (this) {
-      case 'OFF':
-        return LogType.off;
-      case 'ERROR':
-        return LogType.error;
-    }
-    throw Exception('$this is not known in enum LogType');
-  }
+  const LogType(this.value);
+
+  static LogType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception('$value is not known in enum LogType'));
 }
 
 enum ManifestStatus {
-  active,
-  draft,
-}
+  active('ACTIVE'),
+  draft('DRAFT'),
+  ;
 
-extension ManifestStatusValueExtension on ManifestStatus {
-  String toValue() {
-    switch (this) {
-      case ManifestStatus.active:
-        return 'ACTIVE';
-      case ManifestStatus.draft:
-        return 'DRAFT';
-    }
-  }
-}
+  final String value;
 
-extension ManifestStatusFromString on String {
-  ManifestStatus toManifestStatus() {
-    switch (this) {
-      case 'ACTIVE':
-        return ManifestStatus.active;
-      case 'DRAFT':
-        return ManifestStatus.draft;
-    }
-    throw Exception('$this is not known in enum ManifestStatus');
-  }
+  const ManifestStatus(this.value);
+
+  static ManifestStatus fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum ManifestStatus'));
 }
 
 /// Information about a vehicle model (model manifest). You can use the API
@@ -5234,7 +5162,7 @@ class ModelManifestSummary {
       description: json['description'] as String?,
       name: json['name'] as String?,
       signalCatalogArn: json['signalCatalogArn'] as String?,
-      status: (json['status'] as String?)?.toManifestStatus(),
+      status: (json['status'] as String?)?.let(ManifestStatus.fromString),
     );
   }
 
@@ -5253,7 +5181,7 @@ class ModelManifestSummary {
       if (description != null) 'description': description,
       if (name != null) 'name': name,
       if (signalCatalogArn != null) 'signalCatalogArn': signalCatalogArn,
-      if (status != null) 'status': status.toValue(),
+      if (status != null) 'status': status.value,
     };
   }
 }
@@ -5309,7 +5237,7 @@ class NetworkInterface {
   factory NetworkInterface.fromJson(Map<String, dynamic> json) {
     return NetworkInterface(
       interfaceId: json['interfaceId'] as String,
-      type: (json['type'] as String).toNetworkInterfaceType(),
+      type: NetworkInterfaceType.fromString((json['type'] as String)),
       canInterface: json['canInterface'] != null
           ? CanInterface.fromJson(json['canInterface'] as Map<String, dynamic>)
           : null,
@@ -5326,7 +5254,7 @@ class NetworkInterface {
     final obdInterface = this.obdInterface;
     return {
       'interfaceId': interfaceId,
-      'type': type.toValue(),
+      'type': type.value,
       if (canInterface != null) 'canInterface': canInterface,
       if (obdInterface != null) 'obdInterface': obdInterface,
     };
@@ -5334,31 +5262,18 @@ class NetworkInterface {
 }
 
 enum NetworkInterfaceType {
-  canInterface,
-  obdInterface,
-}
+  canInterface('CAN_INTERFACE'),
+  obdInterface('OBD_INTERFACE'),
+  ;
 
-extension NetworkInterfaceTypeValueExtension on NetworkInterfaceType {
-  String toValue() {
-    switch (this) {
-      case NetworkInterfaceType.canInterface:
-        return 'CAN_INTERFACE';
-      case NetworkInterfaceType.obdInterface:
-        return 'OBD_INTERFACE';
-    }
-  }
-}
+  final String value;
 
-extension NetworkInterfaceTypeFromString on String {
-  NetworkInterfaceType toNetworkInterfaceType() {
-    switch (this) {
-      case 'CAN_INTERFACE':
-        return NetworkInterfaceType.canInterface;
-      case 'OBD_INTERFACE':
-        return NetworkInterfaceType.obdInterface;
-    }
-    throw Exception('$this is not known in enum NetworkInterfaceType');
-  }
+  const NetworkInterfaceType(this.value);
+
+  static NetworkInterfaceType fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum NetworkInterfaceType'));
 }
 
 /// A general abstraction of a signal. A node can be specified as an actuator,
@@ -5473,156 +5388,43 @@ class NodeCounts {
 }
 
 enum NodeDataType {
-  int8,
-  uint8,
-  int16,
-  uint16,
-  int32,
-  uint32,
-  int64,
-  uint64,
-  boolean,
-  float,
-  double,
-  string,
-  unixTimestamp,
-  int8Array,
-  uint8Array,
-  int16Array,
-  uint16Array,
-  int32Array,
-  uint32Array,
-  int64Array,
-  uint64Array,
-  booleanArray,
-  floatArray,
-  doubleArray,
-  stringArray,
-  unixTimestampArray,
-  unknown,
-}
+  int8('INT8'),
+  uint8('UINT8'),
+  int16('INT16'),
+  uint16('UINT16'),
+  int32('INT32'),
+  uint32('UINT32'),
+  int64('INT64'),
+  uint64('UINT64'),
+  boolean('BOOLEAN'),
+  float('FLOAT'),
+  double('DOUBLE'),
+  string('STRING'),
+  unixTimestamp('UNIX_TIMESTAMP'),
+  int8Array('INT8_ARRAY'),
+  uint8Array('UINT8_ARRAY'),
+  int16Array('INT16_ARRAY'),
+  uint16Array('UINT16_ARRAY'),
+  int32Array('INT32_ARRAY'),
+  uint32Array('UINT32_ARRAY'),
+  int64Array('INT64_ARRAY'),
+  uint64Array('UINT64_ARRAY'),
+  booleanArray('BOOLEAN_ARRAY'),
+  floatArray('FLOAT_ARRAY'),
+  doubleArray('DOUBLE_ARRAY'),
+  stringArray('STRING_ARRAY'),
+  unixTimestampArray('UNIX_TIMESTAMP_ARRAY'),
+  unknown('UNKNOWN'),
+  ;
 
-extension NodeDataTypeValueExtension on NodeDataType {
-  String toValue() {
-    switch (this) {
-      case NodeDataType.int8:
-        return 'INT8';
-      case NodeDataType.uint8:
-        return 'UINT8';
-      case NodeDataType.int16:
-        return 'INT16';
-      case NodeDataType.uint16:
-        return 'UINT16';
-      case NodeDataType.int32:
-        return 'INT32';
-      case NodeDataType.uint32:
-        return 'UINT32';
-      case NodeDataType.int64:
-        return 'INT64';
-      case NodeDataType.uint64:
-        return 'UINT64';
-      case NodeDataType.boolean:
-        return 'BOOLEAN';
-      case NodeDataType.float:
-        return 'FLOAT';
-      case NodeDataType.double:
-        return 'DOUBLE';
-      case NodeDataType.string:
-        return 'STRING';
-      case NodeDataType.unixTimestamp:
-        return 'UNIX_TIMESTAMP';
-      case NodeDataType.int8Array:
-        return 'INT8_ARRAY';
-      case NodeDataType.uint8Array:
-        return 'UINT8_ARRAY';
-      case NodeDataType.int16Array:
-        return 'INT16_ARRAY';
-      case NodeDataType.uint16Array:
-        return 'UINT16_ARRAY';
-      case NodeDataType.int32Array:
-        return 'INT32_ARRAY';
-      case NodeDataType.uint32Array:
-        return 'UINT32_ARRAY';
-      case NodeDataType.int64Array:
-        return 'INT64_ARRAY';
-      case NodeDataType.uint64Array:
-        return 'UINT64_ARRAY';
-      case NodeDataType.booleanArray:
-        return 'BOOLEAN_ARRAY';
-      case NodeDataType.floatArray:
-        return 'FLOAT_ARRAY';
-      case NodeDataType.doubleArray:
-        return 'DOUBLE_ARRAY';
-      case NodeDataType.stringArray:
-        return 'STRING_ARRAY';
-      case NodeDataType.unixTimestampArray:
-        return 'UNIX_TIMESTAMP_ARRAY';
-      case NodeDataType.unknown:
-        return 'UNKNOWN';
-    }
-  }
-}
+  final String value;
 
-extension NodeDataTypeFromString on String {
-  NodeDataType toNodeDataType() {
-    switch (this) {
-      case 'INT8':
-        return NodeDataType.int8;
-      case 'UINT8':
-        return NodeDataType.uint8;
-      case 'INT16':
-        return NodeDataType.int16;
-      case 'UINT16':
-        return NodeDataType.uint16;
-      case 'INT32':
-        return NodeDataType.int32;
-      case 'UINT32':
-        return NodeDataType.uint32;
-      case 'INT64':
-        return NodeDataType.int64;
-      case 'UINT64':
-        return NodeDataType.uint64;
-      case 'BOOLEAN':
-        return NodeDataType.boolean;
-      case 'FLOAT':
-        return NodeDataType.float;
-      case 'DOUBLE':
-        return NodeDataType.double;
-      case 'STRING':
-        return NodeDataType.string;
-      case 'UNIX_TIMESTAMP':
-        return NodeDataType.unixTimestamp;
-      case 'INT8_ARRAY':
-        return NodeDataType.int8Array;
-      case 'UINT8_ARRAY':
-        return NodeDataType.uint8Array;
-      case 'INT16_ARRAY':
-        return NodeDataType.int16Array;
-      case 'UINT16_ARRAY':
-        return NodeDataType.uint16Array;
-      case 'INT32_ARRAY':
-        return NodeDataType.int32Array;
-      case 'UINT32_ARRAY':
-        return NodeDataType.uint32Array;
-      case 'INT64_ARRAY':
-        return NodeDataType.int64Array;
-      case 'UINT64_ARRAY':
-        return NodeDataType.uint64Array;
-      case 'BOOLEAN_ARRAY':
-        return NodeDataType.booleanArray;
-      case 'FLOAT_ARRAY':
-        return NodeDataType.floatArray;
-      case 'DOUBLE_ARRAY':
-        return NodeDataType.doubleArray;
-      case 'STRING_ARRAY':
-        return NodeDataType.stringArray;
-      case 'UNIX_TIMESTAMP_ARRAY':
-        return NodeDataType.unixTimestampArray;
-      case 'UNKNOWN':
-        return NodeDataType.unknown;
-    }
-    throw Exception('$this is not known in enum NodeDataType');
-  }
+  const NodeDataType(this.value);
+
+  static NodeDataType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum NodeDataType'));
 }
 
 /// A network interface that specifies the On-board diagnostic (OBD) II network
@@ -5819,8 +5621,8 @@ class RegisterAccountResponse {
           IamResources.fromJson(json['iamResources'] as Map<String, dynamic>),
       lastModificationTime:
           nonNullableTimeStampFromJson(json['lastModificationTime'] as Object),
-      registerAccountStatus:
-          (json['registerAccountStatus'] as String).toRegistrationStatus(),
+      registerAccountStatus: RegistrationStatus.fromString(
+          (json['registerAccountStatus'] as String)),
       timestreamResources: TimestreamResources.fromJson(
           json['timestreamResources'] as Map<String, dynamic>),
     );
@@ -5836,43 +5638,26 @@ class RegisterAccountResponse {
       'creationTime': unixTimestampToJson(creationTime),
       'iamResources': iamResources,
       'lastModificationTime': unixTimestampToJson(lastModificationTime),
-      'registerAccountStatus': registerAccountStatus.toValue(),
+      'registerAccountStatus': registerAccountStatus.value,
       'timestreamResources': timestreamResources,
     };
   }
 }
 
 enum RegistrationStatus {
-  registrationPending,
-  registrationSuccess,
-  registrationFailure,
-}
+  registrationPending('REGISTRATION_PENDING'),
+  registrationSuccess('REGISTRATION_SUCCESS'),
+  registrationFailure('REGISTRATION_FAILURE'),
+  ;
 
-extension RegistrationStatusValueExtension on RegistrationStatus {
-  String toValue() {
-    switch (this) {
-      case RegistrationStatus.registrationPending:
-        return 'REGISTRATION_PENDING';
-      case RegistrationStatus.registrationSuccess:
-        return 'REGISTRATION_SUCCESS';
-      case RegistrationStatus.registrationFailure:
-        return 'REGISTRATION_FAILURE';
-    }
-  }
-}
+  final String value;
 
-extension RegistrationStatusFromString on String {
-  RegistrationStatus toRegistrationStatus() {
-    switch (this) {
-      case 'REGISTRATION_PENDING':
-        return RegistrationStatus.registrationPending;
-      case 'REGISTRATION_SUCCESS':
-        return RegistrationStatus.registrationSuccess;
-      case 'REGISTRATION_FAILURE':
-        return RegistrationStatus.registrationFailure;
-    }
-    throw Exception('$this is not known in enum RegistrationStatus');
-  }
+  const RegistrationStatus(this.value);
+
+  static RegistrationStatus fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum RegistrationStatus'));
 }
 
 /// An input component that reports the environmental condition of a vehicle.
@@ -5915,7 +5700,7 @@ class Sensor {
 
   factory Sensor.fromJson(Map<String, dynamic> json) {
     return Sensor(
-      dataType: (json['dataType'] as String).toNodeDataType(),
+      dataType: NodeDataType.fromString((json['dataType'] as String)),
       fullyQualifiedName: json['fullyQualifiedName'] as String,
       allowedValues: (json['allowedValues'] as List?)
           ?.whereNotNull()
@@ -5937,7 +5722,7 @@ class Sensor {
     final min = this.min;
     final unit = this.unit;
     return {
-      'dataType': dataType.toValue(),
+      'dataType': dataType.value,
       'fullyQualifiedName': fullyQualifiedName,
       if (allowedValues != null) 'allowedValues': allowedValues,
       if (description != null) 'description': description,
@@ -6032,7 +5817,7 @@ class SignalDecoder {
     return SignalDecoder(
       fullyQualifiedName: json['fullyQualifiedName'] as String,
       interfaceId: json['interfaceId'] as String,
-      type: (json['type'] as String).toSignalDecoderType(),
+      type: SignalDecoderType.fromString((json['type'] as String)),
       canSignal: json['canSignal'] != null
           ? CanSignal.fromJson(json['canSignal'] as Map<String, dynamic>)
           : null,
@@ -6051,7 +5836,7 @@ class SignalDecoder {
     return {
       'fullyQualifiedName': fullyQualifiedName,
       'interfaceId': interfaceId,
-      'type': type.toValue(),
+      'type': type.value,
       if (canSignal != null) 'canSignal': canSignal,
       if (obdSignal != null) 'obdSignal': obdSignal,
     };
@@ -6059,31 +5844,18 @@ class SignalDecoder {
 }
 
 enum SignalDecoderType {
-  canSignal,
-  obdSignal,
-}
+  canSignal('CAN_SIGNAL'),
+  obdSignal('OBD_SIGNAL'),
+  ;
 
-extension SignalDecoderTypeValueExtension on SignalDecoderType {
-  String toValue() {
-    switch (this) {
-      case SignalDecoderType.canSignal:
-        return 'CAN_SIGNAL';
-      case SignalDecoderType.obdSignal:
-        return 'OBD_SIGNAL';
-    }
-  }
-}
+  final String value;
 
-extension SignalDecoderTypeFromString on String {
-  SignalDecoderType toSignalDecoderType() {
-    switch (this) {
-      case 'CAN_SIGNAL':
-        return SignalDecoderType.canSignal;
-      case 'OBD_SIGNAL':
-        return SignalDecoderType.obdSignal;
-    }
-    throw Exception('$this is not known in enum SignalDecoderType');
-  }
+  const SignalDecoderType(this.value);
+
+  static SignalDecoderType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum SignalDecoderType'));
 }
 
 /// Information about a signal.
@@ -6129,31 +5901,18 @@ class SignalInformation {
 }
 
 enum SpoolingMode {
-  off,
-  toDisk,
-}
+  off('OFF'),
+  toDisk('TO_DISK'),
+  ;
 
-extension SpoolingModeValueExtension on SpoolingMode {
-  String toValue() {
-    switch (this) {
-      case SpoolingMode.off:
-        return 'OFF';
-      case SpoolingMode.toDisk:
-        return 'TO_DISK';
-    }
-  }
-}
+  final String value;
 
-extension SpoolingModeFromString on String {
-  SpoolingMode toSpoolingMode() {
-    switch (this) {
-      case 'OFF':
-        return SpoolingMode.off;
-      case 'TO_DISK':
-        return SpoolingMode.toDisk;
-    }
-    throw Exception('$this is not known in enum SpoolingMode');
-  }
+  const SpoolingMode(this.value);
+
+  static SpoolingMode fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum SpoolingMode'));
 }
 
 /// A set of key/value pairs that are used to manage the resource.
@@ -6259,7 +6018,7 @@ class TimestreamRegistrationResponse {
   factory TimestreamRegistrationResponse.fromJson(Map<String, dynamic> json) {
     return TimestreamRegistrationResponse(
       registrationStatus:
-          (json['registrationStatus'] as String).toRegistrationStatus(),
+          RegistrationStatus.fromString((json['registrationStatus'] as String)),
       timestreamDatabaseName: json['timestreamDatabaseName'] as String,
       timestreamTableName: json['timestreamTableName'] as String,
       errorMessage: json['errorMessage'] as String?,
@@ -6276,7 +6035,7 @@ class TimestreamRegistrationResponse {
     final timestreamDatabaseArn = this.timestreamDatabaseArn;
     final timestreamTableArn = this.timestreamTableArn;
     return {
-      'registrationStatus': registrationStatus.toValue(),
+      'registrationStatus': registrationStatus.value,
       'timestreamDatabaseName': timestreamDatabaseName,
       'timestreamTableName': timestreamTableName,
       if (errorMessage != null) 'errorMessage': errorMessage,
@@ -6319,31 +6078,17 @@ class TimestreamResources {
 }
 
 enum TriggerMode {
-  always,
-  risingEdge,
-}
+  always('ALWAYS'),
+  risingEdge('RISING_EDGE'),
+  ;
 
-extension TriggerModeValueExtension on TriggerMode {
-  String toValue() {
-    switch (this) {
-      case TriggerMode.always:
-        return 'ALWAYS';
-      case TriggerMode.risingEdge:
-        return 'RISING_EDGE';
-    }
-  }
-}
+  final String value;
 
-extension TriggerModeFromString on String {
-  TriggerMode toTriggerMode() {
-    switch (this) {
-      case 'ALWAYS':
-        return TriggerMode.always;
-      case 'RISING_EDGE':
-        return TriggerMode.risingEdge;
-    }
-    throw Exception('$this is not known in enum TriggerMode');
-  }
+  const TriggerMode(this.value);
+
+  static TriggerMode fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum TriggerMode'));
 }
 
 class UntagResourceResponse {
@@ -6359,41 +6104,20 @@ class UntagResourceResponse {
 }
 
 enum UpdateCampaignAction {
-  approve,
-  suspend,
-  resume,
-  update,
-}
+  approve('APPROVE'),
+  suspend('SUSPEND'),
+  resume('RESUME'),
+  update('UPDATE'),
+  ;
 
-extension UpdateCampaignActionValueExtension on UpdateCampaignAction {
-  String toValue() {
-    switch (this) {
-      case UpdateCampaignAction.approve:
-        return 'APPROVE';
-      case UpdateCampaignAction.suspend:
-        return 'SUSPEND';
-      case UpdateCampaignAction.resume:
-        return 'RESUME';
-      case UpdateCampaignAction.update:
-        return 'UPDATE';
-    }
-  }
-}
+  final String value;
 
-extension UpdateCampaignActionFromString on String {
-  UpdateCampaignAction toUpdateCampaignAction() {
-    switch (this) {
-      case 'APPROVE':
-        return UpdateCampaignAction.approve;
-      case 'SUSPEND':
-        return UpdateCampaignAction.suspend;
-      case 'RESUME':
-        return UpdateCampaignAction.resume;
-      case 'UPDATE':
-        return UpdateCampaignAction.update;
-    }
-    throw Exception('$this is not known in enum UpdateCampaignAction');
-  }
+  const UpdateCampaignAction(this.value);
+
+  static UpdateCampaignAction fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum UpdateCampaignAction'));
 }
 
 class UpdateCampaignResponse {
@@ -6436,7 +6160,7 @@ class UpdateCampaignResponse {
     return UpdateCampaignResponse(
       arn: json['arn'] as String?,
       name: json['name'] as String?,
-      status: (json['status'] as String?)?.toCampaignStatus(),
+      status: (json['status'] as String?)?.let(CampaignStatus.fromString),
     );
   }
 
@@ -6447,7 +6171,7 @@ class UpdateCampaignResponse {
     return {
       if (arn != null) 'arn': arn,
       if (name != null) 'name': name,
-      if (status != null) 'status': status.toValue(),
+      if (status != null) 'status': status.value,
     };
   }
 }
@@ -6511,31 +6235,17 @@ class UpdateFleetResponse {
 }
 
 enum UpdateMode {
-  overwrite,
-  merge,
-}
+  overwrite('Overwrite'),
+  merge('Merge'),
+  ;
 
-extension UpdateModeValueExtension on UpdateMode {
-  String toValue() {
-    switch (this) {
-      case UpdateMode.overwrite:
-        return 'Overwrite';
-      case UpdateMode.merge:
-        return 'Merge';
-    }
-  }
-}
+  final String value;
 
-extension UpdateModeFromString on String {
-  UpdateMode toUpdateMode() {
-    switch (this) {
-      case 'Overwrite':
-        return UpdateMode.overwrite;
-      case 'Merge':
-        return UpdateMode.merge;
-    }
-    throw Exception('$this is not known in enum UpdateMode');
-  }
+  const UpdateMode(this.value);
+
+  static UpdateMode fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum UpdateMode'));
 }
 
 class UpdateModelManifestResponse {
@@ -6676,7 +6386,7 @@ class UpdateVehicleRequestItem {
     return {
       'vehicleName': vehicleName,
       if (attributeUpdateMode != null)
-        'attributeUpdateMode': attributeUpdateMode.toValue(),
+        'attributeUpdateMode': attributeUpdateMode.value,
       if (attributes != null) 'attributes': attributes,
       if (decoderManifestArn != null) 'decoderManifestArn': decoderManifestArn,
       if (modelManifestArn != null) 'modelManifestArn': modelManifestArn,
@@ -6744,75 +6454,36 @@ class UpdateVehicleResponseItem {
 }
 
 enum VehicleAssociationBehavior {
-  createIotThing,
-  validateIotThingExists,
-}
+  createIotThing('CreateIotThing'),
+  validateIotThingExists('ValidateIotThingExists'),
+  ;
 
-extension VehicleAssociationBehaviorValueExtension
-    on VehicleAssociationBehavior {
-  String toValue() {
-    switch (this) {
-      case VehicleAssociationBehavior.createIotThing:
-        return 'CreateIotThing';
-      case VehicleAssociationBehavior.validateIotThingExists:
-        return 'ValidateIotThingExists';
-    }
-  }
-}
+  final String value;
 
-extension VehicleAssociationBehaviorFromString on String {
-  VehicleAssociationBehavior toVehicleAssociationBehavior() {
-    switch (this) {
-      case 'CreateIotThing':
-        return VehicleAssociationBehavior.createIotThing;
-      case 'ValidateIotThingExists':
-        return VehicleAssociationBehavior.validateIotThingExists;
-    }
-    throw Exception('$this is not known in enum VehicleAssociationBehavior');
-  }
+  const VehicleAssociationBehavior(this.value);
+
+  static VehicleAssociationBehavior fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum VehicleAssociationBehavior'));
 }
 
 enum VehicleState {
-  created,
-  ready,
-  healthy,
-  suspended,
-  deleting,
-}
+  created('CREATED'),
+  ready('READY'),
+  healthy('HEALTHY'),
+  suspended('SUSPENDED'),
+  deleting('DELETING'),
+  ;
 
-extension VehicleStateValueExtension on VehicleState {
-  String toValue() {
-    switch (this) {
-      case VehicleState.created:
-        return 'CREATED';
-      case VehicleState.ready:
-        return 'READY';
-      case VehicleState.healthy:
-        return 'HEALTHY';
-      case VehicleState.suspended:
-        return 'SUSPENDED';
-      case VehicleState.deleting:
-        return 'DELETING';
-    }
-  }
-}
+  final String value;
 
-extension VehicleStateFromString on String {
-  VehicleState toVehicleState() {
-    switch (this) {
-      case 'CREATED':
-        return VehicleState.created;
-      case 'READY':
-        return VehicleState.ready;
-      case 'HEALTHY':
-        return VehicleState.healthy;
-      case 'SUSPENDED':
-        return VehicleState.suspended;
-      case 'DELETING':
-        return VehicleState.deleting;
-    }
-    throw Exception('$this is not known in enum VehicleState');
-  }
+  const VehicleState(this.value);
+
+  static VehicleState fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum VehicleState'));
 }
 
 /// Information about the state of a vehicle and how it relates to the status of
@@ -6857,7 +6528,7 @@ class VehicleStatus {
   factory VehicleStatus.fromJson(Map<String, dynamic> json) {
     return VehicleStatus(
       campaignName: json['campaignName'] as String?,
-      status: (json['status'] as String?)?.toVehicleState(),
+      status: (json['status'] as String?)?.let(VehicleState.fromString),
       vehicleName: json['vehicleName'] as String?,
     );
   }
@@ -6868,7 +6539,7 @@ class VehicleStatus {
     final vehicleName = this.vehicleName;
     return {
       if (campaignName != null) 'campaignName': campaignName,
-      if (status != null) 'status': status.toValue(),
+      if (status != null) 'status': status.value,
       if (vehicleName != null) 'vehicleName': vehicleName,
     };
   }

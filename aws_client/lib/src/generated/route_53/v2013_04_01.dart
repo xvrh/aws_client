@@ -457,7 +457,7 @@ class Route53 {
     await _protocol.send(
       method: 'POST',
       requestUri:
-          '/2013-04-01/tags/${Uri.encodeComponent(resourceType.toValue())}/${Uri.encodeComponent(resourceId)}',
+          '/2013-04-01/tags/${Uri.encodeComponent(resourceType.value)}/${Uri.encodeComponent(resourceId)}',
       payload: ChangeTagsForResourceRequest(
               resourceId: resourceId,
               resourceType: resourceType,
@@ -2005,8 +2005,7 @@ class Route53 {
   }) async {
     final $result = await _protocol.send(
       method: 'GET',
-      requestUri:
-          '/2013-04-01/accountlimit/${Uri.encodeComponent(type.toValue())}',
+      requestUri: '/2013-04-01/accountlimit/${Uri.encodeComponent(type.value)}',
       exceptionFnMap: _exceptionFns,
     );
     return GetAccountLimitResponse.fromXml($result.body);
@@ -2336,7 +2335,7 @@ class Route53 {
     final $result = await _protocol.send(
       method: 'GET',
       requestUri:
-          '/2013-04-01/hostedzonelimit/${Uri.encodeComponent(hostedZoneId)}/${Uri.encodeComponent(type.toValue())}',
+          '/2013-04-01/hostedzonelimit/${Uri.encodeComponent(hostedZoneId)}/${Uri.encodeComponent(type.value)}',
       exceptionFnMap: _exceptionFns,
     );
     return GetHostedZoneLimitResponse.fromXml($result.body);
@@ -2415,7 +2414,7 @@ class Route53 {
     final $result = await _protocol.send(
       method: 'GET',
       requestUri:
-          '/2013-04-01/reusabledelegationsetlimit/${Uri.encodeComponent(delegationSetId)}/${Uri.encodeComponent(type.toValue())}',
+          '/2013-04-01/reusabledelegationsetlimit/${Uri.encodeComponent(delegationSetId)}/${Uri.encodeComponent(type.value)}',
       exceptionFnMap: _exceptionFns,
     );
     return GetReusableDelegationSetLimitResponse.fromXml($result.body);
@@ -2973,7 +2972,7 @@ class Route53 {
   }) async {
     final $query = <String, List<String>>{
       'vpcid': [vPCId],
-      'vpcregion': [vPCRegion.toValue()],
+      'vpcregion': [vPCRegion.value],
       if (maxItems != null) 'maxitems': [maxItems],
       if (nextToken != null) 'nexttoken': [nextToken],
     };
@@ -3197,7 +3196,7 @@ class Route53 {
       if (maxItems != null) 'maxitems': [maxItems],
       if (startRecordIdentifier != null) 'identifier': [startRecordIdentifier],
       if (startRecordName != null) 'name': [startRecordName],
-      if (startRecordType != null) 'type': [startRecordType.toValue()],
+      if (startRecordType != null) 'type': [startRecordType.value],
     };
     final $result = await _protocol.send(
       method: 'GET',
@@ -3282,7 +3281,7 @@ class Route53 {
     final $result = await _protocol.send(
       method: 'GET',
       requestUri:
-          '/2013-04-01/tags/${Uri.encodeComponent(resourceType.toValue())}/${Uri.encodeComponent(resourceId)}',
+          '/2013-04-01/tags/${Uri.encodeComponent(resourceType.value)}/${Uri.encodeComponent(resourceId)}',
       exceptionFnMap: _exceptionFns,
     );
     return ListTagsForResourceResponse.fromXml($result.body);
@@ -3322,8 +3321,7 @@ class Route53 {
   }) async {
     final $result = await _protocol.send(
       method: 'POST',
-      requestUri:
-          '/2013-04-01/tags/${Uri.encodeComponent(resourceType.toValue())}',
+      requestUri: '/2013-04-01/tags/${Uri.encodeComponent(resourceType.value)}',
       payload: ListTagsForResourcesRequest(
               resourceIds: resourceIds, resourceType: resourceType)
           .toXml(
@@ -3462,9 +3460,7 @@ class Route53 {
       if (trafficPolicyInstanceNameMarker != null)
         'trafficpolicyinstancename': [trafficPolicyInstanceNameMarker],
       if (trafficPolicyInstanceTypeMarker != null)
-        'trafficpolicyinstancetype': [
-          trafficPolicyInstanceTypeMarker.toValue()
-        ],
+        'trafficpolicyinstancetype': [trafficPolicyInstanceTypeMarker.value],
     };
     final $result = await _protocol.send(
       method: 'GET',
@@ -3543,9 +3539,7 @@ class Route53 {
       if (trafficPolicyInstanceNameMarker != null)
         'trafficpolicyinstancename': [trafficPolicyInstanceNameMarker],
       if (trafficPolicyInstanceTypeMarker != null)
-        'trafficpolicyinstancetype': [
-          trafficPolicyInstanceTypeMarker.toValue()
-        ],
+        'trafficpolicyinstancetype': [trafficPolicyInstanceTypeMarker.value],
     };
     final $result = await _protocol.send(
       method: 'GET',
@@ -3658,9 +3652,7 @@ class Route53 {
       if (trafficPolicyInstanceNameMarker != null)
         'trafficpolicyinstancename': [trafficPolicyInstanceNameMarker],
       if (trafficPolicyInstanceTypeMarker != null)
-        'trafficpolicyinstancetype': [
-          trafficPolicyInstanceTypeMarker.toValue()
-        ],
+        'trafficpolicyinstancetype': [trafficPolicyInstanceTypeMarker.value],
     };
     final $result = await _protocol.send(
       method: 'GET',
@@ -3833,7 +3825,7 @@ class Route53 {
     final $query = <String, List<String>>{
       'hostedzoneid': [hostedZoneId],
       'recordname': [recordName],
-      'recordtype': [recordType.toValue()],
+      'recordtype': [recordType.value],
       if (eDNS0ClientSubnetIP != null)
         'edns0clientsubnetip': [eDNS0ClientSubnetIP],
       if (eDNS0ClientSubnetMask != null)
@@ -4504,7 +4496,8 @@ class AccountLimit {
   });
   factory AccountLimit.fromXml(_s.XmlElement elem) {
     return AccountLimit(
-      type: _s.extractXmlStringValue(elem, 'Type')!.toAccountLimitType(),
+      type:
+          AccountLimitType.fromString(_s.extractXmlStringValue(elem, 'Type')!),
       value: _s.extractXmlIntValue(elem, 'Value')!,
     );
   }
@@ -4513,53 +4506,28 @@ class AccountLimit {
     final type = this.type;
     final value = this.value;
     return {
-      'Type': type.toValue(),
+      'Type': type.value,
       'Value': value,
     };
   }
 }
 
 enum AccountLimitType {
-  maxHealthChecksByOwner,
-  maxHostedZonesByOwner,
-  maxTrafficPolicyInstancesByOwner,
-  maxReusableDelegationSetsByOwner,
-  maxTrafficPoliciesByOwner,
-}
+  maxHealthChecksByOwner('MAX_HEALTH_CHECKS_BY_OWNER'),
+  maxHostedZonesByOwner('MAX_HOSTED_ZONES_BY_OWNER'),
+  maxTrafficPolicyInstancesByOwner('MAX_TRAFFIC_POLICY_INSTANCES_BY_OWNER'),
+  maxReusableDelegationSetsByOwner('MAX_REUSABLE_DELEGATION_SETS_BY_OWNER'),
+  maxTrafficPoliciesByOwner('MAX_TRAFFIC_POLICIES_BY_OWNER'),
+  ;
 
-extension AccountLimitTypeValueExtension on AccountLimitType {
-  String toValue() {
-    switch (this) {
-      case AccountLimitType.maxHealthChecksByOwner:
-        return 'MAX_HEALTH_CHECKS_BY_OWNER';
-      case AccountLimitType.maxHostedZonesByOwner:
-        return 'MAX_HOSTED_ZONES_BY_OWNER';
-      case AccountLimitType.maxTrafficPolicyInstancesByOwner:
-        return 'MAX_TRAFFIC_POLICY_INSTANCES_BY_OWNER';
-      case AccountLimitType.maxReusableDelegationSetsByOwner:
-        return 'MAX_REUSABLE_DELEGATION_SETS_BY_OWNER';
-      case AccountLimitType.maxTrafficPoliciesByOwner:
-        return 'MAX_TRAFFIC_POLICIES_BY_OWNER';
-    }
-  }
-}
+  final String value;
 
-extension AccountLimitTypeFromString on String {
-  AccountLimitType toAccountLimitType() {
-    switch (this) {
-      case 'MAX_HEALTH_CHECKS_BY_OWNER':
-        return AccountLimitType.maxHealthChecksByOwner;
-      case 'MAX_HOSTED_ZONES_BY_OWNER':
-        return AccountLimitType.maxHostedZonesByOwner;
-      case 'MAX_TRAFFIC_POLICY_INSTANCES_BY_OWNER':
-        return AccountLimitType.maxTrafficPolicyInstancesByOwner;
-      case 'MAX_REUSABLE_DELEGATION_SETS_BY_OWNER':
-        return AccountLimitType.maxReusableDelegationSetsByOwner;
-      case 'MAX_TRAFFIC_POLICIES_BY_OWNER':
-        return AccountLimitType.maxTrafficPoliciesByOwner;
-    }
-    throw Exception('$this is not known in enum AccountLimitType');
-  }
+  const AccountLimitType(this.value);
+
+  static AccountLimitType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum AccountLimitType'));
 }
 
 class ActivateKeySigningKeyResponse {
@@ -4622,7 +4590,8 @@ class AlarmIdentifier {
   factory AlarmIdentifier.fromXml(_s.XmlElement elem) {
     return AlarmIdentifier(
       name: _s.extractXmlStringValue(elem, 'Name')!,
-      region: _s.extractXmlStringValue(elem, 'Region')!.toCloudWatchRegion(),
+      region: CloudWatchRegion.fromString(
+          _s.extractXmlStringValue(elem, 'Region')!),
     );
   }
 
@@ -4631,7 +4600,7 @@ class AlarmIdentifier {
     final region = this.region;
     return {
       'Name': name,
-      'Region': region.toValue(),
+      'Region': region.value,
     };
   }
 
@@ -4639,7 +4608,7 @@ class AlarmIdentifier {
     final name = this.name;
     final region = this.region;
     final $children = <_s.XmlNode>[
-      _s.encodeXmlStringValue('Region', region.toValue()),
+      _s.encodeXmlStringValue('Region', region.value),
       _s.encodeXmlStringValue('Name', name),
     ];
     final $attributes = <_s.XmlAttribute>[
@@ -5178,7 +5147,7 @@ class Change {
     final action = this.action;
     final resourceRecordSet = this.resourceRecordSet;
     return {
-      'Action': action.toValue(),
+      'Action': action.value,
       'ResourceRecordSet': resourceRecordSet,
     };
   }
@@ -5187,7 +5156,7 @@ class Change {
     final action = this.action;
     final resourceRecordSet = this.resourceRecordSet;
     final $children = <_s.XmlNode>[
-      _s.encodeXmlStringValue('Action', action.toValue()),
+      _s.encodeXmlStringValue('Action', action.value),
       resourceRecordSet.toXml('ResourceRecordSet'),
     ];
     final $attributes = <_s.XmlAttribute>[
@@ -5202,36 +5171,19 @@ class Change {
 }
 
 enum ChangeAction {
-  create,
-  delete,
-  upsert,
-}
+  create('CREATE'),
+  delete('DELETE'),
+  upsert('UPSERT'),
+  ;
 
-extension ChangeActionValueExtension on ChangeAction {
-  String toValue() {
-    switch (this) {
-      case ChangeAction.create:
-        return 'CREATE';
-      case ChangeAction.delete:
-        return 'DELETE';
-      case ChangeAction.upsert:
-        return 'UPSERT';
-    }
-  }
-}
+  final String value;
 
-extension ChangeActionFromString on String {
-  ChangeAction toChangeAction() {
-    switch (this) {
-      case 'CREATE':
-        return ChangeAction.create;
-      case 'DELETE':
-        return ChangeAction.delete;
-      case 'UPSERT':
-        return ChangeAction.upsert;
-    }
-    throw Exception('$this is not known in enum ChangeAction');
-  }
+  const ChangeAction(this.value);
+
+  static ChangeAction fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum ChangeAction'));
 }
 
 /// The information for a change request.
@@ -5397,7 +5349,8 @@ class ChangeInfo {
   factory ChangeInfo.fromXml(_s.XmlElement elem) {
     return ChangeInfo(
       id: _s.extractXmlStringValue(elem, 'Id')!,
-      status: _s.extractXmlStringValue(elem, 'Status')!.toChangeStatus(),
+      status:
+          ChangeStatus.fromString(_s.extractXmlStringValue(elem, 'Status')!),
       submittedAt: _s.extractXmlDateTimeValue(elem, 'SubmittedAt')!,
       comment: _s.extractXmlStringValue(elem, 'Comment'),
     );
@@ -5410,7 +5363,7 @@ class ChangeInfo {
     final comment = this.comment;
     return {
       'Id': id,
-      'Status': status.toValue(),
+      'Status': status.value,
       'SubmittedAt': iso8601ToJson(submittedAt),
       if (comment != null) 'Comment': comment,
     };
@@ -5485,31 +5438,18 @@ class ChangeResourceRecordSetsResponse {
 }
 
 enum ChangeStatus {
-  pending,
-  insync,
-}
+  pending('PENDING'),
+  insync('INSYNC'),
+  ;
 
-extension ChangeStatusValueExtension on ChangeStatus {
-  String toValue() {
-    switch (this) {
-      case ChangeStatus.pending:
-        return 'PENDING';
-      case ChangeStatus.insync:
-        return 'INSYNC';
-    }
-  }
-}
+  final String value;
 
-extension ChangeStatusFromString on String {
-  ChangeStatus toChangeStatus() {
-    switch (this) {
-      case 'PENDING':
-        return ChangeStatus.pending;
-      case 'INSYNC':
-        return ChangeStatus.insync;
-    }
-    throw Exception('$this is not known in enum ChangeStatus');
-  }
+  const ChangeStatus(this.value);
+
+  static ChangeStatus fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum ChangeStatus'));
 }
 
 /// A complex type that contains information about the tags that you want to
@@ -5694,7 +5634,7 @@ class CidrCollectionChange {
     final cidrList = this.cidrList;
     final locationName = this.locationName;
     return {
-      'Action': action.toValue(),
+      'Action': action.value,
       'CidrList': cidrList,
       'LocationName': locationName,
     };
@@ -5706,7 +5646,7 @@ class CidrCollectionChange {
     final locationName = this.locationName;
     final $children = <_s.XmlNode>[
       _s.encodeXmlStringValue('LocationName', locationName),
-      _s.encodeXmlStringValue('Action', action.toValue()),
+      _s.encodeXmlStringValue('Action', action.value),
       _s.XmlElement(_s.XmlName('CidrList'), [],
           cidrList.map((e) => _s.encodeXmlStringValue('Cidr', e))),
     ];
@@ -5722,32 +5662,18 @@ class CidrCollectionChange {
 }
 
 enum CidrCollectionChangeAction {
-  put,
-  deleteIfExists,
-}
+  put('PUT'),
+  deleteIfExists('DELETE_IF_EXISTS'),
+  ;
 
-extension CidrCollectionChangeActionValueExtension
-    on CidrCollectionChangeAction {
-  String toValue() {
-    switch (this) {
-      case CidrCollectionChangeAction.put:
-        return 'PUT';
-      case CidrCollectionChangeAction.deleteIfExists:
-        return 'DELETE_IF_EXISTS';
-    }
-  }
-}
+  final String value;
 
-extension CidrCollectionChangeActionFromString on String {
-  CidrCollectionChangeAction toCidrCollectionChangeAction() {
-    switch (this) {
-      case 'PUT':
-        return CidrCollectionChangeAction.put;
-      case 'DELETE_IF_EXISTS':
-        return CidrCollectionChangeAction.deleteIfExists;
-    }
-    throw Exception('$this is not known in enum CidrCollectionChangeAction');
-  }
+  const CidrCollectionChangeAction(this.value);
+
+  static CidrCollectionChangeAction fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum CidrCollectionChangeAction'));
 }
 
 /// The object that is specified in resource record set object when you are
@@ -5854,14 +5780,14 @@ class CloudWatchAlarmConfiguration {
   });
   factory CloudWatchAlarmConfiguration.fromXml(_s.XmlElement elem) {
     return CloudWatchAlarmConfiguration(
-      comparisonOperator: _s
-          .extractXmlStringValue(elem, 'ComparisonOperator')!
-          .toComparisonOperator(),
+      comparisonOperator: ComparisonOperator.fromString(
+          _s.extractXmlStringValue(elem, 'ComparisonOperator')!),
       evaluationPeriods: _s.extractXmlIntValue(elem, 'EvaluationPeriods')!,
       metricName: _s.extractXmlStringValue(elem, 'MetricName')!,
       namespace: _s.extractXmlStringValue(elem, 'Namespace')!,
       period: _s.extractXmlIntValue(elem, 'Period')!,
-      statistic: _s.extractXmlStringValue(elem, 'Statistic')!.toStatistic(),
+      statistic:
+          Statistic.fromString(_s.extractXmlStringValue(elem, 'Statistic')!),
       threshold: _s.extractXmlDoubleValue(elem, 'Threshold')!,
       dimensions: _s.extractXmlChild(elem, 'Dimensions')?.let((elem) =>
           elem.findElements('Dimension').map(Dimension.fromXml).toList()),
@@ -5878,12 +5804,12 @@ class CloudWatchAlarmConfiguration {
     final threshold = this.threshold;
     final dimensions = this.dimensions;
     return {
-      'ComparisonOperator': comparisonOperator.toValue(),
+      'ComparisonOperator': comparisonOperator.value,
       'EvaluationPeriods': evaluationPeriods,
       'MetricName': metricName,
       'Namespace': namespace,
       'Period': period,
-      'Statistic': statistic.toValue(),
+      'Statistic': statistic.value,
       'Threshold': threshold,
       if (dimensions != null) 'Dimensions': dimensions,
     };
@@ -5891,191 +5817,50 @@ class CloudWatchAlarmConfiguration {
 }
 
 enum CloudWatchRegion {
-  usEast_1,
-  usEast_2,
-  usWest_1,
-  usWest_2,
-  caCentral_1,
-  euCentral_1,
-  euCentral_2,
-  euWest_1,
-  euWest_2,
-  euWest_3,
-  apEast_1,
-  meSouth_1,
-  meCentral_1,
-  apSouth_1,
-  apSouth_2,
-  apSoutheast_1,
-  apSoutheast_2,
-  apSoutheast_3,
-  apNortheast_1,
-  apNortheast_2,
-  apNortheast_3,
-  euNorth_1,
-  saEast_1,
-  cnNorthwest_1,
-  cnNorth_1,
-  afSouth_1,
-  euSouth_1,
-  euSouth_2,
-  usGovWest_1,
-  usGovEast_1,
-  usIsoEast_1,
-  usIsoWest_1,
-  usIsobEast_1,
-  apSoutheast_4,
-}
+  usEast_1('us-east-1'),
+  usEast_2('us-east-2'),
+  usWest_1('us-west-1'),
+  usWest_2('us-west-2'),
+  caCentral_1('ca-central-1'),
+  euCentral_1('eu-central-1'),
+  euCentral_2('eu-central-2'),
+  euWest_1('eu-west-1'),
+  euWest_2('eu-west-2'),
+  euWest_3('eu-west-3'),
+  apEast_1('ap-east-1'),
+  meSouth_1('me-south-1'),
+  meCentral_1('me-central-1'),
+  apSouth_1('ap-south-1'),
+  apSouth_2('ap-south-2'),
+  apSoutheast_1('ap-southeast-1'),
+  apSoutheast_2('ap-southeast-2'),
+  apSoutheast_3('ap-southeast-3'),
+  apNortheast_1('ap-northeast-1'),
+  apNortheast_2('ap-northeast-2'),
+  apNortheast_3('ap-northeast-3'),
+  euNorth_1('eu-north-1'),
+  saEast_1('sa-east-1'),
+  cnNorthwest_1('cn-northwest-1'),
+  cnNorth_1('cn-north-1'),
+  afSouth_1('af-south-1'),
+  euSouth_1('eu-south-1'),
+  euSouth_2('eu-south-2'),
+  usGovWest_1('us-gov-west-1'),
+  usGovEast_1('us-gov-east-1'),
+  usIsoEast_1('us-iso-east-1'),
+  usIsoWest_1('us-iso-west-1'),
+  usIsobEast_1('us-isob-east-1'),
+  apSoutheast_4('ap-southeast-4'),
+  ;
 
-extension CloudWatchRegionValueExtension on CloudWatchRegion {
-  String toValue() {
-    switch (this) {
-      case CloudWatchRegion.usEast_1:
-        return 'us-east-1';
-      case CloudWatchRegion.usEast_2:
-        return 'us-east-2';
-      case CloudWatchRegion.usWest_1:
-        return 'us-west-1';
-      case CloudWatchRegion.usWest_2:
-        return 'us-west-2';
-      case CloudWatchRegion.caCentral_1:
-        return 'ca-central-1';
-      case CloudWatchRegion.euCentral_1:
-        return 'eu-central-1';
-      case CloudWatchRegion.euCentral_2:
-        return 'eu-central-2';
-      case CloudWatchRegion.euWest_1:
-        return 'eu-west-1';
-      case CloudWatchRegion.euWest_2:
-        return 'eu-west-2';
-      case CloudWatchRegion.euWest_3:
-        return 'eu-west-3';
-      case CloudWatchRegion.apEast_1:
-        return 'ap-east-1';
-      case CloudWatchRegion.meSouth_1:
-        return 'me-south-1';
-      case CloudWatchRegion.meCentral_1:
-        return 'me-central-1';
-      case CloudWatchRegion.apSouth_1:
-        return 'ap-south-1';
-      case CloudWatchRegion.apSouth_2:
-        return 'ap-south-2';
-      case CloudWatchRegion.apSoutheast_1:
-        return 'ap-southeast-1';
-      case CloudWatchRegion.apSoutheast_2:
-        return 'ap-southeast-2';
-      case CloudWatchRegion.apSoutheast_3:
-        return 'ap-southeast-3';
-      case CloudWatchRegion.apNortheast_1:
-        return 'ap-northeast-1';
-      case CloudWatchRegion.apNortheast_2:
-        return 'ap-northeast-2';
-      case CloudWatchRegion.apNortheast_3:
-        return 'ap-northeast-3';
-      case CloudWatchRegion.euNorth_1:
-        return 'eu-north-1';
-      case CloudWatchRegion.saEast_1:
-        return 'sa-east-1';
-      case CloudWatchRegion.cnNorthwest_1:
-        return 'cn-northwest-1';
-      case CloudWatchRegion.cnNorth_1:
-        return 'cn-north-1';
-      case CloudWatchRegion.afSouth_1:
-        return 'af-south-1';
-      case CloudWatchRegion.euSouth_1:
-        return 'eu-south-1';
-      case CloudWatchRegion.euSouth_2:
-        return 'eu-south-2';
-      case CloudWatchRegion.usGovWest_1:
-        return 'us-gov-west-1';
-      case CloudWatchRegion.usGovEast_1:
-        return 'us-gov-east-1';
-      case CloudWatchRegion.usIsoEast_1:
-        return 'us-iso-east-1';
-      case CloudWatchRegion.usIsoWest_1:
-        return 'us-iso-west-1';
-      case CloudWatchRegion.usIsobEast_1:
-        return 'us-isob-east-1';
-      case CloudWatchRegion.apSoutheast_4:
-        return 'ap-southeast-4';
-    }
-  }
-}
+  final String value;
 
-extension CloudWatchRegionFromString on String {
-  CloudWatchRegion toCloudWatchRegion() {
-    switch (this) {
-      case 'us-east-1':
-        return CloudWatchRegion.usEast_1;
-      case 'us-east-2':
-        return CloudWatchRegion.usEast_2;
-      case 'us-west-1':
-        return CloudWatchRegion.usWest_1;
-      case 'us-west-2':
-        return CloudWatchRegion.usWest_2;
-      case 'ca-central-1':
-        return CloudWatchRegion.caCentral_1;
-      case 'eu-central-1':
-        return CloudWatchRegion.euCentral_1;
-      case 'eu-central-2':
-        return CloudWatchRegion.euCentral_2;
-      case 'eu-west-1':
-        return CloudWatchRegion.euWest_1;
-      case 'eu-west-2':
-        return CloudWatchRegion.euWest_2;
-      case 'eu-west-3':
-        return CloudWatchRegion.euWest_3;
-      case 'ap-east-1':
-        return CloudWatchRegion.apEast_1;
-      case 'me-south-1':
-        return CloudWatchRegion.meSouth_1;
-      case 'me-central-1':
-        return CloudWatchRegion.meCentral_1;
-      case 'ap-south-1':
-        return CloudWatchRegion.apSouth_1;
-      case 'ap-south-2':
-        return CloudWatchRegion.apSouth_2;
-      case 'ap-southeast-1':
-        return CloudWatchRegion.apSoutheast_1;
-      case 'ap-southeast-2':
-        return CloudWatchRegion.apSoutheast_2;
-      case 'ap-southeast-3':
-        return CloudWatchRegion.apSoutheast_3;
-      case 'ap-northeast-1':
-        return CloudWatchRegion.apNortheast_1;
-      case 'ap-northeast-2':
-        return CloudWatchRegion.apNortheast_2;
-      case 'ap-northeast-3':
-        return CloudWatchRegion.apNortheast_3;
-      case 'eu-north-1':
-        return CloudWatchRegion.euNorth_1;
-      case 'sa-east-1':
-        return CloudWatchRegion.saEast_1;
-      case 'cn-northwest-1':
-        return CloudWatchRegion.cnNorthwest_1;
-      case 'cn-north-1':
-        return CloudWatchRegion.cnNorth_1;
-      case 'af-south-1':
-        return CloudWatchRegion.afSouth_1;
-      case 'eu-south-1':
-        return CloudWatchRegion.euSouth_1;
-      case 'eu-south-2':
-        return CloudWatchRegion.euSouth_2;
-      case 'us-gov-west-1':
-        return CloudWatchRegion.usGovWest_1;
-      case 'us-gov-east-1':
-        return CloudWatchRegion.usGovEast_1;
-      case 'us-iso-east-1':
-        return CloudWatchRegion.usIsoEast_1;
-      case 'us-iso-west-1':
-        return CloudWatchRegion.usIsoWest_1;
-      case 'us-isob-east-1':
-        return CloudWatchRegion.usIsobEast_1;
-      case 'ap-southeast-4':
-        return CloudWatchRegion.apSoutheast_4;
-    }
-    throw Exception('$this is not known in enum CloudWatchRegion');
-  }
+  const CloudWatchRegion(this.value);
+
+  static CloudWatchRegion fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum CloudWatchRegion'));
 }
 
 /// A complex type that is an entry in an <a
@@ -6127,41 +5912,20 @@ class CollectionSummary {
 }
 
 enum ComparisonOperator {
-  greaterThanOrEqualToThreshold,
-  greaterThanThreshold,
-  lessThanThreshold,
-  lessThanOrEqualToThreshold,
-}
+  greaterThanOrEqualToThreshold('GreaterThanOrEqualToThreshold'),
+  greaterThanThreshold('GreaterThanThreshold'),
+  lessThanThreshold('LessThanThreshold'),
+  lessThanOrEqualToThreshold('LessThanOrEqualToThreshold'),
+  ;
 
-extension ComparisonOperatorValueExtension on ComparisonOperator {
-  String toValue() {
-    switch (this) {
-      case ComparisonOperator.greaterThanOrEqualToThreshold:
-        return 'GreaterThanOrEqualToThreshold';
-      case ComparisonOperator.greaterThanThreshold:
-        return 'GreaterThanThreshold';
-      case ComparisonOperator.lessThanThreshold:
-        return 'LessThanThreshold';
-      case ComparisonOperator.lessThanOrEqualToThreshold:
-        return 'LessThanOrEqualToThreshold';
-    }
-  }
-}
+  final String value;
 
-extension ComparisonOperatorFromString on String {
-  ComparisonOperator toComparisonOperator() {
-    switch (this) {
-      case 'GreaterThanOrEqualToThreshold':
-        return ComparisonOperator.greaterThanOrEqualToThreshold;
-      case 'GreaterThanThreshold':
-        return ComparisonOperator.greaterThanThreshold;
-      case 'LessThanThreshold':
-        return ComparisonOperator.lessThanThreshold;
-      case 'LessThanOrEqualToThreshold':
-        return ComparisonOperator.lessThanOrEqualToThreshold;
-    }
-    throw Exception('$this is not known in enum ComparisonOperator');
-  }
+  const ComparisonOperator(this.value);
+
+  static ComparisonOperator fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum ComparisonOperator'));
 }
 
 class CreateCidrCollectionRequest {
@@ -8635,7 +8399,7 @@ class HealthCheckConfig {
   });
   factory HealthCheckConfig.fromXml(_s.XmlElement elem) {
     return HealthCheckConfig(
-      type: _s.extractXmlStringValue(elem, 'Type')!.toHealthCheckType(),
+      type: HealthCheckType.fromString(_s.extractXmlStringValue(elem, 'Type')!),
       alarmIdentifier: _s
           .extractXmlChild(elem, 'AlarmIdentifier')
           ?.let(AlarmIdentifier.fromXml),
@@ -8648,9 +8412,8 @@ class HealthCheckConfig {
           _s.extractXmlStringValue(elem, 'FullyQualifiedDomainName'),
       healthThreshold: _s.extractXmlIntValue(elem, 'HealthThreshold'),
       iPAddress: _s.extractXmlStringValue(elem, 'IPAddress'),
-      insufficientDataHealthStatus: _s
-          .extractXmlStringValue(elem, 'InsufficientDataHealthStatus')
-          ?.toInsufficientDataHealthStatus(),
+      insufficientDataHealthStatus: InsufficientDataHealthStatus.fromString(
+          _s.extractXmlStringValue(elem, 'InsufficientDataHealthStatus')),
       inverted: _s.extractXmlBoolValue(elem, 'Inverted'),
       measureLatency: _s.extractXmlBoolValue(elem, 'MeasureLatency'),
       port: _s.extractXmlIntValue(elem, 'Port'),
@@ -8685,7 +8448,7 @@ class HealthCheckConfig {
     final routingControlArn = this.routingControlArn;
     final searchString = this.searchString;
     return {
-      'Type': type.toValue(),
+      'Type': type.value,
       if (alarmIdentifier != null) 'AlarmIdentifier': alarmIdentifier,
       if (childHealthChecks != null) 'ChildHealthChecks': childHealthChecks,
       if (disabled != null) 'Disabled': disabled,
@@ -8696,11 +8459,11 @@ class HealthCheckConfig {
       if (healthThreshold != null) 'HealthThreshold': healthThreshold,
       if (iPAddress != null) 'IPAddress': iPAddress,
       if (insufficientDataHealthStatus != null)
-        'InsufficientDataHealthStatus': insufficientDataHealthStatus.toValue(),
+        'InsufficientDataHealthStatus': insufficientDataHealthStatus.value,
       if (inverted != null) 'Inverted': inverted,
       if (measureLatency != null) 'MeasureLatency': measureLatency,
       if (port != null) 'Port': port,
-      if (regions != null) 'Regions': regions.map((e) => e.toValue()).toList(),
+      if (regions != null) 'Regions': regions.map((e) => e.value).toList(),
       if (requestInterval != null) 'RequestInterval': requestInterval,
       if (resourcePath != null) 'ResourcePath': resourcePath,
       if (routingControlArn != null) 'RoutingControlArn': routingControlArn,
@@ -8730,7 +8493,7 @@ class HealthCheckConfig {
     final $children = <_s.XmlNode>[
       if (iPAddress != null) _s.encodeXmlStringValue('IPAddress', iPAddress),
       if (port != null) _s.encodeXmlIntValue('Port', port),
-      _s.encodeXmlStringValue('Type', type.toValue()),
+      _s.encodeXmlStringValue('Type', type.value),
       if (resourcePath != null)
         _s.encodeXmlStringValue('ResourcePath', resourcePath),
       if (fullyQualifiedDomainName != null)
@@ -8757,11 +8520,11 @@ class HealthCheckConfig {
       if (enableSNI != null) _s.encodeXmlBoolValue('EnableSNI', enableSNI),
       if (regions != null)
         _s.XmlElement(_s.XmlName('Regions'), [],
-            regions.map((e) => _s.encodeXmlStringValue('Region', e.toValue()))),
+            regions.map((e) => _s.encodeXmlStringValue('Region', e.value))),
       if (alarmIdentifier != null) alarmIdentifier.toXml('AlarmIdentifier'),
       if (insufficientDataHealthStatus != null)
-        _s.encodeXmlStringValue('InsufficientDataHealthStatus',
-            insufficientDataHealthStatus.toValue()),
+        _s.encodeXmlStringValue(
+            'InsufficientDataHealthStatus', insufficientDataHealthStatus.value),
       if (routingControlArn != null)
         _s.encodeXmlStringValue('RoutingControlArn', routingControlArn),
     ];
@@ -8799,7 +8562,8 @@ class HealthCheckObservation {
   factory HealthCheckObservation.fromXml(_s.XmlElement elem) {
     return HealthCheckObservation(
       iPAddress: _s.extractXmlStringValue(elem, 'IPAddress'),
-      region: _s.extractXmlStringValue(elem, 'Region')?.toHealthCheckRegion(),
+      region: HealthCheckRegion.fromString(
+          _s.extractXmlStringValue(elem, 'Region')),
       statusReport:
           _s.extractXmlChild(elem, 'StatusReport')?.let(StatusReport.fromXml),
     );
@@ -8811,126 +8575,52 @@ class HealthCheckObservation {
     final statusReport = this.statusReport;
     return {
       if (iPAddress != null) 'IPAddress': iPAddress,
-      if (region != null) 'Region': region.toValue(),
+      if (region != null) 'Region': region.value,
       if (statusReport != null) 'StatusReport': statusReport,
     };
   }
 }
 
 enum HealthCheckRegion {
-  usEast_1,
-  usWest_1,
-  usWest_2,
-  euWest_1,
-  apSoutheast_1,
-  apSoutheast_2,
-  apNortheast_1,
-  saEast_1,
-}
+  usEast_1('us-east-1'),
+  usWest_1('us-west-1'),
+  usWest_2('us-west-2'),
+  euWest_1('eu-west-1'),
+  apSoutheast_1('ap-southeast-1'),
+  apSoutheast_2('ap-southeast-2'),
+  apNortheast_1('ap-northeast-1'),
+  saEast_1('sa-east-1'),
+  ;
 
-extension HealthCheckRegionValueExtension on HealthCheckRegion {
-  String toValue() {
-    switch (this) {
-      case HealthCheckRegion.usEast_1:
-        return 'us-east-1';
-      case HealthCheckRegion.usWest_1:
-        return 'us-west-1';
-      case HealthCheckRegion.usWest_2:
-        return 'us-west-2';
-      case HealthCheckRegion.euWest_1:
-        return 'eu-west-1';
-      case HealthCheckRegion.apSoutheast_1:
-        return 'ap-southeast-1';
-      case HealthCheckRegion.apSoutheast_2:
-        return 'ap-southeast-2';
-      case HealthCheckRegion.apNortheast_1:
-        return 'ap-northeast-1';
-      case HealthCheckRegion.saEast_1:
-        return 'sa-east-1';
-    }
-  }
-}
+  final String value;
 
-extension HealthCheckRegionFromString on String {
-  HealthCheckRegion toHealthCheckRegion() {
-    switch (this) {
-      case 'us-east-1':
-        return HealthCheckRegion.usEast_1;
-      case 'us-west-1':
-        return HealthCheckRegion.usWest_1;
-      case 'us-west-2':
-        return HealthCheckRegion.usWest_2;
-      case 'eu-west-1':
-        return HealthCheckRegion.euWest_1;
-      case 'ap-southeast-1':
-        return HealthCheckRegion.apSoutheast_1;
-      case 'ap-southeast-2':
-        return HealthCheckRegion.apSoutheast_2;
-      case 'ap-northeast-1':
-        return HealthCheckRegion.apNortheast_1;
-      case 'sa-east-1':
-        return HealthCheckRegion.saEast_1;
-    }
-    throw Exception('$this is not known in enum HealthCheckRegion');
-  }
+  const HealthCheckRegion(this.value);
+
+  static HealthCheckRegion fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum HealthCheckRegion'));
 }
 
 enum HealthCheckType {
-  http,
-  https,
-  httpStrMatch,
-  httpsStrMatch,
-  tcp,
-  calculated,
-  cloudwatchMetric,
-  recoveryControl,
-}
+  http('HTTP'),
+  https('HTTPS'),
+  httpStrMatch('HTTP_STR_MATCH'),
+  httpsStrMatch('HTTPS_STR_MATCH'),
+  tcp('TCP'),
+  calculated('CALCULATED'),
+  cloudwatchMetric('CLOUDWATCH_METRIC'),
+  recoveryControl('RECOVERY_CONTROL'),
+  ;
 
-extension HealthCheckTypeValueExtension on HealthCheckType {
-  String toValue() {
-    switch (this) {
-      case HealthCheckType.http:
-        return 'HTTP';
-      case HealthCheckType.https:
-        return 'HTTPS';
-      case HealthCheckType.httpStrMatch:
-        return 'HTTP_STR_MATCH';
-      case HealthCheckType.httpsStrMatch:
-        return 'HTTPS_STR_MATCH';
-      case HealthCheckType.tcp:
-        return 'TCP';
-      case HealthCheckType.calculated:
-        return 'CALCULATED';
-      case HealthCheckType.cloudwatchMetric:
-        return 'CLOUDWATCH_METRIC';
-      case HealthCheckType.recoveryControl:
-        return 'RECOVERY_CONTROL';
-    }
-  }
-}
+  final String value;
 
-extension HealthCheckTypeFromString on String {
-  HealthCheckType toHealthCheckType() {
-    switch (this) {
-      case 'HTTP':
-        return HealthCheckType.http;
-      case 'HTTPS':
-        return HealthCheckType.https;
-      case 'HTTP_STR_MATCH':
-        return HealthCheckType.httpStrMatch;
-      case 'HTTPS_STR_MATCH':
-        return HealthCheckType.httpsStrMatch;
-      case 'TCP':
-        return HealthCheckType.tcp;
-      case 'CALCULATED':
-        return HealthCheckType.calculated;
-      case 'CLOUDWATCH_METRIC':
-        return HealthCheckType.cloudwatchMetric;
-      case 'RECOVERY_CONTROL':
-        return HealthCheckType.recoveryControl;
-    }
-    throw Exception('$this is not known in enum HealthCheckType');
-  }
+  const HealthCheckType(this.value);
+
+  static HealthCheckType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum HealthCheckType'));
 }
 
 /// A complex type that contains general information about the hosted zone.
@@ -9081,7 +8771,8 @@ class HostedZoneLimit {
   });
   factory HostedZoneLimit.fromXml(_s.XmlElement elem) {
     return HostedZoneLimit(
-      type: _s.extractXmlStringValue(elem, 'Type')!.toHostedZoneLimitType(),
+      type: HostedZoneLimitType.fromString(
+          _s.extractXmlStringValue(elem, 'Type')!),
       value: _s.extractXmlIntValue(elem, 'Value')!,
     );
   }
@@ -9090,38 +8781,25 @@ class HostedZoneLimit {
     final type = this.type;
     final value = this.value;
     return {
-      'Type': type.toValue(),
+      'Type': type.value,
       'Value': value,
     };
   }
 }
 
 enum HostedZoneLimitType {
-  maxRrsetsByZone,
-  maxVpcsAssociatedByZone,
-}
+  maxRrsetsByZone('MAX_RRSETS_BY_ZONE'),
+  maxVpcsAssociatedByZone('MAX_VPCS_ASSOCIATED_BY_ZONE'),
+  ;
 
-extension HostedZoneLimitTypeValueExtension on HostedZoneLimitType {
-  String toValue() {
-    switch (this) {
-      case HostedZoneLimitType.maxRrsetsByZone:
-        return 'MAX_RRSETS_BY_ZONE';
-      case HostedZoneLimitType.maxVpcsAssociatedByZone:
-        return 'MAX_VPCS_ASSOCIATED_BY_ZONE';
-    }
-  }
-}
+  final String value;
 
-extension HostedZoneLimitTypeFromString on String {
-  HostedZoneLimitType toHostedZoneLimitType() {
-    switch (this) {
-      case 'MAX_RRSETS_BY_ZONE':
-        return HostedZoneLimitType.maxRrsetsByZone;
-      case 'MAX_VPCS_ASSOCIATED_BY_ZONE':
-        return HostedZoneLimitType.maxVpcsAssociatedByZone;
-    }
-    throw Exception('$this is not known in enum HostedZoneLimitType');
-  }
+  const HostedZoneLimitType(this.value);
+
+  static HostedZoneLimitType fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum HostedZoneLimitType'));
 }
 
 /// A complex type that identifies a hosted zone that a specified Amazon VPC is
@@ -9211,37 +8889,19 @@ class HostedZoneSummary {
 }
 
 enum InsufficientDataHealthStatus {
-  healthy,
-  unhealthy,
-  lastKnownStatus,
-}
+  healthy('Healthy'),
+  unhealthy('Unhealthy'),
+  lastKnownStatus('LastKnownStatus'),
+  ;
 
-extension InsufficientDataHealthStatusValueExtension
-    on InsufficientDataHealthStatus {
-  String toValue() {
-    switch (this) {
-      case InsufficientDataHealthStatus.healthy:
-        return 'Healthy';
-      case InsufficientDataHealthStatus.unhealthy:
-        return 'Unhealthy';
-      case InsufficientDataHealthStatus.lastKnownStatus:
-        return 'LastKnownStatus';
-    }
-  }
-}
+  final String value;
 
-extension InsufficientDataHealthStatusFromString on String {
-  InsufficientDataHealthStatus toInsufficientDataHealthStatus() {
-    switch (this) {
-      case 'Healthy':
-        return InsufficientDataHealthStatus.healthy;
-      case 'Unhealthy':
-        return InsufficientDataHealthStatus.unhealthy;
-      case 'LastKnownStatus':
-        return InsufficientDataHealthStatus.lastKnownStatus;
-    }
-    throw Exception('$this is not known in enum InsufficientDataHealthStatus');
-  }
+  const InsufficientDataHealthStatus(this.value);
+
+  static InsufficientDataHealthStatus fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum InsufficientDataHealthStatus'));
 }
 
 /// A key-signing key (KSK) is a complex type that represents a public/private
@@ -10044,7 +9704,7 @@ class ListResourceRecordSetsResponse {
           _s.extractXmlStringValue(elem, 'NextRecordIdentifier'),
       nextRecordName: _s.extractXmlStringValue(elem, 'NextRecordName'),
       nextRecordType:
-          _s.extractXmlStringValue(elem, 'NextRecordType')?.toRRType(),
+          RRType.fromString(_s.extractXmlStringValue(elem, 'NextRecordType')),
     );
   }
 
@@ -10062,7 +9722,7 @@ class ListResourceRecordSetsResponse {
       if (nextRecordIdentifier != null)
         'NextRecordIdentifier': nextRecordIdentifier,
       if (nextRecordName != null) 'NextRecordName': nextRecordName,
-      if (nextRecordType != null) 'NextRecordType': nextRecordType.toValue(),
+      if (nextRecordType != null) 'NextRecordType': nextRecordType.value,
     };
   }
 }
@@ -10343,9 +10003,8 @@ class ListTrafficPolicyInstancesByHostedZoneResponse {
           .toList(),
       trafficPolicyInstanceNameMarker:
           _s.extractXmlStringValue(elem, 'TrafficPolicyInstanceNameMarker'),
-      trafficPolicyInstanceTypeMarker: _s
-          .extractXmlStringValue(elem, 'TrafficPolicyInstanceTypeMarker')
-          ?.toRRType(),
+      trafficPolicyInstanceTypeMarker: RRType.fromString(
+          _s.extractXmlStringValue(elem, 'TrafficPolicyInstanceTypeMarker')),
     );
   }
 
@@ -10365,7 +10024,7 @@ class ListTrafficPolicyInstancesByHostedZoneResponse {
         'TrafficPolicyInstanceNameMarker': trafficPolicyInstanceNameMarker,
       if (trafficPolicyInstanceTypeMarker != null)
         'TrafficPolicyInstanceTypeMarker':
-            trafficPolicyInstanceTypeMarker.toValue(),
+            trafficPolicyInstanceTypeMarker.value,
     };
   }
 }
@@ -10428,9 +10087,8 @@ class ListTrafficPolicyInstancesByPolicyResponse {
       hostedZoneIdMarker: _s.extractXmlStringValue(elem, 'HostedZoneIdMarker'),
       trafficPolicyInstanceNameMarker:
           _s.extractXmlStringValue(elem, 'TrafficPolicyInstanceNameMarker'),
-      trafficPolicyInstanceTypeMarker: _s
-          .extractXmlStringValue(elem, 'TrafficPolicyInstanceTypeMarker')
-          ?.toRRType(),
+      trafficPolicyInstanceTypeMarker: RRType.fromString(
+          _s.extractXmlStringValue(elem, 'TrafficPolicyInstanceTypeMarker')),
     );
   }
 
@@ -10452,7 +10110,7 @@ class ListTrafficPolicyInstancesByPolicyResponse {
         'TrafficPolicyInstanceNameMarker': trafficPolicyInstanceNameMarker,
       if (trafficPolicyInstanceTypeMarker != null)
         'TrafficPolicyInstanceTypeMarker':
-            trafficPolicyInstanceTypeMarker.toValue(),
+            trafficPolicyInstanceTypeMarker.value,
     };
   }
 }
@@ -10516,9 +10174,8 @@ class ListTrafficPolicyInstancesResponse {
       hostedZoneIdMarker: _s.extractXmlStringValue(elem, 'HostedZoneIdMarker'),
       trafficPolicyInstanceNameMarker:
           _s.extractXmlStringValue(elem, 'TrafficPolicyInstanceNameMarker'),
-      trafficPolicyInstanceTypeMarker: _s
-          .extractXmlStringValue(elem, 'TrafficPolicyInstanceTypeMarker')
-          ?.toRRType(),
+      trafficPolicyInstanceTypeMarker: RRType.fromString(
+          _s.extractXmlStringValue(elem, 'TrafficPolicyInstanceTypeMarker')),
     );
   }
 
@@ -10540,7 +10197,7 @@ class ListTrafficPolicyInstancesResponse {
         'TrafficPolicyInstanceNameMarker': trafficPolicyInstanceNameMarker,
       if (trafficPolicyInstanceTypeMarker != null)
         'TrafficPolicyInstanceTypeMarker':
-            trafficPolicyInstanceTypeMarker.toValue(),
+            trafficPolicyInstanceTypeMarker.value,
     };
   }
 }
@@ -10715,124 +10372,45 @@ class QueryLoggingConfig {
 }
 
 enum RRType {
-  soa,
-  a,
-  txt,
-  ns,
-  cname,
-  mx,
-  naptr,
-  ptr,
-  srv,
-  spf,
-  aaaa,
-  caa,
-  ds,
-}
+  soa('SOA'),
+  a('A'),
+  txt('TXT'),
+  ns('NS'),
+  cname('CNAME'),
+  mx('MX'),
+  naptr('NAPTR'),
+  ptr('PTR'),
+  srv('SRV'),
+  spf('SPF'),
+  aaaa('AAAA'),
+  caa('CAA'),
+  ds('DS'),
+  ;
 
-extension RRTypeValueExtension on RRType {
-  String toValue() {
-    switch (this) {
-      case RRType.soa:
-        return 'SOA';
-      case RRType.a:
-        return 'A';
-      case RRType.txt:
-        return 'TXT';
-      case RRType.ns:
-        return 'NS';
-      case RRType.cname:
-        return 'CNAME';
-      case RRType.mx:
-        return 'MX';
-      case RRType.naptr:
-        return 'NAPTR';
-      case RRType.ptr:
-        return 'PTR';
-      case RRType.srv:
-        return 'SRV';
-      case RRType.spf:
-        return 'SPF';
-      case RRType.aaaa:
-        return 'AAAA';
-      case RRType.caa:
-        return 'CAA';
-      case RRType.ds:
-        return 'DS';
-    }
-  }
-}
+  final String value;
 
-extension RRTypeFromString on String {
-  RRType toRRType() {
-    switch (this) {
-      case 'SOA':
-        return RRType.soa;
-      case 'A':
-        return RRType.a;
-      case 'TXT':
-        return RRType.txt;
-      case 'NS':
-        return RRType.ns;
-      case 'CNAME':
-        return RRType.cname;
-      case 'MX':
-        return RRType.mx;
-      case 'NAPTR':
-        return RRType.naptr;
-      case 'PTR':
-        return RRType.ptr;
-      case 'SRV':
-        return RRType.srv;
-      case 'SPF':
-        return RRType.spf;
-      case 'AAAA':
-        return RRType.aaaa;
-      case 'CAA':
-        return RRType.caa;
-      case 'DS':
-        return RRType.ds;
-    }
-    throw Exception('$this is not known in enum RRType');
-  }
+  const RRType(this.value);
+
+  static RRType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception('$value is not known in enum RRType'));
 }
 
 enum ResettableElementName {
-  fullyQualifiedDomainName,
-  regions,
-  resourcePath,
-  childHealthChecks,
-}
+  fullyQualifiedDomainName('FullyQualifiedDomainName'),
+  regions('Regions'),
+  resourcePath('ResourcePath'),
+  childHealthChecks('ChildHealthChecks'),
+  ;
 
-extension ResettableElementNameValueExtension on ResettableElementName {
-  String toValue() {
-    switch (this) {
-      case ResettableElementName.fullyQualifiedDomainName:
-        return 'FullyQualifiedDomainName';
-      case ResettableElementName.regions:
-        return 'Regions';
-      case ResettableElementName.resourcePath:
-        return 'ResourcePath';
-      case ResettableElementName.childHealthChecks:
-        return 'ChildHealthChecks';
-    }
-  }
-}
+  final String value;
 
-extension ResettableElementNameFromString on String {
-  ResettableElementName toResettableElementName() {
-    switch (this) {
-      case 'FullyQualifiedDomainName':
-        return ResettableElementName.fullyQualifiedDomainName;
-      case 'Regions':
-        return ResettableElementName.regions;
-      case 'ResourcePath':
-        return ResettableElementName.resourcePath;
-      case 'ChildHealthChecks':
-        return ResettableElementName.childHealthChecks;
-    }
-    throw Exception('$this is not known in enum ResettableElementName');
-  }
+  const ResettableElementName(this.value);
+
+  static ResettableElementName fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum ResettableElementName'));
 }
 
 /// Information specific to the resource record.
@@ -11485,21 +11063,20 @@ class ResourceRecordSet {
   factory ResourceRecordSet.fromXml(_s.XmlElement elem) {
     return ResourceRecordSet(
       name: _s.extractXmlStringValue(elem, 'Name')!,
-      type: _s.extractXmlStringValue(elem, 'Type')!.toRRType(),
+      type: RRType.fromString(_s.extractXmlStringValue(elem, 'Type')!),
       aliasTarget:
           _s.extractXmlChild(elem, 'AliasTarget')?.let(AliasTarget.fromXml),
       cidrRoutingConfig: _s
           .extractXmlChild(elem, 'CidrRoutingConfig')
           ?.let(CidrRoutingConfig.fromXml),
-      failover: _s
-          .extractXmlStringValue(elem, 'Failover')
-          ?.toResourceRecordSetFailover(),
+      failover: ResourceRecordSetFailover.fromString(
+          _s.extractXmlStringValue(elem, 'Failover')),
       geoLocation:
           _s.extractXmlChild(elem, 'GeoLocation')?.let(GeoLocation.fromXml),
       healthCheckId: _s.extractXmlStringValue(elem, 'HealthCheckId'),
       multiValueAnswer: _s.extractXmlBoolValue(elem, 'MultiValueAnswer'),
-      region:
-          _s.extractXmlStringValue(elem, 'Region')?.toResourceRecordSetRegion(),
+      region: ResourceRecordSetRegion.fromString(
+          _s.extractXmlStringValue(elem, 'Region')),
       resourceRecords: _s.extractXmlChild(elem, 'ResourceRecords')?.let(
           (elem) => elem
               .findElements('ResourceRecord')
@@ -11530,14 +11107,14 @@ class ResourceRecordSet {
     final weight = this.weight;
     return {
       'Name': name,
-      'Type': type.toValue(),
+      'Type': type.value,
       if (aliasTarget != null) 'AliasTarget': aliasTarget,
       if (cidrRoutingConfig != null) 'CidrRoutingConfig': cidrRoutingConfig,
-      if (failover != null) 'Failover': failover.toValue(),
+      if (failover != null) 'Failover': failover.value,
       if (geoLocation != null) 'GeoLocation': geoLocation,
       if (healthCheckId != null) 'HealthCheckId': healthCheckId,
       if (multiValueAnswer != null) 'MultiValueAnswer': multiValueAnswer,
-      if (region != null) 'Region': region.toValue(),
+      if (region != null) 'Region': region.value,
       if (resourceRecords != null) 'ResourceRecords': resourceRecords,
       if (setIdentifier != null) 'SetIdentifier': setIdentifier,
       if (ttl != null) 'TTL': ttl,
@@ -11564,14 +11141,13 @@ class ResourceRecordSet {
     final weight = this.weight;
     final $children = <_s.XmlNode>[
       _s.encodeXmlStringValue('Name', name),
-      _s.encodeXmlStringValue('Type', type.toValue()),
+      _s.encodeXmlStringValue('Type', type.value),
       if (setIdentifier != null)
         _s.encodeXmlStringValue('SetIdentifier', setIdentifier),
       if (weight != null) _s.encodeXmlIntValue('Weight', weight),
-      if (region != null) _s.encodeXmlStringValue('Region', region.toValue()),
+      if (region != null) _s.encodeXmlStringValue('Region', region.value),
       if (geoLocation != null) geoLocation.toXml('GeoLocation'),
-      if (failover != null)
-        _s.encodeXmlStringValue('Failover', failover.toValue()),
+      if (failover != null) _s.encodeXmlStringValue('Failover', failover.value),
       if (multiValueAnswer != null)
         _s.encodeXmlBoolValue('MultiValueAnswer', multiValueAnswer),
       if (ttl != null) _s.encodeXmlIntValue('TTL', ttl),
@@ -11599,194 +11175,60 @@ class ResourceRecordSet {
 }
 
 enum ResourceRecordSetFailover {
-  primary,
-  secondary,
-}
+  primary('PRIMARY'),
+  secondary('SECONDARY'),
+  ;
 
-extension ResourceRecordSetFailoverValueExtension on ResourceRecordSetFailover {
-  String toValue() {
-    switch (this) {
-      case ResourceRecordSetFailover.primary:
-        return 'PRIMARY';
-      case ResourceRecordSetFailover.secondary:
-        return 'SECONDARY';
-    }
-  }
-}
+  final String value;
 
-extension ResourceRecordSetFailoverFromString on String {
-  ResourceRecordSetFailover toResourceRecordSetFailover() {
-    switch (this) {
-      case 'PRIMARY':
-        return ResourceRecordSetFailover.primary;
-      case 'SECONDARY':
-        return ResourceRecordSetFailover.secondary;
-    }
-    throw Exception('$this is not known in enum ResourceRecordSetFailover');
-  }
+  const ResourceRecordSetFailover(this.value);
+
+  static ResourceRecordSetFailover fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum ResourceRecordSetFailover'));
 }
 
 enum ResourceRecordSetRegion {
-  usEast_1,
-  usEast_2,
-  usWest_1,
-  usWest_2,
-  caCentral_1,
-  euWest_1,
-  euWest_2,
-  euWest_3,
-  euCentral_1,
-  euCentral_2,
-  apSoutheast_1,
-  apSoutheast_2,
-  apSoutheast_3,
-  apNortheast_1,
-  apNortheast_2,
-  apNortheast_3,
-  euNorth_1,
-  saEast_1,
-  cnNorth_1,
-  cnNorthwest_1,
-  apEast_1,
-  meSouth_1,
-  meCentral_1,
-  apSouth_1,
-  apSouth_2,
-  afSouth_1,
-  euSouth_1,
-  euSouth_2,
-  apSoutheast_4,
-}
+  usEast_1('us-east-1'),
+  usEast_2('us-east-2'),
+  usWest_1('us-west-1'),
+  usWest_2('us-west-2'),
+  caCentral_1('ca-central-1'),
+  euWest_1('eu-west-1'),
+  euWest_2('eu-west-2'),
+  euWest_3('eu-west-3'),
+  euCentral_1('eu-central-1'),
+  euCentral_2('eu-central-2'),
+  apSoutheast_1('ap-southeast-1'),
+  apSoutheast_2('ap-southeast-2'),
+  apSoutheast_3('ap-southeast-3'),
+  apNortheast_1('ap-northeast-1'),
+  apNortheast_2('ap-northeast-2'),
+  apNortheast_3('ap-northeast-3'),
+  euNorth_1('eu-north-1'),
+  saEast_1('sa-east-1'),
+  cnNorth_1('cn-north-1'),
+  cnNorthwest_1('cn-northwest-1'),
+  apEast_1('ap-east-1'),
+  meSouth_1('me-south-1'),
+  meCentral_1('me-central-1'),
+  apSouth_1('ap-south-1'),
+  apSouth_2('ap-south-2'),
+  afSouth_1('af-south-1'),
+  euSouth_1('eu-south-1'),
+  euSouth_2('eu-south-2'),
+  apSoutheast_4('ap-southeast-4'),
+  ;
 
-extension ResourceRecordSetRegionValueExtension on ResourceRecordSetRegion {
-  String toValue() {
-    switch (this) {
-      case ResourceRecordSetRegion.usEast_1:
-        return 'us-east-1';
-      case ResourceRecordSetRegion.usEast_2:
-        return 'us-east-2';
-      case ResourceRecordSetRegion.usWest_1:
-        return 'us-west-1';
-      case ResourceRecordSetRegion.usWest_2:
-        return 'us-west-2';
-      case ResourceRecordSetRegion.caCentral_1:
-        return 'ca-central-1';
-      case ResourceRecordSetRegion.euWest_1:
-        return 'eu-west-1';
-      case ResourceRecordSetRegion.euWest_2:
-        return 'eu-west-2';
-      case ResourceRecordSetRegion.euWest_3:
-        return 'eu-west-3';
-      case ResourceRecordSetRegion.euCentral_1:
-        return 'eu-central-1';
-      case ResourceRecordSetRegion.euCentral_2:
-        return 'eu-central-2';
-      case ResourceRecordSetRegion.apSoutheast_1:
-        return 'ap-southeast-1';
-      case ResourceRecordSetRegion.apSoutheast_2:
-        return 'ap-southeast-2';
-      case ResourceRecordSetRegion.apSoutheast_3:
-        return 'ap-southeast-3';
-      case ResourceRecordSetRegion.apNortheast_1:
-        return 'ap-northeast-1';
-      case ResourceRecordSetRegion.apNortheast_2:
-        return 'ap-northeast-2';
-      case ResourceRecordSetRegion.apNortheast_3:
-        return 'ap-northeast-3';
-      case ResourceRecordSetRegion.euNorth_1:
-        return 'eu-north-1';
-      case ResourceRecordSetRegion.saEast_1:
-        return 'sa-east-1';
-      case ResourceRecordSetRegion.cnNorth_1:
-        return 'cn-north-1';
-      case ResourceRecordSetRegion.cnNorthwest_1:
-        return 'cn-northwest-1';
-      case ResourceRecordSetRegion.apEast_1:
-        return 'ap-east-1';
-      case ResourceRecordSetRegion.meSouth_1:
-        return 'me-south-1';
-      case ResourceRecordSetRegion.meCentral_1:
-        return 'me-central-1';
-      case ResourceRecordSetRegion.apSouth_1:
-        return 'ap-south-1';
-      case ResourceRecordSetRegion.apSouth_2:
-        return 'ap-south-2';
-      case ResourceRecordSetRegion.afSouth_1:
-        return 'af-south-1';
-      case ResourceRecordSetRegion.euSouth_1:
-        return 'eu-south-1';
-      case ResourceRecordSetRegion.euSouth_2:
-        return 'eu-south-2';
-      case ResourceRecordSetRegion.apSoutheast_4:
-        return 'ap-southeast-4';
-    }
-  }
-}
+  final String value;
 
-extension ResourceRecordSetRegionFromString on String {
-  ResourceRecordSetRegion toResourceRecordSetRegion() {
-    switch (this) {
-      case 'us-east-1':
-        return ResourceRecordSetRegion.usEast_1;
-      case 'us-east-2':
-        return ResourceRecordSetRegion.usEast_2;
-      case 'us-west-1':
-        return ResourceRecordSetRegion.usWest_1;
-      case 'us-west-2':
-        return ResourceRecordSetRegion.usWest_2;
-      case 'ca-central-1':
-        return ResourceRecordSetRegion.caCentral_1;
-      case 'eu-west-1':
-        return ResourceRecordSetRegion.euWest_1;
-      case 'eu-west-2':
-        return ResourceRecordSetRegion.euWest_2;
-      case 'eu-west-3':
-        return ResourceRecordSetRegion.euWest_3;
-      case 'eu-central-1':
-        return ResourceRecordSetRegion.euCentral_1;
-      case 'eu-central-2':
-        return ResourceRecordSetRegion.euCentral_2;
-      case 'ap-southeast-1':
-        return ResourceRecordSetRegion.apSoutheast_1;
-      case 'ap-southeast-2':
-        return ResourceRecordSetRegion.apSoutheast_2;
-      case 'ap-southeast-3':
-        return ResourceRecordSetRegion.apSoutheast_3;
-      case 'ap-northeast-1':
-        return ResourceRecordSetRegion.apNortheast_1;
-      case 'ap-northeast-2':
-        return ResourceRecordSetRegion.apNortheast_2;
-      case 'ap-northeast-3':
-        return ResourceRecordSetRegion.apNortheast_3;
-      case 'eu-north-1':
-        return ResourceRecordSetRegion.euNorth_1;
-      case 'sa-east-1':
-        return ResourceRecordSetRegion.saEast_1;
-      case 'cn-north-1':
-        return ResourceRecordSetRegion.cnNorth_1;
-      case 'cn-northwest-1':
-        return ResourceRecordSetRegion.cnNorthwest_1;
-      case 'ap-east-1':
-        return ResourceRecordSetRegion.apEast_1;
-      case 'me-south-1':
-        return ResourceRecordSetRegion.meSouth_1;
-      case 'me-central-1':
-        return ResourceRecordSetRegion.meCentral_1;
-      case 'ap-south-1':
-        return ResourceRecordSetRegion.apSouth_1;
-      case 'ap-south-2':
-        return ResourceRecordSetRegion.apSouth_2;
-      case 'af-south-1':
-        return ResourceRecordSetRegion.afSouth_1;
-      case 'eu-south-1':
-        return ResourceRecordSetRegion.euSouth_1;
-      case 'eu-south-2':
-        return ResourceRecordSetRegion.euSouth_2;
-      case 'ap-southeast-4':
-        return ResourceRecordSetRegion.apSoutheast_4;
-    }
-    throw Exception('$this is not known in enum ResourceRecordSetRegion');
-  }
+  const ResourceRecordSetRegion(this.value);
+
+  static ResourceRecordSetRegion fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum ResourceRecordSetRegion'));
 }
 
 /// A complex type containing a resource and its associated tags.
@@ -11817,8 +11259,8 @@ class ResourceTagSet {
   factory ResourceTagSet.fromXml(_s.XmlElement elem) {
     return ResourceTagSet(
       resourceId: _s.extractXmlStringValue(elem, 'ResourceId'),
-      resourceType:
-          _s.extractXmlStringValue(elem, 'ResourceType')?.toTagResourceType(),
+      resourceType: TagResourceType.fromString(
+          _s.extractXmlStringValue(elem, 'ResourceType')),
       tags: _s
           .extractXmlChild(elem, 'Tags')
           ?.let((elem) => elem.findElements('Tag').map(Tag.fromXml).toList()),
@@ -11831,7 +11273,7 @@ class ResourceTagSet {
     final tags = this.tags;
     return {
       if (resourceId != null) 'ResourceId': resourceId,
-      if (resourceType != null) 'ResourceType': resourceType.toValue(),
+      if (resourceType != null) 'ResourceType': resourceType.value,
       if (tags != null) 'Tags': tags,
     };
   }
@@ -11856,9 +11298,8 @@ class ReusableDelegationSetLimit {
   });
   factory ReusableDelegationSetLimit.fromXml(_s.XmlElement elem) {
     return ReusableDelegationSetLimit(
-      type: _s
-          .extractXmlStringValue(elem, 'Type')!
-          .toReusableDelegationSetLimitType(),
+      type: ReusableDelegationSetLimitType.fromString(
+          _s.extractXmlStringValue(elem, 'Type')!),
       value: _s.extractXmlIntValue(elem, 'Value')!,
     );
   }
@@ -11867,78 +11308,41 @@ class ReusableDelegationSetLimit {
     final type = this.type;
     final value = this.value;
     return {
-      'Type': type.toValue(),
+      'Type': type.value,
       'Value': value,
     };
   }
 }
 
 enum ReusableDelegationSetLimitType {
-  maxZonesByReusableDelegationSet,
-}
+  maxZonesByReusableDelegationSet('MAX_ZONES_BY_REUSABLE_DELEGATION_SET'),
+  ;
 
-extension ReusableDelegationSetLimitTypeValueExtension
-    on ReusableDelegationSetLimitType {
-  String toValue() {
-    switch (this) {
-      case ReusableDelegationSetLimitType.maxZonesByReusableDelegationSet:
-        return 'MAX_ZONES_BY_REUSABLE_DELEGATION_SET';
-    }
-  }
-}
+  final String value;
 
-extension ReusableDelegationSetLimitTypeFromString on String {
-  ReusableDelegationSetLimitType toReusableDelegationSetLimitType() {
-    switch (this) {
-      case 'MAX_ZONES_BY_REUSABLE_DELEGATION_SET':
-        return ReusableDelegationSetLimitType.maxZonesByReusableDelegationSet;
-    }
-    throw Exception(
-        '$this is not known in enum ReusableDelegationSetLimitType');
-  }
+  const ReusableDelegationSetLimitType(this.value);
+
+  static ReusableDelegationSetLimitType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum ReusableDelegationSetLimitType'));
 }
 
 enum Statistic {
-  average,
-  sum,
-  sampleCount,
-  maximum,
-  minimum,
-}
+  average('Average'),
+  sum('Sum'),
+  sampleCount('SampleCount'),
+  maximum('Maximum'),
+  minimum('Minimum'),
+  ;
 
-extension StatisticValueExtension on Statistic {
-  String toValue() {
-    switch (this) {
-      case Statistic.average:
-        return 'Average';
-      case Statistic.sum:
-        return 'Sum';
-      case Statistic.sampleCount:
-        return 'SampleCount';
-      case Statistic.maximum:
-        return 'Maximum';
-      case Statistic.minimum:
-        return 'Minimum';
-    }
-  }
-}
+  final String value;
 
-extension StatisticFromString on String {
-  Statistic toStatistic() {
-    switch (this) {
-      case 'Average':
-        return Statistic.average;
-      case 'Sum':
-        return Statistic.sum;
-      case 'SampleCount':
-        return Statistic.sampleCount;
-      case 'Maximum':
-        return Statistic.maximum;
-      case 'Minimum':
-        return Statistic.minimum;
-    }
-    throw Exception('$this is not known in enum Statistic');
-  }
+  const Statistic(this.value);
+
+  static Statistic fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum Statistic'));
 }
 
 /// A complex type that contains the status that one Amazon Route 53 health
@@ -12058,31 +11462,18 @@ class Tag {
 }
 
 enum TagResourceType {
-  healthcheck,
-  hostedzone,
-}
+  healthcheck('healthcheck'),
+  hostedzone('hostedzone'),
+  ;
 
-extension TagResourceTypeValueExtension on TagResourceType {
-  String toValue() {
-    switch (this) {
-      case TagResourceType.healthcheck:
-        return 'healthcheck';
-      case TagResourceType.hostedzone:
-        return 'hostedzone';
-    }
-  }
-}
+  final String value;
 
-extension TagResourceTypeFromString on String {
-  TagResourceType toTagResourceType() {
-    switch (this) {
-      case 'healthcheck':
-        return TagResourceType.healthcheck;
-      case 'hostedzone':
-        return TagResourceType.hostedzone;
-    }
-    throw Exception('$this is not known in enum TagResourceType');
-  }
+  const TagResourceType(this.value);
+
+  static TagResourceType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum TagResourceType'));
 }
 
 /// A complex type that contains the response to a <code>TestDNSAnswer</code>
@@ -12128,7 +11519,8 @@ class TestDNSAnswerResponse {
       recordData: _s.extractXmlStringListValues(
           _s.extractXmlChild(elem, 'RecordData')!, 'RecordDataEntry'),
       recordName: _s.extractXmlStringValue(elem, 'RecordName')!,
-      recordType: _s.extractXmlStringValue(elem, 'RecordType')!.toRRType(),
+      recordType:
+          RRType.fromString(_s.extractXmlStringValue(elem, 'RecordType')!),
       responseCode: _s.extractXmlStringValue(elem, 'ResponseCode')!,
     );
   }
@@ -12145,7 +11537,7 @@ class TestDNSAnswerResponse {
       'Protocol': protocol,
       'RecordData': recordData,
       'RecordName': recordName,
-      'RecordType': recordType.toValue(),
+      'RecordType': recordType.value,
       'ResponseCode': responseCode,
     };
   }
@@ -12193,7 +11585,7 @@ class TrafficPolicy {
       document: _s.extractXmlStringValue(elem, 'Document')!,
       id: _s.extractXmlStringValue(elem, 'Id')!,
       name: _s.extractXmlStringValue(elem, 'Name')!,
-      type: _s.extractXmlStringValue(elem, 'Type')!.toRRType(),
+      type: RRType.fromString(_s.extractXmlStringValue(elem, 'Type')!),
       version: _s.extractXmlIntValue(elem, 'Version')!,
       comment: _s.extractXmlStringValue(elem, 'Comment'),
     );
@@ -12210,7 +11602,7 @@ class TrafficPolicy {
       'Document': document,
       'Id': id,
       'Name': name,
-      'Type': type.toValue(),
+      'Type': type.value,
       'Version': version,
       if (comment != null) 'Comment': comment,
     };
@@ -12287,8 +11679,8 @@ class TrafficPolicyInstance {
       state: _s.extractXmlStringValue(elem, 'State')!,
       ttl: _s.extractXmlIntValue(elem, 'TTL')!,
       trafficPolicyId: _s.extractXmlStringValue(elem, 'TrafficPolicyId')!,
-      trafficPolicyType:
-          _s.extractXmlStringValue(elem, 'TrafficPolicyType')!.toRRType(),
+      trafficPolicyType: RRType.fromString(
+          _s.extractXmlStringValue(elem, 'TrafficPolicyType')!),
       trafficPolicyVersion:
           _s.extractXmlIntValue(elem, 'TrafficPolicyVersion')!,
     );
@@ -12312,7 +11704,7 @@ class TrafficPolicyInstance {
       'State': state,
       'TTL': ttl,
       'TrafficPolicyId': trafficPolicyId,
-      'TrafficPolicyType': trafficPolicyType.toValue(),
+      'TrafficPolicyType': trafficPolicyType.value,
       'TrafficPolicyVersion': trafficPolicyVersion,
     };
   }
@@ -12353,7 +11745,7 @@ class TrafficPolicySummary {
       latestVersion: _s.extractXmlIntValue(elem, 'LatestVersion')!,
       name: _s.extractXmlStringValue(elem, 'Name')!,
       trafficPolicyCount: _s.extractXmlIntValue(elem, 'TrafficPolicyCount')!,
-      type: _s.extractXmlStringValue(elem, 'Type')!.toRRType(),
+      type: RRType.fromString(_s.extractXmlStringValue(elem, 'Type')!),
     );
   }
 
@@ -12368,7 +11760,7 @@ class TrafficPolicySummary {
       'LatestVersion': latestVersion,
       'Name': name,
       'TrafficPolicyCount': trafficPolicyCount,
-      'Type': type.toValue(),
+      'Type': type.value,
     };
   }
 }
@@ -12785,12 +12177,12 @@ class UpdateHealthCheckRequest {
       if (healthThreshold != null) 'HealthThreshold': healthThreshold,
       if (iPAddress != null) 'IPAddress': iPAddress,
       if (insufficientDataHealthStatus != null)
-        'InsufficientDataHealthStatus': insufficientDataHealthStatus.toValue(),
+        'InsufficientDataHealthStatus': insufficientDataHealthStatus.value,
       if (inverted != null) 'Inverted': inverted,
       if (port != null) 'Port': port,
-      if (regions != null) 'Regions': regions.map((e) => e.toValue()).toList(),
+      if (regions != null) 'Regions': regions.map((e) => e.value).toList(),
       if (resetElements != null)
-        'ResetElements': resetElements.map((e) => e.toValue()).toList(),
+        'ResetElements': resetElements.map((e) => e.value).toList(),
       if (resourcePath != null) 'ResourcePath': resourcePath,
       if (searchString != null) 'SearchString': searchString,
     };
@@ -12841,17 +12233,17 @@ class UpdateHealthCheckRequest {
       if (enableSNI != null) _s.encodeXmlBoolValue('EnableSNI', enableSNI),
       if (regions != null)
         _s.XmlElement(_s.XmlName('Regions'), [],
-            regions.map((e) => _s.encodeXmlStringValue('Region', e.toValue()))),
+            regions.map((e) => _s.encodeXmlStringValue('Region', e.value))),
       if (alarmIdentifier != null) alarmIdentifier.toXml('AlarmIdentifier'),
       if (insufficientDataHealthStatus != null)
-        _s.encodeXmlStringValue('InsufficientDataHealthStatus',
-            insufficientDataHealthStatus.toValue()),
+        _s.encodeXmlStringValue(
+            'InsufficientDataHealthStatus', insufficientDataHealthStatus.value),
       if (resetElements != null)
         _s.XmlElement(
             _s.XmlName('ResetElements'),
             [],
             resetElements.map((e) =>
-                _s.encodeXmlStringValue('ResettableElementName', e.toValue()))),
+                _s.encodeXmlStringValue('ResettableElementName', e.value))),
     ];
     final $attributes = <_s.XmlAttribute>[
       ...?attributes,
@@ -13126,7 +12518,8 @@ class VPC {
   factory VPC.fromXml(_s.XmlElement elem) {
     return VPC(
       vPCId: _s.extractXmlStringValue(elem, 'VPCId'),
-      vPCRegion: _s.extractXmlStringValue(elem, 'VPCRegion')?.toVPCRegion(),
+      vPCRegion:
+          VPCRegion.fromString(_s.extractXmlStringValue(elem, 'VPCRegion')),
     );
   }
 
@@ -13135,7 +12528,7 @@ class VPC {
     final vPCRegion = this.vPCRegion;
     return {
       if (vPCId != null) 'VPCId': vPCId,
-      if (vPCRegion != null) 'VPCRegion': vPCRegion.toValue(),
+      if (vPCRegion != null) 'VPCRegion': vPCRegion.value,
     };
   }
 
@@ -13144,7 +12537,7 @@ class VPC {
     final vPCRegion = this.vPCRegion;
     final $children = <_s.XmlNode>[
       if (vPCRegion != null)
-        _s.encodeXmlStringValue('VPCRegion', vPCRegion.toValue()),
+        _s.encodeXmlStringValue('VPCRegion', vPCRegion.value),
       if (vPCId != null) _s.encodeXmlStringValue('VPCId', vPCId),
     ];
     final $attributes = <_s.XmlAttribute>[
@@ -13159,186 +12552,48 @@ class VPC {
 }
 
 enum VPCRegion {
-  usEast_1,
-  usEast_2,
-  usWest_1,
-  usWest_2,
-  euWest_1,
-  euWest_2,
-  euWest_3,
-  euCentral_1,
-  euCentral_2,
-  apEast_1,
-  meSouth_1,
-  usGovWest_1,
-  usGovEast_1,
-  usIsoEast_1,
-  usIsoWest_1,
-  usIsobEast_1,
-  meCentral_1,
-  apSoutheast_1,
-  apSoutheast_2,
-  apSoutheast_3,
-  apSouth_1,
-  apSouth_2,
-  apNortheast_1,
-  apNortheast_2,
-  apNortheast_3,
-  euNorth_1,
-  saEast_1,
-  caCentral_1,
-  cnNorth_1,
-  afSouth_1,
-  euSouth_1,
-  euSouth_2,
-  apSoutheast_4,
-}
+  usEast_1('us-east-1'),
+  usEast_2('us-east-2'),
+  usWest_1('us-west-1'),
+  usWest_2('us-west-2'),
+  euWest_1('eu-west-1'),
+  euWest_2('eu-west-2'),
+  euWest_3('eu-west-3'),
+  euCentral_1('eu-central-1'),
+  euCentral_2('eu-central-2'),
+  apEast_1('ap-east-1'),
+  meSouth_1('me-south-1'),
+  usGovWest_1('us-gov-west-1'),
+  usGovEast_1('us-gov-east-1'),
+  usIsoEast_1('us-iso-east-1'),
+  usIsoWest_1('us-iso-west-1'),
+  usIsobEast_1('us-isob-east-1'),
+  meCentral_1('me-central-1'),
+  apSoutheast_1('ap-southeast-1'),
+  apSoutheast_2('ap-southeast-2'),
+  apSoutheast_3('ap-southeast-3'),
+  apSouth_1('ap-south-1'),
+  apSouth_2('ap-south-2'),
+  apNortheast_1('ap-northeast-1'),
+  apNortheast_2('ap-northeast-2'),
+  apNortheast_3('ap-northeast-3'),
+  euNorth_1('eu-north-1'),
+  saEast_1('sa-east-1'),
+  caCentral_1('ca-central-1'),
+  cnNorth_1('cn-north-1'),
+  afSouth_1('af-south-1'),
+  euSouth_1('eu-south-1'),
+  euSouth_2('eu-south-2'),
+  apSoutheast_4('ap-southeast-4'),
+  ;
 
-extension VPCRegionValueExtension on VPCRegion {
-  String toValue() {
-    switch (this) {
-      case VPCRegion.usEast_1:
-        return 'us-east-1';
-      case VPCRegion.usEast_2:
-        return 'us-east-2';
-      case VPCRegion.usWest_1:
-        return 'us-west-1';
-      case VPCRegion.usWest_2:
-        return 'us-west-2';
-      case VPCRegion.euWest_1:
-        return 'eu-west-1';
-      case VPCRegion.euWest_2:
-        return 'eu-west-2';
-      case VPCRegion.euWest_3:
-        return 'eu-west-3';
-      case VPCRegion.euCentral_1:
-        return 'eu-central-1';
-      case VPCRegion.euCentral_2:
-        return 'eu-central-2';
-      case VPCRegion.apEast_1:
-        return 'ap-east-1';
-      case VPCRegion.meSouth_1:
-        return 'me-south-1';
-      case VPCRegion.usGovWest_1:
-        return 'us-gov-west-1';
-      case VPCRegion.usGovEast_1:
-        return 'us-gov-east-1';
-      case VPCRegion.usIsoEast_1:
-        return 'us-iso-east-1';
-      case VPCRegion.usIsoWest_1:
-        return 'us-iso-west-1';
-      case VPCRegion.usIsobEast_1:
-        return 'us-isob-east-1';
-      case VPCRegion.meCentral_1:
-        return 'me-central-1';
-      case VPCRegion.apSoutheast_1:
-        return 'ap-southeast-1';
-      case VPCRegion.apSoutheast_2:
-        return 'ap-southeast-2';
-      case VPCRegion.apSoutheast_3:
-        return 'ap-southeast-3';
-      case VPCRegion.apSouth_1:
-        return 'ap-south-1';
-      case VPCRegion.apSouth_2:
-        return 'ap-south-2';
-      case VPCRegion.apNortheast_1:
-        return 'ap-northeast-1';
-      case VPCRegion.apNortheast_2:
-        return 'ap-northeast-2';
-      case VPCRegion.apNortheast_3:
-        return 'ap-northeast-3';
-      case VPCRegion.euNorth_1:
-        return 'eu-north-1';
-      case VPCRegion.saEast_1:
-        return 'sa-east-1';
-      case VPCRegion.caCentral_1:
-        return 'ca-central-1';
-      case VPCRegion.cnNorth_1:
-        return 'cn-north-1';
-      case VPCRegion.afSouth_1:
-        return 'af-south-1';
-      case VPCRegion.euSouth_1:
-        return 'eu-south-1';
-      case VPCRegion.euSouth_2:
-        return 'eu-south-2';
-      case VPCRegion.apSoutheast_4:
-        return 'ap-southeast-4';
-    }
-  }
-}
+  final String value;
 
-extension VPCRegionFromString on String {
-  VPCRegion toVPCRegion() {
-    switch (this) {
-      case 'us-east-1':
-        return VPCRegion.usEast_1;
-      case 'us-east-2':
-        return VPCRegion.usEast_2;
-      case 'us-west-1':
-        return VPCRegion.usWest_1;
-      case 'us-west-2':
-        return VPCRegion.usWest_2;
-      case 'eu-west-1':
-        return VPCRegion.euWest_1;
-      case 'eu-west-2':
-        return VPCRegion.euWest_2;
-      case 'eu-west-3':
-        return VPCRegion.euWest_3;
-      case 'eu-central-1':
-        return VPCRegion.euCentral_1;
-      case 'eu-central-2':
-        return VPCRegion.euCentral_2;
-      case 'ap-east-1':
-        return VPCRegion.apEast_1;
-      case 'me-south-1':
-        return VPCRegion.meSouth_1;
-      case 'us-gov-west-1':
-        return VPCRegion.usGovWest_1;
-      case 'us-gov-east-1':
-        return VPCRegion.usGovEast_1;
-      case 'us-iso-east-1':
-        return VPCRegion.usIsoEast_1;
-      case 'us-iso-west-1':
-        return VPCRegion.usIsoWest_1;
-      case 'us-isob-east-1':
-        return VPCRegion.usIsobEast_1;
-      case 'me-central-1':
-        return VPCRegion.meCentral_1;
-      case 'ap-southeast-1':
-        return VPCRegion.apSoutheast_1;
-      case 'ap-southeast-2':
-        return VPCRegion.apSoutheast_2;
-      case 'ap-southeast-3':
-        return VPCRegion.apSoutheast_3;
-      case 'ap-south-1':
-        return VPCRegion.apSouth_1;
-      case 'ap-south-2':
-        return VPCRegion.apSouth_2;
-      case 'ap-northeast-1':
-        return VPCRegion.apNortheast_1;
-      case 'ap-northeast-2':
-        return VPCRegion.apNortheast_2;
-      case 'ap-northeast-3':
-        return VPCRegion.apNortheast_3;
-      case 'eu-north-1':
-        return VPCRegion.euNorth_1;
-      case 'sa-east-1':
-        return VPCRegion.saEast_1;
-      case 'ca-central-1':
-        return VPCRegion.caCentral_1;
-      case 'cn-north-1':
-        return VPCRegion.cnNorth_1;
-      case 'af-south-1':
-        return VPCRegion.afSouth_1;
-      case 'eu-south-1':
-        return VPCRegion.euSouth_1;
-      case 'eu-south-2':
-        return VPCRegion.euSouth_2;
-      case 'ap-southeast-4':
-        return VPCRegion.apSoutheast_4;
-    }
-    throw Exception('$this is not known in enum VPCRegion');
-  }
+  const VPCRegion(this.value);
+
+  static VPCRegion fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum VPCRegion'));
 }
 
 class CidrBlockInUseException extends _s.GenericAwsException {

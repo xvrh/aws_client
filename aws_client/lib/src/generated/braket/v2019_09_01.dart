@@ -617,7 +617,7 @@ class CancelJobResponse {
   factory CancelJobResponse.fromJson(Map<String, dynamic> json) {
     return CancelJobResponse(
       cancellationStatus:
-          (json['cancellationStatus'] as String).toCancellationStatus(),
+          CancellationStatus.fromString((json['cancellationStatus'] as String)),
       jobArn: json['jobArn'] as String,
     );
   }
@@ -626,7 +626,7 @@ class CancelJobResponse {
     final cancellationStatus = this.cancellationStatus;
     final jobArn = this.jobArn;
     return {
-      'cancellationStatus': cancellationStatus.toValue(),
+      'cancellationStatus': cancellationStatus.value,
       'jobArn': jobArn,
     };
   }
@@ -647,7 +647,7 @@ class CancelQuantumTaskResponse {
   factory CancelQuantumTaskResponse.fromJson(Map<String, dynamic> json) {
     return CancelQuantumTaskResponse(
       cancellationStatus:
-          (json['cancellationStatus'] as String).toCancellationStatus(),
+          CancellationStatus.fromString((json['cancellationStatus'] as String)),
       quantumTaskArn: json['quantumTaskArn'] as String,
     );
   }
@@ -656,66 +656,40 @@ class CancelQuantumTaskResponse {
     final cancellationStatus = this.cancellationStatus;
     final quantumTaskArn = this.quantumTaskArn;
     return {
-      'cancellationStatus': cancellationStatus.toValue(),
+      'cancellationStatus': cancellationStatus.value,
       'quantumTaskArn': quantumTaskArn,
     };
   }
 }
 
 enum CancellationStatus {
-  cancelling,
-  cancelled,
-}
+  cancelling('CANCELLING'),
+  cancelled('CANCELLED'),
+  ;
 
-extension CancellationStatusValueExtension on CancellationStatus {
-  String toValue() {
-    switch (this) {
-      case CancellationStatus.cancelling:
-        return 'CANCELLING';
-      case CancellationStatus.cancelled:
-        return 'CANCELLED';
-    }
-  }
-}
+  final String value;
 
-extension CancellationStatusFromString on String {
-  CancellationStatus toCancellationStatus() {
-    switch (this) {
-      case 'CANCELLING':
-        return CancellationStatus.cancelling;
-      case 'CANCELLED':
-        return CancellationStatus.cancelled;
-    }
-    throw Exception('$this is not known in enum CancellationStatus');
-  }
+  const CancellationStatus(this.value);
+
+  static CancellationStatus fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum CancellationStatus'));
 }
 
 enum CompressionType {
-  none,
-  gzip,
-}
+  none('NONE'),
+  gzip('GZIP'),
+  ;
 
-extension CompressionTypeValueExtension on CompressionType {
-  String toValue() {
-    switch (this) {
-      case CompressionType.none:
-        return 'NONE';
-      case CompressionType.gzip:
-        return 'GZIP';
-    }
-  }
-}
+  final String value;
 
-extension CompressionTypeFromString on String {
-  CompressionType toCompressionType() {
-    switch (this) {
-      case 'NONE':
-        return CompressionType.none;
-      case 'GZIP':
-        return CompressionType.gzip;
-    }
-    throw Exception('$this is not known in enum CompressionType');
-  }
+  const CompressionType(this.value);
+
+  static CompressionType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum CompressionType'));
 }
 
 /// The container image used to create an Amazon Braket job.
@@ -836,36 +810,19 @@ class DeviceConfig {
 }
 
 enum DeviceStatus {
-  online,
-  offline,
-  retired,
-}
+  online('ONLINE'),
+  offline('OFFLINE'),
+  retired('RETIRED'),
+  ;
 
-extension DeviceStatusValueExtension on DeviceStatus {
-  String toValue() {
-    switch (this) {
-      case DeviceStatus.online:
-        return 'ONLINE';
-      case DeviceStatus.offline:
-        return 'OFFLINE';
-      case DeviceStatus.retired:
-        return 'RETIRED';
-    }
-  }
-}
+  final String value;
 
-extension DeviceStatusFromString on String {
-  DeviceStatus toDeviceStatus() {
-    switch (this) {
-      case 'ONLINE':
-        return DeviceStatus.online;
-      case 'OFFLINE':
-        return DeviceStatus.offline;
-      case 'RETIRED':
-        return DeviceStatus.retired;
-    }
-    throw Exception('$this is not known in enum DeviceStatus');
-  }
+  const DeviceStatus(this.value);
+
+  static DeviceStatus fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum DeviceStatus'));
 }
 
 /// Includes information about the device.
@@ -897,8 +854,8 @@ class DeviceSummary {
     return DeviceSummary(
       deviceArn: json['deviceArn'] as String,
       deviceName: json['deviceName'] as String,
-      deviceStatus: (json['deviceStatus'] as String).toDeviceStatus(),
-      deviceType: (json['deviceType'] as String).toDeviceType(),
+      deviceStatus: DeviceStatus.fromString((json['deviceStatus'] as String)),
+      deviceType: DeviceType.fromString((json['deviceType'] as String)),
       providerName: json['providerName'] as String,
     );
   }
@@ -912,39 +869,25 @@ class DeviceSummary {
     return {
       'deviceArn': deviceArn,
       'deviceName': deviceName,
-      'deviceStatus': deviceStatus.toValue(),
-      'deviceType': deviceType.toValue(),
+      'deviceStatus': deviceStatus.value,
+      'deviceType': deviceType.value,
       'providerName': providerName,
     };
   }
 }
 
 enum DeviceType {
-  qpu,
-  simulator,
-}
+  qpu('QPU'),
+  simulator('SIMULATOR'),
+  ;
 
-extension DeviceTypeValueExtension on DeviceType {
-  String toValue() {
-    switch (this) {
-      case DeviceType.qpu:
-        return 'QPU';
-      case DeviceType.simulator:
-        return 'SIMULATOR';
-    }
-  }
-}
+  final String value;
 
-extension DeviceTypeFromString on String {
-  DeviceType toDeviceType() {
-    switch (this) {
-      case 'QPU':
-        return DeviceType.qpu;
-      case 'SIMULATOR':
-        return DeviceType.simulator;
-    }
-    throw Exception('$this is not known in enum DeviceType');
-  }
+  const DeviceType(this.value);
+
+  static DeviceType fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum DeviceType'));
 }
 
 class GetDeviceResponse {
@@ -981,8 +924,8 @@ class GetDeviceResponse {
       deviceCapabilities:
           jsonDecode(json['deviceCapabilities'] as String) as Object,
       deviceName: json['deviceName'] as String,
-      deviceStatus: (json['deviceStatus'] as String).toDeviceStatus(),
-      deviceType: (json['deviceType'] as String).toDeviceType(),
+      deviceStatus: DeviceStatus.fromString((json['deviceStatus'] as String)),
+      deviceType: DeviceType.fromString((json['deviceType'] as String)),
       providerName: json['providerName'] as String,
     );
   }
@@ -998,8 +941,8 @@ class GetDeviceResponse {
       'deviceArn': deviceArn,
       'deviceCapabilities': jsonEncode(deviceCapabilities),
       'deviceName': deviceName,
-      'deviceStatus': deviceStatus.toValue(),
-      'deviceType': deviceType.toValue(),
+      'deviceStatus': deviceStatus.value,
+      'deviceType': deviceType.value,
       'providerName': providerName,
     };
   }
@@ -1110,7 +1053,7 @@ class GetJobResponse {
       outputDataConfig: JobOutputDataConfig.fromJson(
           json['outputDataConfig'] as Map<String, dynamic>),
       roleArn: json['roleArn'] as String,
-      status: (json['status'] as String).toJobPrimaryStatus(),
+      status: JobPrimaryStatus.fromString((json['status'] as String)),
       billableDuration: json['billableDuration'] as int?,
       checkpointConfig: json['checkpointConfig'] != null
           ? JobCheckpointConfig.fromJson(
@@ -1169,7 +1112,7 @@ class GetJobResponse {
       'jobName': jobName,
       'outputDataConfig': outputDataConfig,
       'roleArn': roleArn,
-      'status': status.toValue(),
+      'status': status.value,
       if (billableDuration != null) 'billableDuration': billableDuration,
       if (checkpointConfig != null) 'checkpointConfig': checkpointConfig,
       if (deviceConfig != null) 'deviceConfig': deviceConfig,
@@ -1247,7 +1190,7 @@ class GetQuantumTaskResponse {
       outputS3Directory: json['outputS3Directory'] as String,
       quantumTaskArn: json['quantumTaskArn'] as String,
       shots: json['shots'] as int,
-      status: (json['status'] as String).toQuantumTaskStatus(),
+      status: QuantumTaskStatus.fromString((json['status'] as String)),
       endedAt: timeStampFromJson(json['endedAt']),
       failureReason: json['failureReason'] as String?,
       jobArn: json['jobArn'] as String?,
@@ -1277,7 +1220,7 @@ class GetQuantumTaskResponse {
       'outputS3Directory': outputS3Directory,
       'quantumTaskArn': quantumTaskArn,
       'shots': shots,
-      'status': status.toValue(),
+      'status': status.value,
       if (endedAt != null) 'endedAt': iso8601ToJson(endedAt),
       if (failureReason != null) 'failureReason': failureReason,
       if (jobArn != null) 'jobArn': jobArn,
@@ -1347,7 +1290,7 @@ class InstanceConfig {
 
   factory InstanceConfig.fromJson(Map<String, dynamic> json) {
     return InstanceConfig(
-      instanceType: (json['instanceType'] as String).toInstanceType(),
+      instanceType: InstanceType.fromString((json['instanceType'] as String)),
       volumeSizeInGb: json['volumeSizeInGb'] as int,
       instanceCount: json['instanceCount'] as int?,
     );
@@ -1358,7 +1301,7 @@ class InstanceConfig {
     final volumeSizeInGb = this.volumeSizeInGb;
     final instanceCount = this.instanceCount;
     return {
-      'instanceType': instanceType.toValue(),
+      'instanceType': instanceType.value,
       'volumeSizeInGb': volumeSizeInGb,
       if (instanceCount != null) 'instanceCount': instanceCount,
     };
@@ -1366,216 +1309,55 @@ class InstanceConfig {
 }
 
 enum InstanceType {
-  mlM4Xlarge,
-  mlM4_2xlarge,
-  mlM4_4xlarge,
-  mlM4_10xlarge,
-  mlM4_16xlarge,
-  mlG4dnXlarge,
-  mlG4dn_2xlarge,
-  mlG4dn_4xlarge,
-  mlG4dn_8xlarge,
-  mlG4dn_12xlarge,
-  mlG4dn_16xlarge,
-  mlM5Large,
-  mlM5Xlarge,
-  mlM5_2xlarge,
-  mlM5_4xlarge,
-  mlM5_12xlarge,
-  mlM5_24xlarge,
-  mlC4Xlarge,
-  mlC4_2xlarge,
-  mlC4_4xlarge,
-  mlC4_8xlarge,
-  mlP2Xlarge,
-  mlP2_8xlarge,
-  mlP2_16xlarge,
-  mlP3_2xlarge,
-  mlP3_8xlarge,
-  mlP3_16xlarge,
-  mlP3dn_24xlarge,
-  mlP4d_24xlarge,
-  mlC5Xlarge,
-  mlC5_2xlarge,
-  mlC5_4xlarge,
-  mlC5_9xlarge,
-  mlC5_18xlarge,
-  mlC5nXlarge,
-  mlC5n_2xlarge,
-  mlC5n_4xlarge,
-  mlC5n_9xlarge,
-  mlC5n_18xlarge,
-}
+  mlM4Xlarge('ml.m4.xlarge'),
+  mlM4_2xlarge('ml.m4.2xlarge'),
+  mlM4_4xlarge('ml.m4.4xlarge'),
+  mlM4_10xlarge('ml.m4.10xlarge'),
+  mlM4_16xlarge('ml.m4.16xlarge'),
+  mlG4dnXlarge('ml.g4dn.xlarge'),
+  mlG4dn_2xlarge('ml.g4dn.2xlarge'),
+  mlG4dn_4xlarge('ml.g4dn.4xlarge'),
+  mlG4dn_8xlarge('ml.g4dn.8xlarge'),
+  mlG4dn_12xlarge('ml.g4dn.12xlarge'),
+  mlG4dn_16xlarge('ml.g4dn.16xlarge'),
+  mlM5Large('ml.m5.large'),
+  mlM5Xlarge('ml.m5.xlarge'),
+  mlM5_2xlarge('ml.m5.2xlarge'),
+  mlM5_4xlarge('ml.m5.4xlarge'),
+  mlM5_12xlarge('ml.m5.12xlarge'),
+  mlM5_24xlarge('ml.m5.24xlarge'),
+  mlC4Xlarge('ml.c4.xlarge'),
+  mlC4_2xlarge('ml.c4.2xlarge'),
+  mlC4_4xlarge('ml.c4.4xlarge'),
+  mlC4_8xlarge('ml.c4.8xlarge'),
+  mlP2Xlarge('ml.p2.xlarge'),
+  mlP2_8xlarge('ml.p2.8xlarge'),
+  mlP2_16xlarge('ml.p2.16xlarge'),
+  mlP3_2xlarge('ml.p3.2xlarge'),
+  mlP3_8xlarge('ml.p3.8xlarge'),
+  mlP3_16xlarge('ml.p3.16xlarge'),
+  mlP3dn_24xlarge('ml.p3dn.24xlarge'),
+  mlP4d_24xlarge('ml.p4d.24xlarge'),
+  mlC5Xlarge('ml.c5.xlarge'),
+  mlC5_2xlarge('ml.c5.2xlarge'),
+  mlC5_4xlarge('ml.c5.4xlarge'),
+  mlC5_9xlarge('ml.c5.9xlarge'),
+  mlC5_18xlarge('ml.c5.18xlarge'),
+  mlC5nXlarge('ml.c5n.xlarge'),
+  mlC5n_2xlarge('ml.c5n.2xlarge'),
+  mlC5n_4xlarge('ml.c5n.4xlarge'),
+  mlC5n_9xlarge('ml.c5n.9xlarge'),
+  mlC5n_18xlarge('ml.c5n.18xlarge'),
+  ;
 
-extension InstanceTypeValueExtension on InstanceType {
-  String toValue() {
-    switch (this) {
-      case InstanceType.mlM4Xlarge:
-        return 'ml.m4.xlarge';
-      case InstanceType.mlM4_2xlarge:
-        return 'ml.m4.2xlarge';
-      case InstanceType.mlM4_4xlarge:
-        return 'ml.m4.4xlarge';
-      case InstanceType.mlM4_10xlarge:
-        return 'ml.m4.10xlarge';
-      case InstanceType.mlM4_16xlarge:
-        return 'ml.m4.16xlarge';
-      case InstanceType.mlG4dnXlarge:
-        return 'ml.g4dn.xlarge';
-      case InstanceType.mlG4dn_2xlarge:
-        return 'ml.g4dn.2xlarge';
-      case InstanceType.mlG4dn_4xlarge:
-        return 'ml.g4dn.4xlarge';
-      case InstanceType.mlG4dn_8xlarge:
-        return 'ml.g4dn.8xlarge';
-      case InstanceType.mlG4dn_12xlarge:
-        return 'ml.g4dn.12xlarge';
-      case InstanceType.mlG4dn_16xlarge:
-        return 'ml.g4dn.16xlarge';
-      case InstanceType.mlM5Large:
-        return 'ml.m5.large';
-      case InstanceType.mlM5Xlarge:
-        return 'ml.m5.xlarge';
-      case InstanceType.mlM5_2xlarge:
-        return 'ml.m5.2xlarge';
-      case InstanceType.mlM5_4xlarge:
-        return 'ml.m5.4xlarge';
-      case InstanceType.mlM5_12xlarge:
-        return 'ml.m5.12xlarge';
-      case InstanceType.mlM5_24xlarge:
-        return 'ml.m5.24xlarge';
-      case InstanceType.mlC4Xlarge:
-        return 'ml.c4.xlarge';
-      case InstanceType.mlC4_2xlarge:
-        return 'ml.c4.2xlarge';
-      case InstanceType.mlC4_4xlarge:
-        return 'ml.c4.4xlarge';
-      case InstanceType.mlC4_8xlarge:
-        return 'ml.c4.8xlarge';
-      case InstanceType.mlP2Xlarge:
-        return 'ml.p2.xlarge';
-      case InstanceType.mlP2_8xlarge:
-        return 'ml.p2.8xlarge';
-      case InstanceType.mlP2_16xlarge:
-        return 'ml.p2.16xlarge';
-      case InstanceType.mlP3_2xlarge:
-        return 'ml.p3.2xlarge';
-      case InstanceType.mlP3_8xlarge:
-        return 'ml.p3.8xlarge';
-      case InstanceType.mlP3_16xlarge:
-        return 'ml.p3.16xlarge';
-      case InstanceType.mlP3dn_24xlarge:
-        return 'ml.p3dn.24xlarge';
-      case InstanceType.mlP4d_24xlarge:
-        return 'ml.p4d.24xlarge';
-      case InstanceType.mlC5Xlarge:
-        return 'ml.c5.xlarge';
-      case InstanceType.mlC5_2xlarge:
-        return 'ml.c5.2xlarge';
-      case InstanceType.mlC5_4xlarge:
-        return 'ml.c5.4xlarge';
-      case InstanceType.mlC5_9xlarge:
-        return 'ml.c5.9xlarge';
-      case InstanceType.mlC5_18xlarge:
-        return 'ml.c5.18xlarge';
-      case InstanceType.mlC5nXlarge:
-        return 'ml.c5n.xlarge';
-      case InstanceType.mlC5n_2xlarge:
-        return 'ml.c5n.2xlarge';
-      case InstanceType.mlC5n_4xlarge:
-        return 'ml.c5n.4xlarge';
-      case InstanceType.mlC5n_9xlarge:
-        return 'ml.c5n.9xlarge';
-      case InstanceType.mlC5n_18xlarge:
-        return 'ml.c5n.18xlarge';
-    }
-  }
-}
+  final String value;
 
-extension InstanceTypeFromString on String {
-  InstanceType toInstanceType() {
-    switch (this) {
-      case 'ml.m4.xlarge':
-        return InstanceType.mlM4Xlarge;
-      case 'ml.m4.2xlarge':
-        return InstanceType.mlM4_2xlarge;
-      case 'ml.m4.4xlarge':
-        return InstanceType.mlM4_4xlarge;
-      case 'ml.m4.10xlarge':
-        return InstanceType.mlM4_10xlarge;
-      case 'ml.m4.16xlarge':
-        return InstanceType.mlM4_16xlarge;
-      case 'ml.g4dn.xlarge':
-        return InstanceType.mlG4dnXlarge;
-      case 'ml.g4dn.2xlarge':
-        return InstanceType.mlG4dn_2xlarge;
-      case 'ml.g4dn.4xlarge':
-        return InstanceType.mlG4dn_4xlarge;
-      case 'ml.g4dn.8xlarge':
-        return InstanceType.mlG4dn_8xlarge;
-      case 'ml.g4dn.12xlarge':
-        return InstanceType.mlG4dn_12xlarge;
-      case 'ml.g4dn.16xlarge':
-        return InstanceType.mlG4dn_16xlarge;
-      case 'ml.m5.large':
-        return InstanceType.mlM5Large;
-      case 'ml.m5.xlarge':
-        return InstanceType.mlM5Xlarge;
-      case 'ml.m5.2xlarge':
-        return InstanceType.mlM5_2xlarge;
-      case 'ml.m5.4xlarge':
-        return InstanceType.mlM5_4xlarge;
-      case 'ml.m5.12xlarge':
-        return InstanceType.mlM5_12xlarge;
-      case 'ml.m5.24xlarge':
-        return InstanceType.mlM5_24xlarge;
-      case 'ml.c4.xlarge':
-        return InstanceType.mlC4Xlarge;
-      case 'ml.c4.2xlarge':
-        return InstanceType.mlC4_2xlarge;
-      case 'ml.c4.4xlarge':
-        return InstanceType.mlC4_4xlarge;
-      case 'ml.c4.8xlarge':
-        return InstanceType.mlC4_8xlarge;
-      case 'ml.p2.xlarge':
-        return InstanceType.mlP2Xlarge;
-      case 'ml.p2.8xlarge':
-        return InstanceType.mlP2_8xlarge;
-      case 'ml.p2.16xlarge':
-        return InstanceType.mlP2_16xlarge;
-      case 'ml.p3.2xlarge':
-        return InstanceType.mlP3_2xlarge;
-      case 'ml.p3.8xlarge':
-        return InstanceType.mlP3_8xlarge;
-      case 'ml.p3.16xlarge':
-        return InstanceType.mlP3_16xlarge;
-      case 'ml.p3dn.24xlarge':
-        return InstanceType.mlP3dn_24xlarge;
-      case 'ml.p4d.24xlarge':
-        return InstanceType.mlP4d_24xlarge;
-      case 'ml.c5.xlarge':
-        return InstanceType.mlC5Xlarge;
-      case 'ml.c5.2xlarge':
-        return InstanceType.mlC5_2xlarge;
-      case 'ml.c5.4xlarge':
-        return InstanceType.mlC5_4xlarge;
-      case 'ml.c5.9xlarge':
-        return InstanceType.mlC5_9xlarge;
-      case 'ml.c5.18xlarge':
-        return InstanceType.mlC5_18xlarge;
-      case 'ml.c5n.xlarge':
-        return InstanceType.mlC5nXlarge;
-      case 'ml.c5n.2xlarge':
-        return InstanceType.mlC5n_2xlarge;
-      case 'ml.c5n.4xlarge':
-        return InstanceType.mlC5n_4xlarge;
-      case 'ml.c5n.9xlarge':
-        return InstanceType.mlC5n_9xlarge;
-      case 'ml.c5n.18xlarge':
-        return InstanceType.mlC5n_18xlarge;
-    }
-    throw Exception('$this is not known in enum InstanceType');
-  }
+  const InstanceType(this.value);
+
+  static InstanceType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum InstanceType'));
 }
 
 /// Contains information about the output locations for job checkpoint data.
@@ -1631,7 +1413,7 @@ class JobEventDetails {
 
   factory JobEventDetails.fromJson(Map<String, dynamic> json) {
     return JobEventDetails(
-      eventType: (json['eventType'] as String?)?.toJobEventType(),
+      eventType: (json['eventType'] as String?)?.let(JobEventType.fromString),
       message: json['message'] as String?,
       timeOfEvent: timeStampFromJson(json['timeOfEvent']),
     );
@@ -1642,7 +1424,7 @@ class JobEventDetails {
     final message = this.message;
     final timeOfEvent = this.timeOfEvent;
     return {
-      if (eventType != null) 'eventType': eventType.toValue(),
+      if (eventType != null) 'eventType': eventType.value,
       if (message != null) 'message': message,
       if (timeOfEvent != null) 'timeOfEvent': iso8601ToJson(timeOfEvent),
     };
@@ -1650,76 +1432,27 @@ class JobEventDetails {
 }
 
 enum JobEventType {
-  waitingForPriority,
-  queuedForExecution,
-  startingInstance,
-  downloadingData,
-  running,
-  deprioritizedDueToInactivity,
-  uploadingResults,
-  completed,
-  failed,
-  maxRuntimeExceeded,
-  cancelled,
-}
+  waitingForPriority('WAITING_FOR_PRIORITY'),
+  queuedForExecution('QUEUED_FOR_EXECUTION'),
+  startingInstance('STARTING_INSTANCE'),
+  downloadingData('DOWNLOADING_DATA'),
+  running('RUNNING'),
+  deprioritizedDueToInactivity('DEPRIORITIZED_DUE_TO_INACTIVITY'),
+  uploadingResults('UPLOADING_RESULTS'),
+  completed('COMPLETED'),
+  failed('FAILED'),
+  maxRuntimeExceeded('MAX_RUNTIME_EXCEEDED'),
+  cancelled('CANCELLED'),
+  ;
 
-extension JobEventTypeValueExtension on JobEventType {
-  String toValue() {
-    switch (this) {
-      case JobEventType.waitingForPriority:
-        return 'WAITING_FOR_PRIORITY';
-      case JobEventType.queuedForExecution:
-        return 'QUEUED_FOR_EXECUTION';
-      case JobEventType.startingInstance:
-        return 'STARTING_INSTANCE';
-      case JobEventType.downloadingData:
-        return 'DOWNLOADING_DATA';
-      case JobEventType.running:
-        return 'RUNNING';
-      case JobEventType.deprioritizedDueToInactivity:
-        return 'DEPRIORITIZED_DUE_TO_INACTIVITY';
-      case JobEventType.uploadingResults:
-        return 'UPLOADING_RESULTS';
-      case JobEventType.completed:
-        return 'COMPLETED';
-      case JobEventType.failed:
-        return 'FAILED';
-      case JobEventType.maxRuntimeExceeded:
-        return 'MAX_RUNTIME_EXCEEDED';
-      case JobEventType.cancelled:
-        return 'CANCELLED';
-    }
-  }
-}
+  final String value;
 
-extension JobEventTypeFromString on String {
-  JobEventType toJobEventType() {
-    switch (this) {
-      case 'WAITING_FOR_PRIORITY':
-        return JobEventType.waitingForPriority;
-      case 'QUEUED_FOR_EXECUTION':
-        return JobEventType.queuedForExecution;
-      case 'STARTING_INSTANCE':
-        return JobEventType.startingInstance;
-      case 'DOWNLOADING_DATA':
-        return JobEventType.downloadingData;
-      case 'RUNNING':
-        return JobEventType.running;
-      case 'DEPRIORITIZED_DUE_TO_INACTIVITY':
-        return JobEventType.deprioritizedDueToInactivity;
-      case 'UPLOADING_RESULTS':
-        return JobEventType.uploadingResults;
-      case 'COMPLETED':
-        return JobEventType.completed;
-      case 'FAILED':
-        return JobEventType.failed;
-      case 'MAX_RUNTIME_EXCEEDED':
-        return JobEventType.maxRuntimeExceeded;
-      case 'CANCELLED':
-        return JobEventType.cancelled;
-    }
-    throw Exception('$this is not known in enum JobEventType');
-  }
+  const JobEventType(this.value);
+
+  static JobEventType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum JobEventType'));
 }
 
 /// Specifies the path to the S3 location where you want to store job artifacts
@@ -1758,51 +1491,22 @@ class JobOutputDataConfig {
 }
 
 enum JobPrimaryStatus {
-  queued,
-  running,
-  completed,
-  failed,
-  cancelling,
-  cancelled,
-}
+  queued('QUEUED'),
+  running('RUNNING'),
+  completed('COMPLETED'),
+  failed('FAILED'),
+  cancelling('CANCELLING'),
+  cancelled('CANCELLED'),
+  ;
 
-extension JobPrimaryStatusValueExtension on JobPrimaryStatus {
-  String toValue() {
-    switch (this) {
-      case JobPrimaryStatus.queued:
-        return 'QUEUED';
-      case JobPrimaryStatus.running:
-        return 'RUNNING';
-      case JobPrimaryStatus.completed:
-        return 'COMPLETED';
-      case JobPrimaryStatus.failed:
-        return 'FAILED';
-      case JobPrimaryStatus.cancelling:
-        return 'CANCELLING';
-      case JobPrimaryStatus.cancelled:
-        return 'CANCELLED';
-    }
-  }
-}
+  final String value;
 
-extension JobPrimaryStatusFromString on String {
-  JobPrimaryStatus toJobPrimaryStatus() {
-    switch (this) {
-      case 'QUEUED':
-        return JobPrimaryStatus.queued;
-      case 'RUNNING':
-        return JobPrimaryStatus.running;
-      case 'COMPLETED':
-        return JobPrimaryStatus.completed;
-      case 'FAILED':
-        return JobPrimaryStatus.failed;
-      case 'CANCELLING':
-        return JobPrimaryStatus.cancelling;
-      case 'CANCELLED':
-        return JobPrimaryStatus.cancelled;
-    }
-    throw Exception('$this is not known in enum JobPrimaryStatus');
-  }
+  const JobPrimaryStatus(this.value);
+
+  static JobPrimaryStatus fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum JobPrimaryStatus'));
 }
 
 /// Specifies limits for how long an Amazon Braket job can run.
@@ -1874,7 +1578,7 @@ class JobSummary {
       device: json['device'] as String,
       jobArn: json['jobArn'] as String,
       jobName: json['jobName'] as String,
-      status: (json['status'] as String).toJobPrimaryStatus(),
+      status: JobPrimaryStatus.fromString((json['status'] as String)),
       endedAt: timeStampFromJson(json['endedAt']),
       startedAt: timeStampFromJson(json['startedAt']),
       tags: (json['tags'] as Map<String, dynamic>?)
@@ -1896,7 +1600,7 @@ class JobSummary {
       'device': device,
       'jobArn': jobArn,
       'jobName': jobName,
-      'status': status.toValue(),
+      'status': status.value,
       if (endedAt != null) 'endedAt': iso8601ToJson(endedAt),
       if (startedAt != null) 'startedAt': iso8601ToJson(startedAt),
       if (tags != null) 'tags': tags,
@@ -1928,56 +1632,23 @@ class ListTagsForResourceResponse {
 }
 
 enum QuantumTaskStatus {
-  created,
-  queued,
-  running,
-  completed,
-  failed,
-  cancelling,
-  cancelled,
-}
+  created('CREATED'),
+  queued('QUEUED'),
+  running('RUNNING'),
+  completed('COMPLETED'),
+  failed('FAILED'),
+  cancelling('CANCELLING'),
+  cancelled('CANCELLED'),
+  ;
 
-extension QuantumTaskStatusValueExtension on QuantumTaskStatus {
-  String toValue() {
-    switch (this) {
-      case QuantumTaskStatus.created:
-        return 'CREATED';
-      case QuantumTaskStatus.queued:
-        return 'QUEUED';
-      case QuantumTaskStatus.running:
-        return 'RUNNING';
-      case QuantumTaskStatus.completed:
-        return 'COMPLETED';
-      case QuantumTaskStatus.failed:
-        return 'FAILED';
-      case QuantumTaskStatus.cancelling:
-        return 'CANCELLING';
-      case QuantumTaskStatus.cancelled:
-        return 'CANCELLED';
-    }
-  }
-}
+  final String value;
 
-extension QuantumTaskStatusFromString on String {
-  QuantumTaskStatus toQuantumTaskStatus() {
-    switch (this) {
-      case 'CREATED':
-        return QuantumTaskStatus.created;
-      case 'QUEUED':
-        return QuantumTaskStatus.queued;
-      case 'RUNNING':
-        return QuantumTaskStatus.running;
-      case 'COMPLETED':
-        return QuantumTaskStatus.completed;
-      case 'FAILED':
-        return QuantumTaskStatus.failed;
-      case 'CANCELLING':
-        return QuantumTaskStatus.cancelling;
-      case 'CANCELLED':
-        return QuantumTaskStatus.cancelled;
-    }
-    throw Exception('$this is not known in enum QuantumTaskStatus');
-  }
+  const QuantumTaskStatus(this.value);
+
+  static QuantumTaskStatus fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum QuantumTaskStatus'));
 }
 
 /// Includes information about a quantum task.
@@ -2029,7 +1700,7 @@ class QuantumTaskSummary {
       outputS3Directory: json['outputS3Directory'] as String,
       quantumTaskArn: json['quantumTaskArn'] as String,
       shots: json['shots'] as int,
-      status: (json['status'] as String).toQuantumTaskStatus(),
+      status: QuantumTaskStatus.fromString((json['status'] as String)),
       endedAt: timeStampFromJson(json['endedAt']),
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
@@ -2053,7 +1724,7 @@ class QuantumTaskSummary {
       'outputS3Directory': outputS3Directory,
       'quantumTaskArn': quantumTaskArn,
       'shots': shots,
-      'status': status.toValue(),
+      'status': status.value,
       if (endedAt != null) 'endedAt': iso8601ToJson(endedAt),
       if (tags != null) 'tags': tags,
     };
@@ -2110,7 +1781,7 @@ class ScriptModeConfig {
       entryPoint: json['entryPoint'] as String,
       s3Uri: json['s3Uri'] as String,
       compressionType:
-          (json['compressionType'] as String?)?.toCompressionType(),
+          (json['compressionType'] as String?)?.let(CompressionType.fromString),
     );
   }
 
@@ -2121,7 +1792,7 @@ class ScriptModeConfig {
     return {
       'entryPoint': entryPoint,
       's3Uri': s3Uri,
-      if (compressionType != null) 'compressionType': compressionType.toValue(),
+      if (compressionType != null) 'compressionType': compressionType.value,
     };
   }
 }
@@ -2207,63 +1878,30 @@ class SearchJobsFilter {
     final values = this.values;
     return {
       'name': name,
-      'operator': operator.toValue(),
+      'operator': operator.value,
       'values': values,
     };
   }
 }
 
 enum SearchJobsFilterOperator {
-  lt,
-  lte,
-  equal,
-  gt,
-  gte,
-  between,
-  contains,
-}
+  lt('LT'),
+  lte('LTE'),
+  equal('EQUAL'),
+  gt('GT'),
+  gte('GTE'),
+  between('BETWEEN'),
+  contains('CONTAINS'),
+  ;
 
-extension SearchJobsFilterOperatorValueExtension on SearchJobsFilterOperator {
-  String toValue() {
-    switch (this) {
-      case SearchJobsFilterOperator.lt:
-        return 'LT';
-      case SearchJobsFilterOperator.lte:
-        return 'LTE';
-      case SearchJobsFilterOperator.equal:
-        return 'EQUAL';
-      case SearchJobsFilterOperator.gt:
-        return 'GT';
-      case SearchJobsFilterOperator.gte:
-        return 'GTE';
-      case SearchJobsFilterOperator.between:
-        return 'BETWEEN';
-      case SearchJobsFilterOperator.contains:
-        return 'CONTAINS';
-    }
-  }
-}
+  final String value;
 
-extension SearchJobsFilterOperatorFromString on String {
-  SearchJobsFilterOperator toSearchJobsFilterOperator() {
-    switch (this) {
-      case 'LT':
-        return SearchJobsFilterOperator.lt;
-      case 'LTE':
-        return SearchJobsFilterOperator.lte;
-      case 'EQUAL':
-        return SearchJobsFilterOperator.equal;
-      case 'GT':
-        return SearchJobsFilterOperator.gt;
-      case 'GTE':
-        return SearchJobsFilterOperator.gte;
-      case 'BETWEEN':
-        return SearchJobsFilterOperator.between;
-      case 'CONTAINS':
-        return SearchJobsFilterOperator.contains;
-    }
-    throw Exception('$this is not known in enum SearchJobsFilterOperator');
-  }
+  const SearchJobsFilterOperator(this.value);
+
+  static SearchJobsFilterOperator fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum SearchJobsFilterOperator'));
 }
 
 class SearchJobsResponse {
@@ -2324,60 +1962,29 @@ class SearchQuantumTasksFilter {
     final values = this.values;
     return {
       'name': name,
-      'operator': operator.toValue(),
+      'operator': operator.value,
       'values': values,
     };
   }
 }
 
 enum SearchQuantumTasksFilterOperator {
-  lt,
-  lte,
-  equal,
-  gt,
-  gte,
-  between,
-}
+  lt('LT'),
+  lte('LTE'),
+  equal('EQUAL'),
+  gt('GT'),
+  gte('GTE'),
+  between('BETWEEN'),
+  ;
 
-extension SearchQuantumTasksFilterOperatorValueExtension
-    on SearchQuantumTasksFilterOperator {
-  String toValue() {
-    switch (this) {
-      case SearchQuantumTasksFilterOperator.lt:
-        return 'LT';
-      case SearchQuantumTasksFilterOperator.lte:
-        return 'LTE';
-      case SearchQuantumTasksFilterOperator.equal:
-        return 'EQUAL';
-      case SearchQuantumTasksFilterOperator.gt:
-        return 'GT';
-      case SearchQuantumTasksFilterOperator.gte:
-        return 'GTE';
-      case SearchQuantumTasksFilterOperator.between:
-        return 'BETWEEN';
-    }
-  }
-}
+  final String value;
 
-extension SearchQuantumTasksFilterOperatorFromString on String {
-  SearchQuantumTasksFilterOperator toSearchQuantumTasksFilterOperator() {
-    switch (this) {
-      case 'LT':
-        return SearchQuantumTasksFilterOperator.lt;
-      case 'LTE':
-        return SearchQuantumTasksFilterOperator.lte;
-      case 'EQUAL':
-        return SearchQuantumTasksFilterOperator.equal;
-      case 'GT':
-        return SearchQuantumTasksFilterOperator.gt;
-      case 'GTE':
-        return SearchQuantumTasksFilterOperator.gte;
-      case 'BETWEEN':
-        return SearchQuantumTasksFilterOperator.between;
-    }
-    throw Exception(
-        '$this is not known in enum SearchQuantumTasksFilterOperator');
-  }
+  const SearchQuantumTasksFilterOperator(this.value);
+
+  static SearchQuantumTasksFilterOperator fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum SearchQuantumTasksFilterOperator'));
 }
 
 class SearchQuantumTasksResponse {

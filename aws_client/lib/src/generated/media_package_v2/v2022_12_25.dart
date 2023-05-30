@@ -291,7 +291,7 @@ class Mediapackagev2 {
       if (clientToken != null) 'x-amzn-client-token': clientToken.toString(),
     };
     final $payload = <String, dynamic>{
-      'ContainerType': containerType.toValue(),
+      'ContainerType': containerType.value,
       'OriginEndpointName': originEndpointName,
       if (description != null) 'Description': description,
       if (hlsManifests != null) 'HlsManifests': hlsManifests,
@@ -1099,7 +1099,7 @@ class Mediapackagev2 {
       1209600,
     );
     final $payload = <String, dynamic>{
-      'ContainerType': containerType.toValue(),
+      'ContainerType': containerType.value,
       if (description != null) 'Description': description,
       if (hlsManifests != null) 'HlsManifests': hlsManifests,
       if (lowLatencyHlsManifests != null)
@@ -1120,26 +1120,16 @@ class Mediapackagev2 {
 }
 
 enum AdMarkerHls {
-  daterange,
-}
+  daterange('DATERANGE'),
+  ;
 
-extension AdMarkerHlsValueExtension on AdMarkerHls {
-  String toValue() {
-    switch (this) {
-      case AdMarkerHls.daterange:
-        return 'DATERANGE';
-    }
-  }
-}
+  final String value;
 
-extension AdMarkerHlsFromString on String {
-  AdMarkerHls toAdMarkerHls() {
-    switch (this) {
-      case 'DATERANGE':
-        return AdMarkerHls.daterange;
-    }
-    throw Exception('$this is not known in enum AdMarkerHls');
-  }
+  const AdMarkerHls(this.value);
+
+  static AdMarkerHls fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum AdMarkerHls'));
 }
 
 /// The configuration of the channel group.
@@ -1260,59 +1250,33 @@ class ChannelListConfiguration {
 }
 
 enum CmafEncryptionMethod {
-  cenc,
-  cbcs,
-}
+  cenc('CENC'),
+  cbcs('CBCS'),
+  ;
 
-extension CmafEncryptionMethodValueExtension on CmafEncryptionMethod {
-  String toValue() {
-    switch (this) {
-      case CmafEncryptionMethod.cenc:
-        return 'CENC';
-      case CmafEncryptionMethod.cbcs:
-        return 'CBCS';
-    }
-  }
-}
+  final String value;
 
-extension CmafEncryptionMethodFromString on String {
-  CmafEncryptionMethod toCmafEncryptionMethod() {
-    switch (this) {
-      case 'CENC':
-        return CmafEncryptionMethod.cenc;
-      case 'CBCS':
-        return CmafEncryptionMethod.cbcs;
-    }
-    throw Exception('$this is not known in enum CmafEncryptionMethod');
-  }
+  const CmafEncryptionMethod(this.value);
+
+  static CmafEncryptionMethod fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum CmafEncryptionMethod'));
 }
 
 enum ContainerType {
-  ts,
-  cmaf,
-}
+  ts('TS'),
+  cmaf('CMAF'),
+  ;
 
-extension ContainerTypeValueExtension on ContainerType {
-  String toValue() {
-    switch (this) {
-      case ContainerType.ts:
-        return 'TS';
-      case ContainerType.cmaf:
-        return 'CMAF';
-    }
-  }
-}
+  final String value;
 
-extension ContainerTypeFromString on String {
-  ContainerType toContainerType() {
-    switch (this) {
-      case 'TS':
-        return ContainerType.ts;
-      case 'CMAF':
-        return ContainerType.cmaf;
-    }
-    throw Exception('$this is not known in enum ContainerType');
-  }
+  const ContainerType(this.value);
+
+  static ContainerType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum ContainerType'));
 }
 
 class CreateChannelGroupResponse {
@@ -1651,7 +1615,8 @@ class CreateOriginEndpointResponse {
       arn: json['Arn'] as String,
       channelGroupName: json['ChannelGroupName'] as String,
       channelName: json['ChannelName'] as String,
-      containerType: (json['ContainerType'] as String).toContainerType(),
+      containerType:
+          ContainerType.fromString((json['ContainerType'] as String)),
       createdAt: nonNullableTimeStampFromJson(json['CreatedAt'] as Object),
       modifiedAt: nonNullableTimeStampFromJson(json['ModifiedAt'] as Object),
       originEndpointName: json['OriginEndpointName'] as String,
@@ -1691,7 +1656,7 @@ class CreateOriginEndpointResponse {
       'Arn': arn,
       'ChannelGroupName': channelGroupName,
       'ChannelName': channelName,
-      'ContainerType': containerType.toValue(),
+      'ContainerType': containerType.value,
       'CreatedAt': unixTimestampToJson(createdAt),
       'ModifiedAt': unixTimestampToJson(modifiedAt),
       'OriginEndpointName': originEndpointName,
@@ -1768,41 +1733,19 @@ class DeleteOriginEndpointResponse {
 }
 
 enum DrmSystem {
-  clearKeyAes_128,
-  fairplay,
-  playready,
-  widevine,
-}
+  clearKeyAes_128('CLEAR_KEY_AES_128'),
+  fairplay('FAIRPLAY'),
+  playready('PLAYREADY'),
+  widevine('WIDEVINE'),
+  ;
 
-extension DrmSystemValueExtension on DrmSystem {
-  String toValue() {
-    switch (this) {
-      case DrmSystem.clearKeyAes_128:
-        return 'CLEAR_KEY_AES_128';
-      case DrmSystem.fairplay:
-        return 'FAIRPLAY';
-      case DrmSystem.playready:
-        return 'PLAYREADY';
-      case DrmSystem.widevine:
-        return 'WIDEVINE';
-    }
-  }
-}
+  final String value;
 
-extension DrmSystemFromString on String {
-  DrmSystem toDrmSystem() {
-    switch (this) {
-      case 'CLEAR_KEY_AES_128':
-        return DrmSystem.clearKeyAes_128;
-      case 'FAIRPLAY':
-        return DrmSystem.fairplay;
-      case 'PLAYREADY':
-        return DrmSystem.playready;
-      case 'WIDEVINE':
-        return DrmSystem.widevine;
-    }
-    throw Exception('$this is not known in enum DrmSystem');
-  }
+  const DrmSystem(this.value);
+
+  static DrmSystem fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum DrmSystem'));
 }
 
 /// The parameters for encrypting content.
@@ -1961,9 +1904,9 @@ class EncryptionContractConfiguration {
   factory EncryptionContractConfiguration.fromJson(Map<String, dynamic> json) {
     return EncryptionContractConfiguration(
       presetSpeke20Audio:
-          (json['PresetSpeke20Audio'] as String).toPresetSpeke20Audio(),
+          PresetSpeke20Audio.fromString((json['PresetSpeke20Audio'] as String)),
       presetSpeke20Video:
-          (json['PresetSpeke20Video'] as String).toPresetSpeke20Video(),
+          PresetSpeke20Video.fromString((json['PresetSpeke20Video'] as String)),
     );
   }
 
@@ -1971,8 +1914,8 @@ class EncryptionContractConfiguration {
     final presetSpeke20Audio = this.presetSpeke20Audio;
     final presetSpeke20Video = this.presetSpeke20Video;
     return {
-      'PresetSpeke20Audio': presetSpeke20Audio.toValue(),
-      'PresetSpeke20Video': presetSpeke20Video.toValue(),
+      'PresetSpeke20Audio': presetSpeke20Audio.value,
+      'PresetSpeke20Video': presetSpeke20Video.value,
     };
   }
 }
@@ -1992,10 +1935,10 @@ class EncryptionMethod {
 
   factory EncryptionMethod.fromJson(Map<String, dynamic> json) {
     return EncryptionMethod(
-      cmafEncryptionMethod:
-          (json['CmafEncryptionMethod'] as String?)?.toCmafEncryptionMethod(),
-      tsEncryptionMethod:
-          (json['TsEncryptionMethod'] as String?)?.toTsEncryptionMethod(),
+      cmafEncryptionMethod: (json['CmafEncryptionMethod'] as String?)
+          ?.let(CmafEncryptionMethod.fromString),
+      tsEncryptionMethod: (json['TsEncryptionMethod'] as String?)
+          ?.let(TsEncryptionMethod.fromString),
     );
   }
 
@@ -2004,9 +1947,9 @@ class EncryptionMethod {
     final tsEncryptionMethod = this.tsEncryptionMethod;
     return {
       if (cmafEncryptionMethod != null)
-        'CmafEncryptionMethod': cmafEncryptionMethod.toValue(),
+        'CmafEncryptionMethod': cmafEncryptionMethod.value,
       if (tsEncryptionMethod != null)
-        'TsEncryptionMethod': tsEncryptionMethod.toValue(),
+        'TsEncryptionMethod': tsEncryptionMethod.value,
     };
   }
 }
@@ -2473,7 +2416,8 @@ class GetOriginEndpointResponse {
       arn: json['Arn'] as String,
       channelGroupName: json['ChannelGroupName'] as String,
       channelName: json['ChannelName'] as String,
-      containerType: (json['ContainerType'] as String).toContainerType(),
+      containerType:
+          ContainerType.fromString((json['ContainerType'] as String)),
       createdAt: nonNullableTimeStampFromJson(json['CreatedAt'] as Object),
       modifiedAt: nonNullableTimeStampFromJson(json['ModifiedAt'] as Object),
       originEndpointName: json['OriginEndpointName'] as String,
@@ -2513,7 +2457,7 @@ class GetOriginEndpointResponse {
       'Arn': arn,
       'ChannelGroupName': channelGroupName,
       'ChannelName': channelName,
-      'ContainerType': containerType.toValue(),
+      'ContainerType': containerType.value,
       'CreatedAt': unixTimestampToJson(createdAt),
       'ModifiedAt': unixTimestampToJson(modifiedAt),
       'OriginEndpointName': originEndpointName,
@@ -2838,7 +2782,8 @@ class OriginEndpointListConfiguration {
       arn: json['Arn'] as String,
       channelGroupName: json['ChannelGroupName'] as String,
       channelName: json['ChannelName'] as String,
-      containerType: (json['ContainerType'] as String).toContainerType(),
+      containerType:
+          ContainerType.fromString((json['ContainerType'] as String)),
       originEndpointName: json['OriginEndpointName'] as String,
       createdAt: timeStampFromJson(json['CreatedAt']),
       description: json['Description'] as String?,
@@ -2871,7 +2816,7 @@ class OriginEndpointListConfiguration {
       'Arn': arn,
       'ChannelGroupName': channelGroupName,
       'ChannelName': channelName,
-      'ContainerType': containerType.toValue(),
+      'ContainerType': containerType.value,
       'OriginEndpointName': originEndpointName,
       if (createdAt != null) 'CreatedAt': unixTimestampToJson(createdAt),
       if (description != null) 'Description': description,
@@ -2884,114 +2829,44 @@ class OriginEndpointListConfiguration {
 }
 
 enum PresetSpeke20Audio {
-  presetAudio_1,
-  presetAudio_2,
-  presetAudio_3,
-  shared,
-  unencrypted,
-}
+  presetAudio_1('PRESET_AUDIO_1'),
+  presetAudio_2('PRESET_AUDIO_2'),
+  presetAudio_3('PRESET_AUDIO_3'),
+  shared('SHARED'),
+  unencrypted('UNENCRYPTED'),
+  ;
 
-extension PresetSpeke20AudioValueExtension on PresetSpeke20Audio {
-  String toValue() {
-    switch (this) {
-      case PresetSpeke20Audio.presetAudio_1:
-        return 'PRESET_AUDIO_1';
-      case PresetSpeke20Audio.presetAudio_2:
-        return 'PRESET_AUDIO_2';
-      case PresetSpeke20Audio.presetAudio_3:
-        return 'PRESET_AUDIO_3';
-      case PresetSpeke20Audio.shared:
-        return 'SHARED';
-      case PresetSpeke20Audio.unencrypted:
-        return 'UNENCRYPTED';
-    }
-  }
-}
+  final String value;
 
-extension PresetSpeke20AudioFromString on String {
-  PresetSpeke20Audio toPresetSpeke20Audio() {
-    switch (this) {
-      case 'PRESET_AUDIO_1':
-        return PresetSpeke20Audio.presetAudio_1;
-      case 'PRESET_AUDIO_2':
-        return PresetSpeke20Audio.presetAudio_2;
-      case 'PRESET_AUDIO_3':
-        return PresetSpeke20Audio.presetAudio_3;
-      case 'SHARED':
-        return PresetSpeke20Audio.shared;
-      case 'UNENCRYPTED':
-        return PresetSpeke20Audio.unencrypted;
-    }
-    throw Exception('$this is not known in enum PresetSpeke20Audio');
-  }
+  const PresetSpeke20Audio(this.value);
+
+  static PresetSpeke20Audio fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum PresetSpeke20Audio'));
 }
 
 enum PresetSpeke20Video {
-  presetVideo_1,
-  presetVideo_2,
-  presetVideo_3,
-  presetVideo_4,
-  presetVideo_5,
-  presetVideo_6,
-  presetVideo_7,
-  presetVideo_8,
-  shared,
-  unencrypted,
-}
+  presetVideo_1('PRESET_VIDEO_1'),
+  presetVideo_2('PRESET_VIDEO_2'),
+  presetVideo_3('PRESET_VIDEO_3'),
+  presetVideo_4('PRESET_VIDEO_4'),
+  presetVideo_5('PRESET_VIDEO_5'),
+  presetVideo_6('PRESET_VIDEO_6'),
+  presetVideo_7('PRESET_VIDEO_7'),
+  presetVideo_8('PRESET_VIDEO_8'),
+  shared('SHARED'),
+  unencrypted('UNENCRYPTED'),
+  ;
 
-extension PresetSpeke20VideoValueExtension on PresetSpeke20Video {
-  String toValue() {
-    switch (this) {
-      case PresetSpeke20Video.presetVideo_1:
-        return 'PRESET_VIDEO_1';
-      case PresetSpeke20Video.presetVideo_2:
-        return 'PRESET_VIDEO_2';
-      case PresetSpeke20Video.presetVideo_3:
-        return 'PRESET_VIDEO_3';
-      case PresetSpeke20Video.presetVideo_4:
-        return 'PRESET_VIDEO_4';
-      case PresetSpeke20Video.presetVideo_5:
-        return 'PRESET_VIDEO_5';
-      case PresetSpeke20Video.presetVideo_6:
-        return 'PRESET_VIDEO_6';
-      case PresetSpeke20Video.presetVideo_7:
-        return 'PRESET_VIDEO_7';
-      case PresetSpeke20Video.presetVideo_8:
-        return 'PRESET_VIDEO_8';
-      case PresetSpeke20Video.shared:
-        return 'SHARED';
-      case PresetSpeke20Video.unencrypted:
-        return 'UNENCRYPTED';
-    }
-  }
-}
+  final String value;
 
-extension PresetSpeke20VideoFromString on String {
-  PresetSpeke20Video toPresetSpeke20Video() {
-    switch (this) {
-      case 'PRESET_VIDEO_1':
-        return PresetSpeke20Video.presetVideo_1;
-      case 'PRESET_VIDEO_2':
-        return PresetSpeke20Video.presetVideo_2;
-      case 'PRESET_VIDEO_3':
-        return PresetSpeke20Video.presetVideo_3;
-      case 'PRESET_VIDEO_4':
-        return PresetSpeke20Video.presetVideo_4;
-      case 'PRESET_VIDEO_5':
-        return PresetSpeke20Video.presetVideo_5;
-      case 'PRESET_VIDEO_6':
-        return PresetSpeke20Video.presetVideo_6;
-      case 'PRESET_VIDEO_7':
-        return PresetSpeke20Video.presetVideo_7;
-      case 'PRESET_VIDEO_8':
-        return PresetSpeke20Video.presetVideo_8;
-      case 'SHARED':
-        return PresetSpeke20Video.shared;
-      case 'UNENCRYPTED':
-        return PresetSpeke20Video.unencrypted;
-    }
-    throw Exception('$this is not known in enum PresetSpeke20Video');
-  }
+  const PresetSpeke20Video(this.value);
+
+  static PresetSpeke20Video fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum PresetSpeke20Video'));
 }
 
 class PutChannelPolicyResponse {
@@ -3032,7 +2907,7 @@ class Scte {
     return Scte(
       scteFilter: (json['ScteFilter'] as List?)
           ?.whereNotNull()
-          .map((e) => (e as String).toScteFilter())
+          .map((e) => ScteFilter.fromString((e as String)))
           .toList(),
     );
   }
@@ -3041,72 +2916,31 @@ class Scte {
     final scteFilter = this.scteFilter;
     return {
       if (scteFilter != null)
-        'ScteFilter': scteFilter.map((e) => e.toValue()).toList(),
+        'ScteFilter': scteFilter.map((e) => e.value).toList(),
     };
   }
 }
 
 enum ScteFilter {
-  spliceInsert,
-  $break,
-  providerAdvertisement,
-  distributorAdvertisement,
-  providerPlacementOpportunity,
-  distributorPlacementOpportunity,
-  providerOverlayPlacementOpportunity,
-  distributorOverlayPlacementOpportunity,
-  program,
-}
+  spliceInsert('SPLICE_INSERT'),
+  $break('BREAK'),
+  providerAdvertisement('PROVIDER_ADVERTISEMENT'),
+  distributorAdvertisement('DISTRIBUTOR_ADVERTISEMENT'),
+  providerPlacementOpportunity('PROVIDER_PLACEMENT_OPPORTUNITY'),
+  distributorPlacementOpportunity('DISTRIBUTOR_PLACEMENT_OPPORTUNITY'),
+  providerOverlayPlacementOpportunity('PROVIDER_OVERLAY_PLACEMENT_OPPORTUNITY'),
+  distributorOverlayPlacementOpportunity(
+      'DISTRIBUTOR_OVERLAY_PLACEMENT_OPPORTUNITY'),
+  program('PROGRAM'),
+  ;
 
-extension ScteFilterValueExtension on ScteFilter {
-  String toValue() {
-    switch (this) {
-      case ScteFilter.spliceInsert:
-        return 'SPLICE_INSERT';
-      case ScteFilter.$break:
-        return 'BREAK';
-      case ScteFilter.providerAdvertisement:
-        return 'PROVIDER_ADVERTISEMENT';
-      case ScteFilter.distributorAdvertisement:
-        return 'DISTRIBUTOR_ADVERTISEMENT';
-      case ScteFilter.providerPlacementOpportunity:
-        return 'PROVIDER_PLACEMENT_OPPORTUNITY';
-      case ScteFilter.distributorPlacementOpportunity:
-        return 'DISTRIBUTOR_PLACEMENT_OPPORTUNITY';
-      case ScteFilter.providerOverlayPlacementOpportunity:
-        return 'PROVIDER_OVERLAY_PLACEMENT_OPPORTUNITY';
-      case ScteFilter.distributorOverlayPlacementOpportunity:
-        return 'DISTRIBUTOR_OVERLAY_PLACEMENT_OPPORTUNITY';
-      case ScteFilter.program:
-        return 'PROGRAM';
-    }
-  }
-}
+  final String value;
 
-extension ScteFilterFromString on String {
-  ScteFilter toScteFilter() {
-    switch (this) {
-      case 'SPLICE_INSERT':
-        return ScteFilter.spliceInsert;
-      case 'BREAK':
-        return ScteFilter.$break;
-      case 'PROVIDER_ADVERTISEMENT':
-        return ScteFilter.providerAdvertisement;
-      case 'DISTRIBUTOR_ADVERTISEMENT':
-        return ScteFilter.distributorAdvertisement;
-      case 'PROVIDER_PLACEMENT_OPPORTUNITY':
-        return ScteFilter.providerPlacementOpportunity;
-      case 'DISTRIBUTOR_PLACEMENT_OPPORTUNITY':
-        return ScteFilter.distributorPlacementOpportunity;
-      case 'PROVIDER_OVERLAY_PLACEMENT_OPPORTUNITY':
-        return ScteFilter.providerOverlayPlacementOpportunity;
-      case 'DISTRIBUTOR_OVERLAY_PLACEMENT_OPPORTUNITY':
-        return ScteFilter.distributorOverlayPlacementOpportunity;
-      case 'PROGRAM':
-        return ScteFilter.program;
-    }
-    throw Exception('$this is not known in enum ScteFilter');
-  }
+  const ScteFilter(this.value);
+
+  static ScteFilter fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum ScteFilter'));
 }
 
 /// The SCTE configuration.
@@ -3136,14 +2970,15 @@ class ScteHls {
 
   factory ScteHls.fromJson(Map<String, dynamic> json) {
     return ScteHls(
-      adMarkerHls: (json['AdMarkerHls'] as String?)?.toAdMarkerHls(),
+      adMarkerHls:
+          (json['AdMarkerHls'] as String?)?.let(AdMarkerHls.fromString),
     );
   }
 
   Map<String, dynamic> toJson() {
     final adMarkerHls = this.adMarkerHls;
     return {
-      if (adMarkerHls != null) 'AdMarkerHls': adMarkerHls.toValue(),
+      if (adMarkerHls != null) 'AdMarkerHls': adMarkerHls.value,
     };
   }
 }
@@ -3290,7 +3125,7 @@ class SpekeKeyProvider {
     return SpekeKeyProvider(
       drmSystems: (json['DrmSystems'] as List)
           .whereNotNull()
-          .map((e) => (e as String).toDrmSystem())
+          .map((e) => DrmSystem.fromString((e as String)))
           .toList(),
       encryptionContractConfiguration: EncryptionContractConfiguration.fromJson(
           json['EncryptionContractConfiguration'] as Map<String, dynamic>),
@@ -3308,7 +3143,7 @@ class SpekeKeyProvider {
     final roleArn = this.roleArn;
     final url = this.url;
     return {
-      'DrmSystems': drmSystems.map((e) => e.toValue()).toList(),
+      'DrmSystems': drmSystems.map((e) => e.value).toList(),
       'EncryptionContractConfiguration': encryptionContractConfiguration,
       'ResourceId': resourceId,
       'RoleArn': roleArn,
@@ -3318,31 +3153,18 @@ class SpekeKeyProvider {
 }
 
 enum TsEncryptionMethod {
-  aes_128,
-  sampleAes,
-}
+  aes_128('AES_128'),
+  sampleAes('SAMPLE_AES'),
+  ;
 
-extension TsEncryptionMethodValueExtension on TsEncryptionMethod {
-  String toValue() {
-    switch (this) {
-      case TsEncryptionMethod.aes_128:
-        return 'AES_128';
-      case TsEncryptionMethod.sampleAes:
-        return 'SAMPLE_AES';
-    }
-  }
-}
+  final String value;
 
-extension TsEncryptionMethodFromString on String {
-  TsEncryptionMethod toTsEncryptionMethod() {
-    switch (this) {
-      case 'AES_128':
-        return TsEncryptionMethod.aes_128;
-      case 'SAMPLE_AES':
-        return TsEncryptionMethod.sampleAes;
-    }
-    throw Exception('$this is not known in enum TsEncryptionMethod');
-  }
+  const TsEncryptionMethod(this.value);
+
+  static TsEncryptionMethod fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum TsEncryptionMethod'));
 }
 
 class UpdateChannelGroupResponse {
@@ -3562,7 +3384,8 @@ class UpdateOriginEndpointResponse {
       arn: json['Arn'] as String,
       channelGroupName: json['ChannelGroupName'] as String,
       channelName: json['ChannelName'] as String,
-      containerType: (json['ContainerType'] as String).toContainerType(),
+      containerType:
+          ContainerType.fromString((json['ContainerType'] as String)),
       createdAt: nonNullableTimeStampFromJson(json['CreatedAt'] as Object),
       modifiedAt: nonNullableTimeStampFromJson(json['ModifiedAt'] as Object),
       originEndpointName: json['OriginEndpointName'] as String,
@@ -3602,7 +3425,7 @@ class UpdateOriginEndpointResponse {
       'Arn': arn,
       'ChannelGroupName': channelGroupName,
       'ChannelName': channelName,
-      'ContainerType': containerType.toValue(),
+      'ContainerType': containerType.value,
       'CreatedAt': unixTimestampToJson(createdAt),
       'ModifiedAt': unixTimestampToJson(modifiedAt),
       'OriginEndpointName': originEndpointName,

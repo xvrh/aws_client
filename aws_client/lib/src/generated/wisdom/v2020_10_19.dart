@@ -91,7 +91,7 @@ class ConnectWisdom {
   }) async {
     final $payload = <String, dynamic>{
       'name': name,
-      'type': type.toValue(),
+      'type': type.value,
       'clientToken': clientToken ?? _s.generateIdempotencyToken(),
       if (description != null) 'description': description,
       if (serverSideEncryptionConfiguration != null)
@@ -145,7 +145,7 @@ class ConnectWisdom {
   }) async {
     final $payload = <String, dynamic>{
       'association': association,
-      'associationType': associationType.toValue(),
+      'associationType': associationType.value,
       'clientToken': clientToken ?? _s.generateIdempotencyToken(),
       if (tags != null) 'tags': tags,
     };
@@ -310,7 +310,7 @@ class ConnectWisdom {
     Map<String, String>? tags,
   }) async {
     final $payload = <String, dynamic>{
-      'knowledgeBaseType': knowledgeBaseType.toValue(),
+      'knowledgeBaseType': knowledgeBaseType.value,
       'name': name,
       'clientToken': clientToken ?? _s.generateIdempotencyToken(),
       if (description != null) 'description': description,
@@ -1411,7 +1411,8 @@ class AssistantAssociationData {
       assistantId: json['assistantId'] as String,
       associationData: AssistantAssociationOutputData.fromJson(
           json['associationData'] as Map<String, dynamic>),
-      associationType: (json['associationType'] as String).toAssociationType(),
+      associationType:
+          AssociationType.fromString((json['associationType'] as String)),
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
@@ -1431,7 +1432,7 @@ class AssistantAssociationData {
       'assistantAssociationId': assistantAssociationId,
       'assistantId': assistantId,
       'associationData': associationData,
-      'associationType': associationType.toValue(),
+      'associationType': associationType.value,
       if (tags != null) 'tags': tags,
     };
   }
@@ -1522,7 +1523,8 @@ class AssistantAssociationSummary {
       assistantId: json['assistantId'] as String,
       associationData: AssistantAssociationOutputData.fromJson(
           json['associationData'] as Map<String, dynamic>),
-      associationType: (json['associationType'] as String).toAssociationType(),
+      associationType:
+          AssociationType.fromString((json['associationType'] as String)),
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
@@ -1542,7 +1544,7 @@ class AssistantAssociationSummary {
       'assistantAssociationId': assistantAssociationId,
       'assistantId': assistantId,
       'associationData': associationData,
-      'associationType': associationType.toValue(),
+      'associationType': associationType.value,
       if (tags != null) 'tags': tags,
     };
   }
@@ -1590,8 +1592,8 @@ class AssistantData {
       assistantArn: json['assistantArn'] as String,
       assistantId: json['assistantId'] as String,
       name: json['name'] as String,
-      status: (json['status'] as String).toAssistantStatus(),
-      type: (json['type'] as String).toAssistantType(),
+      status: AssistantStatus.fromString((json['status'] as String)),
+      type: AssistantType.fromString((json['type'] as String)),
       description: json['description'] as String?,
       serverSideEncryptionConfiguration:
           json['serverSideEncryptionConfiguration'] != null
@@ -1618,8 +1620,8 @@ class AssistantData {
       'assistantArn': assistantArn,
       'assistantId': assistantId,
       'name': name,
-      'status': status.toValue(),
-      'type': type.toValue(),
+      'status': status.value,
+      'type': type.value,
       if (description != null) 'description': description,
       if (serverSideEncryptionConfiguration != null)
         'serverSideEncryptionConfiguration': serverSideEncryptionConfiguration,
@@ -1629,51 +1631,22 @@ class AssistantData {
 }
 
 enum AssistantStatus {
-  createInProgress,
-  createFailed,
-  active,
-  deleteInProgress,
-  deleteFailed,
-  deleted,
-}
+  createInProgress('CREATE_IN_PROGRESS'),
+  createFailed('CREATE_FAILED'),
+  active('ACTIVE'),
+  deleteInProgress('DELETE_IN_PROGRESS'),
+  deleteFailed('DELETE_FAILED'),
+  deleted('DELETED'),
+  ;
 
-extension AssistantStatusValueExtension on AssistantStatus {
-  String toValue() {
-    switch (this) {
-      case AssistantStatus.createInProgress:
-        return 'CREATE_IN_PROGRESS';
-      case AssistantStatus.createFailed:
-        return 'CREATE_FAILED';
-      case AssistantStatus.active:
-        return 'ACTIVE';
-      case AssistantStatus.deleteInProgress:
-        return 'DELETE_IN_PROGRESS';
-      case AssistantStatus.deleteFailed:
-        return 'DELETE_FAILED';
-      case AssistantStatus.deleted:
-        return 'DELETED';
-    }
-  }
-}
+  final String value;
 
-extension AssistantStatusFromString on String {
-  AssistantStatus toAssistantStatus() {
-    switch (this) {
-      case 'CREATE_IN_PROGRESS':
-        return AssistantStatus.createInProgress;
-      case 'CREATE_FAILED':
-        return AssistantStatus.createFailed;
-      case 'ACTIVE':
-        return AssistantStatus.active;
-      case 'DELETE_IN_PROGRESS':
-        return AssistantStatus.deleteInProgress;
-      case 'DELETE_FAILED':
-        return AssistantStatus.deleteFailed;
-      case 'DELETED':
-        return AssistantStatus.deleted;
-    }
-    throw Exception('$this is not known in enum AssistantStatus');
-  }
+  const AssistantStatus(this.value);
+
+  static AssistantStatus fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum AssistantStatus'));
 }
 
 /// Summary information about the assistant.
@@ -1718,8 +1691,8 @@ class AssistantSummary {
       assistantArn: json['assistantArn'] as String,
       assistantId: json['assistantId'] as String,
       name: json['name'] as String,
-      status: (json['status'] as String).toAssistantStatus(),
-      type: (json['type'] as String).toAssistantType(),
+      status: AssistantStatus.fromString((json['status'] as String)),
+      type: AssistantType.fromString((json['type'] as String)),
       description: json['description'] as String?,
       serverSideEncryptionConfiguration:
           json['serverSideEncryptionConfiguration'] != null
@@ -1746,8 +1719,8 @@ class AssistantSummary {
       'assistantArn': assistantArn,
       'assistantId': assistantId,
       'name': name,
-      'status': status.toValue(),
-      'type': type.toValue(),
+      'status': status.value,
+      'type': type.value,
       if (description != null) 'description': description,
       if (serverSideEncryptionConfiguration != null)
         'serverSideEncryptionConfiguration': serverSideEncryptionConfiguration,
@@ -1757,49 +1730,31 @@ class AssistantSummary {
 }
 
 enum AssistantType {
-  agent,
-}
+  agent('AGENT'),
+  ;
 
-extension AssistantTypeValueExtension on AssistantType {
-  String toValue() {
-    switch (this) {
-      case AssistantType.agent:
-        return 'AGENT';
-    }
-  }
-}
+  final String value;
 
-extension AssistantTypeFromString on String {
-  AssistantType toAssistantType() {
-    switch (this) {
-      case 'AGENT':
-        return AssistantType.agent;
-    }
-    throw Exception('$this is not known in enum AssistantType');
-  }
+  const AssistantType(this.value);
+
+  static AssistantType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum AssistantType'));
 }
 
 enum AssociationType {
-  knowledgeBase,
-}
+  knowledgeBase('KNOWLEDGE_BASE'),
+  ;
 
-extension AssociationTypeValueExtension on AssociationType {
-  String toValue() {
-    switch (this) {
-      case AssociationType.knowledgeBase:
-        return 'KNOWLEDGE_BASE';
-    }
-  }
-}
+  final String value;
 
-extension AssociationTypeFromString on String {
-  AssociationType toAssociationType() {
-    switch (this) {
-      case 'KNOWLEDGE_BASE':
-        return AssociationType.knowledgeBase;
-    }
-    throw Exception('$this is not known in enum AssociationType');
-  }
+  const AssociationType(this.value);
+
+  static AssociationType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum AssociationType'));
 }
 
 /// Information about the content.
@@ -1877,7 +1832,7 @@ class ContentData {
           .map((k, e) => MapEntry(k, e as String)),
       name: json['name'] as String,
       revisionId: json['revisionId'] as String,
-      status: (json['status'] as String).toContentStatus(),
+      status: ContentStatus.fromString((json['status'] as String)),
       title: json['title'] as String,
       url: json['url'] as String,
       urlExpiry: nonNullableTimeStampFromJson(json['urlExpiry'] as Object),
@@ -1911,7 +1866,7 @@ class ContentData {
       'metadata': metadata,
       'name': name,
       'revisionId': revisionId,
-      'status': status.toValue(),
+      'status': status.value,
       'title': title,
       'url': url,
       'urlExpiry': unixTimestampToJson(urlExpiry),
@@ -1966,56 +1921,23 @@ class ContentReference {
 }
 
 enum ContentStatus {
-  createInProgress,
-  createFailed,
-  active,
-  deleteInProgress,
-  deleteFailed,
-  deleted,
-  updateFailed,
-}
+  createInProgress('CREATE_IN_PROGRESS'),
+  createFailed('CREATE_FAILED'),
+  active('ACTIVE'),
+  deleteInProgress('DELETE_IN_PROGRESS'),
+  deleteFailed('DELETE_FAILED'),
+  deleted('DELETED'),
+  updateFailed('UPDATE_FAILED'),
+  ;
 
-extension ContentStatusValueExtension on ContentStatus {
-  String toValue() {
-    switch (this) {
-      case ContentStatus.createInProgress:
-        return 'CREATE_IN_PROGRESS';
-      case ContentStatus.createFailed:
-        return 'CREATE_FAILED';
-      case ContentStatus.active:
-        return 'ACTIVE';
-      case ContentStatus.deleteInProgress:
-        return 'DELETE_IN_PROGRESS';
-      case ContentStatus.deleteFailed:
-        return 'DELETE_FAILED';
-      case ContentStatus.deleted:
-        return 'DELETED';
-      case ContentStatus.updateFailed:
-        return 'UPDATE_FAILED';
-    }
-  }
-}
+  final String value;
 
-extension ContentStatusFromString on String {
-  ContentStatus toContentStatus() {
-    switch (this) {
-      case 'CREATE_IN_PROGRESS':
-        return ContentStatus.createInProgress;
-      case 'CREATE_FAILED':
-        return ContentStatus.createFailed;
-      case 'ACTIVE':
-        return ContentStatus.active;
-      case 'DELETE_IN_PROGRESS':
-        return ContentStatus.deleteInProgress;
-      case 'DELETE_FAILED':
-        return ContentStatus.deleteFailed;
-      case 'DELETED':
-        return ContentStatus.deleted;
-      case 'UPDATE_FAILED':
-        return ContentStatus.updateFailed;
-    }
-    throw Exception('$this is not known in enum ContentStatus');
-  }
+  const ContentStatus(this.value);
+
+  static ContentStatus fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum ContentStatus'));
 }
 
 /// Summary information about the content.
@@ -2081,7 +2003,7 @@ class ContentSummary {
           .map((k, e) => MapEntry(k, e as String)),
       name: json['name'] as String,
       revisionId: json['revisionId'] as String,
-      status: (json['status'] as String).toContentStatus(),
+      status: ContentStatus.fromString((json['status'] as String)),
       title: json['title'] as String,
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
@@ -2109,7 +2031,7 @@ class ContentSummary {
       'metadata': metadata,
       'name': name,
       'revisionId': revisionId,
-      'status': status.toValue(),
+      'status': status.value,
       'title': title,
       if (tags != null) 'tags': tags,
     };
@@ -2385,57 +2307,38 @@ class Filter {
     final operator = this.operator;
     final value = this.value;
     return {
-      'field': field.toValue(),
-      'operator': operator.toValue(),
+      'field': field.value,
+      'operator': operator.value,
       'value': value,
     };
   }
 }
 
 enum FilterField {
-  name,
-}
+  name('NAME'),
+  ;
 
-extension FilterFieldValueExtension on FilterField {
-  String toValue() {
-    switch (this) {
-      case FilterField.name:
-        return 'NAME';
-    }
-  }
-}
+  final String value;
 
-extension FilterFieldFromString on String {
-  FilterField toFilterField() {
-    switch (this) {
-      case 'NAME':
-        return FilterField.name;
-    }
-    throw Exception('$this is not known in enum FilterField');
-  }
+  const FilterField(this.value);
+
+  static FilterField fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum FilterField'));
 }
 
 enum FilterOperator {
-  equals,
-}
+  equals('EQUALS'),
+  ;
 
-extension FilterOperatorValueExtension on FilterOperator {
-  String toValue() {
-    switch (this) {
-      case FilterOperator.equals:
-        return 'EQUALS';
-    }
-  }
-}
+  final String value;
 
-extension FilterOperatorFromString on String {
-  FilterOperator toFilterOperator() {
-    switch (this) {
-      case 'EQUALS':
-        return FilterOperator.equals;
-    }
-    throw Exception('$this is not known in enum FilterOperator');
-  }
+  const FilterOperator(this.value);
+
+  static FilterOperator fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum FilterOperator'));
 }
 
 class GetAssistantAssociationResponse {
@@ -2739,9 +2642,9 @@ class KnowledgeBaseData {
       knowledgeBaseArn: json['knowledgeBaseArn'] as String,
       knowledgeBaseId: json['knowledgeBaseId'] as String,
       knowledgeBaseType:
-          (json['knowledgeBaseType'] as String).toKnowledgeBaseType(),
+          KnowledgeBaseType.fromString((json['knowledgeBaseType'] as String)),
       name: json['name'] as String,
-      status: (json['status'] as String).toKnowledgeBaseStatus(),
+      status: KnowledgeBaseStatus.fromString((json['status'] as String)),
       description: json['description'] as String?,
       lastContentModificationTime:
           timeStampFromJson(json['lastContentModificationTime']),
@@ -2780,9 +2683,9 @@ class KnowledgeBaseData {
     return {
       'knowledgeBaseArn': knowledgeBaseArn,
       'knowledgeBaseId': knowledgeBaseId,
-      'knowledgeBaseType': knowledgeBaseType.toValue(),
+      'knowledgeBaseType': knowledgeBaseType.value,
       'name': name,
-      'status': status.toValue(),
+      'status': status.value,
       if (description != null) 'description': description,
       if (lastContentModificationTime != null)
         'lastContentModificationTime':
@@ -2799,51 +2702,22 @@ class KnowledgeBaseData {
 }
 
 enum KnowledgeBaseStatus {
-  createInProgress,
-  createFailed,
-  active,
-  deleteInProgress,
-  deleteFailed,
-  deleted,
-}
+  createInProgress('CREATE_IN_PROGRESS'),
+  createFailed('CREATE_FAILED'),
+  active('ACTIVE'),
+  deleteInProgress('DELETE_IN_PROGRESS'),
+  deleteFailed('DELETE_FAILED'),
+  deleted('DELETED'),
+  ;
 
-extension KnowledgeBaseStatusValueExtension on KnowledgeBaseStatus {
-  String toValue() {
-    switch (this) {
-      case KnowledgeBaseStatus.createInProgress:
-        return 'CREATE_IN_PROGRESS';
-      case KnowledgeBaseStatus.createFailed:
-        return 'CREATE_FAILED';
-      case KnowledgeBaseStatus.active:
-        return 'ACTIVE';
-      case KnowledgeBaseStatus.deleteInProgress:
-        return 'DELETE_IN_PROGRESS';
-      case KnowledgeBaseStatus.deleteFailed:
-        return 'DELETE_FAILED';
-      case KnowledgeBaseStatus.deleted:
-        return 'DELETED';
-    }
-  }
-}
+  final String value;
 
-extension KnowledgeBaseStatusFromString on String {
-  KnowledgeBaseStatus toKnowledgeBaseStatus() {
-    switch (this) {
-      case 'CREATE_IN_PROGRESS':
-        return KnowledgeBaseStatus.createInProgress;
-      case 'CREATE_FAILED':
-        return KnowledgeBaseStatus.createFailed;
-      case 'ACTIVE':
-        return KnowledgeBaseStatus.active;
-      case 'DELETE_IN_PROGRESS':
-        return KnowledgeBaseStatus.deleteInProgress;
-      case 'DELETE_FAILED':
-        return KnowledgeBaseStatus.deleteFailed;
-      case 'DELETED':
-        return KnowledgeBaseStatus.deleted;
-    }
-    throw Exception('$this is not known in enum KnowledgeBaseStatus');
-  }
+  const KnowledgeBaseStatus(this.value);
+
+  static KnowledgeBaseStatus fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum KnowledgeBaseStatus'));
 }
 
 /// Summary information about the knowledge base.
@@ -2896,9 +2770,9 @@ class KnowledgeBaseSummary {
       knowledgeBaseArn: json['knowledgeBaseArn'] as String,
       knowledgeBaseId: json['knowledgeBaseId'] as String,
       knowledgeBaseType:
-          (json['knowledgeBaseType'] as String).toKnowledgeBaseType(),
+          KnowledgeBaseType.fromString((json['knowledgeBaseType'] as String)),
       name: json['name'] as String,
-      status: (json['status'] as String).toKnowledgeBaseStatus(),
+      status: KnowledgeBaseStatus.fromString((json['status'] as String)),
       description: json['description'] as String?,
       renderingConfiguration: json['renderingConfiguration'] != null
           ? RenderingConfiguration.fromJson(
@@ -2934,9 +2808,9 @@ class KnowledgeBaseSummary {
     return {
       'knowledgeBaseArn': knowledgeBaseArn,
       'knowledgeBaseId': knowledgeBaseId,
-      'knowledgeBaseType': knowledgeBaseType.toValue(),
+      'knowledgeBaseType': knowledgeBaseType.value,
       'name': name,
-      'status': status.toValue(),
+      'status': status.value,
       if (description != null) 'description': description,
       if (renderingConfiguration != null)
         'renderingConfiguration': renderingConfiguration,
@@ -2950,31 +2824,18 @@ class KnowledgeBaseSummary {
 }
 
 enum KnowledgeBaseType {
-  external,
-  custom,
-}
+  external('EXTERNAL'),
+  custom('CUSTOM'),
+  ;
 
-extension KnowledgeBaseTypeValueExtension on KnowledgeBaseType {
-  String toValue() {
-    switch (this) {
-      case KnowledgeBaseType.external:
-        return 'EXTERNAL';
-      case KnowledgeBaseType.custom:
-        return 'CUSTOM';
-    }
-  }
-}
+  final String value;
 
-extension KnowledgeBaseTypeFromString on String {
-  KnowledgeBaseType toKnowledgeBaseType() {
-    switch (this) {
-      case 'EXTERNAL':
-        return KnowledgeBaseType.external;
-      case 'CUSTOM':
-        return KnowledgeBaseType.custom;
-    }
-    throw Exception('$this is not known in enum KnowledgeBaseType');
-  }
+  const KnowledgeBaseType(this.value);
+
+  static KnowledgeBaseType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum KnowledgeBaseType'));
 }
 
 class ListAssistantAssociationsResponse {
@@ -3288,9 +3149,10 @@ class RecommendationData {
     return RecommendationData(
       document: Document.fromJson(json['document'] as Map<String, dynamic>),
       recommendationId: json['recommendationId'] as String,
-      relevanceLevel: (json['relevanceLevel'] as String?)?.toRelevanceLevel(),
+      relevanceLevel:
+          (json['relevanceLevel'] as String?)?.let(RelevanceLevel.fromString),
       relevanceScore: json['relevanceScore'] as double?,
-      type: (json['type'] as String?)?.toRecommendationType(),
+      type: (json['type'] as String?)?.let(RecommendationType.fromString),
     );
   }
 
@@ -3303,44 +3165,27 @@ class RecommendationData {
     return {
       'document': document,
       'recommendationId': recommendationId,
-      if (relevanceLevel != null) 'relevanceLevel': relevanceLevel.toValue(),
+      if (relevanceLevel != null) 'relevanceLevel': relevanceLevel.value,
       if (relevanceScore != null) 'relevanceScore': relevanceScore,
-      if (type != null) 'type': type.toValue(),
+      if (type != null) 'type': type.value,
     };
   }
 }
 
 enum RecommendationSourceType {
-  issueDetection,
-  ruleEvaluation,
-  other,
-}
+  issueDetection('ISSUE_DETECTION'),
+  ruleEvaluation('RULE_EVALUATION'),
+  other('OTHER'),
+  ;
 
-extension RecommendationSourceTypeValueExtension on RecommendationSourceType {
-  String toValue() {
-    switch (this) {
-      case RecommendationSourceType.issueDetection:
-        return 'ISSUE_DETECTION';
-      case RecommendationSourceType.ruleEvaluation:
-        return 'RULE_EVALUATION';
-      case RecommendationSourceType.other:
-        return 'OTHER';
-    }
-  }
-}
+  final String value;
 
-extension RecommendationSourceTypeFromString on String {
-  RecommendationSourceType toRecommendationSourceType() {
-    switch (this) {
-      case 'ISSUE_DETECTION':
-        return RecommendationSourceType.issueDetection;
-      case 'RULE_EVALUATION':
-        return RecommendationSourceType.ruleEvaluation;
-      case 'OTHER':
-        return RecommendationSourceType.other;
-    }
-    throw Exception('$this is not known in enum RecommendationSourceType');
-  }
+  const RecommendationSourceType(this.value);
+
+  static RecommendationSourceType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum RecommendationSourceType'));
 }
 
 /// A recommendation trigger provides context on the event that produced the
@@ -3390,8 +3235,8 @@ class RecommendationTrigger {
           .whereNotNull()
           .map((e) => e as String)
           .toList(),
-      source: (json['source'] as String).toRecommendationSourceType(),
-      type: (json['type'] as String).toRecommendationTriggerType(),
+      source: RecommendationSourceType.fromString((json['source'] as String)),
+      type: RecommendationTriggerType.fromString((json['type'] as String)),
     );
   }
 
@@ -3405,8 +3250,8 @@ class RecommendationTrigger {
       'data': data,
       'id': id,
       'recommendationIds': recommendationIds,
-      'source': source.toValue(),
-      'type': type.toValue(),
+      'source': source.value,
+      'type': type.value,
     };
   }
 }
@@ -3438,82 +3283,47 @@ class RecommendationTriggerData {
 }
 
 enum RecommendationTriggerType {
-  query,
-}
+  query('QUERY'),
+  ;
 
-extension RecommendationTriggerTypeValueExtension on RecommendationTriggerType {
-  String toValue() {
-    switch (this) {
-      case RecommendationTriggerType.query:
-        return 'QUERY';
-    }
-  }
-}
+  final String value;
 
-extension RecommendationTriggerTypeFromString on String {
-  RecommendationTriggerType toRecommendationTriggerType() {
-    switch (this) {
-      case 'QUERY':
-        return RecommendationTriggerType.query;
-    }
-    throw Exception('$this is not known in enum RecommendationTriggerType');
-  }
+  const RecommendationTriggerType(this.value);
+
+  static RecommendationTriggerType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum RecommendationTriggerType'));
 }
 
 enum RecommendationType {
-  knowledgeContent,
-}
+  knowledgeContent('KNOWLEDGE_CONTENT'),
+  ;
 
-extension RecommendationTypeValueExtension on RecommendationType {
-  String toValue() {
-    switch (this) {
-      case RecommendationType.knowledgeContent:
-        return 'KNOWLEDGE_CONTENT';
-    }
-  }
-}
+  final String value;
 
-extension RecommendationTypeFromString on String {
-  RecommendationType toRecommendationType() {
-    switch (this) {
-      case 'KNOWLEDGE_CONTENT':
-        return RecommendationType.knowledgeContent;
-    }
-    throw Exception('$this is not known in enum RecommendationType');
-  }
+  const RecommendationType(this.value);
+
+  static RecommendationType fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum RecommendationType'));
 }
 
 enum RelevanceLevel {
-  high,
-  medium,
-  low,
-}
+  high('HIGH'),
+  medium('MEDIUM'),
+  low('LOW'),
+  ;
 
-extension RelevanceLevelValueExtension on RelevanceLevel {
-  String toValue() {
-    switch (this) {
-      case RelevanceLevel.high:
-        return 'HIGH';
-      case RelevanceLevel.medium:
-        return 'MEDIUM';
-      case RelevanceLevel.low:
-        return 'LOW';
-    }
-  }
-}
+  final String value;
 
-extension RelevanceLevelFromString on String {
-  RelevanceLevel toRelevanceLevel() {
-    switch (this) {
-      case 'HIGH':
-        return RelevanceLevel.high;
-      case 'MEDIUM':
-        return RelevanceLevel.medium;
-      case 'LOW':
-        return RelevanceLevel.low;
-    }
-    throw Exception('$this is not known in enum RelevanceLevel');
-  }
+  const RelevanceLevel(this.value);
+
+  static RelevanceLevel fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum RelevanceLevel'));
 }
 
 class RemoveKnowledgeBaseTemplateUriResponse {

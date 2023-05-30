@@ -162,7 +162,7 @@ class Textract {
       headers: headers,
       payload: {
         'Document': document,
-        'FeatureTypes': featureTypes.map((e) => e.toValue()).toList(),
+        'FeatureTypes': featureTypes.map((e) => e.value).toList(),
         if (humanLoopConfig != null) 'HumanLoopConfig': humanLoopConfig,
         if (queriesConfig != null) 'QueriesConfig': queriesConfig,
       },
@@ -840,7 +840,7 @@ class Textract {
       headers: headers,
       payload: {
         'DocumentLocation': documentLocation,
-        'FeatureTypes': featureTypes.map((e) => e.toValue()).toList(),
+        'FeatureTypes': featureTypes.map((e) => e.value).toList(),
         if (clientRequestToken != null)
           'ClientRequestToken': clientRequestToken,
         if (jobTag != null) 'JobTag': jobTag,
@@ -1573,13 +1573,13 @@ class Block {
 
   factory Block.fromJson(Map<String, dynamic> json) {
     return Block(
-      blockType: (json['BlockType'] as String?)?.toBlockType(),
+      blockType: (json['BlockType'] as String?)?.let(BlockType.fromString),
       columnIndex: json['ColumnIndex'] as int?,
       columnSpan: json['ColumnSpan'] as int?,
       confidence: json['Confidence'] as double?,
       entityTypes: (json['EntityTypes'] as List?)
           ?.whereNotNull()
-          .map((e) => (e as String).toEntityType())
+          .map((e) => EntityType.fromString((e as String)))
           .toList(),
       geometry: json['Geometry'] != null
           ? Geometry.fromJson(json['Geometry'] as Map<String, dynamic>)
@@ -1596,9 +1596,9 @@ class Block {
       rowIndex: json['RowIndex'] as int?,
       rowSpan: json['RowSpan'] as int?,
       selectionStatus:
-          (json['SelectionStatus'] as String?)?.toSelectionStatus(),
+          (json['SelectionStatus'] as String?)?.let(SelectionStatus.fromString),
       text: json['Text'] as String?,
-      textType: (json['TextType'] as String?)?.toTextType(),
+      textType: (json['TextType'] as String?)?.let(TextType.fromString),
     );
   }
 
@@ -1619,12 +1619,12 @@ class Block {
     final text = this.text;
     final textType = this.textType;
     return {
-      if (blockType != null) 'BlockType': blockType.toValue(),
+      if (blockType != null) 'BlockType': blockType.value,
       if (columnIndex != null) 'ColumnIndex': columnIndex,
       if (columnSpan != null) 'ColumnSpan': columnSpan,
       if (confidence != null) 'Confidence': confidence,
       if (entityTypes != null)
-        'EntityTypes': entityTypes.map((e) => e.toValue()).toList(),
+        'EntityTypes': entityTypes.map((e) => e.value).toList(),
       if (geometry != null) 'Geometry': geometry,
       if (id != null) 'Id': id,
       if (page != null) 'Page': page,
@@ -1632,99 +1632,37 @@ class Block {
       if (relationships != null) 'Relationships': relationships,
       if (rowIndex != null) 'RowIndex': rowIndex,
       if (rowSpan != null) 'RowSpan': rowSpan,
-      if (selectionStatus != null) 'SelectionStatus': selectionStatus.toValue(),
+      if (selectionStatus != null) 'SelectionStatus': selectionStatus.value,
       if (text != null) 'Text': text,
-      if (textType != null) 'TextType': textType.toValue(),
+      if (textType != null) 'TextType': textType.value,
     };
   }
 }
 
 enum BlockType {
-  keyValueSet,
-  page,
-  line,
-  word,
-  table,
-  cell,
-  selectionElement,
-  mergedCell,
-  title,
-  query,
-  queryResult,
-  signature,
-  tableTitle,
-  tableFooter,
-}
+  keyValueSet('KEY_VALUE_SET'),
+  page('PAGE'),
+  line('LINE'),
+  word('WORD'),
+  table('TABLE'),
+  cell('CELL'),
+  selectionElement('SELECTION_ELEMENT'),
+  mergedCell('MERGED_CELL'),
+  title('TITLE'),
+  query('QUERY'),
+  queryResult('QUERY_RESULT'),
+  signature('SIGNATURE'),
+  tableTitle('TABLE_TITLE'),
+  tableFooter('TABLE_FOOTER'),
+  ;
 
-extension BlockTypeValueExtension on BlockType {
-  String toValue() {
-    switch (this) {
-      case BlockType.keyValueSet:
-        return 'KEY_VALUE_SET';
-      case BlockType.page:
-        return 'PAGE';
-      case BlockType.line:
-        return 'LINE';
-      case BlockType.word:
-        return 'WORD';
-      case BlockType.table:
-        return 'TABLE';
-      case BlockType.cell:
-        return 'CELL';
-      case BlockType.selectionElement:
-        return 'SELECTION_ELEMENT';
-      case BlockType.mergedCell:
-        return 'MERGED_CELL';
-      case BlockType.title:
-        return 'TITLE';
-      case BlockType.query:
-        return 'QUERY';
-      case BlockType.queryResult:
-        return 'QUERY_RESULT';
-      case BlockType.signature:
-        return 'SIGNATURE';
-      case BlockType.tableTitle:
-        return 'TABLE_TITLE';
-      case BlockType.tableFooter:
-        return 'TABLE_FOOTER';
-    }
-  }
-}
+  final String value;
 
-extension BlockTypeFromString on String {
-  BlockType toBlockType() {
-    switch (this) {
-      case 'KEY_VALUE_SET':
-        return BlockType.keyValueSet;
-      case 'PAGE':
-        return BlockType.page;
-      case 'LINE':
-        return BlockType.line;
-      case 'WORD':
-        return BlockType.word;
-      case 'TABLE':
-        return BlockType.table;
-      case 'CELL':
-        return BlockType.cell;
-      case 'SELECTION_ELEMENT':
-        return BlockType.selectionElement;
-      case 'MERGED_CELL':
-        return BlockType.mergedCell;
-      case 'TITLE':
-        return BlockType.title;
-      case 'QUERY':
-        return BlockType.query;
-      case 'QUERY_RESULT':
-        return BlockType.queryResult;
-      case 'SIGNATURE':
-        return BlockType.signature;
-      case 'TABLE_TITLE':
-        return BlockType.tableTitle;
-      case 'TABLE_FOOTER':
-        return BlockType.tableFooter;
-    }
-    throw Exception('$this is not known in enum BlockType');
-  }
+  const BlockType(this.value);
+
+  static BlockType fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum BlockType'));
 }
 
 /// The bounding box around the detected page, text, key-value pair, table,
@@ -1790,31 +1728,19 @@ class BoundingBox {
 }
 
 enum ContentClassifier {
-  freeOfPersonallyIdentifiableInformation,
-  freeOfAdultContent,
-}
+  freeOfPersonallyIdentifiableInformation(
+      'FreeOfPersonallyIdentifiableInformation'),
+  freeOfAdultContent('FreeOfAdultContent'),
+  ;
 
-extension ContentClassifierValueExtension on ContentClassifier {
-  String toValue() {
-    switch (this) {
-      case ContentClassifier.freeOfPersonallyIdentifiableInformation:
-        return 'FreeOfPersonallyIdentifiableInformation';
-      case ContentClassifier.freeOfAdultContent:
-        return 'FreeOfAdultContent';
-    }
-  }
-}
+  final String value;
 
-extension ContentClassifierFromString on String {
-  ContentClassifier toContentClassifier() {
-    switch (this) {
-      case 'FreeOfPersonallyIdentifiableInformation':
-        return ContentClassifier.freeOfPersonallyIdentifiableInformation;
-      case 'FreeOfAdultContent':
-        return ContentClassifier.freeOfAdultContent;
-    }
-    throw Exception('$this is not known in enum ContentClassifier');
-  }
+  const ContentClassifier(this.value);
+
+  static ContentClassifier fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum ContentClassifier'));
 }
 
 class DetectDocumentTextResponse {
@@ -2039,66 +1965,24 @@ class DocumentMetadata {
 }
 
 enum EntityType {
-  key,
-  value,
-  columnHeader,
-  tableTitle,
-  tableFooter,
-  tableSectionTitle,
-  tableSummary,
-  structuredTable,
-  semiStructuredTable,
-}
+  key('KEY'),
+  value('VALUE'),
+  columnHeader('COLUMN_HEADER'),
+  tableTitle('TABLE_TITLE'),
+  tableFooter('TABLE_FOOTER'),
+  tableSectionTitle('TABLE_SECTION_TITLE'),
+  tableSummary('TABLE_SUMMARY'),
+  structuredTable('STRUCTURED_TABLE'),
+  semiStructuredTable('SEMI_STRUCTURED_TABLE'),
+  ;
 
-extension EntityTypeValueExtension on EntityType {
-  String toValue() {
-    switch (this) {
-      case EntityType.key:
-        return 'KEY';
-      case EntityType.value:
-        return 'VALUE';
-      case EntityType.columnHeader:
-        return 'COLUMN_HEADER';
-      case EntityType.tableTitle:
-        return 'TABLE_TITLE';
-      case EntityType.tableFooter:
-        return 'TABLE_FOOTER';
-      case EntityType.tableSectionTitle:
-        return 'TABLE_SECTION_TITLE';
-      case EntityType.tableSummary:
-        return 'TABLE_SUMMARY';
-      case EntityType.structuredTable:
-        return 'STRUCTURED_TABLE';
-      case EntityType.semiStructuredTable:
-        return 'SEMI_STRUCTURED_TABLE';
-    }
-  }
-}
+  final String value;
 
-extension EntityTypeFromString on String {
-  EntityType toEntityType() {
-    switch (this) {
-      case 'KEY':
-        return EntityType.key;
-      case 'VALUE':
-        return EntityType.value;
-      case 'COLUMN_HEADER':
-        return EntityType.columnHeader;
-      case 'TABLE_TITLE':
-        return EntityType.tableTitle;
-      case 'TABLE_FOOTER':
-        return EntityType.tableFooter;
-      case 'TABLE_SECTION_TITLE':
-        return EntityType.tableSectionTitle;
-      case 'TABLE_SUMMARY':
-        return EntityType.tableSummary;
-      case 'STRUCTURED_TABLE':
-        return EntityType.structuredTable;
-      case 'SEMI_STRUCTURED_TABLE':
-        return EntityType.semiStructuredTable;
-    }
-    throw Exception('$this is not known in enum EntityType');
-  }
+  const EntityType(this.value);
+
+  static EntityType fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum EntityType'));
 }
 
 /// Returns the kind of currency detected.
@@ -2450,41 +2334,19 @@ class Extraction {
 }
 
 enum FeatureType {
-  tables,
-  forms,
-  queries,
-  signatures,
-}
+  tables('TABLES'),
+  forms('FORMS'),
+  queries('QUERIES'),
+  signatures('SIGNATURES'),
+  ;
 
-extension FeatureTypeValueExtension on FeatureType {
-  String toValue() {
-    switch (this) {
-      case FeatureType.tables:
-        return 'TABLES';
-      case FeatureType.forms:
-        return 'FORMS';
-      case FeatureType.queries:
-        return 'QUERIES';
-      case FeatureType.signatures:
-        return 'SIGNATURES';
-    }
-  }
-}
+  final String value;
 
-extension FeatureTypeFromString on String {
-  FeatureType toFeatureType() {
-    switch (this) {
-      case 'TABLES':
-        return FeatureType.tables;
-      case 'FORMS':
-        return FeatureType.forms;
-      case 'QUERIES':
-        return FeatureType.queries;
-      case 'SIGNATURES':
-        return FeatureType.signatures;
-    }
-    throw Exception('$this is not known in enum FeatureType');
-  }
+  const FeatureType(this.value);
+
+  static FeatureType fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum FeatureType'));
 }
 
 /// Information about where the following items are located on a document page:
@@ -2574,7 +2436,7 @@ class GetDocumentAnalysisResponse {
           ? DocumentMetadata.fromJson(
               json['DocumentMetadata'] as Map<String, dynamic>)
           : null,
-      jobStatus: (json['JobStatus'] as String?)?.toJobStatus(),
+      jobStatus: (json['JobStatus'] as String?)?.let(JobStatus.fromString),
       nextToken: json['NextToken'] as String?,
       statusMessage: json['StatusMessage'] as String?,
       warnings: (json['Warnings'] as List?)
@@ -2597,7 +2459,7 @@ class GetDocumentAnalysisResponse {
         'AnalyzeDocumentModelVersion': analyzeDocumentModelVersion,
       if (blocks != null) 'Blocks': blocks,
       if (documentMetadata != null) 'DocumentMetadata': documentMetadata,
-      if (jobStatus != null) 'JobStatus': jobStatus.toValue(),
+      if (jobStatus != null) 'JobStatus': jobStatus.value,
       if (nextToken != null) 'NextToken': nextToken,
       if (statusMessage != null) 'StatusMessage': statusMessage,
       if (warnings != null) 'Warnings': warnings,
@@ -2655,7 +2517,7 @@ class GetDocumentTextDetectionResponse {
           ? DocumentMetadata.fromJson(
               json['DocumentMetadata'] as Map<String, dynamic>)
           : null,
-      jobStatus: (json['JobStatus'] as String?)?.toJobStatus(),
+      jobStatus: (json['JobStatus'] as String?)?.let(JobStatus.fromString),
       nextToken: json['NextToken'] as String?,
       statusMessage: json['StatusMessage'] as String?,
       warnings: (json['Warnings'] as List?)
@@ -2678,7 +2540,7 @@ class GetDocumentTextDetectionResponse {
       if (detectDocumentTextModelVersion != null)
         'DetectDocumentTextModelVersion': detectDocumentTextModelVersion,
       if (documentMetadata != null) 'DocumentMetadata': documentMetadata,
-      if (jobStatus != null) 'JobStatus': jobStatus.toValue(),
+      if (jobStatus != null) 'JobStatus': jobStatus.value,
       if (nextToken != null) 'NextToken': nextToken,
       if (statusMessage != null) 'StatusMessage': statusMessage,
       if (warnings != null) 'Warnings': warnings,
@@ -2735,7 +2597,7 @@ class GetExpenseAnalysisResponse {
           ?.whereNotNull()
           .map((e) => ExpenseDocument.fromJson(e as Map<String, dynamic>))
           .toList(),
-      jobStatus: (json['JobStatus'] as String?)?.toJobStatus(),
+      jobStatus: (json['JobStatus'] as String?)?.let(JobStatus.fromString),
       nextToken: json['NextToken'] as String?,
       statusMessage: json['StatusMessage'] as String?,
       warnings: (json['Warnings'] as List?)
@@ -2758,7 +2620,7 @@ class GetExpenseAnalysisResponse {
         'AnalyzeExpenseModelVersion': analyzeExpenseModelVersion,
       if (documentMetadata != null) 'DocumentMetadata': documentMetadata,
       if (expenseDocuments != null) 'ExpenseDocuments': expenseDocuments,
-      if (jobStatus != null) 'JobStatus': jobStatus.toValue(),
+      if (jobStatus != null) 'JobStatus': jobStatus.value,
       if (nextToken != null) 'NextToken': nextToken,
       if (statusMessage != null) 'StatusMessage': statusMessage,
       if (warnings != null) 'Warnings': warnings,
@@ -2807,7 +2669,7 @@ class GetLendingAnalysisResponse {
           ? DocumentMetadata.fromJson(
               json['DocumentMetadata'] as Map<String, dynamic>)
           : null,
-      jobStatus: (json['JobStatus'] as String?)?.toJobStatus(),
+      jobStatus: (json['JobStatus'] as String?)?.let(JobStatus.fromString),
       nextToken: json['NextToken'] as String?,
       results: (json['Results'] as List?)
           ?.whereNotNull()
@@ -2833,7 +2695,7 @@ class GetLendingAnalysisResponse {
       if (analyzeLendingModelVersion != null)
         'AnalyzeLendingModelVersion': analyzeLendingModelVersion,
       if (documentMetadata != null) 'DocumentMetadata': documentMetadata,
-      if (jobStatus != null) 'JobStatus': jobStatus.toValue(),
+      if (jobStatus != null) 'JobStatus': jobStatus.value,
       if (nextToken != null) 'NextToken': nextToken,
       if (results != null) 'Results': results,
       if (statusMessage != null) 'StatusMessage': statusMessage,
@@ -2877,7 +2739,7 @@ class GetLendingAnalysisSummaryResponse {
           ? DocumentMetadata.fromJson(
               json['DocumentMetadata'] as Map<String, dynamic>)
           : null,
-      jobStatus: (json['JobStatus'] as String?)?.toJobStatus(),
+      jobStatus: (json['JobStatus'] as String?)?.let(JobStatus.fromString),
       statusMessage: json['StatusMessage'] as String?,
       summary: json['Summary'] != null
           ? LendingSummary.fromJson(json['Summary'] as Map<String, dynamic>)
@@ -2900,7 +2762,7 @@ class GetLendingAnalysisSummaryResponse {
       if (analyzeLendingModelVersion != null)
         'AnalyzeLendingModelVersion': analyzeLendingModelVersion,
       if (documentMetadata != null) 'DocumentMetadata': documentMetadata,
-      if (jobStatus != null) 'JobStatus': jobStatus.toValue(),
+      if (jobStatus != null) 'JobStatus': jobStatus.value,
       if (statusMessage != null) 'StatusMessage': statusMessage,
       if (summary != null) 'Summary': summary,
       if (warnings != null) 'Warnings': warnings,
@@ -3006,8 +2868,7 @@ class HumanLoopDataAttributes {
     final contentClassifiers = this.contentClassifiers;
     return {
       if (contentClassifiers != null)
-        'ContentClassifiers':
-            contentClassifiers.map((e) => e.toValue()).toList(),
+        'ContentClassifiers': contentClassifiers.map((e) => e.value).toList(),
     };
   }
 }
@@ -3093,41 +2954,19 @@ class IdentityDocumentField {
 }
 
 enum JobStatus {
-  inProgress,
-  succeeded,
-  failed,
-  partialSuccess,
-}
+  inProgress('IN_PROGRESS'),
+  succeeded('SUCCEEDED'),
+  failed('FAILED'),
+  partialSuccess('PARTIAL_SUCCESS'),
+  ;
 
-extension JobStatusValueExtension on JobStatus {
-  String toValue() {
-    switch (this) {
-      case JobStatus.inProgress:
-        return 'IN_PROGRESS';
-      case JobStatus.succeeded:
-        return 'SUCCEEDED';
-      case JobStatus.failed:
-        return 'FAILED';
-      case JobStatus.partialSuccess:
-        return 'PARTIAL_SUCCESS';
-    }
-  }
-}
+  final String value;
 
-extension JobStatusFromString on String {
-  JobStatus toJobStatus() {
-    switch (this) {
-      case 'IN_PROGRESS':
-        return JobStatus.inProgress;
-      case 'SUCCEEDED':
-        return JobStatus.succeeded;
-      case 'FAILED':
-        return JobStatus.failed;
-      case 'PARTIAL_SUCCESS':
-        return JobStatus.partialSuccess;
-    }
-    throw Exception('$this is not known in enum JobStatus');
-  }
+  const JobStatus(this.value);
+
+  static JobStatus fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum JobStatus'));
 }
 
 /// The results extracted for a lending document.
@@ -3157,7 +2996,7 @@ class LendingDetection {
           ? Geometry.fromJson(json['Geometry'] as Map<String, dynamic>)
           : null,
       selectionStatus:
-          (json['SelectionStatus'] as String?)?.toSelectionStatus(),
+          (json['SelectionStatus'] as String?)?.let(SelectionStatus.fromString),
       text: json['Text'] as String?,
     );
   }
@@ -3170,7 +3009,7 @@ class LendingDetection {
     return {
       if (confidence != null) 'Confidence': confidence,
       if (geometry != null) 'Geometry': geometry,
-      if (selectionStatus != null) 'SelectionStatus': selectionStatus.toValue(),
+      if (selectionStatus != null) 'SelectionStatus': selectionStatus.value,
       if (text != null) 'Text': text,
     };
   }
@@ -3418,7 +3257,7 @@ class NormalizedValue {
   factory NormalizedValue.fromJson(Map<String, dynamic> json) {
     return NormalizedValue(
       value: json['Value'] as String?,
-      valueType: (json['ValueType'] as String?)?.toValueType(),
+      valueType: (json['ValueType'] as String?)?.let(ValueType.fromString),
     );
   }
 
@@ -3427,7 +3266,7 @@ class NormalizedValue {
     final valueType = this.valueType;
     return {
       if (value != null) 'Value': value,
-      if (valueType != null) 'ValueType': valueType.toValue(),
+      if (valueType != null) 'ValueType': valueType.value,
     };
   }
 }
@@ -3756,7 +3595,7 @@ class Relationship {
           ?.whereNotNull()
           .map((e) => e as String)
           .toList(),
-      type: (json['Type'] as String?)?.toRelationshipType(),
+      type: (json['Type'] as String?)?.let(RelationshipType.fromString),
     );
   }
 
@@ -3765,72 +3604,31 @@ class Relationship {
     final type = this.type;
     return {
       if (ids != null) 'Ids': ids,
-      if (type != null) 'Type': type.toValue(),
+      if (type != null) 'Type': type.value,
     };
   }
 }
 
 enum RelationshipType {
-  value,
-  child,
-  complexFeatures,
-  mergedCell,
-  title,
-  answer,
-  table,
-  tableTitle,
-  tableFooter,
-}
+  value('VALUE'),
+  child('CHILD'),
+  complexFeatures('COMPLEX_FEATURES'),
+  mergedCell('MERGED_CELL'),
+  title('TITLE'),
+  answer('ANSWER'),
+  table('TABLE'),
+  tableTitle('TABLE_TITLE'),
+  tableFooter('TABLE_FOOTER'),
+  ;
 
-extension RelationshipTypeValueExtension on RelationshipType {
-  String toValue() {
-    switch (this) {
-      case RelationshipType.value:
-        return 'VALUE';
-      case RelationshipType.child:
-        return 'CHILD';
-      case RelationshipType.complexFeatures:
-        return 'COMPLEX_FEATURES';
-      case RelationshipType.mergedCell:
-        return 'MERGED_CELL';
-      case RelationshipType.title:
-        return 'TITLE';
-      case RelationshipType.answer:
-        return 'ANSWER';
-      case RelationshipType.table:
-        return 'TABLE';
-      case RelationshipType.tableTitle:
-        return 'TABLE_TITLE';
-      case RelationshipType.tableFooter:
-        return 'TABLE_FOOTER';
-    }
-  }
-}
+  final String value;
 
-extension RelationshipTypeFromString on String {
-  RelationshipType toRelationshipType() {
-    switch (this) {
-      case 'VALUE':
-        return RelationshipType.value;
-      case 'CHILD':
-        return RelationshipType.child;
-      case 'COMPLEX_FEATURES':
-        return RelationshipType.complexFeatures;
-      case 'MERGED_CELL':
-        return RelationshipType.mergedCell;
-      case 'TITLE':
-        return RelationshipType.title;
-      case 'ANSWER':
-        return RelationshipType.answer;
-      case 'TABLE':
-        return RelationshipType.table;
-      case 'TABLE_TITLE':
-        return RelationshipType.tableTitle;
-      case 'TABLE_FOOTER':
-        return RelationshipType.tableFooter;
-    }
-    throw Exception('$this is not known in enum RelationshipType');
-  }
+  const RelationshipType(this.value);
+
+  static RelationshipType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum RelationshipType'));
 }
 
 /// The S3 bucket name and file name that identifies the document.
@@ -3872,31 +3670,18 @@ class S3Object {
 }
 
 enum SelectionStatus {
-  selected,
-  notSelected,
-}
+  selected('SELECTED'),
+  notSelected('NOT_SELECTED'),
+  ;
 
-extension SelectionStatusValueExtension on SelectionStatus {
-  String toValue() {
-    switch (this) {
-      case SelectionStatus.selected:
-        return 'SELECTED';
-      case SelectionStatus.notSelected:
-        return 'NOT_SELECTED';
-    }
-  }
-}
+  final String value;
 
-extension SelectionStatusFromString on String {
-  SelectionStatus toSelectionStatus() {
-    switch (this) {
-      case 'SELECTED':
-        return SelectionStatus.selected;
-      case 'NOT_SELECTED':
-        return SelectionStatus.notSelected;
-    }
-    throw Exception('$this is not known in enum SelectionStatus');
-  }
+  const SelectionStatus(this.value);
+
+  static SelectionStatus fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum SelectionStatus'));
 }
 
 /// Information regarding a detected signature on a page.
@@ -4065,31 +3850,17 @@ class StartLendingAnalysisResponse {
 }
 
 enum TextType {
-  handwriting,
-  printed,
-}
+  handwriting('HANDWRITING'),
+  printed('PRINTED'),
+  ;
 
-extension TextTypeValueExtension on TextType {
-  String toValue() {
-    switch (this) {
-      case TextType.handwriting:
-        return 'HANDWRITING';
-      case TextType.printed:
-        return 'PRINTED';
-    }
-  }
-}
+  final String value;
 
-extension TextTypeFromString on String {
-  TextType toTextType() {
-    switch (this) {
-      case 'HANDWRITING':
-        return TextType.handwriting;
-      case 'PRINTED':
-        return TextType.printed;
-    }
-    throw Exception('$this is not known in enum TextType');
-  }
+  const TextType(this.value);
+
+  static TextType fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum TextType'));
 }
 
 /// A structure containing information about an undetected signature on a page
@@ -4117,26 +3888,16 @@ class UndetectedSignature {
 }
 
 enum ValueType {
-  date,
-}
+  date('DATE'),
+  ;
 
-extension ValueTypeValueExtension on ValueType {
-  String toValue() {
-    switch (this) {
-      case ValueType.date:
-        return 'DATE';
-    }
-  }
-}
+  final String value;
 
-extension ValueTypeFromString on String {
-  ValueType toValueType() {
-    switch (this) {
-      case 'DATE':
-        return ValueType.date;
-    }
-    throw Exception('$this is not known in enum ValueType');
-  }
+  const ValueType(this.value);
+
+  static ValueType fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum ValueType'));
 }
 
 /// A warning about an issue that occurred during asynchronous text analysis

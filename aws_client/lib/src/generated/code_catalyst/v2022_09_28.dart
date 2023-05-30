@@ -288,7 +288,7 @@ class CodeCatalyst {
       1200,
     );
     final $payload = <String, dynamic>{
-      'instanceType': instanceType.toValue(),
+      'instanceType': instanceType.value,
       'persistentStorage': persistentStorage,
       if (alias != null) 'alias': alias,
       if (clientToken != null) 'clientToken': clientToken,
@@ -1074,7 +1074,7 @@ class CodeCatalyst {
       if (ides != null) 'ides': ides,
       if (inactivityTimeoutMinutes != null)
         'inactivityTimeoutMinutes': inactivityTimeoutMinutes,
-      if (instanceType != null) 'instanceType': instanceType.toValue(),
+      if (instanceType != null) 'instanceType': instanceType.value,
     };
     final response = await _protocol.send(
       payload: $payload,
@@ -1263,7 +1263,7 @@ class CodeCatalyst {
       if (ides != null) 'ides': ides,
       if (inactivityTimeoutMinutes != null)
         'inactivityTimeoutMinutes': inactivityTimeoutMinutes,
-      if (instanceType != null) 'instanceType': instanceType.toValue(),
+      if (instanceType != null) 'instanceType': instanceType.value,
     };
     final response = await _protocol.send(
       payload: $payload,
@@ -1336,46 +1336,21 @@ class AccessTokenSummary {
 }
 
 enum ComparisonOperator {
-  eq,
-  gt,
-  ge,
-  lt,
-  le,
-}
+  eq('EQ'),
+  gt('GT'),
+  ge('GE'),
+  lt('LT'),
+  le('LE'),
+  ;
 
-extension ComparisonOperatorValueExtension on ComparisonOperator {
-  String toValue() {
-    switch (this) {
-      case ComparisonOperator.eq:
-        return 'EQ';
-      case ComparisonOperator.gt:
-        return 'GT';
-      case ComparisonOperator.ge:
-        return 'GE';
-      case ComparisonOperator.lt:
-        return 'LT';
-      case ComparisonOperator.le:
-        return 'LE';
-    }
-  }
-}
+  final String value;
 
-extension ComparisonOperatorFromString on String {
-  ComparisonOperator toComparisonOperator() {
-    switch (this) {
-      case 'EQ':
-        return ComparisonOperator.eq;
-      case 'GT':
-        return ComparisonOperator.gt;
-      case 'GE':
-        return ComparisonOperator.ge;
-      case 'LT':
-        return ComparisonOperator.lt;
-      case 'LE':
-        return ComparisonOperator.le;
-    }
-    throw Exception('$this is not known in enum ComparisonOperator');
-  }
+  const ComparisonOperator(this.value);
+
+  static ComparisonOperator fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum ComparisonOperator'));
 }
 
 class CreateAccessTokenResponse {
@@ -1679,7 +1654,7 @@ class DevEnvironmentSessionConfiguration {
     final executeCommandSessionConfiguration =
         this.executeCommandSessionConfiguration;
     return {
-      'sessionType': sessionType.toValue(),
+      'sessionType': sessionType.value,
       if (executeCommandSessionConfiguration != null)
         'executeCommandSessionConfiguration':
             executeCommandSessionConfiguration,
@@ -1741,89 +1716,39 @@ class DevEnvironmentSessionSummary {
 }
 
 enum DevEnvironmentSessionType {
-  ssm,
-  ssh,
-}
+  ssm('SSM'),
+  ssh('SSH'),
+  ;
 
-extension DevEnvironmentSessionTypeValueExtension on DevEnvironmentSessionType {
-  String toValue() {
-    switch (this) {
-      case DevEnvironmentSessionType.ssm:
-        return 'SSM';
-      case DevEnvironmentSessionType.ssh:
-        return 'SSH';
-    }
-  }
-}
+  final String value;
 
-extension DevEnvironmentSessionTypeFromString on String {
-  DevEnvironmentSessionType toDevEnvironmentSessionType() {
-    switch (this) {
-      case 'SSM':
-        return DevEnvironmentSessionType.ssm;
-      case 'SSH':
-        return DevEnvironmentSessionType.ssh;
-    }
-    throw Exception('$this is not known in enum DevEnvironmentSessionType');
-  }
+  const DevEnvironmentSessionType(this.value);
+
+  static DevEnvironmentSessionType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum DevEnvironmentSessionType'));
 }
 
 enum DevEnvironmentStatus {
-  pending,
-  running,
-  starting,
-  stopping,
-  stopped,
-  failed,
-  deleting,
-  deleted,
-}
+  pending('PENDING'),
+  running('RUNNING'),
+  starting('STARTING'),
+  stopping('STOPPING'),
+  stopped('STOPPED'),
+  failed('FAILED'),
+  deleting('DELETING'),
+  deleted('DELETED'),
+  ;
 
-extension DevEnvironmentStatusValueExtension on DevEnvironmentStatus {
-  String toValue() {
-    switch (this) {
-      case DevEnvironmentStatus.pending:
-        return 'PENDING';
-      case DevEnvironmentStatus.running:
-        return 'RUNNING';
-      case DevEnvironmentStatus.starting:
-        return 'STARTING';
-      case DevEnvironmentStatus.stopping:
-        return 'STOPPING';
-      case DevEnvironmentStatus.stopped:
-        return 'STOPPED';
-      case DevEnvironmentStatus.failed:
-        return 'FAILED';
-      case DevEnvironmentStatus.deleting:
-        return 'DELETING';
-      case DevEnvironmentStatus.deleted:
-        return 'DELETED';
-    }
-  }
-}
+  final String value;
 
-extension DevEnvironmentStatusFromString on String {
-  DevEnvironmentStatus toDevEnvironmentStatus() {
-    switch (this) {
-      case 'PENDING':
-        return DevEnvironmentStatus.pending;
-      case 'RUNNING':
-        return DevEnvironmentStatus.running;
-      case 'STARTING':
-        return DevEnvironmentStatus.starting;
-      case 'STOPPING':
-        return DevEnvironmentStatus.stopping;
-      case 'STOPPED':
-        return DevEnvironmentStatus.stopped;
-      case 'FAILED':
-        return DevEnvironmentStatus.failed;
-      case 'DELETING':
-        return DevEnvironmentStatus.deleting;
-      case 'DELETED':
-        return DevEnvironmentStatus.deleted;
-    }
-    throw Exception('$this is not known in enum DevEnvironmentStatus');
-  }
+  const DevEnvironmentStatus(this.value);
+
+  static DevEnvironmentStatus fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum DevEnvironmentStatus'));
 }
 
 /// Information about a Dev Environment.
@@ -1895,7 +1820,7 @@ class DevEnvironmentSummary {
       creatorId: json['creatorId'] as String,
       id: json['id'] as String,
       inactivityTimeoutMinutes: json['inactivityTimeoutMinutes'] as int,
-      instanceType: (json['instanceType'] as String).toInstanceType(),
+      instanceType: InstanceType.fromString((json['instanceType'] as String)),
       lastUpdatedTime:
           nonNullableTimeStampFromJson(json['lastUpdatedTime'] as Object),
       persistentStorage: PersistentStorage.fromJson(
@@ -1905,7 +1830,7 @@ class DevEnvironmentSummary {
           .map((e) => DevEnvironmentRepositorySummary.fromJson(
               e as Map<String, dynamic>))
           .toList(),
-      status: (json['status'] as String).toDevEnvironmentStatus(),
+      status: DevEnvironmentStatus.fromString((json['status'] as String)),
       alias: json['alias'] as String?,
       ides: (json['ides'] as List?)
           ?.whereNotNull()
@@ -1935,11 +1860,11 @@ class DevEnvironmentSummary {
       'creatorId': creatorId,
       'id': id,
       'inactivityTimeoutMinutes': inactivityTimeoutMinutes,
-      'instanceType': instanceType.toValue(),
+      'instanceType': instanceType.value,
       'lastUpdatedTime': iso8601ToJson(lastUpdatedTime),
       'persistentStorage': persistentStorage,
       'repositories': repositories,
-      'status': status.toValue(),
+      'status': status.value,
       if (alias != null) 'alias': alias,
       if (ides != null) 'ides': ides,
       if (projectName != null) 'projectName': projectName,
@@ -2055,7 +1980,8 @@ class EventLogEntry {
       eventTime: nonNullableTimeStampFromJson(json['eventTime'] as Object),
       eventType: json['eventType'] as String,
       id: json['id'] as String,
-      operationType: (json['operationType'] as String).toOperationType(),
+      operationType:
+          OperationType.fromString((json['operationType'] as String)),
       userIdentity:
           UserIdentity.fromJson(json['userIdentity'] as Map<String, dynamic>),
       errorCode: json['errorCode'] as String?,
@@ -2100,7 +2026,7 @@ class EventLogEntry {
       'eventTime': iso8601ToJson(eventTime),
       'eventType': eventType,
       'id': id,
-      'operationType': operationType.toValue(),
+      'operationType': operationType.value,
       'userIdentity': userIdentity,
       if (errorCode != null) 'errorCode': errorCode,
       if (projectInformation != null) 'projectInformation': projectInformation,
@@ -2198,26 +2124,16 @@ class Filter {
 }
 
 enum FilterKey {
-  hasAccessTo,
-}
+  hasAccessTo('hasAccessTo'),
+  ;
 
-extension FilterKeyValueExtension on FilterKey {
-  String toValue() {
-    switch (this) {
-      case FilterKey.hasAccessTo:
-        return 'hasAccessTo';
-    }
-  }
-}
+  final String value;
 
-extension FilterKeyFromString on String {
-  FilterKey toFilterKey() {
-    switch (this) {
-      case 'hasAccessTo':
-        return FilterKey.hasAccessTo;
-    }
-    throw Exception('$this is not known in enum FilterKey');
-  }
+  const FilterKey(this.value);
+
+  static FilterKey fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum FilterKey'));
 }
 
 class GetDevEnvironmentResponse {
@@ -2287,7 +2203,7 @@ class GetDevEnvironmentResponse {
       creatorId: json['creatorId'] as String,
       id: json['id'] as String,
       inactivityTimeoutMinutes: json['inactivityTimeoutMinutes'] as int,
-      instanceType: (json['instanceType'] as String).toInstanceType(),
+      instanceType: InstanceType.fromString((json['instanceType'] as String)),
       lastUpdatedTime:
           nonNullableTimeStampFromJson(json['lastUpdatedTime'] as Object),
       persistentStorage: PersistentStorage.fromJson(
@@ -2299,7 +2215,7 @@ class GetDevEnvironmentResponse {
               e as Map<String, dynamic>))
           .toList(),
       spaceName: json['spaceName'] as String,
-      status: (json['status'] as String).toDevEnvironmentStatus(),
+      status: DevEnvironmentStatus.fromString((json['status'] as String)),
       alias: json['alias'] as String?,
       ides: (json['ides'] as List?)
           ?.whereNotNull()
@@ -2327,13 +2243,13 @@ class GetDevEnvironmentResponse {
       'creatorId': creatorId,
       'id': id,
       'inactivityTimeoutMinutes': inactivityTimeoutMinutes,
-      'instanceType': instanceType.toValue(),
+      'instanceType': instanceType.value,
       'lastUpdatedTime': iso8601ToJson(lastUpdatedTime),
       'persistentStorage': persistentStorage,
       'projectName': projectName,
       'repositories': repositories,
       'spaceName': spaceName,
-      'status': status.toValue(),
+      'status': status.value,
       if (alias != null) 'alias': alias,
       if (ides != null) 'ides': ides,
       if (statusReason != null) 'statusReason': statusReason,
@@ -2600,41 +2516,20 @@ class IdeConfiguration {
 }
 
 enum InstanceType {
-  devStandard1Small,
-  devStandard1Medium,
-  devStandard1Large,
-  devStandard1Xlarge,
-}
+  devStandard1Small('dev.standard1.small'),
+  devStandard1Medium('dev.standard1.medium'),
+  devStandard1Large('dev.standard1.large'),
+  devStandard1Xlarge('dev.standard1.xlarge'),
+  ;
 
-extension InstanceTypeValueExtension on InstanceType {
-  String toValue() {
-    switch (this) {
-      case InstanceType.devStandard1Small:
-        return 'dev.standard1.small';
-      case InstanceType.devStandard1Medium:
-        return 'dev.standard1.medium';
-      case InstanceType.devStandard1Large:
-        return 'dev.standard1.large';
-      case InstanceType.devStandard1Xlarge:
-        return 'dev.standard1.xlarge';
-    }
-  }
-}
+  final String value;
 
-extension InstanceTypeFromString on String {
-  InstanceType toInstanceType() {
-    switch (this) {
-      case 'dev.standard1.small':
-        return InstanceType.devStandard1Small;
-      case 'dev.standard1.medium':
-        return InstanceType.devStandard1Medium;
-      case 'dev.standard1.large':
-        return InstanceType.devStandard1Large;
-      case 'dev.standard1.xlarge':
-        return InstanceType.devStandard1Xlarge;
-    }
-    throw Exception('$this is not known in enum InstanceType');
-  }
+  const InstanceType(this.value);
+
+  static InstanceType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum InstanceType'));
 }
 
 class ListAccessTokensResponse {
@@ -3014,31 +2909,18 @@ class ListSpacesResponse {
 }
 
 enum OperationType {
-  readonly,
-  mutation,
-}
+  readonly('READONLY'),
+  mutation('MUTATION'),
+  ;
 
-extension OperationTypeValueExtension on OperationType {
-  String toValue() {
-    switch (this) {
-      case OperationType.readonly:
-        return 'READONLY';
-      case OperationType.mutation:
-        return 'MUTATION';
-    }
-  }
-}
+  final String value;
 
-extension OperationTypeFromString on String {
-  OperationType toOperationType() {
-    switch (this) {
-      case 'READONLY':
-        return OperationType.readonly;
-      case 'MUTATION':
-        return OperationType.mutation;
-    }
-    throw Exception('$this is not known in enum OperationType');
-  }
+  const OperationType(this.value);
+
+  static OperationType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum OperationType'));
 }
 
 /// Information about the persistent storage for a Dev Environment.
@@ -3143,10 +3025,10 @@ class ProjectListFilter {
     final values = this.values;
     final comparisonOperator = this.comparisonOperator;
     return {
-      'key': key.toValue(),
+      'key': key.value,
       'values': values,
       if (comparisonOperator != null)
-        'comparisonOperator': comparisonOperator.toValue(),
+        'comparisonOperator': comparisonOperator.value,
     };
   }
 }
@@ -3280,7 +3162,7 @@ class StartDevEnvironmentResponse {
       id: json['id'] as String,
       projectName: json['projectName'] as String,
       spaceName: json['spaceName'] as String,
-      status: (json['status'] as String).toDevEnvironmentStatus(),
+      status: DevEnvironmentStatus.fromString((json['status'] as String)),
     );
   }
 
@@ -3293,7 +3175,7 @@ class StartDevEnvironmentResponse {
       'id': id,
       'projectName': projectName,
       'spaceName': spaceName,
-      'status': status.toValue(),
+      'status': status.value,
     };
   }
 }
@@ -3374,7 +3256,7 @@ class StopDevEnvironmentResponse {
       id: json['id'] as String,
       projectName: json['projectName'] as String,
       spaceName: json['spaceName'] as String,
-      status: (json['status'] as String).toDevEnvironmentStatus(),
+      status: DevEnvironmentStatus.fromString((json['status'] as String)),
     );
   }
 
@@ -3387,7 +3269,7 @@ class StopDevEnvironmentResponse {
       'id': id,
       'projectName': projectName,
       'spaceName': spaceName,
-      'status': status.toValue(),
+      'status': status.value,
     };
   }
 }
@@ -3489,7 +3371,8 @@ class UpdateDevEnvironmentResponse {
           .map((e) => IdeConfiguration.fromJson(e as Map<String, dynamic>))
           .toList(),
       inactivityTimeoutMinutes: json['inactivityTimeoutMinutes'] as int?,
-      instanceType: (json['instanceType'] as String?)?.toInstanceType(),
+      instanceType:
+          (json['instanceType'] as String?)?.let(InstanceType.fromString),
     );
   }
 
@@ -3511,7 +3394,7 @@ class UpdateDevEnvironmentResponse {
       if (ides != null) 'ides': ides,
       if (inactivityTimeoutMinutes != null)
         'inactivityTimeoutMinutes': inactivityTimeoutMinutes,
-      if (instanceType != null) 'instanceType': instanceType.toValue(),
+      if (instanceType != null) 'instanceType': instanceType.value,
     };
   }
 }
@@ -3542,7 +3425,7 @@ class UserIdentity {
   factory UserIdentity.fromJson(Map<String, dynamic> json) {
     return UserIdentity(
       principalId: json['principalId'] as String,
-      userType: (json['userType'] as String).toUserType(),
+      userType: UserType.fromString((json['userType'] as String)),
       awsAccountId: json['awsAccountId'] as String?,
       userName: json['userName'] as String?,
     );
@@ -3555,7 +3438,7 @@ class UserIdentity {
     final userName = this.userName;
     return {
       'principalId': principalId,
-      'userType': userType.toValue(),
+      'userType': userType.value,
       if (awsAccountId != null) 'awsAccountId': awsAccountId,
       if (userName != null) 'userName': userName,
     };
@@ -3563,36 +3446,18 @@ class UserIdentity {
 }
 
 enum UserType {
-  user,
-  awsAccount,
-  unknown,
-}
+  user('USER'),
+  awsAccount('AWS_ACCOUNT'),
+  unknown('UNKNOWN'),
+  ;
 
-extension UserTypeValueExtension on UserType {
-  String toValue() {
-    switch (this) {
-      case UserType.user:
-        return 'USER';
-      case UserType.awsAccount:
-        return 'AWS_ACCOUNT';
-      case UserType.unknown:
-        return 'UNKNOWN';
-    }
-  }
-}
+  final String value;
 
-extension UserTypeFromString on String {
-  UserType toUserType() {
-    switch (this) {
-      case 'USER':
-        return UserType.user;
-      case 'AWS_ACCOUNT':
-        return UserType.awsAccount;
-      case 'UNKNOWN':
-        return UserType.unknown;
-    }
-    throw Exception('$this is not known in enum UserType');
-  }
+  const UserType(this.value);
+
+  static UserType fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum UserType'));
 }
 
 class VerifySessionResponse {

@@ -1683,7 +1683,7 @@ class CloudFront {
     FunctionStage? stage,
   }) async {
     final $query = <String, List<String>>{
-      if (stage != null) 'Stage': [stage.toValue()],
+      if (stage != null) 'Stage': [stage.value],
     };
     final $result = await _protocol.sendRaw(
       method: 'GET',
@@ -2038,7 +2038,7 @@ class CloudFront {
     FunctionStage? stage,
   }) async {
     final $query = <String, List<String>>{
-      if (stage != null) 'Stage': [stage.toValue()],
+      if (stage != null) 'Stage': [stage.value],
     };
     final $result = await _protocol.sendRaw(
       method: 'GET',
@@ -2541,7 +2541,7 @@ class CloudFront {
     final $query = <String, List<String>>{
       if (marker != null) 'Marker': [marker],
       if (maxItems != null) 'MaxItems': [maxItems],
-      if (type != null) 'Type': [type.toValue()],
+      if (type != null) 'Type': [type.value],
     };
     final $result = await _protocol.sendRaw(
       method: 'GET',
@@ -3171,7 +3171,7 @@ class CloudFront {
     final $query = <String, List<String>>{
       if (marker != null) 'Marker': [marker],
       if (maxItems != null) 'MaxItems': [maxItems],
-      if (stage != null) 'Stage': [stage.toValue()],
+      if (stage != null) 'Stage': [stage.value],
     };
     final $result = await _protocol.sendRaw(
       method: 'GET',
@@ -3360,7 +3360,7 @@ class CloudFront {
     final $query = <String, List<String>>{
       if (marker != null) 'Marker': [marker],
       if (maxItems != null) 'MaxItems': [maxItems],
-      if (type != null) 'Type': [type.toValue()],
+      if (type != null) 'Type': [type.value],
     };
     final $result = await _protocol.sendRaw(
       method: 'GET',
@@ -3502,7 +3502,7 @@ class CloudFront {
     final $query = <String, List<String>>{
       if (marker != null) 'Marker': [marker],
       if (maxItems != null) 'MaxItems': [maxItems],
-      if (type != null) 'Type': [type.toValue()],
+      if (type != null) 'Type': [type.value],
     };
     final $result = await _protocol.sendRaw(
       method: 'GET',
@@ -4884,9 +4884,8 @@ class AliasICPRecordal {
   factory AliasICPRecordal.fromXml(_s.XmlElement elem) {
     return AliasICPRecordal(
       cname: _s.extractXmlStringValue(elem, 'CNAME'),
-      iCPRecordalStatus: _s
-          .extractXmlStringValue(elem, 'ICPRecordalStatus')
-          ?.toICPRecordalStatus(),
+      iCPRecordalStatus: ICPRecordalStatus.fromString(
+          _s.extractXmlStringValue(elem, 'ICPRecordalStatus')),
     );
   }
 
@@ -4896,7 +4895,7 @@ class AliasICPRecordal {
     return {
       if (cname != null) 'CNAME': cname,
       if (iCPRecordalStatus != null)
-        'ICPRecordalStatus': iCPRecordalStatus.toValue(),
+        'ICPRecordalStatus': iCPRecordalStatus.value,
     };
   }
 }
@@ -5011,7 +5010,7 @@ class AllowedMethods {
     final quantity = this.quantity;
     final cachedMethods = this.cachedMethods;
     return {
-      'Items': items.map((e) => e.toValue()).toList(),
+      'Items': items.map((e) => e.value).toList(),
       'Quantity': quantity,
       if (cachedMethods != null) 'CachedMethods': cachedMethods,
     };
@@ -5024,7 +5023,7 @@ class AllowedMethods {
     final $children = <_s.XmlNode>[
       _s.encodeXmlIntValue('Quantity', quantity),
       _s.XmlElement(_s.XmlName('Items'), [],
-          items.map((e) => _s.encodeXmlStringValue('Method', e.toValue()))),
+          items.map((e) => _s.encodeXmlStringValue('Method', e.value))),
       if (cachedMethods != null) cachedMethods.toXml('CachedMethods'),
     ];
     final $attributes = <_s.XmlAttribute>[
@@ -5333,9 +5332,8 @@ class CacheBehavior {
     return CacheBehavior(
       pathPattern: _s.extractXmlStringValue(elem, 'PathPattern')!,
       targetOriginId: _s.extractXmlStringValue(elem, 'TargetOriginId')!,
-      viewerProtocolPolicy: _s
-          .extractXmlStringValue(elem, 'ViewerProtocolPolicy')!
-          .toViewerProtocolPolicy(),
+      viewerProtocolPolicy: ViewerProtocolPolicy.fromString(
+          _s.extractXmlStringValue(elem, 'ViewerProtocolPolicy')!),
       allowedMethods: _s
           .extractXmlChild(elem, 'AllowedMethods')
           ?.let(AllowedMethods.fromXml),
@@ -5394,7 +5392,7 @@ class CacheBehavior {
     return {
       'PathPattern': pathPattern,
       'TargetOriginId': targetOriginId,
-      'ViewerProtocolPolicy': viewerProtocolPolicy.toValue(),
+      'ViewerProtocolPolicy': viewerProtocolPolicy.value,
       if (allowedMethods != null) 'AllowedMethods': allowedMethods,
       if (cachePolicyId != null) 'CachePolicyId': cachePolicyId,
       if (compress != null) 'Compress': compress,
@@ -5446,7 +5444,7 @@ class CacheBehavior {
       if (trustedSigners != null) trustedSigners.toXml('TrustedSigners'),
       if (trustedKeyGroups != null) trustedKeyGroups.toXml('TrustedKeyGroups'),
       _s.encodeXmlStringValue(
-          'ViewerProtocolPolicy', viewerProtocolPolicy.toValue()),
+          'ViewerProtocolPolicy', viewerProtocolPolicy.value),
       if (allowedMethods != null) allowedMethods.toXml('AllowedMethods'),
       if (smoothStreaming != null)
         _s.encodeXmlBoolValue('SmoothStreaming', smoothStreaming),
@@ -5739,41 +5737,20 @@ class CachePolicyConfig {
 }
 
 enum CachePolicyCookieBehavior {
-  none,
-  whitelist,
-  allExcept,
-  all,
-}
+  none('none'),
+  whitelist('whitelist'),
+  allExcept('allExcept'),
+  all('all'),
+  ;
 
-extension CachePolicyCookieBehaviorValueExtension on CachePolicyCookieBehavior {
-  String toValue() {
-    switch (this) {
-      case CachePolicyCookieBehavior.none:
-        return 'none';
-      case CachePolicyCookieBehavior.whitelist:
-        return 'whitelist';
-      case CachePolicyCookieBehavior.allExcept:
-        return 'allExcept';
-      case CachePolicyCookieBehavior.all:
-        return 'all';
-    }
-  }
-}
+  final String value;
 
-extension CachePolicyCookieBehaviorFromString on String {
-  CachePolicyCookieBehavior toCachePolicyCookieBehavior() {
-    switch (this) {
-      case 'none':
-        return CachePolicyCookieBehavior.none;
-      case 'whitelist':
-        return CachePolicyCookieBehavior.whitelist;
-      case 'allExcept':
-        return CachePolicyCookieBehavior.allExcept;
-      case 'all':
-        return CachePolicyCookieBehavior.all;
-    }
-    throw Exception('$this is not known in enum CachePolicyCookieBehavior');
-  }
+  const CachePolicyCookieBehavior(this.value);
+
+  static CachePolicyCookieBehavior fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum CachePolicyCookieBehavior'));
 }
 
 /// An object that determines whether any cookies in viewer requests (and if so,
@@ -5815,9 +5792,8 @@ class CachePolicyCookiesConfig {
   });
   factory CachePolicyCookiesConfig.fromXml(_s.XmlElement elem) {
     return CachePolicyCookiesConfig(
-      cookieBehavior: _s
-          .extractXmlStringValue(elem, 'CookieBehavior')!
-          .toCachePolicyCookieBehavior(),
+      cookieBehavior: CachePolicyCookieBehavior.fromString(
+          _s.extractXmlStringValue(elem, 'CookieBehavior')!),
       cookies: _s.extractXmlChild(elem, 'Cookies')?.let(CookieNames.fromXml),
     );
   }
@@ -5826,7 +5802,7 @@ class CachePolicyCookiesConfig {
     final cookieBehavior = this.cookieBehavior;
     final cookies = this.cookies;
     return {
-      'CookieBehavior': cookieBehavior.toValue(),
+      'CookieBehavior': cookieBehavior.value,
       if (cookies != null) 'Cookies': cookies,
     };
   }
@@ -5835,7 +5811,7 @@ class CachePolicyCookiesConfig {
     final cookieBehavior = this.cookieBehavior;
     final cookies = this.cookies;
     final $children = <_s.XmlNode>[
-      _s.encodeXmlStringValue('CookieBehavior', cookieBehavior.toValue()),
+      _s.encodeXmlStringValue('CookieBehavior', cookieBehavior.value),
       if (cookies != null) cookies.toXml('Cookies'),
     ];
     final $attributes = <_s.XmlAttribute>[
@@ -5850,31 +5826,18 @@ class CachePolicyCookiesConfig {
 }
 
 enum CachePolicyHeaderBehavior {
-  none,
-  whitelist,
-}
+  none('none'),
+  whitelist('whitelist'),
+  ;
 
-extension CachePolicyHeaderBehaviorValueExtension on CachePolicyHeaderBehavior {
-  String toValue() {
-    switch (this) {
-      case CachePolicyHeaderBehavior.none:
-        return 'none';
-      case CachePolicyHeaderBehavior.whitelist:
-        return 'whitelist';
-    }
-  }
-}
+  final String value;
 
-extension CachePolicyHeaderBehaviorFromString on String {
-  CachePolicyHeaderBehavior toCachePolicyHeaderBehavior() {
-    switch (this) {
-      case 'none':
-        return CachePolicyHeaderBehavior.none;
-      case 'whitelist':
-        return CachePolicyHeaderBehavior.whitelist;
-    }
-    throw Exception('$this is not known in enum CachePolicyHeaderBehavior');
-  }
+  const CachePolicyHeaderBehavior(this.value);
+
+  static CachePolicyHeaderBehavior fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum CachePolicyHeaderBehavior'));
 }
 
 /// An object that determines whether any HTTP headers (and if so, which
@@ -5906,9 +5869,8 @@ class CachePolicyHeadersConfig {
   });
   factory CachePolicyHeadersConfig.fromXml(_s.XmlElement elem) {
     return CachePolicyHeadersConfig(
-      headerBehavior: _s
-          .extractXmlStringValue(elem, 'HeaderBehavior')!
-          .toCachePolicyHeaderBehavior(),
+      headerBehavior: CachePolicyHeaderBehavior.fromString(
+          _s.extractXmlStringValue(elem, 'HeaderBehavior')!),
       headers: _s.extractXmlChild(elem, 'Headers')?.let(Headers.fromXml),
     );
   }
@@ -5917,7 +5879,7 @@ class CachePolicyHeadersConfig {
     final headerBehavior = this.headerBehavior;
     final headers = this.headers;
     return {
-      'HeaderBehavior': headerBehavior.toValue(),
+      'HeaderBehavior': headerBehavior.value,
       if (headers != null) 'Headers': headers,
     };
   }
@@ -5926,7 +5888,7 @@ class CachePolicyHeadersConfig {
     final headerBehavior = this.headerBehavior;
     final headers = this.headers;
     final $children = <_s.XmlNode>[
-      _s.encodeXmlStringValue('HeaderBehavior', headerBehavior.toValue()),
+      _s.encodeXmlStringValue('HeaderBehavior', headerBehavior.value),
       if (headers != null) headers.toXml('Headers'),
     ];
     final $attributes = <_s.XmlAttribute>[
@@ -5990,43 +5952,20 @@ class CachePolicyList {
 }
 
 enum CachePolicyQueryStringBehavior {
-  none,
-  whitelist,
-  allExcept,
-  all,
-}
+  none('none'),
+  whitelist('whitelist'),
+  allExcept('allExcept'),
+  all('all'),
+  ;
 
-extension CachePolicyQueryStringBehaviorValueExtension
-    on CachePolicyQueryStringBehavior {
-  String toValue() {
-    switch (this) {
-      case CachePolicyQueryStringBehavior.none:
-        return 'none';
-      case CachePolicyQueryStringBehavior.whitelist:
-        return 'whitelist';
-      case CachePolicyQueryStringBehavior.allExcept:
-        return 'allExcept';
-      case CachePolicyQueryStringBehavior.all:
-        return 'all';
-    }
-  }
-}
+  final String value;
 
-extension CachePolicyQueryStringBehaviorFromString on String {
-  CachePolicyQueryStringBehavior toCachePolicyQueryStringBehavior() {
-    switch (this) {
-      case 'none':
-        return CachePolicyQueryStringBehavior.none;
-      case 'whitelist':
-        return CachePolicyQueryStringBehavior.whitelist;
-      case 'allExcept':
-        return CachePolicyQueryStringBehavior.allExcept;
-      case 'all':
-        return CachePolicyQueryStringBehavior.all;
-    }
-    throw Exception(
-        '$this is not known in enum CachePolicyQueryStringBehavior');
-  }
+  const CachePolicyQueryStringBehavior(this.value);
+
+  static CachePolicyQueryStringBehavior fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum CachePolicyQueryStringBehavior'));
 }
 
 /// An object that determines whether any URL query strings in viewer requests
@@ -6078,9 +6017,8 @@ class CachePolicyQueryStringsConfig {
   });
   factory CachePolicyQueryStringsConfig.fromXml(_s.XmlElement elem) {
     return CachePolicyQueryStringsConfig(
-      queryStringBehavior: _s
-          .extractXmlStringValue(elem, 'QueryStringBehavior')!
-          .toCachePolicyQueryStringBehavior(),
+      queryStringBehavior: CachePolicyQueryStringBehavior.fromString(
+          _s.extractXmlStringValue(elem, 'QueryStringBehavior')!),
       queryStrings: _s
           .extractXmlChild(elem, 'QueryStrings')
           ?.let(QueryStringNames.fromXml),
@@ -6091,7 +6029,7 @@ class CachePolicyQueryStringsConfig {
     final queryStringBehavior = this.queryStringBehavior;
     final queryStrings = this.queryStrings;
     return {
-      'QueryStringBehavior': queryStringBehavior.toValue(),
+      'QueryStringBehavior': queryStringBehavior.value,
       if (queryStrings != null) 'QueryStrings': queryStrings,
     };
   }
@@ -6100,8 +6038,7 @@ class CachePolicyQueryStringsConfig {
     final queryStringBehavior = this.queryStringBehavior;
     final queryStrings = this.queryStrings;
     final $children = <_s.XmlNode>[
-      _s.encodeXmlStringValue(
-          'QueryStringBehavior', queryStringBehavior.toValue()),
+      _s.encodeXmlStringValue('QueryStringBehavior', queryStringBehavior.value),
       if (queryStrings != null) queryStrings.toXml('QueryStrings'),
     ];
     final $attributes = <_s.XmlAttribute>[
@@ -6133,7 +6070,7 @@ class CachePolicySummary {
     return CachePolicySummary(
       cachePolicy:
           CachePolicy.fromXml(_s.extractXmlChild(elem, 'CachePolicy')!),
-      type: _s.extractXmlStringValue(elem, 'Type')!.toCachePolicyType(),
+      type: CachePolicyType.fromString(_s.extractXmlStringValue(elem, 'Type')!),
     );
   }
 
@@ -6142,37 +6079,24 @@ class CachePolicySummary {
     final type = this.type;
     return {
       'CachePolicy': cachePolicy,
-      'Type': type.toValue(),
+      'Type': type.value,
     };
   }
 }
 
 enum CachePolicyType {
-  managed,
-  custom,
-}
+  managed('managed'),
+  custom('custom'),
+  ;
 
-extension CachePolicyTypeValueExtension on CachePolicyType {
-  String toValue() {
-    switch (this) {
-      case CachePolicyType.managed:
-        return 'managed';
-      case CachePolicyType.custom:
-        return 'custom';
-    }
-  }
-}
+  final String value;
 
-extension CachePolicyTypeFromString on String {
-  CachePolicyType toCachePolicyType() {
-    switch (this) {
-      case 'managed':
-        return CachePolicyType.managed;
-      case 'custom':
-        return CachePolicyType.custom;
-    }
-    throw Exception('$this is not known in enum CachePolicyType');
-  }
+  const CachePolicyType(this.value);
+
+  static CachePolicyType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum CachePolicyType'));
 }
 
 /// A complex type that controls whether CloudFront caches the response to
@@ -6221,7 +6145,7 @@ class CachedMethods {
     final items = this.items;
     final quantity = this.quantity;
     return {
-      'Items': items.map((e) => e.toValue()).toList(),
+      'Items': items.map((e) => e.value).toList(),
       'Quantity': quantity,
     };
   }
@@ -6232,7 +6156,7 @@ class CachedMethods {
     final $children = <_s.XmlNode>[
       _s.encodeXmlIntValue('Quantity', quantity),
       _s.XmlElement(_s.XmlName('Items'), [],
-          items.map((e) => _s.encodeXmlStringValue('Method', e.toValue()))),
+          items.map((e) => _s.encodeXmlStringValue('Method', e.value))),
     ];
     final $attributes = <_s.XmlAttribute>[
       ...?attributes,
@@ -6246,36 +6170,19 @@ class CachedMethods {
 }
 
 enum CertificateSource {
-  cloudfront,
-  iam,
-  acm,
-}
+  cloudfront('cloudfront'),
+  iam('iam'),
+  acm('acm'),
+  ;
 
-extension CertificateSourceValueExtension on CertificateSource {
-  String toValue() {
-    switch (this) {
-      case CertificateSource.cloudfront:
-        return 'cloudfront';
-      case CertificateSource.iam:
-        return 'iam';
-      case CertificateSource.acm:
-        return 'acm';
-    }
-  }
-}
+  final String value;
 
-extension CertificateSourceFromString on String {
-  CertificateSource toCertificateSource() {
-    switch (this) {
-      case 'cloudfront':
-        return CertificateSource.cloudfront;
-      case 'iam':
-        return CertificateSource.iam;
-      case 'acm':
-        return CertificateSource.acm;
-    }
-    throw Exception('$this is not known in enum CertificateSource');
-  }
+  const CertificateSource(this.value);
+
+  static CertificateSource fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum CertificateSource'));
 }
 
 /// CloudFront origin access identity.
@@ -6624,7 +6531,7 @@ class ContentTypeProfile {
   factory ContentTypeProfile.fromXml(_s.XmlElement elem) {
     return ContentTypeProfile(
       contentType: _s.extractXmlStringValue(elem, 'ContentType')!,
-      format: _s.extractXmlStringValue(elem, 'Format')!.toFormat(),
+      format: Format.fromString(_s.extractXmlStringValue(elem, 'Format')!),
       profileId: _s.extractXmlStringValue(elem, 'ProfileId'),
     );
   }
@@ -6635,7 +6542,7 @@ class ContentTypeProfile {
     final profileId = this.profileId;
     return {
       'ContentType': contentType,
-      'Format': format.toValue(),
+      'Format': format.value,
       if (profileId != null) 'ProfileId': profileId,
     };
   }
@@ -6645,7 +6552,7 @@ class ContentTypeProfile {
     final format = this.format;
     final profileId = this.profileId;
     final $children = <_s.XmlNode>[
-      _s.encodeXmlStringValue('Format', format.toValue()),
+      _s.encodeXmlStringValue('Format', format.value),
       if (profileId != null) _s.encodeXmlStringValue('ProfileId', profileId),
       _s.encodeXmlStringValue('ContentType', contentType),
     ];
@@ -6943,33 +6850,18 @@ class ContinuousDeploymentPolicySummary {
 }
 
 enum ContinuousDeploymentPolicyType {
-  singleWeight,
-  singleHeader,
-}
+  singleWeight('SingleWeight'),
+  singleHeader('SingleHeader'),
+  ;
 
-extension ContinuousDeploymentPolicyTypeValueExtension
-    on ContinuousDeploymentPolicyType {
-  String toValue() {
-    switch (this) {
-      case ContinuousDeploymentPolicyType.singleWeight:
-        return 'SingleWeight';
-      case ContinuousDeploymentPolicyType.singleHeader:
-        return 'SingleHeader';
-    }
-  }
-}
+  final String value;
 
-extension ContinuousDeploymentPolicyTypeFromString on String {
-  ContinuousDeploymentPolicyType toContinuousDeploymentPolicyType() {
-    switch (this) {
-      case 'SingleWeight':
-        return ContinuousDeploymentPolicyType.singleWeight;
-      case 'SingleHeader':
-        return ContinuousDeploymentPolicyType.singleHeader;
-    }
-    throw Exception(
-        '$this is not known in enum ContinuousDeploymentPolicyType');
-  }
+  const ContinuousDeploymentPolicyType(this.value);
+
+  static ContinuousDeploymentPolicyType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum ContinuousDeploymentPolicyType'));
 }
 
 /// This configuration determines which HTTP requests are sent to the staging
@@ -7197,7 +7089,8 @@ class CookiePreference {
   });
   factory CookiePreference.fromXml(_s.XmlElement elem) {
     return CookiePreference(
-      forward: _s.extractXmlStringValue(elem, 'Forward')!.toItemSelection(),
+      forward:
+          ItemSelection.fromString(_s.extractXmlStringValue(elem, 'Forward')!),
       whitelistedNames: _s
           .extractXmlChild(elem, 'WhitelistedNames')
           ?.let(CookieNames.fromXml),
@@ -7208,7 +7101,7 @@ class CookiePreference {
     final forward = this.forward;
     final whitelistedNames = this.whitelistedNames;
     return {
-      'Forward': forward.toValue(),
+      'Forward': forward.value,
       if (whitelistedNames != null) 'WhitelistedNames': whitelistedNames,
     };
   }
@@ -7217,7 +7110,7 @@ class CookiePreference {
     final forward = this.forward;
     final whitelistedNames = this.whitelistedNames;
     final $children = <_s.XmlNode>[
-      _s.encodeXmlStringValue('Forward', forward.toValue()),
+      _s.encodeXmlStringValue('Forward', forward.value),
       if (whitelistedNames != null) whitelistedNames.toXml('WhitelistedNames'),
     ];
     final $attributes = <_s.XmlAttribute>[
@@ -8239,9 +8132,8 @@ class CustomOriginConfig {
     return CustomOriginConfig(
       hTTPPort: _s.extractXmlIntValue(elem, 'HTTPPort')!,
       hTTPSPort: _s.extractXmlIntValue(elem, 'HTTPSPort')!,
-      originProtocolPolicy: _s
-          .extractXmlStringValue(elem, 'OriginProtocolPolicy')!
-          .toOriginProtocolPolicy(),
+      originProtocolPolicy: OriginProtocolPolicy.fromString(
+          _s.extractXmlStringValue(elem, 'OriginProtocolPolicy')!),
       originKeepaliveTimeout:
           _s.extractXmlIntValue(elem, 'OriginKeepaliveTimeout'),
       originReadTimeout: _s.extractXmlIntValue(elem, 'OriginReadTimeout'),
@@ -8261,7 +8153,7 @@ class CustomOriginConfig {
     return {
       'HTTPPort': hTTPPort,
       'HTTPSPort': hTTPSPort,
-      'OriginProtocolPolicy': originProtocolPolicy.toValue(),
+      'OriginProtocolPolicy': originProtocolPolicy.value,
       if (originKeepaliveTimeout != null)
         'OriginKeepaliveTimeout': originKeepaliveTimeout,
       if (originReadTimeout != null) 'OriginReadTimeout': originReadTimeout,
@@ -8280,7 +8172,7 @@ class CustomOriginConfig {
       _s.encodeXmlIntValue('HTTPPort', hTTPPort),
       _s.encodeXmlIntValue('HTTPSPort', hTTPSPort),
       _s.encodeXmlStringValue(
-          'OriginProtocolPolicy', originProtocolPolicy.toValue()),
+          'OriginProtocolPolicy', originProtocolPolicy.value),
       if (originSslProtocols != null)
         originSslProtocols.toXml('OriginSslProtocols'),
       if (originReadTimeout != null)
@@ -8548,9 +8440,8 @@ class DefaultCacheBehavior {
   factory DefaultCacheBehavior.fromXml(_s.XmlElement elem) {
     return DefaultCacheBehavior(
       targetOriginId: _s.extractXmlStringValue(elem, 'TargetOriginId')!,
-      viewerProtocolPolicy: _s
-          .extractXmlStringValue(elem, 'ViewerProtocolPolicy')!
-          .toViewerProtocolPolicy(),
+      viewerProtocolPolicy: ViewerProtocolPolicy.fromString(
+          _s.extractXmlStringValue(elem, 'ViewerProtocolPolicy')!),
       allowedMethods: _s
           .extractXmlChild(elem, 'AllowedMethods')
           ?.let(AllowedMethods.fromXml),
@@ -8607,7 +8498,7 @@ class DefaultCacheBehavior {
     final trustedSigners = this.trustedSigners;
     return {
       'TargetOriginId': targetOriginId,
-      'ViewerProtocolPolicy': viewerProtocolPolicy.toValue(),
+      'ViewerProtocolPolicy': viewerProtocolPolicy.value,
       if (allowedMethods != null) 'AllowedMethods': allowedMethods,
       if (cachePolicyId != null) 'CachePolicyId': cachePolicyId,
       if (compress != null) 'Compress': compress,
@@ -8657,7 +8548,7 @@ class DefaultCacheBehavior {
       if (trustedSigners != null) trustedSigners.toXml('TrustedSigners'),
       if (trustedKeyGroups != null) trustedKeyGroups.toXml('TrustedKeyGroups'),
       _s.encodeXmlStringValue(
-          'ViewerProtocolPolicy', viewerProtocolPolicy.toValue()),
+          'ViewerProtocolPolicy', viewerProtocolPolicy.value),
       if (allowedMethods != null) allowedMethods.toXml('AllowedMethods'),
       if (smoothStreaming != null)
         _s.encodeXmlBoolValue('SmoothStreaming', smoothStreaming),
@@ -9136,12 +9027,13 @@ class DistributionConfig {
           ?.let(CustomErrorResponses.fromXml),
       defaultRootObject: _s.extractXmlStringValue(elem, 'DefaultRootObject'),
       httpVersion:
-          _s.extractXmlStringValue(elem, 'HttpVersion')?.toHttpVersion(),
+          HttpVersion.fromString(_s.extractXmlStringValue(elem, 'HttpVersion')),
       isIPV6Enabled: _s.extractXmlBoolValue(elem, 'IsIPV6Enabled'),
       logging: _s.extractXmlChild(elem, 'Logging')?.let(LoggingConfig.fromXml),
       originGroups:
           _s.extractXmlChild(elem, 'OriginGroups')?.let(OriginGroups.fromXml),
-      priceClass: _s.extractXmlStringValue(elem, 'PriceClass')?.toPriceClass(),
+      priceClass:
+          PriceClass.fromString(_s.extractXmlStringValue(elem, 'PriceClass')),
       restrictions:
           _s.extractXmlChild(elem, 'Restrictions')?.let(Restrictions.fromXml),
       staging: _s.extractXmlBoolValue(elem, 'Staging'),
@@ -9185,11 +9077,11 @@ class DistributionConfig {
       if (customErrorResponses != null)
         'CustomErrorResponses': customErrorResponses,
       if (defaultRootObject != null) 'DefaultRootObject': defaultRootObject,
-      if (httpVersion != null) 'HttpVersion': httpVersion.toValue(),
+      if (httpVersion != null) 'HttpVersion': httpVersion.value,
       if (isIPV6Enabled != null) 'IsIPV6Enabled': isIPV6Enabled,
       if (logging != null) 'Logging': logging,
       if (originGroups != null) 'OriginGroups': originGroups,
-      if (priceClass != null) 'PriceClass': priceClass.toValue(),
+      if (priceClass != null) 'PriceClass': priceClass.value,
       if (restrictions != null) 'Restrictions': restrictions,
       if (staging != null) 'Staging': staging,
       if (viewerCertificate != null) 'ViewerCertificate': viewerCertificate,
@@ -9231,14 +9123,14 @@ class DistributionConfig {
       _s.encodeXmlStringValue('Comment', comment),
       if (logging != null) logging.toXml('Logging'),
       if (priceClass != null)
-        _s.encodeXmlStringValue('PriceClass', priceClass.toValue()),
+        _s.encodeXmlStringValue('PriceClass', priceClass.value),
       _s.encodeXmlBoolValue('Enabled', enabled),
       if (viewerCertificate != null)
         viewerCertificate.toXml('ViewerCertificate'),
       if (restrictions != null) restrictions.toXml('Restrictions'),
       if (webACLId != null) _s.encodeXmlStringValue('WebACLId', webACLId),
       if (httpVersion != null)
-        _s.encodeXmlStringValue('HttpVersion', httpVersion.toValue()),
+        _s.encodeXmlStringValue('HttpVersion', httpVersion.value),
       if (isIPV6Enabled != null)
         _s.encodeXmlBoolValue('IsIPV6Enabled', isIPV6Enabled),
       if (continuousDeploymentPolicyId != null)
@@ -9559,13 +9451,14 @@ class DistributionSummary {
           _s.extractXmlChild(elem, 'DefaultCacheBehavior')!),
       domainName: _s.extractXmlStringValue(elem, 'DomainName')!,
       enabled: _s.extractXmlBoolValue(elem, 'Enabled')!,
-      httpVersion:
-          _s.extractXmlStringValue(elem, 'HttpVersion')!.toHttpVersion(),
+      httpVersion: HttpVersion.fromString(
+          _s.extractXmlStringValue(elem, 'HttpVersion')!),
       id: _s.extractXmlStringValue(elem, 'Id')!,
       isIPV6Enabled: _s.extractXmlBoolValue(elem, 'IsIPV6Enabled')!,
       lastModifiedTime: _s.extractXmlDateTimeValue(elem, 'LastModifiedTime')!,
       origins: Origins.fromXml(_s.extractXmlChild(elem, 'Origins')!),
-      priceClass: _s.extractXmlStringValue(elem, 'PriceClass')!.toPriceClass(),
+      priceClass:
+          PriceClass.fromString(_s.extractXmlStringValue(elem, 'PriceClass')!),
       restrictions:
           Restrictions.fromXml(_s.extractXmlChild(elem, 'Restrictions')!),
       staging: _s.extractXmlBoolValue(elem, 'Staging')!,
@@ -9614,12 +9507,12 @@ class DistributionSummary {
       'DefaultCacheBehavior': defaultCacheBehavior,
       'DomainName': domainName,
       'Enabled': enabled,
-      'HttpVersion': httpVersion.toValue(),
+      'HttpVersion': httpVersion.value,
       'Id': id,
       'IsIPV6Enabled': isIPV6Enabled,
       'LastModifiedTime': iso8601ToJson(lastModifiedTime),
       'Origins': origins,
-      'PriceClass': priceClass.toValue(),
+      'PriceClass': priceClass.value,
       'Restrictions': restrictions,
       'Staging': staging,
       'Status': status,
@@ -9803,41 +9696,19 @@ class EndPoint {
 }
 
 enum EventType {
-  viewerRequest,
-  viewerResponse,
-  originRequest,
-  originResponse,
-}
+  viewerRequest('viewer-request'),
+  viewerResponse('viewer-response'),
+  originRequest('origin-request'),
+  originResponse('origin-response'),
+  ;
 
-extension EventTypeValueExtension on EventType {
-  String toValue() {
-    switch (this) {
-      case EventType.viewerRequest:
-        return 'viewer-request';
-      case EventType.viewerResponse:
-        return 'viewer-response';
-      case EventType.originRequest:
-        return 'origin-request';
-      case EventType.originResponse:
-        return 'origin-response';
-    }
-  }
-}
+  final String value;
 
-extension EventTypeFromString on String {
-  EventType toEventType() {
-    switch (this) {
-      case 'viewer-request':
-        return EventType.viewerRequest;
-      case 'viewer-response':
-        return EventType.viewerResponse;
-      case 'origin-request':
-        return EventType.originRequest;
-      case 'origin-response':
-        return EventType.originResponse;
-    }
-    throw Exception('$this is not known in enum EventType');
-  }
+  const EventType(this.value);
+
+  static EventType fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum EventType'));
 }
 
 /// A complex data type that includes the profile configurations and other
@@ -10330,26 +10201,16 @@ class FieldPatterns {
 }
 
 enum Format {
-  uRLEncoded,
-}
+  uRLEncoded('URLEncoded'),
+  ;
 
-extension FormatValueExtension on Format {
-  String toValue() {
-    switch (this) {
-      case Format.uRLEncoded:
-        return 'URLEncoded';
-    }
-  }
-}
+  final String value;
 
-extension FormatFromString on String {
-  Format toFormat() {
-    switch (this) {
-      case 'URLEncoded':
-        return Format.uRLEncoded;
-    }
-    throw Exception('$this is not known in enum Format');
-  }
+  const Format(this.value);
+
+  static Format fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception('$value is not known in enum Format'));
 }
 
 /// This field is deprecated. We recommend that you use a cache policy or an
@@ -10527,31 +10388,18 @@ class ForwardedValues {
 }
 
 enum FrameOptionsList {
-  deny,
-  sameorigin,
-}
+  deny('DENY'),
+  sameorigin('SAMEORIGIN'),
+  ;
 
-extension FrameOptionsListValueExtension on FrameOptionsList {
-  String toValue() {
-    switch (this) {
-      case FrameOptionsList.deny:
-        return 'DENY';
-      case FrameOptionsList.sameorigin:
-        return 'SAMEORIGIN';
-    }
-  }
-}
+  final String value;
 
-extension FrameOptionsListFromString on String {
-  FrameOptionsList toFrameOptionsList() {
-    switch (this) {
-      case 'DENY':
-        return FrameOptionsList.deny;
-      case 'SAMEORIGIN':
-        return FrameOptionsList.sameorigin;
-    }
-    throw Exception('$this is not known in enum FrameOptionsList');
-  }
+  const FrameOptionsList(this.value);
+
+  static FrameOptionsList fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum FrameOptionsList'));
 }
 
 /// A CloudFront function that is associated with a cache behavior in a
@@ -10572,7 +10420,8 @@ class FunctionAssociation {
   });
   factory FunctionAssociation.fromXml(_s.XmlElement elem) {
     return FunctionAssociation(
-      eventType: _s.extractXmlStringValue(elem, 'EventType')!.toEventType(),
+      eventType:
+          EventType.fromString(_s.extractXmlStringValue(elem, 'EventType')!),
       functionARN: _s.extractXmlStringValue(elem, 'FunctionARN')!,
     );
   }
@@ -10581,7 +10430,7 @@ class FunctionAssociation {
     final eventType = this.eventType;
     final functionARN = this.functionARN;
     return {
-      'EventType': eventType.toValue(),
+      'EventType': eventType.value,
       'FunctionARN': functionARN,
     };
   }
@@ -10591,7 +10440,7 @@ class FunctionAssociation {
     final functionARN = this.functionARN;
     final $children = <_s.XmlNode>[
       _s.encodeXmlStringValue('FunctionARN', functionARN),
-      _s.encodeXmlStringValue('EventType', eventType.toValue()),
+      _s.encodeXmlStringValue('EventType', eventType.value),
     ];
     final $attributes = <_s.XmlAttribute>[
       ...?attributes,
@@ -10675,7 +10524,8 @@ class FunctionConfig {
   factory FunctionConfig.fromXml(_s.XmlElement elem) {
     return FunctionConfig(
       comment: _s.extractXmlStringValue(elem, 'Comment')!,
-      runtime: _s.extractXmlStringValue(elem, 'Runtime')!.toFunctionRuntime(),
+      runtime: FunctionRuntime.fromString(
+          _s.extractXmlStringValue(elem, 'Runtime')!),
     );
   }
 
@@ -10684,7 +10534,7 @@ class FunctionConfig {
     final runtime = this.runtime;
     return {
       'Comment': comment,
-      'Runtime': runtime.toValue(),
+      'Runtime': runtime.value,
     };
   }
 
@@ -10693,7 +10543,7 @@ class FunctionConfig {
     final runtime = this.runtime;
     final $children = <_s.XmlNode>[
       _s.encodeXmlStringValue('Comment', comment),
-      _s.encodeXmlStringValue('Runtime', runtime.toValue()),
+      _s.encodeXmlStringValue('Runtime', runtime.value),
     ];
     final $attributes = <_s.XmlAttribute>[
       ...?attributes,
@@ -10789,7 +10639,7 @@ class FunctionMetadata {
       functionARN: _s.extractXmlStringValue(elem, 'FunctionARN')!,
       lastModifiedTime: _s.extractXmlDateTimeValue(elem, 'LastModifiedTime')!,
       createdTime: _s.extractXmlDateTimeValue(elem, 'CreatedTime'),
-      stage: _s.extractXmlStringValue(elem, 'Stage')?.toFunctionStage(),
+      stage: FunctionStage.fromString(_s.extractXmlStringValue(elem, 'Stage')),
     );
   }
 
@@ -10802,60 +10652,38 @@ class FunctionMetadata {
       'FunctionARN': functionARN,
       'LastModifiedTime': iso8601ToJson(lastModifiedTime),
       if (createdTime != null) 'CreatedTime': iso8601ToJson(createdTime),
-      if (stage != null) 'Stage': stage.toValue(),
+      if (stage != null) 'Stage': stage.value,
     };
   }
 }
 
 enum FunctionRuntime {
-  cloudfrontJs_1_0,
-}
+  cloudfrontJs_1_0('cloudfront-js-1.0'),
+  ;
 
-extension FunctionRuntimeValueExtension on FunctionRuntime {
-  String toValue() {
-    switch (this) {
-      case FunctionRuntime.cloudfrontJs_1_0:
-        return 'cloudfront-js-1.0';
-    }
-  }
-}
+  final String value;
 
-extension FunctionRuntimeFromString on String {
-  FunctionRuntime toFunctionRuntime() {
-    switch (this) {
-      case 'cloudfront-js-1.0':
-        return FunctionRuntime.cloudfrontJs_1_0;
-    }
-    throw Exception('$this is not known in enum FunctionRuntime');
-  }
+  const FunctionRuntime(this.value);
+
+  static FunctionRuntime fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum FunctionRuntime'));
 }
 
 enum FunctionStage {
-  development,
-  live,
-}
+  development('DEVELOPMENT'),
+  live('LIVE'),
+  ;
 
-extension FunctionStageValueExtension on FunctionStage {
-  String toValue() {
-    switch (this) {
-      case FunctionStage.development:
-        return 'DEVELOPMENT';
-      case FunctionStage.live:
-        return 'LIVE';
-    }
-  }
-}
+  final String value;
 
-extension FunctionStageFromString on String {
-  FunctionStage toFunctionStage() {
-    switch (this) {
-      case 'DEVELOPMENT':
-        return FunctionStage.development;
-      case 'LIVE':
-        return FunctionStage.live;
-    }
-    throw Exception('$this is not known in enum FunctionStage');
-  }
+  const FunctionStage(this.value);
+
+  static FunctionStage fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum FunctionStage'));
 }
 
 /// Contains configuration information and metadata about a CloudFront function.
@@ -10957,9 +10785,8 @@ class GeoRestriction {
   factory GeoRestriction.fromXml(_s.XmlElement elem) {
     return GeoRestriction(
       quantity: _s.extractXmlIntValue(elem, 'Quantity')!,
-      restrictionType: _s
-          .extractXmlStringValue(elem, 'RestrictionType')!
-          .toGeoRestrictionType(),
+      restrictionType: GeoRestrictionType.fromString(
+          _s.extractXmlStringValue(elem, 'RestrictionType')!),
       items: _s
           .extractXmlChild(elem, 'Items')
           ?.let((elem) => _s.extractXmlStringListValues(elem, 'Location')),
@@ -10972,7 +10799,7 @@ class GeoRestriction {
     final items = this.items;
     return {
       'Quantity': quantity,
-      'RestrictionType': restrictionType.toValue(),
+      'RestrictionType': restrictionType.value,
       if (items != null) 'Items': items,
     };
   }
@@ -10982,7 +10809,7 @@ class GeoRestriction {
     final restrictionType = this.restrictionType;
     final items = this.items;
     final $children = <_s.XmlNode>[
-      _s.encodeXmlStringValue('RestrictionType', restrictionType.toValue()),
+      _s.encodeXmlStringValue('RestrictionType', restrictionType.value),
       _s.encodeXmlIntValue('Quantity', quantity),
       if (items != null)
         _s.XmlElement(_s.XmlName('Items'), [],
@@ -11000,36 +10827,19 @@ class GeoRestriction {
 }
 
 enum GeoRestrictionType {
-  blacklist,
-  whitelist,
-  none,
-}
+  blacklist('blacklist'),
+  whitelist('whitelist'),
+  none('none'),
+  ;
 
-extension GeoRestrictionTypeValueExtension on GeoRestrictionType {
-  String toValue() {
-    switch (this) {
-      case GeoRestrictionType.blacklist:
-        return 'blacklist';
-      case GeoRestrictionType.whitelist:
-        return 'whitelist';
-      case GeoRestrictionType.none:
-        return 'none';
-    }
-  }
-}
+  final String value;
 
-extension GeoRestrictionTypeFromString on String {
-  GeoRestrictionType toGeoRestrictionType() {
-    switch (this) {
-      case 'blacklist':
-        return GeoRestrictionType.blacklist;
-      case 'whitelist':
-        return GeoRestrictionType.whitelist;
-      case 'none':
-        return GeoRestrictionType.none;
-    }
-    throw Exception('$this is not known in enum GeoRestrictionType');
-  }
+  const GeoRestrictionType(this.value);
+
+  static GeoRestrictionType fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum GeoRestrictionType'));
 }
 
 class GetCachePolicyConfigResult {
@@ -11753,74 +11563,35 @@ class Headers {
 }
 
 enum HttpVersion {
-  http1_1,
-  http2,
-  http3,
-  http2and3,
-}
+  http1_1('http1.1'),
+  http2('http2'),
+  http3('http3'),
+  http2and3('http2and3'),
+  ;
 
-extension HttpVersionValueExtension on HttpVersion {
-  String toValue() {
-    switch (this) {
-      case HttpVersion.http1_1:
-        return 'http1.1';
-      case HttpVersion.http2:
-        return 'http2';
-      case HttpVersion.http3:
-        return 'http3';
-      case HttpVersion.http2and3:
-        return 'http2and3';
-    }
-  }
-}
+  final String value;
 
-extension HttpVersionFromString on String {
-  HttpVersion toHttpVersion() {
-    switch (this) {
-      case 'http1.1':
-        return HttpVersion.http1_1;
-      case 'http2':
-        return HttpVersion.http2;
-      case 'http3':
-        return HttpVersion.http3;
-      case 'http2and3':
-        return HttpVersion.http2and3;
-    }
-    throw Exception('$this is not known in enum HttpVersion');
-  }
+  const HttpVersion(this.value);
+
+  static HttpVersion fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum HttpVersion'));
 }
 
 enum ICPRecordalStatus {
-  approved,
-  suspended,
-  pending,
-}
+  approved('APPROVED'),
+  suspended('SUSPENDED'),
+  pending('PENDING'),
+  ;
 
-extension ICPRecordalStatusValueExtension on ICPRecordalStatus {
-  String toValue() {
-    switch (this) {
-      case ICPRecordalStatus.approved:
-        return 'APPROVED';
-      case ICPRecordalStatus.suspended:
-        return 'SUSPENDED';
-      case ICPRecordalStatus.pending:
-        return 'PENDING';
-    }
-  }
-}
+  final String value;
 
-extension ICPRecordalStatusFromString on String {
-  ICPRecordalStatus toICPRecordalStatus() {
-    switch (this) {
-      case 'APPROVED':
-        return ICPRecordalStatus.approved;
-      case 'SUSPENDED':
-        return ICPRecordalStatus.suspended;
-      case 'PENDING':
-        return ICPRecordalStatus.pending;
-    }
-    throw Exception('$this is not known in enum ICPRecordalStatus');
-  }
+  const ICPRecordalStatus(this.value);
+
+  static ICPRecordalStatus fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum ICPRecordalStatus'));
 }
 
 /// An invalidation.
@@ -12045,36 +11816,19 @@ class InvalidationSummary {
 }
 
 enum ItemSelection {
-  none,
-  whitelist,
-  all,
-}
+  none('none'),
+  whitelist('whitelist'),
+  all('all'),
+  ;
 
-extension ItemSelectionValueExtension on ItemSelection {
-  String toValue() {
-    switch (this) {
-      case ItemSelection.none:
-        return 'none';
-      case ItemSelection.whitelist:
-        return 'whitelist';
-      case ItemSelection.all:
-        return 'all';
-    }
-  }
-}
+  final String value;
 
-extension ItemSelectionFromString on String {
-  ItemSelection toItemSelection() {
-    switch (this) {
-      case 'none':
-        return ItemSelection.none;
-      case 'whitelist':
-        return ItemSelection.whitelist;
-      case 'all':
-        return ItemSelection.all;
-    }
-    throw Exception('$this is not known in enum ItemSelection');
-  }
+  const ItemSelection(this.value);
+
+  static ItemSelection fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum ItemSelection'));
 }
 
 /// A list of identifiers for the public keys that CloudFront can use to verify
@@ -12417,7 +12171,8 @@ class LambdaFunctionAssociation {
   });
   factory LambdaFunctionAssociation.fromXml(_s.XmlElement elem) {
     return LambdaFunctionAssociation(
-      eventType: _s.extractXmlStringValue(elem, 'EventType')!.toEventType(),
+      eventType:
+          EventType.fromString(_s.extractXmlStringValue(elem, 'EventType')!),
       lambdaFunctionARN: _s.extractXmlStringValue(elem, 'LambdaFunctionARN')!,
       includeBody: _s.extractXmlBoolValue(elem, 'IncludeBody'),
     );
@@ -12428,7 +12183,7 @@ class LambdaFunctionAssociation {
     final lambdaFunctionARN = this.lambdaFunctionARN;
     final includeBody = this.includeBody;
     return {
-      'EventType': eventType.toValue(),
+      'EventType': eventType.value,
       'LambdaFunctionARN': lambdaFunctionARN,
       if (includeBody != null) 'IncludeBody': includeBody,
     };
@@ -12440,7 +12195,7 @@ class LambdaFunctionAssociation {
     final includeBody = this.includeBody;
     final $children = <_s.XmlNode>[
       _s.encodeXmlStringValue('LambdaFunctionARN', lambdaFunctionARN),
-      _s.encodeXmlStringValue('EventType', eventType.toValue()),
+      _s.encodeXmlStringValue('EventType', eventType.value),
       if (includeBody != null)
         _s.encodeXmlBoolValue('IncludeBody', includeBody),
     ];
@@ -13057,109 +12812,42 @@ class LoggingConfig {
 }
 
 enum Method {
-  get,
-  head,
-  post,
-  put,
-  patch,
-  options,
-  delete,
-}
+  get('GET'),
+  head('HEAD'),
+  post('POST'),
+  put('PUT'),
+  patch('PATCH'),
+  options('OPTIONS'),
+  delete('DELETE'),
+  ;
 
-extension MethodValueExtension on Method {
-  String toValue() {
-    switch (this) {
-      case Method.get:
-        return 'GET';
-      case Method.head:
-        return 'HEAD';
-      case Method.post:
-        return 'POST';
-      case Method.put:
-        return 'PUT';
-      case Method.patch:
-        return 'PATCH';
-      case Method.options:
-        return 'OPTIONS';
-      case Method.delete:
-        return 'DELETE';
-    }
-  }
-}
+  final String value;
 
-extension MethodFromString on String {
-  Method toMethod() {
-    switch (this) {
-      case 'GET':
-        return Method.get;
-      case 'HEAD':
-        return Method.head;
-      case 'POST':
-        return Method.post;
-      case 'PUT':
-        return Method.put;
-      case 'PATCH':
-        return Method.patch;
-      case 'OPTIONS':
-        return Method.options;
-      case 'DELETE':
-        return Method.delete;
-    }
-    throw Exception('$this is not known in enum Method');
-  }
+  const Method(this.value);
+
+  static Method fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception('$value is not known in enum Method'));
 }
 
 enum MinimumProtocolVersion {
-  sSLv3,
-  tLSv1,
-  tLSv1_2016,
-  tLSv1_1_2016,
-  tLSv1_2_2018,
-  tLSv1_2_2019,
-  tLSv1_2_2021,
-}
+  sSLv3('SSLv3'),
+  tLSv1('TLSv1'),
+  tLSv1_2016('TLSv1_2016'),
+  tLSv1_1_2016('TLSv1.1_2016'),
+  tLSv1_2_2018('TLSv1.2_2018'),
+  tLSv1_2_2019('TLSv1.2_2019'),
+  tLSv1_2_2021('TLSv1.2_2021'),
+  ;
 
-extension MinimumProtocolVersionValueExtension on MinimumProtocolVersion {
-  String toValue() {
-    switch (this) {
-      case MinimumProtocolVersion.sSLv3:
-        return 'SSLv3';
-      case MinimumProtocolVersion.tLSv1:
-        return 'TLSv1';
-      case MinimumProtocolVersion.tLSv1_2016:
-        return 'TLSv1_2016';
-      case MinimumProtocolVersion.tLSv1_1_2016:
-        return 'TLSv1.1_2016';
-      case MinimumProtocolVersion.tLSv1_2_2018:
-        return 'TLSv1.2_2018';
-      case MinimumProtocolVersion.tLSv1_2_2019:
-        return 'TLSv1.2_2019';
-      case MinimumProtocolVersion.tLSv1_2_2021:
-        return 'TLSv1.2_2021';
-    }
-  }
-}
+  final String value;
 
-extension MinimumProtocolVersionFromString on String {
-  MinimumProtocolVersion toMinimumProtocolVersion() {
-    switch (this) {
-      case 'SSLv3':
-        return MinimumProtocolVersion.sSLv3;
-      case 'TLSv1':
-        return MinimumProtocolVersion.tLSv1;
-      case 'TLSv1_2016':
-        return MinimumProtocolVersion.tLSv1_2016;
-      case 'TLSv1.1_2016':
-        return MinimumProtocolVersion.tLSv1_1_2016;
-      case 'TLSv1.2_2018':
-        return MinimumProtocolVersion.tLSv1_2_2018;
-      case 'TLSv1.2_2019':
-        return MinimumProtocolVersion.tLSv1_2_2019;
-      case 'TLSv1.2_2021':
-        return MinimumProtocolVersion.tLSv1_2_2021;
-    }
-    throw Exception('$this is not known in enum MinimumProtocolVersion');
-  }
+  const MinimumProtocolVersion(this.value);
+
+  static MinimumProtocolVersion fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum MinimumProtocolVersion'));
 }
 
 /// A monitoring subscription. This structure contains information about whether
@@ -13520,15 +13208,12 @@ class OriginAccessControlConfig {
   factory OriginAccessControlConfig.fromXml(_s.XmlElement elem) {
     return OriginAccessControlConfig(
       name: _s.extractXmlStringValue(elem, 'Name')!,
-      originAccessControlOriginType: _s
-          .extractXmlStringValue(elem, 'OriginAccessControlOriginType')!
-          .toOriginAccessControlOriginTypes(),
-      signingBehavior: _s
-          .extractXmlStringValue(elem, 'SigningBehavior')!
-          .toOriginAccessControlSigningBehaviors(),
-      signingProtocol: _s
-          .extractXmlStringValue(elem, 'SigningProtocol')!
-          .toOriginAccessControlSigningProtocols(),
+      originAccessControlOriginType: OriginAccessControlOriginTypes.fromString(
+          _s.extractXmlStringValue(elem, 'OriginAccessControlOriginType')!),
+      signingBehavior: OriginAccessControlSigningBehaviors.fromString(
+          _s.extractXmlStringValue(elem, 'SigningBehavior')!),
+      signingProtocol: OriginAccessControlSigningProtocols.fromString(
+          _s.extractXmlStringValue(elem, 'SigningProtocol')!),
       description: _s.extractXmlStringValue(elem, 'Description'),
     );
   }
@@ -13541,9 +13226,9 @@ class OriginAccessControlConfig {
     final description = this.description;
     return {
       'Name': name,
-      'OriginAccessControlOriginType': originAccessControlOriginType.toValue(),
-      'SigningBehavior': signingBehavior.toValue(),
-      'SigningProtocol': signingProtocol.toValue(),
+      'OriginAccessControlOriginType': originAccessControlOriginType.value,
+      'SigningBehavior': signingBehavior.value,
+      'SigningProtocol': signingProtocol.value,
       if (description != null) 'Description': description,
     };
   }
@@ -13558,10 +13243,10 @@ class OriginAccessControlConfig {
       _s.encodeXmlStringValue('Name', name),
       if (description != null)
         _s.encodeXmlStringValue('Description', description),
-      _s.encodeXmlStringValue('SigningProtocol', signingProtocol.toValue()),
-      _s.encodeXmlStringValue('SigningBehavior', signingBehavior.toValue()),
-      _s.encodeXmlStringValue('OriginAccessControlOriginType',
-          originAccessControlOriginType.toValue()),
+      _s.encodeXmlStringValue('SigningProtocol', signingProtocol.value),
+      _s.encodeXmlStringValue('SigningBehavior', signingBehavior.value),
+      _s.encodeXmlStringValue(
+          'OriginAccessControlOriginType', originAccessControlOriginType.value),
     ];
     final $attributes = <_s.XmlAttribute>[
       ...?attributes,
@@ -13638,93 +13323,48 @@ class OriginAccessControlList {
 }
 
 enum OriginAccessControlOriginTypes {
-  s3,
-  mediastore,
-}
+  s3('s3'),
+  mediastore('mediastore'),
+  ;
 
-extension OriginAccessControlOriginTypesValueExtension
-    on OriginAccessControlOriginTypes {
-  String toValue() {
-    switch (this) {
-      case OriginAccessControlOriginTypes.s3:
-        return 's3';
-      case OriginAccessControlOriginTypes.mediastore:
-        return 'mediastore';
-    }
-  }
-}
+  final String value;
 
-extension OriginAccessControlOriginTypesFromString on String {
-  OriginAccessControlOriginTypes toOriginAccessControlOriginTypes() {
-    switch (this) {
-      case 's3':
-        return OriginAccessControlOriginTypes.s3;
-      case 'mediastore':
-        return OriginAccessControlOriginTypes.mediastore;
-    }
-    throw Exception(
-        '$this is not known in enum OriginAccessControlOriginTypes');
-  }
+  const OriginAccessControlOriginTypes(this.value);
+
+  static OriginAccessControlOriginTypes fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum OriginAccessControlOriginTypes'));
 }
 
 enum OriginAccessControlSigningBehaviors {
-  never,
-  always,
-  noOverride,
-}
+  never('never'),
+  always('always'),
+  noOverride('no-override'),
+  ;
 
-extension OriginAccessControlSigningBehaviorsValueExtension
-    on OriginAccessControlSigningBehaviors {
-  String toValue() {
-    switch (this) {
-      case OriginAccessControlSigningBehaviors.never:
-        return 'never';
-      case OriginAccessControlSigningBehaviors.always:
-        return 'always';
-      case OriginAccessControlSigningBehaviors.noOverride:
-        return 'no-override';
-    }
-  }
-}
+  final String value;
 
-extension OriginAccessControlSigningBehaviorsFromString on String {
-  OriginAccessControlSigningBehaviors toOriginAccessControlSigningBehaviors() {
-    switch (this) {
-      case 'never':
-        return OriginAccessControlSigningBehaviors.never;
-      case 'always':
-        return OriginAccessControlSigningBehaviors.always;
-      case 'no-override':
-        return OriginAccessControlSigningBehaviors.noOverride;
-    }
-    throw Exception(
-        '$this is not known in enum OriginAccessControlSigningBehaviors');
-  }
+  const OriginAccessControlSigningBehaviors(this.value);
+
+  static OriginAccessControlSigningBehaviors fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum OriginAccessControlSigningBehaviors'));
 }
 
 enum OriginAccessControlSigningProtocols {
-  sigv4,
-}
+  sigv4('sigv4'),
+  ;
 
-extension OriginAccessControlSigningProtocolsValueExtension
-    on OriginAccessControlSigningProtocols {
-  String toValue() {
-    switch (this) {
-      case OriginAccessControlSigningProtocols.sigv4:
-        return 'sigv4';
-    }
-  }
-}
+  final String value;
 
-extension OriginAccessControlSigningProtocolsFromString on String {
-  OriginAccessControlSigningProtocols toOriginAccessControlSigningProtocols() {
-    switch (this) {
-      case 'sigv4':
-        return OriginAccessControlSigningProtocols.sigv4;
-    }
-    throw Exception(
-        '$this is not known in enum OriginAccessControlSigningProtocols');
-  }
+  const OriginAccessControlSigningProtocols(this.value);
+
+  static OriginAccessControlSigningProtocols fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum OriginAccessControlSigningProtocols'));
 }
 
 /// A CloudFront origin access control.
@@ -13780,15 +13420,12 @@ class OriginAccessControlSummary {
       description: _s.extractXmlStringValue(elem, 'Description')!,
       id: _s.extractXmlStringValue(elem, 'Id')!,
       name: _s.extractXmlStringValue(elem, 'Name')!,
-      originAccessControlOriginType: _s
-          .extractXmlStringValue(elem, 'OriginAccessControlOriginType')!
-          .toOriginAccessControlOriginTypes(),
-      signingBehavior: _s
-          .extractXmlStringValue(elem, 'SigningBehavior')!
-          .toOriginAccessControlSigningBehaviors(),
-      signingProtocol: _s
-          .extractXmlStringValue(elem, 'SigningProtocol')!
-          .toOriginAccessControlSigningProtocols(),
+      originAccessControlOriginType: OriginAccessControlOriginTypes.fromString(
+          _s.extractXmlStringValue(elem, 'OriginAccessControlOriginType')!),
+      signingBehavior: OriginAccessControlSigningBehaviors.fromString(
+          _s.extractXmlStringValue(elem, 'SigningBehavior')!),
+      signingProtocol: OriginAccessControlSigningProtocols.fromString(
+          _s.extractXmlStringValue(elem, 'SigningProtocol')!),
     );
   }
 
@@ -13803,9 +13440,9 @@ class OriginAccessControlSummary {
       'Description': description,
       'Id': id,
       'Name': name,
-      'OriginAccessControlOriginType': originAccessControlOriginType.toValue(),
-      'SigningBehavior': signingBehavior.toValue(),
-      'SigningProtocol': signingProtocol.toValue(),
+      'OriginAccessControlOriginType': originAccessControlOriginType.value,
+      'SigningBehavior': signingBehavior.value,
+      'SigningProtocol': signingProtocol.value,
     };
   }
 }
@@ -14104,36 +13741,19 @@ class OriginGroups {
 }
 
 enum OriginProtocolPolicy {
-  httpOnly,
-  matchViewer,
-  httpsOnly,
-}
+  httpOnly('http-only'),
+  matchViewer('match-viewer'),
+  httpsOnly('https-only'),
+  ;
 
-extension OriginProtocolPolicyValueExtension on OriginProtocolPolicy {
-  String toValue() {
-    switch (this) {
-      case OriginProtocolPolicy.httpOnly:
-        return 'http-only';
-      case OriginProtocolPolicy.matchViewer:
-        return 'match-viewer';
-      case OriginProtocolPolicy.httpsOnly:
-        return 'https-only';
-    }
-  }
-}
+  final String value;
 
-extension OriginProtocolPolicyFromString on String {
-  OriginProtocolPolicy toOriginProtocolPolicy() {
-    switch (this) {
-      case 'http-only':
-        return OriginProtocolPolicy.httpOnly;
-      case 'match-viewer':
-        return OriginProtocolPolicy.matchViewer;
-      case 'https-only':
-        return OriginProtocolPolicy.httpsOnly;
-    }
-    throw Exception('$this is not known in enum OriginProtocolPolicy');
-  }
+  const OriginProtocolPolicy(this.value);
+
+  static OriginProtocolPolicy fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum OriginProtocolPolicy'));
 }
 
 /// An origin request policy.
@@ -14302,43 +13922,20 @@ class OriginRequestPolicyConfig {
 }
 
 enum OriginRequestPolicyCookieBehavior {
-  none,
-  whitelist,
-  all,
-  allExcept,
-}
+  none('none'),
+  whitelist('whitelist'),
+  all('all'),
+  allExcept('allExcept'),
+  ;
 
-extension OriginRequestPolicyCookieBehaviorValueExtension
-    on OriginRequestPolicyCookieBehavior {
-  String toValue() {
-    switch (this) {
-      case OriginRequestPolicyCookieBehavior.none:
-        return 'none';
-      case OriginRequestPolicyCookieBehavior.whitelist:
-        return 'whitelist';
-      case OriginRequestPolicyCookieBehavior.all:
-        return 'all';
-      case OriginRequestPolicyCookieBehavior.allExcept:
-        return 'allExcept';
-    }
-  }
-}
+  final String value;
 
-extension OriginRequestPolicyCookieBehaviorFromString on String {
-  OriginRequestPolicyCookieBehavior toOriginRequestPolicyCookieBehavior() {
-    switch (this) {
-      case 'none':
-        return OriginRequestPolicyCookieBehavior.none;
-      case 'whitelist':
-        return OriginRequestPolicyCookieBehavior.whitelist;
-      case 'all':
-        return OriginRequestPolicyCookieBehavior.all;
-      case 'allExcept':
-        return OriginRequestPolicyCookieBehavior.allExcept;
-    }
-    throw Exception(
-        '$this is not known in enum OriginRequestPolicyCookieBehavior');
-  }
+  const OriginRequestPolicyCookieBehavior(this.value);
+
+  static OriginRequestPolicyCookieBehavior fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum OriginRequestPolicyCookieBehavior'));
 }
 
 /// An object that determines whether any cookies in viewer requests (and if so,
@@ -14378,9 +13975,8 @@ class OriginRequestPolicyCookiesConfig {
   });
   factory OriginRequestPolicyCookiesConfig.fromXml(_s.XmlElement elem) {
     return OriginRequestPolicyCookiesConfig(
-      cookieBehavior: _s
-          .extractXmlStringValue(elem, 'CookieBehavior')!
-          .toOriginRequestPolicyCookieBehavior(),
+      cookieBehavior: OriginRequestPolicyCookieBehavior.fromString(
+          _s.extractXmlStringValue(elem, 'CookieBehavior')!),
       cookies: _s.extractXmlChild(elem, 'Cookies')?.let(CookieNames.fromXml),
     );
   }
@@ -14389,7 +13985,7 @@ class OriginRequestPolicyCookiesConfig {
     final cookieBehavior = this.cookieBehavior;
     final cookies = this.cookies;
     return {
-      'CookieBehavior': cookieBehavior.toValue(),
+      'CookieBehavior': cookieBehavior.value,
       if (cookies != null) 'Cookies': cookies,
     };
   }
@@ -14398,7 +13994,7 @@ class OriginRequestPolicyCookiesConfig {
     final cookieBehavior = this.cookieBehavior;
     final cookies = this.cookies;
     final $children = <_s.XmlNode>[
-      _s.encodeXmlStringValue('CookieBehavior', cookieBehavior.toValue()),
+      _s.encodeXmlStringValue('CookieBehavior', cookieBehavior.value),
       if (cookies != null) cookies.toXml('Cookies'),
     ];
     final $attributes = <_s.XmlAttribute>[
@@ -14413,49 +14009,21 @@ class OriginRequestPolicyCookiesConfig {
 }
 
 enum OriginRequestPolicyHeaderBehavior {
-  none,
-  whitelist,
-  allViewer,
-  allViewerAndWhitelistCloudFront,
-  allExcept,
-}
+  none('none'),
+  whitelist('whitelist'),
+  allViewer('allViewer'),
+  allViewerAndWhitelistCloudFront('allViewerAndWhitelistCloudFront'),
+  allExcept('allExcept'),
+  ;
 
-extension OriginRequestPolicyHeaderBehaviorValueExtension
-    on OriginRequestPolicyHeaderBehavior {
-  String toValue() {
-    switch (this) {
-      case OriginRequestPolicyHeaderBehavior.none:
-        return 'none';
-      case OriginRequestPolicyHeaderBehavior.whitelist:
-        return 'whitelist';
-      case OriginRequestPolicyHeaderBehavior.allViewer:
-        return 'allViewer';
-      case OriginRequestPolicyHeaderBehavior.allViewerAndWhitelistCloudFront:
-        return 'allViewerAndWhitelistCloudFront';
-      case OriginRequestPolicyHeaderBehavior.allExcept:
-        return 'allExcept';
-    }
-  }
-}
+  final String value;
 
-extension OriginRequestPolicyHeaderBehaviorFromString on String {
-  OriginRequestPolicyHeaderBehavior toOriginRequestPolicyHeaderBehavior() {
-    switch (this) {
-      case 'none':
-        return OriginRequestPolicyHeaderBehavior.none;
-      case 'whitelist':
-        return OriginRequestPolicyHeaderBehavior.whitelist;
-      case 'allViewer':
-        return OriginRequestPolicyHeaderBehavior.allViewer;
-      case 'allViewerAndWhitelistCloudFront':
-        return OriginRequestPolicyHeaderBehavior
-            .allViewerAndWhitelistCloudFront;
-      case 'allExcept':
-        return OriginRequestPolicyHeaderBehavior.allExcept;
-    }
-    throw Exception(
-        '$this is not known in enum OriginRequestPolicyHeaderBehavior');
-  }
+  const OriginRequestPolicyHeaderBehavior(this.value);
+
+  static OriginRequestPolicyHeaderBehavior fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum OriginRequestPolicyHeaderBehavior'));
 }
 
 /// An object that determines whether any HTTP headers (and if so, which
@@ -14501,9 +14069,8 @@ class OriginRequestPolicyHeadersConfig {
   });
   factory OriginRequestPolicyHeadersConfig.fromXml(_s.XmlElement elem) {
     return OriginRequestPolicyHeadersConfig(
-      headerBehavior: _s
-          .extractXmlStringValue(elem, 'HeaderBehavior')!
-          .toOriginRequestPolicyHeaderBehavior(),
+      headerBehavior: OriginRequestPolicyHeaderBehavior.fromString(
+          _s.extractXmlStringValue(elem, 'HeaderBehavior')!),
       headers: _s.extractXmlChild(elem, 'Headers')?.let(Headers.fromXml),
     );
   }
@@ -14512,7 +14079,7 @@ class OriginRequestPolicyHeadersConfig {
     final headerBehavior = this.headerBehavior;
     final headers = this.headers;
     return {
-      'HeaderBehavior': headerBehavior.toValue(),
+      'HeaderBehavior': headerBehavior.value,
       if (headers != null) 'Headers': headers,
     };
   }
@@ -14521,7 +14088,7 @@ class OriginRequestPolicyHeadersConfig {
     final headerBehavior = this.headerBehavior;
     final headers = this.headers;
     final $children = <_s.XmlNode>[
-      _s.encodeXmlStringValue('HeaderBehavior', headerBehavior.toValue()),
+      _s.encodeXmlStringValue('HeaderBehavior', headerBehavior.value),
       if (headers != null) headers.toXml('Headers'),
     ];
     final $attributes = <_s.XmlAttribute>[
@@ -14585,44 +14152,20 @@ class OriginRequestPolicyList {
 }
 
 enum OriginRequestPolicyQueryStringBehavior {
-  none,
-  whitelist,
-  all,
-  allExcept,
-}
+  none('none'),
+  whitelist('whitelist'),
+  all('all'),
+  allExcept('allExcept'),
+  ;
 
-extension OriginRequestPolicyQueryStringBehaviorValueExtension
-    on OriginRequestPolicyQueryStringBehavior {
-  String toValue() {
-    switch (this) {
-      case OriginRequestPolicyQueryStringBehavior.none:
-        return 'none';
-      case OriginRequestPolicyQueryStringBehavior.whitelist:
-        return 'whitelist';
-      case OriginRequestPolicyQueryStringBehavior.all:
-        return 'all';
-      case OriginRequestPolicyQueryStringBehavior.allExcept:
-        return 'allExcept';
-    }
-  }
-}
+  final String value;
 
-extension OriginRequestPolicyQueryStringBehaviorFromString on String {
-  OriginRequestPolicyQueryStringBehavior
-      toOriginRequestPolicyQueryStringBehavior() {
-    switch (this) {
-      case 'none':
-        return OriginRequestPolicyQueryStringBehavior.none;
-      case 'whitelist':
-        return OriginRequestPolicyQueryStringBehavior.whitelist;
-      case 'all':
-        return OriginRequestPolicyQueryStringBehavior.all;
-      case 'allExcept':
-        return OriginRequestPolicyQueryStringBehavior.allExcept;
-    }
-    throw Exception(
-        '$this is not known in enum OriginRequestPolicyQueryStringBehavior');
-  }
+  const OriginRequestPolicyQueryStringBehavior(this.value);
+
+  static OriginRequestPolicyQueryStringBehavior fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum OriginRequestPolicyQueryStringBehavior'));
 }
 
 /// An object that determines whether any URL query strings in viewer requests
@@ -14673,9 +14216,8 @@ class OriginRequestPolicyQueryStringsConfig {
   });
   factory OriginRequestPolicyQueryStringsConfig.fromXml(_s.XmlElement elem) {
     return OriginRequestPolicyQueryStringsConfig(
-      queryStringBehavior: _s
-          .extractXmlStringValue(elem, 'QueryStringBehavior')!
-          .toOriginRequestPolicyQueryStringBehavior(),
+      queryStringBehavior: OriginRequestPolicyQueryStringBehavior.fromString(
+          _s.extractXmlStringValue(elem, 'QueryStringBehavior')!),
       queryStrings: _s
           .extractXmlChild(elem, 'QueryStrings')
           ?.let(QueryStringNames.fromXml),
@@ -14686,7 +14228,7 @@ class OriginRequestPolicyQueryStringsConfig {
     final queryStringBehavior = this.queryStringBehavior;
     final queryStrings = this.queryStrings;
     return {
-      'QueryStringBehavior': queryStringBehavior.toValue(),
+      'QueryStringBehavior': queryStringBehavior.value,
       if (queryStrings != null) 'QueryStrings': queryStrings,
     };
   }
@@ -14695,8 +14237,7 @@ class OriginRequestPolicyQueryStringsConfig {
     final queryStringBehavior = this.queryStringBehavior;
     final queryStrings = this.queryStrings;
     final $children = <_s.XmlNode>[
-      _s.encodeXmlStringValue(
-          'QueryStringBehavior', queryStringBehavior.toValue()),
+      _s.encodeXmlStringValue('QueryStringBehavior', queryStringBehavior.value),
       if (queryStrings != null) queryStrings.toXml('QueryStrings'),
     ];
     final $attributes = <_s.XmlAttribute>[
@@ -14728,7 +14269,8 @@ class OriginRequestPolicySummary {
     return OriginRequestPolicySummary(
       originRequestPolicy: OriginRequestPolicy.fromXml(
           _s.extractXmlChild(elem, 'OriginRequestPolicy')!),
-      type: _s.extractXmlStringValue(elem, 'Type')!.toOriginRequestPolicyType(),
+      type: OriginRequestPolicyType.fromString(
+          _s.extractXmlStringValue(elem, 'Type')!),
     );
   }
 
@@ -14737,37 +14279,24 @@ class OriginRequestPolicySummary {
     final type = this.type;
     return {
       'OriginRequestPolicy': originRequestPolicy,
-      'Type': type.toValue(),
+      'Type': type.value,
     };
   }
 }
 
 enum OriginRequestPolicyType {
-  managed,
-  custom,
-}
+  managed('managed'),
+  custom('custom'),
+  ;
 
-extension OriginRequestPolicyTypeValueExtension on OriginRequestPolicyType {
-  String toValue() {
-    switch (this) {
-      case OriginRequestPolicyType.managed:
-        return 'managed';
-      case OriginRequestPolicyType.custom:
-        return 'custom';
-    }
-  }
-}
+  final String value;
 
-extension OriginRequestPolicyTypeFromString on String {
-  OriginRequestPolicyType toOriginRequestPolicyType() {
-    switch (this) {
-      case 'managed':
-        return OriginRequestPolicyType.managed;
-      case 'custom':
-        return OriginRequestPolicyType.custom;
-    }
-    throw Exception('$this is not known in enum OriginRequestPolicyType');
-  }
+  const OriginRequestPolicyType(this.value);
+
+  static OriginRequestPolicyType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum OriginRequestPolicyType'));
 }
 
 /// CloudFront Origin Shield.
@@ -14868,7 +14397,7 @@ class OriginSslProtocols {
     final items = this.items;
     final quantity = this.quantity;
     return {
-      'Items': items.map((e) => e.toValue()).toList(),
+      'Items': items.map((e) => e.value).toList(),
       'Quantity': quantity,
     };
   }
@@ -14878,11 +14407,8 @@ class OriginSslProtocols {
     final quantity = this.quantity;
     final $children = <_s.XmlNode>[
       _s.encodeXmlIntValue('Quantity', quantity),
-      _s.XmlElement(
-          _s.XmlName('Items'),
-          [],
-          items
-              .map((e) => _s.encodeXmlStringValue('SslProtocol', e.toValue()))),
+      _s.XmlElement(_s.XmlName('Items'), [],
+          items.map((e) => _s.encodeXmlStringValue('SslProtocol', e.value))),
     ];
     final $attributes = <_s.XmlAttribute>[
       ...?attributes,
@@ -15175,36 +14701,18 @@ class Paths {
 }
 
 enum PriceClass {
-  priceClass_100,
-  priceClass_200,
-  priceClassAll,
-}
+  priceClass_100('PriceClass_100'),
+  priceClass_200('PriceClass_200'),
+  priceClassAll('PriceClass_All'),
+  ;
 
-extension PriceClassValueExtension on PriceClass {
-  String toValue() {
-    switch (this) {
-      case PriceClass.priceClass_100:
-        return 'PriceClass_100';
-      case PriceClass.priceClass_200:
-        return 'PriceClass_200';
-      case PriceClass.priceClassAll:
-        return 'PriceClass_All';
-    }
-  }
-}
+  final String value;
 
-extension PriceClassFromString on String {
-  PriceClass toPriceClass() {
-    switch (this) {
-      case 'PriceClass_100':
-        return PriceClass.priceClass_100;
-      case 'PriceClass_200':
-        return PriceClass.priceClass_200;
-      case 'PriceClass_All':
-        return PriceClass.priceClassAll;
-    }
-    throw Exception('$this is not known in enum PriceClass');
-  }
+  const PriceClass(this.value);
+
+  static PriceClass fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum PriceClass'));
 }
 
 /// A public key that you can use with <a
@@ -15850,9 +15358,9 @@ class RealtimeMetricsSubscriptionConfig {
   });
   factory RealtimeMetricsSubscriptionConfig.fromXml(_s.XmlElement elem) {
     return RealtimeMetricsSubscriptionConfig(
-      realtimeMetricsSubscriptionStatus: _s
-          .extractXmlStringValue(elem, 'RealtimeMetricsSubscriptionStatus')!
-          .toRealtimeMetricsSubscriptionStatus(),
+      realtimeMetricsSubscriptionStatus:
+          RealtimeMetricsSubscriptionStatus.fromString(_s.extractXmlStringValue(
+              elem, 'RealtimeMetricsSubscriptionStatus')!),
     );
   }
 
@@ -15861,7 +15369,7 @@ class RealtimeMetricsSubscriptionConfig {
         this.realtimeMetricsSubscriptionStatus;
     return {
       'RealtimeMetricsSubscriptionStatus':
-          realtimeMetricsSubscriptionStatus.toValue(),
+          realtimeMetricsSubscriptionStatus.value,
     };
   }
 
@@ -15870,7 +15378,7 @@ class RealtimeMetricsSubscriptionConfig {
         this.realtimeMetricsSubscriptionStatus;
     final $children = <_s.XmlNode>[
       _s.encodeXmlStringValue('RealtimeMetricsSubscriptionStatus',
-          realtimeMetricsSubscriptionStatus.toValue()),
+          realtimeMetricsSubscriptionStatus.value),
     ];
     final $attributes = <_s.XmlAttribute>[
       ...?attributes,
@@ -15884,91 +15392,39 @@ class RealtimeMetricsSubscriptionConfig {
 }
 
 enum RealtimeMetricsSubscriptionStatus {
-  enabled,
-  disabled,
-}
+  enabled('Enabled'),
+  disabled('Disabled'),
+  ;
 
-extension RealtimeMetricsSubscriptionStatusValueExtension
-    on RealtimeMetricsSubscriptionStatus {
-  String toValue() {
-    switch (this) {
-      case RealtimeMetricsSubscriptionStatus.enabled:
-        return 'Enabled';
-      case RealtimeMetricsSubscriptionStatus.disabled:
-        return 'Disabled';
-    }
-  }
-}
+  final String value;
 
-extension RealtimeMetricsSubscriptionStatusFromString on String {
-  RealtimeMetricsSubscriptionStatus toRealtimeMetricsSubscriptionStatus() {
-    switch (this) {
-      case 'Enabled':
-        return RealtimeMetricsSubscriptionStatus.enabled;
-      case 'Disabled':
-        return RealtimeMetricsSubscriptionStatus.disabled;
-    }
-    throw Exception(
-        '$this is not known in enum RealtimeMetricsSubscriptionStatus');
-  }
+  const RealtimeMetricsSubscriptionStatus(this.value);
+
+  static RealtimeMetricsSubscriptionStatus fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum RealtimeMetricsSubscriptionStatus'));
 }
 
 enum ReferrerPolicyList {
-  noReferrer,
-  noReferrerWhenDowngrade,
-  origin,
-  originWhenCrossOrigin,
-  sameOrigin,
-  strictOrigin,
-  strictOriginWhenCrossOrigin,
-  unsafeUrl,
-}
+  noReferrer('no-referrer'),
+  noReferrerWhenDowngrade('no-referrer-when-downgrade'),
+  origin('origin'),
+  originWhenCrossOrigin('origin-when-cross-origin'),
+  sameOrigin('same-origin'),
+  strictOrigin('strict-origin'),
+  strictOriginWhenCrossOrigin('strict-origin-when-cross-origin'),
+  unsafeUrl('unsafe-url'),
+  ;
 
-extension ReferrerPolicyListValueExtension on ReferrerPolicyList {
-  String toValue() {
-    switch (this) {
-      case ReferrerPolicyList.noReferrer:
-        return 'no-referrer';
-      case ReferrerPolicyList.noReferrerWhenDowngrade:
-        return 'no-referrer-when-downgrade';
-      case ReferrerPolicyList.origin:
-        return 'origin';
-      case ReferrerPolicyList.originWhenCrossOrigin:
-        return 'origin-when-cross-origin';
-      case ReferrerPolicyList.sameOrigin:
-        return 'same-origin';
-      case ReferrerPolicyList.strictOrigin:
-        return 'strict-origin';
-      case ReferrerPolicyList.strictOriginWhenCrossOrigin:
-        return 'strict-origin-when-cross-origin';
-      case ReferrerPolicyList.unsafeUrl:
-        return 'unsafe-url';
-    }
-  }
-}
+  final String value;
 
-extension ReferrerPolicyListFromString on String {
-  ReferrerPolicyList toReferrerPolicyList() {
-    switch (this) {
-      case 'no-referrer':
-        return ReferrerPolicyList.noReferrer;
-      case 'no-referrer-when-downgrade':
-        return ReferrerPolicyList.noReferrerWhenDowngrade;
-      case 'origin':
-        return ReferrerPolicyList.origin;
-      case 'origin-when-cross-origin':
-        return ReferrerPolicyList.originWhenCrossOrigin;
-      case 'same-origin':
-        return ReferrerPolicyList.sameOrigin;
-      case 'strict-origin':
-        return ReferrerPolicyList.strictOrigin;
-      case 'strict-origin-when-cross-origin':
-        return ReferrerPolicyList.strictOriginWhenCrossOrigin;
-      case 'unsafe-url':
-        return ReferrerPolicyList.unsafeUrl;
-    }
-    throw Exception('$this is not known in enum ReferrerPolicyList');
-  }
+  const ReferrerPolicyList(this.value);
+
+  static ReferrerPolicyList fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum ReferrerPolicyList'));
 }
 
 /// A response headers policy.
@@ -16143,7 +15599,7 @@ class ResponseHeadersPolicyAccessControlAllowMethods {
     final items = this.items;
     final quantity = this.quantity;
     return {
-      'Items': items.map((e) => e.toValue()).toList(),
+      'Items': items.map((e) => e.value).toList(),
       'Quantity': quantity,
     };
   }
@@ -16154,7 +15610,7 @@ class ResponseHeadersPolicyAccessControlAllowMethods {
     final $children = <_s.XmlNode>[
       _s.encodeXmlIntValue('Quantity', quantity),
       _s.XmlElement(_s.XmlName('Items'), [],
-          items.map((e) => _s.encodeXmlStringValue('Method', e.toValue()))),
+          items.map((e) => _s.encodeXmlStringValue('Method', e.value))),
     ];
     final $attributes = <_s.XmlAttribute>[
       ...?attributes,
@@ -16168,65 +15624,25 @@ class ResponseHeadersPolicyAccessControlAllowMethods {
 }
 
 enum ResponseHeadersPolicyAccessControlAllowMethodsValues {
-  get,
-  post,
-  options,
-  put,
-  delete,
-  patch,
-  head,
-  all,
-}
+  get('GET'),
+  post('POST'),
+  options('OPTIONS'),
+  put('PUT'),
+  delete('DELETE'),
+  patch('PATCH'),
+  head('HEAD'),
+  all('ALL'),
+  ;
 
-extension ResponseHeadersPolicyAccessControlAllowMethodsValuesValueExtension
-    on ResponseHeadersPolicyAccessControlAllowMethodsValues {
-  String toValue() {
-    switch (this) {
-      case ResponseHeadersPolicyAccessControlAllowMethodsValues.get:
-        return 'GET';
-      case ResponseHeadersPolicyAccessControlAllowMethodsValues.post:
-        return 'POST';
-      case ResponseHeadersPolicyAccessControlAllowMethodsValues.options:
-        return 'OPTIONS';
-      case ResponseHeadersPolicyAccessControlAllowMethodsValues.put:
-        return 'PUT';
-      case ResponseHeadersPolicyAccessControlAllowMethodsValues.delete:
-        return 'DELETE';
-      case ResponseHeadersPolicyAccessControlAllowMethodsValues.patch:
-        return 'PATCH';
-      case ResponseHeadersPolicyAccessControlAllowMethodsValues.head:
-        return 'HEAD';
-      case ResponseHeadersPolicyAccessControlAllowMethodsValues.all:
-        return 'ALL';
-    }
-  }
-}
+  final String value;
 
-extension ResponseHeadersPolicyAccessControlAllowMethodsValuesFromString
-    on String {
-  ResponseHeadersPolicyAccessControlAllowMethodsValues
-      toResponseHeadersPolicyAccessControlAllowMethodsValues() {
-    switch (this) {
-      case 'GET':
-        return ResponseHeadersPolicyAccessControlAllowMethodsValues.get;
-      case 'POST':
-        return ResponseHeadersPolicyAccessControlAllowMethodsValues.post;
-      case 'OPTIONS':
-        return ResponseHeadersPolicyAccessControlAllowMethodsValues.options;
-      case 'PUT':
-        return ResponseHeadersPolicyAccessControlAllowMethodsValues.put;
-      case 'DELETE':
-        return ResponseHeadersPolicyAccessControlAllowMethodsValues.delete;
-      case 'PATCH':
-        return ResponseHeadersPolicyAccessControlAllowMethodsValues.patch;
-      case 'HEAD':
-        return ResponseHeadersPolicyAccessControlAllowMethodsValues.head;
-      case 'ALL':
-        return ResponseHeadersPolicyAccessControlAllowMethodsValues.all;
-    }
-    throw Exception(
-        '$this is not known in enum ResponseHeadersPolicyAccessControlAllowMethodsValues');
-  }
+  const ResponseHeadersPolicyAccessControlAllowMethodsValues(this.value);
+
+  static ResponseHeadersPolicyAccessControlAllowMethodsValues fromString(
+          String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum ResponseHeadersPolicyAccessControlAllowMethodsValues'));
 }
 
 /// A list of origins (domain names) that CloudFront can use as the value for
@@ -16859,8 +16275,8 @@ class ResponseHeadersPolicyFrameOptions {
   });
   factory ResponseHeadersPolicyFrameOptions.fromXml(_s.XmlElement elem) {
     return ResponseHeadersPolicyFrameOptions(
-      frameOption:
-          _s.extractXmlStringValue(elem, 'FrameOption')!.toFrameOptionsList(),
+      frameOption: FrameOptionsList.fromString(
+          _s.extractXmlStringValue(elem, 'FrameOption')!),
       override: _s.extractXmlBoolValue(elem, 'Override')!,
     );
   }
@@ -16869,7 +16285,7 @@ class ResponseHeadersPolicyFrameOptions {
     final frameOption = this.frameOption;
     final override = this.override;
     return {
-      'FrameOption': frameOption.toValue(),
+      'FrameOption': frameOption.value,
       'Override': override,
     };
   }
@@ -16879,7 +16295,7 @@ class ResponseHeadersPolicyFrameOptions {
     final override = this.override;
     final $children = <_s.XmlNode>[
       _s.encodeXmlBoolValue('Override', override),
-      _s.encodeXmlStringValue('FrameOption', frameOption.toValue()),
+      _s.encodeXmlStringValue('FrameOption', frameOption.value),
     ];
     final $attributes = <_s.XmlAttribute>[
       ...?attributes,
@@ -16995,9 +16411,8 @@ class ResponseHeadersPolicyReferrerPolicy {
   factory ResponseHeadersPolicyReferrerPolicy.fromXml(_s.XmlElement elem) {
     return ResponseHeadersPolicyReferrerPolicy(
       override: _s.extractXmlBoolValue(elem, 'Override')!,
-      referrerPolicy: _s
-          .extractXmlStringValue(elem, 'ReferrerPolicy')!
-          .toReferrerPolicyList(),
+      referrerPolicy: ReferrerPolicyList.fromString(
+          _s.extractXmlStringValue(elem, 'ReferrerPolicy')!),
     );
   }
 
@@ -17006,7 +16421,7 @@ class ResponseHeadersPolicyReferrerPolicy {
     final referrerPolicy = this.referrerPolicy;
     return {
       'Override': override,
-      'ReferrerPolicy': referrerPolicy.toValue(),
+      'ReferrerPolicy': referrerPolicy.value,
     };
   }
 
@@ -17015,7 +16430,7 @@ class ResponseHeadersPolicyReferrerPolicy {
     final referrerPolicy = this.referrerPolicy;
     final $children = <_s.XmlNode>[
       _s.encodeXmlBoolValue('Override', override),
-      _s.encodeXmlStringValue('ReferrerPolicy', referrerPolicy.toValue()),
+      _s.encodeXmlStringValue('ReferrerPolicy', referrerPolicy.value),
     ];
     final $attributes = <_s.XmlAttribute>[
       ...?attributes,
@@ -17430,8 +16845,8 @@ class ResponseHeadersPolicySummary {
     return ResponseHeadersPolicySummary(
       responseHeadersPolicy: ResponseHeadersPolicy.fromXml(
           _s.extractXmlChild(elem, 'ResponseHeadersPolicy')!),
-      type:
-          _s.extractXmlStringValue(elem, 'Type')!.toResponseHeadersPolicyType(),
+      type: ResponseHeadersPolicyType.fromString(
+          _s.extractXmlStringValue(elem, 'Type')!),
     );
   }
 
@@ -17440,37 +16855,24 @@ class ResponseHeadersPolicySummary {
     final type = this.type;
     return {
       'ResponseHeadersPolicy': responseHeadersPolicy,
-      'Type': type.toValue(),
+      'Type': type.value,
     };
   }
 }
 
 enum ResponseHeadersPolicyType {
-  managed,
-  custom,
-}
+  managed('managed'),
+  custom('custom'),
+  ;
 
-extension ResponseHeadersPolicyTypeValueExtension on ResponseHeadersPolicyType {
-  String toValue() {
-    switch (this) {
-      case ResponseHeadersPolicyType.managed:
-        return 'managed';
-      case ResponseHeadersPolicyType.custom:
-        return 'custom';
-    }
-  }
-}
+  final String value;
 
-extension ResponseHeadersPolicyTypeFromString on String {
-  ResponseHeadersPolicyType toResponseHeadersPolicyType() {
-    switch (this) {
-      case 'managed':
-        return ResponseHeadersPolicyType.managed;
-      case 'custom':
-        return ResponseHeadersPolicyType.custom;
-    }
-    throw Exception('$this is not known in enum ResponseHeadersPolicyType');
-  }
+  const ResponseHeadersPolicyType(this.value);
+
+  static ResponseHeadersPolicyType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum ResponseHeadersPolicyType'));
 }
 
 /// Determines whether CloudFront includes the <code>X-XSS-Protection</code>
@@ -17740,36 +17142,19 @@ class S3OriginConfig {
 }
 
 enum SSLSupportMethod {
-  sniOnly,
-  vip,
-  staticIp,
-}
+  sniOnly('sni-only'),
+  vip('vip'),
+  staticIp('static-ip'),
+  ;
 
-extension SSLSupportMethodValueExtension on SSLSupportMethod {
-  String toValue() {
-    switch (this) {
-      case SSLSupportMethod.sniOnly:
-        return 'sni-only';
-      case SSLSupportMethod.vip:
-        return 'vip';
-      case SSLSupportMethod.staticIp:
-        return 'static-ip';
-    }
-  }
-}
+  final String value;
 
-extension SSLSupportMethodFromString on String {
-  SSLSupportMethod toSSLSupportMethod() {
-    switch (this) {
-      case 'sni-only':
-        return SSLSupportMethod.sniOnly;
-      case 'vip':
-        return SSLSupportMethod.vip;
-      case 'static-ip':
-        return SSLSupportMethod.staticIp;
-    }
-    throw Exception('$this is not known in enum SSLSupportMethod');
-  }
+  const SSLSupportMethod(this.value);
+
+  static SSLSupportMethod fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum SSLSupportMethod'));
 }
 
 /// Session stickiness provides the ability to define multiple requests from a
@@ -17866,41 +17251,19 @@ class Signer {
 }
 
 enum SslProtocol {
-  sSLv3,
-  tLSv1,
-  tLSv1_1,
-  tLSv1_2,
-}
+  sSLv3('SSLv3'),
+  tLSv1('TLSv1'),
+  tLSv1_1('TLSv1.1'),
+  tLSv1_2('TLSv1.2'),
+  ;
 
-extension SslProtocolValueExtension on SslProtocol {
-  String toValue() {
-    switch (this) {
-      case SslProtocol.sSLv3:
-        return 'SSLv3';
-      case SslProtocol.tLSv1:
-        return 'TLSv1';
-      case SslProtocol.tLSv1_1:
-        return 'TLSv1.1';
-      case SslProtocol.tLSv1_2:
-        return 'TLSv1.2';
-    }
-  }
-}
+  final String value;
 
-extension SslProtocolFromString on String {
-  SslProtocol toSslProtocol() {
-    switch (this) {
-      case 'SSLv3':
-        return SslProtocol.sSLv3;
-      case 'TLSv1':
-        return SslProtocol.tLSv1;
-      case 'TLSv1.1':
-        return SslProtocol.tLSv1_1;
-      case 'TLSv1.2':
-        return SslProtocol.tLSv1_2;
-    }
-    throw Exception('$this is not known in enum SslProtocol');
-  }
+  const SslProtocol(this.value);
+
+  static SslProtocol fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum SslProtocol'));
 }
 
 /// The CloudFront domain name of the staging distribution.
@@ -18163,7 +17526,8 @@ class StreamingDistributionConfig {
       logging: _s
           .extractXmlChild(elem, 'Logging')
           ?.let(StreamingLoggingConfig.fromXml),
-      priceClass: _s.extractXmlStringValue(elem, 'PriceClass')?.toPriceClass(),
+      priceClass:
+          PriceClass.fromString(_s.extractXmlStringValue(elem, 'PriceClass')),
     );
   }
 
@@ -18184,7 +17548,7 @@ class StreamingDistributionConfig {
       'TrustedSigners': trustedSigners,
       if (aliases != null) 'Aliases': aliases,
       if (logging != null) 'Logging': logging,
-      if (priceClass != null) 'PriceClass': priceClass.toValue(),
+      if (priceClass != null) 'PriceClass': priceClass.value,
     };
   }
 
@@ -18205,7 +17569,7 @@ class StreamingDistributionConfig {
       if (logging != null) logging.toXml('Logging'),
       trustedSigners.toXml('TrustedSigners'),
       if (priceClass != null)
-        _s.encodeXmlStringValue('PriceClass', priceClass.toValue()),
+        _s.encodeXmlStringValue('PriceClass', priceClass.value),
       _s.encodeXmlBoolValue('Enabled', enabled),
     ];
     final $attributes = <_s.XmlAttribute>[
@@ -18412,7 +17776,8 @@ class StreamingDistributionSummary {
       enabled: _s.extractXmlBoolValue(elem, 'Enabled')!,
       id: _s.extractXmlStringValue(elem, 'Id')!,
       lastModifiedTime: _s.extractXmlDateTimeValue(elem, 'LastModifiedTime')!,
-      priceClass: _s.extractXmlStringValue(elem, 'PriceClass')!.toPriceClass(),
+      priceClass:
+          PriceClass.fromString(_s.extractXmlStringValue(elem, 'PriceClass')!),
       s3Origin: S3Origin.fromXml(_s.extractXmlChild(elem, 'S3Origin')!),
       status: _s.extractXmlStringValue(elem, 'Status')!,
       trustedSigners:
@@ -18440,7 +17805,7 @@ class StreamingDistributionSummary {
       'Enabled': enabled,
       'Id': id,
       'LastModifiedTime': iso8601ToJson(lastModifiedTime),
-      'PriceClass': priceClass.toValue(),
+      'PriceClass': priceClass.value,
       'S3Origin': s3Origin,
       'Status': status,
       'TrustedSigners': trustedSigners,
@@ -18678,7 +18043,7 @@ class TestFunctionRequest {
     final stage = this.stage;
     return {
       'EventObject': base64Encode(eventObject),
-      if (stage != null) 'Stage': stage.toValue(),
+      if (stage != null) 'Stage': stage.value,
     };
   }
 
@@ -18688,7 +18053,7 @@ class TestFunctionRequest {
     final name = this.name;
     final stage = this.stage;
     final $children = <_s.XmlNode>[
-      if (stage != null) _s.encodeXmlStringValue('Stage', stage.toValue()),
+      if (stage != null) _s.encodeXmlStringValue('Stage', stage.value),
       _s.encodeXmlUint8ListValue('EventObject', eventObject),
     ];
     final $attributes = <_s.XmlAttribute>[
@@ -18803,9 +18168,8 @@ class TrafficConfig {
   });
   factory TrafficConfig.fromXml(_s.XmlElement elem) {
     return TrafficConfig(
-      type: _s
-          .extractXmlStringValue(elem, 'Type')!
-          .toContinuousDeploymentPolicyType(),
+      type: ContinuousDeploymentPolicyType.fromString(
+          _s.extractXmlStringValue(elem, 'Type')!),
       singleHeaderConfig: _s
           .extractXmlChild(elem, 'SingleHeaderConfig')
           ?.let(ContinuousDeploymentSingleHeaderConfig.fromXml),
@@ -18820,7 +18184,7 @@ class TrafficConfig {
     final singleHeaderConfig = this.singleHeaderConfig;
     final singleWeightConfig = this.singleWeightConfig;
     return {
-      'Type': type.toValue(),
+      'Type': type.value,
       if (singleHeaderConfig != null) 'SingleHeaderConfig': singleHeaderConfig,
       if (singleWeightConfig != null) 'SingleWeightConfig': singleWeightConfig,
     };
@@ -18835,7 +18199,7 @@ class TrafficConfig {
         singleWeightConfig.toXml('SingleWeightConfig'),
       if (singleHeaderConfig != null)
         singleHeaderConfig.toXml('SingleHeaderConfig'),
-      _s.encodeXmlStringValue('Type', type.toValue()),
+      _s.encodeXmlStringValue('Type', type.value),
     ];
     final $attributes = <_s.XmlAttribute>[
       ...?attributes,
@@ -19656,18 +19020,15 @@ class ViewerCertificate {
     return ViewerCertificate(
       aCMCertificateArn: _s.extractXmlStringValue(elem, 'ACMCertificateArn'),
       certificate: _s.extractXmlStringValue(elem, 'Certificate'),
-      certificateSource: _s
-          .extractXmlStringValue(elem, 'CertificateSource')
-          ?.toCertificateSource(),
+      certificateSource: CertificateSource.fromString(
+          _s.extractXmlStringValue(elem, 'CertificateSource')),
       cloudFrontDefaultCertificate:
           _s.extractXmlBoolValue(elem, 'CloudFrontDefaultCertificate'),
       iAMCertificateId: _s.extractXmlStringValue(elem, 'IAMCertificateId'),
-      minimumProtocolVersion: _s
-          .extractXmlStringValue(elem, 'MinimumProtocolVersion')
-          ?.toMinimumProtocolVersion(),
-      sSLSupportMethod: _s
-          .extractXmlStringValue(elem, 'SSLSupportMethod')
-          ?.toSSLSupportMethod(),
+      minimumProtocolVersion: MinimumProtocolVersion.fromString(
+          _s.extractXmlStringValue(elem, 'MinimumProtocolVersion')),
+      sSLSupportMethod: SSLSupportMethod.fromString(
+          _s.extractXmlStringValue(elem, 'SSLSupportMethod')),
     );
   }
 
@@ -19683,14 +19044,13 @@ class ViewerCertificate {
       if (aCMCertificateArn != null) 'ACMCertificateArn': aCMCertificateArn,
       if (certificate != null) 'Certificate': certificate,
       if (certificateSource != null)
-        'CertificateSource': certificateSource.toValue(),
+        'CertificateSource': certificateSource.value,
       if (cloudFrontDefaultCertificate != null)
         'CloudFrontDefaultCertificate': cloudFrontDefaultCertificate,
       if (iAMCertificateId != null) 'IAMCertificateId': iAMCertificateId,
       if (minimumProtocolVersion != null)
-        'MinimumProtocolVersion': minimumProtocolVersion.toValue(),
-      if (sSLSupportMethod != null)
-        'SSLSupportMethod': sSLSupportMethod.toValue(),
+        'MinimumProtocolVersion': minimumProtocolVersion.value,
+      if (sSLSupportMethod != null) 'SSLSupportMethod': sSLSupportMethod.value,
     };
   }
 
@@ -19711,15 +19071,14 @@ class ViewerCertificate {
       if (aCMCertificateArn != null)
         _s.encodeXmlStringValue('ACMCertificateArn', aCMCertificateArn),
       if (sSLSupportMethod != null)
-        _s.encodeXmlStringValue('SSLSupportMethod', sSLSupportMethod.toValue()),
+        _s.encodeXmlStringValue('SSLSupportMethod', sSLSupportMethod.value),
       if (minimumProtocolVersion != null)
         _s.encodeXmlStringValue(
-            'MinimumProtocolVersion', minimumProtocolVersion.toValue()),
+            'MinimumProtocolVersion', minimumProtocolVersion.value),
       if (certificate != null)
         _s.encodeXmlStringValue('Certificate', certificate),
       if (certificateSource != null)
-        _s.encodeXmlStringValue(
-            'CertificateSource', certificateSource.toValue()),
+        _s.encodeXmlStringValue('CertificateSource', certificateSource.value),
     ];
     final $attributes = <_s.XmlAttribute>[
       ...?attributes,
@@ -19733,36 +19092,19 @@ class ViewerCertificate {
 }
 
 enum ViewerProtocolPolicy {
-  allowAll,
-  httpsOnly,
-  redirectToHttps,
-}
+  allowAll('allow-all'),
+  httpsOnly('https-only'),
+  redirectToHttps('redirect-to-https'),
+  ;
 
-extension ViewerProtocolPolicyValueExtension on ViewerProtocolPolicy {
-  String toValue() {
-    switch (this) {
-      case ViewerProtocolPolicy.allowAll:
-        return 'allow-all';
-      case ViewerProtocolPolicy.httpsOnly:
-        return 'https-only';
-      case ViewerProtocolPolicy.redirectToHttps:
-        return 'redirect-to-https';
-    }
-  }
-}
+  final String value;
 
-extension ViewerProtocolPolicyFromString on String {
-  ViewerProtocolPolicy toViewerProtocolPolicy() {
-    switch (this) {
-      case 'allow-all':
-        return ViewerProtocolPolicy.allowAll;
-      case 'https-only':
-        return ViewerProtocolPolicy.httpsOnly;
-      case 'redirect-to-https':
-        return ViewerProtocolPolicy.redirectToHttps;
-    }
-    throw Exception('$this is not known in enum ViewerProtocolPolicy');
-  }
+  const ViewerProtocolPolicy(this.value);
+
+  static ViewerProtocolPolicy fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum ViewerProtocolPolicy'));
 }
 
 class AccessDenied extends _s.GenericAwsException {

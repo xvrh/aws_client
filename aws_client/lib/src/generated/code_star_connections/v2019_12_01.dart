@@ -95,7 +95,7 @@ class CodeStarConnections {
       payload: {
         'ConnectionName': connectionName,
         if (hostArn != null) 'HostArn': hostArn,
-        if (providerType != null) 'ProviderType': providerType.toValue(),
+        if (providerType != null) 'ProviderType': providerType.value,
         if (tags != null) 'Tags': tags,
       },
     );
@@ -153,7 +153,7 @@ class CodeStarConnections {
       payload: {
         'Name': name,
         'ProviderEndpoint': providerEndpoint,
-        'ProviderType': providerType.toValue(),
+        'ProviderType': providerType.value,
         if (tags != null) 'Tags': tags,
         if (vpcConfiguration != null) 'VpcConfiguration': vpcConfiguration,
       },
@@ -328,7 +328,7 @@ class CodeStarConnections {
         if (maxResults != null) 'MaxResults': maxResults,
         if (nextToken != null) 'NextToken': nextToken,
         if (providerTypeFilter != null)
-          'ProviderTypeFilter': providerTypeFilter.toValue(),
+          'ProviderTypeFilter': providerTypeFilter.value,
       },
     );
 
@@ -558,11 +558,12 @@ class Connection {
     return Connection(
       connectionArn: json['ConnectionArn'] as String?,
       connectionName: json['ConnectionName'] as String?,
-      connectionStatus:
-          (json['ConnectionStatus'] as String?)?.toConnectionStatus(),
+      connectionStatus: (json['ConnectionStatus'] as String?)
+          ?.let(ConnectionStatus.fromString),
       hostArn: json['HostArn'] as String?,
       ownerAccountId: json['OwnerAccountId'] as String?,
-      providerType: (json['ProviderType'] as String?)?.toProviderType(),
+      providerType:
+          (json['ProviderType'] as String?)?.let(ProviderType.fromString),
     );
   }
 
@@ -576,46 +577,28 @@ class Connection {
     return {
       if (connectionArn != null) 'ConnectionArn': connectionArn,
       if (connectionName != null) 'ConnectionName': connectionName,
-      if (connectionStatus != null)
-        'ConnectionStatus': connectionStatus.toValue(),
+      if (connectionStatus != null) 'ConnectionStatus': connectionStatus.value,
       if (hostArn != null) 'HostArn': hostArn,
       if (ownerAccountId != null) 'OwnerAccountId': ownerAccountId,
-      if (providerType != null) 'ProviderType': providerType.toValue(),
+      if (providerType != null) 'ProviderType': providerType.value,
     };
   }
 }
 
 enum ConnectionStatus {
-  pending,
-  available,
-  error,
-}
+  pending('PENDING'),
+  available('AVAILABLE'),
+  error('ERROR'),
+  ;
 
-extension ConnectionStatusValueExtension on ConnectionStatus {
-  String toValue() {
-    switch (this) {
-      case ConnectionStatus.pending:
-        return 'PENDING';
-      case ConnectionStatus.available:
-        return 'AVAILABLE';
-      case ConnectionStatus.error:
-        return 'ERROR';
-    }
-  }
-}
+  final String value;
 
-extension ConnectionStatusFromString on String {
-  ConnectionStatus toConnectionStatus() {
-    switch (this) {
-      case 'PENDING':
-        return ConnectionStatus.pending;
-      case 'AVAILABLE':
-        return ConnectionStatus.available;
-      case 'ERROR':
-        return ConnectionStatus.error;
-    }
-    throw Exception('$this is not known in enum ConnectionStatus');
-  }
+  const ConnectionStatus(this.value);
+
+  static ConnectionStatus fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum ConnectionStatus'));
 }
 
 class CreateConnectionOutput {
@@ -761,7 +744,8 @@ class GetHostOutput {
     return GetHostOutput(
       name: json['Name'] as String?,
       providerEndpoint: json['ProviderEndpoint'] as String?,
-      providerType: (json['ProviderType'] as String?)?.toProviderType(),
+      providerType:
+          (json['ProviderType'] as String?)?.let(ProviderType.fromString),
       status: json['Status'] as String?,
       vpcConfiguration: json['VpcConfiguration'] != null
           ? VpcConfiguration.fromJson(
@@ -779,7 +763,7 @@ class GetHostOutput {
     return {
       if (name != null) 'Name': name,
       if (providerEndpoint != null) 'ProviderEndpoint': providerEndpoint,
-      if (providerType != null) 'ProviderType': providerType.toValue(),
+      if (providerType != null) 'ProviderType': providerType.value,
       if (status != null) 'Status': status,
       if (vpcConfiguration != null) 'VpcConfiguration': vpcConfiguration,
     };
@@ -834,7 +818,8 @@ class Host {
       hostArn: json['HostArn'] as String?,
       name: json['Name'] as String?,
       providerEndpoint: json['ProviderEndpoint'] as String?,
-      providerType: (json['ProviderType'] as String?)?.toProviderType(),
+      providerType:
+          (json['ProviderType'] as String?)?.let(ProviderType.fromString),
       status: json['Status'] as String?,
       statusMessage: json['StatusMessage'] as String?,
       vpcConfiguration: json['VpcConfiguration'] != null
@@ -856,7 +841,7 @@ class Host {
       if (hostArn != null) 'HostArn': hostArn,
       if (name != null) 'Name': name,
       if (providerEndpoint != null) 'ProviderEndpoint': providerEndpoint,
-      if (providerType != null) 'ProviderType': providerType.toValue(),
+      if (providerType != null) 'ProviderType': providerType.value,
       if (status != null) 'Status': status,
       if (statusMessage != null) 'StatusMessage': statusMessage,
       if (vpcConfiguration != null) 'VpcConfiguration': vpcConfiguration,
@@ -960,36 +945,19 @@ class ListTagsForResourceOutput {
 }
 
 enum ProviderType {
-  bitbucket,
-  gitHub,
-  gitHubEnterpriseServer,
-}
+  bitbucket('Bitbucket'),
+  gitHub('GitHub'),
+  gitHubEnterpriseServer('GitHubEnterpriseServer'),
+  ;
 
-extension ProviderTypeValueExtension on ProviderType {
-  String toValue() {
-    switch (this) {
-      case ProviderType.bitbucket:
-        return 'Bitbucket';
-      case ProviderType.gitHub:
-        return 'GitHub';
-      case ProviderType.gitHubEnterpriseServer:
-        return 'GitHubEnterpriseServer';
-    }
-  }
-}
+  final String value;
 
-extension ProviderTypeFromString on String {
-  ProviderType toProviderType() {
-    switch (this) {
-      case 'Bitbucket':
-        return ProviderType.bitbucket;
-      case 'GitHub':
-        return ProviderType.gitHub;
-      case 'GitHubEnterpriseServer':
-        return ProviderType.gitHubEnterpriseServer;
-    }
-    throw Exception('$this is not known in enum ProviderType');
-  }
+  const ProviderType(this.value);
+
+  static ProviderType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum ProviderType'));
 }
 
 /// A tag is a key-value pair that is used to manage the resource.

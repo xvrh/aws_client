@@ -185,7 +185,7 @@ class EventBridge {
       headers: headers,
       payload: {
         'ConnectionArn': connectionArn,
-        'HttpMethod': httpMethod.toValue(),
+        'HttpMethod': httpMethod.value,
         'InvocationEndpoint': invocationEndpoint,
         'Name': name,
         if (description != null) 'Description': description,
@@ -302,7 +302,7 @@ class EventBridge {
       headers: headers,
       payload: {
         'AuthParameters': authParameters,
-        'AuthorizationType': authorizationType.toValue(),
+        'AuthorizationType': authorizationType.value,
         'Name': name,
         if (description != null) 'Description': description,
       },
@@ -1292,7 +1292,7 @@ class EventBridge {
         if (limit != null) 'Limit': limit,
         if (namePrefix != null) 'NamePrefix': namePrefix,
         if (nextToken != null) 'NextToken': nextToken,
-        if (state != null) 'State': state.toValue(),
+        if (state != null) 'State': state.value,
       },
     );
 
@@ -1338,8 +1338,7 @@ class EventBridge {
       // TODO queryParams
       headers: headers,
       payload: {
-        if (connectionState != null)
-          'ConnectionState': connectionState.toValue(),
+        if (connectionState != null) 'ConnectionState': connectionState.value,
         if (limit != null) 'Limit': limit,
         if (namePrefix != null) 'NamePrefix': namePrefix,
         if (nextToken != null) 'NextToken': nextToken,
@@ -1655,7 +1654,7 @@ class EventBridge {
         if (limit != null) 'Limit': limit,
         if (namePrefix != null) 'NamePrefix': namePrefix,
         if (nextToken != null) 'NextToken': nextToken,
-        if (state != null) 'State': state.toValue(),
+        if (state != null) 'State': state.value,
       },
     );
 
@@ -2164,7 +2163,7 @@ class EventBridge {
         if (roleArn != null) 'RoleArn': roleArn,
         if (scheduleExpression != null)
           'ScheduleExpression': scheduleExpression,
-        if (state != null) 'State': state.toValue(),
+        if (state != null) 'State': state.value,
         if (tags != null) 'Tags': tags,
       },
     );
@@ -2796,7 +2795,7 @@ class EventBridge {
         'Name': name,
         if (connectionArn != null) 'ConnectionArn': connectionArn,
         if (description != null) 'Description': description,
-        if (httpMethod != null) 'HttpMethod': httpMethod.toValue(),
+        if (httpMethod != null) 'HttpMethod': httpMethod.value,
         if (invocationEndpoint != null)
           'InvocationEndpoint': invocationEndpoint,
         if (invocationRateLimitPerSecond != null)
@@ -2897,7 +2896,7 @@ class EventBridge {
         'Name': name,
         if (authParameters != null) 'AuthParameters': authParameters,
         if (authorizationType != null)
-          'AuthorizationType': authorizationType.toValue(),
+          'AuthorizationType': authorizationType.value,
         if (description != null) 'Description': description,
       },
     );
@@ -3009,11 +3008,12 @@ class ApiDestination {
   factory ApiDestination.fromJson(Map<String, dynamic> json) {
     return ApiDestination(
       apiDestinationArn: json['ApiDestinationArn'] as String?,
-      apiDestinationState:
-          (json['ApiDestinationState'] as String?)?.toApiDestinationState(),
+      apiDestinationState: (json['ApiDestinationState'] as String?)
+          ?.let(ApiDestinationState.fromString),
       connectionArn: json['ConnectionArn'] as String?,
       creationTime: timeStampFromJson(json['CreationTime']),
-      httpMethod: (json['HttpMethod'] as String?)?.toApiDestinationHttpMethod(),
+      httpMethod: (json['HttpMethod'] as String?)
+          ?.let(ApiDestinationHttpMethod.fromString),
       invocationEndpoint: json['InvocationEndpoint'] as String?,
       invocationRateLimitPerSecond:
           json['InvocationRateLimitPerSecond'] as int?,
@@ -3035,11 +3035,11 @@ class ApiDestination {
     return {
       if (apiDestinationArn != null) 'ApiDestinationArn': apiDestinationArn,
       if (apiDestinationState != null)
-        'ApiDestinationState': apiDestinationState.toValue(),
+        'ApiDestinationState': apiDestinationState.value,
       if (connectionArn != null) 'ConnectionArn': connectionArn,
       if (creationTime != null)
         'CreationTime': unixTimestampToJson(creationTime),
-      if (httpMethod != null) 'HttpMethod': httpMethod.toValue(),
+      if (httpMethod != null) 'HttpMethod': httpMethod.value,
       if (invocationEndpoint != null) 'InvocationEndpoint': invocationEndpoint,
       if (invocationRateLimitPerSecond != null)
         'InvocationRateLimitPerSecond': invocationRateLimitPerSecond,
@@ -3051,84 +3051,38 @@ class ApiDestination {
 }
 
 enum ApiDestinationHttpMethod {
-  post,
-  get,
-  head,
-  options,
-  put,
-  patch,
-  delete,
-}
+  post('POST'),
+  get('GET'),
+  head('HEAD'),
+  options('OPTIONS'),
+  put('PUT'),
+  patch('PATCH'),
+  delete('DELETE'),
+  ;
 
-extension ApiDestinationHttpMethodValueExtension on ApiDestinationHttpMethod {
-  String toValue() {
-    switch (this) {
-      case ApiDestinationHttpMethod.post:
-        return 'POST';
-      case ApiDestinationHttpMethod.get:
-        return 'GET';
-      case ApiDestinationHttpMethod.head:
-        return 'HEAD';
-      case ApiDestinationHttpMethod.options:
-        return 'OPTIONS';
-      case ApiDestinationHttpMethod.put:
-        return 'PUT';
-      case ApiDestinationHttpMethod.patch:
-        return 'PATCH';
-      case ApiDestinationHttpMethod.delete:
-        return 'DELETE';
-    }
-  }
-}
+  final String value;
 
-extension ApiDestinationHttpMethodFromString on String {
-  ApiDestinationHttpMethod toApiDestinationHttpMethod() {
-    switch (this) {
-      case 'POST':
-        return ApiDestinationHttpMethod.post;
-      case 'GET':
-        return ApiDestinationHttpMethod.get;
-      case 'HEAD':
-        return ApiDestinationHttpMethod.head;
-      case 'OPTIONS':
-        return ApiDestinationHttpMethod.options;
-      case 'PUT':
-        return ApiDestinationHttpMethod.put;
-      case 'PATCH':
-        return ApiDestinationHttpMethod.patch;
-      case 'DELETE':
-        return ApiDestinationHttpMethod.delete;
-    }
-    throw Exception('$this is not known in enum ApiDestinationHttpMethod');
-  }
+  const ApiDestinationHttpMethod(this.value);
+
+  static ApiDestinationHttpMethod fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum ApiDestinationHttpMethod'));
 }
 
 enum ApiDestinationState {
-  active,
-  inactive,
-}
+  active('ACTIVE'),
+  inactive('INACTIVE'),
+  ;
 
-extension ApiDestinationStateValueExtension on ApiDestinationState {
-  String toValue() {
-    switch (this) {
-      case ApiDestinationState.active:
-        return 'ACTIVE';
-      case ApiDestinationState.inactive:
-        return 'INACTIVE';
-    }
-  }
-}
+  final String value;
 
-extension ApiDestinationStateFromString on String {
-  ApiDestinationState toApiDestinationState() {
-    switch (this) {
-      case 'ACTIVE':
-        return ApiDestinationState.active;
-      case 'INACTIVE':
-        return ApiDestinationState.inactive;
-    }
-    throw Exception('$this is not known in enum ApiDestinationState');
-  }
+  const ApiDestinationState(this.value);
+
+  static ApiDestinationState fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum ApiDestinationState'));
 }
 
 /// An <code>Archive</code> object that contains details about an archive.
@@ -3177,7 +3131,7 @@ class Archive {
       eventSourceArn: json['EventSourceArn'] as String?,
       retentionDays: json['RetentionDays'] as int?,
       sizeBytes: json['SizeBytes'] as int?,
-      state: (json['State'] as String?)?.toArchiveState(),
+      state: (json['State'] as String?)?.let(ArchiveState.fromString),
       stateReason: json['StateReason'] as String?,
     );
   }
@@ -3199,86 +3153,44 @@ class Archive {
       if (eventSourceArn != null) 'EventSourceArn': eventSourceArn,
       if (retentionDays != null) 'RetentionDays': retentionDays,
       if (sizeBytes != null) 'SizeBytes': sizeBytes,
-      if (state != null) 'State': state.toValue(),
+      if (state != null) 'State': state.value,
       if (stateReason != null) 'StateReason': stateReason,
     };
   }
 }
 
 enum ArchiveState {
-  enabled,
-  disabled,
-  creating,
-  updating,
-  createFailed,
-  updateFailed,
-}
+  enabled('ENABLED'),
+  disabled('DISABLED'),
+  creating('CREATING'),
+  updating('UPDATING'),
+  createFailed('CREATE_FAILED'),
+  updateFailed('UPDATE_FAILED'),
+  ;
 
-extension ArchiveStateValueExtension on ArchiveState {
-  String toValue() {
-    switch (this) {
-      case ArchiveState.enabled:
-        return 'ENABLED';
-      case ArchiveState.disabled:
-        return 'DISABLED';
-      case ArchiveState.creating:
-        return 'CREATING';
-      case ArchiveState.updating:
-        return 'UPDATING';
-      case ArchiveState.createFailed:
-        return 'CREATE_FAILED';
-      case ArchiveState.updateFailed:
-        return 'UPDATE_FAILED';
-    }
-  }
-}
+  final String value;
 
-extension ArchiveStateFromString on String {
-  ArchiveState toArchiveState() {
-    switch (this) {
-      case 'ENABLED':
-        return ArchiveState.enabled;
-      case 'DISABLED':
-        return ArchiveState.disabled;
-      case 'CREATING':
-        return ArchiveState.creating;
-      case 'UPDATING':
-        return ArchiveState.updating;
-      case 'CREATE_FAILED':
-        return ArchiveState.createFailed;
-      case 'UPDATE_FAILED':
-        return ArchiveState.updateFailed;
-    }
-    throw Exception('$this is not known in enum ArchiveState');
-  }
+  const ArchiveState(this.value);
+
+  static ArchiveState fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum ArchiveState'));
 }
 
 enum AssignPublicIp {
-  enabled,
-  disabled,
-}
+  enabled('ENABLED'),
+  disabled('DISABLED'),
+  ;
 
-extension AssignPublicIpValueExtension on AssignPublicIp {
-  String toValue() {
-    switch (this) {
-      case AssignPublicIp.enabled:
-        return 'ENABLED';
-      case AssignPublicIp.disabled:
-        return 'DISABLED';
-    }
-  }
-}
+  final String value;
 
-extension AssignPublicIpFromString on String {
-  AssignPublicIp toAssignPublicIp() {
-    switch (this) {
-      case 'ENABLED':
-        return AssignPublicIp.enabled;
-      case 'DISABLED':
-        return AssignPublicIp.disabled;
-    }
-    throw Exception('$this is not known in enum AssignPublicIp');
-  }
+  const AssignPublicIp(this.value);
+
+  static AssignPublicIp fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum AssignPublicIp'));
 }
 
 /// This structure specifies the VPC subnets and security groups for the task,
@@ -3313,7 +3225,8 @@ class AwsVpcConfiguration {
           .whereNotNull()
           .map((e) => e as String)
           .toList(),
-      assignPublicIp: (json['AssignPublicIp'] as String?)?.toAssignPublicIp(),
+      assignPublicIp:
+          (json['AssignPublicIp'] as String?)?.let(AssignPublicIp.fromString),
       securityGroups: (json['SecurityGroups'] as List?)
           ?.whereNotNull()
           .map((e) => e as String)
@@ -3327,7 +3240,7 @@ class AwsVpcConfiguration {
     final securityGroups = this.securityGroups;
     return {
       'Subnets': subnets,
-      if (assignPublicIp != null) 'AssignPublicIp': assignPublicIp.toValue(),
+      if (assignPublicIp != null) 'AssignPublicIp': assignPublicIp.value,
       if (securityGroups != null) 'SecurityGroups': securityGroups,
     };
   }
@@ -3463,7 +3376,7 @@ class CancelReplayResponse {
   factory CancelReplayResponse.fromJson(Map<String, dynamic> json) {
     return CancelReplayResponse(
       replayArn: json['ReplayArn'] as String?,
-      state: (json['State'] as String?)?.toReplayState(),
+      state: (json['State'] as String?)?.let(ReplayState.fromString),
       stateReason: json['StateReason'] as String?,
     );
   }
@@ -3474,7 +3387,7 @@ class CancelReplayResponse {
     final stateReason = this.stateReason;
     return {
       if (replayArn != null) 'ReplayArn': replayArn,
-      if (state != null) 'State': state.toValue(),
+      if (state != null) 'State': state.value,
       if (stateReason != null) 'StateReason': stateReason,
     };
   }
@@ -3609,10 +3522,10 @@ class Connection {
   factory Connection.fromJson(Map<String, dynamic> json) {
     return Connection(
       authorizationType: (json['AuthorizationType'] as String?)
-          ?.toConnectionAuthorizationType(),
+          ?.let(ConnectionAuthorizationType.fromString),
       connectionArn: json['ConnectionArn'] as String?,
       connectionState:
-          (json['ConnectionState'] as String?)?.toConnectionState(),
+          (json['ConnectionState'] as String?)?.let(ConnectionState.fromString),
       creationTime: timeStampFromJson(json['CreationTime']),
       lastAuthorizedTime: timeStampFromJson(json['LastAuthorizedTime']),
       lastModifiedTime: timeStampFromJson(json['LastModifiedTime']),
@@ -3632,9 +3545,9 @@ class Connection {
     final stateReason = this.stateReason;
     return {
       if (authorizationType != null)
-        'AuthorizationType': authorizationType.toValue(),
+        'AuthorizationType': authorizationType.value,
       if (connectionArn != null) 'ConnectionArn': connectionArn,
-      if (connectionState != null) 'ConnectionState': connectionState.toValue(),
+      if (connectionState != null) 'ConnectionState': connectionState.value,
       if (creationTime != null)
         'CreationTime': unixTimestampToJson(creationTime),
       if (lastAuthorizedTime != null)
@@ -3734,37 +3647,19 @@ class ConnectionAuthResponseParameters {
 }
 
 enum ConnectionAuthorizationType {
-  basic,
-  oauthClientCredentials,
-  apiKey,
-}
+  basic('BASIC'),
+  oauthClientCredentials('OAUTH_CLIENT_CREDENTIALS'),
+  apiKey('API_KEY'),
+  ;
 
-extension ConnectionAuthorizationTypeValueExtension
-    on ConnectionAuthorizationType {
-  String toValue() {
-    switch (this) {
-      case ConnectionAuthorizationType.basic:
-        return 'BASIC';
-      case ConnectionAuthorizationType.oauthClientCredentials:
-        return 'OAUTH_CLIENT_CREDENTIALS';
-      case ConnectionAuthorizationType.apiKey:
-        return 'API_KEY';
-    }
-  }
-}
+  final String value;
 
-extension ConnectionAuthorizationTypeFromString on String {
-  ConnectionAuthorizationType toConnectionAuthorizationType() {
-    switch (this) {
-      case 'BASIC':
-        return ConnectionAuthorizationType.basic;
-      case 'OAUTH_CLIENT_CREDENTIALS':
-        return ConnectionAuthorizationType.oauthClientCredentials;
-      case 'API_KEY':
-        return ConnectionAuthorizationType.apiKey;
-    }
-    throw Exception('$this is not known in enum ConnectionAuthorizationType');
-  }
+  const ConnectionAuthorizationType(this.value);
+
+  static ConnectionAuthorizationType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum ConnectionAuthorizationType'));
 }
 
 /// Contains the authorization parameters for the connection if Basic is
@@ -3946,36 +3841,19 @@ class ConnectionOAuthClientResponseParameters {
 }
 
 enum ConnectionOAuthHttpMethod {
-  get,
-  post,
-  put,
-}
+  get('GET'),
+  post('POST'),
+  put('PUT'),
+  ;
 
-extension ConnectionOAuthHttpMethodValueExtension on ConnectionOAuthHttpMethod {
-  String toValue() {
-    switch (this) {
-      case ConnectionOAuthHttpMethod.get:
-        return 'GET';
-      case ConnectionOAuthHttpMethod.post:
-        return 'POST';
-      case ConnectionOAuthHttpMethod.put:
-        return 'PUT';
-    }
-  }
-}
+  final String value;
 
-extension ConnectionOAuthHttpMethodFromString on String {
-  ConnectionOAuthHttpMethod toConnectionOAuthHttpMethod() {
-    switch (this) {
-      case 'GET':
-        return ConnectionOAuthHttpMethod.get;
-      case 'POST':
-        return ConnectionOAuthHttpMethod.post;
-      case 'PUT':
-        return ConnectionOAuthHttpMethod.put;
-    }
-    throw Exception('$this is not known in enum ConnectionOAuthHttpMethod');
-  }
+  const ConnectionOAuthHttpMethod(this.value);
+
+  static ConnectionOAuthHttpMethod fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum ConnectionOAuthHttpMethod'));
 }
 
 /// Contains the response parameters when OAuth is specified as the
@@ -4010,8 +3888,8 @@ class ConnectionOAuthResponseParameters {
           ? ConnectionOAuthClientResponseParameters.fromJson(
               json['ClientParameters'] as Map<String, dynamic>)
           : null,
-      httpMethod:
-          (json['HttpMethod'] as String?)?.toConnectionOAuthHttpMethod(),
+      httpMethod: (json['HttpMethod'] as String?)
+          ?.let(ConnectionOAuthHttpMethod.fromString),
       oAuthHttpParameters: json['OAuthHttpParameters'] != null
           ? ConnectionHttpParameters.fromJson(
               json['OAuthHttpParameters'] as Map<String, dynamic>)
@@ -4028,7 +3906,7 @@ class ConnectionOAuthResponseParameters {
       if (authorizationEndpoint != null)
         'AuthorizationEndpoint': authorizationEndpoint,
       if (clientParameters != null) 'ClientParameters': clientParameters,
-      if (httpMethod != null) 'HttpMethod': httpMethod.toValue(),
+      if (httpMethod != null) 'HttpMethod': httpMethod.value,
       if (oAuthHttpParameters != null)
         'OAuthHttpParameters': oAuthHttpParameters,
     };
@@ -4075,56 +3953,23 @@ class ConnectionQueryStringParameter {
 }
 
 enum ConnectionState {
-  creating,
-  updating,
-  deleting,
-  authorized,
-  deauthorized,
-  authorizing,
-  deauthorizing,
-}
+  creating('CREATING'),
+  updating('UPDATING'),
+  deleting('DELETING'),
+  authorized('AUTHORIZED'),
+  deauthorized('DEAUTHORIZED'),
+  authorizing('AUTHORIZING'),
+  deauthorizing('DEAUTHORIZING'),
+  ;
 
-extension ConnectionStateValueExtension on ConnectionState {
-  String toValue() {
-    switch (this) {
-      case ConnectionState.creating:
-        return 'CREATING';
-      case ConnectionState.updating:
-        return 'UPDATING';
-      case ConnectionState.deleting:
-        return 'DELETING';
-      case ConnectionState.authorized:
-        return 'AUTHORIZED';
-      case ConnectionState.deauthorized:
-        return 'DEAUTHORIZED';
-      case ConnectionState.authorizing:
-        return 'AUTHORIZING';
-      case ConnectionState.deauthorizing:
-        return 'DEAUTHORIZING';
-    }
-  }
-}
+  final String value;
 
-extension ConnectionStateFromString on String {
-  ConnectionState toConnectionState() {
-    switch (this) {
-      case 'CREATING':
-        return ConnectionState.creating;
-      case 'UPDATING':
-        return ConnectionState.updating;
-      case 'DELETING':
-        return ConnectionState.deleting;
-      case 'AUTHORIZED':
-        return ConnectionState.authorized;
-      case 'DEAUTHORIZED':
-        return ConnectionState.deauthorized;
-      case 'AUTHORIZING':
-        return ConnectionState.authorizing;
-      case 'DEAUTHORIZING':
-        return ConnectionState.deauthorizing;
-    }
-    throw Exception('$this is not known in enum ConnectionState');
-  }
+  const ConnectionState(this.value);
+
+  static ConnectionState fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum ConnectionState'));
 }
 
 class CreateApiDestinationResponse {
@@ -4150,8 +3995,8 @@ class CreateApiDestinationResponse {
   factory CreateApiDestinationResponse.fromJson(Map<String, dynamic> json) {
     return CreateApiDestinationResponse(
       apiDestinationArn: json['ApiDestinationArn'] as String?,
-      apiDestinationState:
-          (json['ApiDestinationState'] as String?)?.toApiDestinationState(),
+      apiDestinationState: (json['ApiDestinationState'] as String?)
+          ?.let(ApiDestinationState.fromString),
       creationTime: timeStampFromJson(json['CreationTime']),
       lastModifiedTime: timeStampFromJson(json['LastModifiedTime']),
     );
@@ -4165,7 +4010,7 @@ class CreateApiDestinationResponse {
     return {
       if (apiDestinationArn != null) 'ApiDestinationArn': apiDestinationArn,
       if (apiDestinationState != null)
-        'ApiDestinationState': apiDestinationState.toValue(),
+        'ApiDestinationState': apiDestinationState.value,
       if (creationTime != null)
         'CreationTime': unixTimestampToJson(creationTime),
       if (lastModifiedTime != null)
@@ -4198,7 +4043,7 @@ class CreateArchiveResponse {
     return CreateArchiveResponse(
       archiveArn: json['ArchiveArn'] as String?,
       creationTime: timeStampFromJson(json['CreationTime']),
-      state: (json['State'] as String?)?.toArchiveState(),
+      state: (json['State'] as String?)?.let(ArchiveState.fromString),
       stateReason: json['StateReason'] as String?,
     );
   }
@@ -4212,7 +4057,7 @@ class CreateArchiveResponse {
       if (archiveArn != null) 'ArchiveArn': archiveArn,
       if (creationTime != null)
         'CreationTime': unixTimestampToJson(creationTime),
-      if (state != null) 'State': state.toValue(),
+      if (state != null) 'State': state.value,
       if (stateReason != null) 'StateReason': stateReason,
     };
   }
@@ -4365,7 +4210,7 @@ class CreateConnectionOAuthRequestParameters {
     return {
       'AuthorizationEndpoint': authorizationEndpoint,
       'ClientParameters': clientParameters,
-      'HttpMethod': httpMethod.toValue(),
+      'HttpMethod': httpMethod.value,
       if (oAuthHttpParameters != null)
         'OAuthHttpParameters': oAuthHttpParameters,
     };
@@ -4396,7 +4241,7 @@ class CreateConnectionResponse {
     return CreateConnectionResponse(
       connectionArn: json['ConnectionArn'] as String?,
       connectionState:
-          (json['ConnectionState'] as String?)?.toConnectionState(),
+          (json['ConnectionState'] as String?)?.let(ConnectionState.fromString),
       creationTime: timeStampFromJson(json['CreationTime']),
       lastModifiedTime: timeStampFromJson(json['LastModifiedTime']),
     );
@@ -4409,7 +4254,7 @@ class CreateConnectionResponse {
     final lastModifiedTime = this.lastModifiedTime;
     return {
       if (connectionArn != null) 'ConnectionArn': connectionArn,
-      if (connectionState != null) 'ConnectionState': connectionState.toValue(),
+      if (connectionState != null) 'ConnectionState': connectionState.value,
       if (creationTime != null)
         'CreationTime': unixTimestampToJson(creationTime),
       if (lastModifiedTime != null)
@@ -4467,7 +4312,7 @@ class CreateEndpointResponse {
           ? RoutingConfig.fromJson(
               json['RoutingConfig'] as Map<String, dynamic>)
           : null,
-      state: (json['State'] as String?)?.toEndpointState(),
+      state: (json['State'] as String?)?.let(EndpointState.fromString),
     );
   }
 
@@ -4486,7 +4331,7 @@ class CreateEndpointResponse {
       if (replicationConfig != null) 'ReplicationConfig': replicationConfig,
       if (roleArn != null) 'RoleArn': roleArn,
       if (routingConfig != null) 'RoutingConfig': routingConfig,
-      if (state != null) 'State': state.toValue(),
+      if (state != null) 'State': state.value,
     };
   }
 }
@@ -4587,7 +4432,7 @@ class DeauthorizeConnectionResponse {
     return DeauthorizeConnectionResponse(
       connectionArn: json['ConnectionArn'] as String?,
       connectionState:
-          (json['ConnectionState'] as String?)?.toConnectionState(),
+          (json['ConnectionState'] as String?)?.let(ConnectionState.fromString),
       creationTime: timeStampFromJson(json['CreationTime']),
       lastAuthorizedTime: timeStampFromJson(json['LastAuthorizedTime']),
       lastModifiedTime: timeStampFromJson(json['LastModifiedTime']),
@@ -4602,7 +4447,7 @@ class DeauthorizeConnectionResponse {
     final lastModifiedTime = this.lastModifiedTime;
     return {
       if (connectionArn != null) 'ConnectionArn': connectionArn,
-      if (connectionState != null) 'ConnectionState': connectionState.toValue(),
+      if (connectionState != null) 'ConnectionState': connectionState.value,
       if (creationTime != null)
         'CreationTime': unixTimestampToJson(creationTime),
       if (lastAuthorizedTime != null)
@@ -4667,7 +4512,7 @@ class DeleteConnectionResponse {
     return DeleteConnectionResponse(
       connectionArn: json['ConnectionArn'] as String?,
       connectionState:
-          (json['ConnectionState'] as String?)?.toConnectionState(),
+          (json['ConnectionState'] as String?)?.let(ConnectionState.fromString),
       creationTime: timeStampFromJson(json['CreationTime']),
       lastAuthorizedTime: timeStampFromJson(json['LastAuthorizedTime']),
       lastModifiedTime: timeStampFromJson(json['LastModifiedTime']),
@@ -4682,7 +4527,7 @@ class DeleteConnectionResponse {
     final lastModifiedTime = this.lastModifiedTime;
     return {
       if (connectionArn != null) 'ConnectionArn': connectionArn,
-      if (connectionState != null) 'ConnectionState': connectionState.toValue(),
+      if (connectionState != null) 'ConnectionState': connectionState.value,
       if (creationTime != null)
         'CreationTime': unixTimestampToJson(creationTime),
       if (lastAuthorizedTime != null)
@@ -4758,12 +4603,13 @@ class DescribeApiDestinationResponse {
   factory DescribeApiDestinationResponse.fromJson(Map<String, dynamic> json) {
     return DescribeApiDestinationResponse(
       apiDestinationArn: json['ApiDestinationArn'] as String?,
-      apiDestinationState:
-          (json['ApiDestinationState'] as String?)?.toApiDestinationState(),
+      apiDestinationState: (json['ApiDestinationState'] as String?)
+          ?.let(ApiDestinationState.fromString),
       connectionArn: json['ConnectionArn'] as String?,
       creationTime: timeStampFromJson(json['CreationTime']),
       description: json['Description'] as String?,
-      httpMethod: (json['HttpMethod'] as String?)?.toApiDestinationHttpMethod(),
+      httpMethod: (json['HttpMethod'] as String?)
+          ?.let(ApiDestinationHttpMethod.fromString),
       invocationEndpoint: json['InvocationEndpoint'] as String?,
       invocationRateLimitPerSecond:
           json['InvocationRateLimitPerSecond'] as int?,
@@ -4786,12 +4632,12 @@ class DescribeApiDestinationResponse {
     return {
       if (apiDestinationArn != null) 'ApiDestinationArn': apiDestinationArn,
       if (apiDestinationState != null)
-        'ApiDestinationState': apiDestinationState.toValue(),
+        'ApiDestinationState': apiDestinationState.value,
       if (connectionArn != null) 'ConnectionArn': connectionArn,
       if (creationTime != null)
         'CreationTime': unixTimestampToJson(creationTime),
       if (description != null) 'Description': description,
-      if (httpMethod != null) 'HttpMethod': httpMethod.toValue(),
+      if (httpMethod != null) 'HttpMethod': httpMethod.value,
       if (invocationEndpoint != null) 'InvocationEndpoint': invocationEndpoint,
       if (invocationRateLimitPerSecond != null)
         'InvocationRateLimitPerSecond': invocationRateLimitPerSecond,
@@ -4861,7 +4707,7 @@ class DescribeArchiveResponse {
       eventSourceArn: json['EventSourceArn'] as String?,
       retentionDays: json['RetentionDays'] as int?,
       sizeBytes: json['SizeBytes'] as int?,
-      state: (json['State'] as String?)?.toArchiveState(),
+      state: (json['State'] as String?)?.let(ArchiveState.fromString),
       stateReason: json['StateReason'] as String?,
     );
   }
@@ -4889,7 +4735,7 @@ class DescribeArchiveResponse {
       if (eventSourceArn != null) 'EventSourceArn': eventSourceArn,
       if (retentionDays != null) 'RetentionDays': retentionDays,
       if (sizeBytes != null) 'SizeBytes': sizeBytes,
-      if (state != null) 'State': state.toValue(),
+      if (state != null) 'State': state.value,
       if (stateReason != null) 'StateReason': stateReason,
     };
   }
@@ -4951,10 +4797,10 @@ class DescribeConnectionResponse {
               json['AuthParameters'] as Map<String, dynamic>)
           : null,
       authorizationType: (json['AuthorizationType'] as String?)
-          ?.toConnectionAuthorizationType(),
+          ?.let(ConnectionAuthorizationType.fromString),
       connectionArn: json['ConnectionArn'] as String?,
       connectionState:
-          (json['ConnectionState'] as String?)?.toConnectionState(),
+          (json['ConnectionState'] as String?)?.let(ConnectionState.fromString),
       creationTime: timeStampFromJson(json['CreationTime']),
       description: json['Description'] as String?,
       lastAuthorizedTime: timeStampFromJson(json['LastAuthorizedTime']),
@@ -4980,9 +4826,9 @@ class DescribeConnectionResponse {
     return {
       if (authParameters != null) 'AuthParameters': authParameters,
       if (authorizationType != null)
-        'AuthorizationType': authorizationType.toValue(),
+        'AuthorizationType': authorizationType.value,
       if (connectionArn != null) 'ConnectionArn': connectionArn,
-      if (connectionState != null) 'ConnectionState': connectionState.toValue(),
+      if (connectionState != null) 'ConnectionState': connectionState.value,
       if (creationTime != null)
         'CreationTime': unixTimestampToJson(creationTime),
       if (description != null) 'Description': description,
@@ -5077,7 +4923,7 @@ class DescribeEndpointResponse {
           ? RoutingConfig.fromJson(
               json['RoutingConfig'] as Map<String, dynamic>)
           : null,
-      state: (json['State'] as String?)?.toEndpointState(),
+      state: (json['State'] as String?)?.let(EndpointState.fromString),
       stateReason: json['StateReason'] as String?,
     );
   }
@@ -5110,7 +4956,7 @@ class DescribeEndpointResponse {
       if (replicationConfig != null) 'ReplicationConfig': replicationConfig,
       if (roleArn != null) 'RoleArn': roleArn,
       if (routingConfig != null) 'RoutingConfig': routingConfig,
-      if (state != null) 'State': state.toValue(),
+      if (state != null) 'State': state.value,
       if (stateReason != null) 'StateReason': stateReason,
     };
   }
@@ -5193,7 +5039,7 @@ class DescribeEventSourceResponse {
       creationTime: timeStampFromJson(json['CreationTime']),
       expirationTime: timeStampFromJson(json['ExpirationTime']),
       name: json['Name'] as String?,
-      state: (json['State'] as String?)?.toEventSourceState(),
+      state: (json['State'] as String?)?.let(EventSourceState.fromString),
     );
   }
 
@@ -5212,7 +5058,7 @@ class DescribeEventSourceResponse {
       if (expirationTime != null)
         'ExpirationTime': unixTimestampToJson(expirationTime),
       if (name != null) 'Name': name,
-      if (state != null) 'State': state.toValue(),
+      if (state != null) 'State': state.value,
     };
   }
 }
@@ -5315,7 +5161,7 @@ class DescribeReplayResponse {
       replayEndTime: timeStampFromJson(json['ReplayEndTime']),
       replayName: json['ReplayName'] as String?,
       replayStartTime: timeStampFromJson(json['ReplayStartTime']),
-      state: (json['State'] as String?)?.toReplayState(),
+      state: (json['State'] as String?)?.let(ReplayState.fromString),
       stateReason: json['StateReason'] as String?,
     );
   }
@@ -5349,7 +5195,7 @@ class DescribeReplayResponse {
       if (replayName != null) 'ReplayName': replayName,
       if (replayStartTime != null)
         'ReplayStartTime': unixTimestampToJson(replayStartTime),
-      if (state != null) 'State': state.toValue(),
+      if (state != null) 'State': state.value,
       if (stateReason != null) 'StateReason': stateReason,
     };
   }
@@ -5419,7 +5265,7 @@ class DescribeRuleResponse {
       name: json['Name'] as String?,
       roleArn: json['RoleArn'] as String?,
       scheduleExpression: json['ScheduleExpression'] as String?,
-      state: (json['State'] as String?)?.toRuleState(),
+      state: (json['State'] as String?)?.let(RuleState.fromString),
     );
   }
 
@@ -5444,7 +5290,7 @@ class DescribeRuleResponse {
       if (name != null) 'Name': name,
       if (roleArn != null) 'RoleArn': roleArn,
       if (scheduleExpression != null) 'ScheduleExpression': scheduleExpression,
-      if (state != null) 'State': state.toValue(),
+      if (state != null) 'State': state.value,
     };
   }
 }
@@ -5568,7 +5414,7 @@ class EcsParameters {
       enableECSManagedTags: json['EnableECSManagedTags'] as bool?,
       enableExecuteCommand: json['EnableExecuteCommand'] as bool?,
       group: json['Group'] as String?,
-      launchType: (json['LaunchType'] as String?)?.toLaunchType(),
+      launchType: (json['LaunchType'] as String?)?.let(LaunchType.fromString),
       networkConfiguration: json['NetworkConfiguration'] != null
           ? NetworkConfiguration.fromJson(
               json['NetworkConfiguration'] as Map<String, dynamic>)
@@ -5582,7 +5428,8 @@ class EcsParameters {
           .map((e) => PlacementStrategy.fromJson(e as Map<String, dynamic>))
           .toList(),
       platformVersion: json['PlatformVersion'] as String?,
-      propagateTags: (json['PropagateTags'] as String?)?.toPropagateTags(),
+      propagateTags:
+          (json['PropagateTags'] as String?)?.let(PropagateTags.fromString),
       referenceId: json['ReferenceId'] as String?,
       tags: (json['Tags'] as List?)
           ?.whereNotNull()
@@ -5616,14 +5463,14 @@ class EcsParameters {
       if (enableExecuteCommand != null)
         'EnableExecuteCommand': enableExecuteCommand,
       if (group != null) 'Group': group,
-      if (launchType != null) 'LaunchType': launchType.toValue(),
+      if (launchType != null) 'LaunchType': launchType.value,
       if (networkConfiguration != null)
         'NetworkConfiguration': networkConfiguration,
       if (placementConstraints != null)
         'PlacementConstraints': placementConstraints,
       if (placementStrategy != null) 'PlacementStrategy': placementStrategy,
       if (platformVersion != null) 'PlatformVersion': platformVersion,
-      if (propagateTags != null) 'PropagateTags': propagateTags.toValue(),
+      if (propagateTags != null) 'PropagateTags': propagateTags.value,
       if (referenceId != null) 'ReferenceId': referenceId,
       if (tags != null) 'Tags': tags,
       if (taskCount != null) 'TaskCount': taskCount,
@@ -5720,7 +5567,7 @@ class Endpoint {
           ? RoutingConfig.fromJson(
               json['RoutingConfig'] as Map<String, dynamic>)
           : null,
-      state: (json['State'] as String?)?.toEndpointState(),
+      state: (json['State'] as String?)?.let(EndpointState.fromString),
       stateReason: json['StateReason'] as String?,
     );
   }
@@ -5753,7 +5600,7 @@ class Endpoint {
       if (replicationConfig != null) 'ReplicationConfig': replicationConfig,
       if (roleArn != null) 'RoleArn': roleArn,
       if (routingConfig != null) 'RoutingConfig': routingConfig,
-      if (state != null) 'State': state.toValue(),
+      if (state != null) 'State': state.value,
       if (stateReason != null) 'StateReason': stateReason,
     };
   }
@@ -5783,56 +5630,23 @@ class EndpointEventBus {
 }
 
 enum EndpointState {
-  active,
-  creating,
-  updating,
-  deleting,
-  createFailed,
-  updateFailed,
-  deleteFailed,
-}
+  active('ACTIVE'),
+  creating('CREATING'),
+  updating('UPDATING'),
+  deleting('DELETING'),
+  createFailed('CREATE_FAILED'),
+  updateFailed('UPDATE_FAILED'),
+  deleteFailed('DELETE_FAILED'),
+  ;
 
-extension EndpointStateValueExtension on EndpointState {
-  String toValue() {
-    switch (this) {
-      case EndpointState.active:
-        return 'ACTIVE';
-      case EndpointState.creating:
-        return 'CREATING';
-      case EndpointState.updating:
-        return 'UPDATING';
-      case EndpointState.deleting:
-        return 'DELETING';
-      case EndpointState.createFailed:
-        return 'CREATE_FAILED';
-      case EndpointState.updateFailed:
-        return 'UPDATE_FAILED';
-      case EndpointState.deleteFailed:
-        return 'DELETE_FAILED';
-    }
-  }
-}
+  final String value;
 
-extension EndpointStateFromString on String {
-  EndpointState toEndpointState() {
-    switch (this) {
-      case 'ACTIVE':
-        return EndpointState.active;
-      case 'CREATING':
-        return EndpointState.creating;
-      case 'UPDATING':
-        return EndpointState.updating;
-      case 'DELETING':
-        return EndpointState.deleting;
-      case 'CREATE_FAILED':
-        return EndpointState.createFailed;
-      case 'UPDATE_FAILED':
-        return EndpointState.updateFailed;
-      case 'DELETE_FAILED':
-        return EndpointState.deleteFailed;
-    }
-    throw Exception('$this is not known in enum EndpointState');
-  }
+  const EndpointState(this.value);
+
+  static EndpointState fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum EndpointState'));
 }
 
 /// An event bus receives events from a source, uses rules to evaluate them,
@@ -5922,7 +5736,7 @@ class EventSource {
       creationTime: timeStampFromJson(json['CreationTime']),
       expirationTime: timeStampFromJson(json['ExpirationTime']),
       name: json['Name'] as String?,
-      state: (json['State'] as String?)?.toEventSourceState(),
+      state: (json['State'] as String?)?.let(EventSourceState.fromString),
     );
   }
 
@@ -5941,42 +5755,25 @@ class EventSource {
       if (expirationTime != null)
         'ExpirationTime': unixTimestampToJson(expirationTime),
       if (name != null) 'Name': name,
-      if (state != null) 'State': state.toValue(),
+      if (state != null) 'State': state.value,
     };
   }
 }
 
 enum EventSourceState {
-  pending,
-  active,
-  deleted,
-}
+  pending('PENDING'),
+  active('ACTIVE'),
+  deleted('DELETED'),
+  ;
 
-extension EventSourceStateValueExtension on EventSourceState {
-  String toValue() {
-    switch (this) {
-      case EventSourceState.pending:
-        return 'PENDING';
-      case EventSourceState.active:
-        return 'ACTIVE';
-      case EventSourceState.deleted:
-        return 'DELETED';
-    }
-  }
-}
+  final String value;
 
-extension EventSourceStateFromString on String {
-  EventSourceState toEventSourceState() {
-    switch (this) {
-      case 'PENDING':
-        return EventSourceState.pending;
-      case 'ACTIVE':
-        return EventSourceState.active;
-      case 'DELETED':
-        return EventSourceState.deleted;
-    }
-    throw Exception('$this is not known in enum EventSourceState');
-  }
+  const EventSourceState(this.value);
+
+  static EventSourceState fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum EventSourceState'));
 }
 
 /// The failover configuration for an endpoint. This includes what triggers
@@ -6189,36 +5986,18 @@ class KinesisParameters {
 }
 
 enum LaunchType {
-  ec2,
-  fargate,
-  external,
-}
+  ec2('EC2'),
+  fargate('FARGATE'),
+  external('EXTERNAL'),
+  ;
 
-extension LaunchTypeValueExtension on LaunchType {
-  String toValue() {
-    switch (this) {
-      case LaunchType.ec2:
-        return 'EC2';
-      case LaunchType.fargate:
-        return 'FARGATE';
-      case LaunchType.external:
-        return 'EXTERNAL';
-    }
-  }
-}
+  final String value;
 
-extension LaunchTypeFromString on String {
-  LaunchType toLaunchType() {
-    switch (this) {
-      case 'EC2':
-        return LaunchType.ec2;
-      case 'FARGATE':
-        return LaunchType.fargate;
-      case 'EXTERNAL':
-        return LaunchType.external;
-    }
-    throw Exception('$this is not known in enum LaunchType');
-  }
+  const LaunchType(this.value);
+
+  static LaunchType fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum LaunchType'));
 }
 
 class ListApiDestinationsResponse {
@@ -6745,7 +6524,7 @@ class PartnerEventSourceAccount {
       account: json['Account'] as String?,
       creationTime: timeStampFromJson(json['CreationTime']),
       expirationTime: timeStampFromJson(json['ExpirationTime']),
-      state: (json['State'] as String?)?.toEventSourceState(),
+      state: (json['State'] as String?)?.let(EventSourceState.fromString),
     );
   }
 
@@ -6760,7 +6539,7 @@ class PartnerEventSourceAccount {
         'CreationTime': unixTimestampToJson(creationTime),
       if (expirationTime != null)
         'ExpirationTime': unixTimestampToJson(expirationTime),
-      if (state != null) 'State': state.toValue(),
+      if (state != null) 'State': state.value,
     };
   }
 }
@@ -6790,7 +6569,7 @@ class PlacementConstraint {
   factory PlacementConstraint.fromJson(Map<String, dynamic> json) {
     return PlacementConstraint(
       expression: json['expression'] as String?,
-      type: (json['type'] as String?)?.toPlacementConstraintType(),
+      type: (json['type'] as String?)?.let(PlacementConstraintType.fromString),
     );
   }
 
@@ -6799,37 +6578,24 @@ class PlacementConstraint {
     final type = this.type;
     return {
       if (expression != null) 'expression': expression,
-      if (type != null) 'type': type.toValue(),
+      if (type != null) 'type': type.value,
     };
   }
 }
 
 enum PlacementConstraintType {
-  distinctInstance,
-  memberOf,
-}
+  distinctInstance('distinctInstance'),
+  memberOf('memberOf'),
+  ;
 
-extension PlacementConstraintTypeValueExtension on PlacementConstraintType {
-  String toValue() {
-    switch (this) {
-      case PlacementConstraintType.distinctInstance:
-        return 'distinctInstance';
-      case PlacementConstraintType.memberOf:
-        return 'memberOf';
-    }
-  }
-}
+  final String value;
 
-extension PlacementConstraintTypeFromString on String {
-  PlacementConstraintType toPlacementConstraintType() {
-    switch (this) {
-      case 'distinctInstance':
-        return PlacementConstraintType.distinctInstance;
-      case 'memberOf':
-        return PlacementConstraintType.memberOf;
-    }
-    throw Exception('$this is not known in enum PlacementConstraintType');
-  }
+  const PlacementConstraintType(this.value);
+
+  static PlacementConstraintType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum PlacementConstraintType'));
 }
 
 /// The task placement strategy for a task or service. To learn more, see <a
@@ -6863,7 +6629,7 @@ class PlacementStrategy {
   factory PlacementStrategy.fromJson(Map<String, dynamic> json) {
     return PlacementStrategy(
       field: json['field'] as String?,
-      type: (json['type'] as String?)?.toPlacementStrategyType(),
+      type: (json['type'] as String?)?.let(PlacementStrategyType.fromString),
     );
   }
 
@@ -6872,42 +6638,25 @@ class PlacementStrategy {
     final type = this.type;
     return {
       if (field != null) 'field': field,
-      if (type != null) 'type': type.toValue(),
+      if (type != null) 'type': type.value,
     };
   }
 }
 
 enum PlacementStrategyType {
-  random,
-  spread,
-  binpack,
-}
+  random('random'),
+  spread('spread'),
+  binpack('binpack'),
+  ;
 
-extension PlacementStrategyTypeValueExtension on PlacementStrategyType {
-  String toValue() {
-    switch (this) {
-      case PlacementStrategyType.random:
-        return 'random';
-      case PlacementStrategyType.spread:
-        return 'spread';
-      case PlacementStrategyType.binpack:
-        return 'binpack';
-    }
-  }
-}
+  final String value;
 
-extension PlacementStrategyTypeFromString on String {
-  PlacementStrategyType toPlacementStrategyType() {
-    switch (this) {
-      case 'random':
-        return PlacementStrategyType.random;
-      case 'spread':
-        return PlacementStrategyType.spread;
-      case 'binpack':
-        return PlacementStrategyType.binpack;
-    }
-    throw Exception('$this is not known in enum PlacementStrategyType');
-  }
+  const PlacementStrategyType(this.value);
+
+  static PlacementStrategyType fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum PlacementStrategyType'));
 }
 
 /// The primary Region of the endpoint.
@@ -6935,26 +6684,17 @@ class Primary {
 }
 
 enum PropagateTags {
-  taskDefinition,
-}
+  taskDefinition('TASK_DEFINITION'),
+  ;
 
-extension PropagateTagsValueExtension on PropagateTags {
-  String toValue() {
-    switch (this) {
-      case PropagateTags.taskDefinition:
-        return 'TASK_DEFINITION';
-    }
-  }
-}
+  final String value;
 
-extension PropagateTagsFromString on String {
-  PropagateTags toPropagateTags() {
-    switch (this) {
-      case 'TASK_DEFINITION':
-        return PropagateTags.taskDefinition;
-    }
-    throw Exception('$this is not known in enum PropagateTags');
-  }
+  const PropagateTags(this.value);
+
+  static PropagateTags fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum PropagateTags'));
 }
 
 /// Represents an event to be submitted.
@@ -7520,7 +7260,7 @@ class Replay {
       replayEndTime: timeStampFromJson(json['ReplayEndTime']),
       replayName: json['ReplayName'] as String?,
       replayStartTime: timeStampFromJson(json['ReplayStartTime']),
-      state: (json['State'] as String?)?.toReplayState(),
+      state: (json['State'] as String?)?.let(ReplayState.fromString),
       stateReason: json['StateReason'] as String?,
     );
   }
@@ -7548,7 +7288,7 @@ class Replay {
       if (replayName != null) 'ReplayName': replayName,
       if (replayStartTime != null)
         'ReplayStartTime': unixTimestampToJson(replayStartTime),
-      if (state != null) 'State': state.toValue(),
+      if (state != null) 'State': state.value,
       if (stateReason != null) 'StateReason': stateReason,
     };
   }
@@ -7590,51 +7330,21 @@ class ReplayDestination {
 }
 
 enum ReplayState {
-  starting,
-  running,
-  cancelling,
-  completed,
-  cancelled,
-  failed,
-}
+  starting('STARTING'),
+  running('RUNNING'),
+  cancelling('CANCELLING'),
+  completed('COMPLETED'),
+  cancelled('CANCELLED'),
+  failed('FAILED'),
+  ;
 
-extension ReplayStateValueExtension on ReplayState {
-  String toValue() {
-    switch (this) {
-      case ReplayState.starting:
-        return 'STARTING';
-      case ReplayState.running:
-        return 'RUNNING';
-      case ReplayState.cancelling:
-        return 'CANCELLING';
-      case ReplayState.completed:
-        return 'COMPLETED';
-      case ReplayState.cancelled:
-        return 'CANCELLED';
-      case ReplayState.failed:
-        return 'FAILED';
-    }
-  }
-}
+  final String value;
 
-extension ReplayStateFromString on String {
-  ReplayState toReplayState() {
-    switch (this) {
-      case 'STARTING':
-        return ReplayState.starting;
-      case 'RUNNING':
-        return ReplayState.running;
-      case 'CANCELLING':
-        return ReplayState.cancelling;
-      case 'COMPLETED':
-        return ReplayState.completed;
-      case 'CANCELLED':
-        return ReplayState.cancelled;
-      case 'FAILED':
-        return ReplayState.failed;
-    }
-    throw Exception('$this is not known in enum ReplayState');
-  }
+  const ReplayState(this.value);
+
+  static ReplayState fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum ReplayState'));
 }
 
 /// Endpoints can replicate all events to the secondary Region.
@@ -7648,44 +7358,31 @@ class ReplicationConfig {
 
   factory ReplicationConfig.fromJson(Map<String, dynamic> json) {
     return ReplicationConfig(
-      state: (json['State'] as String?)?.toReplicationState(),
+      state: (json['State'] as String?)?.let(ReplicationState.fromString),
     );
   }
 
   Map<String, dynamic> toJson() {
     final state = this.state;
     return {
-      if (state != null) 'State': state.toValue(),
+      if (state != null) 'State': state.value,
     };
   }
 }
 
 enum ReplicationState {
-  enabled,
-  disabled,
-}
+  enabled('ENABLED'),
+  disabled('DISABLED'),
+  ;
 
-extension ReplicationStateValueExtension on ReplicationState {
-  String toValue() {
-    switch (this) {
-      case ReplicationState.enabled:
-        return 'ENABLED';
-      case ReplicationState.disabled:
-        return 'DISABLED';
-    }
-  }
-}
+  final String value;
 
-extension ReplicationStateFromString on String {
-  ReplicationState toReplicationState() {
-    switch (this) {
-      case 'ENABLED':
-        return ReplicationState.enabled;
-      case 'DISABLED':
-        return ReplicationState.disabled;
-    }
-    throw Exception('$this is not known in enum ReplicationState');
-  }
+  const ReplicationState(this.value);
+
+  static ReplicationState fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum ReplicationState'));
 }
 
 /// A <code>RetryPolicy</code> object that includes information about the retry
@@ -7814,7 +7511,7 @@ class Rule {
       name: json['Name'] as String?,
       roleArn: json['RoleArn'] as String?,
       scheduleExpression: json['ScheduleExpression'] as String?,
-      state: (json['State'] as String?)?.toRuleState(),
+      state: (json['State'] as String?)?.let(RuleState.fromString),
     );
   }
 
@@ -7837,37 +7534,23 @@ class Rule {
       if (name != null) 'Name': name,
       if (roleArn != null) 'RoleArn': roleArn,
       if (scheduleExpression != null) 'ScheduleExpression': scheduleExpression,
-      if (state != null) 'State': state.toValue(),
+      if (state != null) 'State': state.value,
     };
   }
 }
 
 enum RuleState {
-  enabled,
-  disabled,
-}
+  enabled('ENABLED'),
+  disabled('DISABLED'),
+  ;
 
-extension RuleStateValueExtension on RuleState {
-  String toValue() {
-    switch (this) {
-      case RuleState.enabled:
-        return 'ENABLED';
-      case RuleState.disabled:
-        return 'DISABLED';
-    }
-  }
-}
+  final String value;
 
-extension RuleStateFromString on String {
-  RuleState toRuleState() {
-    switch (this) {
-      case 'ENABLED':
-        return RuleState.enabled;
-      case 'DISABLED':
-        return RuleState.disabled;
-    }
-    throw Exception('$this is not known in enum RuleState');
-  }
+  const RuleState(this.value);
+
+  static RuleState fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum RuleState'));
 }
 
 /// This parameter contains the criteria (either InstanceIds or a tag) used to
@@ -8069,7 +7752,7 @@ class StartReplayResponse {
     return StartReplayResponse(
       replayArn: json['ReplayArn'] as String?,
       replayStartTime: timeStampFromJson(json['ReplayStartTime']),
-      state: (json['State'] as String?)?.toReplayState(),
+      state: (json['State'] as String?)?.let(ReplayState.fromString),
       stateReason: json['StateReason'] as String?,
     );
   }
@@ -8083,7 +7766,7 @@ class StartReplayResponse {
       if (replayArn != null) 'ReplayArn': replayArn,
       if (replayStartTime != null)
         'ReplayStartTime': unixTimestampToJson(replayStartTime),
-      if (state != null) 'State': state.toValue(),
+      if (state != null) 'State': state.value,
       if (stateReason != null) 'StateReason': stateReason,
     };
   }
@@ -8409,8 +8092,8 @@ class UpdateApiDestinationResponse {
   factory UpdateApiDestinationResponse.fromJson(Map<String, dynamic> json) {
     return UpdateApiDestinationResponse(
       apiDestinationArn: json['ApiDestinationArn'] as String?,
-      apiDestinationState:
-          (json['ApiDestinationState'] as String?)?.toApiDestinationState(),
+      apiDestinationState: (json['ApiDestinationState'] as String?)
+          ?.let(ApiDestinationState.fromString),
       creationTime: timeStampFromJson(json['CreationTime']),
       lastModifiedTime: timeStampFromJson(json['LastModifiedTime']),
     );
@@ -8424,7 +8107,7 @@ class UpdateApiDestinationResponse {
     return {
       if (apiDestinationArn != null) 'ApiDestinationArn': apiDestinationArn,
       if (apiDestinationState != null)
-        'ApiDestinationState': apiDestinationState.toValue(),
+        'ApiDestinationState': apiDestinationState.value,
       if (creationTime != null)
         'CreationTime': unixTimestampToJson(creationTime),
       if (lastModifiedTime != null)
@@ -8457,7 +8140,7 @@ class UpdateArchiveResponse {
     return UpdateArchiveResponse(
       archiveArn: json['ArchiveArn'] as String?,
       creationTime: timeStampFromJson(json['CreationTime']),
-      state: (json['State'] as String?)?.toArchiveState(),
+      state: (json['State'] as String?)?.let(ArchiveState.fromString),
       stateReason: json['StateReason'] as String?,
     );
   }
@@ -8471,7 +8154,7 @@ class UpdateArchiveResponse {
       if (archiveArn != null) 'ArchiveArn': archiveArn,
       if (creationTime != null)
         'CreationTime': unixTimestampToJson(creationTime),
-      if (state != null) 'State': state.toValue(),
+      if (state != null) 'State': state.value,
       if (stateReason != null) 'StateReason': stateReason,
     };
   }
@@ -8623,7 +8306,7 @@ class UpdateConnectionOAuthRequestParameters {
       if (authorizationEndpoint != null)
         'AuthorizationEndpoint': authorizationEndpoint,
       if (clientParameters != null) 'ClientParameters': clientParameters,
-      if (httpMethod != null) 'HttpMethod': httpMethod.toValue(),
+      if (httpMethod != null) 'HttpMethod': httpMethod.value,
       if (oAuthHttpParameters != null)
         'OAuthHttpParameters': oAuthHttpParameters,
     };
@@ -8658,7 +8341,7 @@ class UpdateConnectionResponse {
     return UpdateConnectionResponse(
       connectionArn: json['ConnectionArn'] as String?,
       connectionState:
-          (json['ConnectionState'] as String?)?.toConnectionState(),
+          (json['ConnectionState'] as String?)?.let(ConnectionState.fromString),
       creationTime: timeStampFromJson(json['CreationTime']),
       lastAuthorizedTime: timeStampFromJson(json['LastAuthorizedTime']),
       lastModifiedTime: timeStampFromJson(json['LastModifiedTime']),
@@ -8673,7 +8356,7 @@ class UpdateConnectionResponse {
     final lastModifiedTime = this.lastModifiedTime;
     return {
       if (connectionArn != null) 'ConnectionArn': connectionArn,
-      if (connectionState != null) 'ConnectionState': connectionState.toValue(),
+      if (connectionState != null) 'ConnectionState': connectionState.value,
       if (creationTime != null)
         'CreationTime': unixTimestampToJson(creationTime),
       if (lastAuthorizedTime != null)
@@ -8746,7 +8429,7 @@ class UpdateEndpointResponse {
           ? RoutingConfig.fromJson(
               json['RoutingConfig'] as Map<String, dynamic>)
           : null,
-      state: (json['State'] as String?)?.toEndpointState(),
+      state: (json['State'] as String?)?.let(EndpointState.fromString),
     );
   }
 
@@ -8769,7 +8452,7 @@ class UpdateEndpointResponse {
       if (replicationConfig != null) 'ReplicationConfig': replicationConfig,
       if (roleArn != null) 'RoleArn': roleArn,
       if (routingConfig != null) 'RoutingConfig': routingConfig,
-      if (state != null) 'State': state.toValue(),
+      if (state != null) 'State': state.value,
     };
   }
 }

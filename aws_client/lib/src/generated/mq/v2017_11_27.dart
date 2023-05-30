@@ -237,14 +237,14 @@ class MQ {
     final $payload = <String, dynamic>{
       'autoMinorVersionUpgrade': autoMinorVersionUpgrade,
       'brokerName': brokerName,
-      'deploymentMode': deploymentMode.toValue(),
-      'engineType': engineType.toValue(),
+      'deploymentMode': deploymentMode.value,
+      'engineType': engineType.value,
       'engineVersion': engineVersion,
       'hostInstanceType': hostInstanceType,
       'publiclyAccessible': publiclyAccessible,
       'users': users,
       if (authenticationStrategy != null)
-        'authenticationStrategy': authenticationStrategy.toValue(),
+        'authenticationStrategy': authenticationStrategy.value,
       if (configuration != null) 'configuration': configuration,
       'creatorRequestId': creatorRequestId ?? _s.generateIdempotencyToken(),
       if (encryptionOptions != null) 'encryptionOptions': encryptionOptions,
@@ -253,7 +253,7 @@ class MQ {
       if (maintenanceWindowStartTime != null)
         'maintenanceWindowStartTime': maintenanceWindowStartTime,
       if (securityGroups != null) 'securityGroups': securityGroups,
-      if (storageType != null) 'storageType': storageType.toValue(),
+      if (storageType != null) 'storageType': storageType.value,
       if (subnetIds != null) 'subnetIds': subnetIds,
       if (tags != null) 'tags': tags,
     };
@@ -303,11 +303,11 @@ class MQ {
     Map<String, String>? tags,
   }) async {
     final $payload = <String, dynamic>{
-      'engineType': engineType.toValue(),
+      'engineType': engineType.value,
       'engineVersion': engineVersion,
       'name': name,
       if (authenticationStrategy != null)
-        'authenticationStrategy': authenticationStrategy.toValue(),
+        'authenticationStrategy': authenticationStrategy.value,
       if (tags != null) 'tags': tags,
     };
     final response = await _protocol.send(
@@ -925,7 +925,7 @@ class MQ {
   }) async {
     final $payload = <String, dynamic>{
       if (authenticationStrategy != null)
-        'authenticationStrategy': authenticationStrategy.toValue(),
+        'authenticationStrategy': authenticationStrategy.value,
       if (autoMinorVersionUpgrade != null)
         'autoMinorVersionUpgrade': autoMinorVersionUpgrade,
       if (configuration != null) 'configuration': configuration,
@@ -1072,31 +1072,18 @@ class ActionRequired {
 /// Optional. The authentication strategy used to secure the broker. The default
 /// is SIMPLE.
 enum AuthenticationStrategy {
-  simple,
-  ldap,
-}
+  simple('SIMPLE'),
+  ldap('LDAP'),
+  ;
 
-extension AuthenticationStrategyValueExtension on AuthenticationStrategy {
-  String toValue() {
-    switch (this) {
-      case AuthenticationStrategy.simple:
-        return 'SIMPLE';
-      case AuthenticationStrategy.ldap:
-        return 'LDAP';
-    }
-  }
-}
+  final String value;
 
-extension AuthenticationStrategyFromString on String {
-  AuthenticationStrategy toAuthenticationStrategy() {
-    switch (this) {
-      case 'SIMPLE':
-        return AuthenticationStrategy.simple;
-      case 'LDAP':
-        return AuthenticationStrategy.ldap;
-    }
-    throw Exception('$this is not known in enum AuthenticationStrategy');
-  }
+  const AuthenticationStrategy(this.value);
+
+  static AuthenticationStrategy fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum AuthenticationStrategy'));
 }
 
 /// Name of the availability zone.
@@ -1137,7 +1124,7 @@ class BrokerEngineType {
 
   factory BrokerEngineType.fromJson(Map<String, dynamic> json) {
     return BrokerEngineType(
-      engineType: (json['engineType'] as String?)?.toEngineType(),
+      engineType: (json['engineType'] as String?)?.let(EngineType.fromString),
       engineVersions: (json['engineVersions'] as List?)
           ?.whereNotNull()
           .map((e) => EngineVersion.fromJson(e as Map<String, dynamic>))
@@ -1149,7 +1136,7 @@ class BrokerEngineType {
     final engineType = this.engineType;
     final engineVersions = this.engineVersions;
     return {
-      if (engineType != null) 'engineType': engineType.toValue(),
+      if (engineType != null) 'engineType': engineType.value,
       if (engineVersions != null) 'engineVersions': engineVersions,
     };
   }
@@ -1231,12 +1218,13 @@ class BrokerInstanceOption {
           ?.whereNotNull()
           .map((e) => AvailabilityZone.fromJson(e as Map<String, dynamic>))
           .toList(),
-      engineType: (json['engineType'] as String?)?.toEngineType(),
+      engineType: (json['engineType'] as String?)?.let(EngineType.fromString),
       hostInstanceType: json['hostInstanceType'] as String?,
-      storageType: (json['storageType'] as String?)?.toBrokerStorageType(),
+      storageType:
+          (json['storageType'] as String?)?.let(BrokerStorageType.fromString),
       supportedDeploymentModes: (json['supportedDeploymentModes'] as List?)
           ?.whereNotNull()
-          .map((e) => (e as String).toDeploymentMode())
+          .map((e) => DeploymentMode.fromString((e as String)))
           .toList(),
       supportedEngineVersions: (json['supportedEngineVersions'] as List?)
           ?.whereNotNull()
@@ -1254,12 +1242,12 @@ class BrokerInstanceOption {
     final supportedEngineVersions = this.supportedEngineVersions;
     return {
       if (availabilityZones != null) 'availabilityZones': availabilityZones,
-      if (engineType != null) 'engineType': engineType.toValue(),
+      if (engineType != null) 'engineType': engineType.value,
       if (hostInstanceType != null) 'hostInstanceType': hostInstanceType,
-      if (storageType != null) 'storageType': storageType.toValue(),
+      if (storageType != null) 'storageType': storageType.value,
       if (supportedDeploymentModes != null)
         'supportedDeploymentModes':
-            supportedDeploymentModes.map((e) => e.toValue()).toList(),
+            supportedDeploymentModes.map((e) => e.value).toList(),
       if (supportedEngineVersions != null)
         'supportedEngineVersions': supportedEngineVersions,
     };
@@ -1268,51 +1256,21 @@ class BrokerInstanceOption {
 
 /// The broker's status.
 enum BrokerState {
-  creationInProgress,
-  creationFailed,
-  deletionInProgress,
-  running,
-  rebootInProgress,
-  criticalActionRequired,
-}
+  creationInProgress('CREATION_IN_PROGRESS'),
+  creationFailed('CREATION_FAILED'),
+  deletionInProgress('DELETION_IN_PROGRESS'),
+  running('RUNNING'),
+  rebootInProgress('REBOOT_IN_PROGRESS'),
+  criticalActionRequired('CRITICAL_ACTION_REQUIRED'),
+  ;
 
-extension BrokerStateValueExtension on BrokerState {
-  String toValue() {
-    switch (this) {
-      case BrokerState.creationInProgress:
-        return 'CREATION_IN_PROGRESS';
-      case BrokerState.creationFailed:
-        return 'CREATION_FAILED';
-      case BrokerState.deletionInProgress:
-        return 'DELETION_IN_PROGRESS';
-      case BrokerState.running:
-        return 'RUNNING';
-      case BrokerState.rebootInProgress:
-        return 'REBOOT_IN_PROGRESS';
-      case BrokerState.criticalActionRequired:
-        return 'CRITICAL_ACTION_REQUIRED';
-    }
-  }
-}
+  final String value;
 
-extension BrokerStateFromString on String {
-  BrokerState toBrokerState() {
-    switch (this) {
-      case 'CREATION_IN_PROGRESS':
-        return BrokerState.creationInProgress;
-      case 'CREATION_FAILED':
-        return BrokerState.creationFailed;
-      case 'DELETION_IN_PROGRESS':
-        return BrokerState.deletionInProgress;
-      case 'RUNNING':
-        return BrokerState.running;
-      case 'REBOOT_IN_PROGRESS':
-        return BrokerState.rebootInProgress;
-      case 'CRITICAL_ACTION_REQUIRED':
-        return BrokerState.criticalActionRequired;
-    }
-    throw Exception('$this is not known in enum BrokerState');
-  }
+  const BrokerState(this.value);
+
+  static BrokerState fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum BrokerState'));
 }
 
 /// The broker's storage type.
@@ -1320,31 +1278,18 @@ extension BrokerStateFromString on String {
 /// EFS is not supported for RabbitMQ engine type.
 /// </important>
 enum BrokerStorageType {
-  ebs,
-  efs,
-}
+  ebs('EBS'),
+  efs('EFS'),
+  ;
 
-extension BrokerStorageTypeValueExtension on BrokerStorageType {
-  String toValue() {
-    switch (this) {
-      case BrokerStorageType.ebs:
-        return 'EBS';
-      case BrokerStorageType.efs:
-        return 'EFS';
-    }
-  }
-}
+  final String value;
 
-extension BrokerStorageTypeFromString on String {
-  BrokerStorageType toBrokerStorageType() {
-    switch (this) {
-      case 'EBS':
-        return BrokerStorageType.ebs;
-      case 'EFS':
-        return BrokerStorageType.efs;
-    }
-    throw Exception('$this is not known in enum BrokerStorageType');
-  }
+  const BrokerStorageType(this.value);
+
+  static BrokerStorageType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum BrokerStorageType'));
 }
 
 /// Returns information about all brokers.
@@ -1389,12 +1334,14 @@ class BrokerSummary {
 
   factory BrokerSummary.fromJson(Map<String, dynamic> json) {
     return BrokerSummary(
-      deploymentMode: (json['deploymentMode'] as String).toDeploymentMode(),
-      engineType: (json['engineType'] as String).toEngineType(),
+      deploymentMode:
+          DeploymentMode.fromString((json['deploymentMode'] as String)),
+      engineType: EngineType.fromString((json['engineType'] as String)),
       brokerArn: json['brokerArn'] as String?,
       brokerId: json['brokerId'] as String?,
       brokerName: json['brokerName'] as String?,
-      brokerState: (json['brokerState'] as String?)?.toBrokerState(),
+      brokerState:
+          (json['brokerState'] as String?)?.let(BrokerState.fromString),
       created: timeStampFromJson(json['created']),
       hostInstanceType: json['hostInstanceType'] as String?,
     );
@@ -1410,12 +1357,12 @@ class BrokerSummary {
     final created = this.created;
     final hostInstanceType = this.hostInstanceType;
     return {
-      'deploymentMode': deploymentMode.toValue(),
-      'engineType': engineType.toValue(),
+      'deploymentMode': deploymentMode.value,
+      'engineType': engineType.value,
       if (brokerArn != null) 'brokerArn': brokerArn,
       if (brokerId != null) 'brokerId': brokerId,
       if (brokerName != null) 'brokerName': brokerName,
-      if (brokerState != null) 'brokerState': brokerState.toValue(),
+      if (brokerState != null) 'brokerState': brokerState.value,
       if (created != null) 'created': iso8601ToJson(created),
       if (hostInstanceType != null) 'hostInstanceType': hostInstanceType,
     };
@@ -1424,36 +1371,18 @@ class BrokerSummary {
 
 /// The type of change pending for the ActiveMQ user.
 enum ChangeType {
-  create,
-  update,
-  delete,
-}
+  create('CREATE'),
+  update('UPDATE'),
+  delete('DELETE'),
+  ;
 
-extension ChangeTypeValueExtension on ChangeType {
-  String toValue() {
-    switch (this) {
-      case ChangeType.create:
-        return 'CREATE';
-      case ChangeType.update:
-        return 'UPDATE';
-      case ChangeType.delete:
-        return 'DELETE';
-    }
-  }
-}
+  final String value;
 
-extension ChangeTypeFromString on String {
-  ChangeType toChangeType() {
-    switch (this) {
-      case 'CREATE':
-        return ChangeType.create;
-      case 'UPDATE':
-        return ChangeType.update;
-      case 'DELETE':
-        return ChangeType.delete;
-    }
-    throw Exception('$this is not known in enum ChangeType');
-  }
+  const ChangeType(this.value);
+
+  static ChangeType fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum ChangeType'));
 }
 
 /// Returns information about all configurations.
@@ -1511,11 +1440,11 @@ class Configuration {
   factory Configuration.fromJson(Map<String, dynamic> json) {
     return Configuration(
       arn: json['arn'] as String,
-      authenticationStrategy:
-          (json['authenticationStrategy'] as String).toAuthenticationStrategy(),
+      authenticationStrategy: AuthenticationStrategy.fromString(
+          (json['authenticationStrategy'] as String)),
       created: nonNullableTimeStampFromJson(json['created'] as Object),
       description: json['description'] as String,
-      engineType: (json['engineType'] as String).toEngineType(),
+      engineType: EngineType.fromString((json['engineType'] as String)),
       engineVersion: json['engineVersion'] as String,
       id: json['id'] as String,
       latestRevision: ConfigurationRevision.fromJson(
@@ -1539,10 +1468,10 @@ class Configuration {
     final tags = this.tags;
     return {
       'arn': arn,
-      'authenticationStrategy': authenticationStrategy.toValue(),
+      'authenticationStrategy': authenticationStrategy.value,
       'created': iso8601ToJson(created),
       'description': description,
-      'engineType': engineType.toValue(),
+      'engineType': engineType.value,
       'engineVersion': engineVersion,
       'id': id,
       'latestRevision': latestRevision,
@@ -1730,7 +1659,7 @@ class CreateConfigurationResponse {
     return CreateConfigurationResponse(
       arn: json['arn'] as String?,
       authenticationStrategy: (json['authenticationStrategy'] as String?)
-          ?.toAuthenticationStrategy(),
+          ?.let(AuthenticationStrategy.fromString),
       created: timeStampFromJson(json['created']),
       id: json['id'] as String?,
       latestRevision: json['latestRevision'] != null
@@ -1751,7 +1680,7 @@ class CreateConfigurationResponse {
     return {
       if (arn != null) 'arn': arn,
       if (authenticationStrategy != null)
-        'authenticationStrategy': authenticationStrategy.toValue(),
+        'authenticationStrategy': authenticationStrategy.value,
       if (created != null) 'created': iso8601ToJson(created),
       if (id != null) 'id': id,
       if (latestRevision != null) 'latestRevision': latestRevision,
@@ -1773,56 +1702,22 @@ class CreateUserResponse {
 }
 
 enum DayOfWeek {
-  monday,
-  tuesday,
-  wednesday,
-  thursday,
-  friday,
-  saturday,
-  sunday,
-}
+  monday('MONDAY'),
+  tuesday('TUESDAY'),
+  wednesday('WEDNESDAY'),
+  thursday('THURSDAY'),
+  friday('FRIDAY'),
+  saturday('SATURDAY'),
+  sunday('SUNDAY'),
+  ;
 
-extension DayOfWeekValueExtension on DayOfWeek {
-  String toValue() {
-    switch (this) {
-      case DayOfWeek.monday:
-        return 'MONDAY';
-      case DayOfWeek.tuesday:
-        return 'TUESDAY';
-      case DayOfWeek.wednesday:
-        return 'WEDNESDAY';
-      case DayOfWeek.thursday:
-        return 'THURSDAY';
-      case DayOfWeek.friday:
-        return 'FRIDAY';
-      case DayOfWeek.saturday:
-        return 'SATURDAY';
-      case DayOfWeek.sunday:
-        return 'SUNDAY';
-    }
-  }
-}
+  final String value;
 
-extension DayOfWeekFromString on String {
-  DayOfWeek toDayOfWeek() {
-    switch (this) {
-      case 'MONDAY':
-        return DayOfWeek.monday;
-      case 'TUESDAY':
-        return DayOfWeek.tuesday;
-      case 'WEDNESDAY':
-        return DayOfWeek.wednesday;
-      case 'THURSDAY':
-        return DayOfWeek.thursday;
-      case 'FRIDAY':
-        return DayOfWeek.friday;
-      case 'SATURDAY':
-        return DayOfWeek.saturday;
-      case 'SUNDAY':
-        return DayOfWeek.sunday;
-    }
-    throw Exception('$this is not known in enum DayOfWeek');
-  }
+  const DayOfWeek(this.value);
+
+  static DayOfWeek fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum DayOfWeek'));
 }
 
 class DeleteBrokerResponse {
@@ -1861,36 +1756,19 @@ class DeleteUserResponse {
 
 /// The broker's deployment mode.
 enum DeploymentMode {
-  singleInstance,
-  activeStandbyMultiAz,
-  clusterMultiAz,
-}
+  singleInstance('SINGLE_INSTANCE'),
+  activeStandbyMultiAz('ACTIVE_STANDBY_MULTI_AZ'),
+  clusterMultiAz('CLUSTER_MULTI_AZ'),
+  ;
 
-extension DeploymentModeValueExtension on DeploymentMode {
-  String toValue() {
-    switch (this) {
-      case DeploymentMode.singleInstance:
-        return 'SINGLE_INSTANCE';
-      case DeploymentMode.activeStandbyMultiAz:
-        return 'ACTIVE_STANDBY_MULTI_AZ';
-      case DeploymentMode.clusterMultiAz:
-        return 'CLUSTER_MULTI_AZ';
-    }
-  }
-}
+  final String value;
 
-extension DeploymentModeFromString on String {
-  DeploymentMode toDeploymentMode() {
-    switch (this) {
-      case 'SINGLE_INSTANCE':
-        return DeploymentMode.singleInstance;
-      case 'ACTIVE_STANDBY_MULTI_AZ':
-        return DeploymentMode.activeStandbyMultiAz;
-      case 'CLUSTER_MULTI_AZ':
-        return DeploymentMode.clusterMultiAz;
-    }
-    throw Exception('$this is not known in enum DeploymentMode');
-  }
+  const DeploymentMode(this.value);
+
+  static DeploymentMode fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum DeploymentMode'));
 }
 
 class DescribeBrokerEngineTypesResponse {
@@ -2128,7 +2006,7 @@ class DescribeBrokerResponse {
           .map((e) => ActionRequired.fromJson(e as Map<String, dynamic>))
           .toList(),
       authenticationStrategy: (json['authenticationStrategy'] as String?)
-          ?.toAuthenticationStrategy(),
+          ?.let(AuthenticationStrategy.fromString),
       autoMinorVersionUpgrade: json['autoMinorVersionUpgrade'] as bool?,
       brokerArn: json['brokerArn'] as String?,
       brokerId: json['brokerId'] as String?,
@@ -2137,18 +2015,20 @@ class DescribeBrokerResponse {
           .map((e) => BrokerInstance.fromJson(e as Map<String, dynamic>))
           .toList(),
       brokerName: json['brokerName'] as String?,
-      brokerState: (json['brokerState'] as String?)?.toBrokerState(),
+      brokerState:
+          (json['brokerState'] as String?)?.let(BrokerState.fromString),
       configurations: json['configurations'] != null
           ? Configurations.fromJson(
               json['configurations'] as Map<String, dynamic>)
           : null,
       created: timeStampFromJson(json['created']),
-      deploymentMode: (json['deploymentMode'] as String?)?.toDeploymentMode(),
+      deploymentMode:
+          (json['deploymentMode'] as String?)?.let(DeploymentMode.fromString),
       encryptionOptions: json['encryptionOptions'] != null
           ? EncryptionOptions.fromJson(
               json['encryptionOptions'] as Map<String, dynamic>)
           : null,
-      engineType: (json['engineType'] as String?)?.toEngineType(),
+      engineType: (json['engineType'] as String?)?.let(EngineType.fromString),
       engineVersion: json['engineVersion'] as String?,
       hostInstanceType: json['hostInstanceType'] as String?,
       ldapServerMetadata: json['ldapServerMetadata'] != null
@@ -2164,7 +2044,7 @@ class DescribeBrokerResponse {
           : null,
       pendingAuthenticationStrategy:
           (json['pendingAuthenticationStrategy'] as String?)
-              ?.toAuthenticationStrategy(),
+              ?.let(AuthenticationStrategy.fromString),
       pendingEngineVersion: json['pendingEngineVersion'] as String?,
       pendingHostInstanceType: json['pendingHostInstanceType'] as String?,
       pendingLdapServerMetadata: json['pendingLdapServerMetadata'] != null
@@ -2180,7 +2060,8 @@ class DescribeBrokerResponse {
           ?.whereNotNull()
           .map((e) => e as String)
           .toList(),
-      storageType: (json['storageType'] as String?)?.toBrokerStorageType(),
+      storageType:
+          (json['storageType'] as String?)?.let(BrokerStorageType.fromString),
       subnetIds: (json['subnetIds'] as List?)
           ?.whereNotNull()
           .map((e) => e as String)
@@ -2227,19 +2108,19 @@ class DescribeBrokerResponse {
     return {
       if (actionsRequired != null) 'actionsRequired': actionsRequired,
       if (authenticationStrategy != null)
-        'authenticationStrategy': authenticationStrategy.toValue(),
+        'authenticationStrategy': authenticationStrategy.value,
       if (autoMinorVersionUpgrade != null)
         'autoMinorVersionUpgrade': autoMinorVersionUpgrade,
       if (brokerArn != null) 'brokerArn': brokerArn,
       if (brokerId != null) 'brokerId': brokerId,
       if (brokerInstances != null) 'brokerInstances': brokerInstances,
       if (brokerName != null) 'brokerName': brokerName,
-      if (brokerState != null) 'brokerState': brokerState.toValue(),
+      if (brokerState != null) 'brokerState': brokerState.value,
       if (configurations != null) 'configurations': configurations,
       if (created != null) 'created': iso8601ToJson(created),
-      if (deploymentMode != null) 'deploymentMode': deploymentMode.toValue(),
+      if (deploymentMode != null) 'deploymentMode': deploymentMode.value,
       if (encryptionOptions != null) 'encryptionOptions': encryptionOptions,
-      if (engineType != null) 'engineType': engineType.toValue(),
+      if (engineType != null) 'engineType': engineType.value,
       if (engineVersion != null) 'engineVersion': engineVersion,
       if (hostInstanceType != null) 'hostInstanceType': hostInstanceType,
       if (ldapServerMetadata != null) 'ldapServerMetadata': ldapServerMetadata,
@@ -2247,8 +2128,7 @@ class DescribeBrokerResponse {
       if (maintenanceWindowStartTime != null)
         'maintenanceWindowStartTime': maintenanceWindowStartTime,
       if (pendingAuthenticationStrategy != null)
-        'pendingAuthenticationStrategy':
-            pendingAuthenticationStrategy.toValue(),
+        'pendingAuthenticationStrategy': pendingAuthenticationStrategy.value,
       if (pendingEngineVersion != null)
         'pendingEngineVersion': pendingEngineVersion,
       if (pendingHostInstanceType != null)
@@ -2259,7 +2139,7 @@ class DescribeBrokerResponse {
         'pendingSecurityGroups': pendingSecurityGroups,
       if (publiclyAccessible != null) 'publiclyAccessible': publiclyAccessible,
       if (securityGroups != null) 'securityGroups': securityGroups,
-      if (storageType != null) 'storageType': storageType.toValue(),
+      if (storageType != null) 'storageType': storageType.value,
       if (subnetIds != null) 'subnetIds': subnetIds,
       if (tags != null) 'tags': tags,
       if (users != null) 'users': users,
@@ -2322,10 +2202,10 @@ class DescribeConfigurationResponse {
     return DescribeConfigurationResponse(
       arn: json['arn'] as String?,
       authenticationStrategy: (json['authenticationStrategy'] as String?)
-          ?.toAuthenticationStrategy(),
+          ?.let(AuthenticationStrategy.fromString),
       created: timeStampFromJson(json['created']),
       description: json['description'] as String?,
-      engineType: (json['engineType'] as String?)?.toEngineType(),
+      engineType: (json['engineType'] as String?)?.let(EngineType.fromString),
       engineVersion: json['engineVersion'] as String?,
       id: json['id'] as String?,
       latestRevision: json['latestRevision'] != null
@@ -2352,10 +2232,10 @@ class DescribeConfigurationResponse {
     return {
       if (arn != null) 'arn': arn,
       if (authenticationStrategy != null)
-        'authenticationStrategy': authenticationStrategy.toValue(),
+        'authenticationStrategy': authenticationStrategy.value,
       if (created != null) 'created': iso8601ToJson(created),
       if (description != null) 'description': description,
-      if (engineType != null) 'engineType': engineType.toValue(),
+      if (engineType != null) 'engineType': engineType.value,
       if (engineVersion != null) 'engineVersion': engineVersion,
       if (id != null) 'id': id,
       if (latestRevision != null) 'latestRevision': latestRevision,
@@ -2507,31 +2387,17 @@ class EncryptionOptions {
 
 /// The type of broker engine. Amazon MQ supports ActiveMQ and RabbitMQ.
 enum EngineType {
-  activemq,
-  rabbitmq,
-}
+  activemq('ACTIVEMQ'),
+  rabbitmq('RABBITMQ'),
+  ;
 
-extension EngineTypeValueExtension on EngineType {
-  String toValue() {
-    switch (this) {
-      case EngineType.activemq:
-        return 'ACTIVEMQ';
-      case EngineType.rabbitmq:
-        return 'RABBITMQ';
-    }
-  }
-}
+  final String value;
 
-extension EngineTypeFromString on String {
-  EngineType toEngineType() {
-    switch (this) {
-      case 'ACTIVEMQ':
-        return EngineType.activemq;
-      case 'RABBITMQ':
-        return EngineType.rabbitmq;
-    }
-    throw Exception('$this is not known in enum EngineType');
-  }
+  const EngineType(this.value);
+
+  static EngineType fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum EngineType'));
 }
 
 /// Id of the engine version.
@@ -3131,7 +2997,7 @@ class SanitizationWarning {
 
   factory SanitizationWarning.fromJson(Map<String, dynamic> json) {
     return SanitizationWarning(
-      reason: (json['reason'] as String).toSanitizationWarningReason(),
+      reason: SanitizationWarningReason.fromString((json['reason'] as String)),
       attributeName: json['attributeName'] as String?,
       elementName: json['elementName'] as String?,
     );
@@ -3142,7 +3008,7 @@ class SanitizationWarning {
     final attributeName = this.attributeName;
     final elementName = this.elementName;
     return {
-      'reason': reason.toValue(),
+      'reason': reason.value,
       if (attributeName != null) 'attributeName': attributeName,
       if (elementName != null) 'elementName': elementName,
     };
@@ -3151,36 +3017,19 @@ class SanitizationWarning {
 
 /// The reason for which the XML elements or attributes were sanitized.
 enum SanitizationWarningReason {
-  disallowedElementRemoved,
-  disallowedAttributeRemoved,
-  invalidAttributeValueRemoved,
-}
+  disallowedElementRemoved('DISALLOWED_ELEMENT_REMOVED'),
+  disallowedAttributeRemoved('DISALLOWED_ATTRIBUTE_REMOVED'),
+  invalidAttributeValueRemoved('INVALID_ATTRIBUTE_VALUE_REMOVED'),
+  ;
 
-extension SanitizationWarningReasonValueExtension on SanitizationWarningReason {
-  String toValue() {
-    switch (this) {
-      case SanitizationWarningReason.disallowedElementRemoved:
-        return 'DISALLOWED_ELEMENT_REMOVED';
-      case SanitizationWarningReason.disallowedAttributeRemoved:
-        return 'DISALLOWED_ATTRIBUTE_REMOVED';
-      case SanitizationWarningReason.invalidAttributeValueRemoved:
-        return 'INVALID_ATTRIBUTE_VALUE_REMOVED';
-    }
-  }
-}
+  final String value;
 
-extension SanitizationWarningReasonFromString on String {
-  SanitizationWarningReason toSanitizationWarningReason() {
-    switch (this) {
-      case 'DISALLOWED_ELEMENT_REMOVED':
-        return SanitizationWarningReason.disallowedElementRemoved;
-      case 'DISALLOWED_ATTRIBUTE_REMOVED':
-        return SanitizationWarningReason.disallowedAttributeRemoved;
-      case 'INVALID_ATTRIBUTE_VALUE_REMOVED':
-        return SanitizationWarningReason.invalidAttributeValueRemoved;
-    }
-    throw Exception('$this is not known in enum SanitizationWarningReason');
-  }
+  const SanitizationWarningReason(this.value);
+
+  static SanitizationWarningReason fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum SanitizationWarningReason'));
 }
 
 class UpdateBrokerResponse {
@@ -3241,7 +3090,7 @@ class UpdateBrokerResponse {
   factory UpdateBrokerResponse.fromJson(Map<String, dynamic> json) {
     return UpdateBrokerResponse(
       authenticationStrategy: (json['authenticationStrategy'] as String?)
-          ?.toAuthenticationStrategy(),
+          ?.let(AuthenticationStrategy.fromString),
       autoMinorVersionUpgrade: json['autoMinorVersionUpgrade'] as bool?,
       brokerId: json['brokerId'] as String?,
       configuration: json['configuration'] != null
@@ -3281,7 +3130,7 @@ class UpdateBrokerResponse {
     final securityGroups = this.securityGroups;
     return {
       if (authenticationStrategy != null)
-        'authenticationStrategy': authenticationStrategy.toValue(),
+        'authenticationStrategy': authenticationStrategy.value,
       if (autoMinorVersionUpgrade != null)
         'autoMinorVersionUpgrade': autoMinorVersionUpgrade,
       if (brokerId != null) 'brokerId': brokerId,
@@ -3449,7 +3298,7 @@ class UserPendingChanges {
 
   factory UserPendingChanges.fromJson(Map<String, dynamic> json) {
     return UserPendingChanges(
-      pendingChange: (json['pendingChange'] as String).toChangeType(),
+      pendingChange: ChangeType.fromString((json['pendingChange'] as String)),
       consoleAccess: json['consoleAccess'] as bool?,
       groups: (json['groups'] as List?)
           ?.whereNotNull()
@@ -3463,7 +3312,7 @@ class UserPendingChanges {
     final consoleAccess = this.consoleAccess;
     final groups = this.groups;
     return {
-      'pendingChange': pendingChange.toValue(),
+      'pendingChange': pendingChange.value,
       if (consoleAccess != null) 'consoleAccess': consoleAccess,
       if (groups != null) 'groups': groups,
     };
@@ -3488,7 +3337,8 @@ class UserSummary {
   factory UserSummary.fromJson(Map<String, dynamic> json) {
     return UserSummary(
       username: json['username'] as String,
-      pendingChange: (json['pendingChange'] as String?)?.toChangeType(),
+      pendingChange:
+          (json['pendingChange'] as String?)?.let(ChangeType.fromString),
     );
   }
 
@@ -3497,7 +3347,7 @@ class UserSummary {
     final pendingChange = this.pendingChange;
     return {
       'username': username,
-      if (pendingChange != null) 'pendingChange': pendingChange.toValue(),
+      if (pendingChange != null) 'pendingChange': pendingChange.value,
     };
   }
 }
@@ -3523,7 +3373,7 @@ class WeeklyStartTime {
 
   factory WeeklyStartTime.fromJson(Map<String, dynamic> json) {
     return WeeklyStartTime(
-      dayOfWeek: (json['dayOfWeek'] as String).toDayOfWeek(),
+      dayOfWeek: DayOfWeek.fromString((json['dayOfWeek'] as String)),
       timeOfDay: json['timeOfDay'] as String,
       timeZone: json['timeZone'] as String?,
     );
@@ -3534,7 +3384,7 @@ class WeeklyStartTime {
     final timeOfDay = this.timeOfDay;
     final timeZone = this.timeZone;
     return {
-      'dayOfWeek': dayOfWeek.toValue(),
+      'dayOfWeek': dayOfWeek.value,
       'timeOfDay': timeOfDay,
       if (timeZone != null) 'timeZone': timeZone,
     };

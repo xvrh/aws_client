@@ -715,36 +715,19 @@ class ConfidenceScore {
 }
 
 enum ConfirmationState {
-  confirmed,
-  denied,
-  none,
-}
+  confirmed('Confirmed'),
+  denied('Denied'),
+  none('None'),
+  ;
 
-extension ConfirmationStateValueExtension on ConfirmationState {
-  String toValue() {
-    switch (this) {
-      case ConfirmationState.confirmed:
-        return 'Confirmed';
-      case ConfirmationState.denied:
-        return 'Denied';
-      case ConfirmationState.none:
-        return 'None';
-    }
-  }
-}
+  final String value;
 
-extension ConfirmationStateFromString on String {
-  ConfirmationState toConfirmationState() {
-    switch (this) {
-      case 'Confirmed':
-        return ConfirmationState.confirmed;
-      case 'Denied':
-        return ConfirmationState.denied;
-      case 'None':
-        return ConfirmationState.none;
-    }
-    throw Exception('$this is not known in enum ConfirmationState');
-  }
+  const ConfirmationState(this.value);
+
+  static ConfirmationState fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum ConfirmationState'));
 }
 
 class DeleteSessionResponse {
@@ -853,9 +836,9 @@ class DialogAction {
 
   factory DialogAction.fromJson(Map<String, dynamic> json) {
     return DialogAction(
-      type: (json['type'] as String).toDialogActionType(),
+      type: DialogActionType.fromString((json['type'] as String)),
       slotElicitationStyle:
-          (json['slotElicitationStyle'] as String?)?.toStyleType(),
+          (json['slotElicitationStyle'] as String?)?.let(StyleType.fromString),
       slotToElicit: json['slotToElicit'] as String?,
       subSlotToElicit: json['subSlotToElicit'] != null
           ? ElicitSubSlot.fromJson(
@@ -870,9 +853,9 @@ class DialogAction {
     final slotToElicit = this.slotToElicit;
     final subSlotToElicit = this.subSlotToElicit;
     return {
-      'type': type.toValue(),
+      'type': type.value,
       if (slotElicitationStyle != null)
-        'slotElicitationStyle': slotElicitationStyle.toValue(),
+        'slotElicitationStyle': slotElicitationStyle.value,
       if (slotToElicit != null) 'slotToElicit': slotToElicit,
       if (subSlotToElicit != null) 'subSlotToElicit': subSlotToElicit,
     };
@@ -880,51 +863,22 @@ class DialogAction {
 }
 
 enum DialogActionType {
-  close,
-  confirmIntent,
-  delegate,
-  elicitIntent,
-  elicitSlot,
-  none,
-}
+  close('Close'),
+  confirmIntent('ConfirmIntent'),
+  delegate('Delegate'),
+  elicitIntent('ElicitIntent'),
+  elicitSlot('ElicitSlot'),
+  none('None'),
+  ;
 
-extension DialogActionTypeValueExtension on DialogActionType {
-  String toValue() {
-    switch (this) {
-      case DialogActionType.close:
-        return 'Close';
-      case DialogActionType.confirmIntent:
-        return 'ConfirmIntent';
-      case DialogActionType.delegate:
-        return 'Delegate';
-      case DialogActionType.elicitIntent:
-        return 'ElicitIntent';
-      case DialogActionType.elicitSlot:
-        return 'ElicitSlot';
-      case DialogActionType.none:
-        return 'None';
-    }
-  }
-}
+  final String value;
 
-extension DialogActionTypeFromString on String {
-  DialogActionType toDialogActionType() {
-    switch (this) {
-      case 'Close':
-        return DialogActionType.close;
-      case 'ConfirmIntent':
-        return DialogActionType.confirmIntent;
-      case 'Delegate':
-        return DialogActionType.delegate;
-      case 'ElicitIntent':
-        return DialogActionType.elicitIntent;
-      case 'ElicitSlot':
-        return DialogActionType.elicitSlot;
-      case 'None':
-        return DialogActionType.none;
-    }
-    throw Exception('$this is not known in enum DialogActionType');
-  }
+  const DialogActionType(this.value);
+
+  static DialogActionType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum DialogActionType'));
 }
 
 /// The specific constituent sub slot of the composite slot to elicit in dialog
@@ -1106,11 +1060,11 @@ class Intent {
   factory Intent.fromJson(Map<String, dynamic> json) {
     return Intent(
       name: json['name'] as String,
-      confirmationState:
-          (json['confirmationState'] as String?)?.toConfirmationState(),
+      confirmationState: (json['confirmationState'] as String?)
+          ?.let(ConfirmationState.fromString),
       slots: (json['slots'] as Map<String, dynamic>?)?.map(
           (k, e) => MapEntry(k, Slot.fromJson(e as Map<String, dynamic>))),
-      state: (json['state'] as String?)?.toIntentState(),
+      state: (json['state'] as String?)?.let(IntentState.fromString),
     );
   }
 
@@ -1122,59 +1076,29 @@ class Intent {
     return {
       'name': name,
       if (confirmationState != null)
-        'confirmationState': confirmationState.toValue(),
+        'confirmationState': confirmationState.value,
       if (slots != null) 'slots': slots,
-      if (state != null) 'state': state.toValue(),
+      if (state != null) 'state': state.value,
     };
   }
 }
 
 enum IntentState {
-  failed,
-  fulfilled,
-  inProgress,
-  readyForFulfillment,
-  waiting,
-  fulfillmentInProgress,
-}
+  failed('Failed'),
+  fulfilled('Fulfilled'),
+  inProgress('InProgress'),
+  readyForFulfillment('ReadyForFulfillment'),
+  waiting('Waiting'),
+  fulfillmentInProgress('FulfillmentInProgress'),
+  ;
 
-extension IntentStateValueExtension on IntentState {
-  String toValue() {
-    switch (this) {
-      case IntentState.failed:
-        return 'Failed';
-      case IntentState.fulfilled:
-        return 'Fulfilled';
-      case IntentState.inProgress:
-        return 'InProgress';
-      case IntentState.readyForFulfillment:
-        return 'ReadyForFulfillment';
-      case IntentState.waiting:
-        return 'Waiting';
-      case IntentState.fulfillmentInProgress:
-        return 'FulfillmentInProgress';
-    }
-  }
-}
+  final String value;
 
-extension IntentStateFromString on String {
-  IntentState toIntentState() {
-    switch (this) {
-      case 'Failed':
-        return IntentState.failed;
-      case 'Fulfilled':
-        return IntentState.fulfilled;
-      case 'InProgress':
-        return IntentState.inProgress;
-      case 'ReadyForFulfillment':
-        return IntentState.readyForFulfillment;
-      case 'Waiting':
-        return IntentState.waiting;
-      case 'FulfillmentInProgress':
-        return IntentState.fulfillmentInProgress;
-    }
-    throw Exception('$this is not known in enum IntentState');
-  }
+  const IntentState(this.value);
+
+  static IntentState fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum IntentState'));
 }
 
 /// An intent that Amazon Lex V2 determined might satisfy the user's utterance.
@@ -1249,7 +1173,8 @@ class Message {
 
   factory Message.fromJson(Map<String, dynamic> json) {
     return Message(
-      contentType: (json['contentType'] as String).toMessageContentType(),
+      contentType:
+          MessageContentType.fromString((json['contentType'] as String)),
       content: json['content'] as String?,
       imageResponseCard: json['imageResponseCard'] != null
           ? ImageResponseCard.fromJson(
@@ -1263,7 +1188,7 @@ class Message {
     final content = this.content;
     final imageResponseCard = this.imageResponseCard;
     return {
-      'contentType': contentType.toValue(),
+      'contentType': contentType.value,
       if (content != null) 'content': content,
       if (imageResponseCard != null) 'imageResponseCard': imageResponseCard,
     };
@@ -1271,41 +1196,20 @@ class Message {
 }
 
 enum MessageContentType {
-  customPayload,
-  imageResponseCard,
-  plainText,
-  ssml,
-}
+  customPayload('CustomPayload'),
+  imageResponseCard('ImageResponseCard'),
+  plainText('PlainText'),
+  ssml('SSML'),
+  ;
 
-extension MessageContentTypeValueExtension on MessageContentType {
-  String toValue() {
-    switch (this) {
-      case MessageContentType.customPayload:
-        return 'CustomPayload';
-      case MessageContentType.imageResponseCard:
-        return 'ImageResponseCard';
-      case MessageContentType.plainText:
-        return 'PlainText';
-      case MessageContentType.ssml:
-        return 'SSML';
-    }
-  }
-}
+  final String value;
 
-extension MessageContentTypeFromString on String {
-  MessageContentType toMessageContentType() {
-    switch (this) {
-      case 'CustomPayload':
-        return MessageContentType.customPayload;
-      case 'ImageResponseCard':
-        return MessageContentType.imageResponseCard;
-      case 'PlainText':
-        return MessageContentType.plainText;
-      case 'SSML':
-        return MessageContentType.ssml;
-    }
-    throw Exception('$this is not known in enum MessageContentType');
-  }
+  const MessageContentType(this.value);
+
+  static MessageContentType fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum MessageContentType'));
 }
 
 class PutSessionResponse {
@@ -1713,7 +1617,7 @@ class SentimentResponse {
 
   factory SentimentResponse.fromJson(Map<String, dynamic> json) {
     return SentimentResponse(
-      sentiment: (json['sentiment'] as String?)?.toSentimentType(),
+      sentiment: (json['sentiment'] as String?)?.let(SentimentType.fromString),
       sentimentScore: json['sentimentScore'] != null
           ? SentimentScore.fromJson(
               json['sentimentScore'] as Map<String, dynamic>)
@@ -1725,7 +1629,7 @@ class SentimentResponse {
     final sentiment = this.sentiment;
     final sentimentScore = this.sentimentScore;
     return {
-      if (sentiment != null) 'sentiment': sentiment.toValue(),
+      if (sentiment != null) 'sentiment': sentiment.value,
       if (sentimentScore != null) 'sentimentScore': sentimentScore,
     };
   }
@@ -1780,41 +1684,20 @@ class SentimentScore {
 }
 
 enum SentimentType {
-  mixed,
-  negative,
-  neutral,
-  positive,
-}
+  mixed('MIXED'),
+  negative('NEGATIVE'),
+  neutral('NEUTRAL'),
+  positive('POSITIVE'),
+  ;
 
-extension SentimentTypeValueExtension on SentimentType {
-  String toValue() {
-    switch (this) {
-      case SentimentType.mixed:
-        return 'MIXED';
-      case SentimentType.negative:
-        return 'NEGATIVE';
-      case SentimentType.neutral:
-        return 'NEUTRAL';
-      case SentimentType.positive:
-        return 'POSITIVE';
-    }
-  }
-}
+  final String value;
 
-extension SentimentTypeFromString on String {
-  SentimentType toSentimentType() {
-    switch (this) {
-      case 'MIXED':
-        return SentimentType.mixed;
-      case 'NEGATIVE':
-        return SentimentType.negative;
-      case 'NEUTRAL':
-        return SentimentType.neutral;
-      case 'POSITIVE':
-        return SentimentType.positive;
-    }
-    throw Exception('$this is not known in enum SentimentType');
-  }
+  const SentimentType(this.value);
+
+  static SentimentType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum SentimentType'));
 }
 
 /// The state of the user's session with Amazon Lex V2.
@@ -1893,36 +1776,18 @@ class SessionState {
 }
 
 enum Shape {
-  scalar,
-  list,
-  composite,
-}
+  scalar('Scalar'),
+  list('List'),
+  composite('Composite'),
+  ;
 
-extension ShapeValueExtension on Shape {
-  String toValue() {
-    switch (this) {
-      case Shape.scalar:
-        return 'Scalar';
-      case Shape.list:
-        return 'List';
-      case Shape.composite:
-        return 'Composite';
-    }
-  }
-}
+  final String value;
 
-extension ShapeFromString on String {
-  Shape toShape() {
-    switch (this) {
-      case 'Scalar':
-        return Shape.scalar;
-      case 'List':
-        return Shape.list;
-      case 'Composite':
-        return Shape.composite;
-    }
-    throw Exception('$this is not known in enum Shape');
-  }
+  const Shape(this.value);
+
+  static Shape fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception('$value is not known in enum Shape'));
 }
 
 /// A value that Amazon Lex V2 uses to fulfill an intent.
@@ -1953,7 +1818,7 @@ class Slot {
 
   factory Slot.fromJson(Map<String, dynamic> json) {
     return Slot(
-      shape: (json['shape'] as String?)?.toShape(),
+      shape: (json['shape'] as String?)?.let(Shape.fromString),
       subSlots: (json['subSlots'] as Map<String, dynamic>?)?.map(
           (k, e) => MapEntry(k, Slot.fromJson(e as Map<String, dynamic>))),
       value: json['value'] != null
@@ -1972,7 +1837,7 @@ class Slot {
     final value = this.value;
     final values = this.values;
     return {
-      if (shape != null) 'shape': shape.toValue(),
+      if (shape != null) 'shape': shape.value,
       if (subSlots != null) 'subSlots': subSlots,
       if (value != null) 'value': value,
       if (values != null) 'values': values,
@@ -1981,36 +1846,18 @@ class Slot {
 }
 
 enum StyleType {
-  $default,
-  spellByLetter,
-  spellByWord,
-}
+  $default('Default'),
+  spellByLetter('SpellByLetter'),
+  spellByWord('SpellByWord'),
+  ;
 
-extension StyleTypeValueExtension on StyleType {
-  String toValue() {
-    switch (this) {
-      case StyleType.$default:
-        return 'Default';
-      case StyleType.spellByLetter:
-        return 'SpellByLetter';
-      case StyleType.spellByWord:
-        return 'SpellByWord';
-    }
-  }
-}
+  final String value;
 
-extension StyleTypeFromString on String {
-  StyleType toStyleType() {
-    switch (this) {
-      case 'Default':
-        return StyleType.$default;
-      case 'SpellByLetter':
-        return StyleType.spellByLetter;
-      case 'SpellByWord':
-        return StyleType.spellByWord;
-    }
-    throw Exception('$this is not known in enum StyleType');
-  }
+  const StyleType(this.value);
+
+  static StyleType fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum StyleType'));
 }
 
 /// The value of a slot.

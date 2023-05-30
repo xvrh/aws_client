@@ -573,9 +573,9 @@ class Location {
       if (carModeOptions != null) 'CarModeOptions': carModeOptions,
       if (departNow != null) 'DepartNow': departNow,
       if (departureTime != null) 'DepartureTime': iso8601ToJson(departureTime),
-      if (distanceUnit != null) 'DistanceUnit': distanceUnit.toValue(),
+      if (distanceUnit != null) 'DistanceUnit': distanceUnit.value,
       if (includeLegGeometry != null) 'IncludeLegGeometry': includeLegGeometry,
-      if (travelMode != null) 'TravelMode': travelMode.toValue(),
+      if (travelMode != null) 'TravelMode': travelMode.value,
       if (truckModeOptions != null) 'TruckModeOptions': truckModeOptions,
       if (waypointPositions != null) 'WaypointPositions': waypointPositions,
     };
@@ -782,8 +782,8 @@ class Location {
       if (carModeOptions != null) 'CarModeOptions': carModeOptions,
       if (departNow != null) 'DepartNow': departNow,
       if (departureTime != null) 'DepartureTime': iso8601ToJson(departureTime),
-      if (distanceUnit != null) 'DistanceUnit': distanceUnit.toValue(),
-      if (travelMode != null) 'TravelMode': travelMode.toValue(),
+      if (distanceUnit != null) 'DistanceUnit': distanceUnit.value,
+      if (travelMode != null) 'TravelMode': travelMode.value,
       if (truckModeOptions != null) 'TruckModeOptions': truckModeOptions,
     };
     final response = await _protocol.send(
@@ -881,7 +881,7 @@ class Location {
       'CollectionName': collectionName,
       if (description != null) 'Description': description,
       if (kmsKeyId != null) 'KmsKeyId': kmsKeyId,
-      if (pricingPlan != null) 'PricingPlan': pricingPlan.toValue(),
+      if (pricingPlan != null) 'PricingPlan': pricingPlan.value,
       if (pricingPlanDataSource != null)
         'PricingPlanDataSource': pricingPlanDataSource,
       if (tags != null) 'Tags': tags,
@@ -1089,7 +1089,7 @@ class Location {
       'Configuration': configuration,
       'MapName': mapName,
       if (description != null) 'Description': description,
-      if (pricingPlan != null) 'PricingPlan': pricingPlan.toValue(),
+      if (pricingPlan != null) 'PricingPlan': pricingPlan.value,
       if (tags != null) 'Tags': tags,
     };
     final response = await _protocol.send(
@@ -1236,7 +1236,7 @@ class Location {
       if (dataSourceConfiguration != null)
         'DataSourceConfiguration': dataSourceConfiguration,
       if (description != null) 'Description': description,
-      if (pricingPlan != null) 'PricingPlan': pricingPlan.toValue(),
+      if (pricingPlan != null) 'PricingPlan': pricingPlan.value,
       if (tags != null) 'Tags': tags,
     };
     final response = await _protocol.send(
@@ -1381,7 +1381,7 @@ class Location {
       'CalculatorName': calculatorName,
       'DataSource': dataSource,
       if (description != null) 'Description': description,
-      if (pricingPlan != null) 'PricingPlan': pricingPlan.toValue(),
+      if (pricingPlan != null) 'PricingPlan': pricingPlan.value,
       if (tags != null) 'Tags': tags,
     };
     final response = await _protocol.send(
@@ -1515,8 +1515,8 @@ class Location {
       if (description != null) 'Description': description,
       if (kmsKeyId != null) 'KmsKeyId': kmsKeyId,
       if (positionFiltering != null)
-        'PositionFiltering': positionFiltering.toValue(),
-      if (pricingPlan != null) 'PricingPlan': pricingPlan.toValue(),
+        'PositionFiltering': positionFiltering.value,
+      if (pricingPlan != null) 'PricingPlan': pricingPlan.value,
       if (pricingPlanDataSource != null)
         'PricingPlanDataSource': pricingPlanDataSource,
       if (tags != null) 'Tags': tags,
@@ -3325,7 +3325,7 @@ class Location {
   }) async {
     final $payload = <String, dynamic>{
       if (description != null) 'Description': description,
-      if (pricingPlan != null) 'PricingPlan': pricingPlan.toValue(),
+      if (pricingPlan != null) 'PricingPlan': pricingPlan.value,
       if (pricingPlanDataSource != null)
         'PricingPlanDataSource': pricingPlanDataSource,
     };
@@ -3429,7 +3429,7 @@ class Location {
   }) async {
     final $payload = <String, dynamic>{
       if (description != null) 'Description': description,
-      if (pricingPlan != null) 'PricingPlan': pricingPlan.toValue(),
+      if (pricingPlan != null) 'PricingPlan': pricingPlan.value,
     };
     final response = await _protocol.send(
       payload: $payload,
@@ -3470,7 +3470,7 @@ class Location {
       if (dataSourceConfiguration != null)
         'DataSourceConfiguration': dataSourceConfiguration,
       if (description != null) 'Description': description,
-      if (pricingPlan != null) 'PricingPlan': pricingPlan.toValue(),
+      if (pricingPlan != null) 'PricingPlan': pricingPlan.value,
     };
     final response = await _protocol.send(
       payload: $payload,
@@ -3505,7 +3505,7 @@ class Location {
   }) async {
     final $payload = <String, dynamic>{
       if (description != null) 'Description': description,
-      if (pricingPlan != null) 'PricingPlan': pricingPlan.toValue(),
+      if (pricingPlan != null) 'PricingPlan': pricingPlan.value,
     };
     final response = await _protocol.send(
       payload: $payload,
@@ -3580,8 +3580,8 @@ class Location {
     final $payload = <String, dynamic>{
       if (description != null) 'Description': description,
       if (positionFiltering != null)
-        'PositionFiltering': positionFiltering.toValue(),
-      if (pricingPlan != null) 'PricingPlan': pricingPlan.toValue(),
+        'PositionFiltering': positionFiltering.value,
+      if (pricingPlan != null) 'PricingPlan': pricingPlan.value,
       if (pricingPlanDataSource != null)
         'PricingPlanDataSource': pricingPlanDataSource,
     };
@@ -3607,7 +3607,7 @@ class ApiKeyFilter {
   Map<String, dynamic> toJson() {
     final keyStatus = this.keyStatus;
     return {
-      if (keyStatus != null) 'KeyStatus': keyStatus.toValue(),
+      if (keyStatus != null) 'KeyStatus': keyStatus.value,
     };
   }
 }
@@ -4007,7 +4007,7 @@ class BatchItemError {
 
   factory BatchItemError.fromJson(Map<String, dynamic> json) {
     return BatchItemError(
-      code: (json['Code'] as String?)?.toBatchItemErrorCode(),
+      code: (json['Code'] as String?)?.let(BatchItemErrorCode.fromString),
       message: json['Message'] as String?,
     );
   }
@@ -4016,58 +4016,29 @@ class BatchItemError {
     final code = this.code;
     final message = this.message;
     return {
-      if (code != null) 'Code': code.toValue(),
+      if (code != null) 'Code': code.value,
       if (message != null) 'Message': message,
     };
   }
 }
 
 enum BatchItemErrorCode {
-  accessDeniedError,
-  conflictError,
-  internalServerError,
-  resourceNotFoundError,
-  throttlingError,
-  validationError,
-}
+  accessDeniedError('AccessDeniedError'),
+  conflictError('ConflictError'),
+  internalServerError('InternalServerError'),
+  resourceNotFoundError('ResourceNotFoundError'),
+  throttlingError('ThrottlingError'),
+  validationError('ValidationError'),
+  ;
 
-extension BatchItemErrorCodeValueExtension on BatchItemErrorCode {
-  String toValue() {
-    switch (this) {
-      case BatchItemErrorCode.accessDeniedError:
-        return 'AccessDeniedError';
-      case BatchItemErrorCode.conflictError:
-        return 'ConflictError';
-      case BatchItemErrorCode.internalServerError:
-        return 'InternalServerError';
-      case BatchItemErrorCode.resourceNotFoundError:
-        return 'ResourceNotFoundError';
-      case BatchItemErrorCode.throttlingError:
-        return 'ThrottlingError';
-      case BatchItemErrorCode.validationError:
-        return 'ValidationError';
-    }
-  }
-}
+  final String value;
 
-extension BatchItemErrorCodeFromString on String {
-  BatchItemErrorCode toBatchItemErrorCode() {
-    switch (this) {
-      case 'AccessDeniedError':
-        return BatchItemErrorCode.accessDeniedError;
-      case 'ConflictError':
-        return BatchItemErrorCode.conflictError;
-      case 'InternalServerError':
-        return BatchItemErrorCode.internalServerError;
-      case 'ResourceNotFoundError':
-        return BatchItemErrorCode.resourceNotFoundError;
-      case 'ThrottlingError':
-        return BatchItemErrorCode.throttlingError;
-      case 'ValidationError':
-        return BatchItemErrorCode.validationError;
-    }
-    throw Exception('$this is not known in enum BatchItemErrorCode');
-  }
+  const BatchItemErrorCode(this.value);
+
+  static BatchItemErrorCode fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum BatchItemErrorCode'));
 }
 
 /// Contains error details for each geofence that failed to be stored in a given
@@ -4425,7 +4396,7 @@ class CalculateRouteMatrixSummary {
   factory CalculateRouteMatrixSummary.fromJson(Map<String, dynamic> json) {
     return CalculateRouteMatrixSummary(
       dataSource: json['DataSource'] as String,
-      distanceUnit: (json['DistanceUnit'] as String).toDistanceUnit(),
+      distanceUnit: DistanceUnit.fromString((json['DistanceUnit'] as String)),
       errorCount: json['ErrorCount'] as int,
       routeCount: json['RouteCount'] as int,
     );
@@ -4438,7 +4409,7 @@ class CalculateRouteMatrixSummary {
     final routeCount = this.routeCount;
     return {
       'DataSource': dataSource,
-      'DistanceUnit': distanceUnit.toValue(),
+      'DistanceUnit': distanceUnit.value,
       'ErrorCount': errorCount,
       'RouteCount': routeCount,
     };
@@ -4593,7 +4564,7 @@ class CalculateRouteSummary {
     return CalculateRouteSummary(
       dataSource: json['DataSource'] as String,
       distance: json['Distance'] as double,
-      distanceUnit: (json['DistanceUnit'] as String).toDistanceUnit(),
+      distanceUnit: DistanceUnit.fromString((json['DistanceUnit'] as String)),
       durationSeconds: json['DurationSeconds'] as double,
       routeBBox: (json['RouteBBox'] as List)
           .whereNotNull()
@@ -4611,7 +4582,7 @@ class CalculateRouteSummary {
     return {
       'DataSource': dataSource,
       'Distance': distance,
-      'DistanceUnit': distanceUnit.toValue(),
+      'DistanceUnit': distanceUnit.value,
       'DurationSeconds': durationSeconds,
       'RouteBBox': routeBBox,
     };
@@ -5040,14 +5011,15 @@ class DataSourceConfiguration {
 
   factory DataSourceConfiguration.fromJson(Map<String, dynamic> json) {
     return DataSourceConfiguration(
-      intendedUse: (json['IntendedUse'] as String?)?.toIntendedUse(),
+      intendedUse:
+          (json['IntendedUse'] as String?)?.let(IntendedUse.fromString),
     );
   }
 
   Map<String, dynamic> toJson() {
     final intendedUse = this.intendedUse;
     return {
-      if (intendedUse != null) 'IntendedUse': intendedUse.toValue(),
+      if (intendedUse != null) 'IntendedUse': intendedUse.value,
     };
   }
 }
@@ -5188,7 +5160,8 @@ class DescribeGeofenceCollectionResponse {
       description: json['Description'] as String,
       updateTime: nonNullableTimeStampFromJson(json['UpdateTime'] as Object),
       kmsKeyId: json['KmsKeyId'] as String?,
-      pricingPlan: (json['PricingPlan'] as String?)?.toPricingPlan(),
+      pricingPlan:
+          (json['PricingPlan'] as String?)?.let(PricingPlan.fromString),
       pricingPlanDataSource: json['PricingPlanDataSource'] as String?,
       tags: (json['Tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
@@ -5212,7 +5185,7 @@ class DescribeGeofenceCollectionResponse {
       'Description': description,
       'UpdateTime': iso8601ToJson(updateTime),
       if (kmsKeyId != null) 'KmsKeyId': kmsKeyId,
-      if (pricingPlan != null) 'PricingPlan': pricingPlan.toValue(),
+      if (pricingPlan != null) 'PricingPlan': pricingPlan.value,
       if (pricingPlanDataSource != null)
         'PricingPlanDataSource': pricingPlanDataSource,
       if (tags != null) 'Tags': tags,
@@ -5372,7 +5345,8 @@ class DescribeMapResponse {
       mapArn: json['MapArn'] as String,
       mapName: json['MapName'] as String,
       updateTime: nonNullableTimeStampFromJson(json['UpdateTime'] as Object),
-      pricingPlan: (json['PricingPlan'] as String?)?.toPricingPlan(),
+      pricingPlan:
+          (json['PricingPlan'] as String?)?.let(PricingPlan.fromString),
       tags: (json['Tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
@@ -5396,7 +5370,7 @@ class DescribeMapResponse {
       'MapArn': mapArn,
       'MapName': mapName,
       'UpdateTime': iso8601ToJson(updateTime),
-      if (pricingPlan != null) 'PricingPlan': pricingPlan.toValue(),
+      if (pricingPlan != null) 'PricingPlan': pricingPlan.value,
       if (tags != null) 'Tags': tags,
     };
   }
@@ -5479,7 +5453,8 @@ class DescribePlaceIndexResponse {
       indexArn: json['IndexArn'] as String,
       indexName: json['IndexName'] as String,
       updateTime: nonNullableTimeStampFromJson(json['UpdateTime'] as Object),
-      pricingPlan: (json['PricingPlan'] as String?)?.toPricingPlan(),
+      pricingPlan:
+          (json['PricingPlan'] as String?)?.let(PricingPlan.fromString),
       tags: (json['Tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
@@ -5503,7 +5478,7 @@ class DescribePlaceIndexResponse {
       'IndexArn': indexArn,
       'IndexName': indexName,
       'UpdateTime': iso8601ToJson(updateTime),
-      if (pricingPlan != null) 'PricingPlan': pricingPlan.toValue(),
+      if (pricingPlan != null) 'PricingPlan': pricingPlan.value,
       if (tags != null) 'Tags': tags,
     };
   }
@@ -5593,7 +5568,8 @@ class DescribeRouteCalculatorResponse {
       dataSource: json['DataSource'] as String,
       description: json['Description'] as String,
       updateTime: nonNullableTimeStampFromJson(json['UpdateTime'] as Object),
-      pricingPlan: (json['PricingPlan'] as String?)?.toPricingPlan(),
+      pricingPlan:
+          (json['PricingPlan'] as String?)?.let(PricingPlan.fromString),
       tags: (json['Tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
@@ -5615,7 +5591,7 @@ class DescribeRouteCalculatorResponse {
       'DataSource': dataSource,
       'Description': description,
       'UpdateTime': iso8601ToJson(updateTime),
-      if (pricingPlan != null) 'PricingPlan': pricingPlan.toValue(),
+      if (pricingPlan != null) 'PricingPlan': pricingPlan.value,
       if (tags != null) 'Tags': tags,
     };
   }
@@ -5688,9 +5664,10 @@ class DescribeTrackerResponse {
       trackerName: json['TrackerName'] as String,
       updateTime: nonNullableTimeStampFromJson(json['UpdateTime'] as Object),
       kmsKeyId: json['KmsKeyId'] as String?,
-      positionFiltering:
-          (json['PositionFiltering'] as String?)?.toPositionFiltering(),
-      pricingPlan: (json['PricingPlan'] as String?)?.toPricingPlan(),
+      positionFiltering: (json['PositionFiltering'] as String?)
+          ?.let(PositionFiltering.fromString),
+      pricingPlan:
+          (json['PricingPlan'] as String?)?.let(PricingPlan.fromString),
       pricingPlanDataSource: json['PricingPlanDataSource'] as String?,
       tags: (json['Tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
@@ -5716,8 +5693,8 @@ class DescribeTrackerResponse {
       'UpdateTime': iso8601ToJson(updateTime),
       if (kmsKeyId != null) 'KmsKeyId': kmsKeyId,
       if (positionFiltering != null)
-        'PositionFiltering': positionFiltering.toValue(),
-      if (pricingPlan != null) 'PricingPlan': pricingPlan.toValue(),
+        'PositionFiltering': positionFiltering.value,
+      if (pricingPlan != null) 'PricingPlan': pricingPlan.value,
       if (pricingPlanDataSource != null)
         'PricingPlanDataSource': pricingPlanDataSource,
       if (tags != null) 'Tags': tags,
@@ -5845,31 +5822,18 @@ class DevicePositionUpdate {
 }
 
 enum DimensionUnit {
-  meters,
-  feet,
-}
+  meters('Meters'),
+  feet('Feet'),
+  ;
 
-extension DimensionUnitValueExtension on DimensionUnit {
-  String toValue() {
-    switch (this) {
-      case DimensionUnit.meters:
-        return 'Meters';
-      case DimensionUnit.feet:
-        return 'Feet';
-    }
-  }
-}
+  final String value;
 
-extension DimensionUnitFromString on String {
-  DimensionUnit toDimensionUnit() {
-    switch (this) {
-      case 'Meters':
-        return DimensionUnit.meters;
-      case 'Feet':
-        return DimensionUnit.feet;
-    }
-    throw Exception('$this is not known in enum DimensionUnit');
-  }
+  const DimensionUnit(this.value);
+
+  static DimensionUnit fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum DimensionUnit'));
 }
 
 class DisassociateTrackerConsumerResponse {
@@ -5885,31 +5849,18 @@ class DisassociateTrackerConsumerResponse {
 }
 
 enum DistanceUnit {
-  kilometers,
-  miles,
-}
+  kilometers('Kilometers'),
+  miles('Miles'),
+  ;
 
-extension DistanceUnitValueExtension on DistanceUnit {
-  String toValue() {
-    switch (this) {
-      case DistanceUnit.kilometers:
-        return 'Kilometers';
-      case DistanceUnit.miles:
-        return 'Miles';
-    }
-  }
-}
+  final String value;
 
-extension DistanceUnitFromString on String {
-  DistanceUnit toDistanceUnit() {
-    switch (this) {
-      case 'Kilometers':
-        return DistanceUnit.kilometers;
-      case 'Miles':
-        return DistanceUnit.miles;
-    }
-    throw Exception('$this is not known in enum DistanceUnit');
-  }
+  const DistanceUnit(this.value);
+
+  static DistanceUnit fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum DistanceUnit'));
 }
 
 /// Contains the geofence geometry details.
@@ -6286,31 +6237,17 @@ class GetPlaceResponse {
 }
 
 enum IntendedUse {
-  singleUse,
-  storage,
-}
+  singleUse('SingleUse'),
+  storage('Storage'),
+  ;
 
-extension IntendedUseValueExtension on IntendedUse {
-  String toValue() {
-    switch (this) {
-      case IntendedUse.singleUse:
-        return 'SingleUse';
-      case IntendedUse.storage:
-        return 'Storage';
-    }
-  }
-}
+  final String value;
 
-extension IntendedUseFromString on String {
-  IntendedUse toIntendedUse() {
-    switch (this) {
-      case 'SingleUse':
-        return IntendedUse.singleUse;
-      case 'Storage':
-        return IntendedUse.storage;
-    }
-    throw Exception('$this is not known in enum IntendedUse');
-  }
+  const IntendedUse(this.value);
+
+  static IntendedUse fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum IntendedUse'));
 }
 
 /// Contains the calculated route's details for each path between a pair of
@@ -6646,7 +6583,8 @@ class ListGeofenceCollectionsResponseEntry {
       createTime: nonNullableTimeStampFromJson(json['CreateTime'] as Object),
       description: json['Description'] as String,
       updateTime: nonNullableTimeStampFromJson(json['UpdateTime'] as Object),
-      pricingPlan: (json['PricingPlan'] as String?)?.toPricingPlan(),
+      pricingPlan:
+          (json['PricingPlan'] as String?)?.let(PricingPlan.fromString),
       pricingPlanDataSource: json['PricingPlanDataSource'] as String?,
     );
   }
@@ -6663,7 +6601,7 @@ class ListGeofenceCollectionsResponseEntry {
       'CreateTime': iso8601ToJson(createTime),
       'Description': description,
       'UpdateTime': iso8601ToJson(updateTime),
-      if (pricingPlan != null) 'PricingPlan': pricingPlan.toValue(),
+      if (pricingPlan != null) 'PricingPlan': pricingPlan.value,
       if (pricingPlanDataSource != null)
         'PricingPlanDataSource': pricingPlanDataSource,
     };
@@ -6951,7 +6889,8 @@ class ListMapsResponseEntry {
       description: json['Description'] as String,
       mapName: json['MapName'] as String,
       updateTime: nonNullableTimeStampFromJson(json['UpdateTime'] as Object),
-      pricingPlan: (json['PricingPlan'] as String?)?.toPricingPlan(),
+      pricingPlan:
+          (json['PricingPlan'] as String?)?.let(PricingPlan.fromString),
     );
   }
 
@@ -6968,7 +6907,7 @@ class ListMapsResponseEntry {
       'Description': description,
       'MapName': mapName,
       'UpdateTime': iso8601ToJson(updateTime),
-      if (pricingPlan != null) 'PricingPlan': pricingPlan.toValue(),
+      if (pricingPlan != null) 'PricingPlan': pricingPlan.value,
     };
   }
 }
@@ -7063,7 +7002,8 @@ class ListPlaceIndexesResponseEntry {
       description: json['Description'] as String,
       indexName: json['IndexName'] as String,
       updateTime: nonNullableTimeStampFromJson(json['UpdateTime'] as Object),
-      pricingPlan: (json['PricingPlan'] as String?)?.toPricingPlan(),
+      pricingPlan:
+          (json['PricingPlan'] as String?)?.let(PricingPlan.fromString),
     );
   }
 
@@ -7080,7 +7020,7 @@ class ListPlaceIndexesResponseEntry {
       'Description': description,
       'IndexName': indexName,
       'UpdateTime': iso8601ToJson(updateTime),
-      if (pricingPlan != null) 'PricingPlan': pricingPlan.toValue(),
+      if (pricingPlan != null) 'PricingPlan': pricingPlan.value,
     };
   }
 }
@@ -7189,7 +7129,8 @@ class ListRouteCalculatorsResponseEntry {
       dataSource: json['DataSource'] as String,
       description: json['Description'] as String,
       updateTime: nonNullableTimeStampFromJson(json['UpdateTime'] as Object),
-      pricingPlan: (json['PricingPlan'] as String?)?.toPricingPlan(),
+      pricingPlan:
+          (json['PricingPlan'] as String?)?.let(PricingPlan.fromString),
     );
   }
 
@@ -7206,7 +7147,7 @@ class ListRouteCalculatorsResponseEntry {
       'DataSource': dataSource,
       'Description': description,
       'UpdateTime': iso8601ToJson(updateTime),
-      if (pricingPlan != null) 'PricingPlan': pricingPlan.toValue(),
+      if (pricingPlan != null) 'PricingPlan': pricingPlan.value,
     };
   }
 }
@@ -7350,7 +7291,8 @@ class ListTrackersResponseEntry {
       description: json['Description'] as String,
       trackerName: json['TrackerName'] as String,
       updateTime: nonNullableTimeStampFromJson(json['UpdateTime'] as Object),
-      pricingPlan: (json['PricingPlan'] as String?)?.toPricingPlan(),
+      pricingPlan:
+          (json['PricingPlan'] as String?)?.let(PricingPlan.fromString),
       pricingPlanDataSource: json['PricingPlanDataSource'] as String?,
     );
   }
@@ -7367,7 +7309,7 @@ class ListTrackersResponseEntry {
       'Description': description,
       'TrackerName': trackerName,
       'UpdateTime': iso8601ToJson(updateTime),
-      if (pricingPlan != null) 'PricingPlan': pricingPlan.toValue(),
+      if (pricingPlan != null) 'PricingPlan': pricingPlan.value,
       if (pricingPlanDataSource != null)
         'PricingPlanDataSource': pricingPlanDataSource,
     };
@@ -7710,36 +7652,19 @@ class PlaceGeometry {
 }
 
 enum PositionFiltering {
-  timeBased,
-  distanceBased,
-  accuracyBased,
-}
+  timeBased('TimeBased'),
+  distanceBased('DistanceBased'),
+  accuracyBased('AccuracyBased'),
+  ;
 
-extension PositionFilteringValueExtension on PositionFiltering {
-  String toValue() {
-    switch (this) {
-      case PositionFiltering.timeBased:
-        return 'TimeBased';
-      case PositionFiltering.distanceBased:
-        return 'DistanceBased';
-      case PositionFiltering.accuracyBased:
-        return 'AccuracyBased';
-    }
-  }
-}
+  final String value;
 
-extension PositionFilteringFromString on String {
-  PositionFiltering toPositionFiltering() {
-    switch (this) {
-      case 'TimeBased':
-        return PositionFiltering.timeBased;
-      case 'DistanceBased':
-        return PositionFiltering.distanceBased;
-      case 'AccuracyBased':
-        return PositionFiltering.accuracyBased;
-    }
-    throw Exception('$this is not known in enum PositionFiltering');
-  }
+  const PositionFiltering(this.value);
+
+  static PositionFiltering fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum PositionFiltering'));
 }
 
 /// Defines the level of certainty of the position.
@@ -7767,36 +7692,18 @@ class PositionalAccuracy {
 }
 
 enum PricingPlan {
-  requestBasedUsage,
-  mobileAssetTracking,
-  mobileAssetManagement,
-}
+  requestBasedUsage('RequestBasedUsage'),
+  mobileAssetTracking('MobileAssetTracking'),
+  mobileAssetManagement('MobileAssetManagement'),
+  ;
 
-extension PricingPlanValueExtension on PricingPlan {
-  String toValue() {
-    switch (this) {
-      case PricingPlan.requestBasedUsage:
-        return 'RequestBasedUsage';
-      case PricingPlan.mobileAssetTracking:
-        return 'MobileAssetTracking';
-      case PricingPlan.mobileAssetManagement:
-        return 'MobileAssetManagement';
-    }
-  }
-}
+  final String value;
 
-extension PricingPlanFromString on String {
-  PricingPlan toPricingPlan() {
-    switch (this) {
-      case 'RequestBasedUsage':
-        return PricingPlan.requestBasedUsage;
-      case 'MobileAssetTracking':
-        return PricingPlan.mobileAssetTracking;
-      case 'MobileAssetManagement':
-        return PricingPlan.mobileAssetManagement;
-    }
-    throw Exception('$this is not known in enum PricingPlan');
-  }
+  const PricingPlan(this.value);
+
+  static PricingPlan fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum PricingPlan'));
 }
 
 class PutGeofenceResponse {
@@ -7937,7 +7844,7 @@ class RouteMatrixEntryError {
 
   factory RouteMatrixEntryError.fromJson(Map<String, dynamic> json) {
     return RouteMatrixEntryError(
-      code: (json['Code'] as String).toRouteMatrixErrorCode(),
+      code: RouteMatrixErrorCode.fromString((json['Code'] as String)),
       message: json['Message'] as String?,
     );
   }
@@ -7946,58 +7853,29 @@ class RouteMatrixEntryError {
     final code = this.code;
     final message = this.message;
     return {
-      'Code': code.toValue(),
+      'Code': code.value,
       if (message != null) 'Message': message,
     };
   }
 }
 
 enum RouteMatrixErrorCode {
-  routeNotFound,
-  routeTooLong,
-  positionsNotFound,
-  destinationPositionNotFound,
-  departurePositionNotFound,
-  otherValidationError,
-}
+  routeNotFound('RouteNotFound'),
+  routeTooLong('RouteTooLong'),
+  positionsNotFound('PositionsNotFound'),
+  destinationPositionNotFound('DestinationPositionNotFound'),
+  departurePositionNotFound('DeparturePositionNotFound'),
+  otherValidationError('OtherValidationError'),
+  ;
 
-extension RouteMatrixErrorCodeValueExtension on RouteMatrixErrorCode {
-  String toValue() {
-    switch (this) {
-      case RouteMatrixErrorCode.routeNotFound:
-        return 'RouteNotFound';
-      case RouteMatrixErrorCode.routeTooLong:
-        return 'RouteTooLong';
-      case RouteMatrixErrorCode.positionsNotFound:
-        return 'PositionsNotFound';
-      case RouteMatrixErrorCode.destinationPositionNotFound:
-        return 'DestinationPositionNotFound';
-      case RouteMatrixErrorCode.departurePositionNotFound:
-        return 'DeparturePositionNotFound';
-      case RouteMatrixErrorCode.otherValidationError:
-        return 'OtherValidationError';
-    }
-  }
-}
+  final String value;
 
-extension RouteMatrixErrorCodeFromString on String {
-  RouteMatrixErrorCode toRouteMatrixErrorCode() {
-    switch (this) {
-      case 'RouteNotFound':
-        return RouteMatrixErrorCode.routeNotFound;
-      case 'RouteTooLong':
-        return RouteMatrixErrorCode.routeTooLong;
-      case 'PositionsNotFound':
-        return RouteMatrixErrorCode.positionsNotFound;
-      case 'DestinationPositionNotFound':
-        return RouteMatrixErrorCode.destinationPositionNotFound;
-      case 'DeparturePositionNotFound':
-        return RouteMatrixErrorCode.departurePositionNotFound;
-      case 'OtherValidationError':
-        return RouteMatrixErrorCode.otherValidationError;
-    }
-    throw Exception('$this is not known in enum RouteMatrixErrorCode');
-  }
+  const RouteMatrixErrorCode(this.value);
+
+  static RouteMatrixErrorCode fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum RouteMatrixErrorCode'));
 }
 
 /// Contains a search result from a position search query that is run on a place
@@ -8559,31 +8437,17 @@ class SearchPlaceIndexForTextSummary {
 }
 
 enum Status {
-  active,
-  expired,
-}
+  active('Active'),
+  expired('Expired'),
+  ;
 
-extension StatusValueExtension on Status {
-  String toValue() {
-    switch (this) {
-      case Status.active:
-        return 'Active';
-      case Status.expired:
-        return 'Expired';
-    }
-  }
-}
+  final String value;
 
-extension StatusFromString on String {
-  Status toStatus() {
-    switch (this) {
-      case 'Active':
-        return Status.active;
-      case 'Expired':
-        return Status.expired;
-    }
-    throw Exception('$this is not known in enum Status');
-  }
+  const Status(this.value);
+
+  static Status fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception('$value is not known in enum Status'));
 }
 
 /// Represents an element of a leg within a route. A step contains instructions
@@ -8701,46 +8565,20 @@ class TimeZone {
 }
 
 enum TravelMode {
-  car,
-  truck,
-  walking,
-  bicycle,
-  motorcycle,
-}
+  car('Car'),
+  truck('Truck'),
+  walking('Walking'),
+  bicycle('Bicycle'),
+  motorcycle('Motorcycle'),
+  ;
 
-extension TravelModeValueExtension on TravelMode {
-  String toValue() {
-    switch (this) {
-      case TravelMode.car:
-        return 'Car';
-      case TravelMode.truck:
-        return 'Truck';
-      case TravelMode.walking:
-        return 'Walking';
-      case TravelMode.bicycle:
-        return 'Bicycle';
-      case TravelMode.motorcycle:
-        return 'Motorcycle';
-    }
-  }
-}
+  final String value;
 
-extension TravelModeFromString on String {
-  TravelMode toTravelMode() {
-    switch (this) {
-      case 'Car':
-        return TravelMode.car;
-      case 'Truck':
-        return TravelMode.truck;
-      case 'Walking':
-        return TravelMode.walking;
-      case 'Bicycle':
-        return TravelMode.bicycle;
-      case 'Motorcycle':
-        return TravelMode.motorcycle;
-    }
-    throw Exception('$this is not known in enum TravelMode');
-  }
+  const TravelMode(this.value);
+
+  static TravelMode fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum TravelMode'));
 }
 
 /// Contains details about the truck dimensions in the unit of measurement that
@@ -8804,7 +8642,7 @@ class TruckDimensions {
     return {
       if (height != null) 'Height': height,
       if (length != null) 'Length': length,
-      if (unit != null) 'Unit': unit.toValue(),
+      if (unit != null) 'Unit': unit.value,
       if (width != null) 'Width': width,
     };
   }
@@ -8838,7 +8676,7 @@ class TruckWeight {
     final unit = this.unit;
     return {
       if (total != null) 'Total': total,
-      if (unit != null) 'Unit': unit.toValue(),
+      if (unit != null) 'Unit': unit.value,
     };
   }
 }
@@ -9130,31 +8968,18 @@ class UpdateTrackerResponse {
 }
 
 enum VehicleWeightUnit {
-  kilograms,
-  pounds,
-}
+  kilograms('Kilograms'),
+  pounds('Pounds'),
+  ;
 
-extension VehicleWeightUnitValueExtension on VehicleWeightUnit {
-  String toValue() {
-    switch (this) {
-      case VehicleWeightUnit.kilograms:
-        return 'Kilograms';
-      case VehicleWeightUnit.pounds:
-        return 'Pounds';
-    }
-  }
-}
+  final String value;
 
-extension VehicleWeightUnitFromString on String {
-  VehicleWeightUnit toVehicleWeightUnit() {
-    switch (this) {
-      case 'Kilograms':
-        return VehicleWeightUnit.kilograms;
-      case 'Pounds':
-        return VehicleWeightUnit.pounds;
-    }
-    throw Exception('$this is not known in enum VehicleWeightUnit');
-  }
+  const VehicleWeightUnit(this.value);
+
+  static VehicleWeightUnit fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum VehicleWeightUnit'));
 }
 
 class AccessDeniedException extends _s.GenericAwsException {

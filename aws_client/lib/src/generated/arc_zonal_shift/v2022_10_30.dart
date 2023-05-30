@@ -228,7 +228,7 @@ class ArcZonalShift {
     final $query = <String, List<String>>{
       if (maxResults != null) 'maxResults': [maxResults.toString()],
       if (nextToken != null) 'nextToken': [nextToken],
-      if (status != null) 'status': [status.toValue()],
+      if (status != null) 'status': [status.value],
     };
     final response = await _protocol.send(
       payload: null,
@@ -391,31 +391,18 @@ class ArcZonalShift {
 }
 
 enum AppliedStatus {
-  applied,
-  notApplied,
-}
+  applied('APPLIED'),
+  notApplied('NOT_APPLIED'),
+  ;
 
-extension AppliedStatusValueExtension on AppliedStatus {
-  String toValue() {
-    switch (this) {
-      case AppliedStatus.applied:
-        return 'APPLIED';
-      case AppliedStatus.notApplied:
-        return 'NOT_APPLIED';
-    }
-  }
-}
+  final String value;
 
-extension AppliedStatusFromString on String {
-  AppliedStatus toAppliedStatus() {
-    switch (this) {
-      case 'APPLIED':
-        return AppliedStatus.applied;
-      case 'NOT_APPLIED':
-        return AppliedStatus.notApplied;
-    }
-    throw Exception('$this is not known in enum AppliedStatus');
-  }
+  const AppliedStatus(this.value);
+
+  static AppliedStatus fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum AppliedStatus'));
 }
 
 class GetManagedResourceResponse {
@@ -662,7 +649,7 @@ class ZonalShift {
       expiryTime: nonNullableTimeStampFromJson(json['expiryTime'] as Object),
       resourceIdentifier: json['resourceIdentifier'] as String,
       startTime: nonNullableTimeStampFromJson(json['startTime'] as Object),
-      status: (json['status'] as String).toZonalShiftStatus(),
+      status: ZonalShiftStatus.fromString((json['status'] as String)),
       zonalShiftId: json['zonalShiftId'] as String,
     );
   }
@@ -681,7 +668,7 @@ class ZonalShift {
       'expiryTime': unixTimestampToJson(expiryTime),
       'resourceIdentifier': resourceIdentifier,
       'startTime': unixTimestampToJson(startTime),
-      'status': status.toValue(),
+      'status': status.value,
       'zonalShiftId': zonalShiftId,
     };
   }
@@ -742,7 +729,8 @@ class ZonalShiftInResource {
 
   factory ZonalShiftInResource.fromJson(Map<String, dynamic> json) {
     return ZonalShiftInResource(
-      appliedStatus: (json['appliedStatus'] as String).toAppliedStatus(),
+      appliedStatus:
+          AppliedStatus.fromString((json['appliedStatus'] as String)),
       awayFrom: json['awayFrom'] as String,
       comment: json['comment'] as String,
       expiryTime: nonNullableTimeStampFromJson(json['expiryTime'] as Object),
@@ -761,7 +749,7 @@ class ZonalShiftInResource {
     final startTime = this.startTime;
     final zonalShiftId = this.zonalShiftId;
     return {
-      'appliedStatus': appliedStatus.toValue(),
+      'appliedStatus': appliedStatus.value,
       'awayFrom': awayFrom,
       'comment': comment,
       'expiryTime': unixTimestampToJson(expiryTime),
@@ -773,36 +761,19 @@ class ZonalShiftInResource {
 }
 
 enum ZonalShiftStatus {
-  active,
-  expired,
-  canceled,
-}
+  active('ACTIVE'),
+  expired('EXPIRED'),
+  canceled('CANCELED'),
+  ;
 
-extension ZonalShiftStatusValueExtension on ZonalShiftStatus {
-  String toValue() {
-    switch (this) {
-      case ZonalShiftStatus.active:
-        return 'ACTIVE';
-      case ZonalShiftStatus.expired:
-        return 'EXPIRED';
-      case ZonalShiftStatus.canceled:
-        return 'CANCELED';
-    }
-  }
-}
+  final String value;
 
-extension ZonalShiftStatusFromString on String {
-  ZonalShiftStatus toZonalShiftStatus() {
-    switch (this) {
-      case 'ACTIVE':
-        return ZonalShiftStatus.active;
-      case 'EXPIRED':
-        return ZonalShiftStatus.expired;
-      case 'CANCELED':
-        return ZonalShiftStatus.canceled;
-    }
-    throw Exception('$this is not known in enum ZonalShiftStatus');
-  }
+  const ZonalShiftStatus(this.value);
+
+  static ZonalShiftStatus fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum ZonalShiftStatus'));
 }
 
 /// You start a zonal shift to temporarily move load balancer traffic away from
@@ -893,7 +864,7 @@ class ZonalShiftSummary {
       expiryTime: nonNullableTimeStampFromJson(json['expiryTime'] as Object),
       resourceIdentifier: json['resourceIdentifier'] as String,
       startTime: nonNullableTimeStampFromJson(json['startTime'] as Object),
-      status: (json['status'] as String).toZonalShiftStatus(),
+      status: ZonalShiftStatus.fromString((json['status'] as String)),
       zonalShiftId: json['zonalShiftId'] as String,
     );
   }
@@ -912,7 +883,7 @@ class ZonalShiftSummary {
       'expiryTime': unixTimestampToJson(expiryTime),
       'resourceIdentifier': resourceIdentifier,
       'startTime': unixTimestampToJson(startTime),
-      'status': status.toValue(),
+      'status': status.value,
       'zonalShiftId': zonalShiftId,
     };
   }

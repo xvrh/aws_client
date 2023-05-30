@@ -110,7 +110,7 @@ class ManagedBlockchain {
     Map<String, String>? tags,
   }) async {
     final $payload = <String, dynamic>{
-      'AccessorType': accessorType.toValue(),
+      'AccessorType': accessorType.value,
       'ClientRequestToken': clientRequestToken ?? _s.generateIdempotencyToken(),
       if (tags != null) 'Tags': tags,
     };
@@ -241,7 +241,7 @@ class ManagedBlockchain {
     Map<String, String>? tags,
   }) async {
     final $payload = <String, dynamic>{
-      'Framework': framework.toValue(),
+      'Framework': framework.value,
       'FrameworkVersion': frameworkVersion,
       'MemberConfiguration': memberConfiguration,
       'Name': name,
@@ -815,7 +815,7 @@ class ManagedBlockchain {
       if (maxResults != null) 'maxResults': [maxResults.toString()],
       if (name != null) 'name': [name],
       if (nextToken != null) 'nextToken': [nextToken],
-      if (status != null) 'status': [status.toValue()],
+      if (status != null) 'status': [status.value],
     };
     final response = await _protocol.send(
       payload: null,
@@ -869,11 +869,11 @@ class ManagedBlockchain {
       10,
     );
     final $query = <String, List<String>>{
-      if (framework != null) 'framework': [framework.toValue()],
+      if (framework != null) 'framework': [framework.value],
       if (maxResults != null) 'maxResults': [maxResults.toString()],
       if (name != null) 'name': [name],
       if (nextToken != null) 'nextToken': [nextToken],
-      if (status != null) 'status': [status.toValue()],
+      if (status != null) 'status': [status.value],
     };
     final response = await _protocol.send(
       payload: null,
@@ -928,7 +928,7 @@ class ManagedBlockchain {
       if (maxResults != null) 'maxResults': [maxResults.toString()],
       if (memberId != null) 'memberId': [memberId],
       if (nextToken != null) 'nextToken': [nextToken],
-      if (status != null) 'status': [status.toValue()],
+      if (status != null) 'status': [status.value],
     };
     final response = await _protocol.send(
       payload: null,
@@ -1294,7 +1294,7 @@ class ManagedBlockchain {
     required String voterMemberId,
   }) async {
     final $payload = <String, dynamic>{
-      'Vote': vote.toValue(),
+      'Vote': vote.value,
       'VoterMemberId': voterMemberId,
     };
     final response = await _protocol.send(
@@ -1364,10 +1364,10 @@ class Accessor {
       billingToken: json['BillingToken'] as String?,
       creationDate: timeStampFromJson(json['CreationDate']),
       id: json['Id'] as String?,
-      status: (json['Status'] as String?)?.toAccessorStatus(),
+      status: (json['Status'] as String?)?.let(AccessorStatus.fromString),
       tags: (json['Tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
-      type: (json['Type'] as String?)?.toAccessorType(),
+      type: (json['Type'] as String?)?.let(AccessorType.fromString),
     );
   }
 
@@ -1384,44 +1384,27 @@ class Accessor {
       if (billingToken != null) 'BillingToken': billingToken,
       if (creationDate != null) 'CreationDate': iso8601ToJson(creationDate),
       if (id != null) 'Id': id,
-      if (status != null) 'Status': status.toValue(),
+      if (status != null) 'Status': status.value,
       if (tags != null) 'Tags': tags,
-      if (type != null) 'Type': type.toValue(),
+      if (type != null) 'Type': type.value,
     };
   }
 }
 
 enum AccessorStatus {
-  available,
-  pendingDeletion,
-  deleted,
-}
+  available('AVAILABLE'),
+  pendingDeletion('PENDING_DELETION'),
+  deleted('DELETED'),
+  ;
 
-extension AccessorStatusValueExtension on AccessorStatus {
-  String toValue() {
-    switch (this) {
-      case AccessorStatus.available:
-        return 'AVAILABLE';
-      case AccessorStatus.pendingDeletion:
-        return 'PENDING_DELETION';
-      case AccessorStatus.deleted:
-        return 'DELETED';
-    }
-  }
-}
+  final String value;
 
-extension AccessorStatusFromString on String {
-  AccessorStatus toAccessorStatus() {
-    switch (this) {
-      case 'AVAILABLE':
-        return AccessorStatus.available;
-      case 'PENDING_DELETION':
-        return AccessorStatus.pendingDeletion;
-      case 'DELETED':
-        return AccessorStatus.deleted;
-    }
-    throw Exception('$this is not known in enum AccessorStatus');
-  }
+  const AccessorStatus(this.value);
+
+  static AccessorStatus fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum AccessorStatus'));
 }
 
 /// A summary of accessor properties.
@@ -1461,8 +1444,8 @@ class AccessorSummary {
       arn: json['Arn'] as String?,
       creationDate: timeStampFromJson(json['CreationDate']),
       id: json['Id'] as String?,
-      status: (json['Status'] as String?)?.toAccessorStatus(),
-      type: (json['Type'] as String?)?.toAccessorType(),
+      status: (json['Status'] as String?)?.let(AccessorStatus.fromString),
+      type: (json['Type'] as String?)?.let(AccessorType.fromString),
     );
   }
 
@@ -1476,33 +1459,24 @@ class AccessorSummary {
       if (arn != null) 'Arn': arn,
       if (creationDate != null) 'CreationDate': iso8601ToJson(creationDate),
       if (id != null) 'Id': id,
-      if (status != null) 'Status': status.toValue(),
-      if (type != null) 'Type': type.toValue(),
+      if (status != null) 'Status': status.value,
+      if (type != null) 'Type': type.value,
     };
   }
 }
 
 enum AccessorType {
-  billingToken,
-}
+  billingToken('BILLING_TOKEN'),
+  ;
 
-extension AccessorTypeValueExtension on AccessorType {
-  String toValue() {
-    switch (this) {
-      case AccessorType.billingToken:
-        return 'BILLING_TOKEN';
-    }
-  }
-}
+  final String value;
 
-extension AccessorTypeFromString on String {
-  AccessorType toAccessorType() {
-    switch (this) {
-      case 'BILLING_TOKEN':
-        return AccessorType.billingToken;
-    }
-    throw Exception('$this is not known in enum AccessorType');
-  }
+  const AccessorType(this.value);
+
+  static AccessorType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum AccessorType'));
 }
 
 /// A policy type that defines the voting rules for the network. The rules
@@ -1544,8 +1518,8 @@ class ApprovalThresholdPolicy {
   factory ApprovalThresholdPolicy.fromJson(Map<String, dynamic> json) {
     return ApprovalThresholdPolicy(
       proposalDurationInHours: json['ProposalDurationInHours'] as int?,
-      thresholdComparator:
-          (json['ThresholdComparator'] as String?)?.toThresholdComparator(),
+      thresholdComparator: (json['ThresholdComparator'] as String?)
+          ?.let(ThresholdComparator.fromString),
       thresholdPercentage: json['ThresholdPercentage'] as int?,
     );
   }
@@ -1558,7 +1532,7 @@ class ApprovalThresholdPolicy {
       if (proposalDurationInHours != null)
         'ProposalDurationInHours': proposalDurationInHours,
       if (thresholdComparator != null)
-        'ThresholdComparator': thresholdComparator.toValue(),
+        'ThresholdComparator': thresholdComparator.value,
       if (thresholdPercentage != null)
         'ThresholdPercentage': thresholdPercentage,
     };
@@ -1729,59 +1703,31 @@ class DeleteNodeOutput {
 }
 
 enum Edition {
-  starter,
-  standard,
-}
+  starter('STARTER'),
+  standard('STANDARD'),
+  ;
 
-extension EditionValueExtension on Edition {
-  String toValue() {
-    switch (this) {
-      case Edition.starter:
-        return 'STARTER';
-      case Edition.standard:
-        return 'STANDARD';
-    }
-  }
-}
+  final String value;
 
-extension EditionFromString on String {
-  Edition toEdition() {
-    switch (this) {
-      case 'STARTER':
-        return Edition.starter;
-      case 'STANDARD':
-        return Edition.standard;
-    }
-    throw Exception('$this is not known in enum Edition');
-  }
+  const Edition(this.value);
+
+  static Edition fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception('$value is not known in enum Edition'));
 }
 
 enum Framework {
-  hyperledgerFabric,
-  ethereum,
-}
+  hyperledgerFabric('HYPERLEDGER_FABRIC'),
+  ethereum('ETHEREUM'),
+  ;
 
-extension FrameworkValueExtension on Framework {
-  String toValue() {
-    switch (this) {
-      case Framework.hyperledgerFabric:
-        return 'HYPERLEDGER_FABRIC';
-      case Framework.ethereum:
-        return 'ETHEREUM';
-    }
-  }
-}
+  final String value;
 
-extension FrameworkFromString on String {
-  Framework toFramework() {
-    switch (this) {
-      case 'HYPERLEDGER_FABRIC':
-        return Framework.hyperledgerFabric;
-      case 'ETHEREUM':
-        return Framework.ethereum;
-    }
-    throw Exception('$this is not known in enum Framework');
-  }
+  const Framework(this.value);
+
+  static Framework fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum Framework'));
 }
 
 class GetAccessorOutput {
@@ -1974,7 +1920,7 @@ class Invitation {
           ? NetworkSummary.fromJson(
               json['NetworkSummary'] as Map<String, dynamic>)
           : null,
-      status: (json['Status'] as String?)?.toInvitationStatus(),
+      status: (json['Status'] as String?)?.let(InvitationStatus.fromString),
     );
   }
 
@@ -1992,52 +1938,27 @@ class Invitation {
         'ExpirationDate': iso8601ToJson(expirationDate),
       if (invitationId != null) 'InvitationId': invitationId,
       if (networkSummary != null) 'NetworkSummary': networkSummary,
-      if (status != null) 'Status': status.toValue(),
+      if (status != null) 'Status': status.value,
     };
   }
 }
 
 enum InvitationStatus {
-  pending,
-  accepted,
-  accepting,
-  rejected,
-  expired,
-}
+  pending('PENDING'),
+  accepted('ACCEPTED'),
+  accepting('ACCEPTING'),
+  rejected('REJECTED'),
+  expired('EXPIRED'),
+  ;
 
-extension InvitationStatusValueExtension on InvitationStatus {
-  String toValue() {
-    switch (this) {
-      case InvitationStatus.pending:
-        return 'PENDING';
-      case InvitationStatus.accepted:
-        return 'ACCEPTED';
-      case InvitationStatus.accepting:
-        return 'ACCEPTING';
-      case InvitationStatus.rejected:
-        return 'REJECTED';
-      case InvitationStatus.expired:
-        return 'EXPIRED';
-    }
-  }
-}
+  final String value;
 
-extension InvitationStatusFromString on String {
-  InvitationStatus toInvitationStatus() {
-    switch (this) {
-      case 'PENDING':
-        return InvitationStatus.pending;
-      case 'ACCEPTED':
-        return InvitationStatus.accepted;
-      case 'ACCEPTING':
-        return InvitationStatus.accepting;
-      case 'REJECTED':
-        return InvitationStatus.rejected;
-      case 'EXPIRED':
-        return InvitationStatus.expired;
-    }
-    throw Exception('$this is not known in enum InvitationStatus');
-  }
+  const InvitationStatus(this.value);
+
+  static InvitationStatus fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum InvitationStatus'));
 }
 
 /// An action to invite a specific Amazon Web Services account to create a
@@ -2499,7 +2420,7 @@ class Member {
           : null,
       name: json['Name'] as String?,
       networkId: json['NetworkId'] as String?,
-      status: (json['Status'] as String?)?.toMemberStatus(),
+      status: (json['Status'] as String?)?.let(MemberStatus.fromString),
       tags: (json['Tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
@@ -2529,7 +2450,7 @@ class Member {
         'LogPublishingConfiguration': logPublishingConfiguration,
       if (name != null) 'Name': name,
       if (networkId != null) 'NetworkId': networkId,
-      if (status != null) 'Status': status.toValue(),
+      if (status != null) 'Status': status.value,
       if (tags != null) 'Tags': tags,
     };
   }
@@ -2791,56 +2712,23 @@ class MemberLogPublishingConfiguration {
 }
 
 enum MemberStatus {
-  creating,
-  available,
-  createFailed,
-  updating,
-  deleting,
-  deleted,
-  inaccessibleEncryptionKey,
-}
+  creating('CREATING'),
+  available('AVAILABLE'),
+  createFailed('CREATE_FAILED'),
+  updating('UPDATING'),
+  deleting('DELETING'),
+  deleted('DELETED'),
+  inaccessibleEncryptionKey('INACCESSIBLE_ENCRYPTION_KEY'),
+  ;
 
-extension MemberStatusValueExtension on MemberStatus {
-  String toValue() {
-    switch (this) {
-      case MemberStatus.creating:
-        return 'CREATING';
-      case MemberStatus.available:
-        return 'AVAILABLE';
-      case MemberStatus.createFailed:
-        return 'CREATE_FAILED';
-      case MemberStatus.updating:
-        return 'UPDATING';
-      case MemberStatus.deleting:
-        return 'DELETING';
-      case MemberStatus.deleted:
-        return 'DELETED';
-      case MemberStatus.inaccessibleEncryptionKey:
-        return 'INACCESSIBLE_ENCRYPTION_KEY';
-    }
-  }
-}
+  final String value;
 
-extension MemberStatusFromString on String {
-  MemberStatus toMemberStatus() {
-    switch (this) {
-      case 'CREATING':
-        return MemberStatus.creating;
-      case 'AVAILABLE':
-        return MemberStatus.available;
-      case 'CREATE_FAILED':
-        return MemberStatus.createFailed;
-      case 'UPDATING':
-        return MemberStatus.updating;
-      case 'DELETING':
-        return MemberStatus.deleting;
-      case 'DELETED':
-        return MemberStatus.deleted;
-      case 'INACCESSIBLE_ENCRYPTION_KEY':
-        return MemberStatus.inaccessibleEncryptionKey;
-    }
-    throw Exception('$this is not known in enum MemberStatus');
-  }
+  const MemberStatus(this.value);
+
+  static MemberStatus fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum MemberStatus'));
 }
 
 /// A summary of configuration properties for a member.
@@ -2933,7 +2821,7 @@ class MemberSummary {
       id: json['Id'] as String?,
       isOwned: json['IsOwned'] as bool?,
       name: json['Name'] as String?,
-      status: (json['Status'] as String?)?.toMemberStatus(),
+      status: (json['Status'] as String?)?.let(MemberStatus.fromString),
     );
   }
 
@@ -2952,7 +2840,7 @@ class MemberSummary {
       if (id != null) 'Id': id,
       if (isOwned != null) 'IsOwned': isOwned,
       if (name != null) 'Name': name,
-      if (status != null) 'Status': status.toValue(),
+      if (status != null) 'Status': status.value,
     };
   }
 }
@@ -3029,7 +2917,7 @@ class Network {
       arn: json['Arn'] as String?,
       creationDate: timeStampFromJson(json['CreationDate']),
       description: json['Description'] as String?,
-      framework: (json['Framework'] as String?)?.toFramework(),
+      framework: (json['Framework'] as String?)?.let(Framework.fromString),
       frameworkAttributes: json['FrameworkAttributes'] != null
           ? NetworkFrameworkAttributes.fromJson(
               json['FrameworkAttributes'] as Map<String, dynamic>)
@@ -3037,7 +2925,7 @@ class Network {
       frameworkVersion: json['FrameworkVersion'] as String?,
       id: json['Id'] as String?,
       name: json['Name'] as String?,
-      status: (json['Status'] as String?)?.toNetworkStatus(),
+      status: (json['Status'] as String?)?.let(NetworkStatus.fromString),
       tags: (json['Tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
       votingPolicy: json['VotingPolicy'] != null
@@ -3064,13 +2952,13 @@ class Network {
       if (arn != null) 'Arn': arn,
       if (creationDate != null) 'CreationDate': iso8601ToJson(creationDate),
       if (description != null) 'Description': description,
-      if (framework != null) 'Framework': framework.toValue(),
+      if (framework != null) 'Framework': framework.value,
       if (frameworkAttributes != null)
         'FrameworkAttributes': frameworkAttributes,
       if (frameworkVersion != null) 'FrameworkVersion': frameworkVersion,
       if (id != null) 'Id': id,
       if (name != null) 'Name': name,
-      if (status != null) 'Status': status.toValue(),
+      if (status != null) 'Status': status.value,
       if (tags != null) 'Tags': tags,
       if (votingPolicy != null) 'VotingPolicy': votingPolicy,
       if (vpcEndpointServiceName != null)
@@ -3133,7 +3021,7 @@ class NetworkFabricAttributes {
 
   factory NetworkFabricAttributes.fromJson(Map<String, dynamic> json) {
     return NetworkFabricAttributes(
-      edition: (json['Edition'] as String?)?.toEdition(),
+      edition: (json['Edition'] as String?)?.let(Edition.fromString),
       orderingServiceEndpoint: json['OrderingServiceEndpoint'] as String?,
     );
   }
@@ -3142,7 +3030,7 @@ class NetworkFabricAttributes {
     final edition = this.edition;
     final orderingServiceEndpoint = this.orderingServiceEndpoint;
     return {
-      if (edition != null) 'Edition': edition.toValue(),
+      if (edition != null) 'Edition': edition.value,
       if (orderingServiceEndpoint != null)
         'OrderingServiceEndpoint': orderingServiceEndpoint,
     };
@@ -3164,7 +3052,7 @@ class NetworkFabricConfiguration {
   Map<String, dynamic> toJson() {
     final edition = this.edition;
     return {
-      'Edition': edition.toValue(),
+      'Edition': edition.value,
     };
   }
 }
@@ -3228,46 +3116,21 @@ class NetworkFrameworkConfiguration {
 }
 
 enum NetworkStatus {
-  creating,
-  available,
-  createFailed,
-  deleting,
-  deleted,
-}
+  creating('CREATING'),
+  available('AVAILABLE'),
+  createFailed('CREATE_FAILED'),
+  deleting('DELETING'),
+  deleted('DELETED'),
+  ;
 
-extension NetworkStatusValueExtension on NetworkStatus {
-  String toValue() {
-    switch (this) {
-      case NetworkStatus.creating:
-        return 'CREATING';
-      case NetworkStatus.available:
-        return 'AVAILABLE';
-      case NetworkStatus.createFailed:
-        return 'CREATE_FAILED';
-      case NetworkStatus.deleting:
-        return 'DELETING';
-      case NetworkStatus.deleted:
-        return 'DELETED';
-    }
-  }
-}
+  final String value;
 
-extension NetworkStatusFromString on String {
-  NetworkStatus toNetworkStatus() {
-    switch (this) {
-      case 'CREATING':
-        return NetworkStatus.creating;
-      case 'AVAILABLE':
-        return NetworkStatus.available;
-      case 'CREATE_FAILED':
-        return NetworkStatus.createFailed;
-      case 'DELETING':
-        return NetworkStatus.deleting;
-      case 'DELETED':
-        return NetworkStatus.deleted;
-    }
-    throw Exception('$this is not known in enum NetworkStatus');
-  }
+  const NetworkStatus(this.value);
+
+  static NetworkStatus fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum NetworkStatus'));
 }
 
 /// A summary of network configuration properties.
@@ -3316,11 +3179,11 @@ class NetworkSummary {
       arn: json['Arn'] as String?,
       creationDate: timeStampFromJson(json['CreationDate']),
       description: json['Description'] as String?,
-      framework: (json['Framework'] as String?)?.toFramework(),
+      framework: (json['Framework'] as String?)?.let(Framework.fromString),
       frameworkVersion: json['FrameworkVersion'] as String?,
       id: json['Id'] as String?,
       name: json['Name'] as String?,
-      status: (json['Status'] as String?)?.toNetworkStatus(),
+      status: (json['Status'] as String?)?.let(NetworkStatus.fromString),
     );
   }
 
@@ -3337,11 +3200,11 @@ class NetworkSummary {
       if (arn != null) 'Arn': arn,
       if (creationDate != null) 'CreationDate': iso8601ToJson(creationDate),
       if (description != null) 'Description': description,
-      if (framework != null) 'Framework': framework.toValue(),
+      if (framework != null) 'Framework': framework.value,
       if (frameworkVersion != null) 'FrameworkVersion': frameworkVersion,
       if (id != null) 'Id': id,
       if (name != null) 'Name': name,
-      if (status != null) 'Status': status.toValue(),
+      if (status != null) 'Status': status.value,
     };
   }
 }
@@ -3495,8 +3358,8 @@ class Node {
           : null,
       memberId: json['MemberId'] as String?,
       networkId: json['NetworkId'] as String?,
-      stateDB: (json['StateDB'] as String?)?.toStateDBType(),
-      status: (json['Status'] as String?)?.toNodeStatus(),
+      stateDB: (json['StateDB'] as String?)?.let(StateDBType.fromString),
+      status: (json['Status'] as String?)?.let(NodeStatus.fromString),
       tags: (json['Tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
@@ -3529,8 +3392,8 @@ class Node {
         'LogPublishingConfiguration': logPublishingConfiguration,
       if (memberId != null) 'MemberId': memberId,
       if (networkId != null) 'NetworkId': networkId,
-      if (stateDB != null) 'StateDB': stateDB.toValue(),
-      if (status != null) 'Status': status.toValue(),
+      if (stateDB != null) 'StateDB': stateDB.value,
+      if (status != null) 'Status': status.value,
       if (tags != null) 'Tags': tags,
     };
   }
@@ -3573,7 +3436,7 @@ class NodeConfiguration {
       if (availabilityZone != null) 'AvailabilityZone': availabilityZone,
       if (logPublishingConfiguration != null)
         'LogPublishingConfiguration': logPublishingConfiguration,
-      if (stateDB != null) 'StateDB': stateDB.toValue(),
+      if (stateDB != null) 'StateDB': stateDB.value,
     };
   }
 }
@@ -3764,66 +3627,24 @@ class NodeLogPublishingConfiguration {
 }
 
 enum NodeStatus {
-  creating,
-  available,
-  unhealthy,
-  createFailed,
-  updating,
-  deleting,
-  deleted,
-  failed,
-  inaccessibleEncryptionKey,
-}
+  creating('CREATING'),
+  available('AVAILABLE'),
+  unhealthy('UNHEALTHY'),
+  createFailed('CREATE_FAILED'),
+  updating('UPDATING'),
+  deleting('DELETING'),
+  deleted('DELETED'),
+  failed('FAILED'),
+  inaccessibleEncryptionKey('INACCESSIBLE_ENCRYPTION_KEY'),
+  ;
 
-extension NodeStatusValueExtension on NodeStatus {
-  String toValue() {
-    switch (this) {
-      case NodeStatus.creating:
-        return 'CREATING';
-      case NodeStatus.available:
-        return 'AVAILABLE';
-      case NodeStatus.unhealthy:
-        return 'UNHEALTHY';
-      case NodeStatus.createFailed:
-        return 'CREATE_FAILED';
-      case NodeStatus.updating:
-        return 'UPDATING';
-      case NodeStatus.deleting:
-        return 'DELETING';
-      case NodeStatus.deleted:
-        return 'DELETED';
-      case NodeStatus.failed:
-        return 'FAILED';
-      case NodeStatus.inaccessibleEncryptionKey:
-        return 'INACCESSIBLE_ENCRYPTION_KEY';
-    }
-  }
-}
+  final String value;
 
-extension NodeStatusFromString on String {
-  NodeStatus toNodeStatus() {
-    switch (this) {
-      case 'CREATING':
-        return NodeStatus.creating;
-      case 'AVAILABLE':
-        return NodeStatus.available;
-      case 'UNHEALTHY':
-        return NodeStatus.unhealthy;
-      case 'CREATE_FAILED':
-        return NodeStatus.createFailed;
-      case 'UPDATING':
-        return NodeStatus.updating;
-      case 'DELETING':
-        return NodeStatus.deleting;
-      case 'DELETED':
-        return NodeStatus.deleted;
-      case 'FAILED':
-        return NodeStatus.failed;
-      case 'INACCESSIBLE_ENCRYPTION_KEY':
-        return NodeStatus.inaccessibleEncryptionKey;
-    }
-    throw Exception('$this is not known in enum NodeStatus');
-  }
+  const NodeStatus(this.value);
+
+  static NodeStatus fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum NodeStatus'));
 }
 
 /// A summary of configuration properties for a node.
@@ -3866,7 +3687,7 @@ class NodeSummary {
       creationDate: timeStampFromJson(json['CreationDate']),
       id: json['Id'] as String?,
       instanceType: json['InstanceType'] as String?,
-      status: (json['Status'] as String?)?.toNodeStatus(),
+      status: (json['Status'] as String?)?.let(NodeStatus.fromString),
     );
   }
 
@@ -3883,7 +3704,7 @@ class NodeSummary {
       if (creationDate != null) 'CreationDate': iso8601ToJson(creationDate),
       if (id != null) 'Id': id,
       if (instanceType != null) 'InstanceType': instanceType,
-      if (status != null) 'Status': status.toValue(),
+      if (status != null) 'Status': status.value,
     };
   }
 }
@@ -4017,7 +3838,7 @@ class Proposal {
       proposalId: json['ProposalId'] as String?,
       proposedByMemberId: json['ProposedByMemberId'] as String?,
       proposedByMemberName: json['ProposedByMemberName'] as String?,
-      status: (json['Status'] as String?)?.toProposalStatus(),
+      status: (json['Status'] as String?)?.let(ProposalStatus.fromString),
       tags: (json['Tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
       yesVoteCount: json['YesVoteCount'] as int?,
@@ -4054,7 +3875,7 @@ class Proposal {
       if (proposedByMemberId != null) 'ProposedByMemberId': proposedByMemberId,
       if (proposedByMemberName != null)
         'ProposedByMemberName': proposedByMemberName,
-      if (status != null) 'Status': status.toValue(),
+      if (status != null) 'Status': status.value,
       if (tags != null) 'Tags': tags,
       if (yesVoteCount != null) 'YesVoteCount': yesVoteCount,
     };
@@ -4103,46 +3924,21 @@ class ProposalActions {
 }
 
 enum ProposalStatus {
-  inProgress,
-  approved,
-  rejected,
-  expired,
-  actionFailed,
-}
+  inProgress('IN_PROGRESS'),
+  approved('APPROVED'),
+  rejected('REJECTED'),
+  expired('EXPIRED'),
+  actionFailed('ACTION_FAILED'),
+  ;
 
-extension ProposalStatusValueExtension on ProposalStatus {
-  String toValue() {
-    switch (this) {
-      case ProposalStatus.inProgress:
-        return 'IN_PROGRESS';
-      case ProposalStatus.approved:
-        return 'APPROVED';
-      case ProposalStatus.rejected:
-        return 'REJECTED';
-      case ProposalStatus.expired:
-        return 'EXPIRED';
-      case ProposalStatus.actionFailed:
-        return 'ACTION_FAILED';
-    }
-  }
-}
+  final String value;
 
-extension ProposalStatusFromString on String {
-  ProposalStatus toProposalStatus() {
-    switch (this) {
-      case 'IN_PROGRESS':
-        return ProposalStatus.inProgress;
-      case 'APPROVED':
-        return ProposalStatus.approved;
-      case 'REJECTED':
-        return ProposalStatus.rejected;
-      case 'EXPIRED':
-        return ProposalStatus.expired;
-      case 'ACTION_FAILED':
-        return ProposalStatus.actionFailed;
-    }
-    throw Exception('$this is not known in enum ProposalStatus');
-  }
+  const ProposalStatus(this.value);
+
+  static ProposalStatus fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum ProposalStatus'));
 }
 
 /// Properties of a proposal.
@@ -4231,7 +4027,7 @@ class ProposalSummary {
       proposalId: json['ProposalId'] as String?,
       proposedByMemberId: json['ProposedByMemberId'] as String?,
       proposedByMemberName: json['ProposedByMemberName'] as String?,
-      status: (json['Status'] as String?)?.toProposalStatus(),
+      status: (json['Status'] as String?)?.let(ProposalStatus.fromString),
     );
   }
 
@@ -4254,7 +4050,7 @@ class ProposalSummary {
       if (proposedByMemberId != null) 'ProposedByMemberId': proposedByMemberId,
       if (proposedByMemberName != null)
         'ProposedByMemberName': proposedByMemberName,
-      if (status != null) 'Status': status.toValue(),
+      if (status != null) 'Status': status.value,
     };
   }
 }
@@ -4299,31 +4095,17 @@ class RemoveAction {
 }
 
 enum StateDBType {
-  levelDB,
-  couchDB,
-}
+  levelDB('LevelDB'),
+  couchDB('CouchDB'),
+  ;
 
-extension StateDBTypeValueExtension on StateDBType {
-  String toValue() {
-    switch (this) {
-      case StateDBType.levelDB:
-        return 'LevelDB';
-      case StateDBType.couchDB:
-        return 'CouchDB';
-    }
-  }
-}
+  final String value;
 
-extension StateDBTypeFromString on String {
-  StateDBType toStateDBType() {
-    switch (this) {
-      case 'LevelDB':
-        return StateDBType.levelDB;
-      case 'CouchDB':
-        return StateDBType.couchDB;
-    }
-    throw Exception('$this is not known in enum StateDBType');
-  }
+  const StateDBType(this.value);
+
+  static StateDBType fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum StateDBType'));
 }
 
 class TagResourceResponse {
@@ -4339,31 +4121,18 @@ class TagResourceResponse {
 }
 
 enum ThresholdComparator {
-  greaterThan,
-  greaterThanOrEqualTo,
-}
+  greaterThan('GREATER_THAN'),
+  greaterThanOrEqualTo('GREATER_THAN_OR_EQUAL_TO'),
+  ;
 
-extension ThresholdComparatorValueExtension on ThresholdComparator {
-  String toValue() {
-    switch (this) {
-      case ThresholdComparator.greaterThan:
-        return 'GREATER_THAN';
-      case ThresholdComparator.greaterThanOrEqualTo:
-        return 'GREATER_THAN_OR_EQUAL_TO';
-    }
-  }
-}
+  final String value;
 
-extension ThresholdComparatorFromString on String {
-  ThresholdComparator toThresholdComparator() {
-    switch (this) {
-      case 'GREATER_THAN':
-        return ThresholdComparator.greaterThan;
-      case 'GREATER_THAN_OR_EQUAL_TO':
-        return ThresholdComparator.greaterThanOrEqualTo;
-    }
-    throw Exception('$this is not known in enum ThresholdComparator');
-  }
+  const ThresholdComparator(this.value);
+
+  static ThresholdComparator fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum ThresholdComparator'));
 }
 
 class UntagResourceResponse {
@@ -4437,7 +4206,7 @@ class VoteSummary {
     return VoteSummary(
       memberId: json['MemberId'] as String?,
       memberName: json['MemberName'] as String?,
-      vote: (json['Vote'] as String?)?.toVoteValue(),
+      vote: (json['Vote'] as String?)?.let(VoteValue.fromString),
     );
   }
 
@@ -4448,37 +4217,23 @@ class VoteSummary {
     return {
       if (memberId != null) 'MemberId': memberId,
       if (memberName != null) 'MemberName': memberName,
-      if (vote != null) 'Vote': vote.toValue(),
+      if (vote != null) 'Vote': vote.value,
     };
   }
 }
 
 enum VoteValue {
-  yes,
-  no,
-}
+  yes('YES'),
+  no('NO'),
+  ;
 
-extension VoteValueValueExtension on VoteValue {
-  String toValue() {
-    switch (this) {
-      case VoteValue.yes:
-        return 'YES';
-      case VoteValue.no:
-        return 'NO';
-    }
-  }
-}
+  final String value;
 
-extension VoteValueFromString on String {
-  VoteValue toVoteValue() {
-    switch (this) {
-      case 'YES':
-        return VoteValue.yes;
-      case 'NO':
-        return VoteValue.no;
-    }
-    throw Exception('$this is not known in enum VoteValue');
-  }
+  const VoteValue(this.value);
+
+  static VoteValue fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum VoteValue'));
 }
 
 /// The voting rules for the network to decide if a proposal is accepted

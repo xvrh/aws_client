@@ -200,7 +200,7 @@ class Transfer {
         if (homeDirectoryMappings != null)
           'HomeDirectoryMappings': homeDirectoryMappings,
         if (homeDirectoryType != null)
-          'HomeDirectoryType': homeDirectoryType.toValue(),
+          'HomeDirectoryType': homeDirectoryType.value,
         if (policy != null) 'Policy': policy,
         if (posixProfile != null) 'PosixProfile': posixProfile,
       },
@@ -293,7 +293,7 @@ class Transfer {
         'PartnerProfileId': partnerProfileId,
         'ServerId': serverId,
         if (description != null) 'Description': description,
-        if (status != null) 'Status': status.toValue(),
+        if (status != null) 'Status': status.value,
         if (tags != null) 'Tags': tags,
       },
     );
@@ -427,7 +427,7 @@ class Transfer {
       headers: headers,
       payload: {
         'As2Id': as2Id,
-        'ProfileType': profileType.toValue(),
+        'ProfileType': profileType.value,
         if (certificateIds != null) 'CertificateIds': certificateIds,
         if (tags != null) 'Tags': tags,
       },
@@ -754,14 +754,14 @@ class Transfer {
       headers: headers,
       payload: {
         if (certificate != null) 'Certificate': certificate,
-        if (domain != null) 'Domain': domain.toValue(),
+        if (domain != null) 'Domain': domain.value,
         if (endpointDetails != null) 'EndpointDetails': endpointDetails,
-        if (endpointType != null) 'EndpointType': endpointType.toValue(),
+        if (endpointType != null) 'EndpointType': endpointType.value,
         if (hostKey != null) 'HostKey': hostKey,
         if (identityProviderDetails != null)
           'IdentityProviderDetails': identityProviderDetails,
         if (identityProviderType != null)
-          'IdentityProviderType': identityProviderType.toValue(),
+          'IdentityProviderType': identityProviderType.value,
         if (loggingRole != null) 'LoggingRole': loggingRole,
         if (postAuthenticationLoginBanner != null)
           'PostAuthenticationLoginBanner': postAuthenticationLoginBanner,
@@ -769,7 +769,7 @@ class Transfer {
           'PreAuthenticationLoginBanner': preAuthenticationLoginBanner,
         if (protocolDetails != null) 'ProtocolDetails': protocolDetails,
         if (protocols != null)
-          'Protocols': protocols.map((e) => e.toValue()).toList(),
+          'Protocols': protocols.map((e) => e.value).toList(),
         if (securityPolicyName != null)
           'SecurityPolicyName': securityPolicyName,
         if (tags != null) 'Tags': tags,
@@ -950,7 +950,7 @@ class Transfer {
         if (homeDirectoryMappings != null)
           'HomeDirectoryMappings': homeDirectoryMappings,
         if (homeDirectoryType != null)
-          'HomeDirectoryType': homeDirectoryType.toValue(),
+          'HomeDirectoryType': homeDirectoryType.value,
         if (policy != null) 'Policy': policy,
         if (posixProfile != null) 'PosixProfile': posixProfile,
         if (sshPublicKeyBody != null) 'SshPublicKeyBody': sshPublicKeyBody,
@@ -1877,7 +1877,7 @@ class Transfer {
       headers: headers,
       payload: {
         'Certificate': certificate,
-        'Usage': usage.toValue(),
+        'Usage': usage.value,
         if (activeDate != null) 'ActiveDate': unixTimestampToJson(activeDate),
         if (certificateChain != null) 'CertificateChain': certificateChain,
         if (description != null) 'Description': description,
@@ -2363,7 +2363,7 @@ class Transfer {
       payload: {
         if (maxResults != null) 'MaxResults': maxResults,
         if (nextToken != null) 'NextToken': nextToken,
-        if (profileType != null) 'ProfileType': profileType.toValue(),
+        if (profileType != null) 'ProfileType': profileType.value,
       },
     );
 
@@ -2658,7 +2658,7 @@ class Transfer {
       headers: headers,
       payload: {
         'ExecutionId': executionId,
-        'Status': status.toValue(),
+        'Status': status.value,
         'Token': token,
         'WorkflowId': workflowId,
       },
@@ -2937,7 +2937,7 @@ class Transfer {
       payload: {
         'ServerId': serverId,
         'UserName': userName,
-        if (serverProtocol != null) 'ServerProtocol': serverProtocol.toValue(),
+        if (serverProtocol != null) 'ServerProtocol': serverProtocol.value,
         if (sourceIp != null) 'SourceIp': sourceIp,
         if (userPassword != null) 'UserPassword': userPassword,
       },
@@ -3123,7 +3123,7 @@ class Transfer {
         if (homeDirectoryMappings != null)
           'HomeDirectoryMappings': homeDirectoryMappings,
         if (homeDirectoryType != null)
-          'HomeDirectoryType': homeDirectoryType.toValue(),
+          'HomeDirectoryType': homeDirectoryType.value,
         if (policy != null) 'Policy': policy,
         if (posixProfile != null) 'PosixProfile': posixProfile,
         if (role != null) 'Role': role,
@@ -3216,7 +3216,7 @@ class Transfer {
         if (description != null) 'Description': description,
         if (localProfileId != null) 'LocalProfileId': localProfileId,
         if (partnerProfileId != null) 'PartnerProfileId': partnerProfileId,
-        if (status != null) 'Status': status.toValue(),
+        if (status != null) 'Status': status.value,
       },
     );
 
@@ -3711,7 +3711,7 @@ class Transfer {
         'ServerId': serverId,
         if (certificate != null) 'Certificate': certificate,
         if (endpointDetails != null) 'EndpointDetails': endpointDetails,
-        if (endpointType != null) 'EndpointType': endpointType.toValue(),
+        if (endpointType != null) 'EndpointType': endpointType.value,
         if (hostKey != null) 'HostKey': hostKey,
         if (identityProviderDetails != null)
           'IdentityProviderDetails': identityProviderDetails,
@@ -3722,7 +3722,7 @@ class Transfer {
           'PreAuthenticationLoginBanner': preAuthenticationLoginBanner,
         if (protocolDetails != null) 'ProtocolDetails': protocolDetails,
         if (protocols != null)
-          'Protocols': protocols.map((e) => e.toValue()).toList(),
+          'Protocols': protocols.map((e) => e.value).toList(),
         if (securityPolicyName != null)
           'SecurityPolicyName': securityPolicyName,
         if (workflowDetails != null) 'WorkflowDetails': workflowDetails,
@@ -3868,7 +3868,7 @@ class Transfer {
         if (homeDirectoryMappings != null)
           'HomeDirectoryMappings': homeDirectoryMappings,
         if (homeDirectoryType != null)
-          'HomeDirectoryType': homeDirectoryType.toValue(),
+          'HomeDirectoryType': homeDirectoryType.value,
         if (policy != null) 'Policy': policy,
         if (posixProfile != null) 'PosixProfile': posixProfile,
         if (role != null) 'Role': role,
@@ -3880,31 +3880,18 @@ class Transfer {
 }
 
 enum AgreementStatusType {
-  active,
-  inactive,
-}
+  active('ACTIVE'),
+  inactive('INACTIVE'),
+  ;
 
-extension AgreementStatusTypeValueExtension on AgreementStatusType {
-  String toValue() {
-    switch (this) {
-      case AgreementStatusType.active:
-        return 'ACTIVE';
-      case AgreementStatusType.inactive:
-        return 'INACTIVE';
-    }
-  }
-}
+  final String value;
 
-extension AgreementStatusTypeFromString on String {
-  AgreementStatusType toAgreementStatusType() {
-    switch (this) {
-      case 'ACTIVE':
-        return AgreementStatusType.active;
-      case 'INACTIVE':
-        return AgreementStatusType.inactive;
-    }
-    throw Exception('$this is not known in enum AgreementStatusType');
-  }
+  const AgreementStatusType(this.value);
+
+  static AgreementStatusType fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum AgreementStatusType'));
 }
 
 /// Contains the details for a connector object. The connector object is used
@@ -3969,16 +3956,19 @@ class As2ConnectorConfig {
 
   factory As2ConnectorConfig.fromJson(Map<String, dynamic> json) {
     return As2ConnectorConfig(
-      compression: (json['Compression'] as String?)?.toCompressionEnum(),
-      encryptionAlgorithm:
-          (json['EncryptionAlgorithm'] as String?)?.toEncryptionAlg(),
+      compression:
+          (json['Compression'] as String?)?.let(CompressionEnum.fromString),
+      encryptionAlgorithm: (json['EncryptionAlgorithm'] as String?)
+          ?.let(EncryptionAlg.fromString),
       localProfileId: json['LocalProfileId'] as String?,
-      mdnResponse: (json['MdnResponse'] as String?)?.toMdnResponse(),
-      mdnSigningAlgorithm:
-          (json['MdnSigningAlgorithm'] as String?)?.toMdnSigningAlg(),
+      mdnResponse:
+          (json['MdnResponse'] as String?)?.let(MdnResponse.fromString),
+      mdnSigningAlgorithm: (json['MdnSigningAlgorithm'] as String?)
+          ?.let(MdnSigningAlg.fromString),
       messageSubject: json['MessageSubject'] as String?,
       partnerProfileId: json['PartnerProfileId'] as String?,
-      signingAlgorithm: (json['SigningAlgorithm'] as String?)?.toSigningAlg(),
+      signingAlgorithm:
+          (json['SigningAlgorithm'] as String?)?.let(SigningAlg.fromString),
     );
   }
 
@@ -3992,159 +3982,93 @@ class As2ConnectorConfig {
     final partnerProfileId = this.partnerProfileId;
     final signingAlgorithm = this.signingAlgorithm;
     return {
-      if (compression != null) 'Compression': compression.toValue(),
+      if (compression != null) 'Compression': compression.value,
       if (encryptionAlgorithm != null)
-        'EncryptionAlgorithm': encryptionAlgorithm.toValue(),
+        'EncryptionAlgorithm': encryptionAlgorithm.value,
       if (localProfileId != null) 'LocalProfileId': localProfileId,
-      if (mdnResponse != null) 'MdnResponse': mdnResponse.toValue(),
+      if (mdnResponse != null) 'MdnResponse': mdnResponse.value,
       if (mdnSigningAlgorithm != null)
-        'MdnSigningAlgorithm': mdnSigningAlgorithm.toValue(),
+        'MdnSigningAlgorithm': mdnSigningAlgorithm.value,
       if (messageSubject != null) 'MessageSubject': messageSubject,
       if (partnerProfileId != null) 'PartnerProfileId': partnerProfileId,
-      if (signingAlgorithm != null)
-        'SigningAlgorithm': signingAlgorithm.toValue(),
+      if (signingAlgorithm != null) 'SigningAlgorithm': signingAlgorithm.value,
     };
   }
 }
 
 enum As2Transport {
-  http,
-}
+  http('HTTP'),
+  ;
 
-extension As2TransportValueExtension on As2Transport {
-  String toValue() {
-    switch (this) {
-      case As2Transport.http:
-        return 'HTTP';
-    }
-  }
-}
+  final String value;
 
-extension As2TransportFromString on String {
-  As2Transport toAs2Transport() {
-    switch (this) {
-      case 'HTTP':
-        return As2Transport.http;
-    }
-    throw Exception('$this is not known in enum As2Transport');
-  }
+  const As2Transport(this.value);
+
+  static As2Transport fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum As2Transport'));
 }
 
 enum CertificateStatusType {
-  active,
-  pendingRotation,
-  inactive,
-}
+  active('ACTIVE'),
+  pendingRotation('PENDING_ROTATION'),
+  inactive('INACTIVE'),
+  ;
 
-extension CertificateStatusTypeValueExtension on CertificateStatusType {
-  String toValue() {
-    switch (this) {
-      case CertificateStatusType.active:
-        return 'ACTIVE';
-      case CertificateStatusType.pendingRotation:
-        return 'PENDING_ROTATION';
-      case CertificateStatusType.inactive:
-        return 'INACTIVE';
-    }
-  }
-}
+  final String value;
 
-extension CertificateStatusTypeFromString on String {
-  CertificateStatusType toCertificateStatusType() {
-    switch (this) {
-      case 'ACTIVE':
-        return CertificateStatusType.active;
-      case 'PENDING_ROTATION':
-        return CertificateStatusType.pendingRotation;
-      case 'INACTIVE':
-        return CertificateStatusType.inactive;
-    }
-    throw Exception('$this is not known in enum CertificateStatusType');
-  }
+  const CertificateStatusType(this.value);
+
+  static CertificateStatusType fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum CertificateStatusType'));
 }
 
 enum CertificateType {
-  certificate,
-  certificateWithPrivateKey,
-}
+  certificate('CERTIFICATE'),
+  certificateWithPrivateKey('CERTIFICATE_WITH_PRIVATE_KEY'),
+  ;
 
-extension CertificateTypeValueExtension on CertificateType {
-  String toValue() {
-    switch (this) {
-      case CertificateType.certificate:
-        return 'CERTIFICATE';
-      case CertificateType.certificateWithPrivateKey:
-        return 'CERTIFICATE_WITH_PRIVATE_KEY';
-    }
-  }
-}
+  final String value;
 
-extension CertificateTypeFromString on String {
-  CertificateType toCertificateType() {
-    switch (this) {
-      case 'CERTIFICATE':
-        return CertificateType.certificate;
-      case 'CERTIFICATE_WITH_PRIVATE_KEY':
-        return CertificateType.certificateWithPrivateKey;
-    }
-    throw Exception('$this is not known in enum CertificateType');
-  }
+  const CertificateType(this.value);
+
+  static CertificateType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum CertificateType'));
 }
 
 enum CertificateUsageType {
-  signing,
-  encryption,
-}
+  signing('SIGNING'),
+  encryption('ENCRYPTION'),
+  ;
 
-extension CertificateUsageTypeValueExtension on CertificateUsageType {
-  String toValue() {
-    switch (this) {
-      case CertificateUsageType.signing:
-        return 'SIGNING';
-      case CertificateUsageType.encryption:
-        return 'ENCRYPTION';
-    }
-  }
-}
+  final String value;
 
-extension CertificateUsageTypeFromString on String {
-  CertificateUsageType toCertificateUsageType() {
-    switch (this) {
-      case 'SIGNING':
-        return CertificateUsageType.signing;
-      case 'ENCRYPTION':
-        return CertificateUsageType.encryption;
-    }
-    throw Exception('$this is not known in enum CertificateUsageType');
-  }
+  const CertificateUsageType(this.value);
+
+  static CertificateUsageType fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum CertificateUsageType'));
 }
 
 enum CompressionEnum {
-  zlib,
-  disabled,
-}
+  zlib('ZLIB'),
+  disabled('DISABLED'),
+  ;
 
-extension CompressionEnumValueExtension on CompressionEnum {
-  String toValue() {
-    switch (this) {
-      case CompressionEnum.zlib:
-        return 'ZLIB';
-      case CompressionEnum.disabled:
-        return 'DISABLED';
-    }
-  }
-}
+  final String value;
 
-extension CompressionEnumFromString on String {
-  CompressionEnum toCompressionEnum() {
-    switch (this) {
-      case 'ZLIB':
-        return CompressionEnum.zlib;
-      case 'DISABLED':
-        return CompressionEnum.disabled;
-    }
-    throw Exception('$this is not known in enum CompressionEnum');
-  }
+  const CompressionEnum(this.value);
+
+  static CompressionEnum fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum CompressionEnum'));
 }
 
 /// Each step type has its own <code>StepDetails</code> structure.
@@ -4223,8 +4147,8 @@ class CopyStepDetails {
               json['DestinationFileLocation'] as Map<String, dynamic>)
           : null,
       name: json['Name'] as String?,
-      overwriteExisting:
-          (json['OverwriteExisting'] as String?)?.toOverwriteExisting(),
+      overwriteExisting: (json['OverwriteExisting'] as String?)
+          ?.let(OverwriteExisting.fromString),
       sourceFileLocation: json['SourceFileLocation'] as String?,
     );
   }
@@ -4239,7 +4163,7 @@ class CopyStepDetails {
         'DestinationFileLocation': destinationFileLocation,
       if (name != null) 'Name': name,
       if (overwriteExisting != null)
-        'OverwriteExisting': overwriteExisting.toValue(),
+        'OverwriteExisting': overwriteExisting.value,
       if (sourceFileLocation != null) 'SourceFileLocation': sourceFileLocation,
     };
   }
@@ -4476,31 +4400,18 @@ class CustomStepDetails {
 }
 
 enum CustomStepStatus {
-  success,
-  failure,
-}
+  success('SUCCESS'),
+  failure('FAILURE'),
+  ;
 
-extension CustomStepStatusValueExtension on CustomStepStatus {
-  String toValue() {
-    switch (this) {
-      case CustomStepStatus.success:
-        return 'SUCCESS';
-      case CustomStepStatus.failure:
-        return 'FAILURE';
-    }
-  }
-}
+  final String value;
 
-extension CustomStepStatusFromString on String {
-  CustomStepStatus toCustomStepStatus() {
-    switch (this) {
-      case 'SUCCESS':
-        return CustomStepStatus.success;
-      case 'FAILURE':
-        return CustomStepStatus.failure;
-    }
-    throw Exception('$this is not known in enum CustomStepStatus');
-  }
+  const CustomStepStatus(this.value);
+
+  static CustomStepStatus fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum CustomStepStatus'));
 }
 
 /// Each step type has its own <code>StepDetails</code> structure.
@@ -4580,10 +4491,10 @@ class DecryptStepDetails {
     return DecryptStepDetails(
       destinationFileLocation: InputFileLocation.fromJson(
           json['DestinationFileLocation'] as Map<String, dynamic>),
-      type: (json['Type'] as String).toEncryptionType(),
+      type: EncryptionType.fromString((json['Type'] as String)),
       name: json['Name'] as String?,
-      overwriteExisting:
-          (json['OverwriteExisting'] as String?)?.toOverwriteExisting(),
+      overwriteExisting: (json['OverwriteExisting'] as String?)
+          ?.let(OverwriteExisting.fromString),
       sourceFileLocation: json['SourceFileLocation'] as String?,
     );
   }
@@ -4596,10 +4507,10 @@ class DecryptStepDetails {
     final sourceFileLocation = this.sourceFileLocation;
     return {
       'DestinationFileLocation': destinationFileLocation,
-      'Type': type.toValue(),
+      'Type': type.value,
       if (name != null) 'Name': name,
       if (overwriteExisting != null)
-        'OverwriteExisting': overwriteExisting.toValue(),
+        'OverwriteExisting': overwriteExisting.value,
       if (sourceFileLocation != null) 'SourceFileLocation': sourceFileLocation,
     };
   }
@@ -5013,8 +4924,8 @@ class DescribedAccess {
           ?.whereNotNull()
           .map((e) => HomeDirectoryMapEntry.fromJson(e as Map<String, dynamic>))
           .toList(),
-      homeDirectoryType:
-          (json['HomeDirectoryType'] as String?)?.toHomeDirectoryType(),
+      homeDirectoryType: (json['HomeDirectoryType'] as String?)
+          ?.let(HomeDirectoryType.fromString),
       policy: json['Policy'] as String?,
       posixProfile: json['PosixProfile'] != null
           ? PosixProfile.fromJson(json['PosixProfile'] as Map<String, dynamic>)
@@ -5037,7 +4948,7 @@ class DescribedAccess {
       if (homeDirectoryMappings != null)
         'HomeDirectoryMappings': homeDirectoryMappings,
       if (homeDirectoryType != null)
-        'HomeDirectoryType': homeDirectoryType.toValue(),
+        'HomeDirectoryType': homeDirectoryType.value,
       if (policy != null) 'Policy': policy,
       if (posixProfile != null) 'PosixProfile': posixProfile,
       if (role != null) 'Role': role,
@@ -5115,7 +5026,7 @@ class DescribedAgreement {
       localProfileId: json['LocalProfileId'] as String?,
       partnerProfileId: json['PartnerProfileId'] as String?,
       serverId: json['ServerId'] as String?,
-      status: (json['Status'] as String?)?.toAgreementStatusType(),
+      status: (json['Status'] as String?)?.let(AgreementStatusType.fromString),
       tags: (json['Tags'] as List?)
           ?.whereNotNull()
           .map((e) => Tag.fromJson(e as Map<String, dynamic>))
@@ -5143,7 +5054,7 @@ class DescribedAgreement {
       if (localProfileId != null) 'LocalProfileId': localProfileId,
       if (partnerProfileId != null) 'PartnerProfileId': partnerProfileId,
       if (serverId != null) 'ServerId': serverId,
-      if (status != null) 'Status': status.toValue(),
+      if (status != null) 'Status': status.value,
       if (tags != null) 'Tags': tags,
     };
   }
@@ -5228,13 +5139,14 @@ class DescribedCertificate {
       notAfterDate: timeStampFromJson(json['NotAfterDate']),
       notBeforeDate: timeStampFromJson(json['NotBeforeDate']),
       serial: json['Serial'] as String?,
-      status: (json['Status'] as String?)?.toCertificateStatusType(),
+      status:
+          (json['Status'] as String?)?.let(CertificateStatusType.fromString),
       tags: (json['Tags'] as List?)
           ?.whereNotNull()
           .map((e) => Tag.fromJson(e as Map<String, dynamic>))
           .toList(),
-      type: (json['Type'] as String?)?.toCertificateType(),
-      usage: (json['Usage'] as String?)?.toCertificateUsageType(),
+      type: (json['Type'] as String?)?.let(CertificateType.fromString),
+      usage: (json['Usage'] as String?)?.let(CertificateUsageType.fromString),
     );
   }
 
@@ -5267,10 +5179,10 @@ class DescribedCertificate {
       if (notBeforeDate != null)
         'NotBeforeDate': unixTimestampToJson(notBeforeDate),
       if (serial != null) 'Serial': serial,
-      if (status != null) 'Status': status.toValue(),
+      if (status != null) 'Status': status.value,
       if (tags != null) 'Tags': tags,
-      if (type != null) 'Type': type.toValue(),
-      if (usage != null) 'Usage': usage.toValue(),
+      if (type != null) 'Type': type.value,
+      if (usage != null) 'Usage': usage.value,
     };
   }
 }
@@ -5423,7 +5335,7 @@ class DescribedExecution {
           ? ServiceMetadata.fromJson(
               json['ServiceMetadata'] as Map<String, dynamic>)
           : null,
-      status: (json['Status'] as String?)?.toExecutionStatus(),
+      status: (json['Status'] as String?)?.let(ExecutionStatus.fromString),
     );
   }
 
@@ -5446,7 +5358,7 @@ class DescribedExecution {
       if (posixProfile != null) 'PosixProfile': posixProfile,
       if (results != null) 'Results': results,
       if (serviceMetadata != null) 'ServiceMetadata': serviceMetadata,
-      if (status != null) 'Status': status.toValue(),
+      if (status != null) 'Status': status.value,
     };
   }
 }
@@ -5588,7 +5500,8 @@ class DescribedProfile {
           .map((e) => e as String)
           .toList(),
       profileId: json['ProfileId'] as String?,
-      profileType: (json['ProfileType'] as String?)?.toProfileType(),
+      profileType:
+          (json['ProfileType'] as String?)?.let(ProfileType.fromString),
       tags: (json['Tags'] as List?)
           ?.whereNotNull()
           .map((e) => Tag.fromJson(e as Map<String, dynamic>))
@@ -5608,7 +5521,7 @@ class DescribedProfile {
       if (as2Id != null) 'As2Id': as2Id,
       if (certificateIds != null) 'CertificateIds': certificateIds,
       if (profileId != null) 'ProfileId': profileId,
-      if (profileType != null) 'ProfileType': profileType.toValue(),
+      if (profileType != null) 'ProfileType': profileType.value,
       if (tags != null) 'Tags': tags,
     };
   }
@@ -5919,19 +5832,20 @@ class DescribedServer {
     return DescribedServer(
       arn: json['Arn'] as String,
       certificate: json['Certificate'] as String?,
-      domain: (json['Domain'] as String?)?.toDomain(),
+      domain: (json['Domain'] as String?)?.let(Domain.fromString),
       endpointDetails: json['EndpointDetails'] != null
           ? EndpointDetails.fromJson(
               json['EndpointDetails'] as Map<String, dynamic>)
           : null,
-      endpointType: (json['EndpointType'] as String?)?.toEndpointType(),
+      endpointType:
+          (json['EndpointType'] as String?)?.let(EndpointType.fromString),
       hostKeyFingerprint: json['HostKeyFingerprint'] as String?,
       identityProviderDetails: json['IdentityProviderDetails'] != null
           ? IdentityProviderDetails.fromJson(
               json['IdentityProviderDetails'] as Map<String, dynamic>)
           : null,
-      identityProviderType:
-          (json['IdentityProviderType'] as String?)?.toIdentityProviderType(),
+      identityProviderType: (json['IdentityProviderType'] as String?)
+          ?.let(IdentityProviderType.fromString),
       loggingRole: json['LoggingRole'] as String?,
       postAuthenticationLoginBanner:
           json['PostAuthenticationLoginBanner'] as String?,
@@ -5943,11 +5857,11 @@ class DescribedServer {
           : null,
       protocols: (json['Protocols'] as List?)
           ?.whereNotNull()
-          .map((e) => (e as String).toProtocol())
+          .map((e) => Protocol.fromString((e as String)))
           .toList(),
       securityPolicyName: json['SecurityPolicyName'] as String?,
       serverId: json['ServerId'] as String?,
-      state: (json['State'] as String?)?.toState(),
+      state: (json['State'] as String?)?.let(State.fromString),
       tags: (json['Tags'] as List?)
           ?.whereNotNull()
           .map((e) => Tag.fromJson(e as Map<String, dynamic>))
@@ -5983,14 +5897,14 @@ class DescribedServer {
     return {
       'Arn': arn,
       if (certificate != null) 'Certificate': certificate,
-      if (domain != null) 'Domain': domain.toValue(),
+      if (domain != null) 'Domain': domain.value,
       if (endpointDetails != null) 'EndpointDetails': endpointDetails,
-      if (endpointType != null) 'EndpointType': endpointType.toValue(),
+      if (endpointType != null) 'EndpointType': endpointType.value,
       if (hostKeyFingerprint != null) 'HostKeyFingerprint': hostKeyFingerprint,
       if (identityProviderDetails != null)
         'IdentityProviderDetails': identityProviderDetails,
       if (identityProviderType != null)
-        'IdentityProviderType': identityProviderType.toValue(),
+        'IdentityProviderType': identityProviderType.value,
       if (loggingRole != null) 'LoggingRole': loggingRole,
       if (postAuthenticationLoginBanner != null)
         'PostAuthenticationLoginBanner': postAuthenticationLoginBanner,
@@ -5998,10 +5912,10 @@ class DescribedServer {
         'PreAuthenticationLoginBanner': preAuthenticationLoginBanner,
       if (protocolDetails != null) 'ProtocolDetails': protocolDetails,
       if (protocols != null)
-        'Protocols': protocols.map((e) => e.toValue()).toList(),
+        'Protocols': protocols.map((e) => e.value).toList(),
       if (securityPolicyName != null) 'SecurityPolicyName': securityPolicyName,
       if (serverId != null) 'ServerId': serverId,
-      if (state != null) 'State': state.toValue(),
+      if (state != null) 'State': state.value,
       if (tags != null) 'Tags': tags,
       if (userCount != null) 'UserCount': userCount,
       if (workflowDetails != null) 'WorkflowDetails': workflowDetails,
@@ -6107,8 +6021,8 @@ class DescribedUser {
           ?.whereNotNull()
           .map((e) => HomeDirectoryMapEntry.fromJson(e as Map<String, dynamic>))
           .toList(),
-      homeDirectoryType:
-          (json['HomeDirectoryType'] as String?)?.toHomeDirectoryType(),
+      homeDirectoryType: (json['HomeDirectoryType'] as String?)
+          ?.let(HomeDirectoryType.fromString),
       policy: json['Policy'] as String?,
       posixProfile: json['PosixProfile'] != null
           ? PosixProfile.fromJson(json['PosixProfile'] as Map<String, dynamic>)
@@ -6143,7 +6057,7 @@ class DescribedUser {
       if (homeDirectoryMappings != null)
         'HomeDirectoryMappings': homeDirectoryMappings,
       if (homeDirectoryType != null)
-        'HomeDirectoryType': homeDirectoryType.toValue(),
+        'HomeDirectoryType': homeDirectoryType.value,
       if (policy != null) 'Policy': policy,
       if (posixProfile != null) 'PosixProfile': posixProfile,
       if (role != null) 'Role': role,
@@ -6224,31 +6138,17 @@ class DescribedWorkflow {
 }
 
 enum Domain {
-  s3,
-  efs,
-}
+  s3('S3'),
+  efs('EFS'),
+  ;
 
-extension DomainValueExtension on Domain {
-  String toValue() {
-    switch (this) {
-      case Domain.s3:
-        return 'S3';
-      case Domain.efs:
-        return 'EFS';
-    }
-  }
-}
+  final String value;
 
-extension DomainFromString on String {
-  Domain toDomain() {
-    switch (this) {
-      case 'S3':
-        return Domain.s3;
-      case 'EFS':
-        return Domain.efs;
-    }
-    throw Exception('$this is not known in enum Domain');
-  }
+  const Domain(this.value);
+
+  static Domain fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception('$value is not known in enum Domain'));
 }
 
 /// Specifies the details for the file location for the file that's being used
@@ -6286,64 +6186,34 @@ class EfsFileLocation {
 }
 
 enum EncryptionAlg {
-  aes128Cbc,
-  aes192Cbc,
-  aes256Cbc,
-  none,
-}
+  aes128Cbc('AES128_CBC'),
+  aes192Cbc('AES192_CBC'),
+  aes256Cbc('AES256_CBC'),
+  none('NONE'),
+  ;
 
-extension EncryptionAlgValueExtension on EncryptionAlg {
-  String toValue() {
-    switch (this) {
-      case EncryptionAlg.aes128Cbc:
-        return 'AES128_CBC';
-      case EncryptionAlg.aes192Cbc:
-        return 'AES192_CBC';
-      case EncryptionAlg.aes256Cbc:
-        return 'AES256_CBC';
-      case EncryptionAlg.none:
-        return 'NONE';
-    }
-  }
-}
+  final String value;
 
-extension EncryptionAlgFromString on String {
-  EncryptionAlg toEncryptionAlg() {
-    switch (this) {
-      case 'AES128_CBC':
-        return EncryptionAlg.aes128Cbc;
-      case 'AES192_CBC':
-        return EncryptionAlg.aes192Cbc;
-      case 'AES256_CBC':
-        return EncryptionAlg.aes256Cbc;
-      case 'NONE':
-        return EncryptionAlg.none;
-    }
-    throw Exception('$this is not known in enum EncryptionAlg');
-  }
+  const EncryptionAlg(this.value);
+
+  static EncryptionAlg fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum EncryptionAlg'));
 }
 
 enum EncryptionType {
-  pgp,
-}
+  pgp('PGP'),
+  ;
 
-extension EncryptionTypeValueExtension on EncryptionType {
-  String toValue() {
-    switch (this) {
-      case EncryptionType.pgp:
-        return 'PGP';
-    }
-  }
-}
+  final String value;
 
-extension EncryptionTypeFromString on String {
-  EncryptionType toEncryptionType() {
-    switch (this) {
-      case 'PGP':
-        return EncryptionType.pgp;
-    }
-    throw Exception('$this is not known in enum EncryptionType');
-  }
+  const EncryptionType(this.value);
+
+  static EncryptionType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum EncryptionType'));
 }
 
 /// The virtual private cloud (VPC) endpoint settings that are configured for
@@ -6458,36 +6328,19 @@ class EndpointDetails {
 }
 
 enum EndpointType {
-  public,
-  vpc,
-  vpcEndpoint,
-}
+  public('PUBLIC'),
+  vpc('VPC'),
+  vpcEndpoint('VPC_ENDPOINT'),
+  ;
 
-extension EndpointTypeValueExtension on EndpointType {
-  String toValue() {
-    switch (this) {
-      case EndpointType.public:
-        return 'PUBLIC';
-      case EndpointType.vpc:
-        return 'VPC';
-      case EndpointType.vpcEndpoint:
-        return 'VPC_ENDPOINT';
-    }
-  }
-}
+  final String value;
 
-extension EndpointTypeFromString on String {
-  EndpointType toEndpointType() {
-    switch (this) {
-      case 'PUBLIC':
-        return EndpointType.public;
-      case 'VPC':
-        return EndpointType.vpc;
-      case 'VPC_ENDPOINT':
-        return EndpointType.vpcEndpoint;
-    }
-    throw Exception('$this is not known in enum EndpointType');
-  }
+  const EndpointType(this.value);
+
+  static EndpointType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum EndpointType'));
 }
 
 /// Specifies the error message and type, for an error that occurs during the
@@ -6547,7 +6400,7 @@ class ExecutionError {
   factory ExecutionError.fromJson(Map<String, dynamic> json) {
     return ExecutionError(
       message: json['Message'] as String,
-      type: (json['Type'] as String).toExecutionErrorType(),
+      type: ExecutionErrorType.fromString((json['Type'] as String)),
     );
   }
 
@@ -6556,67 +6409,30 @@ class ExecutionError {
     final type = this.type;
     return {
       'Message': message,
-      'Type': type.toValue(),
+      'Type': type.value,
     };
   }
 }
 
 enum ExecutionErrorType {
-  permissionDenied,
-  customStepFailed,
-  throttled,
-  alreadyExists,
-  notFound,
-  badRequest,
-  timeout,
-  internalServerError,
-}
+  permissionDenied('PERMISSION_DENIED'),
+  customStepFailed('CUSTOM_STEP_FAILED'),
+  throttled('THROTTLED'),
+  alreadyExists('ALREADY_EXISTS'),
+  notFound('NOT_FOUND'),
+  badRequest('BAD_REQUEST'),
+  timeout('TIMEOUT'),
+  internalServerError('INTERNAL_SERVER_ERROR'),
+  ;
 
-extension ExecutionErrorTypeValueExtension on ExecutionErrorType {
-  String toValue() {
-    switch (this) {
-      case ExecutionErrorType.permissionDenied:
-        return 'PERMISSION_DENIED';
-      case ExecutionErrorType.customStepFailed:
-        return 'CUSTOM_STEP_FAILED';
-      case ExecutionErrorType.throttled:
-        return 'THROTTLED';
-      case ExecutionErrorType.alreadyExists:
-        return 'ALREADY_EXISTS';
-      case ExecutionErrorType.notFound:
-        return 'NOT_FOUND';
-      case ExecutionErrorType.badRequest:
-        return 'BAD_REQUEST';
-      case ExecutionErrorType.timeout:
-        return 'TIMEOUT';
-      case ExecutionErrorType.internalServerError:
-        return 'INTERNAL_SERVER_ERROR';
-    }
-  }
-}
+  final String value;
 
-extension ExecutionErrorTypeFromString on String {
-  ExecutionErrorType toExecutionErrorType() {
-    switch (this) {
-      case 'PERMISSION_DENIED':
-        return ExecutionErrorType.permissionDenied;
-      case 'CUSTOM_STEP_FAILED':
-        return ExecutionErrorType.customStepFailed;
-      case 'THROTTLED':
-        return ExecutionErrorType.throttled;
-      case 'ALREADY_EXISTS':
-        return ExecutionErrorType.alreadyExists;
-      case 'NOT_FOUND':
-        return ExecutionErrorType.notFound;
-      case 'BAD_REQUEST':
-        return ExecutionErrorType.badRequest;
-      case 'TIMEOUT':
-        return ExecutionErrorType.timeout;
-      case 'INTERNAL_SERVER_ERROR':
-        return ExecutionErrorType.internalServerError;
-    }
-    throw Exception('$this is not known in enum ExecutionErrorType');
-  }
+  const ExecutionErrorType(this.value);
+
+  static ExecutionErrorType fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum ExecutionErrorType'));
 }
 
 /// Specifies the steps in the workflow, as well as the steps to execute in case
@@ -6658,41 +6474,20 @@ class ExecutionResults {
 }
 
 enum ExecutionStatus {
-  inProgress,
-  completed,
-  exception,
-  handlingException,
-}
+  inProgress('IN_PROGRESS'),
+  completed('COMPLETED'),
+  exception('EXCEPTION'),
+  handlingException('HANDLING_EXCEPTION'),
+  ;
 
-extension ExecutionStatusValueExtension on ExecutionStatus {
-  String toValue() {
-    switch (this) {
-      case ExecutionStatus.inProgress:
-        return 'IN_PROGRESS';
-      case ExecutionStatus.completed:
-        return 'COMPLETED';
-      case ExecutionStatus.exception:
-        return 'EXCEPTION';
-      case ExecutionStatus.handlingException:
-        return 'HANDLING_EXCEPTION';
-    }
-  }
-}
+  final String value;
 
-extension ExecutionStatusFromString on String {
-  ExecutionStatus toExecutionStatus() {
-    switch (this) {
-      case 'IN_PROGRESS':
-        return ExecutionStatus.inProgress;
-      case 'COMPLETED':
-        return ExecutionStatus.completed;
-      case 'EXCEPTION':
-        return ExecutionStatus.exception;
-      case 'HANDLING_EXCEPTION':
-        return ExecutionStatus.handlingException;
-    }
-    throw Exception('$this is not known in enum ExecutionStatus');
-  }
+  const ExecutionStatus(this.value);
+
+  static ExecutionStatus fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum ExecutionStatus'));
 }
 
 /// Specifies the following details for the step: error (if any), outputs (if
@@ -6741,7 +6536,7 @@ class ExecutionStepResult {
           ? ExecutionError.fromJson(json['Error'] as Map<String, dynamic>)
           : null,
       outputs: json['Outputs'] as String?,
-      stepType: (json['StepType'] as String?)?.toWorkflowStepType(),
+      stepType: (json['StepType'] as String?)?.let(WorkflowStepType.fromString),
     );
   }
 
@@ -6752,7 +6547,7 @@ class ExecutionStepResult {
     return {
       if (error != null) 'Error': error,
       if (outputs != null) 'Outputs': outputs,
-      if (stepType != null) 'StepType': stepType.toValue(),
+      if (stepType != null) 'StepType': stepType.value,
     };
   }
 }
@@ -6832,31 +6627,18 @@ class HomeDirectoryMapEntry {
 }
 
 enum HomeDirectoryType {
-  path,
-  logical,
-}
+  path('PATH'),
+  logical('LOGICAL'),
+  ;
 
-extension HomeDirectoryTypeValueExtension on HomeDirectoryType {
-  String toValue() {
-    switch (this) {
-      case HomeDirectoryType.path:
-        return 'PATH';
-      case HomeDirectoryType.logical:
-        return 'LOGICAL';
-    }
-  }
-}
+  final String value;
 
-extension HomeDirectoryTypeFromString on String {
-  HomeDirectoryType toHomeDirectoryType() {
-    switch (this) {
-      case 'PATH':
-        return HomeDirectoryType.path;
-      case 'LOGICAL':
-        return HomeDirectoryType.logical;
-    }
-    throw Exception('$this is not known in enum HomeDirectoryType');
-  }
+  const HomeDirectoryType(this.value);
+
+  static HomeDirectoryType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum HomeDirectoryType'));
 }
 
 /// Returns information related to the type of user authentication that is in
@@ -6915,7 +6697,7 @@ class IdentityProviderDetails {
       function: json['Function'] as String?,
       invocationRole: json['InvocationRole'] as String?,
       sftpAuthenticationMethods: (json['SftpAuthenticationMethods'] as String?)
-          ?.toSftpAuthenticationMethods(),
+          ?.let(SftpAuthenticationMethods.fromString),
       url: json['Url'] as String?,
     );
   }
@@ -6931,7 +6713,7 @@ class IdentityProviderDetails {
       if (function != null) 'Function': function,
       if (invocationRole != null) 'InvocationRole': invocationRole,
       if (sftpAuthenticationMethods != null)
-        'SftpAuthenticationMethods': sftpAuthenticationMethods.toValue(),
+        'SftpAuthenticationMethods': sftpAuthenticationMethods.value,
       if (url != null) 'Url': url,
     };
   }
@@ -6957,41 +6739,20 @@ class IdentityProviderDetails {
 /// for the Lambda function in the <code>Function</code> parameter for the
 /// <code>IdentityProviderDetails</code> data type.
 enum IdentityProviderType {
-  serviceManaged,
-  apiGateway,
-  awsDirectoryService,
-  awsLambda,
-}
+  serviceManaged('SERVICE_MANAGED'),
+  apiGateway('API_GATEWAY'),
+  awsDirectoryService('AWS_DIRECTORY_SERVICE'),
+  awsLambda('AWS_LAMBDA'),
+  ;
 
-extension IdentityProviderTypeValueExtension on IdentityProviderType {
-  String toValue() {
-    switch (this) {
-      case IdentityProviderType.serviceManaged:
-        return 'SERVICE_MANAGED';
-      case IdentityProviderType.apiGateway:
-        return 'API_GATEWAY';
-      case IdentityProviderType.awsDirectoryService:
-        return 'AWS_DIRECTORY_SERVICE';
-      case IdentityProviderType.awsLambda:
-        return 'AWS_LAMBDA';
-    }
-  }
-}
+  final String value;
 
-extension IdentityProviderTypeFromString on String {
-  IdentityProviderType toIdentityProviderType() {
-    switch (this) {
-      case 'SERVICE_MANAGED':
-        return IdentityProviderType.serviceManaged;
-      case 'API_GATEWAY':
-        return IdentityProviderType.apiGateway;
-      case 'AWS_DIRECTORY_SERVICE':
-        return IdentityProviderType.awsDirectoryService;
-      case 'AWS_LAMBDA':
-        return IdentityProviderType.awsLambda;
-    }
-    throw Exception('$this is not known in enum IdentityProviderType');
-  }
+  const IdentityProviderType(this.value);
+
+  static IdentityProviderType fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () =>
+          throw Exception('$value is not known in enum IdentityProviderType'));
 }
 
 class ImportCertificateResponse {
@@ -7629,8 +7390,8 @@ class ListedAccess {
     return ListedAccess(
       externalId: json['ExternalId'] as String?,
       homeDirectory: json['HomeDirectory'] as String?,
-      homeDirectoryType:
-          (json['HomeDirectoryType'] as String?)?.toHomeDirectoryType(),
+      homeDirectoryType: (json['HomeDirectoryType'] as String?)
+          ?.let(HomeDirectoryType.fromString),
       role: json['Role'] as String?,
     );
   }
@@ -7644,7 +7405,7 @@ class ListedAccess {
       if (externalId != null) 'ExternalId': externalId,
       if (homeDirectory != null) 'HomeDirectory': homeDirectory,
       if (homeDirectoryType != null)
-        'HomeDirectoryType': homeDirectoryType.toValue(),
+        'HomeDirectoryType': homeDirectoryType.value,
       if (role != null) 'Role': role,
     };
   }
@@ -7693,7 +7454,7 @@ class ListedAgreement {
       localProfileId: json['LocalProfileId'] as String?,
       partnerProfileId: json['PartnerProfileId'] as String?,
       serverId: json['ServerId'] as String?,
-      status: (json['Status'] as String?)?.toAgreementStatusType(),
+      status: (json['Status'] as String?)?.let(AgreementStatusType.fromString),
     );
   }
 
@@ -7712,7 +7473,7 @@ class ListedAgreement {
       if (localProfileId != null) 'LocalProfileId': localProfileId,
       if (partnerProfileId != null) 'PartnerProfileId': partnerProfileId,
       if (serverId != null) 'ServerId': serverId,
-      if (status != null) 'Status': status.toValue(),
+      if (status != null) 'Status': status.value,
     };
   }
 }
@@ -7767,9 +7528,10 @@ class ListedCertificate {
       certificateId: json['CertificateId'] as String?,
       description: json['Description'] as String?,
       inactiveDate: timeStampFromJson(json['InactiveDate']),
-      status: (json['Status'] as String?)?.toCertificateStatusType(),
-      type: (json['Type'] as String?)?.toCertificateType(),
-      usage: (json['Usage'] as String?)?.toCertificateUsageType(),
+      status:
+          (json['Status'] as String?)?.let(CertificateStatusType.fromString),
+      type: (json['Type'] as String?)?.let(CertificateType.fromString),
+      usage: (json['Usage'] as String?)?.let(CertificateUsageType.fromString),
     );
   }
 
@@ -7789,9 +7551,9 @@ class ListedCertificate {
       if (description != null) 'Description': description,
       if (inactiveDate != null)
         'InactiveDate': unixTimestampToJson(inactiveDate),
-      if (status != null) 'Status': status.toValue(),
-      if (type != null) 'Type': type.toValue(),
-      if (usage != null) 'Usage': usage.toValue(),
+      if (status != null) 'Status': status.value,
+      if (type != null) 'Type': type.value,
+      if (usage != null) 'Usage': usage.value,
     };
   }
 }
@@ -7869,7 +7631,7 @@ class ListedExecution {
           ? ServiceMetadata.fromJson(
               json['ServiceMetadata'] as Map<String, dynamic>)
           : null,
-      status: (json['Status'] as String?)?.toExecutionStatus(),
+      status: (json['Status'] as String?)?.let(ExecutionStatus.fromString),
     );
   }
 
@@ -7883,7 +7645,7 @@ class ListedExecution {
       if (initialFileLocation != null)
         'InitialFileLocation': initialFileLocation,
       if (serviceMetadata != null) 'ServiceMetadata': serviceMetadata,
-      if (status != null) 'Status': status.toValue(),
+      if (status != null) 'Status': status.value,
     };
   }
 }
@@ -8003,7 +7765,8 @@ class ListedProfile {
       arn: json['Arn'] as String?,
       as2Id: json['As2Id'] as String?,
       profileId: json['ProfileId'] as String?,
-      profileType: (json['ProfileType'] as String?)?.toProfileType(),
+      profileType:
+          (json['ProfileType'] as String?)?.let(ProfileType.fromString),
     );
   }
 
@@ -8016,7 +7779,7 @@ class ListedProfile {
       if (arn != null) 'Arn': arn,
       if (as2Id != null) 'As2Id': as2Id,
       if (profileId != null) 'ProfileId': profileId,
-      if (profileType != null) 'ProfileType': profileType.toValue(),
+      if (profileType != null) 'ProfileType': profileType.value,
     };
   }
 }
@@ -8095,13 +7858,14 @@ class ListedServer {
   factory ListedServer.fromJson(Map<String, dynamic> json) {
     return ListedServer(
       arn: json['Arn'] as String,
-      domain: (json['Domain'] as String?)?.toDomain(),
-      endpointType: (json['EndpointType'] as String?)?.toEndpointType(),
-      identityProviderType:
-          (json['IdentityProviderType'] as String?)?.toIdentityProviderType(),
+      domain: (json['Domain'] as String?)?.let(Domain.fromString),
+      endpointType:
+          (json['EndpointType'] as String?)?.let(EndpointType.fromString),
+      identityProviderType: (json['IdentityProviderType'] as String?)
+          ?.let(IdentityProviderType.fromString),
       loggingRole: json['LoggingRole'] as String?,
       serverId: json['ServerId'] as String?,
-      state: (json['State'] as String?)?.toState(),
+      state: (json['State'] as String?)?.let(State.fromString),
       userCount: json['UserCount'] as int?,
     );
   }
@@ -8117,13 +7881,13 @@ class ListedServer {
     final userCount = this.userCount;
     return {
       'Arn': arn,
-      if (domain != null) 'Domain': domain.toValue(),
-      if (endpointType != null) 'EndpointType': endpointType.toValue(),
+      if (domain != null) 'Domain': domain.value,
+      if (endpointType != null) 'EndpointType': endpointType.value,
       if (identityProviderType != null)
-        'IdentityProviderType': identityProviderType.toValue(),
+        'IdentityProviderType': identityProviderType.value,
       if (loggingRole != null) 'LoggingRole': loggingRole,
       if (serverId != null) 'ServerId': serverId,
-      if (state != null) 'State': state.toValue(),
+      if (state != null) 'State': state.value,
       if (userCount != null) 'UserCount': userCount,
     };
   }
@@ -8189,8 +7953,8 @@ class ListedUser {
     return ListedUser(
       arn: json['Arn'] as String,
       homeDirectory: json['HomeDirectory'] as String?,
-      homeDirectoryType:
-          (json['HomeDirectoryType'] as String?)?.toHomeDirectoryType(),
+      homeDirectoryType: (json['HomeDirectoryType'] as String?)
+          ?.let(HomeDirectoryType.fromString),
       role: json['Role'] as String?,
       sshPublicKeyCount: json['SshPublicKeyCount'] as int?,
       userName: json['UserName'] as String?,
@@ -8208,7 +7972,7 @@ class ListedUser {
       'Arn': arn,
       if (homeDirectory != null) 'HomeDirectory': homeDirectory,
       if (homeDirectoryType != null)
-        'HomeDirectoryType': homeDirectoryType.toValue(),
+        'HomeDirectoryType': homeDirectoryType.value,
       if (role != null) 'Role': role,
       if (sshPublicKeyCount != null) 'SshPublicKeyCount': sshPublicKeyCount,
       if (userName != null) 'UserName': userName,
@@ -8289,107 +8053,51 @@ class LoggingConfiguration {
 }
 
 enum MdnResponse {
-  sync,
-  none,
-}
+  sync('SYNC'),
+  none('NONE'),
+  ;
 
-extension MdnResponseValueExtension on MdnResponse {
-  String toValue() {
-    switch (this) {
-      case MdnResponse.sync:
-        return 'SYNC';
-      case MdnResponse.none:
-        return 'NONE';
-    }
-  }
-}
+  final String value;
 
-extension MdnResponseFromString on String {
-  MdnResponse toMdnResponse() {
-    switch (this) {
-      case 'SYNC':
-        return MdnResponse.sync;
-      case 'NONE':
-        return MdnResponse.none;
-    }
-    throw Exception('$this is not known in enum MdnResponse');
-  }
+  const MdnResponse(this.value);
+
+  static MdnResponse fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum MdnResponse'));
 }
 
 enum MdnSigningAlg {
-  sha256,
-  sha384,
-  sha512,
-  sha1,
-  none,
-  $default,
-}
+  sha256('SHA256'),
+  sha384('SHA384'),
+  sha512('SHA512'),
+  sha1('SHA1'),
+  none('NONE'),
+  $default('DEFAULT'),
+  ;
 
-extension MdnSigningAlgValueExtension on MdnSigningAlg {
-  String toValue() {
-    switch (this) {
-      case MdnSigningAlg.sha256:
-        return 'SHA256';
-      case MdnSigningAlg.sha384:
-        return 'SHA384';
-      case MdnSigningAlg.sha512:
-        return 'SHA512';
-      case MdnSigningAlg.sha1:
-        return 'SHA1';
-      case MdnSigningAlg.none:
-        return 'NONE';
-      case MdnSigningAlg.$default:
-        return 'DEFAULT';
-    }
-  }
-}
+  final String value;
 
-extension MdnSigningAlgFromString on String {
-  MdnSigningAlg toMdnSigningAlg() {
-    switch (this) {
-      case 'SHA256':
-        return MdnSigningAlg.sha256;
-      case 'SHA384':
-        return MdnSigningAlg.sha384;
-      case 'SHA512':
-        return MdnSigningAlg.sha512;
-      case 'SHA1':
-        return MdnSigningAlg.sha1;
-      case 'NONE':
-        return MdnSigningAlg.none;
-      case 'DEFAULT':
-        return MdnSigningAlg.$default;
-    }
-    throw Exception('$this is not known in enum MdnSigningAlg');
-  }
+  const MdnSigningAlg(this.value);
+
+  static MdnSigningAlg fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum MdnSigningAlg'));
 }
 
 enum OverwriteExisting {
-  $true,
-  $false,
-}
+  $true('TRUE'),
+  $false('FALSE'),
+  ;
 
-extension OverwriteExistingValueExtension on OverwriteExisting {
-  String toValue() {
-    switch (this) {
-      case OverwriteExisting.$true:
-        return 'TRUE';
-      case OverwriteExisting.$false:
-        return 'FALSE';
-    }
-  }
-}
+  final String value;
 
-extension OverwriteExistingFromString on String {
-  OverwriteExisting toOverwriteExisting() {
-    switch (this) {
-      case 'TRUE':
-        return OverwriteExisting.$true;
-      case 'FALSE':
-        return OverwriteExisting.$false;
-    }
-    throw Exception('$this is not known in enum OverwriteExisting');
-  }
+  const OverwriteExisting(this.value);
+
+  static OverwriteExisting fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum OverwriteExisting'));
 }
 
 /// The full POSIX identity, including user ID (<code>Uid</code>), group ID
@@ -8438,69 +8146,33 @@ class PosixProfile {
 }
 
 enum ProfileType {
-  local,
-  partner,
-}
+  local('LOCAL'),
+  partner('PARTNER'),
+  ;
 
-extension ProfileTypeValueExtension on ProfileType {
-  String toValue() {
-    switch (this) {
-      case ProfileType.local:
-        return 'LOCAL';
-      case ProfileType.partner:
-        return 'PARTNER';
-    }
-  }
-}
+  final String value;
 
-extension ProfileTypeFromString on String {
-  ProfileType toProfileType() {
-    switch (this) {
-      case 'LOCAL':
-        return ProfileType.local;
-      case 'PARTNER':
-        return ProfileType.partner;
-    }
-    throw Exception('$this is not known in enum ProfileType');
-  }
+  const ProfileType(this.value);
+
+  static ProfileType fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum ProfileType'));
 }
 
 enum Protocol {
-  sftp,
-  ftp,
-  ftps,
-  as2,
-}
+  sftp('SFTP'),
+  ftp('FTP'),
+  ftps('FTPS'),
+  as2('AS2'),
+  ;
 
-extension ProtocolValueExtension on Protocol {
-  String toValue() {
-    switch (this) {
-      case Protocol.sftp:
-        return 'SFTP';
-      case Protocol.ftp:
-        return 'FTP';
-      case Protocol.ftps:
-        return 'FTPS';
-      case Protocol.as2:
-        return 'AS2';
-    }
-  }
-}
+  final String value;
 
-extension ProtocolFromString on String {
-  Protocol toProtocol() {
-    switch (this) {
-      case 'SFTP':
-        return Protocol.sftp;
-      case 'FTP':
-        return Protocol.ftp;
-      case 'FTPS':
-        return Protocol.ftps;
-      case 'AS2':
-        return Protocol.as2;
-    }
-    throw Exception('$this is not known in enum Protocol');
-  }
+  const Protocol(this.value);
+
+  static Protocol fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum Protocol'));
 }
 
 /// The protocol settings that are configured for your server.
@@ -8615,12 +8287,13 @@ class ProtocolDetails {
     return ProtocolDetails(
       as2Transports: (json['As2Transports'] as List?)
           ?.whereNotNull()
-          .map((e) => (e as String).toAs2Transport())
+          .map((e) => As2Transport.fromString((e as String)))
           .toList(),
       passiveIp: json['PassiveIp'] as String?,
-      setStatOption: (json['SetStatOption'] as String?)?.toSetStatOption(),
+      setStatOption:
+          (json['SetStatOption'] as String?)?.let(SetStatOption.fromString),
       tlsSessionResumptionMode: (json['TlsSessionResumptionMode'] as String?)
-          ?.toTlsSessionResumptionMode(),
+          ?.let(TlsSessionResumptionMode.fromString),
     );
   }
 
@@ -8631,11 +8304,11 @@ class ProtocolDetails {
     final tlsSessionResumptionMode = this.tlsSessionResumptionMode;
     return {
       if (as2Transports != null)
-        'As2Transports': as2Transports.map((e) => e.toValue()).toList(),
+        'As2Transports': as2Transports.map((e) => e.value).toList(),
       if (passiveIp != null) 'PassiveIp': passiveIp,
-      if (setStatOption != null) 'SetStatOption': setStatOption.toValue(),
+      if (setStatOption != null) 'SetStatOption': setStatOption.value,
       if (tlsSessionResumptionMode != null)
-        'TlsSessionResumptionMode': tlsSessionResumptionMode.toValue(),
+        'TlsSessionResumptionMode': tlsSessionResumptionMode.value,
     };
   }
 }
@@ -8804,112 +8477,52 @@ class ServiceMetadata {
 }
 
 enum SetStatOption {
-  $default,
-  enableNoOp,
-}
+  $default('DEFAULT'),
+  enableNoOp('ENABLE_NO_OP'),
+  ;
 
-extension SetStatOptionValueExtension on SetStatOption {
-  String toValue() {
-    switch (this) {
-      case SetStatOption.$default:
-        return 'DEFAULT';
-      case SetStatOption.enableNoOp:
-        return 'ENABLE_NO_OP';
-    }
-  }
-}
+  final String value;
 
-extension SetStatOptionFromString on String {
-  SetStatOption toSetStatOption() {
-    switch (this) {
-      case 'DEFAULT':
-        return SetStatOption.$default;
-      case 'ENABLE_NO_OP':
-        return SetStatOption.enableNoOp;
-    }
-    throw Exception('$this is not known in enum SetStatOption');
-  }
+  const SetStatOption(this.value);
+
+  static SetStatOption fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum SetStatOption'));
 }
 
 enum SftpAuthenticationMethods {
-  password,
-  publicKey,
-  publicKeyOrPassword,
-  publicKeyAndPassword,
-}
+  password('PASSWORD'),
+  publicKey('PUBLIC_KEY'),
+  publicKeyOrPassword('PUBLIC_KEY_OR_PASSWORD'),
+  publicKeyAndPassword('PUBLIC_KEY_AND_PASSWORD'),
+  ;
 
-extension SftpAuthenticationMethodsValueExtension on SftpAuthenticationMethods {
-  String toValue() {
-    switch (this) {
-      case SftpAuthenticationMethods.password:
-        return 'PASSWORD';
-      case SftpAuthenticationMethods.publicKey:
-        return 'PUBLIC_KEY';
-      case SftpAuthenticationMethods.publicKeyOrPassword:
-        return 'PUBLIC_KEY_OR_PASSWORD';
-      case SftpAuthenticationMethods.publicKeyAndPassword:
-        return 'PUBLIC_KEY_AND_PASSWORD';
-    }
-  }
-}
+  final String value;
 
-extension SftpAuthenticationMethodsFromString on String {
-  SftpAuthenticationMethods toSftpAuthenticationMethods() {
-    switch (this) {
-      case 'PASSWORD':
-        return SftpAuthenticationMethods.password;
-      case 'PUBLIC_KEY':
-        return SftpAuthenticationMethods.publicKey;
-      case 'PUBLIC_KEY_OR_PASSWORD':
-        return SftpAuthenticationMethods.publicKeyOrPassword;
-      case 'PUBLIC_KEY_AND_PASSWORD':
-        return SftpAuthenticationMethods.publicKeyAndPassword;
-    }
-    throw Exception('$this is not known in enum SftpAuthenticationMethods');
-  }
+  const SftpAuthenticationMethods(this.value);
+
+  static SftpAuthenticationMethods fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum SftpAuthenticationMethods'));
 }
 
 enum SigningAlg {
-  sha256,
-  sha384,
-  sha512,
-  sha1,
-  none,
-}
+  sha256('SHA256'),
+  sha384('SHA384'),
+  sha512('SHA512'),
+  sha1('SHA1'),
+  none('NONE'),
+  ;
 
-extension SigningAlgValueExtension on SigningAlg {
-  String toValue() {
-    switch (this) {
-      case SigningAlg.sha256:
-        return 'SHA256';
-      case SigningAlg.sha384:
-        return 'SHA384';
-      case SigningAlg.sha512:
-        return 'SHA512';
-      case SigningAlg.sha1:
-        return 'SHA1';
-      case SigningAlg.none:
-        return 'NONE';
-    }
-  }
-}
+  final String value;
 
-extension SigningAlgFromString on String {
-  SigningAlg toSigningAlg() {
-    switch (this) {
-      case 'SHA256':
-        return SigningAlg.sha256;
-      case 'SHA384':
-        return SigningAlg.sha384;
-      case 'SHA512':
-        return SigningAlg.sha512;
-      case 'SHA1':
-        return SigningAlg.sha1;
-      case 'NONE':
-        return SigningAlg.none;
-    }
-    throw Exception('$this is not known in enum SigningAlg');
-  }
+  const SigningAlg(this.value);
+
+  static SigningAlg fromString(String value) => values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => throw Exception('$value is not known in enum SigningAlg'));
 }
 
 /// Provides information about the public Secure Shell (SSH) key that is
@@ -8996,51 +8609,21 @@ class StartFileTransferResponse {
 /// minutes for the server to be completely operational. Both
 /// <code>START_FAILED</code> and <code>STOP_FAILED</code> are error conditions.
 enum State {
-  offline,
-  online,
-  starting,
-  stopping,
-  startFailed,
-  stopFailed,
-}
+  offline('OFFLINE'),
+  online('ONLINE'),
+  starting('STARTING'),
+  stopping('STOPPING'),
+  startFailed('START_FAILED'),
+  stopFailed('STOP_FAILED'),
+  ;
 
-extension StateValueExtension on State {
-  String toValue() {
-    switch (this) {
-      case State.offline:
-        return 'OFFLINE';
-      case State.online:
-        return 'ONLINE';
-      case State.starting:
-        return 'STARTING';
-      case State.stopping:
-        return 'STOPPING';
-      case State.startFailed:
-        return 'START_FAILED';
-      case State.stopFailed:
-        return 'STOP_FAILED';
-    }
-  }
-}
+  final String value;
 
-extension StateFromString on String {
-  State toState() {
-    switch (this) {
-      case 'OFFLINE':
-        return State.offline;
-      case 'ONLINE':
-        return State.online;
-      case 'STARTING':
-        return State.starting;
-      case 'STOPPING':
-        return State.stopping;
-      case 'START_FAILED':
-        return State.startFailed;
-      case 'STOP_FAILED':
-        return State.stopFailed;
-    }
-    throw Exception('$this is not known in enum State');
-  }
+  const State(this.value);
+
+  static State fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception('$value is not known in enum State'));
 }
 
 /// Creates a key-value pair for a specific resource. Tags are metadata that you
@@ -9183,36 +8766,19 @@ class TestIdentityProviderResponse {
 }
 
 enum TlsSessionResumptionMode {
-  disabled,
-  enabled,
-  enforced,
-}
+  disabled('DISABLED'),
+  enabled('ENABLED'),
+  enforced('ENFORCED'),
+  ;
 
-extension TlsSessionResumptionModeValueExtension on TlsSessionResumptionMode {
-  String toValue() {
-    switch (this) {
-      case TlsSessionResumptionMode.disabled:
-        return 'DISABLED';
-      case TlsSessionResumptionMode.enabled:
-        return 'ENABLED';
-      case TlsSessionResumptionMode.enforced:
-        return 'ENFORCED';
-    }
-  }
-}
+  final String value;
 
-extension TlsSessionResumptionModeFromString on String {
-  TlsSessionResumptionMode toTlsSessionResumptionMode() {
-    switch (this) {
-      case 'DISABLED':
-        return TlsSessionResumptionMode.disabled;
-      case 'ENABLED':
-        return TlsSessionResumptionMode.enabled;
-      case 'ENFORCED':
-        return TlsSessionResumptionMode.enforced;
-    }
-    throw Exception('$this is not known in enum TlsSessionResumptionMode');
-  }
+  const TlsSessionResumptionMode(this.value);
+
+  static TlsSessionResumptionMode fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () => throw Exception(
+              '$value is not known in enum TlsSessionResumptionMode'));
 }
 
 class UpdateAccessResponse {
@@ -9660,7 +9226,7 @@ class WorkflowStep {
           ? TagStepDetails.fromJson(
               json['TagStepDetails'] as Map<String, dynamic>)
           : null,
-      type: (json['Type'] as String?)?.toWorkflowStepType(),
+      type: (json['Type'] as String?)?.let(WorkflowStepType.fromString),
     );
   }
 
@@ -9677,52 +9243,27 @@ class WorkflowStep {
       if (decryptStepDetails != null) 'DecryptStepDetails': decryptStepDetails,
       if (deleteStepDetails != null) 'DeleteStepDetails': deleteStepDetails,
       if (tagStepDetails != null) 'TagStepDetails': tagStepDetails,
-      if (type != null) 'Type': type.toValue(),
+      if (type != null) 'Type': type.value,
     };
   }
 }
 
 enum WorkflowStepType {
-  copy,
-  custom,
-  tag,
-  delete,
-  decrypt,
-}
+  copy('COPY'),
+  custom('CUSTOM'),
+  tag('TAG'),
+  delete('DELETE'),
+  decrypt('DECRYPT'),
+  ;
 
-extension WorkflowStepTypeValueExtension on WorkflowStepType {
-  String toValue() {
-    switch (this) {
-      case WorkflowStepType.copy:
-        return 'COPY';
-      case WorkflowStepType.custom:
-        return 'CUSTOM';
-      case WorkflowStepType.tag:
-        return 'TAG';
-      case WorkflowStepType.delete:
-        return 'DELETE';
-      case WorkflowStepType.decrypt:
-        return 'DECRYPT';
-    }
-  }
-}
+  final String value;
 
-extension WorkflowStepTypeFromString on String {
-  WorkflowStepType toWorkflowStepType() {
-    switch (this) {
-      case 'COPY':
-        return WorkflowStepType.copy;
-      case 'CUSTOM':
-        return WorkflowStepType.custom;
-      case 'TAG':
-        return WorkflowStepType.tag;
-      case 'DELETE':
-        return WorkflowStepType.delete;
-      case 'DECRYPT':
-        return WorkflowStepType.decrypt;
-    }
-    throw Exception('$this is not known in enum WorkflowStepType');
-  }
+  const WorkflowStepType(this.value);
+
+  static WorkflowStepType fromString(String value) =>
+      values.firstWhere((e) => e.value == value,
+          orElse: () =>
+              throw Exception('$value is not known in enum WorkflowStepType'));
 }
 
 class AccessDeniedException extends _s.GenericAwsException {
