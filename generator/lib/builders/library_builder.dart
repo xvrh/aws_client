@@ -483,7 +483,12 @@ String extractXmlCode(Shape shapeRef,
       code = '$code!';
     }
     if (enumeration) {
-      code = '${shapeRef.className}.fromString($code)';
+      final enumFactory = '${shapeRef.className}.fromString';
+        code = '$code?.let($enumFactory)';
+      if (nullability.outputNullable) {
+      } else {
+        //code = '$enumFactory($code)';
+      }
     }
     return code;
   } else if (type == 'list') {
