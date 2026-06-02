@@ -157,6 +157,14 @@ Shape _shape(SmithyShape shape, bool rest, bool xml) {
       return _structure(shape, rest, xml);
     case 'enum':
       return _enum(shape);
+    case 'document':
+      // Smithy free-form JSON. Legacy modeled these as an empty structure
+      // (the {"document": true} flag was ignored), yielding an opaque class.
+      return Shape(
+        type: 'structure',
+        membersMap: const {},
+        documentation: _doc(shape.documentation),
+      );
     case 'list':
     case 'set':
       return Shape(
