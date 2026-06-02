@@ -76,6 +76,7 @@ Api apiFromSmithy(SmithyModel model, {required String uid}) {
 Operation _operation(String name, SmithyShape op) => Operation(
       name: name,
       http: const Http(method: 'POST', requestUri: '/'),
+      authtype: op.traits.has(TraitIds.optionalAuth) ? 'none' : '',
       input: _descriptor(op.input),
       output: _descriptor(op.output),
       errors: op.errors == null || op.errors!.isEmpty
@@ -139,6 +140,7 @@ Shape _structure(SmithyShape shape) {
     type: 'structure',
     membersMap: members,
     required: required.isEmpty ? null : required,
+    exception: shape.traits.has(TraitIds.error),
     documentation: _doc(shape.documentation),
   );
 }

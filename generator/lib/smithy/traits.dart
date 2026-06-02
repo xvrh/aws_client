@@ -15,7 +15,8 @@ class TraitIds {
   static const awsApiService = 'aws.api#service';
   static const sigv4 = 'aws.auth#sigv4';
 
-  // documentation / lifecycle
+  // auth / documentation / lifecycle
+  static const optionalAuth = 'smithy.api#optionalAuth';
   static const documentation = 'smithy.api#documentation';
   static const title = 'smithy.api#title';
   static const deprecated = 'smithy.api#deprecated';
