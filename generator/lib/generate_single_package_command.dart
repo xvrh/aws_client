@@ -12,6 +12,8 @@ import 'builders/library_builder.dart';
 import 'generate_command.dart';
 import 'model/api.dart';
 import 'model/region_config.dart';
+import 'smithy/ast.dart';
+import 'smithy/from_smithy.dart';
 import 'utils/fix_absolute_import.dart';
 
 class GenerateSinglePackageCommand extends Command {
@@ -24,7 +26,14 @@ class GenerateSinglePackageCommand extends Command {
   String get description =>
       '''Generate a single package containing all the AWS APIs.''';
 
-  GenerateSinglePackageCommand();
+  GenerateSinglePackageCommand() {
+    argParser.addFlag(
+      'smithy',
+      help: 'Generate from the Smithy models in smithy_apis/ (via apiFromSmithy) '
+          'instead of the legacy JSON in apis/',
+      defaultsTo: false,
+    );
+  }
 
   @override
   Future<void> run() async {
@@ -40,20 +49,28 @@ class GenerateSinglePackageCommand extends Command {
     print('Generating Dart classes...');
 
     Api.isGeneratingSinglePackage = true;
-    final dir = Directory('./apis');
+    final smithy = argResults!['smithy'] == true;
+    final dir = Directory(smithy ? './smithy_apis' : './apis');
     final files = dir.listSync().whereType<File>().toList();
     files.sort((a, b) => a.path.compareTo(b.path));
     final services = <String>{};
     final readmeDescriptions = <String>{};
 
     for (var ent in files) {
-      final parts = ent.uri.pathSegments.last.split('.')
-        ..removeLast()
-        ..removeLast();
-      services.add(parts.join('.'));
+      final name = ent.uri.pathSegments.last;
+      if (smithy) {
+        services.add(name.substring(0, name.length - '.json'.length));
+      } else {
+        final parts = name.split('.')
+          ..removeLast()
+          ..removeLast();
+        services.add(parts.join('.'));
+      }
     }
 
     final generatedApis = <String, String>{};
+    // directoryName -> latest (version, versioned-entry-basename) for barrels.
+    final latestEntry = <String, ({String version, String entry})>{};
 
     final packageDir = '../aws_client';
     final libDir = p.join(packageDir, 'lib');
@@ -65,13 +82,24 @@ class GenerateSinglePackageCommand extends Command {
 
     for (var i = 0; i < services.length; i++) {
       final service = services.elementAt(i);
-      final def = File('./apis/$service.normal.json');
 
-      final defJson =
-          jsonDecode(def.readAsStringSync()) as Map<String, dynamic>;
+      final Api api;
+      if (smithy) {
+        final model = SmithyModel.fromJson(
+            jsonDecode(File('./smithy_apis/$service.json').readAsStringSync())
+                as Map<String, dynamic>);
+        try {
+          api = apiFromSmithy(model, uid: service);
+        } on UnsupportedError {
+          continue; // protocol not yet supported by the Smithy transform
+        }
+      } else {
+        api = Api.fromJson(
+            jsonDecode(File('./apis/$service.normal.json').readAsStringSync())
+                as Map<String, dynamic>);
+      }
 
       try {
-        final api = Api.fromJson(defJson);
         _fixApi(api);
 
         final percentage = i * 100 ~/ services.length;
@@ -85,8 +113,15 @@ class GenerateSinglePackageCommand extends Command {
         // create directories
         final baseDir = '$generatedDir/${api.directoryName}';
         final serviceFile = File('$baseDir/${api.fileBasename}.dart');
-        final entryFile = File(
-            '$libDir/${api.directoryName}_${api.fileBasename.substring(1)}.dart');
+        final entryBasename =
+            '${api.directoryName}_${api.fileBasename.substring(1)}';
+        final entryFile = File('$libDir/$entryBasename.dart');
+
+        final prev = latestEntry[api.directoryName];
+        if (prev == null || api.metadata.apiVersion.compareTo(prev.version) > 0) {
+          latestEntry[api.directoryName] =
+              (version: api.metadata.apiVersion, entry: entryBasename);
+        }
 
         serviceFile.parent.createSync(recursive: true);
         entryFile.parent.createSync(recursive: true);
@@ -111,6 +146,12 @@ export '../src/generated/${api.directoryName}/${api.fileBasename}.dart';
         print('Error "${e.runtimeType}" deserializing $service');
         rethrow;
       }
+    }
+
+    // Version-less barrels: package:aws_client/<service>.dart -> latest version.
+    for (final e in latestEntry.entries) {
+      File(p.join(libDir, '${e.key}.dart'))
+          .writeAsStringSync("export '${e.value.entry}.dart';\n");
     }
 
     File(p.join(libDir, 'dynamo_document.dart')).writeAsStringSync('''
@@ -233,11 +274,17 @@ void _replaceInFile(File file, Map<String, String> terms) {
 }
 
 void _fixApi(Api api) {
+  // Idempotent + null-safe: the Smithy models may already include these values
+  // (or rename the shape), so only add when present and missing.
+  void ensure(String shape, String value) {
+    final e = api.shapes[shape]?.enumeration;
+    if (e != null && !e.contains(value)) e.add(value);
+  }
+
   if (api.directoryName == 's3') {
-    final checksum = api.shapes['ChecksumAlgorithm']!;
-    checksum.enumeration!.add('CRC64NVME');
+    ensure('ChecksumAlgorithm', 'CRC64NVME');
   } else if (api.directoryName == 'lambda' &&
       api.metadata.apiVersion == '2015-03-31') {
-    api.shapes['LastUpdateStatusReasonCode']!.enumeration!.add('Creating');
+    ensure('LastUpdateStatusReasonCode', 'Creating');
   }
 }
