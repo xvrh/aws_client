@@ -207,6 +207,7 @@ List<String> _supportedUidsWithLegacy() {
     TraitIds.awsJson1_0,
     TraitIds.awsJson1_1,
     TraitIds.restJson1,
+    TraitIds.restXml,
   };
   final uids = <String>[];
   for (final f in Directory('smithy_apis')

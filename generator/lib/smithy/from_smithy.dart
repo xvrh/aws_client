@@ -2,6 +2,7 @@ import '../model/api.dart';
 import '../model/descriptor.dart';
 import '../model/operation.dart';
 import '../model/shape.dart';
+import '../model/xml_namespace.dart';
 import 'ast.dart';
 import 'traits.dart';
 
@@ -20,6 +21,7 @@ Api apiFromSmithy(SmithyModel model, {required String uid}) {
     TraitIds.awsJson1_0 => ('json', '1.0', true),
     TraitIds.awsJson1_1 => ('json', '1.1', true),
     TraitIds.restJson1 => ('rest-json', null, false),
+    TraitIds.restXml => ('rest-xml', null, false),
     final p => throw UnsupportedError('from_smithy: unsupported protocol $p'),
   };
 
@@ -53,6 +55,7 @@ Api apiFromSmithy(SmithyModel model, {required String uid}) {
   // awsJson/query/ec2 carry those traits in the model but ignore them on the
   // wire — everything goes in the body.
   final rest = protocol == 'rest-json' || protocol == 'rest-xml';
+  final xml = protocol == 'rest-xml';
 
   final operations = <String, Operation>{};
   for (final ref in _collectOperations(model, service)) {
@@ -67,7 +70,7 @@ Api apiFromSmithy(SmithyModel model, {required String uid}) {
     if (shapes.containsKey(name)) {
       throw StateError('Shape name collision after namespace strip: $name');
     }
-    shapes[name] = _shape(shape, rest);
+    shapes[name] = _shape(shape, rest, xml);
   });
   _injectPreludeShapes(model, shapes);
 
@@ -139,27 +142,30 @@ Http _http(Map<String, Object?>? trait) {
   );
 }
 
-Shape _shape(SmithyShape shape, bool rest) {
+Shape _shape(SmithyShape shape, bool rest, bool xml) {
   switch (shape.type) {
     case 'structure':
     case 'union':
-      return _structure(shape, rest);
+      return _structure(shape, rest, xml);
     case 'enum':
       return _enum(shape);
     case 'list':
     case 'set':
       return Shape(
         type: 'list',
-        member: Descriptor(shape: _local(shape.member!.target)),
+        member: _memberDescriptor(shape.member!, xml),
+        flattened: xml && shape.traits.has(TraitIds.xmlFlattened),
         min: _bound(shape, 'min'),
         max: _bound(shape, 'max'),
+        xmlNamespace: xml ? _xmlNs(shape.traits) : null,
         documentation: _doc(shape.documentation),
       );
     case 'map':
       return Shape(
         type: 'map',
-        key: Descriptor(shape: _local(shape.key!.target)),
-        value: Descriptor(shape: _local(shape.value!.target)),
+        key: _memberDescriptor(shape.key!, xml),
+        value: _memberDescriptor(shape.value!, xml),
+        xmlNamespace: xml ? _xmlNs(shape.traits) : null,
         documentation: _doc(shape.documentation),
       );
     default:
@@ -169,18 +175,19 @@ Shape _shape(SmithyShape shape, bool rest) {
         pattern: shape.traits.string(TraitIds.pattern),
         min: _bound(shape, 'min'),
         max: _bound(shape, 'max'),
+        xmlNamespace: xml ? _xmlNs(shape.traits) : null,
         documentation: _doc(shape.documentation),
       );
   }
 }
 
-Shape _structure(SmithyShape shape, bool rest) {
+Shape _structure(SmithyShape shape, bool rest, bool xml) {
   final members = <String, Member>{};
   final required = <String>[];
   String? payload;
   shape.members?.forEach((name, ref) {
     if (rest && ref.traits.has(TraitIds.httpPayload)) payload = name;
-    members[name] = _member(name, ref, rest);
+    members[name] = _member(name, ref, rest, xml);
     if (ref.isRequired) required.add(name);
   });
   return Shape(
@@ -189,14 +196,16 @@ Shape _structure(SmithyShape shape, bool rest) {
     required: required.isEmpty ? null : required,
     exception: shape.traits.has(TraitIds.error),
     payload: payload,
+    xmlNamespace: xml ? _xmlNs(shape.traits) : null,
     documentation: _doc(shape.documentation),
   );
 }
 
-Member _member(String name, ShapeRef ref, bool rest) {
+Member _member(String name, ShapeRef ref, bool rest, bool xml) {
   final t = ref.traits;
   String? location;
-  String? locationName = t.string(TraitIds.jsonName);
+  String? locationName =
+      xml ? t.string(TraitIds.xmlName) : t.string(TraitIds.jsonName);
   if (rest) {
     if (t.has(TraitIds.httpLabel)) {
       location = 'uri';
@@ -220,7 +229,21 @@ Member _member(String name, ShapeRef ref, bool rest) {
     idempotencyToken: t.has(TraitIds.idempotencyToken),
     location: location,
     locationName: locationName,
+    flattened: xml && t.has(TraitIds.xmlFlattened),
+    xmlAttribute: xml && t.has(TraitIds.xmlAttribute),
+    xmlNamespace: xml ? _xmlNs(t) : null,
   );
+}
+
+Descriptor _memberDescriptor(ShapeRef ref, bool xml) => Descriptor(
+      shape: _local(ref.target),
+      locationName: xml ? ref.traits.string(TraitIds.xmlName) : null,
+      xmlNamespace: xml ? _xmlNs(ref.traits) : null,
+    );
+
+XmlNamespace? _xmlNs(Map<String, Object?> traits) {
+  final ns = traits.object(TraitIds.xmlNamespace);
+  return ns == null ? null : XmlNamespace(ns['uri'] as String, ns['prefix'] as String?);
 }
 
 Shape _enum(SmithyShape shape) {

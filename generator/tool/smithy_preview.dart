@@ -17,6 +17,8 @@ const defaults = [
   'kms-2014-11-01',
   'sqs-2012-11-05',
   'lambda-2015-03-31', // rest-json
+  's3-2006-03-01', // rest-xml
+  'route-53-2013-04-01', // rest-xml
 ];
 
 void main(List<String> args) {
