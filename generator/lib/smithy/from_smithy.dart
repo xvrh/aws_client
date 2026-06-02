@@ -186,7 +186,7 @@ Shape _shape(SmithyShape shape, bool rest, bool xml) {
       );
     default:
       return Shape(
-        type: shape.type,
+        type: _scalarType(shape.type),
         enumeration: _legacyEnumTrait(shape),
         pattern: shape.traits.string(TraitIds.pattern),
         min: _bound(shape, 'min'),
@@ -198,6 +198,7 @@ Shape _shape(SmithyShape shape, bool rest, bool xml) {
 }
 
 Shape _structure(SmithyShape shape, bool rest, bool xml) {
+  final isException = shape.traits.has(TraitIds.error);
   final members = <String, Member>{};
   final required = <String>[];
   String? payload;
@@ -209,8 +210,10 @@ Shape _structure(SmithyShape shape, bool rest, bool xml) {
   return Shape(
     type: 'structure',
     membersMap: members,
-    required: required.isEmpty ? null : required,
-    exception: shape.traits.has(TraitIds.error),
+    // Exceptions are constructed by the runtime from just code+message, so their
+    // members must stay optional regardless of Smithy @required.
+    required: (isException || required.isEmpty) ? null : required,
+    exception: isException,
     payload: payload,
     xmlNamespace: xml ? _xmlNs(shape.traits) : null,
     documentation: _doc(shape.documentation),
@@ -290,6 +293,16 @@ num? _bound(SmithyShape shape, String key) {
 
 String _local(String shapeId) => shapeId.split('#').last;
 
+/// Maps Smithy scalar types the legacy generator doesn't know to the nearest
+/// legacy basic type (dart_type.dart handles only string/bool/double/float/
+/// integer/long/blob/timestamp).
+String _scalarType(String t) => switch (t) {
+      'byte' || 'short' || 'intEnum' => 'integer',
+      'bigInteger' => 'long',
+      'bigDecimal' => 'double',
+      _ => t,
+    };
+
 /// Smithy prelude primitives have no shape definition in the model. Inject a
 /// synthetic shape under the local name of any referenced prelude type so the
 /// generator can resolve the member's type (the legacy JSON always had one).
@@ -297,28 +310,33 @@ const _preludePrimitives = {
   'smithy.api#String': 'string',
   'smithy.api#Boolean': 'boolean',
   'smithy.api#PrimitiveBoolean': 'boolean',
-  'smithy.api#Byte': 'byte',
-  'smithy.api#Short': 'short',
+  'smithy.api#Byte': 'integer',
+  'smithy.api#Short': 'integer',
   'smithy.api#Integer': 'integer',
   'smithy.api#PrimitiveInteger': 'integer',
   'smithy.api#Long': 'long',
   'smithy.api#PrimitiveLong': 'long',
+  'smithy.api#BigInteger': 'long',
   'smithy.api#Float': 'float',
   'smithy.api#PrimitiveFloat': 'float',
   'smithy.api#Double': 'double',
   'smithy.api#PrimitiveDouble': 'double',
-  'smithy.api#BigInteger': 'bigInteger',
-  'smithy.api#BigDecimal': 'bigDecimal',
+  'smithy.api#BigDecimal': 'double',
   'smithy.api#Timestamp': 'timestamp',
   'smithy.api#Blob': 'blob',
-  'smithy.api#Document': 'document',
 };
 
 void _injectPreludeShapes(SmithyModel model, Map<String, Shape> shapes) {
   void visit(ShapeRef? ref) {
-    final type = ref == null ? null : _preludePrimitives[ref.target];
+    if (ref == null) return;
+    if (ref.target == 'smithy.api#Document') {
+      shapes.putIfAbsent(
+          _local(ref.target), () => Shape(type: 'structure', membersMap: const {}));
+      return;
+    }
+    final type = _preludePrimitives[ref.target];
     if (type != null) {
-      shapes.putIfAbsent(_local(ref!.target), () => Shape(type: type));
+      shapes.putIfAbsent(_local(ref.target), () => Shape(type: type));
     }
   }
 
