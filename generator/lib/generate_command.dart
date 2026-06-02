@@ -21,6 +21,8 @@ import 'model/api.dart';
 import 'model/config.dart';
 import 'model/region_config.dart';
 import 'model/test_model.dart';
+import 'smithy/ast.dart';
+import 'smithy/from_smithy.dart';
 
 class GenerateCommand extends Command {
   final _formatter = DartFormatter(fixes: StyleFix.all);
@@ -104,6 +106,12 @@ in the config file, from the downloaded models.''';
         'protocol',
         help: 'Generate only services with a specific protocol',
         allowed: ['json', 'rest-json', 'rest-xml', 'query', 'ec2'],
+      )
+      ..addFlag(
+        'smithy',
+        help: 'Generate from the Smithy models in smithy_apis/ '
+            '(via apiFromSmithy) instead of the legacy JSON in apis/',
+        defaultsTo: false,
       );
   }
 
@@ -141,16 +149,22 @@ in the config file, from the downloaded models.''';
     final devMode = argResults!['dev'] == true;
     final protocol = argResults!['protocol'];
 
-    final dir = Directory('./apis');
+    final smithy = argResults!['smithy'] == true;
+    final dir = Directory(smithy ? './smithy_apis' : './apis');
     final files = dir.listSync().whereType<File>().toList();
     files.sort((a, b) => a.path.compareTo(b.path));
     final services = <String>{};
 
     for (var ent in files) {
-      final parts = ent.uri.pathSegments.last.split('.')
-        ..removeLast()
-        ..removeLast();
-      services.add(parts.join('.'));
+      final name = ent.uri.pathSegments.last;
+      if (smithy) {
+        services.add(name.substring(0, name.length - '.json'.length));
+      } else {
+        final parts = name.split('.')
+          ..removeLast()
+          ..removeLast();
+        services.add(parts.join('.'));
+      }
     }
 
     final touchedDirs = <String>{};
@@ -172,13 +186,24 @@ in the config file, from the downloaded models.''';
 
     for (var i = 0; i < services.length; i++) {
       final service = services.elementAt(i);
-      final def = File('./apis/$service.normal.json');
 
-      final defJson =
-          jsonDecode(def.readAsStringSync()) as Map<String, dynamic>;
+      final Api api;
+      if (smithy) {
+        final model = SmithyModel.fromJson(
+            jsonDecode(File('./smithy_apis/$service.json').readAsStringSync())
+                as Map<String, dynamic>);
+        try {
+          api = apiFromSmithy(model, uid: service);
+        } on UnsupportedError {
+          continue; // protocol not yet supported by the Smithy transform
+        }
+      } else {
+        api = Api.fromJson(
+            jsonDecode(File('./apis/$service.normal.json').readAsStringSync())
+                as Map<String, dynamic>);
+      }
 
       try {
-        final api = Api.fromJson(defJson);
         final protocolConfig = config.protocols[api.metadata.protocol]!;
 
         if (!(api.isRecognized &&
