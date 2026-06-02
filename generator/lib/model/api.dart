@@ -20,15 +20,15 @@ class Api {
   final Map<String, dynamic>? examples;
   final Map<String, Authorizer>? authorizers;
 
-  Api(
-    this.metadata,
-    this.operations,
-    this.shapes,
+  Api({
+    required this.metadata,
+    required this.operations,
+    required this.shapes,
     this.version,
     this.documentation,
     this.examples,
     this.authorizers,
-  );
+  });
 
   factory Api.fromJson(Map<String, dynamic> json) => _$ApiFromJson(json);
 
@@ -188,19 +188,19 @@ class Metadata {
   final Object? awsQueryCompatible;
   final String? ripServiceName;
 
-  Metadata(
-    this.apiVersion,
-    this.endpointPrefix,
+  Metadata({
+    required this.apiVersion,
+    required this.endpointPrefix,
+    required this.protocol,
+    required this.serviceFullName,
     this.signingName,
     this.globalEndpoint,
     this.signatureVersion,
     this.jsonVersion,
     this.targetPrefix,
-    this.protocol,
     this.timeStampFormat,
     this.xmlNamespaceUri,
     this.serviceAbbreviation,
-    this.serviceFullName,
     this.serviceId,
     this.uid,
     this.xmlNamespace,
@@ -210,7 +210,7 @@ class Metadata {
     this.auth,
     this.awsQueryCompatible,
     this.ripServiceName,
-  );
+  });
 
   String get className {
     if (Api.isGeneratingSinglePackage) {
