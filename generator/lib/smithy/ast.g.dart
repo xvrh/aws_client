@@ -22,6 +22,27 @@ SmithyShape _$SmithyShapeFromJson(Map<String, dynamic> json) => SmithyShape(
       (json['resources'] as List<dynamic>?)
           ?.map((e) => ShapeRef.fromJson(e as Map<String, dynamic>))
           .toList(),
+      json['create'] == null
+          ? null
+          : ShapeRef.fromJson(json['create'] as Map<String, dynamic>),
+      json['put'] == null
+          ? null
+          : ShapeRef.fromJson(json['put'] as Map<String, dynamic>),
+      json['read'] == null
+          ? null
+          : ShapeRef.fromJson(json['read'] as Map<String, dynamic>),
+      json['update'] == null
+          ? null
+          : ShapeRef.fromJson(json['update'] as Map<String, dynamic>),
+      json['delete'] == null
+          ? null
+          : ShapeRef.fromJson(json['delete'] as Map<String, dynamic>),
+      json['list'] == null
+          ? null
+          : ShapeRef.fromJson(json['list'] as Map<String, dynamic>),
+      (json['collectionOperations'] as List<dynamic>?)
+          ?.map((e) => ShapeRef.fromJson(e as Map<String, dynamic>))
+          .toList(),
       json['input'] == null
           ? null
           : ShapeRef.fromJson(json['input'] as Map<String, dynamic>),

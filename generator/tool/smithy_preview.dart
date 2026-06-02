@@ -16,6 +16,7 @@ const defaults = [
   'kinesis-2013-12-02',
   'kms-2014-11-01',
   'sqs-2012-11-05',
+  'lambda-2015-03-31', // rest-json
 ];
 
 void main(List<String> args) {

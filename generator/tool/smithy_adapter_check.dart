@@ -19,7 +19,7 @@ const cohort = ['dynamodb-2012-08-10', 'kinesis-2013-12-02'];
 
 void main(List<String> args) {
   final all = args.contains('--all');
-  final uids = all ? _awsJsonUidsWithLegacy() : (args.isEmpty ? cohort : args);
+  final uids = all ? _supportedUidsWithLegacy() : (args.isEmpty ? cohort : args);
   var anyMismatch = false;
   var total = 0;
   final dirty = <String>[];
@@ -73,8 +73,8 @@ void main(List<String> args) {
 
   if (all) {
     stdout.writeln();
-    stdout.writeln('awsJson sweep: ${uids.length} services with a legacy '
-        'counterpart, $total transform mismatches'
+    stdout.writeln('Supported-protocol sweep: ${uids.length} services with a '
+        'legacy counterpart, $total transform mismatches'
         '${dirty.isEmpty ? '' : ' in ${dirty.join(', ')}'}.');
   }
 
@@ -123,13 +123,21 @@ _Result _compare(Api legacy, Api smithy) {
       smithy.operations.keys.where((k) => !legacy.operations.containsKey(k)).length;
   legacy.operations.forEach((name, l) {
     final s = smithy.operations[name];
-    if (s == null) return;
+    if (s == null) {
+      // A legacy operation absent from the Smithy build is almost always a
+      // collection bug (e.g. resource-bound ops), not a real removal.
+      r.mismatches.add('op $name: missing in smithy build');
+      return;
+    }
     if (l.input?.shape != s.input?.shape) {
       r.mismatches.add('op $name: input ${l.input?.shape} != ${s.input?.shape}');
     }
     if (l.output?.shape != s.output?.shape) {
       r.mismatches
           .add('op $name: output ${l.output?.shape} != ${s.output?.shape}');
+    }
+    if (l.authtype != s.authtype) {
+      r.mismatches.add('op $name: authtype ${l.authtype} != ${s.authtype}');
     }
   });
   return r;
@@ -140,12 +148,26 @@ void _compareStructure(
   final lmem = l.membersMap ?? const {};
   final smem = s.membersMap ?? const {};
   for (final mn in lmem.keys) {
+    final lm = lmem[mn]!;
     final sm = smem[mn];
     if (sm == null) {
       r.evolution.add('$name.$mn: member removed');
       continue;
     }
-    _compareType(name, mn, lmem[mn]!.shape, sm.shape, la, sa, r);
+    _compareType(name, mn, lm.shape, sm.shape, la, sa, r);
+    if (lm.location != sm.location) {
+      r.mismatches.add('$name.$mn: location ${lm.location} != ${sm.location}');
+    }
+    if (lm.locationName != sm.locationName) {
+      r.mismatches
+          .add('$name.$mn: locationName ${lm.locationName} != ${sm.locationName}');
+    }
+  }
+  if (l.payload != s.payload) {
+    r.mismatches.add('$name: payload ${l.payload} != ${s.payload}');
+  }
+  if (l.exception != s.exception) {
+    r.mismatches.add('$name: exception ${l.exception} != ${s.exception}');
   }
   final dropped = (l.required ?? const <String>[])
       .toSet()
@@ -178,9 +200,14 @@ String _typeOf(Api api, String? shapeName) {
       : shapeName[0].toLowerCase() + shapeName.substring(1);
 }
 
-/// awsJson services in smithy_apis/ that also have a legacy apis/*.normal.json.
-List<String> _awsJsonUidsWithLegacy() {
-  const awsJson = {TraitIds.awsJson1_0, TraitIds.awsJson1_1};
+/// Services in smithy_apis/ whose protocol the transform supports and that also
+/// have a legacy apis/*.normal.json to compare against.
+List<String> _supportedUidsWithLegacy() {
+  const supported = {
+    TraitIds.awsJson1_0,
+    TraitIds.awsJson1_1,
+    TraitIds.restJson1,
+  };
   final uids = <String>[];
   for (final f in Directory('smithy_apis')
       .listSync()
@@ -190,7 +217,7 @@ List<String> _awsJsonUidsWithLegacy() {
     if (!File('apis/$uid.normal.json').existsSync()) continue;
     final model = SmithyModel.fromJson(
         jsonDecode(f.readAsStringSync()) as Map<String, dynamic>);
-    if (awsJson.contains(model.service.value.protocolTraitId)) uids.add(uid);
+    if (supported.contains(model.service.value.protocolTraitId)) uids.add(uid);
   }
   return uids..sort();
 }

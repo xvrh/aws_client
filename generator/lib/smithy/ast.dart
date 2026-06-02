@@ -24,10 +24,19 @@ class SmithyModel {
 class SmithyShape {
   final String type;
 
-  // service
+  // service / resource
   final String? version;
   final List<ShapeRef>? operations;
   final List<ShapeRef>? resources;
+
+  // resource lifecycle bindings
+  final ShapeRef? create;
+  final ShapeRef? put;
+  final ShapeRef? read;
+  final ShapeRef? update;
+  final ShapeRef? delete;
+  final ShapeRef? list;
+  final List<ShapeRef>? collectionOperations;
 
   // operation
   final ShapeRef? input;
@@ -52,6 +61,13 @@ class SmithyShape {
     this.version,
     this.operations,
     this.resources,
+    this.create,
+    this.put,
+    this.read,
+    this.update,
+    this.delete,
+    this.list,
+    this.collectionOperations,
     this.input,
     this.output,
     this.errors,

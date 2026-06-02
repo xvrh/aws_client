@@ -17,6 +17,7 @@ class TraitIds {
 
   // auth / documentation / lifecycle
   static const optionalAuth = 'smithy.api#optionalAuth';
+  static const unsignedPayload = 'aws.auth#unsignedPayload';
   static const documentation = 'smithy.api#documentation';
   static const title = 'smithy.api#title';
   static const deprecated = 'smithy.api#deprecated';
@@ -30,6 +31,7 @@ class TraitIds {
   static const pattern = 'smithy.api#pattern';
   static const error = 'smithy.api#error';
   static const httpError = 'smithy.api#httpError';
+  static const jsonName = 'smithy.api#jsonName';
   static const xmlName = 'smithy.api#xmlName';
   static const xmlNamespace = 'smithy.api#xmlNamespace';
   static const xmlFlattened = 'smithy.api#xmlFlattened';

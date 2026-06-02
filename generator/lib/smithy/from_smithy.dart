@@ -15,9 +15,11 @@ import 'traits.dart';
 Api apiFromSmithy(SmithyModel model, {required String uid}) {
   final serviceEntry = model.service;
   final service = serviceEntry.value;
-  final jsonVersion = switch (service.protocolTraitId) {
-    TraitIds.awsJson1_0 => '1.0',
-    TraitIds.awsJson1_1 => '1.1',
+  // (legacy protocol name, jsonVersion, uses X-Amz-Target prefix)
+  final (protocol, jsonVersion, usesTarget) = switch (service.protocolTraitId) {
+    TraitIds.awsJson1_0 => ('json', '1.0', true),
+    TraitIds.awsJson1_1 => ('json', '1.1', true),
+    TraitIds.restJson1 => ('rest-json', null, false),
     final p => throw UnsupportedError('from_smithy: unsupported protocol $p'),
   };
 
@@ -33,8 +35,8 @@ Api apiFromSmithy(SmithyModel model, {required String uid}) {
   final metadata = Metadata(
     apiVersion: service.version!,
     endpointPrefix: endpointPrefix!,
-    protocol: 'json',
-    protocols: const ['json'],
+    protocol: protocol,
+    protocols: [protocol],
     jsonVersion: jsonVersion,
     serviceFullName: service.traits.string(TraitIds.title) ?? sdkId ?? endpointPrefix,
     serviceAbbreviation: sdkId,
@@ -42,15 +44,20 @@ Api apiFromSmithy(SmithyModel model, {required String uid}) {
     signatureVersion: 'v4',
     signingName:
         (signingName != null && signingName != endpointPrefix) ? signingName : null,
-    targetPrefix: _local(serviceEntry.key),
+    targetPrefix: usesTarget ? _local(serviceEntry.key) : null,
     uid: uid,
     auth: sigv4 != null ? [TraitIds.sigv4] : null,
   );
 
+  // Only REST protocols use HTTP bindings (httpLabel/Header/Query/Payload...);
+  // awsJson/query/ec2 carry those traits in the model but ignore them on the
+  // wire — everything goes in the body.
+  final rest = protocol == 'rest-json' || protocol == 'rest-xml';
+
   final operations = <String, Operation>{};
-  for (final ref in service.operations ?? const <ShapeRef>[]) {
+  for (final ref in _collectOperations(model, service)) {
     final name = _local(ref.target);
-    operations[name] = _operation(name, model.shapes[ref.target]!);
+    operations[name] = _operation(name, model.shapes[ref.target]!, rest);
   }
 
   final shapes = <String, Shape>{};
@@ -60,7 +67,7 @@ Api apiFromSmithy(SmithyModel model, {required String uid}) {
     if (shapes.containsKey(name)) {
       throw StateError('Shape name collision after namespace strip: $name');
     }
-    shapes[name] = _shape(shape);
+    shapes[name] = _shape(shape, rest);
   });
   _injectPreludeShapes(model, shapes);
 
@@ -73,10 +80,41 @@ Api apiFromSmithy(SmithyModel model, {required String uid}) {
   );
 }
 
-Operation _operation(String name, SmithyShape op) => Operation(
+/// Operations bound to a service include those reachable through its resource
+/// closure (lifecycle bindings create/put/read/update/delete/list plus
+/// operations/collectionOperations), recursively through nested resources.
+List<ShapeRef> _collectOperations(SmithyModel model, SmithyShape service) {
+  final refs = <ShapeRef>[];
+  final seen = <String>{};
+
+  void add(ShapeRef? r) {
+    if (r != null && seen.add(r.target)) refs.add(r);
+  }
+
+  void walkResource(ShapeRef resourceRef) {
+    final r = model.shapes[resourceRef.target];
+    if (r == null) return;
+    [r.create, r.put, r.read, r.update, r.delete, r.list].forEach(add);
+    r.operations?.forEach(add);
+    r.collectionOperations?.forEach(add);
+    r.resources?.forEach(walkResource);
+  }
+
+  service.operations?.forEach(add);
+  service.resources?.forEach(walkResource);
+  return refs;
+}
+
+Operation _operation(String name, SmithyShape op, bool rest) => Operation(
       name: name,
-      http: const Http(method: 'POST', requestUri: '/'),
-      authtype: op.traits.has(TraitIds.optionalAuth) ? 'none' : '',
+      http: rest
+          ? _http(op.traits.object(TraitIds.http))
+          : const Http(method: 'POST', requestUri: '/'),
+      authtype: switch (op.traits) {
+        final t when t.has(TraitIds.optionalAuth) => 'none',
+        final t when t.has(TraitIds.unsignedPayload) => 'v4-unsigned-body',
+        _ => '',
+      },
       input: _descriptor(op.input),
       output: _descriptor(op.output),
       errors: op.errors == null || op.errors!.isEmpty
@@ -90,11 +128,22 @@ Descriptor? _descriptor(ShapeRef? ref) {
   return Descriptor(shape: _local(ref.target));
 }
 
-Shape _shape(SmithyShape shape) {
+/// awsJson has no @http trait and defaults to POST "/"; rest protocols carry
+/// method/uri/code on smithy.api#http.
+Http _http(Map<String, Object?>? trait) {
+  if (trait == null) return const Http(method: 'POST', requestUri: '/');
+  return Http(
+    method: trait['method'] as String? ?? 'POST',
+    requestUri: trait['uri'] as String? ?? '/',
+    responseCode: (trait['code'] as num?)?.toInt(),
+  );
+}
+
+Shape _shape(SmithyShape shape, bool rest) {
   switch (shape.type) {
     case 'structure':
     case 'union':
-      return _structure(shape);
+      return _structure(shape, rest);
     case 'enum':
       return _enum(shape);
     case 'list':
@@ -125,15 +174,13 @@ Shape _shape(SmithyShape shape) {
   }
 }
 
-Shape _structure(SmithyShape shape) {
+Shape _structure(SmithyShape shape, bool rest) {
   final members = <String, Member>{};
   final required = <String>[];
+  String? payload;
   shape.members?.forEach((name, ref) {
-    members[name] = Member(
-      shape: _local(ref.target),
-      documentation: _doc(ref.documentation),
-      idempotencyToken: ref.traits.has(TraitIds.idempotencyToken),
-    );
+    if (rest && ref.traits.has(TraitIds.httpPayload)) payload = name;
+    members[name] = _member(name, ref, rest);
     if (ref.isRequired) required.add(name);
   });
   return Shape(
@@ -141,7 +188,38 @@ Shape _structure(SmithyShape shape) {
     membersMap: members,
     required: required.isEmpty ? null : required,
     exception: shape.traits.has(TraitIds.error),
+    payload: payload,
     documentation: _doc(shape.documentation),
+  );
+}
+
+Member _member(String name, ShapeRef ref, bool rest) {
+  final t = ref.traits;
+  String? location;
+  String? locationName = t.string(TraitIds.jsonName);
+  if (rest) {
+    if (t.has(TraitIds.httpLabel)) {
+      location = 'uri';
+      locationName = name;
+    } else if (t.string(TraitIds.httpHeader) != null) {
+      location = 'header';
+      locationName = t.string(TraitIds.httpHeader);
+    } else if (t.string(TraitIds.httpPrefixHeaders) != null) {
+      location = 'headers';
+      locationName = t.string(TraitIds.httpPrefixHeaders);
+    } else if (t.string(TraitIds.httpQuery) != null) {
+      location = 'querystring';
+      locationName = t.string(TraitIds.httpQuery);
+    } else if (t.has(TraitIds.httpResponseCode)) {
+      location = 'statusCode';
+    }
+  }
+  return Member(
+    shape: _local(ref.target),
+    documentation: _doc(ref.documentation),
+    idempotencyToken: t.has(TraitIds.idempotencyToken),
+    location: location,
+    locationName: locationName,
   );
 }
 
