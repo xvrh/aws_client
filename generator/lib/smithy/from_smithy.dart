@@ -22,8 +22,16 @@ Api apiFromSmithy(SmithyModel model, {required String uid}) {
     TraitIds.awsJson1_1 => ('json', '1.1', true),
     TraitIds.restJson1 => ('rest-json', null, false),
     TraitIds.restXml => ('rest-xml', null, false),
+    TraitIds.awsQuery => ('query', null, false),
     final p => throw UnsupportedError('from_smithy: unsupported protocol $p'),
   };
+
+  // rest = HTTP bindings (httpLabel/Header/Query/Payload); query = awsQuery form
+  // encoding with <Op>Result wrappers; xml = XML element naming (rest-xml
+  // responses and query/ec2). awsJson carries http/xml traits but ignores them.
+  final rest = protocol == 'rest-json' || protocol == 'rest-xml';
+  final query = protocol == 'query';
+  final xml = protocol == 'rest-xml' || query;
 
   final svcTrait = service.traits.object(TraitIds.awsApiService) ?? const {};
   final sigv4 = service.traits.object(TraitIds.sigv4);
@@ -47,20 +55,17 @@ Api apiFromSmithy(SmithyModel model, {required String uid}) {
     signingName:
         (signingName != null && signingName != endpointPrefix) ? signingName : null,
     targetPrefix: usesTarget ? _local(serviceEntry.key) : null,
+    xmlNamespace: query
+        ? (service.traits.object(TraitIds.xmlNamespace)?['uri'] as String?)
+        : null,
     uid: uid,
     auth: sigv4 != null ? [TraitIds.sigv4] : null,
   );
 
-  // Only REST protocols use HTTP bindings (httpLabel/Header/Query/Payload...);
-  // awsJson/query/ec2 carry those traits in the model but ignore them on the
-  // wire — everything goes in the body.
-  final rest = protocol == 'rest-json' || protocol == 'rest-xml';
-  final xml = protocol == 'rest-xml';
-
   final operations = <String, Operation>{};
   for (final ref in _collectOperations(model, service)) {
     final name = _local(ref.target);
-    operations[name] = _operation(name, model.shapes[ref.target]!, rest);
+    operations[name] = _operation(name, model.shapes[ref.target]!, rest, query);
   }
 
   final shapes = <String, Shape>{};
@@ -108,7 +113,8 @@ List<ShapeRef> _collectOperations(SmithyModel model, SmithyShape service) {
   return refs;
 }
 
-Operation _operation(String name, SmithyShape op, bool rest) => Operation(
+Operation _operation(String name, SmithyShape op, bool rest, bool query) =>
+    Operation(
       name: name,
       http: rest
           ? _http(op.traits.object(TraitIds.http))
@@ -119,16 +125,18 @@ Operation _operation(String name, SmithyShape op, bool rest) => Operation(
         _ => '',
       },
       input: _descriptor(op.input),
-      output: _descriptor(op.output),
+      // awsQuery wraps the response body in a <OperationName>Result element.
+      output: _descriptor(op.output,
+          resultWrapper: query ? '${name}Result' : null),
       errors: op.errors == null || op.errors!.isEmpty
           ? null
           : [for (final e in op.errors!) Descriptor(shape: _local(e.target))],
       documentation: _doc(op.documentation),
     );
 
-Descriptor? _descriptor(ShapeRef? ref) {
+Descriptor? _descriptor(ShapeRef? ref, {String? resultWrapper}) {
   if (ref == null || ref.target == 'smithy.api#Unit') return null;
-  return Descriptor(shape: _local(ref.target));
+  return Descriptor(shape: _local(ref.target), resultWrapper: resultWrapper);
 }
 
 /// awsJson has no @http trait and defaults to POST "/"; rest protocols carry

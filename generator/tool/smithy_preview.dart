@@ -19,6 +19,7 @@ const defaults = [
   'lambda-2015-03-31', // rest-json
   's3-2006-03-01', // rest-xml
   'route-53-2013-04-01', // rest-xml
+  'sts-2011-06-15', // query
 ];
 
 void main(List<String> args) {
