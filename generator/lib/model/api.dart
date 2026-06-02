@@ -41,8 +41,12 @@ class Api {
       e.value.name = e.key;
       e.value.api = this;
       e.value.initReferences();
-      if (e.value.exception) {
-        e.value.markUsed(false);
+    }
+    // markUsed traverses the shape graph, so every shape's references must be
+    // initialized first.
+    for (var s in shapes.values) {
+      if (s.exception) {
+        s.markUsed(false);
       }
     }
   }
