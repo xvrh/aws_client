@@ -193,12 +193,7 @@ in the config file, from the downloaded models.''';
             jsonDecode(File('./smithy_apis/$service.json').readAsStringSync())
                 as Map<String, dynamic>);
         try {
-          final initial = apiFromSmithy(model, uid: service);
-          // The Smithy model basename (sdkId-derived, e.g. route-53) can differ
-          // from the published file name (route53). Preserve the existing
-          // published name so consumer import paths don't change.
-          final uid = _reconcileUid(initial, service, generatedDir);
-          api = uid == service ? initial : apiFromSmithy(model, uid: uid);
+          api = apiFromSmithy(model, uid: service);
         } on UnsupportedError {
           continue; // protocol not yet supported by the Smithy transform
         }
@@ -351,24 +346,6 @@ in the config file, from the downloaded models.''';
 
     print('\nAPIs not generated:');
     printPretty(notGeneratedApis);
-  }
-
-  /// Returns the existing published file basename for [api]'s package whose
-  /// version matches, so Smithy-sourced generation keeps the legacy file name
-  /// (the public import path). Falls back to [fallback] for new packages.
-  String _reconcileUid(Api api, String fallback, String generatedDir) {
-    if (!api.isRecognized) return fallback;
-    final libDir = Directory('$generatedDir/${api.packageName}/lib');
-    if (!libDir.existsSync()) return fallback;
-    final version = api.metadata.apiVersion;
-    for (final f in libDir.listSync().whereType<File>()) {
-      final name = p.basename(f.path);
-      if (name.endsWith('.meta.dart')) continue;
-      if (name.endsWith('-$version.dart')) {
-        return name.substring(0, name.length - '.dart'.length);
-      }
-    }
-    return fallback;
   }
 
   Future<void> _getDependencies(String baseDir, {bool? upgrade}) async {
