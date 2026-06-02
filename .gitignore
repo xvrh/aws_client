@@ -25,4 +25,5 @@ doc/api/
 
 # Generated directories
 generator/apis/
+generator/smithy_apis/
 /all_apis/lib/
