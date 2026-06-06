@@ -47,7 +47,9 @@ class DownloadCommand extends Command {
     await _fetchApiDefinitions(config!.awsSdkJsReference);
     print('Definitions downloaded');
 
-    if (argResults!['smithy'] == true) {
+    // `argResults` is null when invoked programmatically (e.g. from
+    // GenerateCommand); the Smithy fetch is opt-in via the CLI flag only.
+    if (argResults?['smithy'] == true) {
       final reference = config!.awsSdkJsV3Reference;
       if (reference == null) {
         throw StateError(

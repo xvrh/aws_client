@@ -16,6 +16,8 @@ import 'model/api.dart';
 import 'model/config.dart';
 import 'model/region_config.dart';
 import 'model/test_model.dart';
+import 'smithy/ast.dart';
+import 'smithy/from_smithy.dart';
 import 'utils/progress.dart';
 
 /// Path to the single package, relative to the generator's working directory.
@@ -49,6 +51,13 @@ from the downloaded models, plus the protocol conformance test suite.''';
         help: 'Generates the protocol conformance test suite in aws_client',
         defaultsTo: true,
         negatable: true,
+      )
+      ..addFlag(
+        'smithy',
+        help: 'Experimental: generate the clients from the Smithy models in '
+            'smithy_apis/ (via apiFromSmithy) instead of the legacy apis/. '
+            'Run `download --smithy` first to populate the models.',
+        defaultsTo: false,
       );
   }
 
@@ -66,6 +75,14 @@ from the downloaded models, plus the protocol conformance test suite.''';
       await DownloadCommand(config).run();
     }
 
+    // The Smithy models are not auto-downloaded (they're large and the path is
+    // experimental); require an explicit `download --smithy` first.
+    if (argResults!['smithy'] == true &&
+        !Directory('./smithy_apis').existsSync()) {
+      throw StateError('smithy_apis/ not found. Run '
+          '`dart bin/generate.dart download --smithy` first.');
+    }
+
     await _generateClasses();
     await _generateConfigFiles();
     if (argResults!['test-suite'] == true) {
@@ -78,17 +95,25 @@ from the downloaded models, plus the protocol conformance test suite.''';
   Future _generateClasses() async {
     print('Generating Dart classes...');
 
-    final dir = Directory('./apis');
+    final smithy = argResults!['smithy'] == true;
+    final dir = Directory(smithy ? './smithy_apis' : './apis');
     final files = dir.listSync().whereType<File>().toList();
     files.sort((a, b) => a.path.compareTo(b.path));
     final services = <String>{};
     final readmeDescriptions = <String>{};
 
     for (var ent in files) {
-      final parts = ent.uri.pathSegments.last.split('.')
-        ..removeLast()
-        ..removeLast();
-      services.add(parts.join('.'));
+      final name = ent.uri.pathSegments.last;
+      if (smithy) {
+        // Smithy models are named `<service>.json`.
+        services.add(name.substring(0, name.length - '.json'.length));
+      } else {
+        // Legacy models are named `<service>.normal.json`.
+        final parts = name.split('.')
+          ..removeLast()
+          ..removeLast();
+        services.add(parts.join('.'));
+      }
     }
 
     final generatedApis = <String, String>{};
@@ -100,13 +125,24 @@ from the downloaded models, plus the protocol conformance test suite.''';
 
     for (var i = 0; i < services.length; i++) {
       final service = services.elementAt(i);
-      final def = File('./apis/$service.normal.json');
 
-      final defJson =
-          jsonDecode(def.readAsStringSync()) as Map<String, dynamic>;
+      final Api api;
+      if (smithy) {
+        final model = SmithyModel.fromJson(
+            jsonDecode(File('./smithy_apis/$service.json').readAsStringSync())
+                as Map<String, dynamic>);
+        try {
+          api = apiFromSmithy(model, uid: service);
+        } on UnsupportedError {
+          continue; // protocol not yet supported by the Smithy transform
+        }
+      } else {
+        api = Api.fromJson(
+            jsonDecode(File('./apis/$service.normal.json').readAsStringSync())
+                as Map<String, dynamic>);
+      }
 
       try {
-        final api = Api.fromJson(defJson);
         _fixApi(api);
 
         final percentage = i * 100 ~/ services.length;
