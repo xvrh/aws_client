@@ -1,1 +1,5 @@
 awsSdkJsReference: v2.1692.0
+
+# Smithy models, sourced from aws-sdk-js-v3 (codegen/sdk-codegen/aws-models),
+# used by `download --smithy` and the experimental `generate --smithy` path.
+awsSdkJsV3Reference: v3.1063.0
